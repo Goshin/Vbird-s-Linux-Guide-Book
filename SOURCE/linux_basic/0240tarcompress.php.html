@@ -1,0 +1,1735 @@
+<html><head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf8">
+	<meta name="Author" content="2011/04/17,lee">
+	<meta name="Description" content="对 Linux 文件进行压缩与打包的动作命令介绍">
+	<title>鸟哥的 Linux 私房菜 -- Linux 的文件压缩与打包</title>
+    <script src="../script/SpryMenuBar.js" type="text/javascript"></script>
+	<script src="../script/index.js" type="text/javascript"></script>
+	<link href="../css/SpryMenuBarHorizontal.css" rel="stylesheet" type="text/css" />
+    <link href="../css/main.css" rel="stylesheet" type="text/css" />
+    </head><body style="margin: 0pt; padding: 0pt;" class="table"onload="MM_preloadImages('image/title_19.png','image/title_26.png','image/title_27.png','image/title_28.png','image/title_06.png','image/title_08.png','image/title_10.png','image/title_12.png')">
+
+
+<!-- Copyright � 2005. Spidersoft Ltd -->
+<style>
+A.applink:hover {border: 2px dotted #DCE6F4;padding:2px;background-color:#ffff00;color:green;text-decoration:none}
+A.applink       {border: 2px dotted #DCE6F4;padding:2px;color:#2F5BFF;background:transparent;text-decoration:none}
+A.info          {color:#2F5BFF;background:transparent;text-decoration:none}
+A.info:hover    {color:green;background:transparent;text-decoration:underline}
+</style>
+<div style='BORDER: 1px solid #DCE6F4; MARGIN-TOP: 20px; MARGIN-BOTTOM: 20px; MARGIN-LEFT: 5px; MARGIN-RIGHT: 5px; PADDING: 5px; BACKGROUND-COLOR: #eef8ff;line-height:180%; COLOR: #000000; font-family: Arial; font-size: 8pt; width=100%; FILTER: progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr="#FFFFFFFF", EndColorStr="#F2F5FAFF");'>
+This page was saved using <a class="applink" href="http://www.spidersoft.com"><b>WebZIP 7.0.3.1030</b></a> <a class="applink" href="http://www.spidersoft.com"><b>offline browser</b></a>  (Unregistered) on  02/12/15 12:14:49.<br>
+<b>Address:</b> <a class="info" href="http://vbird.dic.ksu.edu.tw/linux_basic/0240tarcompress.php">http://vbird.dic.ksu.edu.tw/linux_basic/0240tarcompress.php</a><br>
+<b>Title:</b> 鸟哥的 Linux 私房菜 -- Linux 的文件压缩与打包 &nbsp;&bull;&nbsp; <b>Size:</b> 126183<br></div>
+<!-- /Copyright � 2005. Spidersoft Ltd -->
+
+
+
+<center>
+<div id="apDiv5">
+<div> <LINK REL="SHORTCUT ICON" HREF="favicon.ico">
+<!-- ImageReady Slices (title3.ai) -->
+<table id="___01" width="898" height="81" border="0" align="center" cellpadding="0" cellspacing="0";>
+	<tr>
+		<td colspan="15">
+			<img src="image/title/title_01.png" width="900" height="1" alt=""></td>
+	</tr>
+	<tr>
+		<td rowspan="4" bgcolor="#182448"><p><img src="http://linux.vbird.org/cgi-bin/Count.cgi?dd=C&ft=5&sh=T&md=8&pad=Y&df=vbird.dic.ksu.edu.tw.dat" width="93" align="left" title="計數器" /></p>
+	    <p><font color="#FFFFFF" size="-1">since2012/04/23</font></p></td>
+		<td rowspan="4" align="left" valign="top"><a href="http://vbird.dic.ksu.edu.tw/"><img src="image/title/title_03.png" alt="" width="263" height="79" border="0"></a></td>
+		<td colspan="13">
+			<img src="image/title/title_04.png" alt="" width="535" height="9" border="0"></td>
+	</tr>
+	<tr>
+		<td rowspan="3">
+			<img src="image/title/title_05.png" alt="" width="53" height="70" border="0"></td>
+		<td colspan="2" align="left" valign="top"><a href="0110whatislinux.php.html" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image51','','image/title/title_06.png',1)"><img src="image/title/title3_06.png" name="Image51" width="106" height="25" border="0" id="Image51" alt=""/></a></td>
+		<td rowspan="2">
+			<img src="image/title/title_07.png" alt="" width="27" height="37" border="0"></td>
+		<td colspan="3" align="left" valign="top"><a href="http://vbird.dic.ksu.edu.tw/linux_server/0110network_basic.php" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image52','','image/title/title_08.png',1)"><img src="image/title/title3_08.png" name="Image52" width="107" height="25" border="0" id="Image52" alt=""/></a></td>
+		<td rowspan="2">
+			<img src="image/title/title_09.png" alt="" width="37" height="37" border="0"></td>
+		<td colspan="2" align="left" valign="top"><a href="http://vbird.dic.ksu.edu.tw/about.php" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image53','','image/title/title_10.png',1)"><img src="image/title/title3_10.png" name="Image53" width="75" height="25" border="0" id="Image53" alt=""/></a></td>
+		<td rowspan="3">
+			<img src="image/title/title_11.png" alt="" width="35" height="70" border="0"></td>
+		<td align="left" valign="top"><a href="mailto:vbird@mail.vbird.idv.tw" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image54','','image/title/title_12.png',1)"><img src="image/title/title3_12.png" name="Image54" width="74" height="25" border="0" id="Image54" alt=""/></a></td>
+		<td rowspan="3">
+			<img src="image/title/title_13.png" alt="" width="21" height="70" border="0"></td>
+	</tr>
+	<tr>
+		<td colspan="2">
+			<img src="image/title/title_14.png" alt="" width="106" height="12" border="0"></td>
+		<td colspan="3">
+			<img src="image/title/title_15.png" alt="" width="107" height="12" border="0"></td>
+		<td colspan="2">
+			<img src="image/title/title_16.png" width="75" height="12" alt=""></td>
+		<td rowspan="2">
+			<img src="image/title/title_17.png" alt="" width="74" height="45" border="0"></td>
+	</tr>
+	<tr>
+		<td>
+			<img src="image/title/title_18.png" alt="" width="15" height="33" border="0"></td>
+		<td colspan="3" align="left" valign="top"><ul id="MenuBar1" class="MenuBarHorizontal">
+	  <li><a href="linux_basic.php.html" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image44','','image/title/title_19.png',1)"><img src="image/title/title3_19.png" name="Image44" width="123" height="33" border="0" id="Image44" /></a>
+			    <ul>
+			      <li><a href="Mandrake9.0/mandrake9.0.php.html" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image46','','image/title/title_26.png',1)"><img src="image/title/title_23.png" name="Image46" width="120" height="26" border="0" id="Image46" alt="" /></a></li>
+                  <li><a href="fedora_4/fc4.php.html" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image47','','image/title/title_27.png',1)"><img src="image/title/title_24.png" name="Image47" width="120" height="26" border="0" id="Image47" alt="" /></a></li>
+                  <li><a href="linux_basic.php.html" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image48','','image/title/title_28.png',1)"><img src="image/title/title_25.png" name="Image48" width="120" height="26" border="0" id="Image48" alt="" /></a></li>
+                </ul>
+		      </li>
+		</ul></td>
+		<td>
+			<img src="image/title/title_20.png" alt="" width="42" height="33" border="0"></td>
+		<td colspan="3" align="left" valign="top"><ul id="MenuBar2" class="MenuBarHorizontal">
+	  <li><a href="http://vbird.dic.ksu.edu.tw/linux_server/" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image45','','image/title/title_21.png',1)"><img src="image/title/title3_21.png" name="Image45" width="125" height="33" border="0" id="Image45" /></a>
+			    <ul>
+			      <li><a href="http://vbird.dic.ksu.edu.tw/linux_server/linux_redhat9/redhat9.php" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image43','','image/title/title_26.png',1)"><img src="image/title/title_23.png" name="Image43" width="120" height="26" border="0" id="Image43" alt=""/></a></li>
+			      <li><a href="http://vbird.dic.ksu.edu.tw/linux_server/centos4.php" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image49','','image/title/title_27.png',1)"><img src="image/title/title_24.png" name="Image49" width="120" height="26" border="0" id="Image49" alt="" /></a></li>
+			      <li><a href="http://vbird.dic.ksu.edu.tw/linux_server/" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image50','','image/title/title_28.png',1)"><img src="image/title/title_25.png" name="Image50" width="120" height="26" border="0" id="Image50" alt="" /></a></li>
+		        </ul>
+		      </li>
+		</ul></td>
+		<td>
+			<img src="image/title/title_22.png" alt="" width="47" height="33" border="0"></td>
+	</tr>
+	<tr>
+		<td>
+			<img src="image/title/Spacer.gif" width="101" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="263" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="53" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="15" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="91" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="27" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="5" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="42" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="60" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="37" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="28" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="47" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="35" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="74" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="22" height="1" alt=""></td>
+	</tr>
+</table>
+<!-- End ImageReady Slices -->
+<script type="text/javascript">
+<!--
+var MenuBar1 = new Spry.Widget.MenuBar("MenuBar1", {imgDown:"SpryAssets/SpryMenuBarDownHover.gif", imgRight:"SpryAssets/SpryMenuBarRightHover.gif"});
+var MenuBar2 = new Spry.Widget.MenuBar("MenuBar2", {imgDown:"SpryAssets/SpryMenuBarDownHover.gif", imgRight:"SpryAssets/SpryMenuBarRightHover.gif"});
+//-->
+</script></div>
+<table summary="本文内容的排版" style="width: 898px;" border="0" cellpadding="0" cellspacing="0">
+<tbody><tr><td style="width: 16px; height: 16px;">　</td>
+    <td style="width: 866px; height: 16px;">　</td>
+    <td style="width: 16px; height: 16px;">　</td></tr>
+<tr><td style="width: 16px; font-size: 6px;">　</td>
+    <td width="866">
+<!-- 本文的档头部分 -->
+<div style="text-align: center;">
+    <a href="0240tarcompress.php.html">
+    <span class="text_head0">第九章、文件与文件系统的压缩与打包</span></a><br>
+</div>
+    <div style="text-align: right;">
+        <span class="text_history">最近升级日期：2009/08/20</span>
+    </div>
+
+
+<!-- 本文的档头部分 -->
+<center><table class="head1" summary="排版：文章档头的说明"><tbody><tr><td class="head1">
+	在 Linux 底下有相当多的压缩命令可以运行喔！这些压缩命令可以让我们更方便从网络上面下载大型的文件呢！
+	此外，我们知道在 Linux 底下的扩展名是没有什么很特殊的意义的，不过，针对这些压缩命令所做出来的压缩档，
+	为了方便记忆，还是会有一些特殊的命名方式啦！就让我们来看看吧！
+</td></tr></tbody></table></center><br>
+
+<!-- 本文的连结区部分 -->
+<div class="block1">
+<span class="text_h1">
+1. <a href="#compress_tech">压缩文件的用途与技术</a><br>
+2. <a href="#compress_name">Linux 系统常见的压缩命令</a><br>
+	<span class="text_h2">
+	　　2.1 <a href="#compress">compress</a><br>
+	　　2.2 <a href="#gzip">gzip, zcat</a><br>
+	　　2.3 <a href="#bzip2">bzip2, bzcat</a><br>
+	</span>
+3. <a href="#pack">打包命令:</a> <a href="#tar">tar</a><br>
+4. <a href="#dump_restore">完整备份工具：dump</a>, <a href="#restore">restore</a><br>
+5. <a href="#cd_record">光盘写入工具</a><br>
+	<span class="text_h2">
+	　　5.1 <a href="#mkisofs">mkisofs：创建映像档</a><br>
+	　　5.2 <a href="#cdrecord">cdrecord：光盘烧录工具</a><br>
+	</span>
+6. <a href="#other">其他常见的压缩与备份工具</a><br>
+	<span class="text_h2">
+	　　6.1 <a href="#dd">dd</a><br>
+	　　6.2 <a href="#cpio">cpio</a><br>
+	</span>
+7. <a href="#hint">重点回顾</a><br>
+8. <a href="#ex">本章习题</a><br>
+9. <a href="#reference">参考数据与延伸阅读</a><br>
+<span class="text_h2">
+10. <a href="http://phorum.vbird.org/viewtopic.php?t=23882" target="_blank">针对本文的建议：http://phorum.vbird.org/viewtopic.php?t=23882</a>
+</span>
+</span>
+</div>
+
+
+<!-- 本文的正式部分 -->
+<hr><a name="compress_tech"></a><img src="../image/logo.png" alt="大标题的图示" width="35" align="middle" height="34"><span class="text_h1">压缩文件的用途与技术</span><br>
+<div class="block1">
+	<p>你是否有过文件文件太大，导致无法以一片软盘将他复制完成的困扰？
+	又，你是否有过，发现一个软件里面有好多文件，这些文件要将他复制与携带都很不方便的问题？
+	还有，你是否有过要备份某些重要数据，偏偏这些数据量太大了，耗掉了你很多的磁碟空间呢？
+	这个时候，那个好用的『<span class="text_import2">文件压缩</span>』技术可就派的上用场了！</p>
+
+	<p>因为这些比较大型的文件透过所谓的文件压缩技术之后，可以将他的磁碟使用量降低，
+	可以达到减低文件容量的效果，此外，有的压缩程序还可以进行容量限制，
+	使一个大型文件可以分割成为数个小型文件，以方便软盘片携带呢！</p>
+
+	<p>那么什么是『文件压缩』呢？我们来稍微谈一谈他的原理好了。目前我们使用的计算机系统中都是使用所谓的
+	bytes 单位来计量的！不过，事实上，计算机最小的计量单位应该是 bits 才对啊，此外，我们也知道
+	1 byte = 8 bits 。但是如果今天我们只是记忆一个数字，亦即是 1 这个数字呢？他会如何记录？假设一个
+	byte 可以看成底下的模样：</p>
+
+	<blockquote>□□□□□□□□</blockquote>
+
+	<div style="padding: 10pt 0pt;" align="right"><table width="90%"><tbody><tr><td><b>Tips:</b><br><span style="color: rgb(0, 144, 0);"><font size="-1">		由於 1 byte = 8 bits ，所以每个 byte 当中会有
+		8 个空格，而每个空格可以是 0, 1 ，这里仅是做为一个约略的介绍，
+		更多的详细数据请参考<a href="0105computers.php.html">第零章的计算机概论</a>吧！
+	</font></span></td><td><img src="0240tarcompress_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div>
+	<p>由於我们记录数字是 1 ，考虑计算机所谓的二进位喔，如此一来， 1 会在最右边占据
+	1 个 bit ，而其他的 7 个 bits 将会自动的被填上 0 罗！你看看，其实在这样的例子中，那
+	7 个 bits 应该是『空的』才对！不过，为了要满足目前我们的操作系统数据的存取，所以就会将该数据转为
+	byte 的型态来记录了！而一些聪明的计算机工程师就利用一些复杂的计算方式，
+	将这些没有使用到的空间『丢』出来，以让文件占用的空间变小！这就是压缩的技术啦！</p>
+
+	<p>另外一种压缩技术也很有趣，他是将重复的数据进行统计记录的。举例来说，如果你的数据为『111....』共有100个1时，
+	那么压缩技术会记录为『100个1』而不是真的有100个1的位存在！这样也能够精简文件记录的容量呢！
+	非常有趣吧！</p>
+
+	<p>简单的说，你可以将他想成，其实文件里面有相当多的『空间』存在，并不是完全填满的，
+	而『压缩』的技术就是将这些『空间』填满，以让整个文件占用的容量下降！
+	不过，这些『压缩过的文件』并无法直接被我们的操作系统所使用的，因此，
+	若要使用这些被压缩过的文件数据，则必须将他『还原』回来未压缩前的模样，
+	那就是所谓的『解压缩』罗！而至於<span class="text_import2">压缩前与压缩后的文件所占用的磁碟空间大小，
+	就可以被称为是『压缩比』罗</span>！更多的技术文件或许你可以参考一下：</p>
+
+	<ul>
+	<li><a href="http://www.ietf.org/rfc/rfc1952.txt" target="_blank">RFC 1952 文件：http://www.ietf.org/rfc/rfc1952.txt</a></li>
+	<li>鸟哥站上的备份：<a href="0240tarcompress/0240tarcompress_gzip.php">http://vbird.dic.ksu.edu.tw/linux_basic/0240tarcompress/0240tarcompress_gzip.php</a></li></ul>
+
+	<p>这个『压缩』与『解压缩』的动作有什么好处呢？最大的好处就是压缩过的文件容量变小了，
+	所以你的硬盘容量无形之中就可以容纳更多的数据。此外，在一些网络数据的传输中，也会由於数据量的降低，
+	好让网络频宽可以用来作更多的工作！而不是老是卡在一些大型的文件传输上面呢！目前很多的
+	WWW 网站也是利用文件压缩的技术来进行数据的传送，好让网站频宽的可利用率上升喔！</p>
+
+	<div style="padding: 10pt 0pt;" align="right"><table width="90%"><tbody><tr><td><b>Tips:</b><br><span style="color: rgb(0, 144, 0);"><font size="-1">		上述的WWW网站压缩技术蛮有趣的！他让你网站上面『看的到的数据』在经过网络传输时，使用的是『压缩过的数据』，
+		等到这些压缩过的数据到达你的计算机主机时，再进行解压缩，由於目前的计算机运算速度相当的快速，
+		因此其实在网页浏览的时候，时间都是花在『数据的传输』上面，而不是
+		CPU 的运算啦！如此一来，由於压缩过的数据量降低了，自然传送的速度就会增快不少！
+	</font></span></td><td><img src="0240tarcompress_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div>
+	<p>若你是一位软件工程师，那么相信你也会喜欢将你自己的软件压缩之后提供大家下载来使用，
+	毕竟没有人喜欢自己的网站天天都是频宽满载的吧？举个例子来说，
+	Linux 2.6.27.4 完整的核心大小约有 300 MB 左右，而由於核心主要多是 ASCII code
+	的纯文字型态文件，这种文件的『多余空间』最多了。而一个提供下载的压缩过的
+	2.6.27.4 核心大约仅有 60MB 左右，差了几倍呢？你可以自己算一算喔！</p>
+</div>
+
+<hr><a name="compress_name"></a><img src="../image/logo.png" alt="大标题的图示" width="35" align="middle" height="34"><span class="text_h1">Linux 系统常见的压缩命令：</span><br>
+<div class="block1">
+	<p>在Linux的环境中，压缩文件的扩展名大多是：『<span class="text_import2" style="font-family: '细明体';">*.tar, 
+	*.tar.gz, *.tgz, *.gz, *.Z, *.bz2</span>』，为什么会有这样的扩展名呢？不是说 Linux 的扩展名没有什么作用吗？</p>
+
+	<p>这是因为 Linux 支持的压缩命令非常多，且不同的命令所用的压缩技术并不相同，当然彼此之间可能就无法互通压缩/解压缩文件罗。
+	所以，当你下载到某个压缩档时，自然就需要知道该文件是由哪种压缩命令所制作出来的，好用来对照著解压缩啊！
+	也就是说，虽然 Linux 文件的属性基本上是与档名没有绝对关系的，
+	但是为了帮助我们人类小小的脑袋瓜子，所以适当的扩展名还是必要的！
+	底下我们就列出几个常见的压缩文件扩展名吧：</p>
+
+<table class="term"><tbody><tr><td class="term"><pre>*.Z         compress 程序压缩的文件；
+*.gz        gzip 程序压缩的文件；
+*.bz2       bzip2 程序压缩的文件；
+*.tar       tar 程序打包的数据，并没有压缩过；
+*.tar.gz    tar 程序打包的文件，其中并且经过 gzip 的压缩
+*.tar.bz2   tar 程序打包的文件，其中并且经过 bzip2 的压缩
+</pre></td></tr></tbody></table>
+
+	<p>Linux上常见的压缩命令就是 gzip 与 bzip2 ，至於 compress 已经退流行了。
+	gzip 是由 <a href="http://www.gnu.org/" target="_blank">GNU 计画</a>所开发出来的压缩命令，该命令已经取代了 compress 。
+	后来 GNU 又开发出 bzip2 这个压缩比更好的压缩命令！不过，这些命令通常仅能针对一个文件来压缩与解压缩，如此一来，
+	每次压缩与解压缩都要一大堆文件，岂不烦人？此时，那个所谓的『打包软件, tar』就显的很重要啦！</p>
+
+	<p>这个 tar 可以将很多文件『打包』成为一个文件！甚至是目录也可以这么玩。不过，单纯的 tar 
+	功能仅是『打包』而已，亦即是将很多文件集结成为一个文件，
+	事实上，他并没有提供压缩的功能，后来，<a href="http://www.gnu.org/" target="_blank">GNU 计画</a>中，将整个 
+	tar 与压缩的功能结合在一起，如此一来提供使用者更方便并且更强大的压缩与打包功能！
+	底下我们就来谈一谈这些在 Linux 底下基本的压缩命令吧！<br><br></p>
+
+	<hr><a name="compress"></a><img src="../image/logo.png" alt="小标题的图示" width="24" align="middle" height="23"><span class="text_h2">compress </span><br>
+	<div class="block2">
+		<p>compress这个压缩命令是非常老旧的一款，大概只有在非常旧的 Unix 机器上面还会找到这个软件。
+		<span class="text_import2">我们的 CentOS 默认并没有安装这个软件到系统当中，所以想要了解这个软件的使用时，请先安装 
+		ncompress 这个软件。</span>
+		不过，由於 gzip 已经可以解开使用 compress 压缩的文件，因此， compress 可以不用学习啦！
+		但是，如果你所在的环境还是有老旧的系统，那么还是得要学一学就是了。好了，
+		如果你有网络的话，那么安装其实很简单喔！</p>
+
+<table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">yum install ncompress</span>
+base        100% |=========================| 1.1 kB    00:00
+updates     100% |=========================|  951 B    00:00
+addons      100% |=========================|  951 B    00:00
+extras      100% |=========================| 1.1 kB    00:00
+Setting up Install Process
+Parsing package install arguments
+Resolving Dependencies              <span class="term_note">&lt;==开始分析相依性</span>
+--&gt; Running transaction check
+---&gt; Package ncompress.i386 0:4.2.4-47 set to be updated
+--&gt; Finished Dependency Resolution
+
+Dependencies Resolved
+
+=======================================================
+ Package       Arch   Version     Repository     Size
+=======================================================
+Installing:
+ ncompress     i386   4.2.4-47    base            23 k
+
+Transaction Summary
+=======================================================
+Install      1 Package(s)  <span class="term_note">&lt;==最后分析所要安装的软件数</span>
+Update       0 Package(s)
+Remove       0 Package(s)
+
+Total download size: 23 k
+Is this ok [y/N]: <span class="term_command">y</span>    <span class="term_note">&lt;==这里请按下 y 来确认安装</span>
+Downloading Packages:
+(1/1): ncompress-4.2.4-47 100% |=========================|  23 kB    00:00
+warning: rpmts_HdrFromFdno: Header V3 DSA signature: NOKEY, key ID e8562897
+Importing GPG key 0xE8562897 "CentOS-5 Key (CentOS 5 Official Signing Key) 
+&lt;centos-5-key@centos.org&gt;" from http://mirror.centos.org/centos/RPM-GPG-KEY-CentOS-5
+Is this ok [y/N]: <span class="term_command">y</span>    <span class="term_note">&lt;==这里则是与数码签章有关</span>
+Running rpm_check_debug
+Running Transaction Test
+Finished Transaction Test
+Transaction Test Succeeded
+Running Transaction
+  Installing: ncompress          ######################### [1/1]
+
+Installed: ncompress.i386 0:4.2.4-47
+Complete!
+</pre></td></tr></tbody></table>
+
+		<p>关於 yum 更详细的用法我们会在后续的章节介绍，这里仅是提供一个大概的用法而已。
+		等你安装好这个软件后，接下来让我们看看如何使用 compress 吧！</p>
+
+<table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">compress [-rcv] 文件或目录</span>  <span class="term_note">&lt;==这里是压缩</span>
+[root@www ~]# <span class="term_command">uncompress 文件.Z         </span>  <span class="term_note">&lt;==这里是解压缩</span>
+<span class="term_say">选项与参数：
+-r  ：可以连同目录下的文件也同时给予压缩呢！
+-c  ：将压缩数据输出成为 standard output (输出到萤幕)
+-v  ：可以秀出压缩后的文件资讯以及压缩过程中的一些档名变化。</span>
+
+<span class="term_hd">范例一：将 /etc/man.config 复制到 /tmp ，并加以压缩</span>
+[root@www ~]# <span class="term_command">cd /tmp</span>
+[root@www tmp]# <span class="term_command">cp /etc/man.config .</span>
+[root@www tmp]# <span class="term_command">compress -v man.config</span>
+man.config:  -- replaced with man.config.Z Compression: 41.86%
+[root@www tmp]# <span class="term_command">ls -l /etc/man.config /tmp/man*</span>
+-rw-r--r-- 1 root root <span class="term_write">4617</span> Jan  6  2007 /etc/man.config   <span class="term_note">&lt;==原有文件</span>
+-rw-r--r-- 1 root root <span class="term_write">2684</span> Nov 10 17:14 /tmp/man.config.Z <span class="term_note">&lt;==经过压缩的文件！</span>
+</pre></td></tr></tbody></table>
+
+		<p>不知道你有没有发现，复制到 /tmp 的 man.config 不见了！因为被压缩成为 man.config.Z 罗
+		也就是说，<span class="text_import2">在默认的情况中，被 compress 压缩的原始文件会不见，而压缩文件会被创建起来，
+		而且扩展名会是 *.Z。</span>仔细看一下，文件由原本的 4617bytes 降低到 2684bytes左右，确实有减少一点啦！
+		那么如何解压缩呢？</p>
+
+<table class="term"><tbody><tr><td class="term"><pre><span class="term_hd">范例二：将刚刚的压缩档解开</span>
+[root@www tmp]# <span class="term_command">uncompress man.config.Z</span>
+[root@www tmp]# <span class="term_command">ll man*</span>
+-rw-r--r-- 1 root root 4617 Nov 10 17:14 man.config
+</pre></td></tr></tbody></table>
+
+		<p>解压缩直接用 uncompress 即可！解压缩完毕后该文件就自动的变回来了！不过，那个压缩档却又不存在罗～
+		这样可以理解用法了吗？那如果我想要保留原始文件且又要创建压缩档呢？可以使用 -c 的语法！</p>
+
+<table class="term"><tbody><tr><td class="term"><pre><span class="term_hd">范例三：将 man.config 压缩成另外一个文件来备份</span>
+[root@www tmp]# <span class="term_command">compress -c man.config &gt; man.config.back.Z</span>
+[root@www tmp]# <span class="term_command">ll man*</span>
+-rw-r--r-- 1 root root 4617 Nov 10 17:14 man.config
+-rw-r--r-- 1 root root 2684 Nov 10 17:24 man.config.back.Z
+<span class="term_say"># 这个 -c 的选项比较有趣！他会将压缩过程的数据输出到萤幕上，而不是写入成为 
+# *.Z 的压缩档。所以，我们可以透过数据流重导向的方法将数据输出成为另一个档名。
+# 关於<a href="http://vbird.dic.ksu.edu.tw/linux_basic/0320bash.php#redirect">数据流重导向</a>，我们会在<a href="0320bash.php.html">第十一章 bash</a> 详细谈论的啦！</span>
+</pre></td></tr></tbody></table>
+
+		<p>再次强调，compress 已经很少人在使用了，因为这支程序无法解开 *.gz 的文件，而 gzip 则可以解开 *.Z 的文件，
+		所以，如果你的 distribution 上面没有 compress 的话，那就不要进行上面的练习罗！ ^_^</p>
+	</div>
+
+	<hr><a name="gzip"></a><img src="../image/logo.png" alt="小标题的图示" width="24" align="middle" height="23"><span class="text_h2">gzip, zcat </span><br>
+	<div class="block2">
+		<p>gzip 可以说是应用度最广的压缩命令了！目前 gzip 可以解开 compress, zip 与 gzip 等软件所压缩的文件。
+		至於 gzip 所创建的压缩档为 *.gz 的档名喔！让我们来看看这个命令的语法吧：</p>
+
+<table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">gzip [-cdtv#] 档名</span>
+[root@www ~]# <span class="term_command">zcat 档名.gz</span>
+<span class="term_say">选项与参数：
+-c  ：将压缩的数据输出到萤幕上，可透过数据流重导向来处理；
+-d  ：解压缩的参数；
+-t  ：可以用来检验一个压缩档的一致性～看看文件有无错误；
+-v  ：可以显示出原文件/压缩文件的压缩比等资讯；
+-#  ：压缩等级，-1 最快，但是压缩比最差、-9 最慢，但是压缩比最好！默认是 -6</span>
+
+<span class="term_hd">范例一：将 /etc/man.config 复制到 /tmp ，并且以 gzip 压缩</span>
+[root@www ~]# <span class="term_command">cd /tmp </span>
+[root@www tmp]# <span class="term_command">cp /etc/man.config .</span>
+[root@www tmp]# <span class="term_command">gzip -v man.config</span>
+man.config:      56.1% -- replaced with man.config.gz
+[root@www tmp]# <span class="term_command">ll /etc/man.config /tmp/man*</span>
+-rw-r--r-- 1 root root 4617 Jan  6  2007 /etc/man.config
+-rw-r--r-- 1 root root <span class="term_write">2684</span> Nov 10 17:24 /tmp/man.config.back.Z
+-rw-r--r-- 1 root root <span class="term_write">2057</span> Nov 10 17:14 /tmp/man.config.gz  <span class="term_note">&lt;==gzip压缩比较佳</span>
+</pre></td></tr></tbody></table>
+
+		<p>与 compress 类似的，当你使用 gzip 进行压缩时，在默认的状态下原本的文件会被压缩成为 .gz 的档名，
+		原始文件就不再存在了。您也可以发现，由於 gzip 的压缩比要比 compress 好的多，所以当然建议使用 gzip 啦！
+		此外，使用 gzip 压缩的文件在 Windows 系统中，竟然可以被 WinRAR 这个软件解压缩呢！很好用吧！至於其他的用法如下：</p>
+
+<table class="term"><tbody><tr><td class="term"><pre><span class="term_hd">范例二：由於 man.config 是文字档，请将范例一的压缩档的内容读出来！</span>
+[root@www tmp]# <span class="term_command">zcat man.config.gz</span>
+<span class="term_say"># 由於 man.config 这个原本的文件是是文字档，因此我们可以尝试使用 zcat  去读取！
+# 此时萤幕上会显示 man.config.gz 解压缩之后的文件内容！</span>
+
+<span class="term_hd">范例三：将范例一的文件解压缩</span>
+[root@www tmp]# <span class="term_command">gzip -d man.config.gz</span>
+<span class="term_say"># 不要使用 gunzip 这个命令，不好背！使用 gzip -d 来进行解压缩！
+# 与 gzip 相反， gzip -d 会将原本的 .gz 删除，产生原本的 man.config 文件。</span>
+
+<span class="term_hd">范例四：将范例三解开的 man.config 用最佳的压缩比压缩，并保留原本的文件</span>
+[root@www tmp]# <span class="term_command">gzip -9 -c man.config &gt; man.config.gz</span>
+</pre></td></tr></tbody></table>
+
+		<p>其实 gzip 的压缩已经最佳化过了，所以虽然 gzip 提供 1~9 的压缩等级，不过使用默认的 6 就非常好用了！
+		因此上述的范例四可以不要加入那个 -9 的选项。范例四的重点在那个 -c 与 &gt; 的使用罗！</p>
+
+		<p>cat 可以读取纯文字档，那个 zcat 则可以读取纯文字档被压缩后的压缩档！
+		由於 gzip 这个压缩命令主要想要用来取代 compress 的，所以不但 compress 的压缩文件可以使用 
+		gzip 来解开，同时 zcat 这个命令可以同时读取 compress 与 gzip 的压缩档呦！</p>
+	</div>
+
+	<hr><a name="bzip2"></a><img src="../image/logo.png" alt="小标题的图示" width="24" align="middle" height="23"><span class="text_h2">bzip2, bzcat </span><br>
+	<div class="block2">
+		<p>若说 gzip 是为了取代 compress 并提供更好的压缩比而成立的，那么 bzip2 则是为了取代 gzip 并提供更佳的压缩比而来的。
+		bzip2 真是很不错用的东西～这玩意的压缩比竟然比 gzip 还要好～至於 bzip2 的用法几乎与 gzip 相同！
+		看看底下的用法吧！</p>
+
+<table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">bzip2 [-cdkzv#] 档名</span>
+[root@www ~]# <span class="term_command">bzcat 档名.bz2</span>
+<span class="term_say">选项与参数：
+-c  ：将压缩的过程产生的数据输出到萤幕上！
+-d  ：解压缩的参数
+-k  ：保留原始文件，而不会删除原始的文件喔！
+-z  ：压缩的参数
+-v  ：可以显示出原文件/压缩文件的压缩比等资讯；
+-#  ：与 gzip 同样的，都是在计算压缩比的参数， -9 最佳， -1 最快！</span>
+
+<span class="term_hd">范例一：将刚刚的 /tmp/man.config 以 bzip2 压缩</span>
+[root@www tmp]# <span class="term_command">bzip2 -z man.config </span>
+<span class="term_say"># 此时 man.config 会变成 man.config.bz2 ！</span>
+
+<span class="term_hd">范例二：将范例一的文件内容读出来！</span>
+[root@www tmp]# <span class="term_command">bzcat man.config.bz2</span>
+<span class="term_say"># 此时萤幕上会显示 man.config.bz2 解压缩之后的文件内容！！</span>
+
+<span class="term_hd">范例三：将范例一的文件解压缩</span>
+[root@www tmp]# <span class="term_command">bzip2 -d man.config.bz2</span>
+
+<span class="term_hd">范例四：将范例三解开的 man.config 用最佳的压缩比压缩，并保留原本的文件</span>
+[root@www tmp]# <span class="term_command">bzip2 -9 -c man.config &gt; man.config.bz2</span>
+</pre></td></tr></tbody></table>
+
+		使用 compress 扩展名自动创建为 .Z ，使用 gzip 扩展名自动创建为 .gz 。这里的 bzip2 
+		则是自动的将扩展名建置为 .bz2 罗！所以当我们使用具有压缩功能的 bzip2 -z 时，那么刚刚的 
+		man.config 就会自动的变成了 man.config.bz2 这个档名罗！<br><br>
+
+		好了，那么如果我想要读取这个文件的内容呢？
+		是否一定要解开？当然不需要罗！可以使用简便的 bzcat 这个命令来读取内容即可！例如上面的例子中，
+		我们可以使用 bzcat man.config.bz2 来读取数据而不需要解开！此外，当你要解开一个压缩档时，
+		这个文件的名称为 .bz, .bz2, .tbz, .tbz2 等等，那么就可以尝试使用 bzip2 
+		来解看看啦！当然罗，也可以使用 bunzip2 这个命令来取代 bzip2 -d 罗。<br><br>
+	</div>
+</div>
+
+<hr><a name="pack"></a><img src="../image/logo.png" alt="大标题的图示" width="35" align="middle" height="34"><span class="text_h1">打包命令： tar</span><br>
+<div class="block1">
+	<p>前一小节谈到的命令大多仅能针对单一文件来进行压缩，虽然 gzip 与 bzip2 也能够针对目录来进行压缩，
+	不过，这两个命令对目录的压缩指的是『将目录内的所有文件 "分别" 进行压缩』的动作！
+	而不像在 Windows 的系统，可以使用类似 <a href="http://www.rar.com.tw/" target="_blank">WinRAR</a> 这一类的压缩软件来将好多数据『包成一个文件』的样式。</p>
+
+	<p>这种将多个文件或目录包成一个大文件的命令功能，我们可以称呼他是一种『打包命令』啦！
+	那 Linux 有没有这种打包命令呢？是有的！那就是鼎鼎大名的 tar 这个玩意儿了！
+	tar 可以将多个目录或文件打包成一个大文件，同时还可以透过 gzip/bzip2 的支持，将该文件同时进行压缩！
+	更有趣的是，由於 tar 的使用太广泛了，目前 Windows 的 WinRAR 也支持 .tar.gz 档名的解压缩呢！
+	很不错吧！所以底下我们就来玩一玩这个咚咚！<br><br></p>
+
+	<hr><a name="tar"></a><img src="../image/logo.png" alt="小标题的图示" width="24" align="middle" height="23"><span class="text_h2">tar</span><br>
+	<div class="block2">
+		<p>tar 的选项与参数非常的多！我们只讲几个常用的选项，更多选项您可以自行 man tar 查询罗！</p>
+
+<table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">tar [-j|-z] [cv] [-f 创建的档名] filename...</span> <span class="term_note">&lt;==打包与压缩</span>
+[root@www ~]# <span class="term_command">tar [-j|-z] [tv] [-f 创建的档名]            </span> <span class="term_note">&lt;==察看档名</span>
+[root@www ~]# <span class="term_command">tar [-j|-z] [xv] [-f 创建的档名] [-C 目录]  </span> <span class="term_note">&lt;==解压缩</span>
+<span class="term_say">选项与参数：
+-c  ：创建打包文件，可搭配 -v 来察看过程中被打包的档名(filename)
+-t  ：察看打包文件的内容含有哪些档名，重点在察看『档名』就是了；
+-x  ：解打包或解压缩的功能，可以搭配 -C (大写) 在特定目录解开
+      特别留意的是， -c, -t, -x 不可同时出现在一串命令列中。
+-j  ：透过 bzip2 的支持进行压缩/解压缩：此时档名最好为 *.tar.bz2
+-z  ：透过 gzip  的支持进行压缩/解压缩：此时档名最好为 *.tar.gz
+-v  ：在压缩/解压缩的过程中，将正在处理的档名显示出来！
+-f filename：-f 后面要立刻接要被处理的档名！建议 -f 单独写一个选项罗！
+-C 目录    ：这个选项用在解压缩，若要在特定目录解压缩，可以使用这个选项。
+
+其他后续练习会使用到的选项介绍：
+-p  ：保留备份数据的原本权限与属性，常用於备份(-c)重要的配置档
+-P  ：保留绝对路径，亦即允许备份数据中含有根目录存在之意；
+--exclude=FILE：在压缩的过程中，不要将 FILE 打包！ 
+</span></pre></td></tr></tbody></table>
+
+		<p>其实最简单的使用 tar 就只要记忆底下的方式即可：</p>
+		<ul class="text_import2" style="font-family: '细明体';">
+		<li>压　缩：tar -j<u>c</u>v -f filename.tar.bz2 要被压缩的文件或目录名称</li>
+		<li>查　询：tar -j<u>t</u>v -f filename.tar.bz2</li>
+		<li>解压缩：tar -j<u>x</u>v -f filename.tar.bz2 -C 欲解压缩的目录</li>
+		</ul>
+
+		<p>那个 filename.tar.bz2 是我们自己取的档名，tar 并不会主动的产生创建的档名喔！我们要自订啦！
+		所以扩展名就显的很重要了！如果不加 [-j|-z] 的话，档名最好取为 *.tar 即可。如果是 -j 选项，代表有
+		bzip2 的支持，因此档名最好就取为 *.tar.bz2 ，因为 bzip2 会产生 .bz2 的扩展名之故！
+		至於如果是加上了 -z 的 gzip 的支持，那档名最好取为 *.tar.gz 喔！了解乎？</p>
+
+		<p>另外，由於『 -f filename 』是紧接在一起的，过去很多文章常会写成『-jcvf filename』，这样是对的，
+		但由於选项的顺序理论上是可以变换的，所以很多读者会误认为『-jvfc filename』也可以～事实上这样会导致产生的档名变成 c ！
+		因为 -fc 嘛！所以罗，建议您在学习 tar 时，将『 -f filename 』与其他选项独立出来，会比较不容易发生问题。</p>
+
+		<p>闲话少说，让我们来测试几个常用的 tar 方法吧！<br><br></p>
+
+		<hr><ul class="list1"><li class="text_import1">使用 tar 加入 -j 或 -z 的参数备份 /etc/ 目录</li></ul>
+
+		<p>有事没事备份一下 /etc 这个目录是件好事！备份 /etc 最简单的方法就是使用 tar 罗！让我们来玩玩先：</p>
+
+<table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">tar -zpcv -f /root/etc.tar.gz /etc</span>
+tar: Removing leading `/' from member names  <span class="term_note">&lt;==注意这个警告信息</span>
+/etc/
+<span class="term_say">....中间省略....</span>
+/etc/esd.conf
+/etc/crontab
+<span class="term_say"># 由於加上 -v 这个选项，因此正在作用中的档名就会显示在萤幕上。
+# 如果你可以翻到第一页，会发现出现上面的错误信息！底下会讲解。
+# 至於 -p 的选项，重点在於『保留原本文件的权限与属性』之意。</span>
+
+[root@www ~]# <span class="term_command">tar -jpcv -f /root/etc.tar.bz2 /etc</span>
+<span class="term_say"># 显示的信息会跟上面一模一样罗！</span>
+
+[root@www ~]# <span class="term_command">ll /root/etc*</span>
+-rw-r--r-- 1 root root  <span class="term_write">8740252</span> Nov 15 23:07 /root/etc.tar.bz2
+-rw-r--r-- 1 root root <span class="term_write">13010999</span> Nov 15 23:01 /root/etc.tar.gz
+[root@www ~]# <span class="term_command">du -sm /etc</span>
+118     /etc
+<span class="term_say"># 为什么建议您使用 -j 这个选项？从上面的数值你可以知道了吧？^_^</span>
+</pre></td></tr></tbody></table>
+
+		<p>由上述的练习，我们知道使用 bzip2 亦即 -j 这个选项来制作备份时，能够得到比较好的压缩比！
+		如上表所示，由原本的 /etc/ (118MBytes) 下降到 8.7Mbytes 左右！至於<span class="text_import2">加上『 -p  
+		』这个选项的原因是为了保存原本文件的权限与属性！</span>我们曾在<a href="http://vbird.dic.ksu.edu.tw/linux_basic/0220filemanager.php#cp">第七章的 cp 命令介绍</a>时谈到权限与文件类型(例如连结档)对复制的不同影响。
+		同样的，在备份重要的系统数据时，这些原本文件的权限需要做完整的备份比较好。此时 -p 这个选项就派的上用场了。
+		接下来让我们看看打包文件内有什么数据存在？<br><br></p>
+
+		<hr><ul class="list1"><li class="text_import1">查阅 tar 文件的数据内容(可察看档名)，与备份档名有否根目录的意义</li></ul>
+
+		<p>要察看档名非常的简单！可以这样做：</p>
+
+<table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">tar -jtv -f /root/etc.tar.bz2</span>
+<span class="term_say">....前面省略....</span>
+-rw-r--r-- root/root  1016 2008-05-25 14:06:20 <span class="term_write">etc/dbus-1/session.conf</span>
+-rw-r--r-- root/root   153 2007-01-07 19:20:54 <span class="term_write">etc/esd.conf</span>
+-rw-r--r-- root/root   255 2007-01-06 21:13:33 <span class="term_write">etc/crontab</span>
+</pre></td></tr></tbody></table>
+
+		<p>如果加上 -v 这个选项时，详细的文件权限/属性都会被列出来！如果只是想要知道档名而已，
+		那么就将 -v 拿掉即可。从上面的数据我们可以发现一件很有趣的事情，那就是<span class="text_import2">每个档名都没了根目录了！</span>这也是上一个练习中出现的那个警告信息『<span class="text_import2">tar: Removing leading `/' from member names(移除了档名开头的 `/' )</span>』所告知的情况！</p>
+
+		<p>那为什么要拿掉根目录呢？主要是为了安全！我们使用 tar 备份的数据可能会需要解压缩回来使用，
+		<span class="text_import2">在 tar 所记录的档名 (就是我们刚刚使用 tar -jtvf 
+		所察看到的档名) 那就是解压缩后的实际档名。</span>
+		如果拿掉了根目录，假设你将备份数据在 /tmp 解开，那么解压缩的档名就会变成『/tmp/<span class="text_import2"><u>etc/xxx</u></span>』。
+		但『<span class="text_import2">如果没有拿掉根目录，解压缩后的档名就会是绝对路径，
+		亦即解压缩后的数据一定会被放置到 <u>/etc/xxx</u> 去！</span>』如此一来，你的原本的 /etc/ 底下的数据，
+		就会被备份数据所覆盖过去了！</p>
+
+		<div style="padding: 10pt 0pt;" align="right"><table width="90%"><tbody><tr><td><b>Tips:</b><br><span style="color: rgb(0, 144, 0);"><font size="-1">		你会说：『既然是备份数据，那么还原回来也没有什么问题吧？』想像一个状况，你备份的数据是一年前的旧版 CentOS 4.x，
+		你只是想要了解一下过去的备份内容究竟有哪些数据而已，结果一解开该文件，却发现你目前新版的 CentOS 5.x  底下的 /etc
+		被旧版的备份数据覆盖了！此时你该如何是好？所以罗，当然是拿掉根目录比较安全一些的。
+		</font></span></td><td><img src="0240tarcompress_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div>
+		<p>如果你确定你就是需要备份根目录到 tar 的文件中，那可以使用 -P (大写) 这个选项，请看底下的例子分析：</p>
+
+<table class="term"><tbody><tr><td class="term"><pre><span class="term_hd">范例：将档名中的(根)目录也备份下来，并察看一下备份档的内容档名</span>
+[root@www ~]# <span class="term_command">tar -jp<u>P</u>cv -f /root/etc.and.root.tar.bz2 /etc</span>
+<span class="term_say">....中间过程省略....</span>
+[root@www ~]# <span class="term_command">tar -jtf /root/etc.and.root.tar.bz2</span>
+<span class="term_write">/</span>etc/dbus-1/session.conf
+<span class="term_write">/</span>etc/esd.conf
+<span class="term_write">/</span>etc/crontab
+<span class="term_say"># 这次查阅档名不含 -v 选项，所以仅有档名而已！没有详细属性/权限等参数。</span>
+</pre></td></tr></tbody></table>
+
+		<p>有发现不同点了吧？如果加上 -P 选项，那么档名内的根目录就会存在喔！不过，鸟哥个人建议，还是不要加上 -P 这个选项来备份！
+		毕竟很多时候，我们备份是为了要未来追踪问题用的，倒不一定需要还原回原本的系统中！
+		所以拿掉根目录后，备份数据的应用会比较有弹性！也比较安全呢！<br><br></p>
+
+		<hr><ul class="list1"><li class="text_import1">将备份的数据解压缩，并考虑特定目录的解压缩动作 (-C 选项的应用)</li></ul>
+		<p>那如果想要解打包呢？很简单的动作就是直接进行解打包嘛！</p>
+
+<table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">tar -jxv -f /root/etc.tar.bz2</span>
+[root@www ~]# <span class="term_command">ll</span>
+<span class="term_say">....(前面省略)....</span>
+drwxr-xr-x 105 root root    12288 Nov 11 04:02 etc
+<span class="term_say">....(后面省略)....</span>
+</pre></td></tr></tbody></table>
+
+		<p>此时该打包文件会在『<span class="text_import2">本目录下进行解压缩</span>』的动作！
+		所以，你等一下就会在家目录底下发现一个名为 etc 的目录罗！所以罗，如果你想要将该文件在 /tmp 底下解开，
+		可以 cd /tmp 后，再下达上述的命令即可。不过，这样好像很麻烦呢～有没有更简单的方法可以『指定欲解开的目录』呢？
+		有的，可以使用 -C 这个选项喔！举例来说：</p>
+
+<table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">tar -jxv -f /root/etc.tar.bz2 -C /tmp</span>
+[root@www ~]# <span class="term_command">ll /tmp</span>
+<span class="term_say">....(前面省略)....</span>
+drwxr-xr-x 105 root root    12288 Nov 11 04:02 etc
+<span class="term_say">....(后面省略)....</span>
+</pre></td></tr></tbody></table>
+
+		<p>这样一来，你就能够将该文件在不同的目录解开罗！鸟哥个人是认为，这个 -C 的选项务必要记忆一下的！
+		好了，处理完毕后，请记得将这两个目录删除一下呢！</p>
+
+<table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">rm -rf /root/etc /tmp/etc</span>
+</pre></td></tr></tbody></table>
+
+		<p>再次强调，这个『 rm -rf 』是很危险的命令！下达时请务必要确认一下后面接的档名。我们要删除的是 /root/etc 与 /tmp/etc，
+		您可不要将 /etc/ 删除掉了！系统会死掉的～ ^_^<br><br></p>
+
+		<hr><ul class="list1"><li class="text_import1">仅解开单一文件的方法</li></ul>
+
+		<p>刚刚上头我们解压缩都是将整个打包文件的内容全部解开！想像一个情况，如果我只想要解开打包文件内的其中一个文件而已，
+		那该如何做呢？很简单的，你只要使用 -jtv 找到你要的档名，然后将该档名解开即可。
+		我们用底下的例子来说明一下：</p>
+
+<table class="term"><tbody><tr><td class="term"><pre><span class="term_hd"># 1. 先找到我们要的档名，假设解开 shadow 文件好了：</span>
+[root@www ~]# <span class="term_command">tar -jtv -f /root/etc.tar.bz2 | grep 'shadow'</span>
+-r-------- root/root  1230 2008-09-29 02:21:20 etc/shadow-
+-r-------- root/root   622 2008-09-29 02:21:20 etc/gshadow-
+-r-------- root/root   636 2008-09-29 02:21:25 etc/gshadow
+-r-------- root/root  1257 2008-09-29 02:21:25 <span class="term_write">etc/shadow</span>  <span class="term_note">&lt;==这是我们要的！</span>
+<span class="term_say"># 先搜寻重要的档名！其中那个 grep 是『撷取』关键字的功能！我们会在第三篇说明！
+# 这里您先有个概念即可！那个管线 | 配合 grep 可以撷取关键字的意思！</span>
+
+<span class="term_hd"># 2. 将该文件解开！语法与实际作法如下：</span>
+[root@www ~]# <span class="term_command">tar -jxv -f 打包档.tar.bz2 待解开档名</span>
+[root@www ~]# <span class="term_command">tar -jxv -f /root/etc.tar.bz2 etc/shadow</span>
+etc/shadow
+[root@www ~]# <span class="term_command">ll etc</span>
+total 8
+-r-------- 1 root root 1257 Sep 29 02:21 shadow  <span class="term_note">&lt;==呦喝！只有一个文件啦！</span>
+<span class="term_say"># 很有趣！此时只会解开一个文件而已！不过，重点是那个档名！你要找到正确的档名。
+# 在本例中，你不能写成 /etc/shadow ！因为记录在 etc.tar.bz2 内的档名之故！</span>
+</pre></td></tr></tbody></table><br>
+
+		<hr><ul class="list1"><li class="text_import1">打包某目录，但不含该目录下的某些文件之作法</li></ul>
+		<p>假设我们想要打包 /etc/ /root 这几个重要的目录，但却不想要打包 /root/etc* 开头的文件，
+		因为该文件都是刚刚我们才创建的备份档嘛！而且假设这个新的打包文件要放置成为 /root/system.tar.bz2 ，
+		当然这个文件自己不要打包自己 (因为这个文件放置在 /root 底下啊！)，此时我们可以透过 --exclude 的帮忙！
+		那个 exclude 就是不包含的意思！所以你可以这样做：</p>
+
+<table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">tar -jcv  -f /root/system.tar.bz2 --exclude=/root/etc* \</span>
+&gt; <span class="term_command">--exclude=/root/system.tar.bz2  /etc /root</span>
+</pre></td></tr></tbody></table>
+
+		<p>上面的命令是一整列的～其实你可以打成：『<span class="text_import2">tar -jcv  -f /root/system.tar.bz2 
+		--exclude=/root/etc* 
+		--exclude=/root/system.tar.bz2  /etc /root</span>』，如果想要两行输入时，最后面加上反斜线 (\) 并立刻按下 [enter] ，
+		就能够到第二行继续输入了。这个命令下达的方式我们会在第三章再仔细说明。
+		透过这个 --exclude="file" 的动作，我们可以将几个特殊的文件或目录移除在打包之列，
+		让打包的动作变的更简便喔！^_^</p>
+
+		<p>另外，在新版的 tar 命令中，鸟哥发现原本的『 --exclude file 』似乎无法实际运行了！使用 man tar 明明有看到这个选项的说，
+		但使用 info tar 才发现，选项功能已经变成了『 --exclude=file 』的模式！这个地方得要特别留意呢！<br><br></p>
+
+		<hr><ul class="list1"><li class="text_import1">仅备份比某个时刻还要新的文件</li></ul>
+		<p>某些情况下你会想要备份新的文件而已，并不想要备份旧文件！此时 --newer-mtime 这个选项就粉重要啦！
+		其实有两个选项啦，一个是『 --newer 』另一个就是『 --newer-mtime 』，这两个选项有何不同呢？
+		我们在 <a href="http://vbird.dic.ksu.edu.tw/linux_basic/0220filemanager.php#touch">第七章的 touch </a>介绍中谈到过三种不同的时间参数，
+		当使用 --newer 时，表示后续的日期包含『 mtime 与 ctime 』，而 --newer-mtime 则仅是 mtime 而已！
+		这样知道了吧！ ^_^ 。那就让我们来尝试处理一下罗！</p>
+
+<table class="term"><tbody><tr><td class="term"><pre><span class="term_hd"># 1. 先由 <a href="http://vbird.dic.ksu.edu.tw/linux_basic/0220filemanager.php#find">find</a> 找出比 /etc/passwd 还要新的文件</span>
+[root@www ~]# <span class="term_command">find /etc -newer /etc/passwd</span>
+<span class="term_say">....(过程省略)....
+# 此时会显示出比 /etc/passwd 这个文件的 mtime 还要新的档名，
+# 这个结果在每部主机都不相同！您先自行查阅自己的主机即可，不会跟鸟哥一样！</span>
+
+[root@www ~]# <span class="term_command">ll /etc/passwd</span>
+-rw-r--r-- 1 root root 1945 <span class="term_write">Sep 29</span> 02:21 /etc/passwd
+
+<span class="term_hd"># 2. 好了，那么使用 tar 来进行打包吧！日期为上面看到的 2008/09/29</span>
+[root@www ~]# <span class="term_command">tar -jcv -f /root/etc.newer.then.passwd.tar.bz2 \</span>
+&gt; <span class="term_command">--newer-mtime="2008/09/29" /etc/*</span>
+<span class="term_say">....(中间省略)....</span>
+/etc/smartd.conf    <span class="term_note">&lt;==真的有备份的文件</span>
+<span class="term_say">....(中间省略)....</span>
+/etc/yum.repos.d/   <span class="term_note">&lt;==目录都会被记录下来！</span>
+tar: /etc/yum.repos.d/CentOS-Base.repo: file is unchanged; not dumped
+<span class="term_say"># 最后行显示的是『没有被备份的』，亦即 not dumped 的意思！</span>
+
+<span class="term_hd"># 3. 显示出文件即可</span>
+[root@www ~]# <span class="term_command">tar -jtv -f /root/etc.newer.then.passwd.tar.bz2 | \</span>
+&gt; <span class="term_command">grep -v '/$' </span>
+<span class="term_say"># 透过这个命令可以呼叫出 tar.bz2 内的结尾非 / 的档名！就是我们要的啦！</span>
+</pre></td></tr></tbody></table>
+
+		<p>现在你知道这个命令的好用了吧！甚至可以进行差异文件的记录与备份呢～
+		这样子的备份就会显的更容易罗！你可以这样想像，如果我在一个月前才进行过一次完整的数据备份，
+		那么这个月想要备份时，当然可以仅备份上个月进行备份的那个时间点之后的升级的文件即可！
+		为什么呢？因为原本的文件已经有备份了嘛！干嘛还要进行一次？只要备份新数据即可。这样可以降低备份的容量啊！<br><br></p>
+
+		<hr><ul class="list1"><li class="text_import1">基本名称： tarfile, tarball ？</li></ul>
+
+		<p>另外值得一提的是，tar 打包出来的文件有没有进行压缩所得到文件称呼不同喔！
+		如果仅是打包而已，就是『 tar -cv -f file.tar 』而已，这个文件我们称呼为 tarfile 。
+		<span class="text_import2">如果还有进行压缩的支持，例如『 tar -jcv -f file.tar.bz2 』时，我们就称呼为 
+		tarball (tar 球？)！</span>
+		这只是一个基本的称谓而已，不过很多书籍与网络都会使用到这个 tarball 的名称！
+		所以得要跟您介绍介绍。</p>
+
+		<p>此外，tar 除了可以将数据打包成为文件之外，还能够将文件打包到某些特别的装置去，举例来说，
+		磁带机 (tape) 就是一个常见的例子。磁带机由於是一次性读取/写入的装置，因此我们不能够使用类似 cp 等命令来复制的！
+		那如果想要将 /home, /root, /etc 备份到磁带机 (/dev/st0) 时，就可以使用：『<span class="text_import2">tar -cv -f /dev/st0 /home /root /etc</span>』，很简单容易吧！
+		磁带机用在备份 (尤其是企业应用) 是很常见的工作喔！<br><br></p>
+
+		<hr><ul class="list1"><li class="text_import1">特殊应用：利用管线命令与数据流</li></ul>
+
+		<p>在 tar 的使用中，有一种方式最特殊，那就是透过标准输入输出的数据流重导向(standard input/standard output)，
+		以及管线命令 (pipe) 的方式，将待处理的文件一边打包一边解压缩到目标目录去。
+		关於数据流重导向与管线命令更详细的数据我们会在<a href="0320bash.php.html">第十一章 bash</a> 再跟大家介绍，
+		底下先来看一个例子吧！</p>
+
+<table class="term"><tbody><tr><td class="term"><pre><span class="term_hd"># 1. 将 /etc 整个目录一边打包一边在 /tmp 解开</span>
+[root@www ~]# <span class="term_command">cd /tmp</span>
+[root@www tmp]# <span class="term_command">tar -cvf - /etc | tar -xvf -</span>
+<span class="term_say"># 这个动作有点像是 cp -r /etc /tmp 啦～依旧是有其有用途的！
+# 要注意的地方在於输出档变成 - 而输入档也变成 - ，又有一个 | 存在～
+# 这分别代表 standard output, standard input 与管线命令啦！
+# 简单的想法中，你可以将 - 想成是在内存中的一个装置(缓冲区)。
+# 更详细的数据流与管线命令，请翻到 <a href="0320bash.php.html">bash</a> 章节罗！</span>
+</pre></td></tr></tbody></table>
+
+		<p>在上面的例子中，我们想要『将 /etc 底下的数据直接 copy 到目前所在的路径，也就是 /tmp 底下』，但是又觉得使用
+		cp -r 有点麻烦，那么就直接以这个打包的方式来打包，其中，命令里面的 - 就是表示那个被打包的文件啦！
+		由於我们不想要让中间文件存在，所以就以这一个方式来进行复制的行为啦！<br><br></p>
+
+		<hr><ul class="list1"><li class="text_import1">例题：系统备份范例</li></ul>
+
+		<p>系统上有非常多的重要目录需要进行备份，而且其实我们也不建议你将备份数据放置到 /root 目录下！
+		假设目前你已经知道重要的目录有底下这几个：</p>
+		<ul>
+		<li>/etc/ (配置档)</li>
+		<li>/home/ (使用者的家目录)</li>
+		<li>/var/spool/mail/ (系统中，所有帐号的邮件信箱)</li>
+		<li>/var/spool/cron/ (所有帐号的工作排成配置档)</li>
+		<li>/root (系统管理员的家目录)</li>
+		</ul>
+		<p>然后我们也知道，由於<a href="http://vbird.dic.ksu.edu.tw/linux_basic/0230filesystem.php#loop">第八章</a>曾经做过的练习的关系， /home/loop* 
+		不需要备份，而且 /root 底下的压缩档也不需要备份，另外假设你要将备份的数据放置到 
+		/backups ，并且该目录仅有 root 有权限进入！
+		此外，每次备份的档名都希望不相同，例如使用：backup-system-20091130.tar.bz2 之类的档名来处理。
+		那你该如何处理这个备份数据呢？(请先动手作看看，再来察看一下底下的参考解答！)</p>
+
+<table class="term"><tbody><tr><td class="term"><pre><span class="term_hd"># 1. 先处理要放置备份数据的目录与权限：</span>
+[root@www ~]# <span class="term_command">mkdir /backups</span>
+[root@www ~]# <span class="term_command">chmod 700 /backups</span>
+[root@www ~]# <span class="term_command">ll -d /backups</span>
+d<span class="term_write">rwx------</span> 2 root root 4096 Nov 30 16:35 /backups
+
+<span class="term_hd"># 2. 假设今天是 2009/11/30 ，则创建备份的方式如下：</span>
+[root@www ~]# <span class="term_command">tar -jcv -f /backups/backup-system-20091130.tar.bz2 \</span>
+&gt; <span class="term_command">--exclude=/root/*.bz2 --exclude=/root/*.gz --exclude=/home/loop* \</span>
+&gt; <span class="term_command">/etc /home /var/spool/mail /var/spool/cron /root</span>
+<span class="term_say">....(过程省略)....</span>
+
+[root@www ~]# <span class="term_command">ll -h /backups/</span>
+-rw-r--r-- 1 root root 8.4M Nov 30 16:43 backup-system-20091130.tar.bz2
+</pre></td></tr></tbody></table>
+
+	</div>
+</div>
+
+
+<hr><a name="dump_restore"></a><img src="../image/logo.png" alt="大标题的图示" width="35" align="middle" height="34"><span class="text_h1">完整备份工具：dump</span><br>
+<div class="block1">
+	<p>某些时刻你想要针对文件系统进行备份或者是储存的功能时，不能不谈到这个 dump 命令！
+	这玩意儿我们曾在前一章的 <a href="http://vbird.dic.ksu.edu.tw/linux_basic/0230filesystem.php#fstab">/etc/fstab</a> 里面稍微谈过。
+	其实这个命令除了能够针对整个 filesystem 备份之外，也能够仅针对目录来备份喔！
+	底下就让我们来谈一谈这个命令的用法吧！<br><br></p>
+
+	<hr><img src="../image/logo.png" alt="小标题的图示" width="24" align="middle" height="23"><span class="text_h2">dump</span><br>
+	<div class="block2">
+		<p>其实 dump 的功能颇强，他除了可以备份整个文件系统之外，还可以制定等级喔！什么意思啊！
+		假设你的 /home 是独立的一个文件系统，那你第一次进行过 dump 后，再进行第二次 dump 时，
+		你可以指定不同的备份等级，假如指定等级为 1 时，此时新备份的数据只会记录与第一次备份所有差异的文件而已。
+		看不懂吗？没关系！我们用一张简图来说明。</p>
+
+		<center><img src="0240tarcompress_files/dump-1.gif" alt="" title="" border="0"><br>
+		图 4.1.1、dump 运行的等级 (level)<br></center>
+
+		<p>如上图所示，上方的『即时文件系统』是一直随著时间而变化的数据，例如在 /home 里面的文件数据会一直变化一样。
+		而底下的方块则是 dump 备份起来的数据，第一次备份时使用的是 level 0 ，这个等级也是完整的备份啦！
+		等到第二次备份时，即时文件系统内的数据已经与 level 0 不一样了，而 level 1 仅只是比较目前的文件系统与 level 0
+		之间的差异后，备份有变化过的文件而已。至於 level 2 则是与 level 1 进行比较啦！这样了解呼？</p>
+
+		<p>虽然 dump 支持整个文件系统或者是单一各别目录，但是对於目录的支持是比较不足的，这也是 dump 的限制所在。
+		简单的说，如果想要备份的数据如下时，则有不同的限制情况：</p>
+
+		<ul>
+		<li><span class="text_import2">当待备份的数据为单一文件系统：</span><br>
+		如果是单一文件系统 (filesystem) ，那么该文件系统可以使用完整的 dump 功能，包括利用 0~9 的数个 level 来备份，
+		同时，备份时可以使用挂载点或者是装置档名 (例如 /dev/sda5 之类的装置档名) 来进行备份！<br><br></li>
+
+		<li><span class="text_import2">待备份的数据只是目录，并非单一文件系统：</span><br>
+		例如你仅想要备份 /home/someone/ ，但是该目录并非独立的文件系统时。此时备份就有限制啦！包括：<br><br>
+		<ul class="text_import2"><li>所有的备份数据都必须要在该目录 (本例为：/home/someone/) 底下；</li>
+		<li>且仅能使用 level 0 ，亦即仅支持完整备份而已；</li>
+		<li>不支持 -u 选项，亦即无法创建 /etc/dumpdates 这个各别 level 备份的时间记录档；</li>
+		</ul></li>
+		</ul>
+
+		<p>dump 的选项虽然非常的繁复，不过如果只是想要简单的操作时，您只要记得底下的几个选项就很够用了！</p>
+
+<table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">dump [-Suvj] [-level] [-f 备份档] 待备份数据</span>
+[root@www ~]# <span class="term_command">dump -W</span>
+<span class="term_say">选项与参数：
+-S    ：仅列出后面的待备份数据需要多少磁碟空间才能够备份完毕；
+-u    ：将这次 dump 的时间记录到 /etc/dumpdates 文件中；
+-v    ：将 dump 的文件过程显示出来；
+-j    ：加入 bzip2 的支持！将数据进行压缩，默认 bzip2 压缩等级为 2
+-level：就是我们谈到的等级，从 -0 ~ -9 共十个等级；
+-f    ：有点类似 tar 啦！后面接产生的文件，亦可接例如 /dev/st0 装置档名等
+-W    ：列出在 /etc/fstab 里面的具有 dump 配置的 partition 是否有备份过？</span>
+</pre></td></tr></tbody></table>
+
+		<hr><ul class="list1"><li class="text_import1">用 dump 备份完整的文件系统</li></ul>
+
+		<p>现在就让我们来做几个范例吧！假如你要将系统的最小的文件系统捉出来进行备份，那该如何进行呢？</p>
+
+<table class="term"><tbody><tr><td class="term"><pre><span class="term_hd"># 1. 先找出系统中最小的那个文件系统，如下所示：</span>
+[root@www ~]# <span class="term_command">df -h</span>
+Filesystem            Size  Used Avail Use% Mounted on
+/dev/hdc2             9.5G  3.7G  5.3G  42% /
+/dev/hdc3             4.8G  651M  3.9G  15% /home
+<span class="term_write">/dev/hdc1              99M   11M   83M  12% /boot</span>  <span class="term_note">&lt;==看起来最小的就是他啦！</span>
+tmpfs                 363M     0  363M   0% /dev/shm
+
+<span class="term_hd"># 2. 先测试一下，如果要备份此文件系统，需多少容量？</span>
+[root@www ~]# <span class="term_command">dump -S /dev/hdc1</span>
+5630976     <span class="term_note">&lt;==注意一下，这个单位是 bytes ，所以差不多是 5.6MBytes。</span>
+
+<span class="term_hd"># 3. 将完整备份的档名记录成为 /root/boot.dump ，同时升级记录档：</span>
+[root@www ~]# <span class="term_command">dump -0u -f /root/boot.dump /boot</span>
+  DUMP: Date of this level 0 dump: Tue Dec  2 02:53:45 2008 <span class="term_note">&lt;==记录等级与备份时间</span>
+  DUMP: Dumping /dev/hdc1 (/boot) to /root/boot.dump        <span class="term_note">&lt;==dump的来源与目标</span>
+  DUMP: Label: /boot                                        <span class="term_note">&lt;==文件系统的 label</span>
+  DUMP: Writing 10 Kilobyte records
+  DUMP: mapping (Pass I) [regular files]                    <span class="term_note">&lt;==开始进行文件对应</span>
+  DUMP: mapping (Pass II) [directories]
+  DUMP: estimated 5499 blocks.                              <span class="term_note">&lt;==评估整体block数量</span>
+  DUMP: Volume 1 started with block 1 at: Tue Dec  2 02:53:46 2008
+  DUMP: dumping (Pass III) [directories]                    <span class="term_note">&lt;==开始 dump 工作</span>
+  DUMP: dumping (Pass IV) [regular files]
+  DUMP: Closing /root/boot.dump                             <span class="term_note">&lt;==结束写入备份档</span>
+  DUMP: Volume 1 completed at: Tue Dec  2 02:53:47 2008
+  DUMP: Volume 1 5550 blocks (5.42MB)                       <span class="term_note">&lt;==最终备份数据容量</span>
+  DUMP: Volume 1 took 0:00:01
+  DUMP: Volume 1 transfer rate: 5550 kB/s
+  DUMP: 5550 blocks (5.42MB) on 1 volume(s)
+  DUMP: finished in 1 seconds, throughput 5550 kBytes/sec
+  DUMP: Date of this level 0 dump: Tue Dec  2 02:53:45 2008
+  DUMP: Date this dump completed:  Tue Dec  2 02:53:47 2008
+  DUMP: Average transfer rate: 5550 kB/s
+  DUMP: DUMP IS DONE
+<span class="term_say"># 在命令的下达方面，dump 后面接 /boot 或 /dev/hdc1 都可以的！
+# 而运行 dump 的过程中会出现如上的一些信息，您可以自行仔细的观察！</span>
+
+[root@www ~]# <span class="term_command">ll /root/boot.dump /etc/dumpdates</span>
+-rw-rw-r-- 1 root disk      43 Dec  2 02:53 /etc/dumpdates
+-rw-r--r-- 1 root root 5683200 Dec  2 02:53 /root/boot.dump
+<span class="term_say"># 由於加上 -u 的选项，因此 /etc/dumpdates 该文件的内容会被升级！注意，
+# 这个文件仅有在 dump 完整的文件系统时才有支持主动升级的功能。</span>
+
+<span class="term_hd"># 4. 观察一下系统主动创建的记录档：</span>
+[root@www ~]# <span class="term_command">cat /etc/dumpdates</span>
+/dev/hdc1     0   Tue Dec  2 02:53:47 2008 +0800
+<span class="term_say">[文件系统] [等级] [       ctime 的时间         ]</span>
+</pre></td></tr></tbody></table>
+
+		<p>这样很简单的就创建起来 /root/boot.dump 文件，该文件将整个 /boot/ 文件系统都备份下来了！
+		并且将备份的时间写入 /etc/dumpdates 文件中，准备让下次备份时可以作为一个参考依据。
+		现在让我们来进行一个测试，检查看看能否真的创建 level 1 的备份呢？</p>
+
+<table class="term"><tbody><tr><td class="term"><pre><span class="term_hd"># 0. 看一下有没有任何文件系统被 dump 过的数据？</span>
+[root@www ~]# <span class="term_command">dump -W</span>
+Last dump(s) done (Dump '&gt;' file systems):
+&gt; /dev/hdc2     (     /) Last dump: <span class="term_write">never</span>
+&gt; /dev/hdc3     ( /home) Last dump: <span class="term_write">never</span>
+  /dev/hdc1     ( /boot) Last dump: <span class="term_write">Level 0, Date Tue Dec  2 02:53:47 2008</span>
+<span class="term_say"># 如上列的结果，该结果会捉出 /etc/fstab 里面第五栏位配置有需要 dump 的 
+# partition，然后与 /etc/dumpdates 进行比对，可以得到上面的结果啦！
+# 尤其是第三行，可以显示我们曾经对 /dev/hdc1 进行过 dump 的备份动作喔！</span>
+
+<span class="term_hd"># 1. 先恶搞一下，创建一个大约 10 MB 的文件在 /boot 内：</span>
+[root@www ~]# <span class="term_command">dd if=/dev/zero of=/boot/testing.img bs=1M count=10</span>
+10+0 records in
+10+0 records out
+10485760 bytes (10 MB) copied, 0.166128 seconds, 63.1 MB/s
+
+<span class="term_hd"># 2. 开始创建差异备份档，此时我们使用 level 1 吧：</span>
+[root@www ~]# <span class="term_command">dump -1u -f /root/boot.dump.1 /boot</span>
+<span class="term_say">....(中间省略)....</span>
+
+[root@www ~]# <span class="term_command">ll /root/boot*</span>
+-rw-r--r-- 1 root root  5683200 Dec  2 02:53 /root/boot.dump
+-rw-r--r-- 1 root root <span class="term_write">10547200</span> Dec  2 02:56 /root/boot.dump.1
+<span class="term_say"># 看看文件大小，岂不是就是刚刚我们所创建的那个大文件的容量吗？ ^_^</span>
+
+<span class="term_hd"># 3. 最后再看一下是否有记录 level 1 备份的时间点呢？</span>
+[root@www ~]# <span class="term_command">dump -W</span>
+Last dump(s) done (Dump '&gt;' file systems):
+&gt; /dev/hdc2     (     /) Last dump: never
+&gt; /dev/hdc3     ( /home) Last dump: never
+&gt; /dev/hdc1     ( /boot) Last dump: <span class="term_write">Level 1</span>, Date Tue Dec  2 02:56:33 2008
+<span class="term_say">....(中间省略)....</span>
+</pre></td></tr></tbody></table>
+
+		<p>透过这个简单的方式，我们就能够仅备份差异文件的部分罗！底下再来看看针对单一目录的 dump 用途！<br><br></p>
+
+		<hr><ul class="list1"><li class="text_import1">用 dump 备份非文件系统，亦即单一目录的方法</li></ul>
+
+		<p>现在让我们来处理一下 /etc 的 dump 备份吧！因为 /etc  并非单一文件系统，他只是个目录而已。
+		所以依据限制的说明， -u, level 1~9 都是不适用的。我们只能够使用 level 0 的完整备份将 /etc 给他 dump 
+		下来。因此作法就变的很简单了！</p>
+
+<table class="term"><tbody><tr><td class="term"><pre><span class="term_hd"># 让我们将 /etc 整个目录透过 dump 进行备份，且含压缩功能</span>
+[root@www ~]# <span class="term_command">dump -0j -f /root/etc.dump.bz2 /etc</span>
+  DUMP: Date of this level 0 dump: Tue Dec  2 12:08:22 2008
+  DUMP: Dumping /dev/hdc2 (/ (dir etc)) to /root/etc.dump.bz2
+  DUMP: Label: /1
+  DUMP: Writing 10 Kilobyte records
+  DUMP: Compressing output at compression level 2 (bzlib)
+  DUMP: mapping (Pass I) [regular files]
+  DUMP: mapping (Pass II) [directories]
+  DUMP: estimated 115343 blocks.
+  DUMP: Volume 1 started with block 1 at: Tue Dec  2 12:08:23 2008
+  DUMP: dumping (Pass III) [directories]
+  DUMP: dumping (Pass IV) [regular files]
+  DUMP: Closing /root/etc.dump.bz2
+  DUMP: Volume 1 completed at: Tue Dec  2 12:09:49 2008
+  DUMP: Volume 1 took 0:01:26
+  DUMP: Volume 1 transfer rate: 218 kB/s
+  DUMP: Volume 1 124680kB uncompressed, 18752kB compressed, 6.649:1
+  DUMP: 124680 blocks (121.76MB) on 1 volume(s)
+  DUMP: finished in 86 seconds, throughput 1449 kBytes/sec
+  DUMP: Date of this level 0 dump: Tue Dec  2 12:08:22 2008
+  DUMP: Date this dump completed:  Tue Dec  2 12:09:49 2008
+  DUMP: Average transfer rate: 218 kB/s
+  DUMP: <span class="term_write">Wrote 124680kB uncompressed, 18752kB compressed, 6.649:1</span>
+  DUMP: DUMP IS DONE
+<span class="term_say"># 上面特殊字体的部分显示：原本有 124680kb  的容量，被压缩成为 18752kb，
+# 整个压缩比为 6.649:1 ，还可以的压缩情况啦！</span>
+</pre></td></tr></tbody></table>
+
+		<p>一般来说 dump 不会使用包含压缩的功能，不过如果你想要将备份的空间降低的话，那个 -j 的选项是可以使用的。
+		加上 -j 之后你的 dump 成果会使用较少的硬盘容量啦！如上述的情况来看，文件容量由原本的 128MB 左右下滑到
+		18MB 左右，当然可以节省备份空间罗！</p>
+	</div>
+
+	<hr><a name="restore"></a><img src="../image/logo.png" alt="小标题的图示" width="24" align="middle" height="23"><span class="text_h2">restore</span><br>
+	<div class="block2">
+		<p>备份档就是在急用时可以回复系统的重要数据，所以有备份当然就得要学学如何复原了！
+		dump 的复原使用的是 restore 这个命令！这个命令的选项也非常的多～您可以自行 man restore 瞧瞧！
+		鸟哥在这里仅作个简单的介绍罗！</p>
+
+<table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">restore -t [-f dumpfile] [-h]       </span> <span class="term_note">&lt;==用来察看 dump 档</span>
+[root@www ~]# <span class="term_command">restore -C [-f dumpfile] [-D 挂载点]</span> <span class="term_note">&lt;==比较dump与实际文件</span>
+[root@www ~]# <span class="term_command">restore -i [-f dumpfile]            </span> <span class="term_note">&lt;==进入互动模式</span>
+[root@www ~]# <span class="term_command">restore -r [-f dumpfile]            </span> <span class="term_note">&lt;==还原整个文件系统</span>
+<span class="term_say">选项与参数：
+相关的各种模式，各种模式无法混用喔！例如不可以写 -tC 啦！
+-t  ：此模式用在察看 dump 起来的备份档中含有什么重要数据！类似 tar -t 功能；
+-C  ：此模式可以将 dump 内的数据拿出来跟实际的文件系统做比较，
+      最终会列出『在 dump 文件内有记录的，且目前文件系统不一样』的文件；
+-i  ：进入互动模式，可以仅还原部分文件，用在 dump 目录时的还原！
+-r  ：将整个 filesystem 还原的一种模式，用在还原针对文件系统的 dump 备份；
+其他较常用到的选项功能：
+-h  ：察看完整备份数据中的 inode 与文件系统 label 等资讯
+-f  ：后面就接你要处理的那个 dump 文件罗！
+-D  ：与 -C 进行搭配，可以查出后面接的挂载点与 dump 内有不同的文件！</span>
+</pre></td></tr></tbody></table>
+
+		<hr><ul class="list1"><li class="text_import1">用 restore 观察 dump 后的备份数据内容</li></ul>
+
+		<p>要找出 dump 的内容就使用 restore -t 来查阅即可！例如我们将 boot.dump 的文件内容捉出来看看！</p>
+
+<table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">restore -t -f /root/boot.dump </span>
+Dump   date: Tue Dec  2 02:53:45 2008              <span class="term_note">&lt;==说明备份的日期</span>
+Dumped from: the epoch
+Level 0 dump of /boot on www.vbird.tsai:/dev/hdc1  <span class="term_note">&lt;==说明 level 状态</span>
+Label: /boot                                       <span class="term_note">&lt;==说明该 filesystem 的表头！</span>
+         2      .
+        11      ./lost+found
+      2009      ./grub
+      2011      ./grub/grub.conf
+<span class="term_say">....底下省略....</span>
+
+[root@www ~]# <span class="term_command">restore -t -f /root/etc.dump</span>
+Dump tape is compressed.                          <span class="term_note">&lt;==加注说明数据有压缩</span>
+Dump   date: Tue Dec  2 12:08:22 2008
+Dumped from: the epoch
+Level 0 dump of <span class="term_write">/ (dir etc)</span> on www.vbird.tsai:/dev/hdc2 <span class="term_note">&lt;==是目录！</span>
+Label: /1
+         2      .
+   1912545      ./etc
+   1912549      ./etc/rpm
+   1912550      ./etc/rpm/platform
+<span class="term_say">....底下省略....</span>
+</pre></td></tr></tbody></table>
+
+		<p>这个查阅的数据其实显示出的是档名与原始文件的 inode 状态，所以我们可以说， dump 会参考 inode 的记录哩！
+		透过这个查询我们也能知道 dump 的内容为何呢！再来查一查如何还原吧！<br><br></p>
+
+		<hr><ul class="list1"><li class="text_import1">比较差异并且还原整个文件系统</li></ul>
+
+		<p>为什么 dump 可以进行累积备份呢？就是因为他具有可以查询文件系统与备份文件之间的差异，
+		并且将分析到的差异数据进行备份的缘故。所以我们先来看看，如何查询有变动过的资讯呢？你可以使用如下的方法检验：</p>
+
+<table class="term"><tbody><tr><td class="term"><pre><span class="term_hd"># 0. 先尝试变更文件系统的内容：</span>
+[root@www ~]# <span class="term_command">cd /boot</span>
+[root@www boot]# <span class="term_command">mv config-2.6.18-128.el5 config-2.6.18-128.el5-back</span>
+
+<span class="term_hd"># 1. 看使进行文件系统与备份文件之间的差异！</span>
+[root@www boot]# <span class="term_command">restore -C -f /root/boot.dump</span>
+Dump   date: Tue Dec  2 02:53:45 2008
+Dumped from: the epoch
+Level 0 dump of /boot on www.vbird.tsai:/dev/hdc1
+Label: /boot
+filesys = /boot
+<span class="term_write">restore: unable to stat ./config-2.6.18-128.el5: No such file or directory
+Some files were modified!  1 compare errors</span>
+<span class="term_say"># 看到上面的特殊字体了吧！那就是有差异的部分！总共有一个文件被变更！
+# 我们刚刚确实有更动过该文件，嘿嘿！这样是否能了解？！</span>
+
+<span class="term_hd"># 2. 将文件系统改回来啊！</span>
+[root@www boot]# <span class="term_command">mv config-2.6.18-128.el5-back config-2.6.18-128.el5</span>
+[root@www boot]# <span class="term_command">cd /root</span>
+</pre></td></tr></tbody></table>
+
+		<p>如同上面的动作，透过曾经备份过的资讯，也可以找到与目前实际文件系统中有差异的数据呢！
+		如果你不想要进行累积备份，但也能透过这个动作找出最近这一阵子有变动过的文件说！了解乎？
+		那如何还原呢？由於 dump 是记录整个文件系统的，因此还原时你也应该要给予一个全新的文件系统才行。
+		因此底下我们先创建一个文件系统，然后再来还原吧！</p>
+
+<table class="term"><tbody><tr><td class="term"><pre><span class="term_hd"># 1. 先创建一个新的 partition 来使用，假设我们需要的是 150M 的容量</span>
+[root@www ~]# <span class="term_command">fdisk /dev/hdc</span>
+Command (m for help): <span class="term_command">n</span>
+First cylinder (2335-5005, default 2335): <span class="term_note">&lt;==这里按 Enter</span>
+Using default value 2335
+Last cylinder or +size or +sizeM or +sizeK (2335-5005, default 5005): <span class="term_command">+150M</span>
+Command (m for help): <span class="term_command">p</span>
+<span class="term_say">....中间省略....</span>
+<span class="term_write">/dev/hdc8            2335        2353      152586   83  Linux</span>
+
+Command (m for help): <span class="term_command">w</span>
+
+[root@www ~]# <span class="term_command">partprobe</span>   <span class="term_note">&lt;==很重要的动作！别忘记！</span>
+<span class="term_say"># 这样就能够创建一个 /dev/hdc8 的 partition ，然后继续格式化吧！</span>
+
+[root@www ~]# <span class="term_command">mkfs -t ext3 /dev/hdc8</span>
+[root@www ~]# <span class="term_command">mount /dev/hdc8 /mnt</span>
+
+<span class="term_hd"># 2. 开始进行还原的动作！请您务必到新文件系统的挂载点底下去！</span>
+[root@www ~]# <span class="term_command">cd /mnt</span>
+[root@www mnt]# <span class="term_command">restore -r -f /root/boot.dump</span>
+restore: ./lost+found: File exists
+</pre></td></tr></tbody></table>
+
+		<p>由於我们是备份整个文件系统，因此你也可以建置一个全新的文件系统 (partition) 来进行还原的动作！
+		整个还原的动作也不难，如上表最后一个命令，就是将<span class="text_import2">备份文件中的数据还原到本目录下</span>。
+		你必须要变更目录到挂载点所在的那个目录才行啊！这样还原的文件才不会跑错地方！如果你还想要将 level 1 的
+		/root/boot.dump.1 那个文件的内容也还原的话，那就继续使用『restore -r -f /root/boot.dump.1』去还原吧！<br><br></p>
+
+		<hr><ul class="list1"><li class="text_import1">仅还原部分文件的 restore 互动模式</li></ul>
+
+		<p>某些时候你只是要将备份档的某个内容捉出来而已，并不想要全部解开，那该如何是好？此时你可以进入 restore
+		的互动模式 (interactive mode)。在底下我们使用 etc.dump 来进行范例说明。假如你要将 etc.dump 
+		内的 passwd 与 shadow 捉出来而已，该如何进行呢？</p>
+ 
+<table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">cd /mnt</span>
+[root@www mnt]# <span class="term_command">restore -i -f /root/etc.dump</span>
+restore &gt; <span class="term_command"></span>
+<span class="term_say"># 此时你就已经进入 restore 的互动模式画面中！要注意的是：
+# 你目前已经在 etc.dump 这个文件内了！所有的动作都是在 etc.dump 内！</span>
+
+restore &gt; <span class="term_command">help</span>
+Available commands are:
+        ls [arg] - list directory          <span class="term_note">&lt;==列出 etc.dump 内的文件或目录</span>
+        cd arg - change directory          <span class="term_note">&lt;==在 etc.dump 内变更目录</span>
+        pwd - print current directory      <span class="term_note">&lt;==列出在 etc.dump 内的路径档名</span>
+        add [arg] - add `arg' to list of files to be extracted 
+        delete [arg] - delete `arg' from list of files to be extracted
+        extract - extract requested files
+<span class="term_say"># 上面三个命令是重点！各命令的功能为：
+# add file    ：将 file 加入等一下要解压缩的文件列表中
+# delete file ：将 file 移除出解压缩的列表，并非删除 etc.dump 内的文件！别误会！^_^
+# extract     ：开始将刚刚选择的文件列表解压缩了去！</span>
+        setmodes - set modes of requested directories
+        quit - immediately exit program
+        what - list dump header information
+        verbose - toggle verbose flag (useful with ``ls'')
+        prompt - toggle the prompt display
+        help or `?' - print this list
+
+restore &gt; <span class="term_command">ls</span>
+.:
+etc/  <span class="term_note">&lt;==会显示出在 etc.dump 内主要的目录，因为我们备份 /etc ，所以档名为此！</span>
+
+restore &gt; <span class="term_command">cd etc                 </span> <span class="term_note">&lt;==在 etc.dump 内变换路径到 etc 目录下</span>
+restore &gt; <span class="term_command">pwd                    </span> <span class="term_note">&lt;==列出本目录的档名为？</span>
+/etc
+restore &gt; <span class="term_command">ls passwd shadow group </span> <span class="term_note">&lt;==看看，真的有这三个文件喔！</span>
+passwd
+shadow
+group
+restore &gt; <span class="term_command">add passwd shadow group</span> <span class="term_note">&lt;==加入解压缩列表</span>
+restore &gt; <span class="term_command">delete group           </span> <span class="term_note">&lt;==加错了！将 group 移除解压缩列表</span>
+restore &gt; <span class="term_command">ls passwd shadow group</span>
+<span class="term_write">*passwd  <span class="term_note">&lt;==有要被解压缩的，档名之前会出现 * 的符号呢！</span>
+*shadow</span>
+group
+restore &gt; <span class="term_command">extract                </span> <span class="term_note">&lt;==开始进行解压缩去！</span>
+You have not read any volumes yet.   <span class="term_note">&lt;==这里会询问你需要的volume</span>
+Unless you know which volume your file(s) are on you should start
+with the last volume and work towards the first.
+Specify next volume # (none if no more volumes): <span class="term_command">1</span> <span class="term_note">&lt;==只有一个 volume</span>
+set owner/mode for '.'? [yn] <span class="term_command">n</span> <span class="term_note">&lt;==不需要修改权限</span>
+
+restore &gt; <span class="term_command">quit                   </span> <span class="term_note">&lt;==离开 restore 的功能</span>
+
+[root@www ~]# <span class="term_command">ll -d etc</span>
+drwxr-xr-x 2 root root 1024 Dec 15 17:49 etc  <span class="term_note">&lt;==解压缩后，所创建出来的目录啦！</span>
+[root@www ~]# <span class="term_command">ll etc</span>
+total 6
+-rw-r--r-- 1 root root 1945 Sep 29 02:21 passwd
+-r-------- 1 root root 1257 Sep 29 02:21 shadow
+</pre></td></tr></tbody></table>
+
+		<p>透过互动式的 restore 功能，可以让你将备份的数据取出一部份，而不必全部都得解压缩才能够取得你想要的文件数据。
+		而 restore 内的 add 除了可以添加文件外，也能够添加整个备份的『目录』喔！还不错玩吧！
+		赶紧测试看看先！ ^_^</p>
+	</div>
+</div>
+
+
+<hr><a name="cd_record"></a><img src="../image/logo.png" alt="大标题的图示" width="35" align="middle" height="34"><span class="text_h1">光盘写入工具</span><br>
+<div class="block1">
+	<p>某些时刻你可能会希望将系统上最重要的数据给他备份出来，虽然目前闪盘已经有够便宜，你可以使用这玩意儿来备份。
+	不过某些重要的、需要重复备份的数据(可能具有时间特性)，你可能会需要使用类似 DVD 之类的储存媒体来备份出来！
+	举例来说，你的系统配置档或者是讨论区的数据库文件(变动性非常的频繁)。虽然 Linux 图形介面已经有不少的烧录软件可用，
+	但有时如果你希望系统自动在某些时刻帮你主动的进行烧录时，那么文字介面的烧录行为就有帮助啦！</p>
+
+	<p>那么文字模式的烧录行为要怎么处理呢？通常的作法是这样的：</p>
+	<ul>
+	<li>先将所需要备份的数据建置成为一个映像档(iso)，利用 mkisofs 命令来处理；</li>
+	<li>将该映像档烧录至光盘或 DVD 当中，利用 cdrecord 命令来处理。</li>
+	</ul>
+
+	<p>底下我们就分别来谈谈这两个命令的用法吧！<br><br></p>
+
+	<hr><a name="mkisofs"></a><img src="../image/logo.png" alt="小标题的图示" width="24" align="middle" height="23"><span class="text_h2">mkisofs：创建映像档</span><br>
+	<div class="block2">
+		<p>我们从 FTP 站捉下来的 Linux 映像档 (不管是 CD 还是 DVD) 都得要继续烧录成为实体的光盘/DVD 后，
+		才能够进一步的使用，包括安装或升级你的 Linux 啦！同样的道理，你想要利用烧录机将你的数据烧录到 DVD 时，
+		也得要先将你的数据包成一个映像档，这样才能够写入DVD片中。而将你的数据包成一个映像档的方式就透过 mkisofs 这个命令即可。
+		mkisofs 的使用方式如下：</p>
+
+<table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">mkisofs [-o 映像档] [-rv] [-m file] 待备份文件.. [-V vol] \</span>
+&gt;  <span class="term_command">-graft-point isodir=systemdir ...</span>
+<span class="term_say">选项与参数：
+-o ：后面接你想要产生的那个映像档档名。
+-r ：透过 Rock Ridge 产生支持 Unix/Linux 的文件数据，可记录较多的资讯；
+-v ：显示建置 ISO 文件的过程
+-m file ：-m 为排除文件 (exclude) 的意思，后面的文件不备份到映像档中
+-V vol  ：创建 Volume，有点像 Windows 在文件总管内看到的 CD title 的东西
+-graft-point：graft有转嫁或移植的意思，相关数据在底下文章内说明。</span>
+</pre></td></tr></tbody></table>
+
+		<p>其实 mkisofs 有非常多好用的选项可以选择，不过如果我们只是想要制作数据光盘时，上述的选项也就够用了。
+		<span class="text_import2">光盘的格式一般称为 iso9660 ，这种格式一般仅支持旧版的 DOS 档名，亦即档名只能以 
+		8.3 (档名8个字节，扩展名3个字节)
+		的方式存在</span>。如果加上 -r 的选项之后，那么文件资讯能够被记录的比较完整，可包括UID/GID与权限等等！
+		所以，记得加这个 -r 的选项。</p>
+
+		<p>此外，一般默认的情况下，<span class="text_import2">所有要被加到映像档中的文件都会被放置到映象档中的根目录</span>，
+		如此一来可能会造成烧录后的文件分类不易的情况。所以，你可以使用 -graft-point 这个选项，当你使用这个选项之后，
+		可以利用如下的方法来定义位於映像档中的目录，例如：</p>
+
+		<ul>
+		<li>映像档中的目录所在=实际 Linux 文件系统的目录所在</li>
+		<li><span class="text_import2">/movies/=/srv/movies/</span>
+			 (在 Linux 的 /srv/movies 内的文件，加至映像档中的 /movies/ 目录)</li>
+		<li><span class="text_import2">/linux/etc=/etc</span> 
+			(将 Linux 中的 /etc/ 内的所有数据备份到映像档中的 /linux/etc/ 目录中)</li>
+		</ul>
+
+		<p>我们透过一个简单的范例来说明一下吧。如果你想要将 /root, /home, /etc 等目录内的数据通通烧录起来的话，
+		先得要处理一下映像档，我们先不使用 -graft-point 的选项来处理这个映像档试看看：</p>
+
+<table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">mkisofs -r -v -o /tmp/system.img /root /home /etc</span>
+INFO:   ISO-8859-1 character encoding detected by locale settings.
+        Assuming ISO-8859-1 encoded filenames on source filesystem,
+        use -input-charset to override.
+mkisofs 2.01 (cpu-pc-linux-gnu)
+Scanning /root
+Scanning /root/test4
+<span class="term_say">....中间省略....</span>
+ 97.01% done, estimate finish Tue Dec 16 17:07:14 2008  <span class="term_note">&lt;==显示百分比</span>
+ 98.69% done, estimate finish Tue Dec 16 17:07:15 2008
+Total translation table size: 0
+<span class="term_write">Total rockridge attributes bytes: 9840</span>   <span class="term_note">&lt;==额外记录属性所耗用之容量</span>
+<span class="term_write">Total directory bytes: 55296</span>             <span class="term_note">&lt;==目录占用容量</span>
+Path table size(bytes): 406
+Done with: The File(s)              Block(s)    298728
+Writing:   Ending Padblock          Start Block 298782
+Done with: Ending Padblock          Block(s)    150
+Max brk space used 0
+<span class="term_write">298932 extents written (583 MB)</span>
+
+[root@www ~]# <span class="term_command">ll -h /tmp/system.img</span>
+-rw-r--r-- 1 root root 584M Dec 16 17:07 /tmp/system.img
+[root@www ~]# <span class="term_command">mount -o loop /tmp/system.img /mnt</span>
+[root@www ~]# <span class="term_command">df -h</span>
+Filesystem            Size  Used Avail Use% Mounted on
+/tmp/system.img       584M  584M     0 100% /mnt  <span class="term_note">&lt;==就是这玩意儿！</span>
+[root@www ~]# <span class="term_command">ls /mnt</span>
+alex             crontab2               etc.tar.gz          system.tar.bz2
+anaconda-ks.cfg  etc                    install.log         test1
+arod             etc.and.root.tar.bz2   install.log.syslog  test2
+boot.dump        etc.dump               loopdev             test3
+<span class="term_say"># 看吧！一堆数据都放置在一起！包括有的没有的目录与文件等等！</span>
+
+[root@www ~]# <span class="term_command">umount /mnt</span>
+</pre></td></tr></tbody></table>
+
+		<p>由上面的范例我们可以看到，三个目录 (/root, /home, /etc) 的数据通通放置到了映像档的最顶层目录中！
+		真是不方便～尤其由於 /root/etc 的存在，导致那个 /etc 的数据似乎没有被包含进来的样子！真不合理～
+		而且还有 lost+found 的目录存在！真是超不喜欢的！此时我们可以使用 -graft-point 来处理罗！</p>
+
+<table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">mkisofs -r -V 'linux_file' -o /tmp/system.img \</span>
+&gt;  <span class="term_command">-m /home/lost+found -graft-point /root=/root /home=/home /etc=/etc</span>
+[root@www ~]# <span class="term_command">ll -h /tmp/system.img</span>
+-rw-r--r-- 1 root root <span class="term_write">689M</span> Dec 17 11:41 /tmp/system.img
+<span class="term_say"># 上面的命令会创建一个大文件，期中 -graft-point 后面接的就是我们要备份的数据。
+# 必须要注意的是那个等号的两边，等号左边是在映像档内的目录，右侧则是实际的数据。</span>
+
+[root@www ~]# <span class="term_command">mount -o loop /tmp/system.img /mnt</span>
+[root@www ~]# <span class="term_command">ll /mnt</span>
+dr-xr-xr-x 105 root root 32768 Dec 17 11:40 etc
+dr-xr-xr-x   5 root root  2048 Dec 17 11:40 home
+dr-xr-xr-x   7 root root  4096 Dec 17 11:40 root
+<span class="term_say"># 瞧！数据是分门别类的在各个目录中喔这样了解乎？最后将数据卸载一下：</span>
+
+[root@www ~]# <span class="term_command">umount /mnt</span>
+</pre></td></tr></tbody></table>
+
+		<p>其实鸟哥一直觉得很奇怪，怎么我的数据会这么大(600多MB)？原来是 /home 里面在第八章的时候，练习时多了一个 
+		/home/loopdev 的大文件！所以在重新制作一次 iso 档，并多加一个『 -m /home/loopdev 』来排除该文件的备份，
+		最终的文件则仅有 176MB 罗！还好还好！ ^_^！接下来让我们处理烧录的动作了吧！</p>
+	</div>
+
+	<hr><a name="cdrecord"></a><img src="../image/logo.png" alt="小标题的图示" width="24" align="middle" height="23"><span class="text_h2">cdrecord：光盘烧录工具</span><br>
+	<div class="block2">
+		<p>我们是透过 cdrecord 这个命令来进行文字介面的烧录行为，这个命令常见的选项有底下数个：</p>
+
+<table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">cdrecord -scanbus dev=ATA                 </span> <span class="term_note">&lt;==查询烧录机位置</span>
+[root@www ~]# <span class="term_command">cdrecord -v dev=ATA:x,y,z blank=[fast|all]</span> <span class="term_note">&lt;==抹除重复读写片</span>
+[root@www ~]# <span class="term_command">cdrecord -v dev=ATA:x,y,z -format         </span> <span class="term_note">&lt;==格式化DVD+RW</span>
+[root@www ~]# <span class="term_command">cdrecord -v dev=ATA:x,y,z [可用选项功能] file.iso</span>
+<span class="term_say">选项与参数：
+-scanbus        ：用在扫瞄磁碟汇流排并找出可用的烧录机，后续的装置为 ATA 介面
+-v              ：在 cdrecord 运行的过程中，显示过程而已。
+dev=ATA:x,y,z   ：后续的 x, y, z 为你系统上烧录机所在的位置，非常重要！
+blank=[fast|all]：blank 为抹除可重复写入的CD/DVD-RW，使用fast较快，all较完整
+-format         ：仅针对 DVD+RW 这种格式的 DVD 而已；
+[可用选项功能] 主要是写入 CD/DVD 时可使用的选项，常见的选项包括有：
+   -data   ：指定后面的文件以数据格式写入，不是以 CD 音轨(-audio)方式写入！
+   speed=X ：指定烧录速度，例如CD可用 speed=40 为40倍数，DVD则可用 speed=4 之类
+   -eject  ：指定烧录完毕后自动退出光盘
+   fs=Ym   ：指定多少缓冲内存，可用在将映像档先缓存至缓冲内存。默认为 4m，
+             一般建议可添加到 8m ，不过，还是得视你的烧录机而定。
+针对 DVD 的选项功能：
+   driveropts=burnfree ：打开 Buffer Underrun Free 模式的写入功能
+   -sao                ：支持 DVD-RW 的格式</span>
+</pre></td></tr></tbody></table>
+
+		<hr><ul class="list1"><li class="text_import1">侦测你的烧录机所在位置：</li></ul>
+
+		<p>文字模式的烧录确实是比较麻烦的，因为没有所见即所得的环境嘛！要烧录首先就得要找到烧录机才行！
+		而由於早期的烧录机都是使用 SCSI 介面，因此查询烧录机的方法就得要配合著 SCSI 介面的认定来处理了。
+		查询烧录机的方式为：</p>
+
+<table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">cdrecord -scanbus dev=ATA</span>
+Cdrecord-Clone 2.01 (cpu-pc-linux-gnu) Copyright (C) 1995-2004 J?rg Schilling
+<span class="term_say">....中间省略....</span>
+scsibus1:
+        1,0,0   100) *
+<span class="term_write">        <u>1,1,0</u>   101) 'ASUS    ' 'DRW-2014S1      ' '1.01' Removable CD-ROM</span>
+        1,2,0   102) *
+        1,3,0   103) *
+        1,4,0   104) *
+        1,5,0   105) *
+        1,6,0   106) *
+        1,7,0   107) *
+</pre></td></tr></tbody></table>
+
+		<p>利用 cdrecord -scanbus 就能够找到正确的烧录机！由於目前个人计算机上最常使用的磁碟机介面为 IDE 与 SATA ，
+		这两种介面都能够使用 dev=ATA 这种模式来查询，因此上述的命令得要背一下啦！另外，在查询的结果当中可以发现有一台烧录机，
+		其中也显示出这台烧录机的型号，而最重要的就是上表中有底线的那三个数字！那三个数字就是代表这台烧录机的位置！
+		以上表的例子中，<span class="text_import2">这部烧录机的位置在『 ATA:1,1,0 』这个地方喔</span>！</p>
+
+		<p>好了，那么现在要如何将 /tmp/system.img 烧录到 CD/DVD 里面去呢？鸟哥这里先以 CD 为例，鸟哥用的是 CD-RW
+		(可重复读写) 的光盘片，说实在话，虽然 CD-RW 或 DVD-RW 比较贵一点，不过至少可以重复利用，
+		对环境的冲击比较小啦！建议大家使用可重复读写的片子。由於 CD-RW 可能要先进行抹除的工作(将原本里面的数据删除)然后才能写入，
+		因此，底下我们先来看看如何抹除一片 CD/DVD 的方法，然后直接写入光盘吧！</p>
+
+		<div style="padding: 10pt 0pt;" align="right"><table width="90%"><tbody><tr><td><b>Tips:</b><br><span style="color: rgb(0, 144, 0);"><font size="-1">		由於 CD/DVD 都是使用 cdrecord 这个命令，因此不论是 CD 还是 DVD 片，下达命令的方法都差不多！不过，
+		DVD 的写入需要额外的 driveropts=burnfree 或 -dao 等选项的辅助才行。
+		另外，CD 片有 CD-R(一次写入) 与 CD-RW(重复写入)，至於 DVD 则主要有两种格式，分别是 DVD-R 及 DVD+R 两种格式。
+		如果是可重复读写的则为： DVD-RW, DVD+RW 。除了 DVD+RW 的抹除方法可能不太一样之外，其他写入的方式则是一样的。
+		</font></span></td><td><img src="0240tarcompress_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div>
+		<hr><ul class="list1"><li class="text_import1">进行 CD 的烧录动作：</li></ul>
+<table class="term"><tbody><tr><td class="term"><pre><span class="term_hd"># 0. 先抹除光盘的原始内容：(非可重复读写则可略过此步骤)</span>
+[root@www ~]# <span class="term_command">cdrecord -v dev=ATA:1,1,0 blank=fast</span>
+<span class="term_say"># 中间会跑出一堆信息告诉你抹除的进度，而且会有 10 秒钟的时间等待你的取消！
+# 可以避免『手滑』的情况！^_^</span>
+
+<span class="term_hd"># 1. 开始烧录：</span>
+[root@www ~]# <span class="term_command">cdrecord -v dev=ATA:1,1,0 fs=8m -dummy -data \</span>
+&gt;  <span class="term_command">/tmp/system.img</span>
+<span class="term_say">....中间省略....</span>
+Track 01:  <span class="term_write">168</span> of  176 MB written (fifo 100%) [buf 100%]  10.5x. <span class="term_note">&lt;==显示百分比</span>
+<span class="term_say"># 上面会显示进度，还有 10.5x 代表目前的烧录速度！</span>
+cdrecord: fifo had 2919 puts and 2919 gets.
+cdrecord: fifo was 0 times empty and 2776 times full, min fill was 97%.
+
+<span class="term_hd"># 2. 烧录完毕后，测试挂载一下，检验内容：</span>
+[root@www ~]# <span class="term_command">mount -t iso9660 /dev/cdrom /mnt</span>
+[root@www ~]# <span class="term_command">df -h /mnt</span>
+Filesystem            Size  Used Avail Use% Mounted on
+/dev/hdd              177M  177M     0 100% /mnt      <span class="term_note">&lt;==瞧！确实是光盘内容！</span>
+
+[root@www ~]# <span class="term_command">ll /mnt</span>
+dr-xr-xr-x 105 root root 32768 Dec 17 11:54 etc
+dr-xr-xr-x   5 root root  2048 Dec 17 11:54 home
+dr-xr-xr-x   7 root root  4096 Dec 17 11:54 root
+
+[root@www ~]# <span class="term_command">umount /mnt</span>    <span class="term_note">&lt;==不要忘了卸载</span>
+</pre></td></tr></tbody></table>
+
+		<p>事实上如果你忘记抹除可写入光盘时，其实 cdrecord 很聪明的会主动的帮你抹除啦！
+		因此上面的资讯你只要记得烧录的功能即可。特别注意 -data 那个选项！因为如果没有加上 -data 的选项时，
+		默认数据会以音轨格式写入光盘中，所以最好能够加上 -data 这个选项罗！
+		上述的功能是针对 CD ，底下我们使用一片可重复读写的 DVD-RW 来测试一下写入的功能！<br><br></p>
+
+		<hr><ul class="list1"><li class="text_import1">进行 DVD-RW 的烧录动作：</li></ul>
+
+<table class="term"><tbody><tr><td class="term"><pre><span class="term_hd"># 0. 同样的，先来抹除一下原本的内容：</span>
+[root@www ~]# <span class="term_command">cdrecord -v dev=ATA:1,1,0 blank=fast</span>
+
+<span class="term_hd"># 1. 开始写入 DVD ，请注意，有些选项与 CD 并不相同了喔！</span>
+[root@www ~]# <span class="term_command">cdrecord -v dev=ATA:1,1,0 fs=8m -data <u>-sao</u> \</span>
+&gt;  <span class="term_command"><u>driveropts=burnfree</u> /tmp/system.img</span>
+
+<span class="term_hd"># 2. 同样的，来给他测试测试！</span>
+[root@www ~]# <span class="term_command">mount /dev/cdrom /mnt</span>
+[root@www ~]# <span class="term_command">df -h /mnt</span>
+Filesystem            Size  Used Avail Use% Mounted on
+/dev/hdd              177M  177M     0 100% /mnt
+[root@www ~]# <span class="term_command">umount /mnt</span>
+</pre></td></tr></tbody></table>
+
+		<p>整体命令没有差很多啦！只是 CD-RW 会自动抹除，但 DVD-RW 似乎得要自己手动某除才行！并不会主动进入自动抹除的功能！
+		害鸟哥重新测试过好几次～伤脑筋～ ^_^！好啦！现在你就知道如何将你的数据烧录出来啦！</p>
+
+		<p>如果你的 Linux 是用来做为服务器之用的话，那么无时无刻的去想『如何备份重要数据』是相当重要的！
+		关於备份我们会在第五篇再仔细的谈一谈，这里你要会使用这些工具即可！</p>
+	</div>
+
+</div>
+
+
+<hr><a name="other"></a><img src="../image/logo.png" alt="大标题的图示" width="35" align="middle" height="34"><span class="text_h1">其他常见的压缩与备份工具</span><br>
+<div class="block1">
+	<p>还有一些很好用的工具得要跟大家介绍介绍，尤其是 dd 这个玩意儿呢！<br><br></p>
+
+	<hr><a name="dd"></a><img src="../image/logo.png" alt="小标题的图示" width="24" align="middle" height="23"><span class="text_h2">dd</span><br>
+	<div class="block2">
+		<p>我们在<a href="http://vbird.dic.ksu.edu.tw/linux_basic/0230filesystem.php#loop">第八章当中的特殊 loop 装置挂载时</a>使用过 dd 这个命令对吧？
+		不过，这个命令可不只是制作一个文件而已喔～这个 dd 命令最大的功效，鸟哥认为，应该是在於『备份』啊！
+		因为 dd 可以读取磁碟装置的内容(几乎是直接读取磁区"sector")，然后将整个装置备份成一个文件呢！真的是相当的好用啊～
+		dd 的用途有很多啦～但是我们仅讲一些比较重要的选项，如下：</p>
+
+<table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">dd if="input_file" of="output_file" bs="block_size" \</span>
+&gt; <span class="term_command">count="number"</span>
+<span class="term_say">选项与参数：
+if   ：就是 input file 罗～也可以是装置喔！
+of   ：就是 output file 喔～也可以是装置；
+bs   ：规划的一个 block 的大小，若未指定则默认是 512 bytes(一个 sector 的大小)
+count：多少个 bs 的意思。</span>
+
+<span class="term_hd">范例一：将 /etc/passwd 备份到 /tmp/passwd.back 当中</span>
+[root@www ~]# <span class="term_command">dd if=/etc/passwd of=/tmp/passwd.back</span>
+3+1 records in
+3+1 records out
+1945 bytes (1.9 kB) copied, 0.000332893 seconds, 5.8 MB/s
+[root@www ~]# <span class="term_command">ll /etc/passwd /tmp/passwd.back</span>
+-rw-r--r-- 1 root root 1945 Sep 29 02:21 /etc/passwd
+-rw-r--r-- 1 root root 1945 Dec 17 18:09 /tmp/passwd.back
+<span class="term_say"># 仔细的看一下，我的 /etc/passwd 文件大小为 1945 bytes，因为我没有配置 bs ，
+# 所以默认是 512 bytes 为一个单位，因此，上面那个 3+1 表示有 3 个完整的 
+# 512 bytes，以及未满 512 bytes 的另一个 block 的意思啦！
+# 事实上，感觉好像是 cp 这个命令啦～</span>
+
+<span class="term_hd">范例二：将自己的磁碟之第一个磁区备份下来</span>
+[root@www ~]# <span class="term_command">dd if=/dev/hdc of=/tmp/mbr.back bs=512 count=1</span>
+1+0 records in
+1+0 records out
+512 bytes (512 B) copied, 0.0104586 seconds, 49.0 kB/s
+<span class="term_say"># 第一个磁区内含有 MBR 与 partition table ，透过这个动作，
+# 我们可以一口气将这个磁碟的 MBR 与 partition table 进行备份哩！</span>
+
+<span class="term_hd">范例三：找出你系统最小的那个分割槽，并且将他备份下来：</span>
+[root@www ~]# <span class="term_command">df -h</span>
+Filesystem            Size  Used Avail Use% Mounted on
+/dev/hdc2             9.5G  3.9G  5.1G  44% /
+/dev/hdc3             4.8G  651M  3.9G  15% /home
+/dev/hdc1              99M   21M   73M  23% /boot  <span class="term_note">&lt;==就捉他好了！</span>
+[root@www ~]# <span class="term_command">dd if=/dev/hdc1 of=/tmp/boot.whole.disk</span>
+208782+0 records in
+208782+0 records out
+106896384 bytes (107 MB) copied, 6.24721 seconds, 17.1 MB/s
+[root@www ~]# <span class="term_command">ll -h /tmp/boot.whole.disk</span>
+-rw-r--r-- 1 root root 102M Dec 17 18:14 /tmp/boot.whole.disk
+<span class="term_say"># 等於是将整个 /dev/hdc1 通通捉下来的意思～如果要还原呢？就反向回去！
+# dd if=/tmp/boot.whole.disk of=/dev/hdc1 即可！非常简单吧！
+# 简单的说，如果想要整个硬盘备份的话，就类似 Norton 的 ghost 软件一般，
+# 由 disk 到 disk ，嘿嘿～利用 dd 就可以啦～厉害厉害！</span>
+</pre></td></tr></tbody></table>
+
+		<p>你可以说， tar 可以用来备份关键数据，而 dd 则可以用来备份整颗 partition 或
+		整颗 disk ，很不错啊～不过，如果要将数据填回到 filesystem 当中，
+		可能需要考虑到原本的 filesystem 才能成功啊！让我们来完成底下的例题试看看：</p>
+
+<table border="1" cellpadding="5" cellspacing="0" width="90%"><tbody><tr><td>
+例题：<div class="block2">
+你想要将你的 /dev/hdc1 进行完整的复制到另一个 partition 上，请使用你的系统上面未分割完毕的容量再创建一个与 /dev/hdc1 
+差不多大小的分割槽 (只能比 /dev/hdc1 大，不能比他小！)，然后将之进行完整的复制 (包括需要复制 boot sector 的区块)。
+</div>
+答：<div class="block2">
+由於需要复制 boot sector 的区块，所以使用 cp 或者是 tar 这种命令是无法达成需求的！
+此时那个 dd 就派的上用场了。你可以这样做：<br>
+
+<table class="term"><tbody><tr><td class="term"><pre><span class="term_hd"># 1. 先进行分割的动作</span>
+[root@www ~]# <span class="term_command">fdisk -l /dev/hdc</span>
+   Device Boot   Start    End    Blocks   Id  System
+/dev/hdc1   *        <span class="term_write">1     13</span>    104391   83  Linux
+<span class="term_say"># 上面鸟哥仅撷取重要的数据而已！我们可以看到 /dev/hdc1 仅有 13 个磁柱</span>
+
+[root@www ~]# <span class="term_command">fdisk /dev/hdc</span>
+Command (m for help): <span class="term_command">n</span>
+First cylinder (2354-5005, default 2354): <span class="term_command">这里按 enter</span>
+Using default value <span class="term_write">2354</span>
+Last cylinder or +size or +sizeM or +sizeK (2354-5005, default 5005): <span class="term_command">2366</span>
+
+Command (m for help): <span class="term_command">p</span>
+   Device Boot   Start    End    Blocks   Id  System
+/dev/hdc9         <span class="term_write">2354   2366</span>    104391   83  Linux
+
+Command (m for help): <span class="term_command">w</span>
+<span class="term_say"># 为什么要使用 2366 呢？因为 /dev/hdc1 使用 13 个磁柱，因此新的 partition
+# 我们也给她 13 个磁柱，因此 2354 + 13 -1 = 2366 罗！</span>
+
+[root@www ~]# <span class="term_command">partprobe</span>
+
+<span class="term_hd"># 2. 不需要格式化，直接进行 sector 表面的复制！</span>
+[root@www ~]# <span class="term_command">dd if=/dev/hdc1 of=/dev/hdc9</span>
+208782+0 records in
+208782+0 records out
+106896384 bytes (107 MB) copied, 16.8797 seconds, 6.3 MB/s
+
+[root@www ~]# <span class="term_command">mount /dev/hdc9 /mnt</span>
+[root@www ~]# <span class="term_command">df</span>
+Filesystem           1K-blocks      Used Available Use% Mounted on
+/dev/hdc1               101086     21408     74459  23% /boot
+/dev/hdc9               101086     21408     74459  23% /mnt
+<span class="term_say"># 这两个玩意儿会『一模一样』喔！</span>
+[root@www ~]# <span class="term_command">umount /mnt</span>
+</pre></td></tr></tbody></table>
+
+非常有趣的范例吧！新分割出来的 partition 不需要经过格式化，因为 dd 可以将原本旧的 partition 上面，将 sector 表面的数据整个复制过来！
+当然连同 superblock, boot sector, meta data 等等通通也会复制过来！是否很有趣呢？未来你想要建置两颗一模一样的磁碟时，
+只要下达类似： <span class="text_import2">dd if=/dev/sda of=/dev/sdb</span> ，就能够让两颗磁碟一模一样，甚至 /dev/sdb 不需要分割与格式化，
+因为该命令可以将 /dev/sda 内的所有数据，包括 MBR 与 partition table 也复制到 /dev/sdb 说！ ^_^
+</div>
+</td></tr></tbody></table><br>
+
+	</div>
+
+	<hr><a name="cpio"></a><img src="../image/logo.png" alt="小标题的图示" width="24" align="middle" height="23"><span class="text_h2">cpio</span><br>
+	<div class="block2">
+		<p>这个命令挺有趣的，因为 cpio 可以备份任何东西，包括装置设备文件。不过 cpio 有个大问题，
+		那就是 cpio 不会主动的去找文件来备份！啊！那怎办？所以罗，一般来说， cpio 得要配合类似 
+		<a href="http://vbird.dic.ksu.edu.tw/linux_basic/0220filemanager.php#find">find</a>
+		等可以找到档名的命令来告知 cpio 该被备份的数据在哪里啊！
+		有点小麻烦啦～因为牵涉到我们在第三篇才会谈到的<a href="http://vbird.dic.ksu.edu.tw/linux_basic/0320bash.php#redirect">数据流重导向</a>说～
+		所以这里你就先背一下语法，等到第三篇讲完你就知道如何使用 cpio 罗！</p>
+
+<table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">cpio -ovcB  &gt; [file|device]</span> <span class="term_note">&lt;==备份</span>
+[root@www ~]# <span class="term_command">cpio -ivcdu &lt; [file|device]</span> <span class="term_note">&lt;==还原</span>
+[root@www ~]# <span class="term_command">cpio -ivct  &lt; [file|device]</span> <span class="term_note">&lt;==察看</span>
+<span class="term_say">备份会使用到的选项与参数：
+  -o ：将数据 copy 输出到文件或装置上 
+  -B ：让默认的 Blocks 可以添加至 5120 bytes ，默认是 512 bytes ！ 
+　  　 这样的好处是可以让大文件的储存速度加快(请参考 i-nodes 的观念) 
+还原会使用到的选项与参数：
+  -i ：将数据自文件或装置 copy 出来系统当中 
+  -d ：自动创建目录！使用 cpio 所备份的数据内容不见得会在同一层目录中，因此我们
+       必须要让 cpio 在还原时可以创建新目录，此时就得要 -d 选项的帮助！
+  -u ：自动的将较新的文件覆盖较旧的文件！
+  -t ：需配合 -i 选项，可用在"察看"以 cpio 创建的文件或装置的内容 
+一些可共享的选项与参数：
+  -v ：让储存的过程中文件名称可以在萤幕上显示 
+  -c ：一种较新的 portable format 方式储存 </span>
+</pre></td></tr></tbody></table>
+
+		<p>你应该会发现一件事情，就是上述的选项与命令中怎么会没有指定需要备份的数据呢？还有那个大於 (&gt;) 与小於 (&lt;)
+		符号是怎么回事啊？因为 cpio 会将数据整个显示到萤幕上，因此我们可以透过将这些萤幕的数据重新导向 (&gt;) 一个新的文件！
+		至於还原呢？就是将备份文件读进来 cpio (&lt;) 进行处理之意！我们来进行几个案例你就知道啥是啥了！</p>
+
+<table class="term"><tbody><tr><td class="term"><pre><span class="term_hd">范例：找出 /boot 底下的所有文件，然后将他备份到 /tmp/boot.cpio 去！</span>
+[root@www ~]# <span class="term_command">find /boot -print</span>
+/boot
+/boot/message
+/boot/initrd-2.6.18-128.el5.img
+<span class="term_say">....以下省略....
+# 透过这个 find 我们可以找到 /boot 底下应该要存在的档名！包括文件与目录</span>
+
+[root@www ~]# <span class="term_command">find /boot | cpio -ocvB &gt; /tmp/boot.cpio</span>
+[root@www ~]# <span class="term_command">ll -h /tmp/boot.cpio</span>
+-rw-r--r-- 1 root root 16M Dec 17 23:30 /tmp/boot.cpio
+</pre></td></tr></tbody></table>
+
+		<p>我们使用 find /boot 可以找出档名，然后透过那条管线 (|, 亦即键盘上的 shift+\ 的组合)，
+		就能将档名传给 cpio 来进行处理！最终会得到 /tmp/boot.cpio 那个文件喔！接下来让我们来进行解压缩看看。</p>
+
+<table class="term"><tbody><tr><td class="term"><pre><span class="term_hd">范例：将刚刚的文件给他在 /root/ 目录下解开</span>
+[root@www ~]# <span class="term_command">cpio -idvc &lt; /tmp/boot.cpio</span>
+[root@www ~]# <span class="term_command">ll /root/boot</span>
+<span class="term_say"># 你可以自行比较一下 /root/boot 与 /boot 的内容是否一模一样！</span>
+</pre></td></tr></tbody></table>
+
+		<p>事实上 cpio 可以将系统的数据完整的备份到磁带机上头去喔！如果你有磁带机的话！</p>
+		<ul class="text_import2">
+		<li style="font-family: '细明体';">备份：find / | cpio -ocvB &gt; /dev/st0</li>
+		<li style="font-family: '细明体';">还原：cpio -idvc &lt; /dev/st0</li>
+		</ul>
+
+		<p>这个 cpio 好像不怎么好用呦！但是，他可是备份的时候的一项利器呢！因为他可以备份任何的文件，
+		包括 /dev 底下的任何装置文件！所以他可是相当重要的呢！而由於 cpio 必需要配合其他的程序，例如 find 来创建档名，所以
+		cpio 与管线命令及数据流重导向的相关性就相当的重要了！</p>
+
+		<p>其实系统里面已经含有一个使用 cpio 创建的文件喔！那就是 /boot/initrd-xxx 这个文件啦！
+		现在让我们来将这个文件解压缩看看，看你能不能发现该文件的内容为何？</p>
+
+<table class="term"><tbody><tr><td class="term"><pre><span class="term_hd"># 1. 我们先来看看该文件是属於什么文件格式，然后再加以处理：</span>
+[root@www ~]# <span class="term_command">file /boot/initrd-2.6.18-128.el5.img</span>
+/boot/initrd-2.6.18-128.el5.img: <span class="term_write">gzip</span> compressed data, ...
+<span class="term_say"># 唔！看起来似乎是使用 gzip 进行压缩过～那如何处理呢？</span>
+
+<span class="term_hd"># 2. 透过更名，将该文件添加扩展名，然后予以解压缩看看：</span>
+[root@www ~]# <span class="term_command">mkdir initrd</span>
+[root@www ~]# <span class="term_command">cd initrd</span>
+[root@www initrd]# <span class="term_command">cp /boot/initrd-2.6.18-128.el5.img initrd.img.gz</span>
+[root@www initrd]# <span class="term_command">gzip -d initrd.img.gz</span>
+[root@www initrd]# <span class="term_command">ll</span>
+-rw------- 1 root root 5408768 Dec 17 23:53 initrd.img
+[root@www initrd]# <span class="term_command">file initrd.img</span>
+initrd.img: ASCII cpio archive (SVR4 with no CRC)
+<span class="term_say"># 嘿嘿！露出马脚了吧！确实是 cpio 的文件档喔！</span>
+
+<span class="term_hd"># 3. 开始使用 cpio 解开此文件：</span>
+[root@www initrd]# <span class="term_command">cpio -iduvc &lt; initrd.img</span>
+sbin
+init
+sysroot
+<span class="term_say">....以下省略....
+# 瞧！这样就将这个文件解开罗！这样了解乎？</span>
+</pre></td></tr></tbody></table>
+	</div>
+</div>
+
+
+<hr><a name="hint"></a><img src="../image/logo.png" alt="大标题的图示" width="35" align="middle" height="34"><span class="text_h1">重点回顾</span><br>
+<div class="block1">
+<ul class="text_import2">
+	<li>压缩命令为透过一些运算方法去将原本的文件进行压缩，以减少文件所占用的磁碟容量。
+		压缩前与压缩后的文件所占用的磁碟容量比值， 就可以被称为是『压缩比』</li>
+	<li>压缩的好处是可以减少磁碟容量的浪费，在 WWW 网站也可以利用文件压缩的技术来进行数据的传送，好让网站频宽的可利用率上升喔</li>
+	<li>压缩文件的扩展名大多是：『*.tar, *.tar.gz, *.tgz, *.gz, *.Z, *.bz2』</li>
+	<li>常见的压缩命令有 gzip  与 bzip2 ，其中 bzip2 压缩比较之 gzip 还要更好，建议使用 bzip2 ！</li>
+	<li>tar 可以用来进行文件打包，并可支持 gzip 或 bzip2 的压缩。</li>
+	<li>压　缩：tar -jcv -f filename.tar.bz2 要被压缩的文件或目录名称</li>
+	<li>查　询：tar -jtv -f filename.tar.bz2</li>
+	<li>解压缩：tar -jxv -f filename.tar.bz2 -C 欲解压缩的目录</li>
+	<li>dump 命令可备份文件系统或单一目录</li>
+	<li>dump 的备份若针对文件系统时，可进行 0-9 的 level 差异备份！其中 level 0 为完整备份；</li>
+	<li>restore 命令可还原被 dump 建置的备份档；</li>
+	<li>要创建光盘烧录数据时，可透过 mkisofs 命令来建置；</li>
+	<li>可透过 cdrecord 来写入 CD  或 DVD 烧录机</li>
+	<li>dd 可备份完整的 partition 或 disk ，因为 dd 可读取磁碟的 sector 表面数据</li>
+	<li>cpio 为相当优秀的备份命令，不过必须要搭配类似 find 命令来读入欲备份的档名数据，方可进行备份动作。</li>
+</ul>
+</div>
+
+
+<hr><a name="ex"></a><img src="../image/logo.png" alt="大标题的图示" width="35" align="middle" height="34"><span class="text_h1">本章习题</span><br>
+(要看答案请将鼠标移动到『答：』底下的空白处，按下左键圈选空白处即可察看)
+<div class="block1">
+<ul>
+	<li>情境模拟题一：你想要让系统恢复到第八章情境模拟后的结果，亦即仅剩下 /dev/hdc6 以前的 partition，
+		本章练习产生的 partition 都需要恢复原状。因此 /dev/hdc8, /dev/hdc9 (在本章练习过程中产生的)
+		请将他删除！删除的方法同第八章的情境模拟题一所示。<br><br></li>
+
+	<li>情境模拟题二：你想要逐时备份 /srv/myproject 这个目录内的数据，又担心每次备份的资讯太多，
+		因此想要使用 dump 的方式来逐一备份数据到 /backups 这个目录下。该如何处理？<br><br>
+		<ul>
+		<li>目标：了解到 dump 以及各个不同 level 的作用；</li>
+		<li>前提：被备份的数据为单一 partition ，亦即本例中的 /srv/myproject</li>
+		<li>需求：/srv/myproject 为单一 filesystem ，且在 /etc/fstab 内此挂载点的 dump 栏位为 1</li>
+		</ul><br>
+
+		实际处理的方法其实还挺简单的！我们可以这样做看看：<br><br>
+
+		<ol>
+		<li>先替该目录制作一些数据，亦即复制一些东西过去吧！<br>
+		<span class="text_import1">cp -a /etc /boot /srv/myproject</span><br><br></li>
+
+		<li>开始进行 dump ，记得，一开始是使用 level 0 的完整备份喔！<br>
+		<span class="text_import1">mkdir /backups<br>
+		dump -0u -j -f /backups/myproject.dump /srv/myproject</span><br>
+		上面多了个 -j 的选项，目的是为了要进行压缩，减少备份的数据量。<br><br></li>
+
+		<li>尝试将 /srv/myproject 这个文件系统加大，将 /var/log/ 的数据复制进去吧！<br>
+		<span class="text_import1">cp -a /var/log/ /srv/myproject</span><br>
+		此时原本的 /srv/myproject 已经被改变了！继续进行备份看看！<br><br></li>
+
+		<li>将 /srv/myproject 以 level 1 来进行备份：<br>
+		<span class="text_import1">dump -1u -j -f /backups/myproject.dump.1 /srv/myproject<br>
+		ls -l /backups</span><br>
+		你应该就会看到两个文件，其中第二个文件 (myproject.dump.1) 会小的多！这样就搞定罗备份数据！</li>
+		</ol><br></li>
+
+		<li>情境模拟三：假设过了一段时间后，你的 /srv/myproject 变的怪怪的，你想要将该 filesystem 以刚刚的备份数据还原，
+		此时该如何处理呢？你可以这样做的：<br><br>
+
+		<ol>
+		<li>先将 /srv/myproject 卸载，并且将该 partition 重新格式化！<br>
+		<span class="text_import1">umount /dev/hdc6<br>
+		mkfs -t ext3 /dev/hdc6</span><br><br></li>
+		<li>重新挂载原本的 partition ，此时该目录内容应该是空的！<br>
+		<span class="text_import1">mount -a</span><br>
+		你可以自行使用 df 以及 ls -l /srv/myproject 查阅一下该目录的内容，是空的啦！<br><br></li>
+		<li>将完整备份的 level 0 的文件 /backups/myproject.dump 还原回来：<br>
+		<span class="text_import1">cd /srv/myproject<br>
+		restore -r -f /backups/myproject.dump</span><br>
+		此时该目录的内容为第一次备份的状态！还需要进行后续的处理才行！<br><br></li>
+		<li>将后续的 level 1 的备份也还原回来：<br>
+		<span class="text_import1">cd /srv/myproject<br>
+		restore -r -f /backups/myproject.dump.1</span><br>
+		此时才是恢复到最后一次备份的阶段！如果还有 level 2, level 3 时，就得要一个一个的依序还原才行！</li>
+		</ol></li>
+</ul>
+</div>
+
+
+<hr><a name="reference"></a><img src="../image/logo.png" alt="大标题的图示" width="35" align="middle" height="34"><span class="text_h1">参考数据与延伸阅读</span><br>
+<div class="block1">
+<ul>
+	<li>台湾学术网络管理文件：Backup Tools in UNIX(Linux):<br><a href="http://nmc.nchu.edu.tw/tanet/backup_tools_in_unix.htm" target="_blank">http://nmc.nchu.edu.tw/tanet/backup_tools_in_unix.htm</a><br></li>
+	<li>中文 How to 文件计画 (CLDP)：<a href="http://www.linux.org.tw/CLDP/HOWTO/hardware/CD-Writing-HOWTO/CD-Writing-HOWTO-3.html" target="_blank">http://www.linux.org.tw/CLDP/HOWTO/hardware/CD-Writing-HOWTO/CD-Writing-HOWTO-3.html</a></li>
+	<li>熊宝贝工作记录之： Linux 烧录实作：<a href="http://csc.ocean-pioneer.com/docum/linux_burn.html" target="_blank">http://csc.ocean-pioneer.com/docum/linux_burn.html</a></li>
+	<li>PHP5 网管实验室： <a href="http://www.php5.idv.tw/html.php?mod=article&do=show&shid=26" target="_blank">http://www.php5.idv.tw/html.php?mod=article&amp;do=show&amp;shid=26</a></li>
+	<li>CentOS 5.x 之 man dump</li>
+	<li>CentOS 5.x 之 man restore</li>
+</ul>
+</div>
+
+
+<hr><span class="text_history">
+2003/02/09：第一次完成<br>
+2003/05/05：修改 tar 的部分内容，尤其是 -P 这个参数的配合用法<br>
+2005/07/26：将旧有的文章移动到 <a href="0240tarcompress/0240tarcompress.php">这里</a><br>
+2005/07/27：大略修改了一些风格，另外，动作较大的是在范例的部分！<br>
+2005/08/29：加入了 <a href="#dd">dd</a> 这个有趣的命令喔！<br>
+2006/05/02：将原本『tar -zxvpf /tmp/etc.tar.gz /etc』修改为『tar -zcvpf /tmp/etc.tar.gz /etc』
+	    感谢讨论局域网友 chinu 提供的资讯。<br>
+2008/10/31：将原本针对 FC4 的旧版本移动到<a href="0240tarcompress/0240tarcompress-fc4.php">此处</a><br>
+2008/12/18：这次的改版在这一章添加了不少东西！尤其是将 cpio 与 dd 的范例重新做个整理！并加入 dump/restore, mkisofs/cdrecord<br>
+2009/08/20：加入情境模拟的题目。<hr>
+</span>
+    </td>
+    <td style="width: 16px; font-size: 6px;">　</td></tr>
+<tr><td style="width: 16px; height: 16px;">　</td>
+    <td style="width: 866px; height: 16px;">　</td>
+    <td style="width: 16px; height: 16px;">　</td></tr>
+</tbody></table>
+
+<div style="padding-top: 0px; text-align: center;">
+<span style="font-size: 80%;">
+	<a href="http://vbird.dic.ksu.edu.tw/" target="_top" title="前往鸟哥的首页">http://linux.vbird.org</a>
+	is designed by <a href="mailto:vbird@mail.vbird.idv.tw" title="联络鸟哥(我不要广告信！)">VBird</a>
+		during 2001-2011. <a href="http://www.ksu.edu.tw/" target="_blank">ksu.edu</a></span>
+         ﻿<div id="apDiv4">
+      <p>本网页主要以Firefox配合解析度 1024x768 作为设计依据&nbsp;&nbsp;&nbsp;&nbsp; 鸟哥自由软件整合应用研究室</p></div></div>
+</div>
+</center>
+</body></html>

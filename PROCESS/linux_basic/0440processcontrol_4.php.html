@@ -1,0 +1,453 @@
+<html><head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta name="Author" content="2011/04/20,lee">
+	<meta name="Description" content="程序管理与 SELinux 初探">
+	<title>鸟哥的 Linux 私房菜 -- 程序管理与 SELinux 初探</title>
+    <script src="../script/SpryMenuBar.js" type="text/javascript"></script>
+	<script src="../script/index.js" type="text/javascript"></script>
+	<link href="../css/SpryMenuBarHorizontal.css" rel="stylesheet" type="text/css" />
+    <link href="../css/main.css" rel="stylesheet" type="text/css" />
+    </head><body style="margin: 0pt; padding: 0pt;" class="table"onload="MM_preloadImages('image/title_19.png','image/title_26.png','image/title_27.png','image/title_28.png','image/title_06.png','image/title_08.png','image/title_10.png','image/title_12.png')">
+
+
+<!-- Copyright � 2005. Spidersoft Ltd -->
+<style>
+A.applink:hover {border: 2px dotted #DCE6F4;padding:2px;background-color:#ffff00;color:green;text-decoration:none}
+A.applink       {border: 2px dotted #DCE6F4;padding:2px;color:#2F5BFF;background:transparent;text-decoration:none}
+A.info          {color:#2F5BFF;background:transparent;text-decoration:none}
+A.info:hover    {color:green;background:transparent;text-decoration:underline}
+</style>
+<div style='BORDER: 1px solid #DCE6F4; MARGIN-TOP: 20px; MARGIN-BOTTOM: 20px; MARGIN-LEFT: 5px; MARGIN-RIGHT: 5px; PADDING: 5px; BACKGROUND-COLOR: #eef8ff;line-height:180%; COLOR: #000000; font-family: Arial; font-size: 8pt; width=100%; FILTER: progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr="#FFFFFFFF", EndColorStr="#F2F5FAFF");'>
+This page was saved using <a class="applink" href="http://www.spidersoft.com"><b>WebZIP 7.0.3.1030</b></a> <a class="applink" href="http://www.spidersoft.com"><b>offline browser</b></a>  (Unregistered) on  02/12/15 12:14:49.<br>
+<b>Address:</b> <a class="info" href="http://vbird.dic.ksu.edu.tw/linux_basic/0440processcontrol_4.php">http://vbird.dic.ksu.edu.tw/linux_basic/0440processcontrol_4.php</a><br>
+<b>Title:</b> 鸟哥的 Linux 私房菜 -- 程序管理与 SELinux 初探 &nbsp;&bull;&nbsp; <b>Size:</b> 30382<br></div>
+<!-- /Copyright � 2005. Spidersoft Ltd -->
+
+
+
+<center>
+<div id="apDiv5">
+<div> <LINK REL="SHORTCUT ICON" HREF="favicon.ico">
+<!-- ImageReady Slices (title3.ai) -->
+<table id="___01" width="898" height="81" border="0" align="center" cellpadding="0" cellspacing="0";>
+	<tr>
+		<td colspan="15">
+			<img src="image/title/title_01.png" width="900" height="1" alt=""></td>
+	</tr>
+	<tr>
+		<td rowspan="4" bgcolor="#182448"><p><img src="http://linux.vbird.org/cgi-bin/Count.cgi?dd=C&ft=5&sh=T&md=8&pad=Y&df=vbird.dic.ksu.edu.tw.dat" width="93" align="left" title="計數器" /></p>
+	    <p><font color="#FFFFFF" size="-1">since2012/04/23</font></p></td>
+		<td rowspan="4" align="left" valign="top"><a href="http://vbird.dic.ksu.edu.tw/"><img src="image/title/title_03.png" alt="" width="263" height="79" border="0"></a></td>
+		<td colspan="13">
+			<img src="image/title/title_04.png" alt="" width="535" height="9" border="0"></td>
+	</tr>
+	<tr>
+		<td rowspan="3">
+			<img src="image/title/title_05.png" alt="" width="53" height="70" border="0"></td>
+		<td colspan="2" align="left" valign="top"><a href="0110whatislinux.php.html" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image51','','image/title/title_06.png',1)"><img src="image/title/title3_06.png" name="Image51" width="106" height="25" border="0" id="Image51" alt=""/></a></td>
+		<td rowspan="2">
+			<img src="image/title/title_07.png" alt="" width="27" height="37" border="0"></td>
+		<td colspan="3" align="left" valign="top"><a href="http://vbird.dic.ksu.edu.tw/linux_server/0110network_basic.php" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image52','','image/title/title_08.png',1)"><img src="image/title/title3_08.png" name="Image52" width="107" height="25" border="0" id="Image52" alt=""/></a></td>
+		<td rowspan="2">
+			<img src="image/title/title_09.png" alt="" width="37" height="37" border="0"></td>
+		<td colspan="2" align="left" valign="top"><a href="http://vbird.dic.ksu.edu.tw/about.php" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image53','','image/title/title_10.png',1)"><img src="image/title/title3_10.png" name="Image53" width="75" height="25" border="0" id="Image53" alt=""/></a></td>
+		<td rowspan="3">
+			<img src="image/title/title_11.png" alt="" width="35" height="70" border="0"></td>
+		<td align="left" valign="top"><a href="mailto:vbird@mail.vbird.idv.tw" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image54','','image/title/title_12.png',1)"><img src="image/title/title3_12.png" name="Image54" width="74" height="25" border="0" id="Image54" alt=""/></a></td>
+		<td rowspan="3">
+			<img src="image/title/title_13.png" alt="" width="21" height="70" border="0"></td>
+	</tr>
+	<tr>
+		<td colspan="2">
+			<img src="image/title/title_14.png" alt="" width="106" height="12" border="0"></td>
+		<td colspan="3">
+			<img src="image/title/title_15.png" alt="" width="107" height="12" border="0"></td>
+		<td colspan="2">
+			<img src="image/title/title_16.png" width="75" height="12" alt=""></td>
+		<td rowspan="2">
+			<img src="image/title/title_17.png" alt="" width="74" height="45" border="0"></td>
+	</tr>
+	<tr>
+		<td>
+			<img src="image/title/title_18.png" alt="" width="15" height="33" border="0"></td>
+		<td colspan="3" align="left" valign="top"><ul id="MenuBar1" class="MenuBarHorizontal">
+	  <li><a href="linux_basic.php.html" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image44','','image/title/title_19.png',1)"><img src="image/title/title3_19.png" name="Image44" width="123" height="33" border="0" id="Image44" /></a>
+			    <ul>
+			      <li><a href="Mandrake9.0/mandrake9.0.php.html" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image46','','image/title/title_26.png',1)"><img src="image/title/title_23.png" name="Image46" width="120" height="26" border="0" id="Image46" alt="" /></a></li>
+                  <li><a href="fedora_4/fc4.php.html" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image47','','image/title/title_27.png',1)"><img src="image/title/title_24.png" name="Image47" width="120" height="26" border="0" id="Image47" alt="" /></a></li>
+                  <li><a href="linux_basic.php.html" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image48','','image/title/title_28.png',1)"><img src="image/title/title_25.png" name="Image48" width="120" height="26" border="0" id="Image48" alt="" /></a></li>
+                </ul>
+		      </li>
+		</ul></td>
+		<td>
+			<img src="image/title/title_20.png" alt="" width="42" height="33" border="0"></td>
+		<td colspan="3" align="left" valign="top"><ul id="MenuBar2" class="MenuBarHorizontal">
+	  <li><a href="http://vbird.dic.ksu.edu.tw/linux_server/" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image45','','image/title/title_21.png',1)"><img src="image/title/title3_21.png" name="Image45" width="125" height="33" border="0" id="Image45" /></a>
+			    <ul>
+			      <li><a href="http://vbird.dic.ksu.edu.tw/linux_server/linux_redhat9/redhat9.php" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image43','','image/title/title_26.png',1)"><img src="image/title/title_23.png" name="Image43" width="120" height="26" border="0" id="Image43" alt=""/></a></li>
+			      <li><a href="http://vbird.dic.ksu.edu.tw/linux_server/centos4.php" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image49','','image/title/title_27.png',1)"><img src="image/title/title_24.png" name="Image49" width="120" height="26" border="0" id="Image49" alt="" /></a></li>
+			      <li><a href="http://vbird.dic.ksu.edu.tw/linux_server/" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image50','','image/title/title_28.png',1)"><img src="image/title/title_25.png" name="Image50" width="120" height="26" border="0" id="Image50" alt="" /></a></li>
+		        </ul>
+		      </li>
+		</ul></td>
+		<td>
+			<img src="image/title/title_22.png" alt="" width="47" height="33" border="0"></td>
+	</tr>
+	<tr>
+		<td>
+			<img src="image/title/Spacer.gif" width="101" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="263" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="53" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="15" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="91" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="27" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="5" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="42" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="60" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="37" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="28" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="47" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="35" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="74" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="22" height="1" alt=""></td>
+	</tr>
+</table>
+<!-- End ImageReady Slices -->
+<script type="text/javascript">
+<!--
+var MenuBar1 = new Spry.Widget.MenuBar("MenuBar1", {imgDown:"SpryAssets/SpryMenuBarDownHover.gif", imgRight:"SpryAssets/SpryMenuBarRightHover.gif"});
+var MenuBar2 = new Spry.Widget.MenuBar("MenuBar2", {imgDown:"SpryAssets/SpryMenuBarDownHover.gif", imgRight:"SpryAssets/SpryMenuBarRightHover.gif"});
+//-->
+</script></div>
+<table summary="本文内容的排版" style="width: 898px;" border="0" cellpadding="0" cellspacing="0">
+<tbody><tr><td style="width: 16px; height: 16px;">　</td>
+    <td style="width: 866px; height: 16px;">　</td>
+    <td style="width: 16px; height: 16px;">　</td></tr>
+<tr><td style="width: 16px; font-size: 6px;">　</td>
+    <td width="866">
+
+<!-- 本文的档头部分 -->
+<div style="text-align: center;">
+    <a href="0440processcontrol.php.html">
+    <span class="text_head0">第十七章、程序管理与<span class="text_head_en"> SELinux </span>初探</span></a><br>
+</div>
+    <div style="text-align: right;">
+        <span class="text_history">最近升级日期：2009/09/11</span>
+    </div>
+<!-- 本文的连结区部分 -->
+<div class="block1">
+<span class="text_h1">
+4. <a href="#special">特殊文件与程序</a><br>
+	<span class="text_h2">
+	　　4.1 <a href="#suid_sgid">具有 SUID/SGID 权限的命令运行状态</a><br>
+	　　4.2 <a href="#proc">/proc/* 代表的意义</a><br>
+	　　4.3 <a href="#ofile">查询已开启文件或已运行程序开启之文件</a>： <a href="#fuser">fuser</a>, 
+		<a href="#lsof">lsof</a>, <a href="#pidof">pidof</a><br>
+	</span>
+</span></div>
+<!-- 本文的正式部分 -->
+<hr><a name="special"></a><img src="../image/logo.png" alt="大标题的图示" width="35" align="middle" height="34"><span class="text_h1">特殊文件与程序</span><br>
+<div class="block1">
+	<p>我们在<a href="http://vbird.dic.ksu.edu.tw/linux_basic/0220filemanager.php#suid_sgid_sbit">第七章曾经谈到特殊权限的 SUID/SGID/SBIT</a>
+	，虽然第七章已经将这三种特殊权限作了详细的解释，不过，我们依旧要来探讨的是，那么到底这些权限对於你的『程序』是如何影响的？
+	此外，程序可能会使用到系统资源，举例来说，磁碟就是其中一项资源。哪天你在 umount 磁碟时，系统老是出现『 device is 
+	busy 』的字样～到底是怎么回事啊？我们底下就来谈一谈这些和程序有关系的细节部分：<br><br></p>
+
+	<hr><a name="suid_sgid"></a><img src="../image/logo.png" alt="小标题的图示" width="24" align="middle" height="23"><span class="text_h2">具有 SUID/SGID 权限的命令运行状态</span><br>
+	<div class="block2">
+		<p>SUID 的权限其实与程序的相关性非常的大！为什么呢？先来看看 SUID 的程序是如何被一般使用者运行，且具有什么特色呢？</p>
+		<ul class="text_import2">
+		<li>SUID 权限仅对二进位程序(binary program)有效；</li>
+		<li>运行者对於该程序需要具有 x 的可运行权限；</li>
+		<li>本权限仅在运行该程序的过程中有效 (run-time)；</li>
+		<li>运行者将具有该程序拥有者 (owner) 的权限。</li>
+		</ul>
+
+		<p>所以说，整个 SUID 的权限会生效是由於『具有该权限的程序被触发』，而我们知道一个程序被触发会变成程序，
+		所以罗，运行者可以具有程序拥有者的权限就是在该程序变成程序的那个时候啦！第七章我们还没谈到程序的概念，
+		所以你或许那时候会觉得很奇怪，为啥运行了 passwd 后你就具有 root 的权限呢？不都是一般使用者运行的吗？
+		这是因为你在触发 passwd 后，会取得一个新的程序与 PID，该 PID 产生时透过 SUID 来给予该 PID 特殊的权限配置啦！
+		我们使用 dmtsai 登陆系统且运行 passwd 后，透过<a href="#background">工作控制</a>来理解一下！</p>
+
+<table class="term"><tbody><tr><td class="term"><pre>[dmtsai@www ~]$ <span class="term_command">passwd</span>
+Changing password for user dmtsai.
+Changing password for dmtsai
+(current) UNIX password: <span class="term_note">&lt;==这里按下 [ctrl]-z 并且按下 [enter]</span>
+[1]+  Stopped                 passwd
+
+[dmtsai@www ~]$ <span class="term_command">pstree -u</span>
+init-+-acpid
+<span class="term_say">....(中间省略)....</span>
+     |-sshd---sshd---<u>sshd(dmtsai)---bash-+-more</u>
+     |                                   |-<span class="term_write">passwd(root)</span>
+     |                                   `-<u>pstree</u>
+<span class="term_say">....(底下省略)....</span>
+</pre></td></tr></tbody></table>
+
+		<p>从上表的结果我们可以发现，底线的部分是属於 dmtsai 这个一般帐号的权限，特殊字体的则是 root 的权限！
+		但你看到了， passwd 确实是由 bash 衍生出来的！不过就是权限不一样！透过这样的解析，
+		你也会比较清楚为何不同程序所产生的权限不同了吧！这是由於『SUID 程序运行过程中产生的程序』的关系啦！</p>
+
+		<p>那么既然 SUID/SGID 的权限是比较可怕的，您该如何查询整个系统的 SUID/SGID 的文件呢？
+		应该是还不会忘记吧？使用 <a href="http://vbird.dic.ksu.edu.tw/linux_basic/0220filemanager.php#find">find</a> 即可啊！</p>
+
+		<blockquote class="text_import2" style="font-family: '细明体';">find / -perm +6000</blockquote>
+	</div>
+
+	<hr><a name="proc"></a><img src="../image/logo.png" alt="小标题的图示" width="24" align="middle" height="23"><span class="text_h2">/proc/* 代表的意义</span><br>
+	<div class="block2">
+		<p>其实，我们之前提到的所谓的程序都是在内存当中嘛！而内存当中的数据又都是写入到
+		/proc/* 这个目录下的，所以罗，我们当然可以直接观察 /proc 这个目录当中的文件啊！
+		如果你观察过 /proc 这个目录的话，应该会发现他有点像这样：</p>
+
+<table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">ll /proc</span>
+dr-xr-xr-x  5 root      root              0 Mar 11 08:46 1
+dr-xr-xr-x  5 root      root              0 Mar 11 00:46 10
+dr-xr-xr-x  5 root      root              0 Mar 11 00:46 11
+<span class="term_say">....(中间省略)....</span>
+-r--r--r--  1 root      root              0 Mar 20 12:11 uptime
+-r--r--r--  1 root      root              0 Mar 20 12:11 version
+-r--r--r--  1 root      root              0 Mar 20 12:11 vmstat
+-r--r--r--  1 root      root              0 Mar 20 12:11 zoneinfo
+</pre></td></tr></tbody></table>
+
+		<p>基本上，目前主机上面的各个程序的 PID 都是以目录的型态存在於 /proc 当中。
+		举例来说，我们启动所运行的第一支程序 init 他的 PID 是 1 ，
+		这个 PID 的所有相关资讯都写入在 /proc/1/* 当中！若我们直接观察 PID 为 1 的数据好了，他有点像这样：</p>
+
+<table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">ll /proc/1</span>
+dr-xr-xr-x 2 root root 0 Mar 12 11:04 attr
+-r-------- 1 root root 0 Mar 17 14:32 auxv
+<span class="term_write">-r--r--r-- 1 root root 0 Mar 17 14:32 cmdline</span>  <span class="term_note">&lt;==就是命令串</span>
+-rw-r--r-- 1 root root 0 Mar 17 14:32 coredump_filter
+-r--r--r-- 1 root root 0 Mar 17 14:32 cpuset
+lrwxrwxrwx 1 root root 0 Mar 17 14:32 cwd -&gt; /
+<span class="term_write">-r-------- 1 root root 0 Mar 17 14:32 environ</span>  <span class="term_note">&lt;==一些环境变量</span>
+lrwxrwxrwx 1 root root 0 Mar 17 14:32 exe -&gt; /sbin/init  <span class="term_note">&lt;==实际运行的命令</span>
+<span class="term_say">....(以下省略)....</span>
+</pre></td></tr></tbody></table>
+
+		<p>里面的数据还挺多的，不过，比较有趣的其实是两个文件，分别是：</p>
+		<ul>
+		<li>cmdline：这个程序被启动的命令串；</li>
+		<li>environ：这个程序的环境变量内容。</li>
+		</ul>
+		<p>很有趣吧！如果你查阅一下 cmdline 的话，就会发现：</p>
+
+<table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">cat /proc/1/cmdline</span>
+init [5]
+</pre></td></tr></tbody></table>
+
+		<p>就是这个命令、选项与参数启动 init 的啦！这还是跟某个特定的 PID 有关的内容呢，如果是针对整个 
+		Linux 系统相关的参数呢？那就是在 /proc 目录底下的文件啦！相关的文件与对应的内容是这样的：
+		(<a href="#ps3">注3</a>)</p>
+
+<table bgcolor="lightyellow" border="1" cellpadding="3" cellspacing="0" width="95%">
+<tbody><tr align="center" bgcolor="#182448"><td width="100"><font color="#FFFFFF">档名</font></td><td><font color="#FFFFFF">文件内容</font></td></tr>
+<tr><td>/proc/cmdline</td><td>加载 kernel 时所下达的相关参数！查阅此文件，可了解系统是如何启动的！</td></tr>
+<tr><td>/proc/cpuinfo</td><td>本机的 CPU 的相关资讯，包含时脉、类型与运算功能等</td></tr>
+<tr><td>/proc/devices</td><td>这个文件记录了系统各个主要装置的主要装置代号，与 
+	<a href="http://vbird.dic.ksu.edu.tw/linux_basic/0230filesystem.php#mknod">mknod</a> 有关呢！</td></tr>
+<tr><td>/proc/filesystems</td><td>目前系统已经加载的文件系统罗！</td></tr>
+<tr><td>/proc/interrupts</td><td>目前系统上面的 IRQ 分配状态。</td></tr>
+<tr><td>/proc/ioports</td><td>目前系统上面各个装置所配置的 I/O 位址。</td></tr>
+<tr><td>/proc/kcore</td><td>这个就是内存的大小啦！好大对吧！但是不要读他啦！</td></tr>
+<tr><td>/proc/loadavg</td><td>还记得 <a href="#top">top</a> 以及 <a href="#uptime">uptime</a>
+	 吧？没错！上头的三个平均数值就是记录在此！</td></tr>
+<tr><td>/proc/meminfo</td><td>使用 <a href="#free">free</a> 列出的内存资讯，嘿嘿！在这里也能够查阅到！</td></tr>
+<tr><td>/proc/modules</td><td>目前我们的 Linux 已经加载的模块列表，也可以想成是驱动程序啦！</td></tr>
+<tr><td>/proc/mounts</td><td>系统已经挂载的数据，就是用 mount 这个命令呼叫出来的数据啦！</td></tr>
+<tr><td>/proc/swaps</td><td>到底系统挂加载的内存在哪里？呵呵！使用掉的 partition 就记录在此啦！</td></tr>
+<tr><td>/proc/partitions</td><td>使用 fdisk -l 会出现目前所有的 partition 
+	吧？在这个文件当中也有纪录喔！</td></tr>
+<tr><td>/proc/pci</td><td>在 PCI 汇流排上面，每个装置的详细情况！可用 lspci 来查阅！</td></tr>
+<tr><td>/proc/uptime</td><td>就是用 uptime 的时候，会出现的资讯啦！</td></tr>
+<tr><td>/proc/version</td><td>核心的版本，就是用 uname -a 显示的内容啦！</td></tr>
+<tr><td>/proc/bus/*</td><td>一些汇流排的装置，还有 U盘 的装置也记录在此喔！</td></tr>
+</tbody></table><br>
+
+		<p>其实，上面这些文件鸟哥在此建议您可以使用 cat 去查阅看看，不必深入了解，
+		不过，观看过文件内容后，毕竟会比较有感觉啦！如果未来您想要自行撰写某些工具软件，
+		那么这个目录底下的相关文件可能会对您有点帮助的喔！</p>
+	</div>
+
+	<hr><a name="ofile"></a><img src="../image/logo.png" alt="小标题的图示" width="24" align="middle" height="23"><span class="text_h2">查询已开启文件或已运行程序开启之文件</span><br>
+	<div class="block2">
+		<p>其实还有一些与程序相关的命令可以值得参考与应用的，我们来谈一谈：<br><br></p>
+
+		<a name="fuser"></a>
+		<hr><ul class="list1"><li class="text_import1">fuser：藉由文件(或文件系统)找出正在使用该文件的程序</li></ul>
+
+		<p>有的时候我想要知道我的程序到底在这次启动过程中开启了多少文件，可以利用 fuser 来观察啦！
+		举例来说，你如果卸载时发现系统通知：『 device is busy 』，那表示这个文件系统正在忙碌中，
+		表示有某支程序有利用到该文件系统啦！那么你就可以利用 fuser 来追踪罗！fuser 语法有点像这样：</p>
+
+<table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">fuser [-umv] [-k [i] [-signal]] file/dir</span>
+<span class="term_say">选项与参数：
+-u  ：除了程序的 PID 之外，同时列出该程序的拥有者；
+-m  ：后面接的那个档名会主动的上提到该文件系统的最顶层，对 umount 不成功很有效！
+-v  ：可以列出每个文件与程序还有命令的完整相关性！
+-k  ：找出使用该文件/目录的 PID ，并试图以 SIGKILL 这个讯号给予该 PID；
+-i  ：必须与 -k 配合，在删除 PID 之前会先询问使用者意愿！
+-signal：例如 -1 -15 等等，若不加的话，默认是 SIGKILL (-9) 罗！</span>
+
+<span class="term_hd">范例一：找出目前所在目录的使用 PID/所属帐号/权限 为何？</span>
+[root@www ~]# <span class="term_command">fuser -uv .</span>
+                     USER        PID ACCESS COMMAND
+.:                   root      20639 ..c.. (root)bash
+</pre></td></tr></tbody></table>
+
+		<p>看到输出的结果没？他说『.』底下有个 PID 为 20639 的程序，该程序属於 root 且命令为 bash 。
+		比较有趣的是那个 ACCESS 的项目，那个项目代表的意义为：</p>
+		<ul style="font-family: '细明体';">
+		<li>c ：此程序在当前的目录下(非次目录)；</li>
+		<li>e ：可被触发为运行状态；</li>
+		<li>f ：是一个被开启的文件；</li>
+		<li>r ：代表顶层目录 (root directory)；</li>
+		<li>F ：该文件被开启了，不过在等待回应中；</li>
+		<li>m ：可能为分享的动态函式库；</li>
+		</ul>
+
+		<p>那如果你想要查阅某个文件系统底下有多少程序正在占用该文件系统时，那个 -m 的选项就很有帮助了！
+		鸟哥的测试主机仅有分割出 /, /boot, /home ，所以无法进行测试。不过好在还有个 /proc 的虚拟文件系统，
+		让我们来了解一下这个 /proc  的文件系统有多少程序正在利用他吧！</p>
+
+<table class="term"><tbody><tr><td class="term"><pre><span class="term_hd">范例二：找到所有使用到 /proc 这个文件系统的程序吧！</span>
+[root@www ~]# <span class="term_command">fuser -uv /proc</span>
+<span class="term_say"># 不会显示任何数据，因为没有任何程序会去使用 /proc 这个目录啊！
+# 会被用到的是 /proc 底下的文件啦！所以你应该要这样做：</span>
+
+[root@www ~]# <span class="term_command">fuser -mvu /proc</span>
+                     USER        PID ACCESS COMMAND
+/proc:               root       4289 f.... (root)klogd
+                     root       4555 f.... (root)acpid
+                     haldaemon  4758 f.... (haldaemon)hald
+                     root       4977 F.... (root)Xorg
+<span class="term_say"># 有这几支程序在进行 /proc 文件系统的存取喔！这样清楚了吗？</span>
+</pre></td></tr></tbody></table>
+
+		<p>既然可以针对整个文件系统，那么能不能仅针对单一文件啊？当然可以罗！看一下底下的案例先：</p>
+
+<table class="term"><tbody><tr><td class="term"><pre><span class="term_hd">范例三：找到 /var 底下属於 FIFO 类型的文件，并且找出存取该文件的程序</span>
+[root@www ~]# <span class="term_command">find /var -type p</span>
+/var/gdm/.gdmfifo     <span class="term_note">&lt;==我们针对这玩意即可！</span>
+/var/run/autofs.fifo-misc
+/var/run/autofs.fifo-net
+
+[root@www ~]# <span class="term_command">fuser -uv /var/gdm/.gdmfifo</span>
+                     USER        PID ACCESS COMMAND
+/var/gdm/.gdmfifo:   root       4892 F.... (root)gdm-binary
+
+<span class="term_hd">范例四：同范例三，但试图删除该 PID？且『不要』删除喔！</span>
+[root@www ~]# <span class="term_command">fuser -ki /var/gdm/.gdmfifo</span>
+/var/gdm/.gdmfifo:    4892
+Kill process 4892 ? (y/N) <span class="term_command">n</span>
+</pre></td></tr></tbody></table>
+
+		<p>如何？很有趣的一个命令吧！透过这个 fuser 我们可以找出使用该文件、目录的程序，藉以观察的啦！
+		他的重点与 ps, pstree 不同。 fuser 可以让我们了解到某个文件 (或文件系统) 目前正在被哪些程序所利用！<br><br></p>
+
+		<a name="lsof"></a>
+		<hr><ul class="list1"><li class="text_import1">lsof ：列出被程序所开启的文件档名</li></ul>
+
+		<p>相对於 fuser 是由文件或者装置去找出使用该文件或装置的程序，反过来说，
+		如何查出某个程序开启或者使用的文件与装置呢？呼呼！那就是使用 lsof 罗～</p>
+
+<table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">lsof [-aUu] [+d]</span>
+<span class="term_say">选项与参数：
+-a  ：多项数据需要『同时成立』才显示出结果时！
+-U  ：仅列出 Unix like 系统的 socket 文件类型；
+-u  ：后面接 username，列出该使用者相关程序所开启的文件；
++d  ：后面接目录，亦即找出某个目录底下已经被开启的文件！</span>
+
+<span class="term_hd">范例一：列出目前系统上面所有已经被开启的文件与装置：</span>
+[root@www ~]# <span class="term_command">lsof</span>
+COMMAND PID  USER   FD  TYPE  DEVICE   SIZE     NODE NAME
+init      1  root  cwd   DIR     3,2   4096        2 /
+init      1  root  rtd   DIR     3,2   4096        2 /
+init      1  root  txt   REG     3,2  38620  1426405 /sbin/init
+<span class="term_say">....(底下省略)....</span>
+<span class="term_say"># 注意到了吗？是的，在默认的情况下， lsof 会将目前系统上面已经开启的
+# 文件全部列出来～所以，画面多的吓人啊！您可以注意到，第一个文件 init 运行的
+# 地方就在根目录，而根目录，嘿嘿！所在的 inode 也有显示出来喔！</span>
+
+<span class="term_hd">范例二：仅列出关於 root 的所有程序开启的 socket 文件</span>
+[root@www ~]# <span class="term_command">lsof -u root -a -U</span>
+COMMAND     PID USER   FD   TYPE     DEVICE SIZE   NODE NAME
+udevd       400 root    3u  unix 0xedd4cd40        1445 socket
+auditd     4256 root    7u  unix 0xedd4c380        9081 socket
+audispd    4258 root    0u  unix 0xedd4c1e0        9080 socket
+<span class="term_say"># 注意到那个 -a 吧！如果你分别输入 lsof -u root 及 lsof -U ，会有啥资讯？
+# 使用 lsof -u root -U 及 lsof -u root -a -U ，呵呵！都不同啦！
+# -a 的用途就是在解决同时需要两个项目都成立时啊！ ^_^</span>
+
+<span class="term_hd">范例三：请列出目前系统上面所有的被启动的周边装置</span>
+[root@www ~]# <span class="term_command">lsof +d /dev</span>
+COMMAND     PID      USER   FD   TYPE     DEVICE SIZE  NODE NAME
+init          1      root   10u  FIFO       0,16       1147 /dev/initctl
+udevd       400      root    0u   CHR        1,3       1420 /dev/null
+udevd       400      root    1u   CHR        1,3       1420 /dev/null
+udevd       400      root    2u   CHR        1,3       1420 /dev/null
+<span class="term_say"># 看吧！因为装置都在 /dev 里面嘛！所以罗，使用搜寻目录即可啊！</span>
+
+<span class="term_hd">范例四：秀出属於 root 的 bash 这支程序所开启的文件</span>
+[root@www ~]# <span class="term_command">lsof -u root | grep bash</span>
+bash   20639 root  cwd    DIR    3,2    4096    648321 /root
+bash   20639 root  rtd    DIR    3,2    4096         2 /
+bash   20639 root  txt    REG    3,2  735004   1199424 /bin/bash
+bash   20639 root  mem    REG    3,2   46680     64873 /lib/libnss_files-2.5.so
+<span class="term_say">....(底下省略)....</span>
+</pre></td></tr></tbody></table>
+
+		<p>这个命令可以找出您想要知道的某个程序是否有激活哪些资讯？例如上头提到的范例四的运行结果呢！ ^_^<br><br></p>
+
+		<a name="pidof"></a>
+		<hr><ul class="list1"><li class="text_import1">pidof ：找出某支正在运行的程序的 PID</li></ul>
+
+<table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">pidof [-sx] program_name</span>
+<span class="term_say">选项与参数：
+-s  ：仅列出一个 PID 而不列出所有的 PID
+-x  ：同时列出该 program name 可能的 PPID 那个程序的 PID</span>
+
+<span class="term_hd">范例一：列出目前系统上面 init 以及 syslogd 这两个程序的 PID</span>
+[root@www ~]# <span class="term_command">pidof init syslogd</span>
+1 4286
+<span class="term_say"># 理论上，应该会有两个 PID 才对。上面的显示也是出现了两个 PID 喔。
+# 分别是 init 及 syslogd 这两支程序的 PID 啦。</span>
+</pre></td></tr></tbody></table>
+
+		<p>很简单的用法吧，透过这个 pidof 命令，并且配合 ps aux 与正规表示法，就可以很轻易的找到您所想要的程序内容了呢。</p>
+	</div>
+</div>
+<hr />
+    </td>
+    <td style="width: 16px; font-size: 6px;">　</td></tr>
+<tr><td style="width: 16px; height: 16px;">　</td>
+    <td style="width: 866px; height: 16px;">　</td>
+    <td style="width: 16px; height: 16px;">　</td></tr>
+</tbody></table>
+
+<div style="padding-top: 0px; text-align: center;">
+<span style="font-size: 80%;">
+	<a href="http://vbird.dic.ksu.edu.tw/" target="_top" title="前往鸟哥的首页">http://linux.vbird.org</a>
+	is designed by <a href="mailto:vbird@mail.vbird.idv.tw" title="联络鸟哥(我不要广告信！)">VBird</a>
+		during 2001-2011. <a href="http://www.ksu.edu.tw/" target="_blank">ksu.edu</a></span>
+         ﻿<div id="apDiv4">
+      <p>本网页主要以Firefox配合解析度 1024x768 作为设计依据&nbsp;&nbsp;&nbsp;&nbsp; 鸟哥自由软件整合应用研究室</p></div></div>
+</div>
+</center>
+</body></html>

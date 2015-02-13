@@ -1,0 +1,356 @@
+<html><head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta name="Author" content="2011/04/19,white">
+	<meta name="Description" content="可以公平使用磁碟容量的 Quota 以及可添加磁碟容量的 RAID, LVM, iSCSI 设备等介绍">
+	<title>鸟哥的 Linux 私房菜 -- Quota, Software RAID, LVM, iSCSI</title>
+    <script src="../script/SpryMenuBar.js" type="text/javascript"></script>
+	<script src="../script/index.js" type="text/javascript"></script>
+	<link href="../css/SpryMenuBarHorizontal.css" rel="stylesheet" type="text/css" />
+    <link href="../css/main.css" rel="stylesheet" type="text/css" />
+    </head><body style="margin: 0pt; padding: 0pt;" class="table"onload="MM_preloadImages('image/title_19.png','image/title_26.png','image/title_27.png','image/title_28.png','image/title_06.png','image/title_08.png','image/title_10.png','image/title_12.png')">
+
+
+<!-- Copyright � 2005. Spidersoft Ltd -->
+<style>
+A.applink:hover {border: 2px dotted #DCE6F4;padding:2px;background-color:#ffff00;color:green;text-decoration:none}
+A.applink       {border: 2px dotted #DCE6F4;padding:2px;color:#2F5BFF;background:transparent;text-decoration:none}
+A.info          {color:#2F5BFF;background:transparent;text-decoration:none}
+A.info:hover    {color:green;background:transparent;text-decoration:underline}
+</style>
+<div style='BORDER: 1px solid #DCE6F4; MARGIN-TOP: 20px; MARGIN-BOTTOM: 20px; MARGIN-LEFT: 5px; MARGIN-RIGHT: 5px; PADDING: 5px; BACKGROUND-COLOR: #eef8ff;line-height:180%; COLOR: #000000; font-family: Arial; font-size: 8pt; width=100%; FILTER: progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr="#FFFFFFFF", EndColorStr="#F2F5FAFF");'>
+This page was saved using <a class="applink" href="http://www.spidersoft.com"><b>WebZIP 7.0.3.1030</b></a> <a class="applink" href="http://www.spidersoft.com"><b>offline browser</b></a>  (Unregistered) on  02/12/15 12:14:49.<br>
+<b>Address:</b> <a class="info" href="http://vbird.dic.ksu.edu.tw/linux_basic/0420quota_4.php">http://vbird.dic.ksu.edu.tw/linux_basic/0420quota_4.php</a><br>
+<b>Title:</b> 鸟哥的 Linux 私房菜 -- Quota, Software RAID, LVM, iSCSI &nbsp;&bull;&nbsp; <b>Size:</b> 22285<br></div>
+<!-- /Copyright � 2005. Spidersoft Ltd -->
+
+
+
+<center>
+<div id="apDiv5">
+<div> <LINK REL="SHORTCUT ICON" HREF="favicon.ico">
+<!-- ImageReady Slices (title3.ai) -->
+<table id="___01" width="898" height="81" border="0" align="center" cellpadding="0" cellspacing="0";>
+	<tr>
+		<td colspan="15">
+			<img src="image/title/title_01.png" width="900" height="1" alt=""></td>
+	</tr>
+	<tr>
+		<td rowspan="4" bgcolor="#182448"><p><img src="http://linux.vbird.org/cgi-bin/Count.cgi?dd=C&ft=5&sh=T&md=8&pad=Y&df=vbird.dic.ksu.edu.tw.dat" width="93" align="left" title="計數器" /></p>
+	    <p><font color="#FFFFFF" size="-1">since2012/04/23</font></p></td>
+		<td rowspan="4" align="left" valign="top"><a href="http://vbird.dic.ksu.edu.tw/"><img src="image/title/title_03.png" alt="" width="263" height="79" border="0"></a></td>
+		<td colspan="13">
+			<img src="image/title/title_04.png" alt="" width="535" height="9" border="0"></td>
+	</tr>
+	<tr>
+		<td rowspan="3">
+			<img src="image/title/title_05.png" alt="" width="53" height="70" border="0"></td>
+		<td colspan="2" align="left" valign="top"><a href="0110whatislinux.php.html" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image51','','image/title/title_06.png',1)"><img src="image/title/title3_06.png" name="Image51" width="106" height="25" border="0" id="Image51" alt=""/></a></td>
+		<td rowspan="2">
+			<img src="image/title/title_07.png" alt="" width="27" height="37" border="0"></td>
+		<td colspan="3" align="left" valign="top"><a href="http://vbird.dic.ksu.edu.tw/linux_server/0110network_basic.php" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image52','','image/title/title_08.png',1)"><img src="image/title/title3_08.png" name="Image52" width="107" height="25" border="0" id="Image52" alt=""/></a></td>
+		<td rowspan="2">
+			<img src="image/title/title_09.png" alt="" width="37" height="37" border="0"></td>
+		<td colspan="2" align="left" valign="top"><a href="http://vbird.dic.ksu.edu.tw/about.php" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image53','','image/title/title_10.png',1)"><img src="image/title/title3_10.png" name="Image53" width="75" height="25" border="0" id="Image53" alt=""/></a></td>
+		<td rowspan="3">
+			<img src="image/title/title_11.png" alt="" width="35" height="70" border="0"></td>
+		<td align="left" valign="top"><a href="mailto:vbird@mail.vbird.idv.tw" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image54','','image/title/title_12.png',1)"><img src="image/title/title3_12.png" name="Image54" width="74" height="25" border="0" id="Image54" alt=""/></a></td>
+		<td rowspan="3">
+			<img src="image/title/title_13.png" alt="" width="21" height="70" border="0"></td>
+	</tr>
+	<tr>
+		<td colspan="2">
+			<img src="image/title/title_14.png" alt="" width="106" height="12" border="0"></td>
+		<td colspan="3">
+			<img src="image/title/title_15.png" alt="" width="107" height="12" border="0"></td>
+		<td colspan="2">
+			<img src="image/title/title_16.png" width="75" height="12" alt=""></td>
+		<td rowspan="2">
+			<img src="image/title/title_17.png" alt="" width="74" height="45" border="0"></td>
+	</tr>
+	<tr>
+		<td>
+			<img src="image/title/title_18.png" alt="" width="15" height="33" border="0"></td>
+		<td colspan="3" align="left" valign="top"><ul id="MenuBar1" class="MenuBarHorizontal">
+	  <li><a href="linux_basic.php.html" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image44','','image/title/title_19.png',1)"><img src="image/title/title3_19.png" name="Image44" width="123" height="33" border="0" id="Image44" /></a>
+			    <ul>
+			      <li><a href="Mandrake9.0/mandrake9.0.php.html" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image46','','image/title/title_26.png',1)"><img src="image/title/title_23.png" name="Image46" width="120" height="26" border="0" id="Image46" alt="" /></a></li>
+                  <li><a href="fedora_4/fc4.php.html" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image47','','image/title/title_27.png',1)"><img src="image/title/title_24.png" name="Image47" width="120" height="26" border="0" id="Image47" alt="" /></a></li>
+                  <li><a href="linux_basic.php.html" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image48','','image/title/title_28.png',1)"><img src="image/title/title_25.png" name="Image48" width="120" height="26" border="0" id="Image48" alt="" /></a></li>
+                </ul>
+		      </li>
+		</ul></td>
+		<td>
+			<img src="image/title/title_20.png" alt="" width="42" height="33" border="0"></td>
+		<td colspan="3" align="left" valign="top"><ul id="MenuBar2" class="MenuBarHorizontal">
+	  <li><a href="http://vbird.dic.ksu.edu.tw/linux_server/" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image45','','image/title/title_21.png',1)"><img src="image/title/title3_21.png" name="Image45" width="125" height="33" border="0" id="Image45" /></a>
+			    <ul>
+			      <li><a href="http://vbird.dic.ksu.edu.tw/linux_server/linux_redhat9/redhat9.php" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image43','','image/title/title_26.png',1)"><img src="image/title/title_23.png" name="Image43" width="120" height="26" border="0" id="Image43" alt=""/></a></li>
+			      <li><a href="http://vbird.dic.ksu.edu.tw/linux_server/centos4.php" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image49','','image/title/title_27.png',1)"><img src="image/title/title_24.png" name="Image49" width="120" height="26" border="0" id="Image49" alt="" /></a></li>
+			      <li><a href="http://vbird.dic.ksu.edu.tw/linux_server/" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image50','','image/title/title_28.png',1)"><img src="image/title/title_25.png" name="Image50" width="120" height="26" border="0" id="Image50" alt="" /></a></li>
+		        </ul>
+		      </li>
+		</ul></td>
+		<td>
+			<img src="image/title/title_22.png" alt="" width="47" height="33" border="0"></td>
+	</tr>
+	<tr>
+		<td>
+			<img src="image/title/Spacer.gif" width="101" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="263" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="53" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="15" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="91" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="27" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="5" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="42" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="60" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="37" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="28" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="47" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="35" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="74" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="22" height="1" alt=""></td>
+	</tr>
+</table>
+<!-- End ImageReady Slices -->
+<script type="text/javascript">
+<!--
+var MenuBar1 = new Spry.Widget.MenuBar("MenuBar1", {imgDown:"SpryAssets/SpryMenuBarDownHover.gif", imgRight:"SpryAssets/SpryMenuBarRightHover.gif"});
+var MenuBar2 = new Spry.Widget.MenuBar("MenuBar2", {imgDown:"SpryAssets/SpryMenuBarDownHover.gif", imgRight:"SpryAssets/SpryMenuBarRightHover.gif"});
+//-->
+</script></div>
+<table summary="本文内容的排版" style="width: 898px;" border="0" cellpadding="0" cellspacing="0">
+<tbody><tr><td style="width: 16px; height: 16px;">　</td>
+    <td style="width: 866px; height: 16px;">　</td>
+    <td style="width: 16px; height: 16px;">　</td></tr>
+<tr><td style="width: 16px; font-size: 6px;">　</td>
+    <td width="866">
+
+<!-- 本文的档头部分 -->
+<div style="text-align: center;">
+    <a href="0420quota.php.html">
+    <span class="text_head0">第十五章、磁碟配额<span class="text_head_en">(Quota)</span>与进阶文件系统管理</span></a><br>
+</div>
+    <div style="text-align: right;">
+        <span class="text_history">最近升级日期：2009/09/10</span>
+    </div>
+<!-- 本文的连结区部分 -->
+<div class="block1">
+<span class="text_h1">
+4. <a href="#hint">重点回顾</a><br>
+5. <a href="#ex">本章习题</a><br>
+6. <a href="#reference">参考数据与延伸阅读</a><br>
+<span class="text_h2">
+7. <a href="http://phorum.vbird.org/viewtopic.php?t=23888" target="_blank">针对本文的建议：http://phorum.vbird.org/viewtopic.php?t=23888</a>
+</span>
+</span></div>
+<!-- 本文的正式部分 -->
+<hr><a name="hint"></a><img src="../image/logo.png" alt="大标题的图示" width="35" align="middle" height="34"><span class="text_h1">重点回顾</span><br>
+<div class="block1">
+<ul class="text_import2">
+	<li>Quota 可公平的分配系统上面的磁碟容量给使用者；分配的资源可以是磁碟容量(block)或可创建文件数量(inode)；</li>
+	<li>Quota 的限制可以有 soft/hard/grace time 等重要项目；</li>
+	<li>Quota 仅能针对整个 filesystem 进行限制，不是针对目录喔！</li>
+	<li>Quota 的使用必须要核心与文件系统均支持。文件系统的参数必须含有 usrquota, grpquota</li>
+	<li>Quota 实作的命令有 quotacheck, quotaon, edquota, repquota 等命令；</li>
+	<li>磁盘阵列 (RAID) 有硬件与软件之分，Linux 操作系统可支持软件磁盘阵列，透过 mdadm 套件来达成；</li>
+	<li>磁盘阵列建置的考量依据为『容量』、『效能』、『数据可靠性』等；</li>
+	<li>磁盘阵列所建置的等级常见有的 raid0, raid1, raid0+1, raid5 及 raid6</li>
+	<li>硬件磁盘阵列的装置档名与 SCSI 相同，至於 software RAID 则为 /dev/md[0-9]</li>
+	<li>软件磁盘阵列的状态可藉由 /proc/mdstat 文件来了解；</li>
+	<li>LVM 强调的是『弹性的变化文件系统的容量』；</li>
+	<li>与 LVM 有关的组件有： PV/VG/PE/LV 等组件，可以被格式化者为 LV</li>
+	<li>LVM 拥有快照功能，快照可以记录 LV 的数据内容，并与原有的 LV 共享未更动的数据，备份与还原就变的很简单；</li>
+	<li>Ext3 透过 resize2fs 命令，可以弹性的调整文件系统的大小</li>
+</ul>
+</div>
+
+
+<hr><a name="ex"></a><img src="../image/logo.png" alt="大标题的图示" width="35" align="middle" height="34"><span class="text_h1">本章习题</span><br>
+( 要看答案请将鼠标移动到『答：』底下的空白处，按下左键圈选空白处即可察看 )
+<div class="block1">
+<ul>
+	<li>情境模拟题一：由於 LVM 可以弹性调整 filesystem 的大小，但是缺点是可能没有加速与硬件备份(与快照不同)的功能。
+	而磁盘阵列则具有效能与备份的功能，但是无法提供类似 LVM 的优点。在此情境中，我们想利用『<span class="text_import2">在 RAID 上面建置 LVM</span>』的功能，以达到两者兼顾的能力。<br><br>
+
+	<ul>
+		<li>目标：测试在 RAID 磁碟上面架构 LVM 系统；</li>
+		<li>需求：需要具有磁碟管理的能力，包括 RAID 与 LVM；</li>
+		<li>前提：将本章与之前章节练习所制作的分割槽全部删除，剩下默认的分割槽即可。</li>
+	</ul><br>
+
+	那要如何处理呢？如下的流程一个步骤一个步骤的实施看看吧：<br><br>
+
+	<ol>
+	<li>复原系统时，你必须要：<br><br>
+		<ul>
+		<li>利用 umount 先卸载之前挂载的文件系统；</li>
+		<li>修改 /etc/fstab 里面的数据，让启动不会自动挂载；</li>
+		<li>利用 fdisk 将该分割槽删除。</li>
+		</ul><br>
+		最终你的系统应该会只剩下如下的模样：<br>
+
+<table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">fdisk -l</span>
+   Device Boot      Start         End      Blocks   Id  System
+/dev/hda1   *           1          13      104391   83  Linux
+/dev/hda2              14        1288    10241437+  83  Linux
+/dev/hda3            1289        1925     5116702+  83  Linux
+/dev/hda4            1926        9382    59898352+   5  Extended
+/dev/hda5            1926        2052     1020096   82  Linux swap / Solaris
+</pre></td></tr></tbody></table><br></li>
+
+		<li>创建 RAID ，假设我们利用五个 1GB 的分割槽创建 RAID-5 ，且具有一个 spare disk ，
+		那么你应该要如何进行？首先，请自行使用 fdisk 建置好如下的分割槽状态：<br>
+
+<table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">fdisk -l</span>
+<span class="term_say">....(前面省略)....</span>
+/dev/hda6            2053        2175      987966   83  Linux
+/dev/hda7            2176        2298      987966   83  Linux
+/dev/hda8            2299        2421      987966   83  Linux
+/dev/hda9            2422        2544      987966   83  Linux
+/dev/hda10           2545        2667      987966   83  Linux
+</pre></td></tr></tbody></table>
+
+		接下来开始创建 RAID 吧！创建的方法可以如下简单处理即可：<br>
+
+<table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">mdadm --create --auto=yes /dev/md0 --level=5  \</span>
+&gt; <span class="term_command">--raid-devices=4 --spare-devices=1 /dev/hda{6,7,8,9,10}</span>
+</pre></td></tr></tbody></table>
+
+		若无出现任何错误信息，此时你已经具有 /dev/md0 这个磁盘阵列装置了！接下来让我们处理 LVM 吧！<br><br></li>
+
+		<li>开始处理 LVM ，现在我们假设所有的参数都使用默认值，包括 PE ，然后 VG 名为 raidvg ，LV 名为
+		raidlv ，底下为基本的流程：<br>
+
+<table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">pvcreate /dev/md0                 </span> <span class="term_note">&lt;==创建 PV</span>
+[root@www ~]# <span class="term_command">vgcreate raidvg /dev/md0          </span> <span class="term_note">&lt;==创建 VG</span>
+[root@www ~]# <span class="term_command">lvcreate -L 2.82G -n raidlv raidvg</span> <span class="term_note">&lt;==创建 LM</span>
+[root@www ~]# <span class="term_command">lvdisplay</span>
+  --- Logical volume ---
+  LV Name                /dev/raidvg/raidlv
+  VG Name                raidvg
+  LV UUID                zQsKqW-8Bt2-kpJF-8rCI-Cql1-XQYT-jw1mfH
+  LV Write Access        read/write
+  LV Status              available
+  # open                 0
+  LV Size                2.82 GB
+  Current LE             722
+  Segments               1
+  Allocation             inherit
+  Read ahead sectors     auto
+  - currently set to     256
+  Block device           253:0
+</pre></td></tr></tbody></table>
+
+		这样就搞定了 LVM 了！而且这个 LVM 是架构在 /dev/md0 上面的喔！然后就是文件系统的创建与挂载了！<br><br></li>
+
+		<li>尝试创建成为 Ext3 文件系统，且挂载到 /mnt/raidlvm 目录下：<br>
+
+<table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">mkfs -t ext3 /dev/raidvg/raidlv</span>
+[root@www ~]# <span class="term_command">mkdir /mnt/raidlvm</span>
+[root@www ~]# <span class="term_command">mount /dev/raidvg/raidlv /mnt/raidlvm</span>
+</pre></td></tr></tbody></table><br></li>
+
+		<li>上述就是 LVM 架构在 RAID 上面的技巧，之后的动作都能够使用本章的其他管理方式来管理，
+		包括 RAID 热拔插机制、LVM 放大缩小机制等等。测试完毕之后请务必要关闭本题所创建的各项资讯。<br>
+
+<table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">umount /mnt/raidlvm        </span> <span class="term_note">&lt;==卸载文件系统</span>
+[root@www ~]# <span class="term_command">lvremove /dev/raidvg/raidlv</span> <span class="term_note">&lt;==移除 LV</span>
+[root@www ~]# <span class="term_command">vgchange -a n raidvg       </span> <span class="term_note">&lt;==让 VG 不活动</span>
+[root@www ~]# <span class="term_command">vgremove raidvg            </span> <span class="term_note">&lt;==移除 VG</span>
+[root@www ~]# <span class="term_command">pvremove /dev/md0          </span> <span class="term_note">&lt;==移除 PV</span>
+[root@www ~]# <span class="term_command">mdadm --stop /dev/md0      </span> <span class="term_note">&lt;==关闭 /dev/md0 RAID</span>
+[root@www ~]# <span class="term_command">fdisk /dev/hda             </span> <span class="term_note">&lt;==还原原本的分割槽</span>
+</pre></td></tr></tbody></table></li>
+
+	</ol></li>
+</ul>
+
+<hr>简答题部分：
+<ul>
+	<li>在前一章的<a href="http://vbird.dic.ksu.edu.tw/linux_basic/0410accountmanager.php#manual_account_1">第一个大量新增帐号范例</a>中，
+	如果我想要让每个用户均具有 soft/hard 各为 40MB/50MB 的容量时，应该如何修改这个 script ？
+	<div class="blockex">
+		你得先要依据本章的作法，先将 /home 制作好 quota 的环境然后，
+		你可以在 do...done 内的最后一行，新增一行内容为：<br>
+		setquota -u $username 40000 50000 0 0 /home<br>
+		这样就可以在制作用户时，指定升级口令且给予 quota 的限制！
+	</div></li>
+
+	<li>如果我想要让 RAID 具有保护数据的功能，防止因为硬件损毁而导致数据的遗失，那我应该要选择的 RAID 等级可能有哪些？
+	(请以本章谈到的等级来思考即可)
+	<div class="blockex">
+		具有备份数据的有： RAID-1, RAID-5, RAID-6 
+	</div></li>
+
+	<li>在默认的 LVM 配置中，请问 LVM 能否具有『备份』的功能？
+	<div class="blockex">
+		是有的，就是那个快照 (snopshot) 的功能，此功能即可进行数据的备份！
+	</div></li>
+
+	<li>LVM 内的 LV 据说仅能达到 256 GB 的容量，请问如何克服此一容量问题？
+	<div class="blockex">
+		LV 的容量与 PE 这个数据有关，由於默认 PE 为 4MB ，所以才会有此限制。
+		若要修改这个限制值，则需要在建置 VG 时就给予 -s 的选项来进行 PE 数值的配置。
+		若给到 PE = 16MB 时，则 LV 的最大总量就能够达到 1TB 的容量了。
+	</div></li>
+
+	<li>如果你的计算机主机有提供 RAID 0 的功能，你将你的三颗硬盘全部在 BIOS 阶段使用 RAID 芯片整合成为一颗大磁碟，
+	则此磁碟在 Linux 系统当中的档名为何？
+	<div class="blockex">
+		由於硬件磁盘阵列是在 BIOS 阶段完成的，因此 Linux 系统会捉到一个完整的大的 RAID 磁碟，
+		此磁碟的档名就会是『 /dev/sda 』！
+	</div></li>
+
+
+
+</ul>
+</div>
+
+<hr><a name="reference"></a><img src="../image/logo.png" alt="大标题的图示" width="35" align="middle" height="34"><span class="text_h1">参考数据与延伸阅读</span><br>
+<div class="block1">
+<ul>
+	<li><a name="ps1"></a>注1：若想对 RAID 有更深入的认识，可以参考底下的连结与书目：<br>
+		<a href="http://www.tldp.org/HOWTO/Software-RAID-HOWTO.html" target="_blank">http://www.tldp.org/HOWTO/Software-RAID-HOWTO.html</a><br>
+		杨振和、『操作系统导论：第十一章』、学贯出版社，2006<br></li>
+	<li><a name="ps2"></a>注2：详细的 mdstat 说明也可以参考如下网页：<br>
+		<a href="http://linux-raid.osdl.org/index.php/Mdstat" target="_blank">http://linux-raid.osdl.org/index.php/Mdstat</a></li>
+	<li><a name="ps3"></a>注3：徐秉义老师在网管人杂志 (<a href="http://www.babyface.idv.tw/NetAdmin/" target="_blank">http://www.babyface.idv.tw/NetAdmin/</a>) 的投稿文章：<br>
+		磁碟管理：SoftRAID 与 LVM 综合实做应用 (上)<br>
+		<a href="http://www.babyface.idv.tw/NetAdmin/16200705SoftRAIDLVM01/" target="_blank">http://www.babyface.idv.tw/NetAdmin/16200705SoftRAIDLVM01/</a><br>
+		磁碟管理：SoftRAID 与 LVM 综合实做应用 (下)<br>
+		<a href="http://www.babyface.idv.tw/NetAdmin/18200707SoftRAIDLVM02/" target="_blank">http://www.babyface.idv.tw/NetAdmin/18200707SoftRAIDLVM02/</a></li>
+</ul>
+</div>
+<hr />
+    </td>
+    <td style="width: 16px; font-size: 6px;">　</td></tr>
+<tr><td style="width: 16px; height: 16px;">　</td>
+    <td style="width: 866px; height: 16px;">　</td>
+    <td style="width: 16px; height: 16px;">　</td></tr>
+</tbody></table>
+
+<div style="padding-top: 0px; text-align: center;">
+<span style="font-size: 80%;">
+	<a href="http://vbird.dic.ksu.edu.tw/" target="_top" title="前往鸟哥的首页">http://linux.vbird.org</a>
+	is designed by <a href="mailto:vbird@mail.vbird.idv.tw" title="联络鸟哥(我不要广告信！)">VBird</a>
+		during 2001-2011. <a href="http://www.ksu.edu.tw/" target="_blank">ksu.edu</a></span>
+         ﻿<div id="apDiv4">
+      <p>本网页主要以Firefox配合解析度 1024x768 作为设计依据&nbsp;&nbsp;&nbsp;&nbsp; 鸟哥自由软件整合应用研究室</p></div></div>
+</div>
+</center>
+</body></html>

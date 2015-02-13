@@ -1,0 +1,590 @@
+﻿<!DOCTYPE HTML PUBLIC "-//w3c//dtd html 4.0 transitional//en">
+<html><head>
+
+
+   <meta http-equiv="Content-Type" content="text/html; charset=utf8">
+   <meta name="Author" content="VBird">
+   <title>鸟哥的 Linux 私房菜 -- Linux 文件压缩指令</title>
+   	<script src="../../script/SpryMenuBar.js" type="text/javascript"></script>
+	<script src="../../script/index.js" type="text/javascript"></script>
+	<link href="../../css/SpryMenuBarHorizontal.css" rel="stylesheet" type="text/css" />
+    <link href="../../css/main.css" rel="stylesheet" type="text/css" />
+
+<!-- saved from url=(0022)http://internet.e-mail -->
+</head><body style="margin: 0pt; padding: 0pt;" class="table"onload="MM_preloadImages('image/title_19.png','image/title_26.png','image/title_27.png','image/title_28.png','image/title_06.png','image/title_08.png','image/title_10.png','image/title_12.png')">
+
+
+<!-- Copyright � 2005. Spidersoft Ltd -->
+<style>
+A.applink:hover {border: 2px dotted #DCE6F4;padding:2px;background-color:#ffff00;color:green;text-decoration:none}
+A.applink       {border: 2px dotted #DCE6F4;padding:2px;color:#2F5BFF;background:transparent;text-decoration:none}
+A.info          {color:#2F5BFF;background:transparent;text-decoration:none}
+A.info:hover    {color:green;background:transparent;text-decoration:underline}
+</style>
+<div style='BORDER: 1px solid #DCE6F4; MARGIN-TOP: 20px; MARGIN-BOTTOM: 20px; MARGIN-LEFT: 5px; MARGIN-RIGHT: 5px; PADDING: 5px; BACKGROUND-COLOR: #eef8ff;line-height:180%; COLOR: #000000; font-family: Arial; font-size: 8pt; width=100%; FILTER: progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr="#FFFFFFFF", EndColorStr="#F2F5FAFF");'>
+This page was saved using <a class="applink" href="http://www.spidersoft.com"><b>WebZIP 7.0.3.1030</b></a> <a class="applink" href="http://www.spidersoft.com"><b>offline browser</b></a>  (Unregistered) on  02/12/15 12:14:49.<br>
+<b>Address:</b> <a class="info" href="http://vbird.dic.ksu.edu.tw/linux_basic/Mandrake9.0/0240tarcompress.php">http://vbird.dic.ksu.edu.tw/linux_basic/Mandrake9.0/0240tarcompress.php</a><br>
+<b>Title:</b> 鸟哥的 Linux 私房菜 -- Linux 文件压缩指令 &nbsp;&bull;&nbsp; <b>Size:</b> 46093<br></div>
+<!-- /Copyright � 2005. Spidersoft Ltd -->
+
+
+
+<center>
+<div id="apDiv5">
+<div> <LINK REL="SHORTCUT ICON" HREF="favicon.ico">
+<!-- ImageReady Slices (title3.ai) -->
+<table id="___01" width="898" height="81" border="0" align="center" cellpadding="0" cellspacing="0";>
+	<tr>
+		<td colspan="15">
+			<img src="image/title/title_01.png" width="900" height="1" alt=""></td>
+	</tr>
+	<tr>
+		<td rowspan="4" bgcolor="#182448"><p><img src="http://linux.vbird.org/cgi-bin/Count.cgi?dd=C&ft=5&sh=T&md=8&pad=Y&df=vbird.dic.ksu.edu.tw.dat" width="93" align="left" title="計數器" /></p>
+	    <p><font color="#FFFFFF" size="-1">since2012/04/23</font></p></td>
+		<td rowspan="4" align="left" valign="top"><a href="http://vbird.dic.ksu.edu.tw/"><img src="image/title/title_03.png" alt="" width="263" height="79" border="0"></a></td>
+		<td colspan="13">
+			<img src="image/title/title_04.png" alt="" width="535" height="9" border="0"></td>
+	</tr>
+	<tr>
+		<td rowspan="3">
+			<img src="image/title/title_05.png" alt="" width="53" height="70" border="0"></td>
+		<td colspan="2" align="left" valign="top"><a href="../0110whatislinux.php.html" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image51','','image/title/title_06.png',1)"><img src="image/title/title3_06.png" name="Image51" width="106" height="25" border="0" id="Image51" alt=""/></a></td>
+		<td rowspan="2">
+			<img src="image/title/title_07.png" alt="" width="27" height="37" border="0"></td>
+		<td colspan="3" align="left" valign="top"><a href="http://vbird.dic.ksu.edu.tw/linux_server/0110network_basic.php" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image52','','image/title/title_08.png',1)"><img src="image/title/title3_08.png" name="Image52" width="107" height="25" border="0" id="Image52" alt=""/></a></td>
+		<td rowspan="2">
+			<img src="image/title/title_09.png" alt="" width="37" height="37" border="0"></td>
+		<td colspan="2" align="left" valign="top"><a href="http://vbird.dic.ksu.edu.tw/about.php" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image53','','image/title/title_10.png',1)"><img src="image/title/title3_10.png" name="Image53" width="75" height="25" border="0" id="Image53" alt=""/></a></td>
+		<td rowspan="3">
+			<img src="image/title/title_11.png" alt="" width="35" height="70" border="0"></td>
+		<td align="left" valign="top"><a href="mailto:vbird@mail.vbird.idv.tw" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image54','','image/title/title_12.png',1)"><img src="image/title/title3_12.png" name="Image54" width="74" height="25" border="0" id="Image54" alt=""/></a></td>
+		<td rowspan="3">
+			<img src="image/title/title_13.png" alt="" width="21" height="70" border="0"></td>
+	</tr>
+	<tr>
+		<td colspan="2">
+			<img src="image/title/title_14.png" alt="" width="106" height="12" border="0"></td>
+		<td colspan="3">
+			<img src="image/title/title_15.png" alt="" width="107" height="12" border="0"></td>
+		<td colspan="2">
+			<img src="image/title/title_16.png" width="75" height="12" alt=""></td>
+		<td rowspan="2">
+			<img src="image/title/title_17.png" alt="" width="74" height="45" border="0"></td>
+	</tr>
+	<tr>
+		<td>
+			<img src="image/title/title_18.png" alt="" width="15" height="33" border="0"></td>
+		<td colspan="3" align="left" valign="top"><ul id="MenuBar1" class="MenuBarHorizontal">
+	  <li><a href="../linux_basic.php.html" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image44','','image/title/title_19.png',1)"><img src="image/title/title3_19.png" name="Image44" width="123" height="33" border="0" id="Image44" /></a>
+			    <ul>
+			      <li><a href="mandrake9.0.php.html" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image46','','image/title/title_26.png',1)"><img src="image/title/title_23.png" name="Image46" width="120" height="26" border="0" id="Image46" alt="" /></a></li>
+                  <li><a href="../fedora_4/fc4.php.html" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image47','','image/title/title_27.png',1)"><img src="image/title/title_24.png" name="Image47" width="120" height="26" border="0" id="Image47" alt="" /></a></li>
+                  <li><a href="../linux_basic.php.html" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image48','','image/title/title_28.png',1)"><img src="image/title/title_25.png" name="Image48" width="120" height="26" border="0" id="Image48" alt="" /></a></li>
+                </ul>
+		      </li>
+		</ul></td>
+		<td>
+			<img src="image/title/title_20.png" alt="" width="42" height="33" border="0"></td>
+		<td colspan="3" align="left" valign="top"><ul id="MenuBar2" class="MenuBarHorizontal">
+	  <li><a href="http://vbird.dic.ksu.edu.tw/linux_server/" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image45','','image/title/title_21.png',1)"><img src="image/title/title3_21.png" name="Image45" width="125" height="33" border="0" id="Image45" /></a>
+			    <ul>
+			      <li><a href="http://vbird.dic.ksu.edu.tw/linux_server/linux_redhat9/redhat9.php" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image43','','image/title/title_26.png',1)"><img src="image/title/title_23.png" name="Image43" width="120" height="26" border="0" id="Image43" alt=""/></a></li>
+			      <li><a href="http://vbird.dic.ksu.edu.tw/linux_server/centos4.php" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image49','','image/title/title_27.png',1)"><img src="image/title/title_24.png" name="Image49" width="120" height="26" border="0" id="Image49" alt="" /></a></li>
+			      <li><a href="http://vbird.dic.ksu.edu.tw/linux_server/" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image50','','image/title/title_28.png',1)"><img src="image/title/title_25.png" name="Image50" width="120" height="26" border="0" id="Image50" alt="" /></a></li>
+		        </ul>
+		      </li>
+		</ul></td>
+		<td>
+			<img src="image/title/title_22.png" alt="" width="47" height="33" border="0"></td>
+	</tr>
+	<tr>
+		<td>
+			<img src="image/title/Spacer.gif" width="101" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="263" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="53" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="15" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="91" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="27" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="5" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="42" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="60" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="37" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="28" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="47" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="35" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="74" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="22" height="1" alt=""></td>
+	</tr>
+</table>
+<!-- End ImageReady Slices -->
+<script type="text/javascript">
+<!--
+var MenuBar1 = new Spry.Widget.MenuBar("MenuBar1", {imgDown:"SpryAssets/SpryMenuBarDownHover.gif", imgRight:"SpryAssets/SpryMenuBarRightHover.gif"});
+var MenuBar2 = new Spry.Widget.MenuBar("MenuBar2", {imgDown:"SpryAssets/SpryMenuBarDownHover.gif", imgRight:"SpryAssets/SpryMenuBarRightHover.gif"});
+//-->
+</script></div>
+<font face="标楷体"><font color="#3333ff"><font size="+2"><a href="http://linux.vbird.org/linux_basic/0240tarcompress/0240tarcompress.php" target="_self">档案的压缩与打包</a></font></font></font><br>
+本文以不再维护，更新文章请参考 <a href="http://linux.vbird.org/linux_basic/0240tarcompress.php">此处</a>
+
+<div align="right"><font face="新细明体"><font color="#3333ff"><font size="-1">最近更新日期：2003/05/02</font></font></font></div>
+<div align="left">
+<font color="#000099"><font size="+1"><a href="#compress_tech">压缩的用途与技术</a></font></font>
+<br><font color="#000099"><font size="+1"><a href="#compress_name">Linux
+压缩文件案的附档名</a></font></font>
+<br><font color="#000099"><font size="+1">　<a href="#compress">compress</a></font></font>
+<br><font color="#000099"><font size="+1">　<a href="#gzip">gzip, zcat</a></font></font>
+<br><font color="#000099"><font size="+1">　<a href="#bzip2">bzip2, bzcat</a></font></font>
+<br><font color="#000099"><font size="+1">　<a href="#tar">tar</a></font></font>
+<br><font color="#000099"><font size="+1">　<a href="#cpio">cpio</a></font></font>
+<br><font color="#000099"><font size="+1"><a href="#FAQ">本章习题练习</a></font></font>
+<br>
+<hr width="100%"><a name="compress_tech"></a><font size="+1"><font color="#000099">压缩的用途与技术</font>：</font>
+<blockquote>您是否有过文件档案太大，导致无法以一片软盘将他复制完成的困扰？又，您是否有过，发现一个软件里面有好多档案，这些档案要将他
+复制与携带都很不方便的问题？还有，您是否有过要备份某些重要数据，偏偏这些数据量太大了，耗掉了你很多的硬盘与磁盘空间呢？这个时候，那个好用的『<font color="#000099">文件压缩</font>』技术可就派的上用场了！因为这些比较大型的档案透过所谓的文件压缩技术之后，可以将他的磁盘使用量降低，可以达到减低档案容量的效果，此外，有的压缩程序还可以进行容量限制，使一个大型档案可以分割成为数个小型档案，以方便软盘片携带呢！
+<br>　
+<br>那么什么是『文件压缩』呢？我们来稍微谈一谈他的原理好了。目前我们使用的计算机系统中都是使用所谓的
+bytes 单位来计量的！不过，事实上，计算机最小的计量单位应该是 bits 才对啊，此外，我们也知道
+1 byte = 8 bits 。但是如果今天我们只是记忆一个数字，亦即是 1 这个数字呢？他会如何记录？假设一个
+byte 可以看成底下的模样：(注：由于 1 byte = 8 bits ，所以每个 byte 当中会有
+8 个空格，而每个空格可以是 0, 1 ，这里仅是做为一个约略的介绍，读者不必刻意记忆
+)
+<blockquote>□□□□□□□□</blockquote>
+而由于我们记录数字是 1 ，考虑计算机所谓的二进制喔，如此一来， 1 会在最右边占据
+1 个 bit ，而其他的 7 个 bits 将会自动的被填上 0 啰！你看看，其实在这样的例子中，那
+7 个 bits 应该是『空的』才对！不过，为了要满足目前我们的操作系统数据的存取，所以就会将该数据转为
+byte 
+的型态来记录了！而一些聪明的计算机工程师就利用一些复杂的计算方式，将这些没有使用到的空间『丢』出来，以让档案占用的空间变小！这就是压缩的技术啦！简
+单的说，你可以将他想成，其实档案里面有相当多的『空间』存在，并不是完全填满的，而『压缩』的技术就是将这些『空间』填满，以让整个档案占用的容量下
+降！不过，这些『压缩过的档案』并无法直接被我们的操作系统所使用的，因此，若要使用这些被压缩过的档案数据，则必须将他『还原』回来未压缩前的模样，那
+就是所谓的『解压缩』啰！而至于压缩前与压缩后的档案所占用的磁盘空间大小，就可以被称为是『压缩比』啰！更多的技术文件或许你可以参考一下
+<a href="ftp://swrinde.nde.swri.edu/pub/png/documents/zlib/rfc-gzip.html" target="_blank">GNU
+计划当中关于压缩指令 gzip 的说明文件</a>。当然，我 <a href="http://linux.vbird.org/linux_basic/0240tarcompress/0240tarcompress_gzip.php">这里</a>
+也保留一份数据，做为未来参考之用呢！
+<br>　
+<br>这个『压缩』与『解压缩』的动作有什么好处呢？最大的好处就是压缩过的档案容量变小了，所以你的硬盘容量无形之中就可以容纳更多的资料，此外，在
+一些网络数据的传输中，也会由于数据量的降低，好让网络带宽可以用来作更多的工作！而不是老是卡在一些大型的档案上面呢！目前很多的
+WWW 网站也是利用文件压缩的技术来进行数据的传送，好让网站的可利用率上升喔！(
+注<i><font color="#000066">：这种技术蛮有趣的！他让您网站上面『看的到的数据』在经过网络传输时，使用的是『压缩过的数据』，等到这些压缩过的数据到达你的计算机主机时，再进行解压缩，由于目前的计算机指令周期相当的快速，因此其实在网页浏览的时候，时间都是花在『数据的传输』上面，而不是
+CPU 的运算啦！，如此一来，由于压缩过的数据量降低了，自然传送的速度就会增快不少！</font></i>
+)若您是一位软件工程师，那么相信您也会喜欢将你自己的软件压缩之后提供大家下载来使用，毕竟没有人喜欢自己的网站天天都是带宽满载的吧？！举个例子来说，
+Linux 2.4.19 完整的核心大小约有 200 MB 左右，而由于核心主要多是 ASCII code
+的存文字型态档案，这种档案的『多余空间』最多了。而一个提供下载的压缩过的
+2.4.19 核心大约仅有 30MB 左右，差了几倍呢？您可以自己算一算喔！</blockquote>
+
+<hr width="100%"><a name="compress_name"></a><font color="#000099"><font size="+1">Linux
+压缩文件案的附檔名</font></font>
+<blockquote>如果您常常在网络上面捉 Linux 的数据下来玩的话，大概会晓得的是，这些供人下载的档案通常都是『压缩』过的！为了什么？上面已经稍微提过啦！呵呵！压缩过的档案具有节省带宽、节省磁盘空间等等的优点，并且还方便携带呢！
+^_^ ！而，您应该也会知道，这些被压缩过的档案，通常其附档名都是『<font face="细明体"><font color="#000099">
+*.tar, *.tar.gz, *.tgz, *.gz, *.Z, *.bz2 </font></font>』等等的，为什么要订定这些压缩文件案
+附档名为这样的模样呢？这是因为在
+Linux 
+上面压缩的指令相当的多，并且，这些压缩指令可能无法针对每种压缩文件案都可以解的开，毕竟目前的压缩技术五花八门，每种压缩计算的方法都不是完全相同的，
+所以啰，当你捉到某个压缩文件时，自然就需要知道压缩他的是那个指令啦，好用来对照着解压缩啊！
+^_^！也就是说，虽然 Linux 
+档案的属性基本上是与文件名没有绝对关系的，能不能执行与他的文件属性有关而已，与档名的关系很小！但是，为了帮助我们小小的人类脑袋瓜子，所以适当的档案
+名称附档名还是必要的！因此，目前就有一些常常见到的压缩文件案的附档名啦！我们仅列出常见的几样在底下，给大家权做参考之用：
+<ul>
+<li>
+<font face="细明体"><font color="#000066">&nbsp;*.Z&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+compress 程序压缩的档案；</font></font></li>
+
+<li>
+<font face="细明体"><font color="#000066">&nbsp;*.bz2&nbsp;&nbsp;&nbsp;&nbsp;
+bzip2 程序压缩的档案；</font></font></li>
+
+<li>
+<font face="细明体"><font color="#000066">&nbsp;*.gz&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+gzip 程序压缩的档案；</font></font></li>
+
+<li>
+<font face="细明体"><font color="#000066">&nbsp;*.tar&nbsp;&nbsp;&nbsp;&nbsp;
+tar 程序打包的数据，并没有压缩过；</font></font></li>
+
+<li>
+<font face="细明体"><font color="#000066">&nbsp;*.tar.gz&nbsp; tar 程序打包的档案，其中并且经过
+gzip 的压缩</font></font>！</li>
+</ul>
+目前常见的压缩程序主要就是如同上面提到的附档名对应的那些指令啦！最早期的要算是
+compress 这个家伙了，而后，后来的 <a href="http://www.gnu.org/" target="_blank">GNU
+计划</a>开发出新一代的压缩指令 gzip ( GNU zip ) 用来取代 compress 这个老牌的压缩指令，再来还有
+bzip2 这个压缩比更好的压缩指令呢！不过，这些指令通常仅能针对一个档案来压缩与解压缩，如此一来，每次压缩与解压缩都要一大堆档案，岂不烦人？，此时，那个所谓的『打包软件』就显的很重要啦！在
+Unix-Like 当中，有个软件很好玩，他就是 tar 这支程序！这个 tar 可以将很多档案『打包』成为一个档案！甚至是目录也可以这么玩。不过，单纯的
+tar 功能仅是『打包』而已，亦即是将很多档案集结成为一个档案，事实上，他并没有提供压缩的功能，后来，
+<a href="http://www.gnu.org/home.zh.html" target="_blank">GNU
+计划</a>中，将整个 tar 与压缩的功能结合在一起，如此一来提供使用者更方便并且更强大的压缩与打包功能！
+<br>　
+<br>底下我们就来谈一谈这些在 Linux 底下基本的压缩指令吧！
+<ul>
+<hr width="100%">
+<li>
+<a name="compress"></a><b><font color="#000099">compress：</font></b></li>
+
+<br>语法：
+</div>
+<table width="500" bgcolor="#000000" border="1" cols="1">
+<tbody><tr>
+<td><font face="细明体"><font size="-1"><font color="#ffffff">[root @test
+/root ]# </font><font color="#ffff00">compress [-d] filename&nbsp;</font></font></font>
+<br><font face="细明体"><font color="#ffffcc"><font size="-1">参数说明：&nbsp;</font></font></font>
+<br><font face="细明体"><font color="#ff9900"><font size="-1">-d&nbsp; ：解压缩的参数！&nbsp;</font></font></font>
+<br><font face="细明体"><font color="#ffffcc"><font size="-1">范例：&nbsp;</font></font></font>
+<br><font face="细明体"><font color="#ff9900"><font size="-1">先 copy /etc/man.config
+到 root 底下，再将他压缩看看</font></font></font>
+<br><font face="细明体"><font size="-1"><font color="#ffffff">[root @test
+/root]# </font><font color="#ffff00">cp /etc/man.config /root</font></font></font>
+<br><font face="细明体"><font size="-1"><font color="#ffffff">[root @test
+/root]# </font><font color="#ffff00">compress man.config</font></font></font>
+<br><font face="细明体"><font size="-1"><font color="#ffffff">[root @test
+/root]# </font><font color="#ffff00">compress -d man.config.Z&nbsp;</font></font></font>
+<br><font face="细明体"><font size="-1"><font color="#ffffff">[root @test
+/root]# </font><font color="#ffff00">uncompress man.config.Z</font></font></font></td>
+</tr>
+</tbody></table>
+<div align="left">
+这是用来压缩与解压缩附档名为 *.Z 的指令！所以看到 *.Z 的档案时，就应该要知道他是经由
+compress 这个程序压缩的呦！这是最简单的压缩指令啰！不过，使用的时候需要特别留意的是，<b><font color="#000066">当你以
+compress 压缩之后，如果没有下达其他的参数，那么原本的档案就会被后来的 *.Z
+所取代</font></b>！以上面的案例来说明：原本压缩的档案为 man.config ，那么当压缩完成之后，将只会剩下
+man.config.Z 这个经过压缩的档案啰！那么解压缩呢？呵呵，则是将 man.config.Z
+解压缩成 man.config ！使用上很简单啦！解压缩除了可以使用 compress –d 这个参数之外，也可以直接使用
+uncompress ！意思相同啦！
+<br>　
+<br>
+<hr width="100%">
+<li>
+<a name="gzip"></a><b><font color="#000099">gzip, zcat：</font></b></li>
+
+<br>语法：
+</div>
+<table width="500" bgcolor="#000000" border="1" cols="1">
+<tbody><tr>
+<td><font face="细明体"><font size="-1"><font color="#ffffff">[root @test
+/root ]# </font><font color="#ffff00">gzip [-d#] filename </font><font color="#ff9900">&lt;==压缩与解压缩</font></font></font>
+<br><font face="细明体"><font size="-1"><font color="#ffffff">[root @test
+/root ]# </font><font color="#ffff00">zcat filename.gz&nbsp;</font><font color="#ffffff">&nbsp;&nbsp;&nbsp;</font><font color="#ff9900">
+&lt;==读取压缩文件内容</font></font></font>
+<br><font face="细明体"><font color="#ffffcc"><font size="-1">参数说明：&nbsp;</font></font></font>
+<br><font face="细明体"><font color="#ff9900"><font size="-1">-d&nbsp; ：解压缩的参数！&nbsp;</font></font></font>
+<br><font face="细明体"><font color="#ff9900"><font size="-1">-#&nbsp; ：压缩等级，
+1 最不好， 9 最好， 6 是默认值！&nbsp;</font></font></font>
+<br><font face="细明体"><font color="#ffffcc"><font size="-1">范例：&nbsp;</font></font></font>
+<br><font face="细明体"><font size="-1"><font color="#ffffff">[root @test
+/root]# </font><font color="#ffff00">gzip man.config&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font></font></font>
+<br><font face="细明体"><font color="#ff9900"><font size="-1">会产生 man.config.gz
+这个档案&nbsp;</font></font></font>
+<p><font face="细明体"><font size="-1"><font color="#ffffff">[root @test
+/root]# </font><font color="#ffff00">zcat man.config.gz</font></font></font>
+<br><font face="细明体"><font color="#ff9900"><font size="-1">会读取出 man.config
+的内容</font></font></font>
+</p><p><font face="细明体"><font size="-1"><font color="#ffffff">[root @test
+/root]# </font><font color="#ffff00">gzip -d man.config.gz&nbsp;</font></font></font>
+<br><font face="细明体"><font size="-1"><font color="#ffffff">[root @test
+/root]#</font><font color="#ffff00"> gunzip man.config.gz</font></font></font>
+<br><font face="细明体"><font color="#ff9900"><font size="-1">解压缩，产生
+man.config 这个档案</font></font></font>
+</p><p><font face="细明体"><font size="-1"><font color="#ffffff">[root @test
+/root]# </font><font color="#ffff00">gzip -9 man.config&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font></font></font>
+<br><font face="细明体"><font color="#ff9900"><font size="-1">以最大压缩比压缩
+testing 这个档案！</font></font></font></p></td>
+</tr>
+</tbody></table>
+<div align="left">
+gzip 是用来压缩与解压缩附档名为 *.gz 的指令！所以看到 *.gz 的档案时，就应该要知道他是经由
+gzip 这个程序压缩的呦！另外， gzip 也提供 压缩比的服务！<font face="细明体"><font color="#000066">
+-1 是最差的压缩比，但是压缩速度最快，而 -9 虽然可以达到较佳的压缩比（经过压缩之后，档案比较小一些！），但是却会损失一些速度！预设是
+-6 这个数值！</font></font> gzip 也是相当常使用的一个压缩指令呢！至于 zcat
+则是用来读取压缩文件数据内容的指令！假如我们刚刚压缩的档案是一个文本文件，那么你还记得如何读取文本文件吗？！没错！就是使用
+cat ，那么读取压缩文件呢？呵呵！就是使用 zcat 啰！由于 gzip 这个压缩指令主要想要用来取代
+<a href="#compress">compress</a>
+的，所以 compress 的压缩文件案也可以使用 gzip 来解开喔！同时， zcat 这个指令可以同时读取
+compress 与 gzip 的压缩文件呦！
+<br>　
+<br>
+<hr width="100%">
+<li>
+<a name="bzip2"></a><b><font color="#000099">bzip2, bzcat：</font></b></li>
+
+<br>语法：
+</div>
+<table width="500" bgcolor="#000000" border="1" cols="1">
+<tbody><tr>
+<td><font face="细明体"><font size="-1"><font color="#ffffff">[root @test
+root]# </font><font color="#ffff00">bzip2 [-dz] filename </font><font color="#ff9900">&lt;==压缩解压缩指令</font></font></font>
+<br><font face="细明体"><font size="-1"><font color="#ffffff">[root @test
+root]#</font><font color="#ffff00"> bzcat filename.bz2&nbsp;</font><font color="#ffffff">&nbsp;
+</font><font color="#ff9900">&lt;==读取压缩文件内容指令</font></font></font>
+<br><font face="细明体"><font color="#ffffcc"><font size="-1">参数说明：</font></font></font>
+<br><font face="细明体"><font color="#ff9900"><font size="-1">-d&nbsp; ：解压缩的意思！</font></font></font>
+<br><font face="细明体"><font color="#ff9900"><font size="-1">-z&nbsp; ：压缩的意思！</font></font></font>
+<br><font face="细明体"><font color="#ffffcc"><font size="-1">范例：</font></font></font>
+<br><font face="细明体"><font color="#ff9900"><font size="-1">同样的，我们以刚刚拷贝过来的
+/root/man.config 这个档案为例</font></font></font>
+<br><font face="细明体"><font size="-1"><font color="#ffffff">[root @test
+root]# </font><font color="#ffff00">bzip2 –z man.config</font></font></font>
+<br><font face="细明体"><font size="-1"><font color="#ffffff">[root @test
+root]# </font><font color="#ffff00">bzcat man.config.bz2</font></font></font>
+<br><font face="细明体"><font size="-1"><font color="#ffffff">[root @test
+root]#</font><font color="#ffff00"> bzip2 –d man.config.bz2</font></font></font>
+<br><font face="细明体"><font size="-1"><font color="#ffffff">[root @test
+root]# </font><font color="#ffff00">bunzip2 man.config.bz2</font></font></font></td>
+</tr>
+</tbody></table>
+<div align="left">
+<font color="#000000">刚刚的 <a href="#compress">compress</a> 附档名自动建立为
+.Z ，这里的 bzip2 则是自动的将附档名建置为 .bz2 啰！所以当我们使用具有压缩功能的
+bzip2 –z 时，那么刚刚的 man.config 就会自动的变成了 man.config.bz2 这个档名啰！好了，那么如果我想要读取这个档案的内容呢？是否一定要解开？当然不需要啰！可以使用简便的
+bzcat 这个指令来读取内容即可！例如上面的例子中，我们可以使用 bzcat man.config.bz2
+来读取数据而不需要解开！此外，当您要解开一个压缩文件时，这个档案的名称为
+.bz, .bz2, .tbz, .tbz2 等等，那么就可以尝试使用 bzip2 来解看看啦！当然啰，也可以使用
+bunzip2 这个指令来取代 bzip2 –d 啰</font>
+<br>　
+<br>
+<hr width="100%">
+<li>
+<a name="tar"></a><b><font color="#000099">tar：</font></b></li>
+
+<br>语法：
+</div>
+<table width="600" bgcolor="#000000" border="1" cols="1">
+<tbody><tr>
+<td><font face="细明体"><font size="-1"><font color="#ffffff">[root @test
+/root ]# </font><font color="#ffff00">tar [-zxcvfpP] filename&nbsp;</font></font></font>
+<br><font face="细明体"><font size="-1"><font color="#ffffff">[root @test
+/root ]#</font><font color="#ffff00"> tar -N 'yyyy/mm/dd' /path -zcvf target.tar.gz
+source&nbsp;</font></font></font>
+<br><font face="细明体"><font color="#ffffcc"><font size="-1">参数说明：&nbsp;</font></font></font>
+<br><font face="细明体"><font color="#ff9900"><font size="-1">-z&nbsp; ：是否同时具有
+gzip 的属性？&nbsp;</font></font></font>
+<br><font face="细明体"><font color="#ff9900"><font size="-1">-x&nbsp; ：解开一个压缩文件案的参数指令！&nbsp;</font></font></font>
+<br><font face="细明体"><font color="#ff9900"><font size="-1">-t&nbsp; ：查看
+tarfile 里面的档案！</font></font></font>
+<br><font face="细明体"><font color="#ff9900"><font size="-1">-c&nbsp; ：建立一个压缩文件案的参数指令&nbsp;</font></font></font>
+<br><font face="细明体"><font color="#ff9900"><font size="-1">-v&nbsp; ：压缩的过程中显示档案！&nbsp;</font></font></font>
+<br><font face="细明体"><font color="#ff9900"><font size="-1">-f&nbsp; ：使用档名，请留意，在
+f 之后要立即接档名喔！不要再加参数！</font></font></font>
+<br><font face="细明体"><font color="#ff9900"><font size="-1">　　　例如使用『
+tar -zcvfP tfile sfile』就是错误的写法，要写成</font></font></font>
+<br><font face="细明体"><font color="#ff9900"><font size="-1">　　　『 tar
+-zcvPf tfile sfile』才对喔！</font></font></font>
+<br><font face="细明体"><font color="#ff9900"><font size="-1">-p&nbsp; ：使用原档案的原来属性（属性不会依据用户而变）&nbsp;</font></font></font>
+<br><font face="细明体"><font color="#ff9900"><font size="-1">-P&nbsp; ：可以使用绝对路径&nbsp;</font></font></font>
+<br><font face="细明体"><font color="#ff9900"><font size="-1">-N&nbsp; ：比后面接的日期(yyyy/mm/dd)还要新的才会被打包进新建的档案中！&nbsp;</font></font></font>
+<br><font face="细明体"><font color="#ff9900"><font size="-1">--exclude FILE：在压缩的过程中，不要将
+FILE 打包！&nbsp;</font></font></font>
+<br><font face="细明体"><font color="#ffffcc"><font size="-1">范例：&nbsp;</font></font></font>
+<br><font face="细明体"><font size="-1"><font color="#ffffff">[root @test
+/root]# </font><font color="#ffff00">tar -cvf&nbsp; directory.tar&nbsp;&nbsp;&nbsp;
+directory&nbsp;</font></font></font>
+<br><font face="细明体"><font color="#ff9900"><font size="-1">只将目录整合打包成一个档案&nbsp;</font></font></font>
+<p><font face="细明体"><font size="-1"><font color="#ffffff">[root @test
+/root]# </font><font color="#ffff00">tar -zcvf directory.tar.gz directory&nbsp;</font></font></font>
+<br><font face="细明体"><font color="#ff9900"><font size="-1">除了将目录打包外，同时以
+gzip 压缩&nbsp;</font></font></font>
+</p><p><font face="细明体"><font size="-1"><font color="#ffffff">[root @test
+/root]# </font><font color="#ffff00">tar -zcvf filename.tar.gz&nbsp; /home/test/*&nbsp;</font></font></font>
+<br><font face="细明体"><font color="#ff9900"><font size="-1">将 /home/test/
+这个目录下的档案全部打包并压缩成为一个 filename.tar.gz 的档案</font></font></font>
+</p><p><font face="细明体"><font size="-1"><font color="#ffffff">[root @test
+/root]# </font><font color="#ffff00">tar -xvf&nbsp; directory.tar&nbsp;</font></font></font>
+<br><font face="细明体"><font color="#ff9900"><font size="-1">解 tar 的封包，请注意，由于没有
+gzip (.tar 而非 .tar.gz) 的作用，所以只要使用 –xvf 即可！不需要加上 z
+，否则会显示有问题！</font></font></font>
+</p><p><font face="细明体"><font size="-1"><font color="#ffffff">[root @test
+/root]# </font><font color="#ffff00">tar -zxvf directory.tar.gz&nbsp;</font></font></font>
+<br><font face="细明体"><font color="#ff9900"><font size="-1">这个就是有加上
+gzip 的压缩的结果！所以需要加上 –z 呦！</font></font></font>
+</p><p><font face="细明体"><font size="-1"><font color="#ffffff">[root @test
+/root]# </font><font color="#ffff00">tar –ztvf directory.tar.gz</font></font></font>
+<br><font face="细明体"><font color="#ff9900"><font size="-1">这个 t 可以用来查看
+tar 里面的档案信息呢！而不需要将他解开！</font></font></font>
+</p><p><font face="细明体"><font size="-1"><font color="#ffffff">[root @test
+/root]# </font><font color="#ffff00">tar -zcvPf home.tar.gz /home&nbsp;</font></font></font>
+<br><font face="细明体"><font color="#ff9900"><font size="-1">则建立起来的压缩文件内档案为绝对路径&nbsp;</font></font></font>
+<br><font face="细明体"><font color="#ff9900"><font size="-1">请注意，使用这个
+P 的参数时，不要将 P 加在 f 后面，因为</font></font></font>
+<br><font face="细明体"><font color="#ff9900"><font size="-1">f 之后要立即接档名才行喔！</font></font></font>
+</p><p><font face="细明体"><font size="-1"><font color="#ffffff">[root @test
+/root]# </font><font color="#ffff00">tar -N '2002/06/25' -zcvf home.tar.gz
+/home&nbsp;</font></font></font>
+<br><font face="细明体"><font color="#ff9900"><font size="-1">上面是说 在
+/home 这个目录中，比 2002/06/25 日还要新的档案才会被打包进入 home.tar.gz
+这个档案中！&nbsp;</font></font></font>
+</p><p><font face="细明体"><font size="-1"><font color="#ffffff">[root @test
+/root]# </font><font color="#ffff00">tar -zcvf host.tar.gz / --exclude
+/mnt --exclude /proc&nbsp;</font></font></font>
+<br><font face="细明体"><font color="#ff9900"><font size="-1">上面是说，将根目录的所有数据都打包进
+host.tar.gz 这个档案中，但是 /mnt 及 /proc 则不打包！&nbsp;</font></font></font>
+</p><p><font face="细明体"><font size="-1"><font color="#ffffff">[root @test
+/root]# </font><font color="#ffff00">tar -cvf - /home | tar -xvf -</font></font></font>
+<br><font face="细明体"><font color="#ff9900"><font size="-1">上面的意思是『将
+/home 打包之后，直接解压缩在 /root 底下！』嘿嘿！不需要再建立一次中间档案！不过，使用上面的语法最好使用『绝对路径』，比较不会有问题！这个方式适合不想要建立中间档案时！</font></font></font></p></td>
+</tr>
+</tbody></table>
+
+<div align="left">
+<ul>
+<li>
+<font color="#000000">这是一个多用途的压缩指令！刚刚我们提到的 compress
+与 gzip 是可以适用在一个档案的压缩上面，但是如果是要压缩一个目录呢？！这时该如何是好？！呵呵！
+tar 就派上用场了！ tar 可以将整个目录或者是规定的档案都整合成一个档案！例如上面的第三个范例，他可以将
+/home/test 底下的档案全部整合成一个档案！而第一个范例中，则是将目录整合成一个档案！同时，
+tar 可以配合 gzip （这个 gzip 的功能已经已经附加上 tar 里面去了），同时整合并压缩！呵呵！很方便吧！『
+</font><b><font color="#000066">tar
+用来作备份是很重要的指令</font></b><font color="#000000">！ 』而由于 tar
+整合过后的档案我们通常会取名为 *.tar ，而如果还含有 gzip 的压缩属性，那么就取名为
+*.tar.gz 啰！取这个文件名只是为了方便我们记忆这个档案是什么属性罢了！并没有实际的意义在！</font></li>
+</ul>
+<font color="#000000">　</font>
+<ul>
+<li>
+<font color="#000000">另外，需要注意的是，在使用的参数方面，有还有几个有用的参数需要来了解一番，亦即是
+-p 与 -P 这两个！如果你曾经在 crontab 里面下达过一些备份的指令时，那么常常会收到
+root 的信件，就是说，系统会告诉你『我将 / 的 tar 里头的内容拿掉了！』也就是说，原本你备份的档案是
+/home/test ，但是由于担心未来你在解开压缩的时候，会产生一些困扰，因为在
+tar 里面的档案如果是具有『绝对路径』的话，那么你解开的档案将会『一定』在该路径下也就是
+/home/test，而不是绝对路径（这里请用心的想一想！），这样子的最大困扰是，万一有人拿走了你的这个档案，并且将该档案在他的系统上面解开！万一他的系统上面正巧也有
+/home/test 这个目录，哈哈！他的档案就会『正巧』被覆盖了！所以啰，在预设的情况中，如果是以『绝对路径』来建立打包档案，那么将会自动的将
+/ 拿掉！这是为了刚刚说明的『安全』为前提所做的默认值。好了！但是你就是要以绝对路径来建立打包的档案！那么就加入
+-P 这个参数吧（请注意！是大写字符）！这样就可以啦！那么 -p 是什么（小写字符）？呵呵！那个
+-p 是 permission 的意思，也就是『权限』啦！使用 -p 之后，被打包的档案将不会依据使用者的身份来改变权限喔！</font></li>
+</ul>
+<font color="#000000">　</font>
+<ul>
+<li>
+<font color="#000000">这里还有一个值得注意的参数呦！那就是在备份的情况中很常使用的
+-N 
+的这个参数！你可以参考一下上面的例子就可以知道啦！在这个例子当中，相当重要的就是那个日期啦！在备份的情况当中，我们都希望只要备份较新的档案就好
+了，为什么呢？因为旧的档案我们已经有备份啰！干嘛还要再备份一次，浪费时间也浪费系统资源！这个时候此一参数就显的相当的重要了啊！</font></li>
+</ul>
+<font color="#000000">　</font>
+<ul>
+<li>
+<font color="#000000">在上面的例子中，最后一个例子很有趣『</font><font face="细明体"><font color="#000066">tar
+cvf - /home | tar -xvf - </font></font><font color="#000000">』！他是直接以管线命令『
+pipe 』来进行压缩、解压缩的过程！在上面的例子中，我们想要『将 /home 底下的数据直接
+copy 到目前所在的路径，也就是 /root 底下来』，但是又觉得使用 cp -r 有点麻烦，那么就直接以这个打包的方式来打包，其中，指令里面的
+- 就是表示那个被打包的档案啦！由于我们不想要让中间档案存在，所以就以这一个方式来进行复制的行为啦！</font></li>
+</ul>
+<font color="#000000">　</font>
+<ul>
+<li>
+<font color="#000000">tar 的功能相当的多，而由于他是经由『打包』之后再处理的一个过程，所以常常我们会听到
+tarball 的档案，那就是经由 tar 打包再压缩的档案啦！此外， tar 也可以用在备份的储存媒体上面，最常见的就是磁带机了！假设我的磁带机代号为
+/dev/st0 ，那么我要将我的 /home 底下的数据都给他备份上去时，就是使用 tar
+/dev/st0 /home 就可以啦！很不错吧！</font></li>
+</ul>
+<font color="#000000">　</font>
+<ul><font color="#000000">在 Linux 当中， gzip 已经被整合在 tar 里面了！但是
+Sun 或者其他较旧的 Unix 版本中， 当中的 tar 并没有整合 gzip ，所以如果你需要解压缩的话，就需要这么做：</font>
+<ul><font face="细明体"><font color="#000066">　</font></font>
+<br><font face="细明体"><font color="#000066">gzip -d testing.tar.gz</font></font>
+<br><font face="细明体"><font color="#000066">tar -xvf testing.tar</font></font>
+<br><font face="细明体"><font color="#000066">　</font></font></ul>
+<font color="#000000">第一个步骤会将档案解压缩，第二个步骤才是将数据解出来！与其他压缩程序不太一样的是，
+bzip2, gzip 与 compress 在没有加入特殊参数的时候，原先的档案会被取代掉，但是使用
+tar 则原来的与后来的档案都会存在呦！</font></ul>
+<font color="#000000">　</font>
+<br>
+<hr width="100%">
+<li>
+<a name="cpio"></a><b><font color="#000099">cpio：</font></b></li>
+
+<br>语法：
+</div>
+<table width="500" bgcolor="#000000" border="1" cols="1">
+<tbody><tr>
+<td><font face="细明体"><font size="-1"><font color="#ffffff">[root @test
+/root ]# </font><font color="#ffff00">cpio -covB&nbsp; &gt; [file|device]</font><font color="#ff9900">&lt;==备份</font></font></font>
+<br><font face="细明体"><font size="-1"><font color="#ffffff">[root @test
+/root ]# </font><font color="#ffff00">cpio -icduv &lt; [file|device]</font><font color="#ff9900">&lt;==还原</font></font></font>
+<br><font face="细明体"><font color="#ff9900"><font size="-1">参数说明：&nbsp;</font></font></font>
+<br><font face="细明体"><font color="#ff9900"><font size="-1">-o ：将资料
+copy 输出到档案或装置上&nbsp;</font></font></font>
+<br><font face="细明体"><font color="#ff9900"><font size="-1">-i ：将数据自档案或装置
+copy 出来系统当中&nbsp;</font></font></font>
+<br><font face="细明体"><font color="#ff9900"><font size="-1">-t ：查看 cpio
+建立的档案或装置的内容&nbsp;</font></font></font>
+<br><font face="细明体"><font color="#ff9900"><font size="-1">-c ：一种较新的
+portable format 方式储存&nbsp;</font></font></font>
+<br><font face="细明体"><font color="#ff9900"><font size="-1">-v ：让储存的过程中文件名可以在屏幕上显示&nbsp;</font></font></font>
+<br><font face="细明体"><font color="#ff9900"><font size="-1">-B ：让预设的
+Blocks 可以增加至 5120 bytes ，预设是 512 bytes ！&nbsp;</font></font></font>
+<br><font face="细明体"><font color="#ff9900"><font size="-1">　　 这样的好处是可以让大档案的储存速度加快(请参考
+i-nodes 的观念)&nbsp;</font></font></font>
+<br><font face="细明体"><font color="#ff9900"><font size="-1">-d ：自动建立目录！由于
+cpio 的内容可能不是在同一个目录内，</font></font></font>
+<br><font face="细明体"><font color="#ff9900"><font size="-1">&nbsp;&nbsp;&nbsp;&nbsp;
+如此的话在反备份的过程会有问题！ 这个时候加上 -d 的话，</font></font></font>
+<br><font face="细明体"><font color="#ff9900"><font size="-1">&nbsp;&nbsp;&nbsp;&nbsp;
+就可以自动的将需要的目录建立起来了！&nbsp;</font></font></font>
+<br><font face="细明体"><font color="#ff9900"><font size="-1">-u ：自动的将较新的档案覆盖较旧的档案！&nbsp;</font></font></font>
+<br><font face="细明体"><font color="#ffffcc"><font size="-1">范例：&nbsp;</font></font></font>
+<br><font face="细明体"><font size="-1"><font color="#ffffff">[root @test
+/root]# </font><font color="#ffff00">find / -print | cpio -covB &gt; /dev/st0&nbsp;</font></font></font>
+<br><font face="细明体"><font color="#ff9900"><font size="-1">将搜寻到的档案存到磁带机&nbsp;</font></font></font>
+<p><font face="细明体"><font size="-1"><font color="#ffffff">[root @test
+/root]# </font><font color="#ffff00">cpio -icduv &lt; /dev/st0&nbsp;</font></font></font>
+<br><font face="细明体"><font color="#ff9900"><font size="-1">将磁带机的数据还原回来！&nbsp;</font></font></font>
+</p><p><font face="细明体"><font size="-1"><font color="#ffffff">[root @test
+/root]# </font><font color="#ffff00">cpio -icdvt &lt; /dev/st0 &gt; /tmp/content&nbsp;</font></font></font>
+<br><font face="细明体"><font color="#ff9900"><font size="-1">将磁带机的内容(文件名而已)转存到
+/tmp/content&nbsp;</font></font></font>
+</p><p><font face="细明体"><font size="-1"><font color="#ffffff">[root @test
+/root]#</font><font color="#ffff00"> find / -type -f | cpio -o &gt; /tmp/root.cpio&nbsp;</font></font></font>
+<br><font face="细明体"><font size="-1"><font color="#ffffff">[root @test
+/root]#</font><font color="#ffff00"> cpio -i &lt; /tmp/root.cpio&nbsp;</font></font></font>
+<br><font face="细明体"><font color="#ff9900"><font size="-1">上面这个例子可以马上实作看看！先输出到
+/tmp/root.cpio 这个档案，然后再给他还原回来！</font></font></font></p></td>
+</tr>
+</tbody></table>
+<div align="left">
+这个 cpio 还蛮神奇的呢！他最适用于备份的时候使用的一个指令了！为什么呢？因为他并不像
+cp 一样，可以直接的将档案给他 copy 过去，例如 cp * /tmp 就可以将所在目录的所有档案
+copy 到 /tmp 底下，在 cpio 这个指令的用法中，由于 cpio 无法直接读取档案，而是需要『每一个档案或目录的路径连同文件名一起』才可以被记录下来！因此，
+cpio 最常跟 find 这个指令一起使用了！这个 cpio 好像不怎么好用呦！但是，嘿嘿！他可是备份的时候的一项利器呢！因为他可以备份任何的档案，包括
+/dev 底下的任何装置档案！呵呵！所以他可是相当重要的呢！！您说是吧！ 而由于
+cpio 必需要配合其他的程序，例如 find 来建立档名，所以， cpio 与管线命令及命令重导向的相关性就相当的重要了！上面的例子刚好可以用来复习一下上一章节里面提到的内容！加油啦！
+<br>　
+<ul>
+<li>
+备份：在备份的用法当中，他可以直接跟输出到档案或者是装置当中，但是如前面说过的，你必须要配合
+find 这个指令较好呦！那个 -o 表示将档案或目录输出到右边去的意思！还记得命令重导向吗？对啦！就是那个东西啰！在上面的例子中，我们将备份的数据给他
+copy 到磁带机里头去！那个磁带机的装置代号就是 /dev/st0 啰！</li>
+</ul>
+　
+<ul>
+<li>
+还原：那么如何给他反过来解开呢？呵呵！可以直接给他下达 cpio -i 就是 input
+就对啦！例如上头的例子啰！这个指令可以多看看呢</li>
+</ul>
+</ul>
+</blockquote>
+
+
+<hr width="100%"><font face="新细明体"><font color="#000066"><font size="-1">2003/02/09：第一次完成</font></font></font>
+<br><font face="新细明体"><font color="#000066"><font size="-1">2003/05/05：修改
+tar 的部分内容，尤其是 -P 这个参数的配合用法</font></font></font>
+</div>
+<hr width="100%">
+<center>
+<br><font color="#000066"><font size="-1">Designed by <a href="mailto:vbird@mail.vbird.idv.tw">VBird</a>
+during 2001-2004.&nbsp; Aerosol Lab.</font></font>
+   ﻿<div id="apDiv4">
+      <p>本网页主要以Firefox配合解析度 1024x768 作为设计依据&nbsp;&nbsp;&nbsp;&nbsp; 鸟哥自由软件整合应用研究室</p></div></center>
+</div>
+</center>
+</body></html>

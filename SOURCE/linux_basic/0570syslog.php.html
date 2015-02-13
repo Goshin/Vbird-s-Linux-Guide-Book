@@ -1,0 +1,1351 @@
+<html><head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta name="Author" content="2011/04/28,lee">
+	<meta name="Description" content="登录文件的分析啦！">
+	<title>鸟哥的 Linux 私房菜 -- 登录文件的分析啦！</title>
+    <script src="../script/SpryMenuBar.js" type="text/javascript"></script>
+	<script src="../script/index.js" type="text/javascript"></script>
+	<link href="../css/SpryMenuBarHorizontal.css" rel="stylesheet" type="text/css" />
+    <link href="../css/main.css" rel="stylesheet" type="text/css" />
+    </head><body style="margin: 0pt; padding: 0pt;" class="table"onload="MM_preloadImages('image/title_19.png','image/title_26.png','image/title_27.png','image/title_28.png','image/title_06.png','image/title_08.png','image/title_10.png','image/title_12.png')">
+
+
+<!-- Copyright � 2005. Spidersoft Ltd -->
+<style>
+A.applink:hover {border: 2px dotted #DCE6F4;padding:2px;background-color:#ffff00;color:green;text-decoration:none}
+A.applink       {border: 2px dotted #DCE6F4;padding:2px;color:#2F5BFF;background:transparent;text-decoration:none}
+A.info          {color:#2F5BFF;background:transparent;text-decoration:none}
+A.info:hover    {color:green;background:transparent;text-decoration:underline}
+</style>
+<div style='BORDER: 1px solid #DCE6F4; MARGIN-TOP: 20px; MARGIN-BOTTOM: 20px; MARGIN-LEFT: 5px; MARGIN-RIGHT: 5px; PADDING: 5px; BACKGROUND-COLOR: #eef8ff;line-height:180%; COLOR: #000000; font-family: Arial; font-size: 8pt; width=100%; FILTER: progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr="#FFFFFFFF", EndColorStr="#F2F5FAFF");'>
+This page was saved using <a class="applink" href="http://www.spidersoft.com"><b>WebZIP 7.0.3.1030</b></a> <a class="applink" href="http://www.spidersoft.com"><b>offline browser</b></a>  (Unregistered) on  02/12/15 12:14:49.<br>
+<b>Address:</b> <a class="info" href="http://vbird.dic.ksu.edu.tw/linux_basic/0570syslog.php">http://vbird.dic.ksu.edu.tw/linux_basic/0570syslog.php</a><br>
+<b>Title:</b> 鸟哥的 Linux 私房菜 -- 登录文件的分析啦！ &nbsp;&bull;&nbsp; <b>Size:</b> 95501<br></div>
+<!-- /Copyright � 2005. Spidersoft Ltd -->
+
+
+
+<center>
+<div id="apDiv5">
+<div> <LINK REL="SHORTCUT ICON" HREF="favicon.ico">
+<!-- ImageReady Slices (title3.ai) -->
+<table id="___01" width="898" height="81" border="0" align="center" cellpadding="0" cellspacing="0";>
+	<tr>
+		<td colspan="15">
+			<img src="image/title/title_01.png" width="900" height="1" alt=""></td>
+	</tr>
+	<tr>
+		<td rowspan="4" bgcolor="#182448"><p><img src="http://linux.vbird.org/cgi-bin/Count.cgi?dd=C&ft=5&sh=T&md=8&pad=Y&df=vbird.dic.ksu.edu.tw.dat" width="93" align="left" title="計數器" /></p>
+	    <p><font color="#FFFFFF" size="-1">since2012/04/23</font></p></td>
+		<td rowspan="4" align="left" valign="top"><a href="http://vbird.dic.ksu.edu.tw/"><img src="image/title/title_03.png" alt="" width="263" height="79" border="0"></a></td>
+		<td colspan="13">
+			<img src="image/title/title_04.png" alt="" width="535" height="9" border="0"></td>
+	</tr>
+	<tr>
+		<td rowspan="3">
+			<img src="image/title/title_05.png" alt="" width="53" height="70" border="0"></td>
+		<td colspan="2" align="left" valign="top"><a href="0110whatislinux.php.html" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image51','','image/title/title_06.png',1)"><img src="image/title/title3_06.png" name="Image51" width="106" height="25" border="0" id="Image51" alt=""/></a></td>
+		<td rowspan="2">
+			<img src="image/title/title_07.png" alt="" width="27" height="37" border="0"></td>
+		<td colspan="3" align="left" valign="top"><a href="http://vbird.dic.ksu.edu.tw/linux_server/0110network_basic.php" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image52','','image/title/title_08.png',1)"><img src="image/title/title3_08.png" name="Image52" width="107" height="25" border="0" id="Image52" alt=""/></a></td>
+		<td rowspan="2">
+			<img src="image/title/title_09.png" alt="" width="37" height="37" border="0"></td>
+		<td colspan="2" align="left" valign="top"><a href="http://vbird.dic.ksu.edu.tw/about.php" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image53','','image/title/title_10.png',1)"><img src="image/title/title3_10.png" name="Image53" width="75" height="25" border="0" id="Image53" alt=""/></a></td>
+		<td rowspan="3">
+			<img src="image/title/title_11.png" alt="" width="35" height="70" border="0"></td>
+		<td align="left" valign="top"><a href="mailto:vbird@mail.vbird.idv.tw" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image54','','image/title/title_12.png',1)"><img src="image/title/title3_12.png" name="Image54" width="74" height="25" border="0" id="Image54" alt=""/></a></td>
+		<td rowspan="3">
+			<img src="image/title/title_13.png" alt="" width="21" height="70" border="0"></td>
+	</tr>
+	<tr>
+		<td colspan="2">
+			<img src="image/title/title_14.png" alt="" width="106" height="12" border="0"></td>
+		<td colspan="3">
+			<img src="image/title/title_15.png" alt="" width="107" height="12" border="0"></td>
+		<td colspan="2">
+			<img src="image/title/title_16.png" width="75" height="12" alt=""></td>
+		<td rowspan="2">
+			<img src="image/title/title_17.png" alt="" width="74" height="45" border="0"></td>
+	</tr>
+	<tr>
+		<td>
+			<img src="image/title/title_18.png" alt="" width="15" height="33" border="0"></td>
+		<td colspan="3" align="left" valign="top"><ul id="MenuBar1" class="MenuBarHorizontal">
+	  <li><a href="linux_basic.php.html" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image44','','image/title/title_19.png',1)"><img src="image/title/title3_19.png" name="Image44" width="123" height="33" border="0" id="Image44" /></a>
+			    <ul>
+			      <li><a href="Mandrake9.0/mandrake9.0.php.html" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image46','','image/title/title_26.png',1)"><img src="image/title/title_23.png" name="Image46" width="120" height="26" border="0" id="Image46" alt="" /></a></li>
+                  <li><a href="fedora_4/fc4.php.html" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image47','','image/title/title_27.png',1)"><img src="image/title/title_24.png" name="Image47" width="120" height="26" border="0" id="Image47" alt="" /></a></li>
+                  <li><a href="linux_basic.php.html" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image48','','image/title/title_28.png',1)"><img src="image/title/title_25.png" name="Image48" width="120" height="26" border="0" id="Image48" alt="" /></a></li>
+                </ul>
+		      </li>
+		</ul></td>
+		<td>
+			<img src="image/title/title_20.png" alt="" width="42" height="33" border="0"></td>
+		<td colspan="3" align="left" valign="top"><ul id="MenuBar2" class="MenuBarHorizontal">
+	  <li><a href="http://vbird.dic.ksu.edu.tw/linux_server/" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image45','','image/title/title_21.png',1)"><img src="image/title/title3_21.png" name="Image45" width="125" height="33" border="0" id="Image45" /></a>
+			    <ul>
+			      <li><a href="http://vbird.dic.ksu.edu.tw/linux_server/linux_redhat9/redhat9.php" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image43','','image/title/title_26.png',1)"><img src="image/title/title_23.png" name="Image43" width="120" height="26" border="0" id="Image43" alt=""/></a></li>
+			      <li><a href="http://vbird.dic.ksu.edu.tw/linux_server/centos4.php" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image49','','image/title/title_27.png',1)"><img src="image/title/title_24.png" name="Image49" width="120" height="26" border="0" id="Image49" alt="" /></a></li>
+			      <li><a href="http://vbird.dic.ksu.edu.tw/linux_server/" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image50','','image/title/title_28.png',1)"><img src="image/title/title_25.png" name="Image50" width="120" height="26" border="0" id="Image50" alt="" /></a></li>
+		        </ul>
+		      </li>
+		</ul></td>
+		<td>
+			<img src="image/title/title_22.png" alt="" width="47" height="33" border="0"></td>
+	</tr>
+	<tr>
+		<td>
+			<img src="image/title/Spacer.gif" width="101" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="263" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="53" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="15" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="91" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="27" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="5" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="42" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="60" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="37" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="28" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="47" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="35" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="74" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="22" height="1" alt=""></td>
+	</tr>
+</table>
+<!-- End ImageReady Slices -->
+<script type="text/javascript">
+<!--
+var MenuBar1 = new Spry.Widget.MenuBar("MenuBar1", {imgDown:"SpryAssets/SpryMenuBarDownHover.gif", imgRight:"SpryAssets/SpryMenuBarRightHover.gif"});
+var MenuBar2 = new Spry.Widget.MenuBar("MenuBar2", {imgDown:"SpryAssets/SpryMenuBarDownHover.gif", imgRight:"SpryAssets/SpryMenuBarRightHover.gif"});
+//-->
+</script></div>
+<table summary="本文内容的排版" style="width: 898px;" border="0" cellpadding="0" cellspacing="0">
+<tbody><tr><td style="width: 16px; height: 16px;">　</td>
+    <td style="width: 866px; height: 16px;">　</td>
+    <td style="width: 16px; height: 16px;">　</td></tr>
+<tr><td style="width: 16px; font-size: 6px;">　</td>
+    <td width="866">
+
+<!-- 本文的档头部分 -->
+<div style="text-align: center;">
+    <a href="0570syslog.php.html">
+    <span class="text_head0">第十九章、认识与分析登录文件</span></a><br>
+</div>
+    <div style="text-align: right;">
+        <span class="text_history">最近升级日期：2009/09/14</span>
+    </div>
+
+
+<!-- 本文的档头部分 -->
+<center><table class="head1" summary="排版：文章档头的说明"><tbody><tr><td class="head1">
+	当你的 Linux 系统出现不明原因的问题时，很多人都告诉你，你要查阅一下登录文件才能够知道系统出了什么问题了，所以说，
+	了解登录文件是很重要的事情呢。登录文件可以记录系统在什么时间、哪个主机、哪个服务、出现了什么信息等资讯，
+	这些资讯也包括使用者识别数据、系统故障排除须知等资讯。如果你能够善用这些登录文件资讯的话，你的系统出现错误时，
+	你将可以在第一时间发现，而且也能够从中找到解决的方案，而不是昏头转向的乱问人呢。
+	此外，登录文件所记录的资讯量是非常大的，要人眼分析实在很困难。此时利用 shell script 
+	或者是其他软件提供的分析工具来处理复杂的登录文件，可以帮助你很多很多喔！
+</td></tr></tbody></table></center><br>
+
+<!-- 本文的连结区部分 -->
+<div class="block1">
+<span class="text_h1">
+1. <a href="#whatis_syslog">什么是登录文件</a>：
+	<span class="text_h2">
+		<a href="#whatis_syslog_im">登录文件的重要性</a>, 
+		<a href="#whatis_syslog_file">常见档名</a>,
+		<a href="#whatis_syslog_daemon">服务与程序</a>
+	</span><br>
+2. <a href="#syslogd">syslogd ：记录登录文件的服务</a><br>
+	<span class="text_h2">
+	　　2.1 <a href="#syslogd_format">登录文件内容的一般格式</a><br>
+	　　2.2 <a href="#syslogd_conf">syslog 的配置档： /etc/syslog.conf</a>, 
+		<a href="#syslog_conf_default">默认的 syslog.conf 内容</a><br>
+	　　2.3 <a href="#syslogd_secure">登录文件的安全性配置</a><br>
+	　　2.4 <a href="#syslogd_server">登录文件服务器的配置</a><br>
+	</span>
+3. <a href="#rotate">登录文件的轮替 (logrotate)</a><br>
+	<span class="text_h2">
+	　　3.1 <a href="#rotate_config">logrotate 的配置档</a><br>
+	　　3.2 <a href="#rotate_command">实际测试 logrotate 的动作</a><br>
+	　　3.3 <a href="#rotate_user">自订登录文件的轮替功能</a><br>
+	</span>
+4. <a href="#analyze">分析登录文件</a><br>
+	<span class="text_h2">
+	　　4.1 <a href="#logwatch">CentOS 默认提供的 logwatch</a><br>
+	　　4.2 <a href="#analyze_vbird">鸟哥自己写的登录文件分析工具：</a><br>
+	</span>
+5. <a href="#FAQ">本章习题练习</a><br>
+<span class="text_h2">
+6. <a href="http://phorum.vbird.org/viewtopic.php?t=23895" target="_blank">针对本文的建议：http://phorum.vbird.org/viewtopic.php?t=23895</a>
+</span>
+</span>
+</div>
+
+
+<!-- 本文的正式部分 -->
+<hr><a name="whatis_syslog"></a><img src="../image/logo.png" alt="大标题的图示" width="35" align="middle" height="34"><span class="text_h1">什么是登录文件</span><br>
+<div class="block1">
+	<p>『<span class="text_import2">详细而确实的分析以及备份系统的登录文件</span>』是一个系统管理员应该要进行的任务之一。
+	那么什么是登录文件呢？简单的说，就是<span class="text_import2">记录系统活动资讯的几个文件，
+	例如：何时、何地 (来源 IP)、何人 (什么服务名称)、做了什么动作 (信息登录罗)</span>。
+	换句话说就是：<span class="text_import2">记录系统在什么时候由哪个程序做了什么样的行为时，发生了何种的事件等等</span>。</p>
+
+	<p>要知道的是，我们的 Linux 主机在背景之下有相当多的 daemons 同时在工作著，这些工作中的程序总是会显示一些信息，
+	这些显示的信息最终会被记载到登录文件当中啦。也就是说，记录这些系统的重要信息就是登录文件的工作啦！<br><br></p>
+
+	<a name="whatis_syslog_im"></a>
+	<hr><span class="text_import1">登录文件的重要性</span>
+
+	<p>为什么说登录文件很重要，重要到系统管理员需要随时注意他呢？我们可以这么说：</p>
+
+	<ul>
+	<li><span class="text_import2">解决系统方面的错误</span>：<br><br>
+		用 Linux 这么久了，你应该偶而会发现系统可能会出现一些错误，包括硬件捉不到或者是某些系统程序无法顺利运行的情况。
+		此时你该如何是好？由於系统会将硬件侦测过程记录在登录文件内，你只要透过查询登录文件就能够了解系统作了啥事！
+		并且由<a href="0440processcontrol.php.html">第十七章我们也知道 SELinux</a> 
+		与登录文件的关系更加的强烈！所以罗，查询登录文件可以克服一些系统问题啦！<br><br></li>
+
+	<li><span class="text_import2">解决网络服务的问题</span>：<br><br>
+		你可能在做完了某些网络服务的配置后，却一直无法顺利启动该服务，此时该怎办？去庙里面拜拜抽签吗？
+		三太子大大可能无法告诉你要怎么处理呢！由於网络服务的各种问题通常都会被写入特别的登录文件，
+		其实你只要查询登录文件就会知道出了什么差错，还不需要请示三太子大大啦！举例来说，如果你无法启动邮件服务器 (sendmail)，
+		那么查询一下 /var/log/maillog 通常可以得到不错的解答！<br><br></li>
+
+	<li><span class="text_import2">过往事件记录簿</span>：<br><br>
+		这个东西相当的重要！例如：你发现 WWW 服务 (apache 软件) 在某个时刻流量特别大，你想要了解为什么时，
+		可以透过登录文件去找出该时段是哪些 IP 在连线与查询的网页数据为何，就能够知道原因。
+		此外，万一哪天你的系统被入侵，并且被利用来攻击他人的主机，由於被攻击主机会记录攻击者，因此你的 IP 
+		就会被对方记录。这个时候你要如何告知对方你的主机是由於被入侵所导致的问题，
+		并且协助对方继续往恶意来源追查呢？呵呵！此时登录文件可是相当重要的呢！</li>
+	</ul>
+	<div style="padding: 10pt 0pt;" align="right"><table width="90%"><tbody><tr><td><b>Tips:</b><br><span style="color: rgb(0, 144, 0);"><font size="-1">		所以我们常说『天助自助者』是真的啦！你可以透过 (1)察看萤幕上面的错误信息与
+		(2)登录文件的错误资讯，几乎可以解决大部分的 Linux 问题！
+	</font></span></td><td><img src="0570syslog_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div>
+	<a name="whatis_syslog_file"></a>
+	<hr><span class="text_import1">Linux 常见的登录文件档名</span>
+
+	<p>登录文件可以帮助我们了解很多系统重要的事件，包括登陆者的部分资讯，因此<span class="text_import2">登录文件的权限通常是配置为仅有 root 能够读取而已</span>。
+	而由於登录文件可以记载系统这么多的详细资讯，所以啦，一个有经验的主机管理员会随时随地查阅一下自己的登录文件，
+	以随时掌握系统的最新脉动！那么常见的几个登录文件有哪些呢？一般而言，有下面几个：</p>
+
+	<ul>
+	<li><span class="text_import2" style="font-family: '细明体';">/var/log/cron</span>：<br>
+		还记得<a href="0430cron.php.html">第十六章例行性工作排程</a>吧？你的 crontab 排程有没有实际被进行？
+		进行过程有没有发生错误？你的 /etc/crontab 是否撰写正确？在这个登录文件内查询看看。<br><br></li>
+
+	<li><span class="text_import2" style="font-family: '细明体';">/var/log/dmesg</span>：<br>
+		记录系统在启动的时候核心侦测过程所产生的各项资讯。由於 CentOS 默认将启动时核心的硬件侦测过程取消显示，
+		因此额外将数据记录一份在这个文件中；<br><br></li>
+
+	<li><span class="text_import2" style="font-family: '细明体';">/var/log/lastlog</span>：<br>
+		可以记录系统上面所有的帐号最近一次登陆系统时的相关资讯。<a href="http://vbird.dic.ksu.edu.tw/linux_basic/0410accountmanager.php#uselinux_find">第十四章讲到的 lastlog</a> 
+		命令就是利用这个文件的记录资讯来显示的。<br><br></li>
+
+	<li><span class="text_import2" style="font-family: '细明体';">/var/log/maillog 或 /var/log/mail/*</span>：<br>
+		记录邮件的往来资讯，其实主要是记录 sendmail (SMTP 协议提供者) 与 dovecot (POP3 协议提供者) 所产生的信息啦。
+		SMTP 是发信所使用的通讯协议， POP3 则是收信使用的通讯协议。 sendmail 与 dovecot 则分别是两套达成通讯协议的软件。
+		<br><br></li>
+
+	<li><span class="text_import2" style="font-family: '细明体';">/var/log/messages</span>：<br>
+		这个文件相当的重要，几乎系统发生的错误信息 (或者是重要的资讯) 都会记录在这个文件中；
+		如果系统发生莫名的错误时，这个文件是一定要查阅的登录文件之一。<br><br></li>
+
+	<li><span class="text_import2" style="font-family: '细明体';">/var/log/secure</span>：<br>
+		基本上，只要牵涉到『需要输入帐号口令』的软件，那么当登陆时 (不管登陆正确或错误) 都会被记录在此文件中。
+		包括系统的 login 程序、图形介面登陆所使用的 gdm 程序、 su, sudo 等程序、还有网络连线的 ssh, telnet 等程序，
+		登陆资讯都会被记载在这里；<br><br></li>
+
+	<li><span class="text_import2" style="font-family: '细明体';">/var/log/wtmp, /var/log/faillog</span>：<br>
+		这两个文件可以记录正确登陆系统者的帐号资讯 (wtmp) 与错误登陆时所使用的帐号资讯 (faillog) ！
+		我们在<a href="http://vbird.dic.ksu.edu.tw/linux_basic/0320bash.php#last">第十一章谈到的 last</a> 就是读取 wtmp 来显示的，
+		这对於追踪一般帐号者的使用行为很有帮助！<br><br></li>
+
+	<li><span class="text_import2" style="font-family: '细明体';">/var/log/httpd/*, /var/log/news/*, /var/log/samba/*</span>：<br>
+		不同的网络服务会使用它们自己的登录文件来记载它们自己产生的各项信息！上述的目录内则是个别服务所制订的登录文件。</li>
+	</ul>
+
+	<p>常见的登录文件就是这几个，但是不同的 Linux distributions ，通常登录文件的档名不会相同 
+	(除了 /var/log/messages 之外 )。所以说，你还是得要查阅你 Linux 主机上面的登录文件配置数据，
+	才能知道你的登录文件主要档名喔！<br><br></p>
+
+	<a name="whatis_syslog_daemon"></a>
+	<hr><span class="text_import1">登录文件所需相关服务 (daemon) 与程序</span>
+
+	<p>那么这些登录文件是怎么产生的呢？基本上有两种方式，一种是由软件开发商自行定义写入的登录文件与相关格式，
+	例如 WWW 软件 apache 就是这样处理的。另一种则是由 Linux distribution 提供的登录文件管理服务来统一管理。
+	你只要将信息丢给这个服务后，他就会自己分门别类的将各种信息放置到相关的登录文件去！CentOS 提供 syslogd 
+	这个服务来统一管理登录文件喔！</p>
+
+	<p>除了这个 syslogd 之外，我们的核心也需要额外的登录服务来记录核心产生的各项资讯，
+	这个专门记录核心资讯的登录文件服务就是 klogd 啦。所以说，登录文件所需的服务主要就是 <span class="text_import2">syslogd
+	与 klogd</span> 这两者。</p>
+
+	<p>不过要注意的是，如果你任凭登录文件持续记录的话，由於系统产生的资讯天天都有，那么你的登录文件的容量将会长大到无法无天～
+	如果你的登录文件容量太大时，可能会导致大文件读写效率不佳的问题 (因为要从磁碟读入内存，越大的文件消耗内存量越多)。
+	所以罗，你需要对登录文件备份与升级。那...需要手动处理喔？当然不需要，我们可以透过 logrotate (登录文件轮替) 
+	这玩意儿来自动化处理登录文件容量与升级的问题喔！</p>
+
+	<p>所谓的 logrotate 基本上，就是将旧的登录文件更改名称，然后创建一个空的登录文件，如此一来，
+	新的登录文件将重新开始记录，然后只要将旧的登录文件留下一阵子，嗯！那就可以达到将登录文件『轮转』的目的啦！
+	此外，如果旧的纪录 (大概要保存几个月吧！) 保存了一段时间没有问题，那么就可以让系统自动的将他砍掉，
+	免得占掉很多宝贵的磁盘空间说！</p>
+
+	<p>总结一下，针对登录文件所需的功能，我们需要的服务与程序有：</p>
+	<ul>
+	<li><span class="text_import1">syslogd</span>：主要登录系统与网络等服务的信息；</li>
+	<li><span class="text_import1">klogd</span>：主要登录核心产生的各项资讯；</li>
+	<li><span class="text_import1">logrotate</span>：主要在进行登录文件的轮替功能。</li>
+	</ul>
+
+	<p>由於我们著眼点在於想要了解系统上面软件所产生的各项资讯，因此本章主要针对 syslogd 与 logrotate 来介绍。
+	接著下来我们来谈一谈怎么样规划这两个玩意儿。就由 syslogd 这支程序先谈起吧！毕竟得先有登录文件，才可以进行
+	logrotate 呀！您说是吧！</p>
+</div>
+
+
+<hr><a name="syslogd"></a><img src="../image/logo.png" alt="大标题的图示" width="35" align="middle" height="34"><span class="text_h1">syslogd ：记录登录文件的服务</span><br>
+<div class="block1">
+	<p>刚刚提到说 Linux 的登录文件主要是由 syslogd 在负责，那么你的 Linux
+	是否有启动 syslogd 呢？而且是否有配置启动时启动呢？呵呵！检查一下先：</p>
+
+<table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">ps aux | grep syslog</span>
+USER   PID %CPU %MEM  VSZ  RSS TTY  STAT START  TIME COMMAND
+root  4294  0.0  0.0 1716  568 ?    Ss   Mar31  0:00 <span class="term_write">syslogd -m 0</span>
+<span class="term_say"># 瞧！确实有启动的！</span>
+
+[root@www ~]# <span class="term_command">chkconfig --list syslog</span>
+syslog    0:off  1:off  2:on   3:on   4:on   5:on   6:off
+<span class="term_say"># 默认情况下，文字介面与图形介面 (3, 5) 都有启动喔！</span>
+</pre></td></tr></tbody></table>
+
+	<p>看到 syslog 这个服务名称了吧？所以知道他已经在系统中工作罗！好了，既然本章主要是讲登录文件，那么你知道登录文件的内容是如何展现的？
+	syslog 的配置档在哪里？如何配置？如果你的 Linux 主机想要当作整个局域网的登录文件服务器时，又该如何配置？
+	底下就让我们来玩玩这玩意！<br><br></p>
+
+	<hr><a name="syslogd_format"></a><img src="../image/logo.png" alt="小标题的图示" width="24" align="middle" height="23"><span class="text_h2">登录文件内容的一般格式</span><br>
+	<div class="block2">
+		<p>一般来说，系统产生的信息经过 syslog 而记录下来的数据中，每条信息均会记录底下的几个重要数据：</p>
+
+		<ul class="text_import2">
+		<li>事件发生的日期与时间；</li>
+		<li>发生此事件的主机名称；</li>
+		<li>启动此事件的服务名称 (如 samba, xinetd 等) 或函式名称 (如 libpam ..)；</li>
+		<li>该信息的实际数据内容。</li>
+		</ul>
+
+		<p>当然，这些资讯的『详细度』是可以修改的，而且，这些资讯可以作为系统除错之用呢！
+		我们拿登录时一定会记载帐号资讯的 /var/log/secure 为例好了：</p>
+
+<table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">cat /var/log/secure</span>
+<span class="term_note">1</span> Mar 14 15:38:00 www atd[18701]: pam_unix(atd:session): session opened for 
+  user root by (uid=0)
+<span class="term_note">2</span> Mar 14 15:38:00 www atd[18701]: pam_unix(atd:session): session closed for
+  user root
+<span class="term_note">3</span> Mar 16 16:01:51 www su: pam_unix(su-l:auth): authentication failure; logn
+  ame=vbird uid=500 euid=0 tty=pts/1 ruser=vbird rhost=  user=root
+<span class="term_note">4</span> Mar 16 16:01:55 www su: pam_unix(su-l:session): session opened for user 
+  root by vbird(uid=500)
+<span class="term_note">5</span> Mar 16 16:02:22 www su: pam_unix(su-l:session): session closed for user root
+<span class="term_say">  |--日期/时间---|-H-|-----服务与相关函数-------|--信息说明------&gt;</span>
+</pre></td></tr></tbody></table>
+
+		<p>我们拿第一笔数据来说明好了，该数据是说：『<span class="text_import2">在三月14日 (Mar 14) 的下午 15:38 分，由 
+		www 这部主机的 atd [PID 为 18701] 传来的消息，这个消息是透过 pam_unix 
+		这个模块所提出的。信息内容为 root (uid=0) 这个帐号已经开启 atd 的活动了。</span>』有够清楚吧！
+		那请您自行翻译一下后面的 4 条信息内容是什么喔！</p>
+
+		<p>其实还有很多的资讯值得查阅的呢！尤其是 /var/log/messages 的内容。记得一个好的系统管理员，
+		要常常去『巡视』登录文件的内容喔！尤其是发生底下几种情况时：</p>
+		<ul>
+		<li>当你觉得系统似乎不太正常时；</li>
+		<li>某个 daemon 老是无法正常启动时；</li>
+		<li>某个使用者老是无法登陆时；</li>
+		<li>某个 daemon 运行过程老是不顺畅时；</li>
+		</ul>
+		<p>还有很多啦！反正觉得系统不太正常，就得要查询查询登录文件就是了。</p>
+
+		<div style="padding: 10pt 0pt;" align="right"><table width="90%"><tbody><tr><td><b>Tips:</b><br><span style="color: rgb(0, 144, 0);"><font size="-1">		提供一个鸟哥常做的检查方式。当我老是无法成功的启动某个服务时，我会在最后一次启动该服务后，立即检查登录文件，
+		先 (1)找到现在时间所登录的资讯『第一栏位』； (2)找到我想要查询的那个服务『第三栏位』，
+		(3)最后再仔细的查阅第四栏位的资讯，来藉以找到错误点。
+		</font></span></td><td><img src="0570syslog_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div>	</div>
+
+	<hr><a name="syslogd_conf"></a><img src="../image/logo.png" alt="小标题的图示" width="24" align="middle" height="23"><span class="text_h2">syslog 的配置档：/etc/syslog.conf</span><br>
+	<div class="block2">
+		<p>什么？登录文件还有配置档？喔！不是啦～是 syslogd 这个 daemon 的配置档啦！
+		我们现在知道 syslogd 可以负责主机产生的各个资讯的登录，而这些资讯本身是有『严重等级』之分的，
+		而且，这些数据最终要传送到哪个文件去是可以修改的呢，所以我们才会在一开头的地方讲说，
+		每个 Linux distributions 放置的登录文件档名可能会有所差异啊！</p>
+
+		<p>基本上， syslog 针对各种服务与信息记录在某些文件的配置档就是 <span class="text_import2">/etc/syslog.conf</span>，
+		这个文件规定了『<span class="text_import2">(1)什么服务 (2)的什么等级信息 (3)需要被记录在哪里(装置或文件)</span>』
+		这三个咚咚，所以配置的语法会是这样：</p>
+
+<table class="term"><tbody><tr><td class="term"><pre>服务名称[.=!]信息等级		信息记录的档名或装置或主机
+<span class="term_say"># 底下以 mail 这个服务产生的 info 等级为例：</span>
+mail.info			/var/log/maillog_info
+<span class="term_say"># 这一行说明：mail 服务产生的大於等於 info 等级的信息，都记录到 
+# /var/log/maillog_info 文件中的意思。</span>
+</pre></td></tr></tbody></table>
+
+		<p>我们将上面的数据简单的分为三部分来说明：<br><br></p>
+
+		<hr><ul class="list1"><li class="text_import1">服务名称</li></ul>
+
+		<p>syslog 本身有规范一些服务，你可以透过这些服务来储存系统的信息。syslog 认识的服务主要有底下这些：
+		(可使用 man 3 syslog 查询到相关的资讯)</p>
+
+<table bgcolor="lightyellow" border="1" cellpadding="3" cellspacing="0" width="95%">
+<tbody><tr align="center" bgcolor="#182448"><td><font color="#FFFFFF">服务类别</font></td><td><font color="#FFFFFF">说明</font></td></tr>
+<tr><td align="center"><span class="text_import2">auth (authpriv)</span></td>
+	<td>主要与认证有关的机制，例如 login, ssh, su 等需要帐号/口令的咚咚；</td></tr>
+<tr><td align="center"><span class="text_import2">cron</span></td><td>就是例行性工作排程 cron/at 等产生信息记录的地方；</td></tr>
+<tr><td align="center"><span class="text_import2">daemon</span></td><td>与各个 daemon 有关的信息；</td></tr>
+<tr><td align="center"><span class="text_import2">kern</span></td><td>就是核心 (kernel) 产生信息的地方；</td></tr>
+<tr><td align="center"><span class="text_import2">lpr</span></td><td>亦即是列印相关的信息啊！</td></tr>
+<tr><td align="center"><span class="text_import2">mail</span></td><td>只要与邮件收发有关的信息纪录都属於这个；</td></tr>
+<tr><td align="center"><span class="text_import2">news</span></td><td>与新闻群组服务器有关的东西；</td></tr>
+<tr><td align="center"><span class="text_import2">syslog</span></td><td>就是 syslogd 这支程序本身产生的资讯啊！</td></tr>
+<tr><td align="center"><span class="text_import2">user, uucp, local0 ~ local7</span></td>
+	<td>与 Unix like 机器本身有关的一些信息。</td></tr>
+</tbody></table>
+
+		<p>上面谈到的都是 syslog 自行制订的服务名称，软件开发商可以透过呼叫上述的服务名称来记录他们的软件。
+		举例来说， sendmail 与 postfix 及 dovecot 都是与邮件有关的软件，这些软件在设计登录文件记录时，都会主动呼叫 syslogd 
+		内的 mail 服务名称 (LOG_MAIL)，所以上述三个软件 (sendmail, postfix, dovecot) 产生的信息在 syslog 
+		看起来，就会『是 mail 』类型的服务了。我们可以将这个概念绘制如底下的图示来理解：</p>
+
+		<center><img src="0570syslog_files/syslog_daemon.gif" alt="syslog 所制订的服务名称与软件呼叫的方式" title="syslog 所制订的服务名称与软件呼叫的方式" border="0"><br>
+		图 2.2.1、 syslog 所制订的服务名称与软件呼叫的方式<br></center>
+
+		<p>另外，每种服务所产生的数据量其实差异是很大的，举例来说， mail 的登录文件信息多的要命，
+		每一封信件进入后， mail 至少需要记录『寄信人的资讯；与收信者的信息』等等；
+		而如果是用来做为工作站主机的，那么登陆者 (利用 login 登录主机处理事情)
+		的数量一定不少，那个 authpriv 所管辖的内容可就多的要命了。</p>
+
+		<p>为了让不同的资讯放置到不同的文件当中，好让我们分门别类的进行登录文件的管理，
+		所以罗，将各种类别的服务之登录文件，记录在不同的文件里面，就是我们 /etc/syslog.conf 
+		所要作的规范了！<br><br></p>
+
+		<hr><ul class="list1"><li class="text_import1">信息等级</li></ul>
+
+		<p>同一个服务所产生的信息也是有差别的，有启动时仅通知系统而已的一般信息 (information)，
+		有出现还不至於影响到正常运行的警告信息 (warn) ，还有系统硬件发生严重错误时，所产生的重大问题信息 (error 等等)；
+		信息到底有多少种严重的等级呢？基本上，syslog 将信息分为七个主要的等级，依序是这样的(由不重要排列到重要信息等级)：</p>
+
+
+<table bgcolor="lightyellow" border="1" cellpadding="3" cellspacing="0" width="95%">
+<tbody><tr align="center" bgcolor="#182448"><td width="30"><font color="#FFFFFF">等级</font></td><td width="60"><font color="#FFFFFF">等级名称</font></td><td><font color="#FFFFFF">说明</font></td></tr>
+<tr><td align="center">1</td><td align="center"><span class="text_import2">info</span></td>
+	<td>仅是一些基本的信息说明而已；</td></tr>
+<tr><td align="center">2</td><td align="center"><span class="text_import2">notice</span></td>
+	<td>比 info 还需要被注意到的一些资讯内容；</td></tr>
+<tr><td align="center">3</td><td align="center"><span class="text_import2">warning<br>(warn)</span></td>
+	<td>警示的信息，可能有问题，但是还不至於影响到某个 daemon 运行的资讯；基本上，
+	info, notice, warn 这三个信息都是在告知一些基本资讯而已，应该还不至於造成一些系统运行困扰；</td></tr>
+<tr><td align="center">4</td><td align="center"><span class="text_import2">err <br>(error)</span></td>
+	<td>一些重大的错误信息，例如配置档的某些配置值造成该服务服法启动的资讯说明，
+	通常藉由 err 的错误告知，应该可以了解到该服务无法启动的问题呢！</td></tr>
+<tr><td align="center">5</td><td align="center"><span class="text_import2">crit</span></td>
+	<td>比 error 还要严重的错误资讯，这个 crit 是临界点 
+	(critical) 的缩写，这个错误已经很严重了喔！</td></tr>
+<tr><td align="center">6</td><td align="center"><span class="text_import2">alert</span></td>
+	<td>警告警告，已经很有问题的等级，比 crit 还要严重！</td></tr>
+<tr><td align="center">7</td><td align="center"><span class="text_import2">emerg <br>(panic)</span></td>
+	<td>疼痛等级，意指系统已经几乎要死机的状态！
+	很严重的错误资讯了。通常大概只有硬件出问题，导致整个核心无法顺利运行，就会出现这样的等级的信息吧！</td></tr>
+</tbody></table>
+
+		<p>除了这些有等级的信息外，还有两个特殊的等级，那就是 <span class="text_import2">debug(错误侦测等级) 
+		与 none (不需登录等级)</span> 两个，当我们想要作一些错误侦测，或者是忽略掉某些服务的资讯时，
+		就用这两个咚咚吧！</p>
+
+		<p>特别留意一下在信息等级之前还有 [.=!] 的连结符号喔！他代表的意思是这样的：</p>
+
+		<ul>
+		<li><span class="text_import1" style="font-family: '细明体';">. </span>：代表『比后面还要高的等级 (含该等级)
+			都被记录下来』的意思，例如： mail.info 代表只要是 mail
+			的资讯，而且该资讯等级高於 info (含 info 本身)时，就会被记录下来的意思。</li>
+		<li><span class="text_import1" style="font-family: '细明体';">.=</span>：代表所需要的等级就是后面接的等级而已，
+			其他的不要！</li>
+		<li><span class="text_import1" style="font-family: '细明体';">.!</span>：代表不等於，
+			亦即是除了该等级外的其他等级都记录。</li>
+		</ul>
+		
+		<p>一般来说，我们比较常使用的是『.』这个连结符号啦！^_^<br><br></p>
+
+		<hr><ul class="list1"><li class="text_import1">信息记录的档名或装置或主机</li></ul>
+
+		<p>再来则是这个信息要放置在哪里的纪录了。通常我们使用的都是记录的文件啦！但是也可以输出到装置呦！
+		例如打印机之类的！也可以记录到不同的主机上头去呢！底下就是一些常见的放置处：</p>
+
+		<ul>
+		<li>文件的绝对路径：通常就是放在 /var/log 里头的文件啦！</li>
+		<li>打印机或其他：例如 /dev/lp0 这个打印机装置</li>
+		<li>使用者名称：显示给使用者罗！</li>
+		<li>远程主机：例如 @www.vbird.tsai 当然啦，要对方主机也能支持才行！</li>
+		<li>*：代表『目前在线上的所有人』，类似 <a href="http://vbird.dic.ksu.edu.tw/linux_basic/0410accountmanager.php#uselinux_talk">wall</a> 
+			这个命令的意义！</li>
+		</ul><br>
+
+		<hr><ul class="list1"><li class="text_import1">syslog.conf 语法练习</li></ul>
+
+		<p>基本上，整个 syslog 的配置档就只是这样而已，底下我们来思考一些例题，好让你可以更清楚的知道如何配置 
+		syslogd 啊！</p>
+
+<table border="1" cellpadding="5" cellspacing="0" width="90%"><tbody><tr><td>
+例题：<div class="block2">
+如果我要将我的 mail 相关的数据给他写入 /var/log/maillog 当中，那么在 /etc/syslog.conf 的语法如何设计？
+</div>
+答：<div class="block2">
+基本的写法是这样的：
+<blockquote class="text_import2" style="font-family: '细明体';">mail.info　　　/var/log/maillog</blockquote>
+注意到上面喔，当我们的等级使用 info 时，那么『任何大於 info 等级(含 info 这个等级)之上的信息，
+都会被写入到后面接的文件之中！』这样可以了解吗？也就是说，我们可以将所有 mail 的登录资讯都纪录在
+/var/log/maillog 里面的意思啦！
+</div>
+</td></tr></tbody></table><br>
+
+<table border="1" cellpadding="5" cellspacing="0" width="90%"><tbody><tr><td>
+例题：<div class="block2">
+我要将新闻群组数据 (news) 及例行性工作排程 (cron) 的信息都写入到一个称为
+/var/log/cronnews 的文件中，但是这两个程序的警告信息则额外的记录在 /var/log/cronnews.warn 中，
+那该如何配置我的 syslog.conf 呢？
+</div>
+答：<div class="block2">
+很简单啦！既然是两个程序，那么只好以分号来隔开了，此外，由於第二个指定文件中，我只要记录警告信息，
+因此配置上需要指定『.=』这个符号，所以语法成为了：
+<blockquote class="text_import2" style="font-family: '细明体';">
+news.*;cron.*　　　　　/var/log/cronnews<br>
+news.=warn;cron.=warn　/var/log/cronnews.warn</blockquote>
+上面那个『.=』就是在指定等级的意思啦！由於指定了等级，因此，只有这个等级的信息才会被纪录在这个文件里面呢！
+此外你也必须要注意，news 与 cron 的警告信息也会写入 /var/log/cronnews 内喔！
+</div>
+</td></tr></tbody></table><br>
+
+<table border="1" cellpadding="5" cellspacing="0" width="90%"><tbody><tr><td>
+例题：<div class="block2">
+我的 messages 这个文件需要记录所有的资讯，但是就是不想要记录 cron, mail 及 news 的资讯，那么应该怎么写才好？
+</div>
+答：<div class="block2">
+可以有两种写法，分别是：
+<blockquote class="text_import2" style="font-family: '细明体';">
+*.*;news,cron,mail.none　　　　　　/var/log/messages<br>
+*.*;news.none;cron.none;mail.none　/var/log/messages</blockquote>
+使用『,』分隔时，那么等级只要接在最后一个即可，如果是以『;』来分的话，
+那么就需要将服务与等级都写上去罗！这样会配置了吧！
+</div>
+</td></tr></tbody></table><br>
+
+		<a name="syslog_conf_default"></a>
+		<hr><ul class="list1"><li class="text_import1">CentOS 5.x 默认的 syslog.conf 内容</li></ul>
+
+		<p>了解语法之后，我们来看一看 syslog 有哪些系统服务已经在记录了呢？就是瞧一瞧 /etc/syslog.conf 这个文件的默认内容罗！
+		(注意！如果需要将该行做为注解时，那么就加上 # 符号就可以啦)</p>
+
+<table class="term"><tbody><tr><td class="term"><pre><span class="term_hd"># 来自 CentOS 5.x 的相关数据</span>
+[root@www ~]# <span class="term_command">vim /etc/syslog.conf</span>
+<span class="term_write"><span class="term_note">  1</span> #kern.*                                              /dev/console
+<span class="term_note">  2</span> *.info;mail.none;news.none;authpriv.none;cron.none   /var/log/messages
+<span class="term_note">  3</span> authpriv.*                                           /var/log/secure
+<span class="term_note">  4</span> mail.*                                              -/var/log/maillog
+<span class="term_note">  5</span> cron.*                                               /var/log/cron
+<span class="term_note">  6</span> *.emerg                                              *
+<span class="term_note">  7</span> uucp,news.crit                                       /var/log/spooler
+<span class="term_note">  8</span> local7.*                                             /var/log/boot.log
+<span class="term_note">  9</span> news.=crit                                         /var/log/news/news.crit
+<span class="term_note"> 10</span> news.=err                                          /var/log/news/news.err
+<span class="term_note"> 11</span> news.notice                                        /var/log/news/news.notice</span>
+</pre></td></tr></tbody></table>
+
+		<p>上面总共仅有十一行配置值，每一行的意义是这样的：</p>
+		<ol>
+		<li>#kern.*：只要是核心产生的信息，全部都送到 console(终端机) 去。console 通常是由外部装置连接到系统而来，
+		举例来说，很多封闭型主机 (没有键盘、萤幕的系统) 可以透过连接 RS232 连接口将信息传输到外部的系统中，
+		例如以笔记本计算机连接到封闭主机的 RS232 插口。这个项目通常应该是用在系统出现严重问题而无法使用默认的萤幕观察系统时，
+		可以透过这个项目来连接取得核心的信息。(<a href="#ps1">注1</a>)<br><br></li>
+
+		<li>*.info;mail.none;news.none;authpriv.none;cron.none：由於 mail, news, authpriv, cron 等类别产生的信息较多，
+		且已经写入底下的数个文件中，因此在 /var/log/messages 里面就不记录这些项目。除此之外的其他信息都写入 /var/log/messages 
+		中。这也是为啥我们说这个 messages 文件很重要的缘故！<br><br></li>
+
+		<li>authpriv.*：认证方面的信息均写入 /var/log/secure 文件；<br><br></li>
+
+		<li>mail.*：邮件方面的信息则均写入 /var/log/maillog 文件；<br><br></li>
+
+		<li>cron.*：例行性工作排程均写入 /var/log/cron 文件；<br><br></li>
+
+		<li>*.emerg：当产生最严重的错误等级时，将该等级的信息以 wall 的方式广播给所有在系统登陆的帐号得知，
+		要这么做的原因是希望在线的使用者能够赶紧通知系统管理员来处理这么可怕的错误问题。<br><br></li>
+
+		<li>uucp,news.crit：uucp 是早期 Unix-like 系统进行数据传递的通讯协议，后来常用在新闻群组的用途中。 news
+		则是新闻群组。当新闻群组方面的资讯有严重错误时就写入 /var/log/spooler 文件中；<br><br></li>
+
+		<li>local7.*：将本机启动时应该显示到萤幕的信息写入到 /var/log/boot.log 文件中；<br><br></li>
+
+		<li>后面的 news.=crit、news.=err、news.notice 则主要在分别记录新闻群组产生的不同等级的信息。</li>
+		</ol>
+
+		<p>在上面的第四行关於 mail 的记录中，<span class="text_import2">在记录的文件 /var/log/maillog 
+		前面还有个减号『 - 』是干嘛用的？由於邮件所产生的信息比较多，因此我们希望邮件产生的信息先储存在速度较快的内存中 
+		(buffer) ，等到数据量够大了才一次性的将所有数据都填入磁碟内</span>，这样将有助於登录文件的存取性能。
+		只不过由於信息是缓存在内存内，因此若不正常关机导致登录资讯未回填到登录文件中，可能会造成部分数据的遗失。</p>
+
+		<p>此外，每个 Linux distributions 的 syslog.conf 配置差异是颇大的，如果你想要找到相对应的登录资讯时，
+		可得要查阅一下 /etc/syslog.conf 这个文件才行！否则可能会发生分析到错误的资讯喔！举例来说，
+		<a href="#analyze_vbird">鸟哥有自己写一支分析登录文件的 script</a>，这个 script 是依据 Red Hat 
+		系统默认的登录文件所写的，因此不同的 distributions 
+		想要使用这支程序时，就得要自行设计与修改一下 /etc/syslog.conf 才行喔！否则就可能会分析到错误的资讯罗。
+		那么如果你有自己的需要而得要修订登录文件时，该如何进行？<br><br></p>
+
+		<hr><ul class="list1"><li class="text_import1">自行添加登录文件文件功能</li></ul>
+
+		<p>如果你有其他的需求，所以需要特殊的文件来帮你记录时，呵呵！别客气，千万给他记录在
+		/etc/syslog.conf 当中，如此一来，你就可以重复的将许多的资讯记录在不同的文件当中，以方便你的管理呢！
+		让我们来作个练习题吧！如果你想要让『所有的资讯』都额外写入到 /var/log/admin.log 这个文件时，
+		你可以怎么作呢？先自己想一想，并且作一下，再来看看底下的作法啦！</p>
+
+<table class="term"><tbody><tr><td class="term"><pre><span class="term_hd"># 1. 先配置好所要创建的文件配置！</span>
+[root@www ~]# <span class="term_command">vim /etc/syslog.conf</span>
+<span class="term_write"># Add by VBird 2009/04/08       <span class="term_note">&lt;==再次强调，自己修改的时候加入一些说明</span>
+*.info      /var/log/admin.log</span>  <span class="term_note">&lt;==有用的是这行啦！</span>
+
+<span class="term_hd"># 2. 重新启动 syslog 呢！</span>
+[root@www ~]# <span class="term_command">/etc/init.d/syslog restart</span>
+[root@www ~]# <span class="term_command">ll /var/log/admin.log</span>
+-rw------- 1 root root 118 Apr  8 13:50 /var/log/admin.log
+<span class="term_say"># 瞧吧！创建了这个登录文件出现罗！</span>
+</pre></td></tr></tbody></table>
+
+		<p>很简单吧！如此一来，所有的资讯都会写入 /var/log/admin.log 里面了！</p>
+	</div>
+
+	<hr><a name="syslogd_secure"></a><img src="../image/logo.png" alt="小标题的图示" width="24" align="middle" height="23"><span class="text_h2">登录文件的安全性配置</span><br>
+	<div class="block2">
+		<p>好了，由上一个小节里面我们知道了 syslog.conf 的配置，也知道了登录文件内容的重要性了，
+		所以，如果幻想你是一个很厉害的黑客，想利用他人的计算机干坏事，然后又不想留下证据，
+		你会怎么作？对啦！就是离开的时候将屁股擦干净，将所有可能的信息都给他抹煞掉，
+		所以<span class="text_import2">第一个动脑筋的地方就是登录文件的清除工作啦</span>～
+		如果你的登录文件不见了，那该怎办？</p>
+
+		<div style="padding: 10pt 0pt;" align="right"><table width="90%"><tbody><tr><td><b>Tips:</b><br><span style="color: rgb(0, 144, 0);"><font size="-1">		哇！鸟哥教人家干坏事……喂！不要乱讲话～俺的意思是，如果改天你发现你的登录文件不翼而飞了，
+		或者是发现你的登录文件似乎不太对劲的时候，最常发现的就是网友常常会回报说，他的
+		/var/log 这个目录『不见了！』不要笑！这是真的事情！请记得，『赶快清查你的系统！』
+		</font></span></td><td><img src="0570syslog_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div>
+		<p>伤脑筋呢！有没有办法防止登录文件被删除？或者是被 root 自己不小心变更呢？有呀！拔掉网络线或电源线就好了……呵呵！
+		别担心，基本上，我们可以透过一个隐藏的属性来配置你的登录文件，成为『
+		<span class="text_import2">只可以添加数据，但是不能被删除</span>
+		』的状态，那么或许可以达到些许的保护！不过，如果你的
+		root 帐号被破解了，那么底下的配置还是无法保护的，因为你要记得『 <span class="text_import2">root
+		是可以在系统上面进行任何事情的</span> 』，因此，请将你的 root 
+		这个帐号的口令配置的安全一些！千万不要轻忽这个问题呢！</p>
+
+		<div style="padding: 10pt 0pt;" align="right"><table width="90%"><tbody><tr><td><b>Tips:</b><br><span style="color: rgb(0, 144, 0);"><font size="-1">		为什么登录文件还要防止被自己 (root) 不小心所修改过呢？
+		鸟哥在教 Linux 的课程时，我的学生常常会举手说：『老师，我的登录文件不能记录资讯了！糟糕！是不是被入侵了啊？』
+		怪怪！明明是计算机教室的主机，使用的是 Private IP 而且学校计中还有抵挡机制，不可能被攻击吧？
+		查询了才知道原来同学很喜欢使用『 :wq 』来离开 vim 的环境，但是 syslog 的登录文件只要『被编辑过』就无法继续记录！
+		所以才会导致不能记录的问题。此时你得要 (1)改变使用 vim 的习惯； (2)重新启动 syslog 让他再继续提供服务才行喔！
+		</font></span></td><td><img src="0570syslog_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div>
+		<p>既然如此，那么我们就来处理一下隐藏属性的东东吧！我们在<a href="0220filemanager.php.html">第七章</a>谈到过 <a href="http://vbird.dic.ksu.edu.tw/linux_basic/0220filemanager.php#lsattr">lsattr</a>
+		与 <a href="http://vbird.dic.ksu.edu.tw/linux_basic/0220filemanager.php#chattr">chattr</a>
+		这两个东西啦！如果将一个文件以 chattr 配置 i 这个属性时，那么该文件连 root
+		都不能杀掉！而且也不能新增数据，嗯！真安全！但是，如此一来登录文件的功能岂不是也就消失了？
+		因为没有办法写入呀！所以罗，<span class="text_import2">我们要使用的是
+		a 这个属性</span>！你的登录文件如果配置了这个属性的话，那么
+		<span class="text_import2">他将只能被添加，而不能被删除</span>！嗯！
+		这个项目就非常的符合我们登录文件的需求啦！因此，你可以这样的添加你的登录文件的隐藏属性。</p>
+
+		<div style="padding: 10pt 0pt;" align="right"><table width="90%"><tbody><tr><td><b>Tips:</b><br><span style="color: rgb(0, 144, 0);"><font size="-1">		请注意，底下的这个 chattr 的配置状态：『仅适合已经对 Linux 系统很有概念的朋友』来配置，
+		对於新手来说，建议你直接使用系统的默认值就好了，免得到最后登录文件无法写入～
+		那就比较糗一点！ @_@
+		</font></span></td><td><img src="0570syslog_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div>
+<table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">chattr +a /var/log/messages</span>
+[root@www ~]# <span class="term_command">lsattr /var/log/messages</span>
+-----a------- /var/log/messages
+</pre></td></tr></tbody></table>
+
+		<p>加入了这个属性之后，你的 /var/log/messages 登录文件从此就仅能被添加，而不能被删除，直到
+		root 以『 chattr -a /var/log/messages 』取消这个 a 的参数之后，才能被删除或移动喔！</p>
+
+		<p>虽然，为了你登录文件的资讯安全，这个 chattr 的 +a 旗标可以帮助你维护好这个文件，
+		不过，如果你的系统已经被取得 root 的权限，而既然 root 可以下达 chattr -a 来取消这个旗标，
+		所以罗，还是有风险的啦！此外，前面也稍微提到，新手最好还是先不要添加这个旗标，
+		很容易由於自己的忘记，导致系统的重要信息无法记录呢。</p>
+
+		<p>基本上，鸟哥认为，这个旗标最大的用处除了在保护你登录文件的数据外，
+		他还可以帮助你避免掉不小心写入登录文件的状况喔。要注意的是，当『
+		<span class="text_import2">你不小心 "手动" 更动过登录文件后，例如那个 /var/log/messages ，
+		你不小心用 vi 开启他，离开却下达 :wq 的参数，呵呵！那么该文件未来将不会再继续进行登录动作！</span> 
+		』这个问题真的很常发生！由於你以 vi 储存了登录文件，则 syslogd 会误判为该文件已被更动过，
+		将导致 syslogd 不再写入该文件新的内容～很伤脑筋的！</p>
+
+		<p>要让该登录文件可以继续写入，你只要重新启动 syslog (/etc/init.d/syslog restart) 即可。
+		不过，总是比较麻烦。所以啊，如果你针对登录文件下达 chattr +a 的参数，嘿嘿！
+		未来你就不需要害怕不小心更动到该文件了！因为无法写入嘛！除了可以新增之外～ ^_^</p>
+
+		<p>不过，也因为这个 +a 的属性让该文件无法被删除与修改，所以罗，当我们进行登录文件轮替时 (logrotate)
+		，将会无法移动该登录文件的档名呢！所以会造成很大的困扰。这个困扰虽然可以使用 logrotate 
+		的配置档来解决，但是，还是先将登录文件的 +a 旗标拿掉吧！</p>
+
+<table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">chattr -a /var/log/messages</span>
+</pre></td></tr></tbody></table>
+	</div>
+
+	<hr><a name="syslogd_server"></a><img src="../image/logo.png" alt="小标题的图示" width="24" align="middle" height="23"><span class="text_h2">登录文件服务器的配置</span><br>
+	<div class="block2">
+		<p>我们在之前稍微提到的，在 syslog.conf 文件当中，可以将登录数据传送到打印机或者是远程主机上面去。这样做有什么意义呢？
+		如果你将登录资讯直接传送到打印机上面的话，那么万一不小心你的系统被 cracker 所入侵，
+		他也将你的 /var/log/ 砍掉了，怎么办？没关系啊！反正你已经将重要数据直接以打印机记录起来了，
+		嘿嘿！他是无法逃开的啦！^_^</p>
+
+		<p>再想像一个环境，你的办公室内有十部 Linux 主机，每一部负责一个网络服务，
+		你为了要了解每部主机的状态，因此，你常常需要登陆这十部主机去查阅你的登录文件～
+		哇！光用想的，每天要进入十部主机去查数据，想到就烦～没关系～这个时候我们可以让某一部主机当成
+		『登录文件服务器』，用他来记录所有的十部 linux 主机的资讯，嘿嘿！这样我就直接进入一部主机就可以了！
+		省时又省事，真方便～</p>
+
+		<p>那要怎么达到这样的功能呢？很简单啦，我们 CentOS 5.x 默认的 syslog 本身就已经具有这个登录文件服务器的功能了，
+		只是默认并没有启动该功能而已。你可以透过 man syslogd 去查询一下相关的选项就能够知道啦！
+		既然是登录文件服务器，那么我们的 Linux 主机当然会启动一个端口来监听了，那个默认的端口就是 UDP 的 514 喔！</p>
+
+		<center><img src="0570syslog_files/syslog_server.gif" alt="登录文件服务器的架构" title="登录文件服务器的架构" border="0"><br>
+		图 2.4.1、登录文件服务器的架构<br></center>
+
+		<p>如上图所示，服务器会启动监听的端口，用户端则将登录文件再转出一份送到服务器去。
+		而既然是登录文件『服务器』，所以当然有服务器与用户端 (client) 罗！这两者的配置分别是这样的：</p>
+
+<table class="term"><tbody><tr><td class="term"><pre><span class="term_hd"># 1. Server 端：修改 syslogd 的启动配置档，通常在 /etc/sysconfig 内！</span>
+[root@www ~]# <span class="term_command">vim /etc/sysconfig/syslog</span>
+<span class="term_say"># 找到底下这一行：</span>
+SYSLOGD_OPTIONS="-m 0"
+<span class="term_say"># 改成底下这样子！</span>
+SYSLOGD_OPTIONS="-m 0 <span class="term_write">-r</span>"
+
+<span class="term_hd"># 2. 重新启动与观察 syslogd 喔！</span>
+[root@www ~]# <span class="term_command">/etc/init.d/syslog restart</span>
+[root@www ~]# <span class="term_command">netstat -lunp | grep syslog</span>
+Proto Recv-Q Send-Q Local Address  Foreign Address State   PID/Program name
+udp        0      0 0.0.0.0:<span class="term_write">514</span>    0.0.0.0:*               13981/<span class="term_write">syslogd</span>
+<span class="term_say"># 嘿嘿！你的登录文件主机已经配置妥当罗！很简单吧！</span>
+</pre></td></tr></tbody></table>
+
+		<p>透过这个简单的动作，你的 Linux 主机已经可以接收来自其他主机的登录资讯了！
+		当然啦，你必须要知道网络方面的相关基础，这里鸟哥只是先介绍，
+		未来了解了网络相关资讯后，再回头来这里瞧一瞧先！ ^_^</p>
+
+		<p>至於 client 端的配置就简单多了！只要指定某个资讯传送到这部主机即可！
+		举例来说，我们的登录文件服务器 IP 为 192.168.1.100 ，而 client 端希望所有的数据都送给主机，
+		所以，可以在 /etc/syslog.conf 里面新增这样的一行：</p>
+
+<table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">vim /etc/syslog.conf</span>
+<span class="term_write">*.*       @192.168.1.100</span>
+</pre></td></tr></tbody></table>
+
+		<p>再重新启动 syslog 后，立刻就搞定了！而未来主机上面的登录文件当中，每一行的『主机名称』就会显示来自不同主机的资讯了。
+		很简单吧！ ^_^。接下来，让我们来谈一谈，那么如何针对登录文件来进行轮转 (rotate) 呢？</p>
+	</div>
+</div>
+
+
+<hr><a name="rotate"></a><img src="../image/logo.png" alt="大标题的图示" width="35" align="middle" height="34"><span class="text_h1">登录文件的轮替(logrotate)</span><br>
+<div class="block1">
+	<p>假设我们已经将登录数据写入了记录档中了，也已经利用 chattr 配置了 +a 这个属性了，那么该如何进行
+	logrotate 的工作呢？这里请特别留意的是：『<span class="text_import2">syslog 利用的是 daemon 的方式来启动的，
+	当有需求的时候立刻就会被运行的，但是 logrotate 却是在规定的时间到了之后才来进行登录文件的轮替，
+	所以这个 logrotate 程序当然就是挂在 <a href="0430cron.php.html">cron</a> 底下进行的呦！</span>』
+	仔细看一下 /etc/cron.daily/ 里面的文件，嘿嘿～看到了吧！ /etc/cron.daily/logrotate 
+	就是记录了每天要进行的登录文件轮替的行为啦！ ^_^！底下我们就来谈一谈怎么样设计这个 logrotate 吧！<br><br></p>
+
+	<hr><a name="rotate_config"></a><img src="../image/logo.png" alt="小标题的图示" width="24" align="middle" height="23"><span class="text_h2">logrotate 的配置档</span><br>
+	<div class="block2">
+		<p>既然 logrotate 主要是针对登录文件来进行轮替的动作，所以罗，他当然必须要记载『
+		在什么状态下才将登录文件进行轮替』的配置啊！那么 logrotate 这个程序的参数配置档在哪里呢？呵呵！那就是：</p>
+
+		<ul class="text_import2" style="font-family: '细明体';">
+		<li>/etc/logrotate.conf</li>
+		<li>/etc/logrotate.d/</li>
+		</ul>
+
+		<p>那个 logrotate.conf 才是主要的参数文件，至於 logrotate.d 是一个目录，
+		该目录里面的所有文件都会被主动的读入 /etc/logrotate.conf 当中来进行！另外，在
+		/etc/logrotate.d/ 里面的文件中，如果没有规定到的一些细部配置，则以 /etc/logrotate.conf
+		这个文件的规定来指定为默认值！</p>
+
+		<p>好了，刚刚我们提到 logrotate 的主要功能就是将旧的登录文件移动成旧档，
+		并且重新创建一个新的空的文件来记录，他的运行结果有点类似底下的图示：</p>
+
+		<center><img src="0570syslog_files/logrotate.gif" alt="登录文件进行 logrotate 的结果" title="登录文件进行 logrotate 的结果" border="0"><br>
+		图 3.1.1、 登录文件进行 logrotate 的结果<br></center>
+
+		<p>由上面的图示我们可以清楚的知道，当第一次运行完 rotate 之后，原本的 messages 会变成 messages.1
+		而且会制造一个空的 messages 给系统来储存登录文件。而第二次运行之后，则 messages.1 会变成
+		messages.2 而 messages 会变成 messages.1 ，又造成一个空的 messages 
+		来储存登录文件！那么如果我们仅配置保留三个登录文件而已的话，那么运行第四次时，则
+		messages.3 这个文件就会被删除，并由后面的较新的保存登录文件所取代！基本的工作就是这样啦！</p>
+
+		<p>那么多久进行一次这样的 logrotate 工作呢？这些都记录在 logrotate.conf	里面，我们来看一下默认的 
+		logrotate 的内容吧！</p>
+
+<table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">vim /etc/logrotate.conf</span>
+<span class="term_say"># 底下的配置是 "logrotate 的默认配置值" ，如果个别的文件配置了其他的参数，
+# 则将以个别的文件配置为主，若该文件没有配置到的参数则以这个文件的内容为默认值！</span>
+
+<span class="term_write">weekly    <span class="term_note">&lt;==默认每个礼拜对登录文件进行一次 rotate 的工作</span>
+rotate 4  <span class="term_note">&lt;==保留几个登录文件呢？默认是保留四个！</span>
+create    <span class="term_note">&lt;==由於登录文件被更名，因此创建一个新的来继续储存之意！</span>
+#compress <span class="term_note">&lt;==被更动的登录文件是否需要压缩？如果登录文件太大则可考虑此参数启动</span>
+
+include /etc/logrotate.d
+<span class="term_say"># 将 /etc/logrotate.d/ 这个目录中的所有文件都读进来运行 rotate 的工作！</span>
+
+/var/log/wtmp {       <span class="term_note">&lt;==仅针对 /var/log/wtmp 所配置的参数</span>
+    monthly           <span class="term_note">&lt;==每个月一次，取代每周！</span>
+    minsize 1M        <span class="term_note">&lt;==文件容量一定要超过 1M 后才进行 rotate (略过时间参数)</span>
+    create 0664 root utmp <span class="term_note">&lt;==指定新建文件的权限与所属帐号/群组</span>
+    rotate 1          <span class="term_note">&lt;==仅保留一个，亦即仅有 wtmp.1 保留而已。</span>
+}</span>
+<span class="term_say"># 这个 wtmp 可记录登陆者与系统重新启动时的时间与来源主机及登陆期间的时间。
+# 由於具有 minsize 的参数，因此不见得每个月一定会进行一次喔！要看文件容量。
+# 由於仅保留一个登录文件而已，不满意的话可以将他改成 rotate 5 吧！</span>
+</pre></td></tr></tbody></table>
+
+		<p>由这个文件的配置我们可以知道 /etc/logrotate.d 其实就是由 /etc/logrotate.conf
+		所规划出来的目录，所以，其实我们可以将所有的数据都给他写入 /etc/logrotate.conf
+		即可，但是这样一来这个文件就实在是太复杂了，尤其是当我们使用很多的服务在系统上面时，
+		每个服务都要去修改 /etc/logrotate.conf 的配置也似乎不太合理～
+		所以，如果独立出来一个目录，那么每个以 RPM 打包方式所创建的服务的登录文件轮替配置，
+		就可以独自成为一个文件，并且放置到 /etc/logrotate.d/ 当中即可，真是方便又合理的做法啊！ ^_^</p>
+
+		<p>一般来说，这个 /etc/logrotate.conf 是『默认的轮替状态』而已，
+		我们的各个服务都可以拥有自己的登录文件轮替配置，你也可以自行修改成自己喜欢的样式啊！
+		例如，如果你的系统的空间够大，并且担心除错以及黑客的问题，那么可以：</p>
+
+		<ul class="text_import2">
+		<li>将 rotate 4 改成 rotate 9 左右，以保存较多的备份文件；</li>
+		<li>大部分的登录文件不需要 compress 罗！但是空间太小就需要 compress ！尤其是很占磁盘空间的 httpd 更需要 compress 的！</li>
+		</ul>
+
+		<p>好了，上面我们大致介绍了 /var/log/wtmp 这个文件的配置，现在你知道了 logrotate.conf 的配置语法是：</p>
+
+<table class="term"><tbody><tr><td class="term"><pre>登录文件的绝对路径档名 ... {
+	个别的参数配置值，如 monthly, compress 等等
+}
+</pre></td></tr></tbody></table>
+
+		<p>底下我们再以 /etc/logrotate.d/syslog 这个轮替 syslog 服务的文件，来看看该如何配置他的 rotate 呢？</p>
+
+<table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">vi /etc/logrotate.d/syslog</span>
+/var/log/messages /var/log/secure /var/log/maillog /var/log/spooler \
+/var/log/boot.log /var/log/cron {
+  <u>sharedscripts</u>
+  <u>postrotate</u>
+    /bin/kill -HUP `cat /var/run/syslogd.pid 2&gt; /dev/null` 2&gt; /dev/null || true
+    /bin/kill -HUP `cat /var/run/rsyslogd.pid 2&gt; /dev/null` 2&gt; /dev/null || true
+  <u>endscript</u>
+}
+</pre></td></tr></tbody></table>
+
+		<p>在上面的语法当中，我们知道正确的 logrotate 的写法为：</p>
+		<ul>
+		<li><span class="text_import2">档名</span>：被处理的登录文件绝对路径档名写在前面，可以使用空白字节分隔多个登录文件；</li>
+		<li><span class="text_import2">参数</span>：上述档名进行轮替的参数使用 { } 包括起来；</li>
+		<li><span class="text_import2">运行脚本</span>：可呼叫外部命令来进行额外的命令下达，这个配置需与 
+			sharedscripts .... endscript 配置合用才行。至於可用的环境为：<br>
+			<ul>
+			<li><span class="text_import2">prerotate</span>：在启动 logrotate 
+			之前进行的命令，例如修改登录文件的属性等动作；</li>
+			<li><span class="text_import2">postrotate</span>：在做完 logrotate 之后启动的命令，例如重新启动
+				(kill -HUP) 某个服务！</li>
+			<li>Prerotate 与 postrotate 对於已加上特殊属性的文件处理上面，是相当重要的运行程序！</li>
+			</ul></li>
+		</ul>
+
+		<p>那么 /etc/logrotate.d/syslog 内配置的六个文件的轮替功能就变成了：</p>
+
+		<ul>
+		<li>该配置只对 /var/log/ 内的 messages, secure, maillog, spooler, boot.log, cron 有效；</li>
+		<li>登录文件轮替每周一次、保留四个、且轮替下来的登录文件不进行压缩(未更改默认值)；</li>
+		<li>轮替完毕后 (postrotate) 取得 syslog 的 PID 后，以 kill -HUP 重新启动 syslogd </li>
+		</ul>
+
+		<p>假设我们有针对 /var/log/messages 这个文件添加 chattr +a 的属性时，
+		依据 logrotate 的工作原理，我们知道，这个 /var/log/messages 将会被更名成为 
+		/var/log/messages.1 才是。但是由於加上这个 +a 的参数啊，所以更名是不可能成功的！
+		那怎么办呢？呵呵！就利用 prerotate 与 postrotate 来进行登录文件轮替前、后所需要作的动作啊！
+		果真如此时，那么你可以这样修改一下这个文件喔！</p>
+
+<table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">vi /etc/logrotate.d/syslog</span>
+/var/log/messages /var/log/secure /var/log/maillog /var/log/spooler \
+/var/log/boot.log /var/log/cron {
+  sharedscripts
+  <span class="term_write">prerotate
+    /usr/bin/chattr -a /var/log/messages
+  endscript
+  sharedscripts</span>
+  postrotate
+    /bin/kill -HUP `cat /var/run/syslogd.pid 2&gt; /dev/null` 2&gt; /dev/null || true
+    /bin/kill -HUP `cat /var/run/rsyslogd.pid 2&gt; /dev/null` 2&gt; /dev/null || true
+    <span class="term_write">/usr/bin/chattr +a /var/log/messages</span>
+  endscript
+}
+</pre></td></tr></tbody></table>
+
+		<p>看到否？就是先给他去掉 a 这个属性，让登录文件 /var/log/messages 可以进行轮替的动作，
+		然后运行了轮替之后，再给他加入这个属性！请特别留意的是，那个
+		/bin/kill -HUP ... 的意义，这一行的目的在於将系统的 syslogd
+		重新以其参数档 (syslog.conf) 的数据读入一次！也可以想成是 reload 的意思啦！
+		由於我们创建了一个新的空的纪录档，如果不运行此一行来重新启动服务的话，
+		那么记录的时候将会发生错误呦！(请回到<a href="0440processcontrol.php.html">第十七章</a>读一下
+		kill 后面的 signal 的内容说明)</p>
+	</div>
+
+	<hr><a name="rotate_command"></a><img src="../image/logo.png" alt="小标题的图示" width="24" align="middle" height="23"><span class="text_h2">实际测试 logrotate 的动作</span><br>
+	<div class="block2">
+		<p>好了，配置完成之后，我们来测试看看这样的配置是否可行呢？给他运行底下的命令：</p>
+
+<table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">logrotate [-vf] logfile</span>
+<span class="term_say">选项与参数：
+-v  ：启动显示模式，会显示 logrotate 运行的过程喔！
+-f  ：不论是否符合配置档的数据，强制每个登录文件都进行 rotate 的动作！</span>
+
+<span class="term_hd">范例一：运行一次 logrotate 看看整个流程为何？</span>
+[root@www ~]# <span class="term_command">logrotate -v /etc/logrotate.conf</span>
+reading config file /etc/logrotate.conf <span class="term_note">&lt;==读取主要配置档</span>
+including /etc/logrotate.d              <span class="term_note">&lt;==呼叫外部的配置</span>
+reading config file acpid               <span class="term_note">&lt;==就是外部配置啊！</span>
+<span class="term_say">....(中间省略)....</span>
+Handling 21 logs                        <span class="term_note">&lt;==共有 21 个登录文件被记录</span>
+<span class="term_say">....(中间省略)....</span>
+rotating pattern: /var/log/messages /var/log/secure /var/log/maillog \
+/var/log/spooler /var/log/boot.log /var/log/cron  weekly (4 rotations)
+empty log files are rotated, old logs are removed
+considering log /var/log/messages       <span class="term_note">&lt;==开始处理 messages</span>
+  log does not need rotating            <span class="term_note">&lt;==因为时间未到，不需要更动！</span>
+<span class="term_say">....(底下省略)....</span>
+
+<span class="term_hd">范例二：强制进行 logrotate 的动作</span>
+[root@www ~]# <span class="term_command">logrotate -vf /etc/logrotate.conf</span>
+<span class="term_say">....(前面省略)....</span>
+<span style="font-size: 9pt;">rotating log /var/log/messages, log-&gt;rotateCount is 4
+renaming /var/log/messages.4 to /var/log/messages.5 (rotatecount 4, logstart 1, i 4),
+renaming /var/log/messages.3 to /var/log/messages.4 (rotatecount 4, logstart 1, i 3),
+renaming /var/log/messages.2 to /var/log/messages.3 (rotatecount 4, logstart 1, i 2),
+renaming /var/log/messages.1 to /var/log/messages.2 (rotatecount 4, logstart 1, i 1),
+renaming /var/log/messages.0 to /var/log/messages.1 (rotatecount 4, logstart 1, i 0),
+old log /var/log/messages.0 does not exist</span>
+<span class="term_say">....(底下省略)....</span>
+<span class="term_say"># 看到否？整个 rotate 的动作就是这样一步一步进行的～</span>
+
+[root@www ~]# <span class="term_command">ll /var/log/messages*; lsattr /var/log/messages</span>
+-rw------- 1 root root    63 Apr  8 15:19 /var/log/messages
+-rw------- 1 root root   670 Apr  8 14:22 /var/log/messages.1
+-rw------- 1 root root 24984 Apr  1 19:26 /var/log/messages.2
+-rw------- 1 root root  1911 Mar 28 11:32 /var/log/messages.3
+-rw------- 1 root root 25193 Mar 22 04:02 /var/log/messages.4
+-----a------- /var/log/messages <span class="term_note">&lt;==主动加入 a 的隐藏属性罗！</span>
+</pre></td></tr></tbody></table>
+
+		<p>上面那个 -f 具有『强制运行』的意思，如果一切的配置都没有问题的话，那么理论上，你的
+		/var/log 这个目录就会起变化罗！而且应该不会出现错误信息才对！嘿嘿！这样就
+		OK 了！很棒不是吗？！</p>
+
+		<p>由於 logrotate 的工作已经加入 crontab 里头了！所以现在每天系统都会自动的给他查看
+		logrotate 罗！不用担心的啦！只是要注意一下那个 /var/log/messages 里头是否常常有类似底下的字眼：</p>
+		<blockquote class="text_import2" style="font-family: '细明体';">
+		Apr  8 15:19:47 www syslogd 1.4.1: restart (remote reception).</blockquote>
+
+		<p>这说明的是 syslogd 重新启动的时间啦 (就是因为 /etc/logrotate.d/syslog 的配置之缘故！)
+		底下我们来进行一些例题的练习，让你更详细的了解 logrotate 的功用啊！</p>
+	</div>
+
+	<hr><a name="rotate_user"></a><img src="../image/logo.png" alt="小标题的图示" width="24" align="middle" height="23"><span class="text_h2">自订登录文件的轮替功能</span><br>
+	<div class="block2">
+		<p>假设前提是这样的，前一小节当中，假设你已经创建了 /var/log/admin.log 这个文件，
+		现在，你想要将该文件加上 +a 这个隐藏标签，而且配置底下的相关资讯：</p>
+
+		<ul>
+		<li>登录文件轮替一个月进行一次；</li>
+		<li>该登录文件若大於 10MB 时，则主动进行轮替，不需要考虑一个月的期限；</li>
+		<li>保存五个备份文件；</li>
+		<li>备份文件需要压缩</li>
+		</ul>
+
+		<p>那你可以怎么样配置呢？呵呵～很简单啊！看看底下的动作吧！</p>
+
+<table class="term"><tbody><tr><td class="term"><pre><span class="term_hd"># 1. 先创建 +a 这个属性啊！</span>
+[root@www ~]# <span class="term_command">chattr +a /var/log/admin.log</span>
+[root@www ~]# <span class="term_command">lsattr /var/log/admin.log</span>
+-----a------- /var/log/admin.log
+[root@www ~]# <span class="term_command">mv /var/log/admin.log /var/log/admin.log.1</span>
+mv: cannot move `/var/log/admin.log' to `/var/log/admin.log.1': 
+Operation not permitted
+<span class="term_say"># 这里确定了加入 a 的隐藏属性！所以 root 无法移动此登录文件！</span>
+
+<span class="term_hd"># 2. 开始创建 logrotate 的配置档，添加一个文件在 /etc/logrotate.d 内就对了！</span>
+[root@www ~]# <span class="term_command">vi /etc/logrotate.d/admin</span>
+<span class="term_write"># This configuration is from VBird 2009/04/08
+/var/log/admin.log {
+        monthly   <span class="term_note">&lt;==每个月进行一次</span>
+        size=10M  <span class="term_note">&lt;==文件容量大於 10M 则开始处置</span>
+        rotate 5  <span class="term_note">&lt;==保留五个！</span>
+        compress  <span class="term_note">&lt;==进行压缩工作！</span>
+        sharedscripts
+        prerotate
+                /usr/bin/chattr -a /var/log/admin.log
+        endscript
+        sharedscripts
+        postrotate
+                /usr/bin/killall -HUP syslogd
+                /usr/bin/chattr +a /var/log/admin.log
+        endscript
+}</span>
+
+<span class="term_hd"># 3. 测试一下 logrotate 相关功能的资讯显示：</span>
+[root@www ~]# <span class="term_command">logrotate -v /etc/logrotate.conf</span>
+<span class="term_say">....(前面省略)....</span>
+rotating pattern: /var/log/admin.log  10485760 bytes (5 rotations)
+empty log files are rotated, old logs are removed
+considering log /var/log/admin.log
+  log does not need rotating
+not running prerotate script, since no logs will be rotated
+not running postrotate script, since no logs were rotated
+<span class="term_say">....(底下省略)....
+# 因为还不足一个月，文件也没有大於 10M，所以不需进行轮替！</span>
+
+<span class="term_hd"># 4. 测试一下强制 logrotate 与相关功能的资讯显示：</span>
+[root@www ~]# <span class="term_command">logrotate -vf /etc/logrotate.d/admin</span>
+<span style="font-size: 9pt;">reading config file /etc/logrotate.d/admin
+reading config info for /var/log/admin.log
+
+Handling 1 logs
+
+rotating pattern: /var/log/admin.log  forced from command line (5 rotations)
+empty log files are rotated, old logs are removed
+considering log /var/log/admin.log
+  log needs rotating
+rotating log /var/log/admin.log, log-&gt;rotateCount is 5
+renaming /var/log/admin.log.5.gz to /var/log/admin.log.6.gz (rotatecount 5, logstart 1, i 5),
+old log /var/log/admin.log.5.gz does not exist
+renaming /var/log/admin.log.4.gz to /var/log/admin.log.5.gz (rotatecount 5, logstart 1, i 4),
+old log /var/log/admin.log.4.gz does not exist
+renaming /var/log/admin.log.3.gz to /var/log/admin.log.4.gz (rotatecount 5, logstart 1, i 3),
+old log /var/log/admin.log.3.gz does not exist
+renaming /var/log/admin.log.2.gz to /var/log/admin.log.3.gz (rotatecount 5, logstart 1, i 2),
+old log /var/log/admin.log.2.gz does not exist
+renaming /var/log/admin.log.1.gz to /var/log/admin.log.2.gz (rotatecount 5, logstart 1, i 1),
+old log /var/log/admin.log.1.gz does not exist
+renaming /var/log/admin.log.0.gz to /var/log/admin.log.1.gz (rotatecount 5, logstart 1, i 0),
+old log /var/log/admin.log.0.gz does not exist
+log /var/log/admin.log.6.gz doesn't exist -- won't try to dispose of it
+running prerotate script
+renaming /var/log/admin.log to /var/log/admin.log.1
+running postrotate script
+compressing log with: /bin/gzip</span>
+
+
+[root@www ~]# <span class="term_command">lsattr /var/log/admin.log*</span>
+-----a------- /var/log/admin.log
+------------- /var/log/admin.log.1.gz  <span class="term_note">&lt;==有压缩过喔！</span>
+</pre></td></tr></tbody></table>
+
+		<p>看到了吗？透过这个方式，我们可以创建起属於自己的 logrotate 配置文件，
+		很简便吧！尤其是要注意的， /etc/syslog.conf 与 /etc/logrotate.d/* 
+		文件常常要搭配起来，例如刚刚我们提到的两个案例中所创建的 /var/log/admin.log
+		就是一个很好的例子～创建后，还要使用 logrotate 来轮替啊！ ^_^</p>
+	</div>
+</div>
+
+
+<hr><a name="analyze"></a><img src="../image/logo.png" alt="大标题的图示" width="35" align="middle" height="34"><span class="text_h1">分析登录文件</span><br>
+<div class="block1">
+	<p>登录文件的分析是很重要的！你可以自行以 vi 进入登录文件去查阅相关的资讯。而系统也提供一些软件可以让你从登录文件中取得数据，
+	例如之前谈过的 last, lastlog, dmesg 等等命令。不过，这些数据毕竟都非常的分散，如果你想要一口气读取所有的登录资讯，
+	其实有点困扰的。不过，好在 CentOS 有提供 logwatch 这个登录文件分析程序，你可以藉由该程序来了解登录文件资讯。
+	此外，鸟哥也依据 Red Hat 系统的 syslog 写了一支小程序给大家使用喔！<br><br></p>
+
+	<hr><a name="logwatch"></a><img src="../image/logo.png" alt="小标题的图示" width="24" align="middle" height="23"><span class="text_h2">CentOS 默认提供的 logwatch</span><br>
+	<div class="block2">
+		<p>虽然有一些有用的系统命令，不过，要了解系统的状态，还是得要分析整个登录文件才行～
+		事实上，目前已经有相当多的登录文件分析工具，例如 CentOS 5.x 上面默认的 logwatch 这个套件所提供的分析工具，
+		他会每天分析一次登录文件，并且将数据以 email 的格式寄送给 root 呢！
+		你也可以直接到 logwatch 的官方网站上面看看：</p>
+
+		<ul><li><a href="http://www.logwatch.org/" target="_blank">http://www.logwatch.org/</a></li></ul>
+
+		<p>logwatch 分析的结果如下所示：</p>
+
+<table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">mail</span>
+Mail version 8.1 6/6/93.  Type ? for help.
+"/var/spool/mail/root": 433 messages 433 new
+<span style="font-size: 9pt;">&gt;N  1 logwatch@www.vbird.t  Fri Sep  5 11:42  43/1542  "Logwatch for www.vbird.tsai (Linux)"
+ N  2 logwatch@www.vbird.t  Sat Sep  6 15:34  92/2709  "Logwatch for www.vbird.tsai (Linux)"
+ N  3 logwatch@www.vbird.t  Mon Sep  8 15:26  43/1542  "Logwatch for www.vbird.tsai (Linux)"
+<span class="term_say">....(中间省略)....</span>
+ <u>N431 logwatch@www.vbird.t  Wed Apr  8 04:02  53/1772  "Logwatch for www.vbird.tsai (Linux)"</u></span>
+&amp; <span class="term_command">431</span>
+Message 431:
+From root@www.vbird.tsai  Wed Apr  8 04:02:05 2009
+Date: Wed, 8 Apr 2009 04:02:05 +0800
+To: root@www.vbird.tsai
+From: logwatch@www.vbird.tsai
+Subject: Logwatch for www.vbird.tsai (Linux)
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="iso-8859-1"
+
+<span class="term_say"># 先会说明分析的日期与相关的分析期间！</span>
+ ################### Logwatch 7.3 (03/24/06) ####################
+        Processing Initiated: Wed Apr  8 04:02:05 2009
+        Date Range Processed: yesterday
+                              ( 2009-Apr-07 )
+                              Period is day.
+      Detail Level of Output: 0
+              Type of Output: unformatted
+           Logfiles for Host: www.vbird.tsai
+  ##################################################################
+
+<span class="term_say"># 底下则是依据各种服务来进行各项分析！先是登陆者的 ssh 服务分析</span>
+ --------------------- SSHD Begin ------------------------
+
+ Users logging in through sshd:
+    root:
+       192.168.100.101: 1 time
+       192.168.100.254: 1 time
+
+ ---------------------- SSHD End -------------------------
+
+<span class="term_say"># 磁碟容量分析！可以避免你的系统使用过量磁碟，导致的系统不稳问题！</span>
+ --------------------- Disk Space Begin ------------------------
+
+ Filesystem            Size  Used Avail Use% Mounted on
+ /dev/hda2             9.5G  3.8G  5.3G  42% /
+ /dev/hda3             4.8G  1.1G  3.5G  23% /home
+ /dev/hda1              99M   21M   73M  23% /boot
+
+ ---------------------- Disk Space End -------------------------
+ ###################### Logwatch End #########################
+</pre></td></tr></tbody></table>
+
+		<p>由於鸟哥的测试用主机尚未启动许多服务，所以分析的项目很少。若你的系统已经启动许多服务的话，
+		那么分析的项目理应会多很多才对。</p>
+	</div>
+
+	<hr><a name="analyze_vbird"></a><img src="../image/logo.png" alt="小标题的图示" width="24" align="middle" height="23"><span class="text_h2">鸟哥自己写的登录文件分析工具：</span><br>
+	<div class="block2">
+		<p>虽然已经有了类似 logwatch 的工具，但是鸟哥自己想要分析的数据毕竟与对方不同～
+		所以罗，鸟哥就自己写了一支小程序 (shell script 的语法) 用来分析自己的登录文件，
+		这支程序分析的登录文件数据其实是固定的，包括有：</p>
+
+		<ul class="text_import2">
+		<li>/var/log/secure</li>
+		<li>/var/log/messages</li>
+		<li>/var/log/maillog</li></ul>
+
+		<p>当然啦，还不只这些啦，包括各个主要常见的服务，如 pop3, mail, ftp, su 等会使用到 pam 的服务，
+		都可以透过鸟哥写的这个小程序来分析与处理呢～整个数据还会输出一些系统资讯。如果你想要使用这个程序的话，
+		欢迎下载：</p>
+		<ul><li><a href="http://vbird.dic.ksu.edu.tw/download/index.php?action=detail&fileid=69">http://vbird.dic.ksu.edu.tw/download/index.php?action=detail&amp;fileid=69</a></li></ul>
+
+		<p>安装的方法也很简单，只要将上述文件下载并解压缩后，就会得到一个名为 logfile 的目录，
+		将此目录移动到 /usr/local/virus/ 目录下并修改一下： /usr/local/virus/logfile.sh 文件，
+		里面的 email 与相关的资讯只要修改一下，你就可以使用啦～啊！还要记得，将这支程序的运行写入 /etc/crontab 当中喔！
+		可以在每天的 12:10am 运行这支小程序啦！ ^_^</p>
+
+<table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">mkdir /usr/local/virus</span>
+[root@www ~]# <span class="term_command">tar -zxvf logfile-0.1-4-2.tgz -C /usr/local/virus</span>
+[root@www ~]# <span class="term_command">cd /usr/local/virus/logfile</span>
+[root@www ~]# <span class="term_command">vi logfile.sh</span>
+<span class="term_write">email="root@localhost" <span class="term_note">&lt;==大约在 93 行左右，请填入你的 email ，否则保留默认值</span>
+basedir="/usr/local/virus/logfile"</span> <span class="term_note">&lt;==保留默认值，除非你的运行目录不同与此！</span>
+
+[root@www ~]# <span class="term_command">sh logfile.sh</span>
+<span class="term_say"># 开始尝试分析系统的登录文件，依据你的登录文件大小，分析的时间不固定！</span>
+
+[root@www ~]# <span class="term_command">vi /etc/crontab</span>
+<span class="term_write">10 0 * * * root /usr/local/virus/logfile/logfile.sh</span>
+<span class="term_say"># 添加这一行！让系统在每天的凌晨自己进行登录文件分析！</span>
+
+[root@www ~]# <span class="term_command">mail</span>
+<span class="term_say"># 自己找到刚刚输出的结果，该结果的输出有点像底下这样：</span>
+
+<span class="term_say"># 先进行程序的宣告！你也可以在底下的连结找到一些错误回报！</span>
+##########################################################
+欢迎使用本程序来查验您的登录文件
+本程序目前版本为： Version 0.1-4-2
+程序最后升级日期为： 2006-09-22
+若在您的系统中发现本程序有问题, 欢迎与我联络！
+鸟哥的首页 http://linux.vbird.org
+问题回报： http://phorum.vbird.org/viewtopic.php?t=3425
+##########################################################
+
+<span class="term_say"># 先看看你的硬件与操作系统的相关情况，尤其是 partition 的使用量更需要随时注意！</span>
+=============== 系统汇整 =================================
+核心版本  : Linux version 2.6.18-92.el5 (mockbuild@builder16.centos.org)
+CPU 资讯  : Intel(R) Celeron(TM) CPU
+          : 1200.062 MHz
+主机名称  : www.vbird.tsai
+统计日期  : 2009/April/08 17:00:59 ( Wednesday )
+分析的日期: Apr  8
+已启动期间: 7 days, 22:46,
+目前主机挂载的 partitions
+       Filesystem            Size  Used Avail Use% Mounted on
+       /dev/hda2             9.5G  3.8G  5.3G  42% /
+       /dev/hda3             4.8G  1.1G  3.5G  23% /home
+       /dev/hda1              99M   21M   73M  23% /boot
+       tmpfs                 363M     0  363M   0% /dev/shm
+
+<span class="term_say"># 这个程序会将针对 internet 与内部监听的端口分开来显示！</span>
+================= Ports 的相关分析资讯 =======================
+主机激活的 port 与相关的 process owner：
+仅对本机介面开放的 ports (PID|owner|command)
+       tcp 25|(root)|sendmail: accepting connections
+       tcp 631|(root)|cupsd
+       tcp 2207|(root)|python ./hpssd.py
+       tcp 2208|(root)|./hpiod
+对外部介面开放的 ports (PID|owner|command)
+       tcp 22|(root)|/usr/sbin/sshd
+       tcp 111|(rpc)|portmap
+       tcp 737|(root)|rpc.statd
+       udp 111|(rpc)|portmap
+       udp 514|(root)|syslogd -m 0 -r
+       udp 631|(root)|cupsd
+       udp 731|(root)|rpc.statd
+       udp 734|(root)|rpc.statd
+       udp 5353|(avahi)|avahi-daemon: running [www.local]
+       udp 32768|(avahi)|avahi-daemon: running [www.local]
+       udp 32769|(avahi)|avahi-daemon: running [www.local]
+
+<span class="term_say"># 以下针对有启动的服务个别进行分析！</span>
+================= SSH 的登录文件资讯汇整 =======================
+今日没有使用 SSH 的纪录
+
+
+================= Sednamil 的登录文件资讯汇整 ==================
+您的主机有进行 SASL 身份认证的功能
+
+今日没有 sendmail 的相关资讯
+
+
+================= 全部的登录文件资讯汇整 =======================
+1. 重要的登录记录档 ( Secure file )
+   说明：已经取消了 pop3 的资讯！
+Apr  8 15:46:22 www su: session opened for user vbird by root(uid=0)
+Apr  8 15:47:02 www su: session closed for user vbird
+
+2. 使用 last 这个命令输出的结果
+
+wtmp begins Wed Apr  8 15:19:47 2009
+
+3. 将特重要的 /var/log/messages 列出来瞧瞧！
+   已经取消 crond 与 snmpd 的信息
+Apr  8 15:19:47 www syslogd 1.4.1: restart (remote reception).
+Apr  8 15:34:25 www syslogd 1.4.1: restart (remote reception).
+</pre></td></tr></tbody></table>
+
+		<p>目前鸟哥都是透过这支程序去分析自己管理的主机，然后再据以了解系统状况，如果有特殊状况则即时进行系统处理！
+		而且鸟哥都是将上述的 email 调整成自己可以在 Internet 上面读到的邮件，这样我每天都可以收到正确的登录文件分析资讯哩！</p>
+	</div>
+</div>
+
+
+<hr><a name="hint"></a><img src="../image/logo.png" alt="大标题的图示" width="35" align="middle" height="34"><span class="text_h1">重点回顾</span><br>
+<div class="block1">
+<ul class="text_import2">
+	<li>登录文件可以记录一个事件的何时、何地、何人、何事等四大资讯，故系统有问题时务必查询登录文件；</li>
+	<li>系统的登录文件默认都集中放置到 /var/log/ 目录内，其中又以 messages 记录的资讯最多！</li>
+	<li>登录文件记录的主要服务与程序为： syslogd, klogd, log</li>
+	<li>syslogd 的配置档在 /etc/syslog.conf ，内容语法为：『 服务.等级 记载装置或文件』</li>
+	<li>syslogd 本身有提供登录文件服务器的功能，透过修改 /etc/sysconfig/syslog 内容即可达成；</li>
+	<li>logrotate 程序利用 crontab 来进行登录文件的轮替功能；</li>
+	<li>logrotate 的配置档为 /etc/logrotate.conf ，而额外的配置则可写入 /etc/logrotate.d/* 内；</li>
+	<li>logwatch 为 CentOS 5 默认提供的一个登录文件分析软件。</li>
+</ul>
+</div>
+
+
+<hr><a name="FAQ"></a><img src="../image/logo.png" alt="大标题的图示" width="35" align="middle" height="34"><span class="text_h1">本章习题</span><br>
+( 要看答案请将鼠标移动到『答：』底下的空白处，按下左键圈选空白处即可察看 )
+<div class="block1">
+实作题：
+<ul>
+	<li>请在你的 CentOS 5.x 上面，依照鸟哥提供的 logfile.sh 去安装，并将结果取出分析看看。</li>
+</ul><br>
+<hr>简答题部分：
+<ul>
+	<li>syslogd 可以作为登录文件服务器，请以 man page 的方式配合 network 关键字，查出 syslogd 需要加上什么选项就能够成为登录文件服务器？
+	<div class="blockex">
+		透过 man syslogd ，查询到 -r 的选项。
+	</div></li>
+
+	<li>如果你想要将 auth 这个服务的结果中，只要信息等级高於 warn 就给予发送 email 到 root 的信箱，该如何处理？
+	<div class="blockex">
+		利用 vim 去编辑 /etc/syslog.conf 文件，内容为<br>
+		auth.warn   root
+	</div></li>
+
+	<li>启动系统登录资讯时，需要启动哪两个 daemon 呢？
+	<div class="blockex">
+		syslogd 记录系统软件， klogd 记录核心资讯。
+	</div></li>
+
+	<li>syslogd 以及 logrotate 个别透过什么机制来运行？
+	<div class="blockex">
+		syslogd 为 stand alone daemon 的机制； logrotate 则是透过 crontab 来运行的！只是个命令而已。
+	</div></li>
+</ul>
+</div>
+
+
+<hr><a name="reference"></a><img src="../image/logo.png" alt="大标题的图示" width="35" align="middle" height="34"><span class="text_h1">参考数据与延伸阅读</span><br>
+<div class="block1">
+<ul>
+	<li><a name="ps1"></a>注1：关於 console 的说明可以参考底下的连结：<br>
+		<a href="http://en.wikipedia.org/wiki/Console" target="_blank">http://en.wikipedia.org/wiki/Console</a><br>
+		<a href="http://publib.boulder.ibm.com/infocenter/systems/index.jsp?topic=/com.ibm.aix.files/doc/aixfiles/console.htm" target="_blank">http://publib.boulder.ibm.com/infocenter/systems/index.jsp?topic=/com.ibm.aix.files/doc/aixfiles/console.htm</a></li>
+	<li>关於 logfile 也有<a href="http://phorum.vbird.org/viewtopic.php?f=10&t=34996&p=148198">网友提供英文版</a>喔！我将他放置到：
+		<a href="../download/vbird/logfile_en.txt">http://vbird.dic.ksu.edu.tw//download/vbird/logfile_en.txt</a></li>
+
+</ul>
+</div>
+
+
+<hr><span class="text_history">
+2002/06/24：第一次完成<br>
+2003/02/11：重新编排与加入 FAQ<br>
+2005/10/12：旧的文章已经被移动到 <a href="http://linux.vbird.org/linux_basic/0570syslog/0570syslog.php">此处</a>。<br>
+2005/10/24：终於写完了～啊！怎么写这么久？？<br>
+2006/07/23：修改了 /etc/logrotate.d/syslog 的配置数据<br>
+2009/03/31：将旧的基於 FC4 版本的数据移动至 <a href="http://linux.vbird.org/linux_basic/0570syslog/0570syslog-fc4.php">此处</a><br>
+2009/09/14：加入了一些例题而已。这一篇太简单了～想不到什么好的题目说～<br>
+2010/12/24：感谢网友 <a href="http://phorum.vbird.org/viewtopic.php?f=10&t=34996&p=148198">eujiang</a> 提供的英文版 logfile.sh 程序喔！<hr>
+</span>
+    </td>
+    <td style="width: 16px; font-size: 6px;">　</td></tr>
+<tr><td style="width: 16px; height: 16px;">　</td>
+    <td style="width: 866px; height: 16px;">　</td>
+    <td style="width: 16px; height: 16px;">　</td></tr>
+</tbody></table>
+
+<div style="padding-top: 0px; text-align: center;">
+<span style="font-size: 80%;">
+	<a href="http://vbird.dic.ksu.edu.tw/" target="_top" title="前往鸟哥的首页">http://linux.vbird.org</a>
+	is designed by <a href="mailto:vbird@mail.vbird.idv.tw" title="联络鸟哥(我不要广告信！)">VBird</a>
+		during 2001-2011. <a href="http://www.ksu.edu.tw/" target="_blank">ksu.edu</a></span>
+         ﻿<div id="apDiv4">
+      <p>本网页主要以Firefox配合解析度 1024x768 作为设计依据&nbsp;&nbsp;&nbsp;&nbsp; 鸟哥自由软件整合应用研究室</p></div></div>
+</div>
+</center>
+</body></html>

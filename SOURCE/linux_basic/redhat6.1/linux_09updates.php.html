@@ -1,0 +1,293 @@
+﻿<!DOCTYPE HTML PUBLIC "-//w3c//dtd html 4.0 transitional//en">
+<html><head>
+
+
+   <meta http-equiv="Content-Type" content="text/html; charset=utf8">
+   <meta name="Author" content="VBird">
+   <title>鸟哥的 Linux 私房菜 -- 软件升级</title>
+<style>
+   <!--
+   body{background-image:url(http://linux.vbird.org/images/VBirdLinux.jpg);
+	background-ATTACHMENT:FIXED}
+   -->
+</style>
+</head><body>
+
+
+<!-- Copyright � 2005. Spidersoft Ltd -->
+<style>
+A.applink:hover {border: 2px dotted #DCE6F4;padding:2px;background-color:#ffff00;color:green;text-decoration:none}
+A.applink       {border: 2px dotted #DCE6F4;padding:2px;color:#2F5BFF;background:transparent;text-decoration:none}
+A.info          {color:#2F5BFF;background:transparent;text-decoration:none}
+A.info:hover    {color:green;background:transparent;text-decoration:underline}
+</style>
+<div style='BORDER: 1px solid #DCE6F4; MARGIN-TOP: 20px; MARGIN-BOTTOM: 20px; MARGIN-LEFT: 5px; MARGIN-RIGHT: 5px; PADDING: 5px; BACKGROUND-COLOR: #eef8ff;line-height:180%; COLOR: #000000; font-family: Arial; font-size: 8pt; width=100%; FILTER: progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr="#FFFFFFFF", EndColorStr="#F2F5FAFF");'>
+This page was saved using <a class="applink" href="http://www.spidersoft.com"><b>WebZIP 7.0.3.1030</b></a> <a class="applink" href="http://www.spidersoft.com"><b>offline browser</b></a>  (Unregistered) on  02/12/15 12:14:49.<br>
+<b>Address:</b> <a class="info" href="http://vbird.dic.ksu.edu.tw/linux_basic/redhat6.1/linux_09updates.php">http://vbird.dic.ksu.edu.tw/linux_basic/redhat6.1/linux_09updates.php</a><br>
+<b>Title:</b> 鸟哥的 Linux 私房菜 -- 软件升级 &nbsp;&bull;&nbsp; <b>Size:</b> 16789<br></div>
+<!-- /Copyright � 2005. Spidersoft Ltd -->
+
+
+<center><b><font color="#3333ff"><font size="+2"><font face="标楷体">鸟哥的</font><font face="Times New Roman,Times"> Linux </font><font face="标楷体">与</font><font face="Times New Roman,Times"> ADSL </font><font face="标楷体">私房菜</font></font></font></b>
+<br>
+<a href="http://linux.vbird.org/" target="_top"><img src="linux_09updates_files/VBirdTitle2.jpg" nosave="" width="90" border="0" height="25"></a>
+<a href="http://linux.vbird.org/linux_basic"><img src="linux_09updates_files/icon_system.gif" nosave="" width="90" border="0" height="25"></a>
+<a href="http://linux.vbird.org/linux_server"><img src="linux_09updates_files/icon_server.gif" nosave="" width="90" border="0" height="25"></a>
+<a href="http://linux.vbird.org/linux_security"><img src="linux_09updates_files/icon_security.jpg" nosave="" width="90" border="0" height="25"></a>
+<a href="http://phorum.vbird.org/" target="_blank"><img src="linux_09updates_files/icon_forums.gif" nosave="" width="90" border="0" height="25"></a>
+<a href="http://linux.vbird.org/adsl"><img src="linux_09updates_files/icon_adsl.gif" nosave="" width="90" border="0" height="25"></a>
+<br>
+<hr width="100%">
+</center>
+
+<center><font color="#3333ff"><font size="+2"><font face="Times New Roman Baltic">Linux</font><font face="标楷体">
+套件升级</font></font></font></center>
+
+<div align="right"><font face="新细明体"><font color="#3333ff"><font size="-1">最近更新日期：2001/08/17</font></font></font></div>
+<font face="标楷体"><font color="#000099"><font size="+1"><a href="#1-first">前言</a></font></font></font>
+<br><font color="#000099"><font size="+1"><a href="#rpm"><font face="标楷体">升级工具：</font><font face="Times New Roman Baltic">rpm</font></a></font></font>
+<br><font color="#000099"><font size="+1"><a href="#ex"><font face="标楷体">升级
+</font><font face="Times New Roman Baltic">rpm</font></a></font></font>
+<br>
+<hr width="100%">
+<br><a name="1-first"></a><font face="标楷体"><font color="#000099"><font size="+1">前言</font></font></font>
+<blockquote>虽然 RedHat 提供好用的东西，但是 Linux 本身是一直在进步的，当然啰，他的套件也就会一直更新啦！什么是套件呢？例如你要使用
+Web server 就应该会知道， RedHat 是使用 Apache 这一套软件，而这个软件就称为一个套件啦！什么时候需要更新套件呢？通常这是完全视你的需求而定的，如果你觉得你的
+Linux 已经够好了，当然不用升级，但是如果你觉得有更新的套件出来，而这个新的套件内的功能是你所想要的，那就得更新套件啦！
+<p>通常要更新套件，最常用的就是直接使用 rpm 这套软件来直接更新！ rpm 使用上是很简单的！这里就说说如何以
+rpm 更新你的 RedHat 6.1 内的套件吧！
+</p><p>另外，其实在 RedHat 当中，主要都是以 rpm 这套程序再安装所有的软件套件的，所以你在安装一些软件的时候，最好是选择
+*.i386.rpm 或 *.src.rpm 来进行安装，这样对于你往后的升级或者是安装方面，都会比较简单喔！</p></blockquote>
+
+<hr width="100%">
+<br><a name="rpm"></a><font color="#000099"><font size="+1"><font face="标楷体">升级工具：</font><font face="Times New Roman Baltic">rpm</font></font></font>
+<blockquote>要升级套件，当然就要先知到你的套件的版本啦，如何知道呢？假设你要知道你的
+Web Server （就是 Apache 这个软件）的版本，就需要输入：
+<br>&nbsp;
+<table width="90%" bgcolor="#000000" cols="1">
+<tbody><tr>
+<td><font face="细明体"><font color="#ffffff"><font size="-1">[root@tsai
+/root]# rpm -q apache</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">apache-1.3.9-4</font></font></font></td>
+</tr>
+</tbody></table>
+
+<p>如上面所写的， -q 这个参数是察看的意思，则可以发现你的 apache 软件为
+1.3.9-4 版！</p></blockquote>
+
+<blockquote><font color="#000099"><font size="+1"><font face="标楷体">安装全新的套件</font>：</font></font>
+<p>而假如你要安装的软件并不在你的 Linux 机器上，例如你并没有安装 apache
+，则使用 -q 参数会出现如下画面：
+<br>&nbsp;
+<table width="90%" bgcolor="#000000" cols="1">
+<tbody><tr>
+<td><font face="细明体"><font color="#ffffff"><font size="-1">[root@tsai
+/root]# rpm -q apache</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">package apache
+is not installed</font></font></font></td>
+</tr>
+</tbody></table>
+
+</p><p>好的很，那你就必须用下面的方法来安装你的软件了！
+<br>&nbsp;
+<table width="90%" bgcolor="#000000" cols="1">
+<tbody><tr>
+<td><font face="细明体"><font color="#ffffff"><font size="-1">[root@tsai
+/root]# rpm -ivh apache-1.3.9-4.i386.rpm</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">[root@tsai
+/root]# rpm --recompile apache-1.3.9-4.src.rpm</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">[root@tsai
+/root]# rpm --rebuild apache-1.3.9-4.src.rpm</font></font></font></td>
+</tr>
+</tbody></table>
+
+</p><p>注意到上面有两种安装的方法喔！这是由于 rpm 有两种模式，一种是已经经过编码的（i386.rpm）一种是未经编码的（src.rpm）（通常这种
+src.rpm 附档名的档案被称作 SRPM 喔！），这两种 rpm 的安装并不相同！另外，以可以用
+--rebuild 先制作属于你的 Linux 的 rpm 后，再进行安装的工作，而以 --rebuild
+编码后的 i386.rpm 档案将会被放置在 /usr/src/redhat/RPMS/i386 这个目录中，例如上面的例子中，
+apache-1.3.9-4.i386.rpm 将会被制作而放置在 /usr/src/redhat/RPMS/i386 这个目录中，你只要再以
+ivh 或 Uvh 去安装即可。</p></blockquote>
+
+<blockquote><font face="标楷体"><font color="#000099"><font size="+1">升级你的套件</font></font></font>：
+<p>那如果你只是要升级你的套件呢？该如何升级？很简单，第一步骤就是先从网络上下载新的套件
+rpm 檔，你可以在各大 FTP 站上面捉到，或者也可以从底下的 FTP 站直接捉：
+</p><blockquote>RPM：
+<blockquote><a href="ftp://linux.sinica.edu.tw/pub1/redhat/updates/6.2/en/os/i386/" target="_blank">ftp://linux.sinica.edu.tw/pub1/redhat/updates/6.2/en/os/i386/</a>
+<br><a href="ftp://linux.cis.nctu.edu.tw/LINK/distributions/redhat/redhat/linux/7.1/en/os/i386/RedHat/RPMS/" target="_blank">ftp://linux.cis.nctu.edu.tw/LINK/distributions/redhat/redhat/linux/7.1/en/os/i386/RedHat/RPMS/</a></blockquote>
+SRPM：
+<blockquote><a href="ftp://linux.cis.nctu.edu.tw/LINK/distributions/redhat/redhat/linux/7.1/en/os/i386/SRPMS/" target="_blank">ftp://linux.cis.nctu.edu.tw/LINK/distributions/redhat/redhat/linux/7.1/en/os/i386/SRPMS/</a></blockquote>
+</blockquote>
+在上面的 FTP 站中，你可以看到最新的 apache 版本为：apache-1.3.19-5.i386.rpm，应该是比你的版本还要新！如果想要更新的话，就捉下来吧！然后以下列的方法来进行升级的动作：
+<br>&nbsp;
+<table width="90%" bgcolor="#000000" cols="1">
+<tbody><tr>
+<td><font face="细明体"><font color="#ffffff"><font size="-1">[root@tsai
+/root]# rpm -Uvh apache-1.3.19-5.i386.rpm</font></font></font></td>
+</tr>
+</tbody></table>
+
+<p>参数 -Uvh 就是升级安装的意思啦！不过，我想你应该会遭遇到像是这样的困扰：
+<br>&nbsp;
+<table width="90%" bgcolor="#000000" cols="1">
+<tbody><tr>
+<td><font face="细明体"><font color="#ffffff"><font size="-1">[root@tsai
+/root]# rpm -Uvh apache-1.3.19-5.i386.rpm</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">error: failed
+dependencies:</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+libc.so.6(GLIBC_2.1.3)&nbsp;&nbsp; is needed by apache-1.3.19-5</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+libc.so.6(GLIBC_2.2)&nbsp;&nbsp; is needed by apache-1.3.19-5</font></font></font></td>
+</tr>
+</tbody></table>
+
+</p><p>为何会有 error 呢？这是因为<font color="#000099">每一种套件都可能会有相依的套件存在</font>，在上面的例子中，如果你要安装
+apache-1.3.19-5.i386.rpm 的话，就必须要其他的两个档案！所以你就得再去找这两个档案的相关套件啦！如果你一定要安装这个套件，又不想提供其他的相依套件的话，你可以这样做：
+<br>&nbsp;
+<table width="90%" bgcolor="#000000" cols="1">
+<tbody><tr>
+<td><font face="细明体"><font color="#ffffff"><font size="-1">[root@tsai
+/root]# rpm -Uvh --nodeps apache-1.3.19-5.i386.rpm</font></font></font></td>
+</tr>
+</tbody></table>
+
+</p><p>加上 <font face="细明体">--nodeps</font> 这个参数，他会强制安装这个套件！不过会不会有问题？这个就不清楚了！所以最好的方法除了下载相关的
+i386.rpm 之外，其实，你可以直接下载所谓的 SRPM 档案（src.rpm），在你的机器上面先编译过，然后再安装！这样的安装会比较好喔！例如你先捉下来
+apache-1.3.19-5.src.rpm 然后在执行编译的过程：
+<br>&nbsp;
+<table width="90%" bgcolor="#000000" cols="1">
+<tbody><tr>
+<td><font face="细明体"><font color="#ffffff"><font size="-1">[root@tsai
+/root]# rpm --rebuild apache-1.3.19-5.src.rpm</font></font></font></td>
+</tr>
+</tbody></table>
+
+</p><p>然后屏幕会告诉你还需要 openssl 这个咚咚，同样的，我们再将这个档案捉下来，然后先后执行：
+<br>&nbsp;
+<table width="90%" bgcolor="#000000" cols="1">
+<tbody><tr>
+<td><font face="细明体"><font color="#ffffff"><font size="-1">[root@tsai
+/root]# rpm --rebuild openssl-0.9.6-3.src.rpm</font></font></font>
+<br><font face="细明体"><font color="#ffff00"><font size="-1">会有很多的咚咚跑出来！最后的
+rpm 档案会放在 /usr/src/redhat/RPMS/i386 中</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">[root@tsai
+/root]# cd /usr/src/redhat/RPMS/i386</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">[root@tsai
+/root]# rpm -ivh openssl-0.9.6-3.src.rpm</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">[root@tsai
+/root]# rpm --rebuild apache-1.3.19-5.src.rpm</font></font></font></td>
+</tr>
+</tbody></table>
+
+</p><p>顺利的话，将会把 apache 的 rpm 档案编译出来，如果一直有问题的话，可能就要使用
+tar.gz 的档案从头手动的升级了，这会比较麻烦一点！</p></blockquote>
+
+<blockquote><font face="标楷体"><font color="#000099"><font size="+1">卸载</font></font></font>：
+<p>那如果安装完的 rpm 套件要移除呢？如和移除？其实就更简单了，假设你要移除
+apache ，则直接下达：
+<br>&nbsp;
+<table width="90%" bgcolor="#000000" cols="1">
+<tbody><tr>
+<td><font face="细明体"><font color="#ffffff"><font size="-1">[root@tsai
+/root]# rpm -e apache</font></font></font></td>
+</tr>
+</tbody></table>
+
+</p><p>系统就会自动的移除你的软件了！</p></blockquote>
+
+<hr width="100%">
+<br><a name="ex"></a><font color="#000099"><font size="+1"><font face="标楷体">升级
+</font><font face="Times New Roman Baltic">rpm</font></font></font>
+<blockquote>但其实使用 rpm 最大的问题是，旧版的 rpm 程序没有办法替较新版的
+.rpm 档案升级或安装，这时你就必须要升级你的 rpm 程序了！通常，如果你发现在你要安装
+rpm 的时候，会出现下面的讯息，就表示你需要升级你的 rpm 程序：
+<br>&nbsp;
+<table width="90%" bgcolor="#000000" cols="1">
+<tbody><tr>
+<td><font face="细明体"><font color="#ffffff"><font size="-1">only packages
+with major numbers &lt;= 3 are supported by this version of RPM</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">error: imap-2000-9.i386.rpm
+cannot be installed</font></font></font></td>
+</tr>
+</tbody></table>
+
+<p>上面的情况是说，你的 rpm 版本是 3.xx 版，而 imap-2000-9.i386.rpm 需要大于
+3.xx 版以上的 rpm 程序才能安装，所以就发生了错误讯息了！你可以察看一下你的
+rpm 版本：
+<br>&nbsp;
+<table width="90%" bgcolor="#000000" cols="1">
+<tbody><tr>
+<td><font face="细明体"><font color="#ffffff"><font size="-1">[root@tsai
+RPM]# rpm -q rpm</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">rpm-3.0.3-2</font></font></font></td>
+</tr>
+</tbody></table>
+
+</p><p>如果你是以这个网页提供的 Linux 作为安装系统，则应该会出现 rpm 版本为
+3.0.3-2 的信息！我们要将之升级到比较新的4.0.2版时，你可以到底下来下载：
+</p><blockquote><a href="ftp://linux.sinica.edu.tw/pub1/redhat/updates/6.2/en/os/i386/" target="_blank">ftp://linux.sinica.edu.tw/pub1/redhat/updates/6.2/en/os/i386/</a></blockquote>
+不过这里必须先说明，由于 rpm 升级时需要其他的套件帮忙，所以你不能只下载
+rpm 相关的档案而已，基本上你应该下载这八个档案：
+<ul>
+<li>
+db3-3.1.17-4.6x.i386.rpm</li>
+
+<li>
+db3-devel-3.1.17-4.6x.i386.rpm</li>
+
+<li>
+db3-utils-3.1.17-4.6x.i386.rpm</li>
+
+<li>
+popt-1.6.2-6x.i386.rpm</li>
+
+<li>
+rpm-4.0.2-6x.i386.rpm</li>
+
+<li>
+rpm-build-4.0.2-6x.i386.rpm</li>
+
+<li>
+rpm-devel-4.0.2-6x.i386.rpm</li>
+
+<li>
+rpm-python-4.0.2-6x.i386.rpm</li>
+</ul>
+你可以直接点选上面八个档案，由我们这里直接下载！那要如何安装呢？如前所说的，由于我们并没有安装
+db3 这个套件，而 popt 则是需要升级的，所以你可以依照下面的顺序来加以升级！
+<br>&nbsp;
+<table width="90%" bgcolor="#000000" cols="1">
+<tbody><tr>
+<td><font face="细明体"><font color="#ffffff"><font size="-1">[root@tsai
+RPM]# rpm -ivh db3-3.1.17-4.6x.i386.rpm</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">[root@tsai
+RPM]# rpm -ivh db3-devel-3.1.17-4.6x.i386.rpm</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">[root@tsai
+RPM]# rpm -ivh db3-utils-3.1.17-4.6x.i386.rpm</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">[root@tsai
+RPM]# rpm -Uvh popt-1.6.2-6x.i386.rpm</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">[root@tsai
+RPM]# rpm -Uvh rpm-4.0.2-6x.i386.rpm</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">[root@tsai
+RPM]# rpm -Uvh rpm-build-4.0.2-6x.i386.rpm</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">[root@tsai
+RPM]# rpm -Uvh rpm-devel-4.0.2-6x.i386.rpm</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">[root@tsai
+RPM]# rpm -Uvh rpm-python-4.0.2-6x.i386.rpm</font></font></font></td>
+</tr>
+</tbody></table>
+
+<p>好了！如此一来你就已经升级好了 rpm 啦！又可以去安装其他的软件啰！</p></blockquote>
+<font face="新细明体"><font color="#3333ff"><font size="-1">2002/ 01/01以来统计人数</font></font></font>
+<br><img src="linux_09updates_files/Count.gif" nosave="" width="60" align="ABSCENTER" height="15">
+<hr width="100%">
+<center>
+<a href="http://linux.vbird.org/" target="_top"><img src="linux_09updates_files/VBirdTitle2.jpg" nosave="" width="90" border="0" height="25"></a>
+<a href="http://linux.vbird.org/linux_basic"><img src="linux_09updates_files/icon_system.gif" nosave="" width="90" border="0" height="25"></a>
+<a href="http://linux.vbird.org/linux_server"><img src="linux_09updates_files/icon_server.gif" nosave="" width="90" border="0" height="25"></a>
+<a href="http://linux.vbird.org/linux_security"><img src="linux_09updates_files/icon_security.jpg" nosave="" width="90" border="0" height="25"></a>
+<a href="http://phorum.vbird.org/" target="_blank"><img src="linux_09updates_files/icon_forums.gif" nosave="" width="90" border="0" height="25"></a>
+<a href="http://linux.vbird.org/adsl"><img src="linux_09updates_files/icon_adsl.gif" nosave="" width="90" border="0" height="25"></a>
+<br><font color="#000066"><font size="-1">Designed by <a href="mailto:vbird@mail.vbird.idv.tw">VBird</a>
+during 2001-2004.&nbsp; Aerosol Lab.</font></font></center>
+</body></html>

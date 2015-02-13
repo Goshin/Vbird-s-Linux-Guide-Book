@@ -1,0 +1,243 @@
+<html lang="zh-TW"><head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf8">
+	<meta name="Author" content="lee">
+	<meta name="Description" content="学操作系统之前还是要对计算机有一定的概念比较妥当！">
+	<title>鸟哥的 Linux 私房菜 -- 计算机概论 -- 計算机：辅助人脑的好工具</title>
+    <script src="../script/SpryMenuBar.js" type="text/javascript"></script>
+	<script src="../script/index.js" type="text/javascript"></script>
+	<link href="../css/SpryMenuBarHorizontal.css" rel="stylesheet" type="text/css" />
+    <link href="../css/main.css" rel="stylesheet" type="text/css" />
+    </head><body style="margin: 0pt; padding: 0pt;" class="table"onload="MM_preloadImages('image/title_19.png','image/title_26.png','image/title_27.png','image/title_28.png','image/title_06.png','image/title_08.png','image/title_10.png','image/title_12.png')">
+
+
+<!-- Copyright � 2005. Spidersoft Ltd -->
+<style>
+A.applink:hover {border: 2px dotted #DCE6F4;padding:2px;background-color:#ffff00;color:green;text-decoration:none}
+A.applink       {border: 2px dotted #DCE6F4;padding:2px;color:#2F5BFF;background:transparent;text-decoration:none}
+A.info          {color:#2F5BFF;background:transparent;text-decoration:none}
+A.info:hover    {color:green;background:transparent;text-decoration:underline}
+</style>
+<div style='BORDER: 1px solid #DCE6F4; MARGIN-TOP: 20px; MARGIN-BOTTOM: 20px; MARGIN-LEFT: 5px; MARGIN-RIGHT: 5px; PADDING: 5px; BACKGROUND-COLOR: #eef8ff;line-height:180%; COLOR: #000000; font-family: Arial; font-size: 8pt; width=100%; FILTER: progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr="#FFFFFFFF", EndColorStr="#F2F5FAFF");'>
+This page was saved using <a class="applink" href="http://www.spidersoft.com"><b>WebZIP 7.0.3.1030</b></a> <a class="applink" href="http://www.spidersoft.com"><b>offline browser</b></a>  (Unregistered) on  02/12/15 12:14:48.<br>
+<b>Address:</b> <a class="info" href="http://vbird.dic.ksu.edu.tw/linux_basic/0105computers_5.php">http://vbird.dic.ksu.edu.tw/linux_basic/0105computers_5.php</a><br>
+<b>Title:</b> 鸟哥的 Linux 私房菜 -- 计算机概论 -- 計算机：辅助人脑的好工具 &nbsp;&bull;&nbsp; <b>Size:</b> 18126<br></div>
+<!-- /Copyright � 2005. Spidersoft Ltd -->
+
+
+
+<center>
+<div id="apDiv5">
+<div> <LINK REL="SHORTCUT ICON" HREF="favicon.ico">
+<!-- ImageReady Slices (title3.ai) -->
+<table id="___01" width="898" height="81" border="0" align="center" cellpadding="0" cellspacing="0";>
+	<tr>
+		<td colspan="15">
+			<img src="image/title/title_01.png" width="900" height="1" alt=""></td>
+	</tr>
+	<tr>
+		<td rowspan="4" bgcolor="#182448"><p><img src="http://linux.vbird.org/cgi-bin/Count.cgi?dd=C&ft=5&sh=T&md=8&pad=Y&df=vbird.dic.ksu.edu.tw.dat" width="93" align="left" title="計數器" /></p>
+	    <p><font color="#FFFFFF" size="-1">since2012/04/23</font></p></td>
+		<td rowspan="4" align="left" valign="top"><a href="http://vbird.dic.ksu.edu.tw/"><img src="image/title/title_03.png" alt="" width="263" height="79" border="0"></a></td>
+		<td colspan="13">
+			<img src="image/title/title_04.png" alt="" width="535" height="9" border="0"></td>
+	</tr>
+	<tr>
+		<td rowspan="3">
+			<img src="image/title/title_05.png" alt="" width="53" height="70" border="0"></td>
+		<td colspan="2" align="left" valign="top"><a href="0110whatislinux.php.html" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image51','','image/title/title_06.png',1)"><img src="image/title/title3_06.png" name="Image51" width="106" height="25" border="0" id="Image51" alt=""/></a></td>
+		<td rowspan="2">
+			<img src="image/title/title_07.png" alt="" width="27" height="37" border="0"></td>
+		<td colspan="3" align="left" valign="top"><a href="http://vbird.dic.ksu.edu.tw/linux_server/0110network_basic.php" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image52','','image/title/title_08.png',1)"><img src="image/title/title3_08.png" name="Image52" width="107" height="25" border="0" id="Image52" alt=""/></a></td>
+		<td rowspan="2">
+			<img src="image/title/title_09.png" alt="" width="37" height="37" border="0"></td>
+		<td colspan="2" align="left" valign="top"><a href="http://vbird.dic.ksu.edu.tw/about.php" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image53','','image/title/title_10.png',1)"><img src="image/title/title3_10.png" name="Image53" width="75" height="25" border="0" id="Image53" alt=""/></a></td>
+		<td rowspan="3">
+			<img src="image/title/title_11.png" alt="" width="35" height="70" border="0"></td>
+		<td align="left" valign="top"><a href="mailto:vbird@mail.vbird.idv.tw" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image54','','image/title/title_12.png',1)"><img src="image/title/title3_12.png" name="Image54" width="74" height="25" border="0" id="Image54" alt=""/></a></td>
+		<td rowspan="3">
+			<img src="image/title/title_13.png" alt="" width="21" height="70" border="0"></td>
+	</tr>
+	<tr>
+		<td colspan="2">
+			<img src="image/title/title_14.png" alt="" width="106" height="12" border="0"></td>
+		<td colspan="3">
+			<img src="image/title/title_15.png" alt="" width="107" height="12" border="0"></td>
+		<td colspan="2">
+			<img src="image/title/title_16.png" width="75" height="12" alt=""></td>
+		<td rowspan="2">
+			<img src="image/title/title_17.png" alt="" width="74" height="45" border="0"></td>
+	</tr>
+	<tr>
+		<td>
+			<img src="image/title/title_18.png" alt="" width="15" height="33" border="0"></td>
+		<td colspan="3" align="left" valign="top"><ul id="MenuBar1" class="MenuBarHorizontal">
+	  <li><a href="linux_basic.php.html" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image44','','image/title/title_19.png',1)"><img src="image/title/title3_19.png" name="Image44" width="123" height="33" border="0" id="Image44" /></a>
+			    <ul>
+			      <li><a href="Mandrake9.0/mandrake9.0.php.html" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image46','','image/title/title_26.png',1)"><img src="image/title/title_23.png" name="Image46" width="120" height="26" border="0" id="Image46" alt="" /></a></li>
+                  <li><a href="fedora_4/fc4.php.html" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image47','','image/title/title_27.png',1)"><img src="image/title/title_24.png" name="Image47" width="120" height="26" border="0" id="Image47" alt="" /></a></li>
+                  <li><a href="linux_basic.php.html" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image48','','image/title/title_28.png',1)"><img src="image/title/title_25.png" name="Image48" width="120" height="26" border="0" id="Image48" alt="" /></a></li>
+                </ul>
+		      </li>
+		</ul></td>
+		<td>
+			<img src="image/title/title_20.png" alt="" width="42" height="33" border="0"></td>
+		<td colspan="3" align="left" valign="top"><ul id="MenuBar2" class="MenuBarHorizontal">
+	  <li><a href="http://vbird.dic.ksu.edu.tw/linux_server/" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image45','','image/title/title_21.png',1)"><img src="image/title/title3_21.png" name="Image45" width="125" height="33" border="0" id="Image45" /></a>
+			    <ul>
+			      <li><a href="http://vbird.dic.ksu.edu.tw/linux_server/linux_redhat9/redhat9.php" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image43','','image/title/title_26.png',1)"><img src="image/title/title_23.png" name="Image43" width="120" height="26" border="0" id="Image43" alt=""/></a></li>
+			      <li><a href="http://vbird.dic.ksu.edu.tw/linux_server/centos4.php" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image49','','image/title/title_27.png',1)"><img src="image/title/title_24.png" name="Image49" width="120" height="26" border="0" id="Image49" alt="" /></a></li>
+			      <li><a href="http://vbird.dic.ksu.edu.tw/linux_server/" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image50','','image/title/title_28.png',1)"><img src="image/title/title_25.png" name="Image50" width="120" height="26" border="0" id="Image50" alt="" /></a></li>
+		        </ul>
+		      </li>
+		</ul></td>
+		<td>
+			<img src="image/title/title_22.png" alt="" width="47" height="33" border="0"></td>
+	</tr>
+	<tr>
+		<td>
+			<img src="image/title/Spacer.gif" width="101" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="263" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="53" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="15" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="91" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="27" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="5" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="42" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="60" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="37" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="28" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="47" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="35" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="74" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="22" height="1" alt=""></td>
+	</tr>
+</table>
+<!-- End ImageReady Slices -->
+<script type="text/javascript">
+<!--
+var MenuBar1 = new Spry.Widget.MenuBar("MenuBar1", {imgDown:"SpryAssets/SpryMenuBarDownHover.gif", imgRight:"SpryAssets/SpryMenuBarRightHover.gif"});
+var MenuBar2 = new Spry.Widget.MenuBar("MenuBar2", {imgDown:"SpryAssets/SpryMenuBarDownHover.gif", imgRight:"SpryAssets/SpryMenuBarRightHover.gif"});
+//-->
+</script></div>
+<table summary="本文内容的排版" style="width: 898px;" border="0" cellpadding="0" cellspacing="0">
+<tbody><tr><td style="width: 16px; height: 16px;">　</td>
+    <td style="width: 866px; height: 16px;">　</td>
+    <td style="width: 16px; height: 16px;">　</td></tr>
+<tr><td style="width: 16px; font-size: 6px;">　</td>
+    <td width="866">
+<!-- 本文的档头部分 -->
+<div style="text-align: center;">
+    <a href="0105computers.php.html">
+    <span class="text_head0">第零章、计算机概论</span></a><br>
+</div>
+    <div style="text-align: right;">
+        <span class="text_history">最近更新日期：2009/08/03</span>
+    </div>
+<!-- 本文的连结区部分 -->
+<div class="block1">
+<span class="text_h1">
+5. <a href="#hint">重点回顾</a><br>
+6. <a href="#ex">本章习题</a><br>
+7. <a href="#reference">参考数据与延伸阅读</a><br>
+<span class="text_h2">
+8. <a href="http://phorum.vbird.org/viewtopic.php?t=31574" target="_blank">针对本文的建议：http://phorum.vbird.org/viewtopic.php?t=31574</a>
+</span>
+</span>
+</div>
+<!-- 本文的正式部分 -->
+<hr><a name="hint"></a><img src="../image/logo.png" alt="大标题的图示" width="35" align="middle" height="34"><span class="text_h1">重点回顾</span><br>
+<div class="block1">
+	<ul class="text_import2">
+	<li>计算机的定义为：『接受使用者输入指令与数据，经由中央处理器的数学与逻辑单元运算处理后，以产生或储存成有用的信息』；</li>
+	<li>计算机的五大单元包括：输入单元、 输出单元、CPU内部的控制单元、算数逻辑单元与主内存五大部分；</li>
+	<li>数据会流进/流出内存是CPU所发布的控制命令，而CPU实际要处理的数据则完全来自於主内存；</li>
+	<li>CPU依设计理念主要分为：精简指令集(RISC)与复杂指令集(CISC)系统；</li>
+	<li>关於CPU的频率部分：外频指的是CPU与外部组件进行数据传输时的速度，倍频则是CPU内部用来加速工作效能的一个倍数，
+		两者相乘才是CPU的频率速度；</li>
+	<li>一般主机板芯片组有分北桥与南桥，北桥的系统总线称为系统系统总线，因为是内存传输的主要通道，所以速度较快。
+		南桥就是所谓的输入输出(I/O)系统总线，主要在联系硬盘、USB、网络卡等周边设备；</li>
+	<li>北桥所支持的频率我们称为前端系统总线速度(Front Side Bus, FSB)，而每次传送的位数则是系统总线宽度。</li>
+	<li>CPU每次能够处理的数据量称为字长大小(word size)，字长大小依据CPU的设计而有32位与64位。
+		我们现在所称的计算机是32或64位主要是依据这个 CPU解析的字长大小而来的！</li>
+	<li>个人计算机的主内存主要组件为动态随机访问内存(Dynamic Random Access Memory, DRAM)，
+		至於CPU内部的第二层缓存则使用静态随机访问内存(Static Random Access Memory, SRAM)；</li>
+	<li>BIOS(Basic Input Output System)是一套程序，这套程序是写死到主机板上面的一个内存芯片中，
+		这个内存芯片在没有通电时也能够将数据记录下来，那就是只读内存(Read Only Memory, ROM)；</li>
+	<li>显示卡的规格有PCI/AGP/PCIe，目前的主流为PCIe介面；</li>
+	<li>硬盘的组成为：圆形磁碟盘、机械手臂、 磁碟读取头与主轴马达所组成的，其中磁碟盘的组成为磁区、磁轨与磁柱；</li>
+	<li>操作系统(Operating System, OS)其实也是一组程序， 这组程序的重点在於管理计算机的所有活动以及驱动系统中的所有硬件。</li>
+	<li>计算机主要以二进位作为单位，常用的磁碟容量单位为bytes，其单位换算为1 Byte = 8bits。</li>
+	<li>最阳春的操作系统仅在驱动与管理硬件，而要使用硬件时，就得需要透过应用软件或者是壳程序(shell)的功能，
+		来呼叫操作系统操纵硬件工作。目前称为操作系统的，除了上述功能外，通常已经包含了日常工作所需要的应用软件在内了。</li>
+	</ul>
+</div>
+
+
+<hr><a name="ex"></a><img src="../image/logo.png" alt="大标题的图示" width="35" align="middle" height="34"><span class="text_h1">本章习题</span><br>
+<div class="block1">
+	<ul>
+	<li>动动手实作题：假设你不知道你的主机内部的各项组件数据，请拆开你的主机机壳，并将内部所有的组件拆开，并且依序列出：
+		<ul><li>CPU的厂牌、型号、最高频率；</li>
+		<li>主内存的容量、介面 (DDR/DDR II等)；</li>
+		<li>显示卡的介面 (AGP/PCIe/内建) 与容量</li>
+		<li>主机板的厂牌、南北桥的芯片型号、BIOS的厂牌、有无内建的网卡或音效卡等</li>
+		<li>硬盘的连接介面 (IDE/SATA等)、硬盘容量、转速、缓冲内存容量等。</li></ul>
+		然后再将他组装回去。注意，拆装前务必先取得你主机板的说明书，因此你可能必须要上网查询上述的各项数据。<br><br></li>
+
+	<li>利用软件：假设你不想要拆开主机机壳，但想了解你的主机内部各组件的信息时，该如何是好？
+		如果使用的是Windows操作系统，可使用CPU-Z(<a href="http://www.cpuid.com/cpuz.php" target="_blank">http://www.cpuid.com/cpuz.php</a>)这套软件，如果是Linux环境下，可以使用『cat /proc/cpuinfo』
+		及使用『lspci』来查阅各项组件的型号；<br><br></li>
+
+	<li>依据文末的延伸阅读连结，自行搜寻出 BIOS 的主要任务，以及目前在个人计算机上面常见的 BIOS 制造商有哪几家？</li>
+	</ul>
+</div>
+<hr><a name="reference"></a><img src="../image/logo.png" alt="大标题的图示" width="35" align="middle" height="34"><span class="text_h1">参考数据与延伸阅读</span><br>
+<div class="block1">
+	<ul>
+	<li><a name="ps1"></a>注1：对於CPU的原理有兴趣的读者，可以参考维基百科的说明：<br>
+		英文CPU(<a href="http://en.wikipedia.org/wiki/CPU" target="_blank">http://en.wikipedia.org/wiki/CPU</a>)<br>中文CPU(<a href="http://zh.wikipedia.org/w/index.php?title=%E4%B8%AD%E5%A4%AE%E5%A4%84%E7%90%86%E5%99%A8&variant=zh-hant" target="_blank">http://zh.wikipedia.org/wiki/中央处理器</a>)。</li>
+	<li><a name="ps2"></a>注2：图片参考：作者：陈锦辉，『计算机概论-探索未来2008』，金禾信息，2007出版</li>
+	<li><a name="ps3"></a>注3：更详细的RISC架构可以参考维基百科：<br><a href="http://zh.wikipedia.org/w/index.php?title=%E7%B2%BE%E7%AE%80%E6%8C%87%E4%BB%A4%E9%9B%86&variant=zh-tw" target="_blank">http://zh.wikipedia.org/w/index.php?title=精简指令集&amp;variant=zh-tw</a></li>
+	<li><a name="ps4"></a>注4：关於ARM架构的说明，可以参考维基百科：<br><a href="http://zh.wikipedia.org/w/index.php?title=ARM%E6%9E%B6%E6%A7%8B&variant=zh-tw" target="_blank">http://zh.wikipedia.org/w/index.php?title=ARM架构&amp;variant=zh-tw</a></li>
+	<li><a name="ps5"></a>注5：更详细的CISC架构可参考维基百科：<br><a href="http://zh.wikipedia.org/w/index.php?title=CISC&variant=zh-tw" target="_blank">http://zh.wikipedia.org/w/index.php?title=CISC&amp;variant=zh-tw</a></li>
+	<li><a name="ps6"></a>注6：更详细的x86架构发展史可以参考维基百科：<br><a href="http://zh.wikipedia.org/w/index.php?title=X86&variant=zh-tw" target="_blank">http://zh.wikipedia.org/w/index.php?title=X86&amp;variant=zh-tw</a></li>
+	<li><a name="ps7"></a>注7：相关的固件说明可参考维基百科：<br><a href="http://zh.wikipedia.org/w/index.php?title=%E9%9F%8C%E9%AB%94&variant=zh-hant" target="_blank">http://zh.wikipedia.org/w/index.php?title=固件&amp;variant=zh-hant</a></li>
+	<li><a name="ps8"></a>注8：相关 EEPROM 可以参考维基百科：<br><a href="http://zh.wikipedia.org/w/index.php?title=EEPROM&variant=zh-tw" target="_blank">http://zh.wikipedia.org/w/index.php?title=EEPROM&amp;variant=zh-tw</a></li>
+	<li><a name="ps9"></a>注9：相关 BIOS 的说明可以参考维基百科：<br>
+		<a href="http://zh.wikipedia.org/w/index.php?title=BIOS&variant=zh-tw" target="_blank">http://zh.wikipedia.org/w/index.php?title=BIOS&amp;variant=zh-tw</a></li>
+	<li>感谢：本章当中出现很多图示，很多是从Tom's Hardware(<a href="http://www.tomshardware.tw/" target="_blank">http://www.tomshardware.tw/</a>)网站取得的，在此特别感谢！</li>
+	</ul>
+</div>
+
+<hr>
+    </td>
+    <td style="width: 16px; font-size: 6px;">　</td></tr>
+<tr><td style="width: 16px; height: 16px;">　</td>
+    <td style="width: 866px; height: 16px;">　</td>
+    <td style="width: 16px; height: 16px;">　</td></tr>
+</tbody></table>
+
+<div style="padding-top: 0px; text-align: center;">
+<span style="font-size: 80%;">
+	<a href="http://vbird.dic.ksu.edu.tw/" target="_top" title="前往鸟哥的首页">http://linux.vbird.org</a>
+	is designed by <a href="mailto:vbird@mail.vbird.idv.tw" title="联络鸟哥(我不要广告信！)">VBird</a>
+		during 2001-2011. <a href="http://www.ksu.edu.tw/" target="_blank">ksu.edu</a></span>
+         ﻿<div id="apDiv4">
+      <p>本网页主要以Firefox配合解析度 1024x768 作为设计依据&nbsp;&nbsp;&nbsp;&nbsp; 鸟哥自由软件整合应用研究室</p></div></div>
+</div>
+</center>
+</body></html>

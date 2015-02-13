@@ -1,0 +1,368 @@
+<html><head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta name="Author" content="2011/04/28,lee">
+	<meta name="Description" content="登录文件的分析啦！">
+	<title>鸟哥的 Linux 私房菜 -- 登录文件的分析啦！</title>
+    <script src="../script/SpryMenuBar.js" type="text/javascript"></script>
+	<script src="../script/index.js" type="text/javascript"></script>
+	<link href="../css/SpryMenuBarHorizontal.css" rel="stylesheet" type="text/css" />
+    <link href="../css/main.css" rel="stylesheet" type="text/css" />
+    </head><body style="margin: 0pt; padding: 0pt;" class="table"onload="MM_preloadImages('image/title_19.png','image/title_26.png','image/title_27.png','image/title_28.png','image/title_06.png','image/title_08.png','image/title_10.png','image/title_12.png')">
+
+
+<!-- Copyright � 2005. Spidersoft Ltd -->
+<style>
+A.applink:hover {border: 2px dotted #DCE6F4;padding:2px;background-color:#ffff00;color:green;text-decoration:none}
+A.applink       {border: 2px dotted #DCE6F4;padding:2px;color:#2F5BFF;background:transparent;text-decoration:none}
+A.info          {color:#2F5BFF;background:transparent;text-decoration:none}
+A.info:hover    {color:green;background:transparent;text-decoration:underline}
+</style>
+<div style='BORDER: 1px solid #DCE6F4; MARGIN-TOP: 20px; MARGIN-BOTTOM: 20px; MARGIN-LEFT: 5px; MARGIN-RIGHT: 5px; PADDING: 5px; BACKGROUND-COLOR: #eef8ff;line-height:180%; COLOR: #000000; font-family: Arial; font-size: 8pt; width=100%; FILTER: progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr="#FFFFFFFF", EndColorStr="#F2F5FAFF");'>
+This page was saved using <a class="applink" href="http://www.spidersoft.com"><b>WebZIP 7.0.3.1030</b></a> <a class="applink" href="http://www.spidersoft.com"><b>offline browser</b></a>  (Unregistered) on  02/12/15 12:14:49.<br>
+<b>Address:</b> <a class="info" href="http://vbird.dic.ksu.edu.tw/linux_basic/0570syslog_4.php">http://vbird.dic.ksu.edu.tw/linux_basic/0570syslog_4.php</a><br>
+<b>Title:</b> 鸟哥的 Linux 私房菜 -- 登录文件的分析啦！ &nbsp;&bull;&nbsp; <b>Size:</b> 21538<br></div>
+<!-- /Copyright � 2005. Spidersoft Ltd -->
+
+
+
+<center>
+<div id="apDiv5">
+<div> <LINK REL="SHORTCUT ICON" HREF="favicon.ico">
+<!-- ImageReady Slices (title3.ai) -->
+<table id="___01" width="898" height="81" border="0" align="center" cellpadding="0" cellspacing="0";>
+	<tr>
+		<td colspan="15">
+			<img src="image/title/title_01.png" width="900" height="1" alt=""></td>
+	</tr>
+	<tr>
+		<td rowspan="4" bgcolor="#182448"><p><img src="http://linux.vbird.org/cgi-bin/Count.cgi?dd=C&ft=5&sh=T&md=8&pad=Y&df=vbird.dic.ksu.edu.tw.dat" width="93" align="left" title="計數器" /></p>
+	    <p><font color="#FFFFFF" size="-1">since2012/04/23</font></p></td>
+		<td rowspan="4" align="left" valign="top"><a href="http://vbird.dic.ksu.edu.tw/"><img src="image/title/title_03.png" alt="" width="263" height="79" border="0"></a></td>
+		<td colspan="13">
+			<img src="image/title/title_04.png" alt="" width="535" height="9" border="0"></td>
+	</tr>
+	<tr>
+		<td rowspan="3">
+			<img src="image/title/title_05.png" alt="" width="53" height="70" border="0"></td>
+		<td colspan="2" align="left" valign="top"><a href="0110whatislinux.php.html" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image51','','image/title/title_06.png',1)"><img src="image/title/title3_06.png" name="Image51" width="106" height="25" border="0" id="Image51" alt=""/></a></td>
+		<td rowspan="2">
+			<img src="image/title/title_07.png" alt="" width="27" height="37" border="0"></td>
+		<td colspan="3" align="left" valign="top"><a href="http://vbird.dic.ksu.edu.tw/linux_server/0110network_basic.php" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image52','','image/title/title_08.png',1)"><img src="image/title/title3_08.png" name="Image52" width="107" height="25" border="0" id="Image52" alt=""/></a></td>
+		<td rowspan="2">
+			<img src="image/title/title_09.png" alt="" width="37" height="37" border="0"></td>
+		<td colspan="2" align="left" valign="top"><a href="http://vbird.dic.ksu.edu.tw/about.php" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image53','','image/title/title_10.png',1)"><img src="image/title/title3_10.png" name="Image53" width="75" height="25" border="0" id="Image53" alt=""/></a></td>
+		<td rowspan="3">
+			<img src="image/title/title_11.png" alt="" width="35" height="70" border="0"></td>
+		<td align="left" valign="top"><a href="mailto:vbird@mail.vbird.idv.tw" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image54','','image/title/title_12.png',1)"><img src="image/title/title3_12.png" name="Image54" width="74" height="25" border="0" id="Image54" alt=""/></a></td>
+		<td rowspan="3">
+			<img src="image/title/title_13.png" alt="" width="21" height="70" border="0"></td>
+	</tr>
+	<tr>
+		<td colspan="2">
+			<img src="image/title/title_14.png" alt="" width="106" height="12" border="0"></td>
+		<td colspan="3">
+			<img src="image/title/title_15.png" alt="" width="107" height="12" border="0"></td>
+		<td colspan="2">
+			<img src="image/title/title_16.png" width="75" height="12" alt=""></td>
+		<td rowspan="2">
+			<img src="image/title/title_17.png" alt="" width="74" height="45" border="0"></td>
+	</tr>
+	<tr>
+		<td>
+			<img src="image/title/title_18.png" alt="" width="15" height="33" border="0"></td>
+		<td colspan="3" align="left" valign="top"><ul id="MenuBar1" class="MenuBarHorizontal">
+	  <li><a href="linux_basic.php.html" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image44','','image/title/title_19.png',1)"><img src="image/title/title3_19.png" name="Image44" width="123" height="33" border="0" id="Image44" /></a>
+			    <ul>
+			      <li><a href="Mandrake9.0/mandrake9.0.php.html" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image46','','image/title/title_26.png',1)"><img src="image/title/title_23.png" name="Image46" width="120" height="26" border="0" id="Image46" alt="" /></a></li>
+                  <li><a href="fedora_4/fc4.php.html" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image47','','image/title/title_27.png',1)"><img src="image/title/title_24.png" name="Image47" width="120" height="26" border="0" id="Image47" alt="" /></a></li>
+                  <li><a href="linux_basic.php.html" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image48','','image/title/title_28.png',1)"><img src="image/title/title_25.png" name="Image48" width="120" height="26" border="0" id="Image48" alt="" /></a></li>
+                </ul>
+		      </li>
+		</ul></td>
+		<td>
+			<img src="image/title/title_20.png" alt="" width="42" height="33" border="0"></td>
+		<td colspan="3" align="left" valign="top"><ul id="MenuBar2" class="MenuBarHorizontal">
+	  <li><a href="http://vbird.dic.ksu.edu.tw/linux_server/" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image45','','image/title/title_21.png',1)"><img src="image/title/title3_21.png" name="Image45" width="125" height="33" border="0" id="Image45" /></a>
+			    <ul>
+			      <li><a href="http://vbird.dic.ksu.edu.tw/linux_server/linux_redhat9/redhat9.php" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image43','','image/title/title_26.png',1)"><img src="image/title/title_23.png" name="Image43" width="120" height="26" border="0" id="Image43" alt=""/></a></li>
+			      <li><a href="http://vbird.dic.ksu.edu.tw/linux_server/centos4.php" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image49','','image/title/title_27.png',1)"><img src="image/title/title_24.png" name="Image49" width="120" height="26" border="0" id="Image49" alt="" /></a></li>
+			      <li><a href="http://vbird.dic.ksu.edu.tw/linux_server/" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image50','','image/title/title_28.png',1)"><img src="image/title/title_25.png" name="Image50" width="120" height="26" border="0" id="Image50" alt="" /></a></li>
+		        </ul>
+		      </li>
+		</ul></td>
+		<td>
+			<img src="image/title/title_22.png" alt="" width="47" height="33" border="0"></td>
+	</tr>
+	<tr>
+		<td>
+			<img src="image/title/Spacer.gif" width="101" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="263" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="53" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="15" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="91" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="27" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="5" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="42" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="60" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="37" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="28" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="47" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="35" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="74" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="22" height="1" alt=""></td>
+	</tr>
+</table>
+<!-- End ImageReady Slices -->
+<script type="text/javascript">
+<!--
+var MenuBar1 = new Spry.Widget.MenuBar("MenuBar1", {imgDown:"SpryAssets/SpryMenuBarDownHover.gif", imgRight:"SpryAssets/SpryMenuBarRightHover.gif"});
+var MenuBar2 = new Spry.Widget.MenuBar("MenuBar2", {imgDown:"SpryAssets/SpryMenuBarDownHover.gif", imgRight:"SpryAssets/SpryMenuBarRightHover.gif"});
+//-->
+</script></div>
+<table summary="本文内容的排版" style="width: 898px;" border="0" cellpadding="0" cellspacing="0">
+<tbody><tr><td style="width: 16px; height: 16px;">　</td>
+    <td style="width: 866px; height: 16px;">　</td>
+    <td style="width: 16px; height: 16px;">　</td></tr>
+<tr><td style="width: 16px; font-size: 6px;">　</td>
+    <td width="866">
+
+<!-- 本文的档头部分 -->
+<div style="text-align: center;">
+    <a href="0570syslog.php.html">
+    <span class="text_head0">第十九章、认识与分析登录文件</span></a><br>
+</div>
+    <div style="text-align: right;">
+        <span class="text_history">最近升级日期：2009/09/14</span>
+    </div>
+<!-- 本文的连结区部分 -->
+<div class="block1">
+<span class="text_h1">
+4. <a href="#analyze">分析登录文件</a><br>
+	<span class="text_h2">
+	　　4.1 <a href="#logwatch">CentOS 默认提供的 logwatch</a><br>
+	　　4.2 <a href="#analyze_vbird">鸟哥自己写的登录文件分析工具：</a><br>
+	</span>
+</span></div>
+<!-- 本文的正式部分 -->
+<hr><a name="analyze"></a><img src="../image/logo.png" alt="大标题的图示" width="35" align="middle" height="34"><span class="text_h1">分析登录文件</span><br>
+<div class="block1">
+	<p>登录文件的分析是很重要的！你可以自行以 vi 进入登录文件去查阅相关的资讯。而系统也提供一些软件可以让你从登录文件中取得数据，
+	例如之前谈过的 last, lastlog, dmesg 等等命令。不过，这些数据毕竟都非常的分散，如果你想要一口气读取所有的登录资讯，
+	其实有点困扰的。不过，好在 CentOS 有提供 logwatch 这个登录文件分析程序，你可以藉由该程序来了解登录文件资讯。
+	此外，鸟哥也依据 Red Hat 系统的 syslog 写了一支小程序给大家使用喔！<br><br></p>
+
+	<hr><a name="logwatch"></a><img src="../image/logo.png" alt="小标题的图示" width="24" align="middle" height="23"><span class="text_h2">CentOS 默认提供的 logwatch</span><br>
+	<div class="block2">
+		<p>虽然有一些有用的系统命令，不过，要了解系统的状态，还是得要分析整个登录文件才行～
+		事实上，目前已经有相当多的登录文件分析工具，例如 CentOS 5.x 上面默认的 logwatch 这个套件所提供的分析工具，
+		他会每天分析一次登录文件，并且将数据以 email 的格式寄送给 root 呢！
+		你也可以直接到 logwatch 的官方网站上面看看：</p>
+
+		<ul><li><a href="http://www.logwatch.org/" target="_blank">http://www.logwatch.org/</a></li></ul>
+
+		<p>logwatch 分析的结果如下所示：</p>
+
+<table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">mail</span>
+Mail version 8.1 6/6/93.  Type ? for help.
+"/var/spool/mail/root": 433 messages 433 new
+<span style="font-size: 9pt;">&gt;N  1 logwatch@www.vbird.t  Fri Sep  5 11:42  43/1542  "Logwatch for www.vbird.tsai (Linux)"
+ N  2 logwatch@www.vbird.t  Sat Sep  6 15:34  92/2709  "Logwatch for www.vbird.tsai (Linux)"
+ N  3 logwatch@www.vbird.t  Mon Sep  8 15:26  43/1542  "Logwatch for www.vbird.tsai (Linux)"
+<span class="term_say">....(中间省略)....</span>
+ <u>N431 logwatch@www.vbird.t  Wed Apr  8 04:02  53/1772  "Logwatch for www.vbird.tsai (Linux)"</u></span>
+&amp; <span class="term_command">431</span>
+Message 431:
+From root@www.vbird.tsai  Wed Apr  8 04:02:05 2009
+Date: Wed, 8 Apr 2009 04:02:05 +0800
+To: root@www.vbird.tsai
+From: logwatch@www.vbird.tsai
+Subject: Logwatch for www.vbird.tsai (Linux)
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="iso-8859-1"
+
+<span class="term_say"># 先会说明分析的日期与相关的分析期间！</span>
+ ################### Logwatch 7.3 (03/24/06) ####################
+        Processing Initiated: Wed Apr  8 04:02:05 2009
+        Date Range Processed: yesterday
+                              ( 2009-Apr-07 )
+                              Period is day.
+      Detail Level of Output: 0
+              Type of Output: unformatted
+           Logfiles for Host: www.vbird.tsai
+  ##################################################################
+
+<span class="term_say"># 底下则是依据各种服务来进行各项分析！先是登陆者的 ssh 服务分析</span>
+ --------------------- SSHD Begin ------------------------
+
+ Users logging in through sshd:
+    root:
+       192.168.100.101: 1 time
+       192.168.100.254: 1 time
+
+ ---------------------- SSHD End -------------------------
+
+<span class="term_say"># 磁碟容量分析！可以避免你的系统使用过量磁碟，导致的系统不稳问题！</span>
+ --------------------- Disk Space Begin ------------------------
+
+ Filesystem            Size  Used Avail Use% Mounted on
+ /dev/hda2             9.5G  3.8G  5.3G  42% /
+ /dev/hda3             4.8G  1.1G  3.5G  23% /home
+ /dev/hda1              99M   21M   73M  23% /boot
+
+ ---------------------- Disk Space End -------------------------
+ ###################### Logwatch End #########################
+</pre></td></tr></tbody></table>
+
+		<p>由於鸟哥的测试用主机尚未启动许多服务，所以分析的项目很少。若你的系统已经启动许多服务的话，
+		那么分析的项目理应会多很多才对。</p>
+	</div>
+
+	<hr><a name="analyze_vbird"></a><img src="../image/logo.png" alt="小标题的图示" width="24" align="middle" height="23"><span class="text_h2">鸟哥自己写的登录文件分析工具：</span><br>
+	<div class="block2">
+		<p>虽然已经有了类似 logwatch 的工具，但是鸟哥自己想要分析的数据毕竟与对方不同～
+		所以罗，鸟哥就自己写了一支小程序 (shell script 的语法) 用来分析自己的登录文件，
+		这支程序分析的登录文件数据其实是固定的，包括有：</p>
+
+		<ul class="text_import2">
+		<li>/var/log/secure</li>
+		<li>/var/log/messages</li>
+		<li>/var/log/maillog</li></ul>
+
+		<p>当然啦，还不只这些啦，包括各个主要常见的服务，如 pop3, mail, ftp, su 等会使用到 pam 的服务，
+		都可以透过鸟哥写的这个小程序来分析与处理呢～整个数据还会输出一些系统资讯。如果你想要使用这个程序的话，
+		欢迎下载：</p>
+		<ul><li><a href="http://vbird.dic.ksu.edu.tw/download/index.php?action=detail&fileid=69">http://vbird.dic.ksu.edu.tw/download/index.php?action=detail&amp;fileid=69</a></li></ul>
+
+		<p>安装的方法也很简单，只要将上述文件下载并解压缩后，就会得到一个名为 logfile 的目录，
+		将此目录移动到 /usr/local/virus/ 目录下并修改一下： /usr/local/virus/logfile.sh 文件，
+		里面的 email 与相关的资讯只要修改一下，你就可以使用啦～啊！还要记得，将这支程序的运行写入 /etc/crontab 当中喔！
+		可以在每天的 12:10am 运行这支小程序啦！ ^_^</p>
+
+<table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">mkdir /usr/local/virus</span>
+[root@www ~]# <span class="term_command">tar -zxvf logfile-0.1-4-2.tgz -C /usr/local/virus</span>
+[root@www ~]# <span class="term_command">cd /usr/local/virus/logfile</span>
+[root@www ~]# <span class="term_command">vi logfile.sh</span>
+<span class="term_write">email="root@localhost" <span class="term_note">&lt;==大约在 93 行左右，请填入你的 email ，否则保留默认值</span>
+basedir="/usr/local/virus/logfile"</span> <span class="term_note">&lt;==保留默认值，除非你的运行目录不同与此！</span>
+
+[root@www ~]# <span class="term_command">sh logfile.sh</span>
+<span class="term_say"># 开始尝试分析系统的登录文件，依据你的登录文件大小，分析的时间不固定！</span>
+
+[root@www ~]# <span class="term_command">vi /etc/crontab</span>
+<span class="term_write">10 0 * * * root /usr/local/virus/logfile/logfile.sh</span>
+<span class="term_say"># 添加这一行！让系统在每天的凌晨自己进行登录文件分析！</span>
+
+[root@www ~]# <span class="term_command">mail</span>
+<span class="term_say"># 自己找到刚刚输出的结果，该结果的输出有点像底下这样：</span>
+
+<span class="term_say"># 先进行程序的宣告！你也可以在底下的连结找到一些错误回报！</span>
+##########################################################
+欢迎使用本程序来查验您的登录文件
+本程序目前版本为： Version 0.1-4-2
+程序最后升级日期为： 2006-09-22
+若在您的系统中发现本程序有问题, 欢迎与我联络！
+鸟哥的首页 http://linux.vbird.org
+问题回报： http://phorum.vbird.org/viewtopic.php?t=3425
+##########################################################
+
+<span class="term_say"># 先看看你的硬件与操作系统的相关情况，尤其是 partition 的使用量更需要随时注意！</span>
+=============== 系统汇整 =================================
+核心版本  : Linux version 2.6.18-92.el5 (mockbuild@builder16.centos.org)
+CPU 资讯  : Intel(R) Celeron(TM) CPU
+          : 1200.062 MHz
+主机名称  : www.vbird.tsai
+统计日期  : 2009/April/08 17:00:59 ( Wednesday )
+分析的日期: Apr  8
+已启动期间: 7 days, 22:46,
+目前主机挂载的 partitions
+       Filesystem            Size  Used Avail Use% Mounted on
+       /dev/hda2             9.5G  3.8G  5.3G  42% /
+       /dev/hda3             4.8G  1.1G  3.5G  23% /home
+       /dev/hda1              99M   21M   73M  23% /boot
+       tmpfs                 363M     0  363M   0% /dev/shm
+
+<span class="term_say"># 这个程序会将针对 internet 与内部监听的端口分开来显示！</span>
+================= Ports 的相关分析资讯 =======================
+主机激活的 port 与相关的 process owner：
+仅对本机介面开放的 ports (PID|owner|command)
+       tcp 25|(root)|sendmail: accepting connections
+       tcp 631|(root)|cupsd
+       tcp 2207|(root)|python ./hpssd.py
+       tcp 2208|(root)|./hpiod
+对外部介面开放的 ports (PID|owner|command)
+       tcp 22|(root)|/usr/sbin/sshd
+       tcp 111|(rpc)|portmap
+       tcp 737|(root)|rpc.statd
+       udp 111|(rpc)|portmap
+       udp 514|(root)|syslogd -m 0 -r
+       udp 631|(root)|cupsd
+       udp 731|(root)|rpc.statd
+       udp 734|(root)|rpc.statd
+       udp 5353|(avahi)|avahi-daemon: running [www.local]
+       udp 32768|(avahi)|avahi-daemon: running [www.local]
+       udp 32769|(avahi)|avahi-daemon: running [www.local]
+
+<span class="term_say"># 以下针对有启动的服务个别进行分析！</span>
+================= SSH 的登录文件资讯汇整 =======================
+今日没有使用 SSH 的纪录
+
+
+================= Sednamil 的登录文件资讯汇整 ==================
+您的主机有进行 SASL 身份认证的功能
+
+今日没有 sendmail 的相关资讯
+
+
+================= 全部的登录文件资讯汇整 =======================
+1. 重要的登录记录档 ( Secure file )
+   说明：已经取消了 pop3 的资讯！
+Apr  8 15:46:22 www su: session opened for user vbird by root(uid=0)
+Apr  8 15:47:02 www su: session closed for user vbird
+
+2. 使用 last 这个命令输出的结果
+
+wtmp begins Wed Apr  8 15:19:47 2009
+
+3. 将特重要的 /var/log/messages 列出来瞧瞧！
+   已经取消 crond 与 snmpd 的信息
+Apr  8 15:19:47 www syslogd 1.4.1: restart (remote reception).
+Apr  8 15:34:25 www syslogd 1.4.1: restart (remote reception).
+</pre></td></tr></tbody></table>
+
+		<p>目前鸟哥都是透过这支程序去分析自己管理的主机，然后再据以了解系统状况，如果有特殊状况则即时进行系统处理！
+		而且鸟哥都是将上述的 email 调整成自己可以在 Internet 上面读到的邮件，这样我每天都可以收到正确的登录文件分析资讯哩！</p>
+	</div>
+</div>
+<hr />
+    </td>
+    <td style="width: 16px; font-size: 6px;">　</td></tr>
+<tr><td style="width: 16px; height: 16px;">　</td>
+    <td style="width: 866px; height: 16px;">　</td>
+    <td style="width: 16px; height: 16px;">　</td></tr>
+</tbody></table>
+
+<div style="padding-top: 0px; text-align: center;">
+<span style="font-size: 80%;">
+	<a href="http://vbird.dic.ksu.edu.tw/" target="_top" title="前往鸟哥的首页">http://linux.vbird.org</a>
+	is designed by <a href="mailto:vbird@mail.vbird.idv.tw" title="联络鸟哥(我不要广告信！)">VBird</a>
+		during 2001-2011. <a href="http://www.ksu.edu.tw/" target="_blank">ksu.edu</a></span>
+         ﻿<div id="apDiv4">
+      <p>本网页主要以Firefox配合解析度 1024x768 作为设计依据&nbsp;&nbsp;&nbsp;&nbsp; 鸟哥自由软件整合应用研究室</p></div></div>
+</div>
+</center>
+</body></html>

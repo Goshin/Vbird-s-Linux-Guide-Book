@@ -1,0 +1,624 @@
+﻿<!DOCTYPE HTML PUBLIC "-//w3c//dtd html 4.0 transitional//en">
+<html><head>
+
+
+   <meta http-equiv="Content-Type" content="text/html; charset=utf8">
+   <meta name="Author" content="VBird">
+   <meta name="Description" content="使用 SRPM 来修改套件与编译您自己的软件">
+   <title>鸟哥的 Linux 私房菜 -- SRPM 的设定</title>
+   	<script src="../../script/SpryMenuBar.js" type="text/javascript"></script>
+	<script src="../../script/index.js" type="text/javascript"></script>
+	<link href="../../css/SpryMenuBarHorizontal.css" rel="stylesheet" type="text/css" />
+    <link href="../../css/main.css" rel="stylesheet" type="text/css" />
+
+</head><body style="margin: 0pt; padding: 0pt;" class="table"onload="MM_preloadImages('image/title_19.png','image/title_26.png','image/title_27.png','image/title_28.png','image/title_06.png','image/title_08.png','image/title_10.png','image/title_12.png')">
+
+
+<!-- Copyright � 2005. Spidersoft Ltd -->
+<style>
+A.applink:hover {border: 2px dotted #DCE6F4;padding:2px;background-color:#ffff00;color:green;text-decoration:none}
+A.applink       {border: 2px dotted #DCE6F4;padding:2px;color:#2F5BFF;background:transparent;text-decoration:none}
+A.info          {color:#2F5BFF;background:transparent;text-decoration:none}
+A.info:hover    {color:green;background:transparent;text-decoration:underline}
+</style>
+<div style='BORDER: 1px solid #DCE6F4; MARGIN-TOP: 20px; MARGIN-BOTTOM: 20px; MARGIN-LEFT: 5px; MARGIN-RIGHT: 5px; PADDING: 5px; BACKGROUND-COLOR: #eef8ff;line-height:180%; COLOR: #000000; font-family: Arial; font-size: 8pt; width=100%; FILTER: progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr="#FFFFFFFF", EndColorStr="#F2F5FAFF");'>
+This page was saved using <a class="applink" href="http://www.spidersoft.com"><b>WebZIP 7.0.3.1030</b></a> <a class="applink" href="http://www.spidersoft.com"><b>offline browser</b></a>  (Unregistered) on  02/12/15 12:14:49.<br>
+<b>Address:</b> <a class="info" href="http://vbird.dic.ksu.edu.tw/linux_basic/Mandrake9.0/0530srpm.php">http://vbird.dic.ksu.edu.tw/linux_basic/Mandrake9.0/0530srpm.php</a><br>
+<b>Title:</b> 鸟哥的 Linux 私房菜 -- SRPM 的设定 &nbsp;&bull;&nbsp; <b>Size:</b> 40883<br></div>
+<!-- /Copyright � 2005. Spidersoft Ltd -->
+
+
+
+<center>
+<div id="apDiv5" align="left">
+<div> <LINK REL="SHORTCUT ICON" HREF="favicon.ico">
+<!-- ImageReady Slices (title3.ai) -->
+<table id="___01" width="898" height="81" border="0" align="center" cellpadding="0" cellspacing="0";>
+	<tr>
+		<td colspan="15">
+			<img src="image/title/title_01.png" width="900" height="1" alt=""></td>
+	</tr>
+	<tr>
+		<td rowspan="4" bgcolor="#182448"><p><img src="http://linux.vbird.org/cgi-bin/Count.cgi?dd=C&ft=5&sh=T&md=8&pad=Y&df=vbird.dic.ksu.edu.tw.dat" width="93" align="left" title="計數器" /></p>
+	    <p><font color="#FFFFFF" size="-1">since2012/04/23</font></p></td>
+		<td rowspan="4" align="left" valign="top"><a href="http://vbird.dic.ksu.edu.tw/"><img src="image/title/title_03.png" alt="" width="263" height="79" border="0"></a></td>
+		<td colspan="13">
+			<img src="image/title/title_04.png" alt="" width="535" height="9" border="0"></td>
+	</tr>
+	<tr>
+		<td rowspan="3">
+			<img src="image/title/title_05.png" alt="" width="53" height="70" border="0"></td>
+		<td colspan="2" align="left" valign="top"><a href="../0110whatislinux.php.html" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image51','','image/title/title_06.png',1)"><img src="image/title/title3_06.png" name="Image51" width="106" height="25" border="0" id="Image51" alt=""/></a></td>
+		<td rowspan="2">
+			<img src="image/title/title_07.png" alt="" width="27" height="37" border="0"></td>
+		<td colspan="3" align="left" valign="top"><a href="http://vbird.dic.ksu.edu.tw/linux_server/0110network_basic.php" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image52','','image/title/title_08.png',1)"><img src="image/title/title3_08.png" name="Image52" width="107" height="25" border="0" id="Image52" alt=""/></a></td>
+		<td rowspan="2">
+			<img src="image/title/title_09.png" alt="" width="37" height="37" border="0"></td>
+		<td colspan="2" align="left" valign="top"><a href="http://vbird.dic.ksu.edu.tw/about.php" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image53','','image/title/title_10.png',1)"><img src="image/title/title3_10.png" name="Image53" width="75" height="25" border="0" id="Image53" alt=""/></a></td>
+		<td rowspan="3">
+			<img src="image/title/title_11.png" alt="" width="35" height="70" border="0"></td>
+		<td align="left" valign="top"><a href="mailto:vbird@mail.vbird.idv.tw" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image54','','image/title/title_12.png',1)"><img src="image/title/title3_12.png" name="Image54" width="74" height="25" border="0" id="Image54" alt=""/></a></td>
+		<td rowspan="3">
+			<img src="image/title/title_13.png" alt="" width="21" height="70" border="0"></td>
+	</tr>
+	<tr>
+		<td colspan="2">
+			<img src="image/title/title_14.png" alt="" width="106" height="12" border="0"></td>
+		<td colspan="3">
+			<img src="image/title/title_15.png" alt="" width="107" height="12" border="0"></td>
+		<td colspan="2">
+			<img src="image/title/title_16.png" width="75" height="12" alt=""></td>
+		<td rowspan="2">
+			<img src="image/title/title_17.png" alt="" width="74" height="45" border="0"></td>
+	</tr>
+	<tr>
+		<td>
+			<img src="image/title/title_18.png" alt="" width="15" height="33" border="0"></td>
+		<td colspan="3" align="left" valign="top"><ul id="MenuBar1" class="MenuBarHorizontal">
+	  <li><a href="../linux_basic.php.html" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image44','','image/title/title_19.png',1)"><img src="image/title/title3_19.png" name="Image44" width="123" height="33" border="0" id="Image44" /></a>
+			    <ul>
+			      <li><a href="mandrake9.0.php.html" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image46','','image/title/title_26.png',1)"><img src="image/title/title_23.png" name="Image46" width="120" height="26" border="0" id="Image46" alt="" /></a></li>
+                  <li><a href="../fedora_4/fc4.php.html" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image47','','image/title/title_27.png',1)"><img src="image/title/title_24.png" name="Image47" width="120" height="26" border="0" id="Image47" alt="" /></a></li>
+                  <li><a href="../linux_basic.php.html" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image48','','image/title/title_28.png',1)"><img src="image/title/title_25.png" name="Image48" width="120" height="26" border="0" id="Image48" alt="" /></a></li>
+                </ul>
+		      </li>
+		</ul></td>
+		<td>
+			<img src="image/title/title_20.png" alt="" width="42" height="33" border="0"></td>
+		<td colspan="3" align="left" valign="top"><ul id="MenuBar2" class="MenuBarHorizontal">
+	  <li><a href="http://vbird.dic.ksu.edu.tw/linux_server/" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image45','','image/title/title_21.png',1)"><img src="image/title/title3_21.png" name="Image45" width="125" height="33" border="0" id="Image45" /></a>
+			    <ul>
+			      <li><a href="http://vbird.dic.ksu.edu.tw/linux_server/linux_redhat9/redhat9.php" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image43','','image/title/title_26.png',1)"><img src="image/title/title_23.png" name="Image43" width="120" height="26" border="0" id="Image43" alt=""/></a></li>
+			      <li><a href="http://vbird.dic.ksu.edu.tw/linux_server/centos4.php" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image49','','image/title/title_27.png',1)"><img src="image/title/title_24.png" name="Image49" width="120" height="26" border="0" id="Image49" alt="" /></a></li>
+			      <li><a href="http://vbird.dic.ksu.edu.tw/linux_server/" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image50','','image/title/title_28.png',1)"><img src="image/title/title_25.png" name="Image50" width="120" height="26" border="0" id="Image50" alt="" /></a></li>
+		        </ul>
+		      </li>
+		</ul></td>
+		<td>
+			<img src="image/title/title_22.png" alt="" width="47" height="33" border="0"></td>
+	</tr>
+	<tr>
+		<td>
+			<img src="image/title/Spacer.gif" width="101" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="263" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="53" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="15" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="91" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="27" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="5" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="42" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="60" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="37" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="28" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="47" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="35" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="74" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="22" height="1" alt=""></td>
+	</tr>
+</table>
+<!-- End ImageReady Slices -->
+<script type="text/javascript">
+<!--
+var MenuBar1 = new Spry.Widget.MenuBar("MenuBar1", {imgDown:"SpryAssets/SpryMenuBarDownHover.gif", imgRight:"SpryAssets/SpryMenuBarRightHover.gif"});
+var MenuBar2 = new Spry.Widget.MenuBar("MenuBar2", {imgDown:"SpryAssets/SpryMenuBarDownHover.gif", imgRight:"SpryAssets/SpryMenuBarRightHover.gif"});
+//-->
+</script></div>
+<div align="center"><font color="#3333ff"><font size="+2"><a href="http://linux.vbird.org/linux_basic/0520softwaremanager/0530srpm.php" target="_self"><font face="标楷体">动手制作</font><font face="Arial,Helvetica">
+SRPM</font></a></font></font>
+<br><font color="#000099"><font size="+1">本网页已经经过更新，最新信息放置在
+<a href="http://linux.vbird.org/linux_basic/0520rpm_and_srpm.php">RPM 与 SRPM 套件管理员</a> 当中。</font></font>
+<br><font color="#000099"><font size="+1">本网页内容已不再继续维护更新！</font></font>
+</div>
+<div align="right"><font face="新细明体"><font color="#3333ff"><font size="-1">最近更新日期：2003/02/11</font></font></font></div>
+<br>
+<hr width="100%"><font color="#000099"><font size="+1"><a href="#SRPM_tools">SRPM
+需要的套件</a></font>：</font>
+<br><font color="#000099"><font size="+1"><a href="#SRPM_dir">SRPM 使用到的目录</a></font>：</font>
+<br><font color="#000099"><font size="+1"><a href="#config">配置文件的主要内容</a></font>：</font>
+<br><font color="#000099"><font size="+1"><a href="#SRPM_compile">SRPM 的编译指令</a></font>：</font>
+<br><font color="#000099"><font size="+1"><a href="#owner">打包自己的套件</a></font>：</font>
+<br><font color="#000099"><font size="+1"><a href="#FAQ">本章习题练习</a></font></font>
+<br>
+<hr width="100%"><a name="SRPM_tools"></a><font color="#000099"><font size="+1">SRPM
+需要的套件：</font></font>
+<blockquote>在上一节当中，我们介绍了 <a href="http://linux.vbird.org/linux_basic/0520softwaremanager/0520rpmtarball.php">RPM</a>
+这个既可爱又可恨的家伙，RPM 的可爱在于他的数据库管理方式，很容易去查询与升级，而他的可恨呢？呵呵！就是在于他的
+binary 的档案不能再改变他的原始设定内容 ( 就是 *.rpm 的档案不能再重新编译的意思
+)，与套件及套件之间的属性相依的问题～还真是伤脑筋吶！</blockquote>
+
+<blockquote>没有关系，现在有解决的方法了！我们可以利用『<font color="#000099">含有
+source code 的 SRPM </font>』来重新编译 *.rpm 的档案成为我们所希望的样式了！就因为在
+SRPM 里面含有的不是 binary 的档案，而是含有 source code ，因此 SRPM 是不能直接拿来安装成为可执行的档案的。必需要将他重新编译，并且打包成为类似
+i386, i586, i686 等等 RPM 的档案之后，才能够安装在我们的系统当中哩！这个时候你就应该会想象啦，咦！既然如此的话，那么在编译的过程当中，我们是否可以加入其他的设定参数，来让我们的
+SRPM 可以依照我的想法来编译呢！？哈哈！答对了！所以呢，这个时候我们就要来修改别人的
+SRPM 以及编译自己的套件啦！</blockquote>
+
+<blockquote>不过这里需要特别留意的就是，因为 SRPM 需要重新编译，而编译的过程当中，我们至少需要有
+make 与其相关的程序，及 gcc, c, c++ 
+等其他的编译用的程序语言来进行编译，所以，如果您在安装的过程当中没有选取软件开发工具之类的套件，呵呵！得重新拿出你的光盘，然后再安装喔！哈哈！只
+是得要克服一大堆的属性相依的问题就是了～嗯！还是建议您再次的看一下<a href="http://linux.vbird.org/linux_basic/0150installredhat.php">如何安装</a>吧！</blockquote>
+
+<hr width="100%"><a name="SRPM_dir"></a><font color="#000099"><font size="+1">SRPM
+使用到的目录：</font></font>
+<blockquote>SRPM 既然含有 source code ，那么其中必定有配置文件啰，所以首先我们必需要知道，这个
+SRPM 在进行编译的时候，会使用到哪些目录呢？这样一来才能够来修改嘛！你可以到你的
+/usr/src 这个目录里面去查看一下，通常每个 distribution 提供的目录都不太相同，以
+Mandrake 9.0 为例，他是以 /usr/src/RPM 为工作目录， Red Hat 是以 /usr/src/redhat
+为工作目录， Openlinux 则是以 /usr/src/openlinux 为工作目录！无论如何，反正就是在
+/usr/src 这个目录下就对了！好了到 /usr/src/redhat 里头去看一看呦：
+<ul>
+<li>
+<font color="#000099">/usr/src/redhat/SPEC</font>：这个目录当中放置的是该套件的配置文件，例如这个套件的信息参数、设定项目等等都放置在这里；</li>
+</ul>
+
+<ul>
+<li>
+<font color="#000099">/usr/src/redhat/SOURCE</font>：这个目录当中放置的是该套件的原始档（*.tar.gz的档案）以及
+config 这个配置文件；</li>
+</ul>
+
+<ul>
+<li>
+<font color="#000099">/usr/src/redhat/BUILD</font>：在编译的过程中，有些暂存的数据都会放置在这个目录当中；</li>
+</ul>
+
+<ul>
+<li>
+<font color="#000099">/usr/src/redhat/RPMS</font>：经过编译之后，并且顺利的编译成功之后，将打包完成的档案放置在这个目录当中。里头有包含了
+i386, i586, i686, noarch.... 等等的次目录。</li>
+</ul>
+此外，在编译的过程当中，可能会发生不明的错误，或者是设定的错误，这个时候就会在
+/tmp 底下产生一个相对应的错误档，您可以根据该错误档进行除错的工作呢！等到所有的问题都解决之后，也编译成功了，那么刚刚解压缩之后的档案，就是在
+/usr/src/redhat/SPEC, SOURCE, BUILD 等等的档案都会被杀掉，而只剩下放置在
+/usr/src/redhat/RPMS 底下的档案了！</blockquote>
+
+<hr width="100%"><a name="config"></a><font color="#000099"><font size="+1">配置文件的主要内容：</font></font>
+<blockquote>刚刚我们在上面提过了，SRPM还可以更改一些设定的内容，那么要如何修改这些设定的内容呢？我们以简单的
+rp-pppoe 这个套件来说明好了，你可以连上 Internet 上面的 rp-pppoe 官方网站下载
+SRPM ，或者由以下的方式来下载这个套件(请注意底下的档案是 2002/11 最新的档案数据，有可能在您看到本文时，这个套件已经更新了，所以请直接上底下的网址来下载吧！<a href="http://www.roaringpenguin.com/pppoe/" target="_blank">http://www.roaringpenguin.com/pppoe/</a>)。至于基本的过程如下：
+<br>　
+<table width="600" bgcolor="#000000" border="1" cols="1">
+<tbody><tr>
+<td><font face="细明体"><font color="#ffffcc"><font size="-1">1. 下载 SRPM
+软件：</font></font></font>
+<br><font face="细明体"><font size="-1"><font color="#ffffff">[root @test
+root]# </font><font color="#ffff00">wget http://www.roaringpenguin.com/pppoe/rp-pppoe-3.5-1.src.rpm</font></font></font>
+<p><font face="细明体"><font color="#ffffcc"><font size="-1">2. 将 SRPM 解开在/usr/src/redhat
+底下的目录当中</font></font></font>
+<br><font face="细明体"><font size="-1"><font color="#ffffff">[root @test
+root]# </font><font color="#ffff00">rpm –i rp-pppoe-3.5-1.src.rpm</font></font></font>
+</p><p><font face="细明体"><font color="#ffffcc"><font size="-1">3. 观察一下有哪些原始码呢？</font></font></font>
+<br><font face="细明体"><font size="-1"><font color="#ffffff">[root @test
+root]# </font><font color="#ffff00">cd /usr/src/redhat/SOURCES</font></font></font>
+<br><font face="细明体"><font size="-1"><font color="#ffffff">[root @test
+SOURCE]#</font><font color="#ffff00"> ls –l</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">-rw-rw-r--&nbsp;&nbsp;&nbsp;
+1 root&nbsp;&nbsp;&nbsp;&nbsp; root&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+189321 Jul&nbsp; 8 22:38 rp-pppoe-3.5.tar.gz</font></font></font>
+<br><font face="细明体"><font color="#ffffcc"><font size="-1">呵呵！上面显示我们的原始码就是这个档案啦！</font></font></font></p></td>
+</tr>
+</tbody></table>
+　
+<br>好了，来看看我们的设定参数档，亦即是在 /usr/src/redhat/SPECS 内的 *.spec
+档案啰！
+<br>　
+<table width="600" bgcolor="#000000" border="1" cols="1">
+<tbody><tr>
+<td><font face="细明体"><font color="#ffffcc"><font size="-1">观察一下预设的配置文件案内容：</font></font></font>
+<br><font face="细明体"><font size="-1"><font color="#ffffff">[root @test
+root]# </font><font color="#ffff00">cd /usr/src/redhat/SPECS</font></font></font>
+<br><font face="细明体"><font size="-1"><font color="#ffffff">[root @test
+SPECS]# </font><font color="#ffff00">vi rp-pppoe.spec</font></font></font>
+<p><font face="细明体"><font color="#ffffcc"><font size="-1">没错！这个就是SRPM的预设设定内容档案啰，进去修改一下，里面的数据有点像这样：</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">Summary: PPP
+Over Ethernet (xDSL support)</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">Name: rp-pppoe</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">Version: 3.5</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">%if %(%{expand:test
+%{_vendor} != mandrake ; echo $?})</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">Release: 1mdk</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">%else</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">Release: 1</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">%endif</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">Copyright:
+GPL</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">Group: System
+Environment/Daemons</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">Source: http://www.roaringpenguin.com/pppoe/rp-pppoe-3.5.tar.gz</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">Url: http://www.roaringpenguin.com/pppoe/</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">Packager: David
+F. Skoll &lt;dfs@roaringpenguin.com&gt;</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">BuildRoot:
+/tmp/pppoe-build</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">Vendor: Roaring
+Penguin Software Inc.</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">Requires: ppp
+&gt;= 2.3.7</font></font></font>
+</p><p><font face="细明体"><font color="#ffffff"><font size="-1"># LIC: GPL</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">%description</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">PPPoE (Point-to-Point
+Protocol over Ethernet) is a protocol used by</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">many ADSL Internet
+Service Providers. Roaring Penguin has a free</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">client for
+Linux systems to connect to PPPoE service providers.</font></font></font>
+</p><p><font face="细明体"><font color="#ffffff"><font size="-1">The client is
+a user-mode program and does not require any kernel</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">modifications.
+It is fully compliant with RFC 2516, the official PPPoE</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">specification.</font></font></font>
+</p><p><font face="细明体"><font color="#ffffff"><font size="-1">%prep</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">%setup</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">cd src</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">./configure
+--mandir=%{_mandir}</font></font></font>
+</p><p><font face="细明体"><font color="#ffffff"><font size="-1">%build</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">cd src</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">make</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">cd ../gui</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">make</font></font></font>
+</p><p><font face="细明体"><font color="#ffffff"><font size="-1">%install</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">cd src</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">make install
+RPM_INSTALL_ROOT=$RPM_BUILD_ROOT</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">cd ../gui</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">make install
+RPM_INSTALL_ROOT=$RPM_BUILD_ROOT</font></font></font>
+</p><p><font face="细明体"><font color="#ffffff"><font size="-1">%clean</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">rm -rf $RPM_BUILD_ROOT</font></font></font>
+</p><p><font face="细明体"><font color="#ffffff"><font size="-1">%files</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">%defattr(-,root,root)</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">%doc doc/CHANGES
+doc/HOW-TO-CONNECT doc/LICENSE doc/KERNEL-MODE-PPPOE README SERVPOET</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">%config(noreplace)
+/etc/ppp/pppoe.conf</font></font></font>
+</p><p><font face="细明体"><font color="#ffffcc"><font size="-1">注：中间还有很多信息，被我省略掉了！知道了就好喔！</font></font></font>
+</p><p><font face="细明体"><font color="#ffffff"><font size="-1">%changelog</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">* Thu Jul 21
+2001 Shigechika AIKAWA &lt;shige@cin.nihon-u.ac.jp&gt;</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">- merged rp-pppeo.spec
+and rp-pppoe-gui.spec</font></font></font></p></td>
+</tr>
+</tbody></table>
+　
+<br>注意到的是rp-pppoe.sepc这个档案，这是主要的将SRPM编译成RPM的配置文件，他的基本规则可以这样看：
+<ol>
+<li>
+整个档案的开头以Summary为开始，这部份的设定都是最基础的说明内容；</li>
+
+<li>
+然后每个不同的段落之间，都以%来做为开头，例如%prep与%install等；</li>
+</ol>
+我们来谈一谈几个常见的SRPM设定段落：
+<ul>
+<li>
+<font color="#000066">系统整体信息方面：</font></li>
+
+<br>　
+<ul>
+<li>
+<font color="#3333ff">Summary</font>：主要的套件说明，例如上表中，我们说明了他是ppp的拨接用途啦！</li>
+
+<li>
+<font color="#3333ff">Name</font>：这个就是套件的名称；</li>
+
+<li>
+<font color="#3333ff">Version</font>：这个是套件的版本信息；</li>
+
+<li>
+<font color="#3333ff">Release</font>：这个是该版本打包的次数说明，在Mandrake里面，会自动的帮你设定打包的次数喔！就是1mdk那个咚咚；</li>
+
+<li>
+<font color="#3333ff">Copyright</font>：这个套件的授权模式，我们是使用GPL啦！</li>
+
+<li>
+<font color="#3333ff">Group</font>：这个套件的发展团体名称；</li>
+
+<li>
+<font color="#3333ff">Source</font>：这个套件的来源，如果是网络上下载的套件，通常一定会有这个信息来告诉大家这个原始档的来源！</li>
+
+<li>
+<font color="#3333ff">Url</font>：这个原始码的主要官方网站； Packager：这个套件是经由谁来打包的呢？</li>
+
+<li>
+<font color="#3333ff">Vender</font>：发展的厂商哪；</li>
+
+<li>
+<font color="#3333ff">ExclusiveArch</font>：这个是说明这个套件的适合安装的硬件，通常默认为i386，当然，你也可以调整为i586啦等等的！</li>
+
+<li>
+<font color="#3333ff">Requires</font>：如果你这个套件还需要其他的套件的支持，那么这里就必需写上来，则当你制作成RPM之后，系统就会自动的去检查啦！这就是『相依属性』的主要来源啰！</li>
+</ul>
+</ul>
+上面几个资料通常都必需要写啦！但是如果你的软件没有相依属性的关系时，那么就可以不需要那个Requires啰！
+<br>&nbsp;
+<ul>
+<li>
+<font color="#000066">%description</font></li>
+
+<br>将您的套件做一个简短的说明！这个也是必需要的。</ul>
+
+<ul>
+<li>
+<font color="#000066">%prep</font></li>
+
+<br>这部份的设定在于『尚未进行设定或安装之前，你要编译完成的RPM帮你事先做的事情』，就是prepare的简写啰！那么他的工作事项主要有：
+<br>　
+<ol>
+<li>
+寻找套件所需要的目录是否已经存在？确认用的！</li>
+
+<li>
+事先建立您的套件所需要的目录，或者事先需要进行的任务；</li>
+
+<li>
+如果待安装的Linux系统内已经有安装的时候可能会被覆盖掉的档案时，那么就必需要进行备份(backup)的工作了！</li>
+</ol>
+　
+<br>大致的工作就是这些啦！</ul>
+
+<ul>
+<li>
+<font color="#000066">%setup</font></li>
+
+<br>这个段落就是在建立我们在Tarball当中说明的那个Makefile档案啦！所以呢，当然就是执行./config之类的配置文件案啰！那么如果你要自己新增自己的参数，就可以在这个地方加入你的设定值！如果你的软件本身没有这方面的需要，里面就不需要编写内容啰！</ul>
+
+<ul>
+<li>
+<font color="#000066">%build</font></li>
+
+<br>build就是建立啊！所以当然啰，这个段落就是在谈怎么make编译成为可执行的程序啰！</ul>
+
+<ul>
+<li>
+<font color="#000066">%install</font></li>
+
+<br>编译完成(build)之后，就是要安装啦！安装就是写在这里，也就是类似Tarball里面的make
+install的意思啰！</ul>
+
+<ul>
+<li>
+<font color="#000066">%files</font></li>
+
+<br>这个套件安装的档案都需要写到这里来，当然包括了『目录』喔！所以连同目录请一起写到这个段落当中！以备查验呢！^_^</ul>
+
+<ul>
+<li>
+<font color="#000066">%changelog</font></li>
+
+<br>这个主要则是在记录这个套件曾经的更新纪录啰！</ul>
+好了，那么如果您有自定义的信息想要加入的话，就选择你要加入的那个段落，将他修改一下吧！例如，如果你在设定Makefile的时候，希望能够多一些额外的参数设定，那么就找到
+%setup 那个段落，将他修改成您所需要的样子，就可以啰！</blockquote>
+
+<hr width="100%"><a name="SRPM_compile"></a><font color="#000099"><font size="+1">SRPM
+的编译指令：</font></font>
+<blockquote>再来呢？嗯！没错，修改完成了，自然就是要将他编译成可以安装的RPM档案啦！这个时候我们就可以直接在/usr/src/redhat/SPECS底下下达：
+<br>　
+<table width="500" bgcolor="#000000" border="1" cols="1">
+<tbody><tr>
+<td><font face="细明体"><font size="-1"><font color="#ffffff">[root @test
+SPECS]# </font><font color="#ffff00">rpm -bb rp-pppoe.spec&nbsp; </font><font color="#ffffcc">&lt;==编译成RPM档案</font></font></font>
+<br><font face="细明体"><font size="-1"><font color="#ffffff">[root @test
+SPECS]# </font><font color="#ffff00">rpm -ba rp-pppoe.spec&nbsp; </font><font color="#ffffcc">&lt;==打包成SRPM档案</font></font></font></td>
+</tr>
+</tbody></table>
+　
+<br>这个时候系统就会这样做：
+<ol>
+<li>
+先进入到BUILD这个目录中，在Mandrake 9.0当中就是/usr/src/RPM/BUILD，在Red
+Hat底下就是/usr/src/redhat/BUILD这个目录；</li>
+
+<li>
+依照*.spec档案内的Name与Version设定定义出工作的目录名称，以我们上面的例子为例，那么系统就会在BUILD目录中先删除rp-pppoe-3.5的目录，再重新建立一个rp-pppoe-3.5的目录，并进入该目录；</li>
+
+<li>
+在新建的目录里面，针对SOURCES目录下的来源档案，也就是*.spec里面的Source设定的那个档案，以tar进行解压缩，以我们这个例子来
+说，则会在/usr/src/redhat/BUILD/rp-pppoe-3.5当中，将/usr/src/redhat/SOURCES/rp-
+pppoe-3.5.tar.gz进行解压缩啦！</li>
+
+<li>
+然后就开始%setup的工作；</li>
+
+<li>
+再来开始%build及%install的设定与编译！</li>
+
+<li>
+最后将完成打包的档案给他放置到该放置的地方去，如果你的规定的硬件是在i386的系统，那么最后编译成功的*.i386.rpm档案就会被放置在
+/usr/src/RPM/RPMS/i386里面啰！如果是i586那么自然就是/usr/src/redhat/RPMS/i586目录下啰！</li>
+</ol>
+整个步骤大概就是这样子！最后的结果数据会放置在RPMS那个目录底下就对啦！</blockquote>
+
+<hr width="100%"><a name="owner"></a><font color="#000099"><font size="+1">打包自己的套件：</font></font>
+<blockquote>这个就有趣了！我们自己来编辑一下自己制作的RPM怎么样？会很难吗？完全不会！这里简单的以一个小例子来说明喔！请注意，这个
+真的只是一个小例子，所以不要觉得奇怪喔！其中，比较需要注意的，由于在上面的步骤说明中，我们知道在将SRPM编译成为RPM的时候，会以tar这支程
+式来将档案解开，因此，<b><font color="#000099">我们在进行来源档案的建立时，就必需要将他打包成为一个tar.gz的tarball的档案才行</font></b>！</blockquote>
+
+<blockquote>假设我们编辑了一支script，内容是这样：
+<br>　
+<table width="500" bgcolor="#000000" border="1" cols="1">
+<tbody><tr>
+<td><font face="细明体"><font size="-1"><font color="#ffffff">[root @test
+root]# </font><font color="#ffff00">cd /usr/src/redhat/SOURCES</font></font></font>
+<br><font face="细明体"><font size="-1"><font color="#ffffff">[root @test
+SOURCES]# </font><font color="#ffff00">vi showvbird.sh</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">#!/bin/bash</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1"># This file
+is just used to demo the RPM packaging.</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1"># the only
+thing is showing the hostname.</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">HOST=`/bin/hostname`</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">/bin/echo $HOST</font></font></font>
+<p><font face="细明体"><font size="-1"><font color="#ffffff">[root @test
+SOURCES]# </font><font color="#ffff00">chmod 755 showvbird.sh</font></font></font>
+<br><font face="细明体"><font size="-1"><font color="#ffffff">[root @test
+SOURCES]# </font><font color="#ffff00">tar –zcvf showvbird.tar.gz showvbird.sh</font></font></font>
+<br><font face="细明体"><font color="#ffffcc"><font size="-1">注意了，我们必需要将他打包才行！</font></font></font></p></td>
+</tr>
+</tbody></table>
+　
+<br>上面的动作中，我们编辑了一个shell 
+script档案，档名为showvbird.sh，并且将他打包成为具有gzip压缩的tarball档案，也就是showvbird.tar.gz这
+样的档案才行！请注意，这个showvbird.tar.gz档案『必需』放置在SOURCES目录之下！</blockquote>
+
+<blockquote>再来则是要编辑那个很重要的*.spec档案啰！你可以这样简单的编写一下：
+<br>　
+<table width="500" bgcolor="#000000" border="1" cols="1">
+<tbody><tr>
+<td><font face="细明体"><font size="-1"><font color="#ffffff">[root @test
+root]# </font><font color="#ffff00">cd /usr/src/redhat/SPECS</font></font></font>
+<br><font face="细明体"><font size="-1"><font color="#ffffff">[root @test
+SPECS]# </font><font color="#ffff00">vi showvbird.spec</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">Summary:&nbsp;&nbsp;
+This is a demo RPM package.</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">Name:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+showvbird</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">Version:&nbsp;&nbsp;
+1.0</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">Release:&nbsp;&nbsp;
+1</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">Copyright:
+GPL</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">Group:&nbsp;&nbsp;&nbsp;&nbsp;
+VBird's Home</font></font></font>
+<br><font face="细明体"><font size="-1"><font color="#ffffff">Source:&nbsp;&nbsp;&nbsp;
+showvbird.tar.gz&nbsp;&nbsp; </font><font color="#ffffcc">&lt;==这个就是刚刚建立起来的
+arball档案！</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">Url:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+http://linux.vbird.org</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">Packager:&nbsp;
+VBird</font></font></font>
+<p><font face="细明体"><font color="#ffffff"><font size="-1">%description</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">This package
+is just a demo RPM.</font></font></font>
+</p><p><font face="细明体"><font color="#ffffff"><font size="-1">%prep</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">%setup –c</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">%install</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">install -m
+755 showvbird.sh /usr/local/bin/showvbird.sh</font></font></font>
+</p><p><font face="细明体"><font color="#ffffff"><font size="-1">%files</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">/usr/local/bin/showvbird.sh</font></font></font></p></td>
+</tr>
+</tbody></table>
+　
+<br>好了！开始给他编译并打包成为RPM档案啦！
+<br>　
+<table width="500" bgcolor="#000000" border="1" cols="1">
+<tbody><tr>
+<td><font face="细明体"><font size="-1"><font color="#ffffff">[root @test
+SPECS]# </font><font color="#ffff00">rpm -bb showvbird.spec</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">….(略)</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">Wrote: /usr/src/redhat/RPMS/i586/showvbird-1.0-1.i586.rpm</font></font></font></td>
+</tr>
+</tbody></table>
+　
+<br>最后这个被打包成功的档案就被放置在/usr/src/redhat/RPMS/i586/showvbird-1.0-1.i586.rpm啰！然后给他安装一下：
+<br>　
+<table width="700" bgcolor="#000000" border="1" cols="1">
+<tbody><tr>
+<td><font face="细明体"><font size="-1"><font color="#ffffff">[root @test
+SPECS]# </font><font color="#ffff00">rpm –ivh /usr/src/RPM/RPMS/i586/showvbird-1.0-1.i586.rpm</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">Preparing...&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+########################################### [100%]</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp;&nbsp;
+1:showvbird&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+########################################### [100%]</font></font></font>
+<p><font face="细明体"><font size="-1"><font color="#ffffff">[root @test
+SPECS]# </font><font color="#ffff00">rpm –qi showvbird</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+: showvbird&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Relocations: (not relocateable)</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">Version&nbsp;&nbsp;&nbsp;&nbsp;
+:
+ 
+1.0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Vendor:
+ (none)</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">Release&nbsp;&nbsp;&nbsp;&nbsp;
+:
+ 
+1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Build
+ Date: Wed 06 Nov 2002 11:27:17 PM CST</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">Install date:
+Wed 06 Nov 2002 11:27:42 PM CST&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Build Host:
+test.linux.org</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">Group&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+: VBird's Home&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Source RPM: showvbird-1.0-1.src.rpm</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">Size&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+:
+ 
+143&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+License:
+ GPL</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">Packager&nbsp;&nbsp;&nbsp;
+: VBird</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">URL&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+: http://linux.vbird.org</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">Summary&nbsp;&nbsp;&nbsp;&nbsp;
+: This is a demo RPM package.</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">Description
+:</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">This package
+is just a demo RPM.</font></font></font>
+</p><p><font face="细明体"><font size="-1"><font color="#ffffff">[root @test
+SPECS]# </font><font color="#ffff00">showvbird.sh</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">test.linux.org</font></font></font>
+<br><font face="细明体"><font size="-1"><font color="#ffffff">[root @test
+SPECS]# </font><font color="#ffff00">rpm –ql showvbird</font></font></font>
+<br><font face="细明体"><font size="-1"><font color="#ffffff">/usr/local/bin/showvbird.sh&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#ffffcc">
+&lt;==嘿嘿！已经记录起来了！自己的软件耶！</font></font></font></p></td>
+</tr>
+</tbody></table>
+　
+<br>用很简单的方式，就可以将自己的软件或者程序给他修改与设定妥当！很不错吧！以后您就可以自行设定你的RPM啰！当然，也可以手动修改您的SRPM的来源档内容啰！</blockquote>
+
+<hr width="100%"><font face="新细明体"><font color="#000066"><font size="-1">2002/12/04：第一次完成</font></font></font>
+<br><font face="新细明体"><font color="#000066"><font size="-1">2003/02/11：重新编排与加入
+FAQ</font></font></font>
+<br><font face="新细明体"><font color="#000066"><font size="-1">2004/04/19：本网页已不再继续维护更新，请参考：<a href="http://linux.vbird.org/linux_basic/0520rpm_and_srpm.php">RPM
+与 SRPM 套件管理员</a></font></font></font>
+<br>
+<hr width="100%">
+<center>
+<font color="#000066"><font size="-1">Designed by <a href="mailto:vbird@mail.vbird.idv.tw">VBird</a>
+during 2001-2004.&nbsp; Aerosol Lab.</font></font>
+﻿<div id="apDiv4">
+      <p>本网页主要以Firefox配合解析度 1024x768 作为设计依据&nbsp;&nbsp;&nbsp;&nbsp; 鸟哥自由软件整合应用研究室</p></div></center>
+</div></center>
+</body></html>

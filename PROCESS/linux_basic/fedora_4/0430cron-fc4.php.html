@@ -1,0 +1,738 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html lang="zh-TW"><head>
+
+
+	<meta http-equiv="Content-Type" content="text/html; charset=utf8">
+	<meta name="Author" content="VBird, 鸟哥">
+	<meta name="Description" content="包括了 crontab 与 at 这两支程序啦！">
+	<title>鸟哥的 Linux 私房菜 -- 例行性命令的建立</title>
+    <script src="../../script/SpryMenuBar.js" type="text/javascript"></script>
+	<script src="../../script/index.js" type="text/javascript"></script>
+	<link href="../../css/SpryMenuBarHorizontal.css" rel="stylesheet" type="text/css" />
+    <link href="../../css/main.css" rel="stylesheet" type="text/css" />
+</head><body style="margin: 0pt; padding: 0pt;" class="table"onload="MM_preloadImages('image/title_19.png','image/title_26.png','image/title_27.png','image/title_28.png','image/title_06.png','image/title_08.png','image/title_10.png','image/title_12.png')">
+
+
+<!-- Copyright � 2005. Spidersoft Ltd -->
+<style>
+A.applink:hover {border: 2px dotted #DCE6F4;padding:2px;background-color:#ffff00;color:green;text-decoration:none}
+A.applink       {border: 2px dotted #DCE6F4;padding:2px;color:#2F5BFF;background:transparent;text-decoration:none}
+A.info          {color:#2F5BFF;background:transparent;text-decoration:none}
+A.info:hover    {color:green;background:transparent;text-decoration:underline}
+</style>
+<div style='BORDER: 1px solid #DCE6F4; MARGIN-TOP: 20px; MARGIN-BOTTOM: 20px; MARGIN-LEFT: 5px; MARGIN-RIGHT: 5px; PADDING: 5px; BACKGROUND-COLOR: #eef8ff;line-height:180%; COLOR: #000000; font-family: Arial; font-size: 8pt; width=100%; FILTER: progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr="#FFFFFFFF", EndColorStr="#F2F5FAFF");'>
+This page was saved using <a class="applink" href="http://www.spidersoft.com"><b>WebZIP 7.0.3.1030</b></a> <a class="applink" href="http://www.spidersoft.com"><b>offline browser</b></a>  (Unregistered) on  02/12/15 12:14:49.<br>
+<b>Address:</b> <a class="info" href="http://vbird.dic.ksu.edu.tw/linux_basic/fedora_4/0430cron-fc4.php">http://vbird.dic.ksu.edu.tw/linux_basic/fedora_4/0430cron-fc4.php</a><br>
+<b>Title:</b> 鸟哥的 Linux 私房菜 -- 例行性命令的建立 &nbsp;&bull;&nbsp; <b>Size:</b> 49944<br></div>
+<!-- /Copyright � 2005. Spidersoft Ltd -->
+
+
+
+<center>
+<div id="apDiv5">
+<div> <LINK REL="SHORTCUT ICON" HREF="favicon.ico">
+<!-- ImageReady Slices (title3.ai) -->
+<table id="___01" width="898" height="81" border="0" align="center" cellpadding="0" cellspacing="0";>
+	<tr>
+		<td colspan="15">
+			<img src="image/title/title_01.png" width="900" height="1" alt=""></td>
+	</tr>
+	<tr>
+		<td rowspan="4" bgcolor="#182448"><p><img src="http://linux.vbird.org/cgi-bin/Count.cgi?dd=C&ft=5&sh=T&md=8&pad=Y&df=vbird.dic.ksu.edu.tw.dat" width="93" align="left" title="計數器" /></p>
+	    <p><font color="#FFFFFF" size="-1">since2012/04/23</font></p></td>
+		<td rowspan="4" align="left" valign="top"><a href="http://vbird.dic.ksu.edu.tw/"><img src="image/title/title_03.png" alt="" width="263" height="79" border="0"></a></td>
+		<td colspan="13">
+			<img src="image/title/title_04.png" alt="" width="535" height="9" border="0"></td>
+	</tr>
+	<tr>
+		<td rowspan="3">
+			<img src="image/title/title_05.png" alt="" width="53" height="70" border="0"></td>
+		<td colspan="2" align="left" valign="top"><a href="../0110whatislinux.php.html" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image51','','image/title/title_06.png',1)"><img src="image/title/title3_06.png" name="Image51" width="106" height="25" border="0" id="Image51" alt=""/></a></td>
+		<td rowspan="2">
+			<img src="image/title/title_07.png" alt="" width="27" height="37" border="0"></td>
+		<td colspan="3" align="left" valign="top"><a href="http://vbird.dic.ksu.edu.tw/linux_server/0110network_basic.php" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image52','','image/title/title_08.png',1)"><img src="image/title/title3_08.png" name="Image52" width="107" height="25" border="0" id="Image52" alt=""/></a></td>
+		<td rowspan="2">
+			<img src="image/title/title_09.png" alt="" width="37" height="37" border="0"></td>
+		<td colspan="2" align="left" valign="top"><a href="http://vbird.dic.ksu.edu.tw/about.php" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image53','','image/title/title_10.png',1)"><img src="image/title/title3_10.png" name="Image53" width="75" height="25" border="0" id="Image53" alt=""/></a></td>
+		<td rowspan="3">
+			<img src="image/title/title_11.png" alt="" width="35" height="70" border="0"></td>
+		<td align="left" valign="top"><a href="mailto:vbird@mail.vbird.idv.tw" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image54','','image/title/title_12.png',1)"><img src="image/title/title3_12.png" name="Image54" width="74" height="25" border="0" id="Image54" alt=""/></a></td>
+		<td rowspan="3">
+			<img src="image/title/title_13.png" alt="" width="21" height="70" border="0"></td>
+	</tr>
+	<tr>
+		<td colspan="2">
+			<img src="image/title/title_14.png" alt="" width="106" height="12" border="0"></td>
+		<td colspan="3">
+			<img src="image/title/title_15.png" alt="" width="107" height="12" border="0"></td>
+		<td colspan="2">
+			<img src="image/title/title_16.png" width="75" height="12" alt=""></td>
+		<td rowspan="2">
+			<img src="image/title/title_17.png" alt="" width="74" height="45" border="0"></td>
+	</tr>
+	<tr>
+		<td>
+			<img src="image/title/title_18.png" alt="" width="15" height="33" border="0"></td>
+		<td colspan="3" align="left" valign="top"><ul id="MenuBar1" class="MenuBarHorizontal">
+	  <li><a href="../linux_basic.php.html" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image44','','image/title/title_19.png',1)"><img src="image/title/title3_19.png" name="Image44" width="123" height="33" border="0" id="Image44" /></a>
+			    <ul>
+			      <li><a href="../Mandrake9.0/mandrake9.0.php.html" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image46','','image/title/title_26.png',1)"><img src="image/title/title_23.png" name="Image46" width="120" height="26" border="0" id="Image46" alt="" /></a></li>
+                  <li><a href="fc4.php.html" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image47','','image/title/title_27.png',1)"><img src="image/title/title_24.png" name="Image47" width="120" height="26" border="0" id="Image47" alt="" /></a></li>
+                  <li><a href="../linux_basic.php.html" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image48','','image/title/title_28.png',1)"><img src="image/title/title_25.png" name="Image48" width="120" height="26" border="0" id="Image48" alt="" /></a></li>
+                </ul>
+		      </li>
+		</ul></td>
+		<td>
+			<img src="image/title/title_20.png" alt="" width="42" height="33" border="0"></td>
+		<td colspan="3" align="left" valign="top"><ul id="MenuBar2" class="MenuBarHorizontal">
+	  <li><a href="http://vbird.dic.ksu.edu.tw/linux_server/" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image45','','image/title/title_21.png',1)"><img src="image/title/title3_21.png" name="Image45" width="125" height="33" border="0" id="Image45" /></a>
+			    <ul>
+			      <li><a href="http://vbird.dic.ksu.edu.tw/linux_server/linux_redhat9/redhat9.php" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image43','','image/title/title_26.png',1)"><img src="image/title/title_23.png" name="Image43" width="120" height="26" border="0" id="Image43" alt=""/></a></li>
+			      <li><a href="http://vbird.dic.ksu.edu.tw/linux_server/centos4.php" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image49','','image/title/title_27.png',1)"><img src="image/title/title_24.png" name="Image49" width="120" height="26" border="0" id="Image49" alt="" /></a></li>
+			      <li><a href="http://vbird.dic.ksu.edu.tw/linux_server/" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image50','','image/title/title_28.png',1)"><img src="image/title/title_25.png" name="Image50" width="120" height="26" border="0" id="Image50" alt="" /></a></li>
+		        </ul>
+		      </li>
+		</ul></td>
+		<td>
+			<img src="image/title/title_22.png" alt="" width="47" height="33" border="0"></td>
+	</tr>
+	<tr>
+		<td>
+			<img src="image/title/Spacer.gif" width="101" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="263" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="53" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="15" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="91" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="27" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="5" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="42" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="60" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="37" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="28" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="47" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="35" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="74" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="22" height="1" alt=""></td>
+	</tr>
+</table>
+<!-- End ImageReady Slices -->
+<script type="text/javascript">
+<!--
+var MenuBar1 = new Spry.Widget.MenuBar("MenuBar1", {imgDown:"SpryAssets/SpryMenuBarDownHover.gif", imgRight:"SpryAssets/SpryMenuBarRightHover.gif"});
+var MenuBar2 = new Spry.Widget.MenuBar("MenuBar2", {imgDown:"SpryAssets/SpryMenuBarDownHover.gif", imgRight:"SpryAssets/SpryMenuBarRightHover.gif"});
+//-->
+</script></div>
+<table summary="本文内容的排版" style="width: 898px;" border="0" cellpadding="0" cellspacing="0">
+<tbody><tr><td style="width: 16px; height: 16px;">　</td>
+    <td style="width: 866px; height: 16px;">　</td>
+    <td style="width: 16px; height: 16px;">　</td></tr>
+<tr><td style="width: 16px; font-size: 6px;">　</td>
+    <td width="866">
+
+<!-- 本文的档头部分 -->
+<div style="text-align: center;">
+    <a href="http://linux.vbird.org/linux_basic/0430cron/0430cron.php">
+    <span class="text_head0">例行性命令的建立</span></a><br>
+</div>
+    <div style="text-align: right;">
+        <span class="text_history">最近更新日期：2005/09/07</span>
+    </div>
+
+<!-- 本文的档头部分 -->
+<center>本文已不再维护，更新文章请参考<a href="http://linux.vbird.org/linux_basic/0430cron.php">此处</a></center>
+<center><table class="head1" summary="排版：文章档头的说明"><tbody><tr><td class="head1">
+	不论什么时候，建立系统可以自动的执行功能都是必须的！您了解目前系统在默认的情况中，
+	每天、每小时、每个月都在做些什么事吗？！您了解『循环的工作』与『仅进行一次的工作』有什么不同吗？
+	还有还有，如果你想要每年的老婆的生日前一天就发出一封信件提醒自己不要忘记；
+	又，如果是与初次见面的朋友的约会，又该如何设定啊？看看这一章先！
+</td></tr></tbody></table></center>
+
+<!-- 本文的连结区部分 -->
+<div class="block1">
+<span class="text_h1">
+1. <a href="#whatiscron">什么是例行性命令</a><br>
+	<span class="text_h2">
+	　　1.1 <a href="#whatiscron_type">Linux 工作排程的种类： at, cron</a><br>
+	　　1.2 <a href="#whatiscron_linux">系统上常见的例行性命令有哪些？</a><br>
+	</span>
+2. <a href="#atjob">仅执行一次的工作排程：</a> <a href="#at">at</a>, <a href="#atq_atrm">atq, atrm</a><br>
+3. <a href="#cron">循环执行的例行性命令： cron</a><br>
+	<span class="text_h2">
+	　　3.1 <a href="#crontab">使用者的设定： crontab</a><br>
+	　　3.2 <a href="#etc_crontab">系统的设定： /etc/crontab</a><br>
+	</span>
+4. <a href="#security">一些使用特点：</a><br>
+5. <a href="#FAQ">本章习题练习：</a><br>
+<span class="text_h2">
+6. <a href="http://phorum.vbird.org/viewtopic.php?t=23889" target="_blank">针对本文的建议：http://phorum.vbird.org/viewtopic.php?t=23889</a>
+</span>
+</span>
+</div>
+
+
+<!-- 本文的正式部分 -->
+<hr><a name="whatiscron"></a><img src="../image/logo.png" alt="大标题的图示" width="35" align="middle" height="34"><span class="text_h1">什么是例行性命令？</span><br>
+<div class="block1">
+	每个人或多或少都有一些约会或者是工作，有的工作是例行性的，例如每年一次的加薪、
+	每个月一次的工作报告、每周一次的午餐会报、每天需要的打卡等等；
+	有的工作则是临时发生的，例如刚好总公司有高官来访，需要你准备演讲器材等等！
+	用在生活上面，例如每年的爱人的生日、每天的起床时间等等、还有突发性的计算机大降价 
+	(阿～鸟哥等好久了～～) 等等啰。<br><br>
+
+	上面这些工作都可以称为例行性命令，而这些工作 Linux 也都可以帮您提醒，例如：每一天早上 
+	8:00 钟要服务器连接上音响，并启动音乐来唤你起床；而中午
+	12:00 希望 Linux 可以发一封信到你的邮件信箱，提醒你可以去吃午餐了；
+	另外，在每年的你爱人的生日的前一天，先发封信提醒你，以免忘记这么重要的一天。<br><br>
+
+	<hr><a name="whatiscron_type"></a><img src="../image/logo.png" alt="小标题的图示" width="24" align="middle" height="23"><span class="text_h2">Linux 工作排程的种类： 
+	at, cron</span><br>
+	<div class="block2">
+		从上面的说明当中可以很清楚的发现两种工作排程的方式：
+		<ul>
+		<li>一种是例行性的，就是每隔一定的周期要来办的事项；</li>
+		<li>一种是突发性的，就是这次做完以后就没有的那一种（计算机大降价....）</li></ul>
+
+		那么在 Linux 底下如何达到这两个功能呢？呵呵！那就得使用 at 与 crontab 这两个好东西啰！
+		<ul>
+		<li><span class="text_import1">at</span> ： 这个工作仅执行一次就从 Linux 系统中的排程中取消；</li>
+		<li><span class="text_import1">cron</span> ： 这个工作将持续例行性的作下去！</li></ul>
+
+		底下我们先来谈一谈 Linux 的系统到底在做什么事情，怎么有若干多的工作排程在工作呢？然后再回来谈一谈
+		at 与 crontab 这两个好东西！<br><br>
+	</div>
+
+	<hr><a name="whatiscron_linux"></a><img src="../image/logo.png" alt="小标题的图示" width="24" align="middle" height="23"><span class="text_h2">系统上常见的例行性命令有哪些？
+	</span><br>
+	<div class="block2">
+		好了，那么服务器自己有什么例行性命令要来作呀！？Linux 的工作可多着呢！
+		由前面提到的几篇文章中，我们知道 Linux 本身在背景下的工作可是很多的，
+		尤其是开放网络联机的情况下，建立与取消联机、MySQL
+		数据库的实时更新、以及一些例行的系统指令，例如释放内存的工作等等。
+		由于例行的工作非常的多，实在不可能每天都要管理员来手动输入吧！
+		所以才会建立这个工作排程的需求的！基本预设的工作有底下这些：<ul>
+
+		<li><span class="text_import2">进行登录文件的数据轮替 ( log rotate )</span>：<br>
+			这个步骤重要了！尤其是在 log file 的选项当中！由于登录档案会越来越大，
+			所以需要适时适量的将登录档备份，并以新开的档案来进行记录，这样效率会比较好，因此就需要使用
+			log rotate 啦！系统默认的重要工作之一；</li><br>
+
+		<li><span class="text_import2">rpm 数据库的建立</span>：<br>
+			虽然 RPM 数据库会在你以 RPM 安装之后即更新到 RPM
+			数据库当中去，但是难保会有漏网之鱼，所以系统也会设定每隔依段时间自动的搜集系统上面的
+			RPM 数据库来建置一番；</li><br>
+
+		<li><span class="text_import2">建立 locate 的数据库</span>：<br>
+			是否还记得为何使用 <a href="http://linux.vbird.org/linux_basic/0430cron/0220filemanager.php#locate">locate</a>
+			这个指令时，搜寻速度超快！那是因为 Linux 系统上将档案与路径都记录在数据库里面了！所以使用
+			locate 的时候，嘿嘿！直接指向数据库去 
+			( <span class="text_import2"><font face="细明体">/var/lib/slocate/slocate.db</font></span>
+			) ，偏偏麻烦的是这个档案的更新是每天一次！所以当你今天更新的档案，使用
+			locate 反而可能会找不到....</li><br>
+
+		<li><span class="text_import2">进行程序的分析</span>：<br>
+			每隔依段时间会进行程序的分析，如果发现有僵尸程序的时候，就会将他删去！
+			以保持内存的工作能力！</li><br>
+
+		<li><span class="text_import2">登录档视察</span>：<br>
+			这个东西是在 Red Hat 7.1 以后才出现的东西，后来太好用了，所以被拿到旧版的
+			Red Hat 里面去使用！基本上就是分析登录档啦！然后据以解析有问题的纪录文件，
+			以维护主机的安全性！这部份不才小弟也自己写了一个简易型的分析档案，觉得更好用就是了！</li><br>
+
+		<li><span class="text_import2">指纹数据库的比对</span>：<br>
+			基本上就是 tripwire 这个套件啦！可以用来分析最近被更动过的档案内容！
+			蛮不错的一个程序！有空也来玩玩看。</li></ul>
+
+		Linux 预设的例行工作至少就有这些了，再加上您努力的为 Linux 进行工作排程的设计，
+		嘿嘿！每天的工作量可是相当的大的呢！
+	</div>
+</div>
+
+
+<hr><a name="atjob"></a><img src="../image/logo.png" alt="大标题的图示" width="35" align="middle" height="34"><span class="text_h1">仅进行一次的工作排程： at</span><br>
+<div class="block1">
+	好了，如同上面提到的，工作排程有所谓的例行性的，也有单一执行一次的，我们先来谈一谈仅执行一次的工作。
+	要使用这种工作排程时，我们的 Linux 系统上面必须要有负责这个排程的服务，那就是 atd 这个玩意儿。
+	可惜的是，目前挺多新的 Linux distributions 似乎预设不把他打开了，所以呢，我们必须要先手动将他启用才行。
+	启用的方法很简单，就是这样：<br>
+
+<table class="term"><tbody><tr><td class="term"><pre>[root@linux ~]# <span class="term_command">/etc/init.d/atd restart</span>
+Stopping atd:                          [FAILED]
+Starting atd:                          [  OK  ]
+
+<span class="term_hd"># 再设定一下开机时就启动！</span>
+[root@linux ~]# <span class="term_command">chkconfig --level 35 atd on</span>
+</pre></td></tr></tbody></table>
+
+	看到那个『 OK 』的字样就好啰～关于服务的启动，我们会在后续再加以介绍，如果您真的有兴趣，
+	那么可以自行到 /etc/init.d/atd 这个 shell script 内去瞧一瞧先！ ^_^。
+	至于那个 chkconfig ，呵呵！您也可以使用 man 先查阅一下啊！我们未来再介绍啦！<br><br>
+
+	<hr><li><span class="text_import1">at 的工作</span></li>
+	<div class="block2">
+		既然是工作排程，那么自然要有写入工作的纪录文件啰！没错啦！
+		<span class="text_import2">我们可以使用 at 这个指令来帮忙写入工作纪录文件，工作纪录文件默认的放置目录在
+		/var/spool/at 底下，在写入 at 记录文件后，该工作便进入排程当中并等待执行。</span>
+		当然啦，要让 /var/spool/at 目录底下的工作被实际运作，必须要启动我们上面提到的 atd 那个服务啦！<br><br>
+
+		不过，并不是所有的人都可以进行 at 工作排程喔！为什么？因为安全的理由啊～
+		很多主机被所谓的绑架后，最常发现的就是他们的系统当中有很多的怪客程序 (cracker program)
+		被写入例行性命令的排程当中了，所以，那些可恶的程序就可能定时或不定时的在你的系统当中工作，
+		呵呵！所以啰，除非是您认可的账号，否则先不要让他们使用 at 吧！
+		此外，我们可以利用 /etc/at.allow 与 /etc/at.deny 这两个档案来进行 at 的使用限制呢！
+		加上这两个档案后， at 的工作情况其实是这样的：<ol><span class="text_import2">
+		<li>先找寻 <b>/etc/at.allow</b> 这个档案，写在这个档案中的使用者才能使用 at
+		，没有在这个档案中的使用者则不能使用 at ( 即使没有写在 at.deny 当中&nbsp;)；</li>
+		<li>如果没有 /etc/at.allow 就寻找<b> /etc/at.deny</b> 这个档案，若写在这个
+		at.deny 的使用者则不能使用 at ，而没有在这个 at.deny 档案中的使用者，就可以使用
+		at 咯；</li>
+		<li>如果两个档案都不存在，那么只有 root 可以使用 at 这个指令。</li>
+		</span></ol>
+
+		上面的情况说明了，其实我们只要有 at.deny 这个档案存在就好了，因为我们假设系统内的账号都是懂得操作的使用者，
+		因此，预设让他们可以任意使用 at 这个好用的东西！这也是系统的默认值。我们的 FC4 
+		预设也是只有 /etc/at.deny 存在，而且该档案内并未有任何账号数据！这表示任何人均可使用 at
+		啦！不过，万一你不希望有某些使用者使用 at 的话，将那个使用者的账号写入 /etc/at.deny 即可！
+		一个账号写一行。<br><br>
+	</div>
+
+	<hr><li><span class="text_import1">开始使用 at 啰：</span></li>
+	<div class="block2">
+		好了，让我们来谈一谈 at 这个玩意儿的语法吧！<br>
+
+<a name="at"></a><table class="term"><tbody><tr><td class="term"><pre>[root@linux ~]# <span class="term_command">at [-m] TIME</span>
+<span class="term_say">参数：
+-m  ：当 at 的工作完成后，以 email 的方式通知使用者该工作已完成。
+TIME：时间格式，这里可以定义出『什么时候要进行 at 这项工作』的时间，格式有：
+  HH:MM				ex&gt; 04:00
+	在今日的 HH:MM 时刻进行，若该时刻已超过，则明天的 HH:MM 进行此工作。
+  HH:MM YYYY-MM-DD		ex&gt; 04:00 2005-12-03
+	强制规定在某年某月的某一天的特殊时刻进行该工作！
+  HH:MM[am|pm] [Month] [Date]	ex&gt; 04pm December 3
+	也是一样，强制在某年某月某日的某时刻进行！
+  HH:MM[am|pm] + number [minutes|hours|days|weeks]
+	ex&gt; now + 5 minutes	ex&gt; 04pm + 3 days
+	就是说，在某个时间点『再加几个时间后』才进行。
+范例：</span>
+
+<span class="term_hd">范例一：再过五分钟后，将 /root/.bashrc 寄给 dmtsai 这个使用者</span>
+[root@linux ~]# <span class="term_command">at now + 5 minutes</span>
+at&gt; <span class="term_write">/bin/mail dmtsai -s "testing at job" &lt; /root/.bashrc</span>
+at&gt; &lt;EOT&gt;   <span class="term_note">&lt;==这里输入 [ctrl] + d 就会出现 &lt;EOF&gt; 的字样！代表结束！</span>
+job 8 at 2005-09-07 10:47
+<span class="term_say"># 上面这行信息在说明，第 8 个 at 工作将在 2005/09/07 的 10:47 进行！</span>
+
+<span class="term_hd">范例二：由于机房预计于 2005/09/16 停电，我想要在 2005/09/15 23:00 关机？</span>
+[root@linux ~]# <span class="term_command">at 23:00 2005-09-15</span>
+at&gt; <span class="term_write">/bin/sync</span>
+at&gt; <span class="term_write">/bin/sync</span>
+at&gt; <span class="term_write">/sbin/shutdown -h now</span>
+at&gt; &lt;EOT&gt;
+job 10 at 2005-09-15 23:00
+<span class="term_say"># 您瞧瞧！ at 还可以在一个工作内输入多个指令呢！不错吧！</span>
+</pre></td></tr></tbody></table>
+
+		事实上，当我们使用 at 时，at 会给使用者一个 bash shell 让用户下达工作指令，
+		此时，建议你最好使用绝对路径来下达你的指令，比较不会有问题喔！那我们知道每个指令都可能会有
+		standard output/standard error 啊，这些可能会输出到屏幕上面的信息会跑去哪里？
+		呵呵！这些本来应该在屏幕上面出现的信息通通会以 email 的方式传送到使用者的 mailbox 里面去！
+		而预设如果没有 stdout/stderr 时，就不会有任何讯息传送给用户了。但你可以使用 at -m 
+		这个参数来强制 at 传送一个执行完毕的 email 讯息给你自己喔！ ^_^<br><br>
+
+		另外一个 at 的执行优点是什么呢？那就是『背景执行』的功能了！什么是背景执行啊？！
+		很难了解吗？没关系，鸟哥提我自己的几个例子来给您听听，您就瞭了！<ul>
+
+		<li>由于很多时候，我们其实都是使用 network 连接到主机来进行工作的，
+		但是 Client 与 Server 之间的网络联机其实并不见得很稳定，尤其是当你的 Client 计算机很忙的时候。
+		此时，万一我要进行一项长时间的工作时，那么风险就很大！鸟哥当初刚刚玩 Unix 时，
+		由于鸟哥所在的办公室太小了，无法有多个屏幕与键盘，因此，我都是利用我的 windows 98 
+		再以网络联机软件连到 Unix 主机内作业的。当时我跑一个程序要跑 3 天......
+		而众所皆知的， Windows 98 的长时间开机的稳定性确实.....
+		在某一次执行时，发生了.....剩下 3 个钟头就跑完却『联机终止』的情况～呜呜呜呜～
+		又得要跑三天....</li><br>
+
+		<li>另一个常用的时刻则是例如上面的范例二，由于某个突发状况导致你必须要进行某项工作时，
+		这个 at 就很好用啦！</li></ul>
+
+		由于 at 工作排程的使用上，系统会将该项 at 工作独立出你的 bash 环境中，
+		直接交给系统的 atd 程序来接管，因此，当你下达了 at 的工作之后，就可以立刻脱机了，
+		剩下的工作就完全交给 Linux 管理即可！所以啰，如果有长时间的网络工作时，嘿嘿！
+		使用 at 可以让你免除网络断线后的困扰喔！ ^_^<br><br>
+
+		那么万一我下达了 at 之后，才发现指令输入错误，该如何是好？呵呵！就将他移除啊！
+		利用 atq 与 atrm 吧！<br>
+
+<a name="atq_atrm"></a><table class="term"><tbody><tr><td class="term"><pre>[root@linux ~]# <span class="term_command">atq</span>
+[root@linux ~]# <span class="term_command">atrm [jobnumber]</span>
+
+<span class="term_hd">范例一：查询目前主机上面有多少的 at 工作排程？</span>
+[root@linux ~]# <span class="term_command">atq</span>
+10      2005-09-15 23:00 a root
+<span class="term_say"># 上面说的是：『在 2005/09/15 的 23:00 有一项工作，该项工作指令下达者为 
+# root』而且，该项工作的工作号码 (jobnumber) 为 10 号喔！</span>
+
+<span class="term_hd">范例二：将上述的第 10 个工作移除！</span>
+[root@linux ~]# <span class="term_command">atrm 10</span>
+[root@linux ~]# <span class="term_command">atq</span>
+<span class="term_say"># 没有任何信息，表示该工作被移除了！</span>
+</pre></td></tr></tbody></table>
+
+		利用 atq 与 atrm 来控制这个 at 的工作吧！ ^_^
+	</div>
+</div>
+
+
+<hr><a name="cron"></a><img src="../image/logo.png" alt="大标题的图示" width="35" align="middle" height="34"><span class="text_h1">循环执行的例行性命令</span><br>
+<div class="block1">
+	相对于 at 是仅执行一次的工作，循环执行的例行性命令则是由 cron (crond) 这个系统服务来控制的。
+	由于系统默认就有相当多的例行性工作，因此，这个系统服务是默认启动的。另外，
+	由于使用者自己也可以进行例行性工作排程，所以啰， Linux 也提供使用者控制例行性命令的指令 (crontab)。
+	底下我们分别来聊一聊啰！<br><br>
+
+	<hr><a name="crontab"></a><img src="../image/logo.png" alt="小标题的图示" width="24" align="middle" height="23"><span class="text_h2">使用者的设定： crontab</span><br>
+	<div class="block2">
+		使用者想要建立例行性命令时，使用的是 crontab 这个指令啦～不过，为了安全性的问题，
+		与 at 同样的，我们可以限制使用 crontab 的使用者账号喔！使用的限制数据有：<ul>
+		<li><span class="text_import2">/etc/cron.allow</span>：<br>
+			将可以使用 crontab 的账号写入其中，若不在这个档案内的使用者则不可使用 crontab；</li><br>
+		<li><span class="text_import2">/etc/cron.deny</span>：<br>
+		将不可以使用 crontab 的账号写入其中，若未记录到这个档案当中的使用者，就可以使用 crontab 。</li></ul>
+
+		与 at 很像吧！同样的，以优先级来说， /etc/cron.allow 比 /etc/cron.deny 要优先，
+		而判断上面，这两个档案只选择一个来限制而已，因此，建议您只要保留一个即可，
+		免得影响自己在设定上面的判断！一般来说，系统默认是保留 /etc/cron.deny ，
+		您可以将不想让他执行 crontab 的那个使用者写入 /etc/cron.deny 当中，一个账号一行！<br><br>
+
+		当用户使用 crontab 这个指令来建立工作排程之后，该项工作就会被纪录到 /var/spool/cron/ 
+		里面去了，而且是以账号来作为判别的喔！举例来说， dmtsai 使用 crontab 后，
+		他的工作会被纪录到 /var/spool/cron/dmtsai 里头去！但请注意，不要使用 vi 直接编辑该档案，
+		因为可能由于输入语法错误，会导致无法执行 cron 喔！另外， cron 执行的每一项工作都会被纪录到
+		/var/log/cron 这个登录档中，所以啰，如果您的 Linux 不知道有否被植入木马时，
+		也可以搜寻一下 /var/log/cron 这个登录档呢！<br><br>
+
+		好了，那么我们就来聊一聊 crontab 的语法吧！<br>
+
+<table class="term"><tbody><tr><td class="term"><pre>[root@linux ~]# <span class="term_command">crontab [-u username] [-l|-e|-r]</span>
+<span class="term_say">参数：
+-u  ：只有 root 才能进行这个任务，亦即帮其他使用者建立/移除 crontab；
+-e  ：编辑 crontab 的工作内容
+-l  ：查阅 crontab 的工作内容
+-r  ：移除 crontab 的工作内容
+范例：</span>
+
+<span class="term_hd">范例一：用 dmtsai 在每天的 12:00 发信给自己</span>
+[dmtsai@linux ~]$ <span class="term_command">crontab -e</span>
+<span class="term_say"># 此时会进入 vi 的编辑画面让您编辑工作！注意到，每项工作都是一行。</span>
+<span class="term_write">0   12  *  *  * mail dmtsai -s "at 12:00" &lt; /home/dmtsai/.bashrc</span>
+<span class="term_say">#分 时 日 月 周 |&lt;==============指令串========================&gt;|</span>
+</pre></td></tr></tbody></table>
+
+		任何使用者只要不被列入 /etc/cron.deny 当中，那么他就可以直接下达『 crontab -e 
+		』去编辑自己的例行性命令了！整个过程就如同上面提到的，会进入 vi 的编辑画面，
+		然后以一个工作一行来编辑，编辑完毕之后，输入『 :wq 』储存后离开 vi 就可以了！
+		而每项工作的格式都是『 五个时间参数 实际动作指令 』，那么那五个时间参数代表什么呢？<br><br>
+
+<table width="95%" bgcolor="lightyellow" border="1" cellpadding="3" cellspacing="0">
+<tbody><tr align="center" bgcolor="#182448"><td><font color="#FFFFFF">代表意义</font></td><td><font color="#FFFFFF">分钟</font></td><td><font color="#FFFFFF">小时</font></td><td><font color="#FFFFFF">日期</font></td><td><font color="#FFFFFF">月份</font></td><td><font color="#FFFFFF">周</font></td></tr>
+<tr align="center"><td>数字范围</td><td>0-59</td><td>0-23</td><td>1-31</td><td>1-12</td><td>0-7</td></tr>
+</tbody></table><br>
+
+		比较有趣的是那个『周』喔！当周为 0 或 7 时，都代表『星期天』的意思！另外，
+		还有一些辅助的字符，大概有底下这些：<br><br>
+
+<table width="95%" bgcolor="lightyellow" border="1" cellpadding="3" cellspacing="0">
+<tbody><tr align="center" bgcolor="#182448"><td width="70"><font color="#FFFFFF">特殊字符</font></td><td><font color="#FFFFFF">代表意义</font></td></tr>
+<tr><td align="center">*</td><td>代表任何时刻都接受的意思！举例来说，上表的范例一，那个日、月、周都是 * ，
+	就代表着『不论何月、何日的礼拜几的 12:00 都执行后续指令』的意思！</td></tr>
+<tr><td align="center">,</td><td>代表分隔时段的意思。举例来说，如果要下达的工作是 3:00 与 6:00 时，就会是：<br>
+	<ul><span class="text_import2"><font face="细明体">0 3,6 * * * command</font></span><font face="细明体"></font></ul>
+	还是有五栏，不过第二栏是 3,6 ，代表 3 与 6 都适用！</td></tr>
+<tr><td align="center">-</td><td>代表一段时间范围内，举例来说， 8 点到 12 点之间的每小时的 20 分都进行一项工作：<br>
+	<ul><span class="text_import2"><font face="细明体">20 8-12 * * * command</font></span><font face="细明体"></font></ul>
+	仔细看到第二栏变成 8-12 喔！代表 8,9,10,11,12 都适用的意思！</td></tr>
+<tr><td align="center">/n</td><td>那个 n 代表数字，亦即是『每隔 n 单位间隔』的意思，例如每五分钟进行一次，则：<br>
+	<ul><span class="text_import2"><font face="细明体">*/5 * * * * command</font></span><font face="细明体"></font></ul>
+	很简单吧！用 * 与 /5 来搭配，也可以写成 0-59/5 ，相同意思！</td></tr>
+</tbody></table><br>
+
+		我们就来搭配几个例子练习看看吧！<br><br>
+
+<table width="90%" border="1" cellpadding="5" cellspacing="0"><tbody><tr><td>
+例题：假若你的女朋友生日是 5 月 2 日，你想要在 5 月 1 日的 23:59 发一封信给他，这封信的内容已经写在
+/home/dmtsai/lover.txt 内了，该如何进行？<br>
+答：<ul>直接下达 crontab -e 之后，编辑成为：<ul>
+	<span class="text_import2"><font face="细明体">59 23 1 5  *  mail kiki &lt; /home/dmtsai/lover.txt</font></span></ul>
+	那样的话，每年 kiki 都会收到你的这封信喔！（当然啰，信的内容就要每年变一变啦！）</ul>
+</td></tr></tbody></table><br>
+
+<table width="90%" border="1" cellpadding="5" cellspacing="0"><tbody><tr><td>
+例题：假如每五分钟需要执行  /home/dmtsai/test.sh 一次，又该如何？<br>
+答：<ul>同样使用 crontab -e 进入编辑：<ul>
+	<span class="text_import2"><font face="细明体">*/5 * * * * /home/dmtsai/test.sh</font></span></ul>
+	</ul>
+</td></tr></tbody></table><br>
+
+		那个 crontab 每个人都只有一个档案存在，就是在 /var/spool/cron 里面啊！
+		还有建议您：『指令下达时，最好使用绝对路径，这样比较不会找不到执行档喔！』<br>
+
+<table width="90%" border="1" cellpadding="5" cellspacing="0"><tbody><tr><td>
+例题：假如你每星期六都与朋友有约，那么想要每个星期五下午 4:30 告诉你朋友星期六的约会不要忘记，则：<br>
+答：<ul>还是使用 crontab -e 啊！<ul>
+	<span class="text_import2"><font face="细明体">30 16 * * 5 mail friend@his.server.name &lt;
+	/home/dmtsai/friend.txt</font></span></ul></ul>
+</td></tr></tbody></table><br>
+
+		真的是很简单吧！呵呵！那么，该如何查询使用者目前的 crontab 内容呢？
+		我们可以这样来看看：<br>
+
+<table class="term"><tbody><tr><td class="term"><pre>[dmtsai@linux ~]$ <span class="term_command">crontab -l</span>
+59 23 1 5 * mail kiki &lt; /home/dmtsai/lover.txt
+*/5 * * * * /home/dmtsai/test.sh
+30 16 * * 5 mail friend@his.server.name &lt; /home/dmtsai/friend.txt
+
+<span class="term_hd"># 注意，若仅想要移除一项工作而已的话，必须要用 crontab -e 去编辑～
+# 如果想要全部的工作都移除，才使用 crontab -r 喔！</span>
+[dmtsai@linux ~]$ <span class="term_command">crontab -r</span>
+[dmtsai@linux ~]$ <span class="term_command">crontab -l</span>
+no crontab for dmtsai
+</pre></td></tr></tbody></table>
+
+		看到了吗？ crontab 『整个内容都不见了！』所以请注意：『如果只是要删除某个 
+		crontab 的工作项目，那么请使用 crontab -e 来重新编辑即可！』如果使用 -r 的参数，是会将所有的 
+		crontab 数据内容都删掉的！千万注意了！<br><br>
+	</div>
+
+	<hr><a name="etc_crontab"></a><img src="../image/logo.png" alt="小标题的图示" width="24" align="middle" height="23"><span class="text_h2">系统的设定： /etc/crontab</span><br>
+	<div class="block2">
+		这个『 crontab -e 』是针对使用者的 cron 来设计的，如果是『系统的例行性任务』时，
+		该怎么办呢？是否还是需要以 crontab -e 来管理你的例行性命令呢？当然不需要，你只要编辑
+		<span class="text_import1">/etc/crontab</span>这个档案就可以啦！有一点需要特别注意喔！那就是
+		crontab -e 这个 crontab 其实是 /usr/bin/crontab 这个执行档，但是 /etc/crontab
+		可是一个『纯文本档』喔！你可以 root 的身份编辑一下这个档案哩！<br><br>
+
+		基本上， cron 这个服务的最低侦测限制是『分钟』，所以『<span class="text_import2"> cron
+		会每分钟去读取一次 /etc/crontab 与 /var/spool/cron 里面的数据内容</span>
+		』，因此，只要你编辑完 /etc/crontab 这个档案，并且将他储存之后，呵呵！那么 
+		cron 的设定就自动的会来执行了！<br>
+
+		<div style="padding: 10pt 0pt;" align="right"><table width="90%"><tbody><tr><td><b>Tips:</b><br><span style="color: rgb(0, 144, 0);"><font size="-1">		在 Linux 底下的 crontab 会自动的帮我们每分钟重新读取一次 /etc/crontab 
+		的例行工作事项，但是某些原因或者是其他的 Unix 系统中，由于 crontab 
+		是读到内存当中的，所以在你修改完 /etc/crontab 之后，可能并不会马上执行，
+		这个时候请重新启动 crond 这个服务吧！<ul>
+		/etc/init.d/crond restart</ul>
+		</font></span></td><td><img src="0430cron-fc4_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div>
+		好了，我们就来看一下这个 /etc/crontab 的内容吧！<br>
+
+<table class="term"><tbody><tr><td class="term"><pre>[root@linux ~]# <span class="term_command">cat /etc/crontab</span>
+SHELL=/bin/bash
+PATH=/sbin:/bin:/usr/sbin:/usr/bin
+MAILTO=root
+HOME=/
+
+# run-parts
+01  *  *  *  *   root      run-parts /etc/cron.hourly   <span class="term_note">&lt;==每小时</span>
+02  4  *  *  *   root      run-parts /etc/cron.daily    <span class="term_note">&lt;==每天</span>
+22  4  *  *  0   root      run-parts /etc/cron.weekly   <span class="term_note">&lt;==每周日</span>
+42  4  1  *  *   root      run-parts /etc/cron.monthly  <span class="term_note">&lt;==每个月 1 号</span>
+<span class="term_say">分 时 日 月 周 执行者身份  指令串</span>
+</pre></td></tr></tbody></table>
+
+		看到这个档案的内容你大概就了解了吧！呵呵，没错！这个档案与将刚刚我们下达 
+		crontab -e 的内容几乎完全一模一样！只是有几个地方不太相同：<ul>
+
+		<li><span class="text_import1">MAILTO=root</span>：<br>
+		这个项目是说，当 /etc/crontab 这个档案中的例行性命令发生错误时，或者是该执行结果有 STDOUT/STDERR 时，
+		会将错误讯息或者是屏幕显示的讯息传给谁？默认当然是由系统直接寄发一封 mail 给 root 啦！不过，
+		由于 root 并无法在客户端中以 POP3 之类的软件收信，因此，我通常都将这个 e-mail 
+		改成自己的账号，好让我随时了解系统的状况！例如： 
+		<span class="text_import2">MAILTO=dmtsai@my.host.name</span></li><br>
+
+		<li><span class="text_import1">PATH=....</span>：<br>
+		还记得我们在 BASH Shell 当中一直提到的执行文件路径问题吧！没错啦！这里就是输入执行文件的搜寻路径！
+		使用默认的路径设定就已经很足够了！</li><br>
+
+		<li><span class="text_import1">01 * * * * root run-parts /etc/cron.hourly</span>：<br>
+		在批注符号『 #run-parts 』这一行以后的命令，我们可以发现，五个数字后面接的是 
+		root 喔！没错，与 crontab -e 的内容是不太一样的！这个字段的 root 代表的是『
+		<span class="text_import2">执行的使用者身份为 root</span> 』当然啰，你
+		也可以将这一行改写成其他的身份哩！而 run-parts 代表后面接的 /etc/cron.hourly 
+		是『 <span class="text_import2">一个目录内（/etc/cron.hourly）的所有可执行文件</span> 
+		』，这也就是说，<span class="text_import2">每个小时的 01 分，系统会以 root 的身份去 /etc/cron.hourly/
+		这个目录下执行所有可以执行的档案</span>！后面的三行也都是类似的意思！你可以到 
+		/etc/ 底下去看看，系统本来就默认了这四个目录了！你可以将每天需要执行的命令直接写到 
+		/etc/cron.daily/ 即可，还不需要使用到 crontab -e 的程序呢！方便吧！</li></ul>
+
+		基本上， /etc/crontab 这个档案里面支持两种下达指令的方式，一种是直接下达指令，
+		一种则是以目录来规划，例如：<ul>
+		<li><span class="text_import1">指令型态</span><br>
+		<font face="细明体">01 * * * * dmtsai mail -s "testing" kiki &lt; /home/dmtsai/test.txt</font><br>
+		以 dmtsai 这个使用者的身份，在每小时执行一次 mail 指令。</li><br>
+
+		<li><span class="text_import1">目录规划</span><br>
+		<font face="细明体">*/5 * * * * root run-parts /root/runcron</font><br>
+		建立一个 /root/runcron 的目录，将要每隔五分钟执行的『可执行文件』都写到该目录下，
+		就可以让系统每五分钟执行一次该目录下的所有可执行文件。
+		</li></ul>
+
+		这样就可以晓得 run-parts 的用意了吧！此外，与 crontab -e 
+		规划当中最不相同的就是多了一个『使用者层级』的概念，通常我们都是以 root 
+		的角度来规划例行性命令，但是总有不需要 root 
+		的指令吧！就可以使用这个层级来规范该程序的用户属于谁啰！<br><br>
+
+		好！你现在大概了解了这一个咚咚吧！OK！假设你现在要作一个目录，让系统可以每 
+		2 分钟去执行这个目录下的所有可以执行的档案，你可以写下如下的这一行在 /etc/crontab 中：
+		<ul><span class="text_import2"><font face="细明体">*/2 * * * * root run-parts 
+		/etc/cron.min</font></span></ul>
+
+		当然啰， /etc/cron.min 这个目录是需要存在的喔！那如果我需要执行的是一个『程序』而已，
+		不需要用到一个目录呢？该如何是好？例如在侦测网络流量时，我们希望每五分钟侦测分析一次，
+		可以这样写：
+		<ul><span class="text_import2"><font face="细明体">*/5 * * * * root 
+		/bin/mrtg /etc/mrtg/mrtg.cfg</font></span></ul>
+
+		没有了 run-parts 就是代表『一个档案』的意思啦！<br><br>
+
+		如何！？建立例行性命令很简单吧！如果你是系统管理员的话，直接修改 /etc/crontab 
+		这个档案即可喔！又便利，又方便管理呢！<br>
+	</div>
+</div>
+
+
+<hr><a name="security"></a><img src="../image/logo.png" alt="大标题的图示" width="35" align="middle" height="34"><span class="text_h1">一些使用特点：</span><br>
+<div class="block1">
+	有的时候，我们以系统的 cron 来进行例行性工作的建立时，要注意一些使用方面的特性。
+	举例来说，如果我们有四个工作都是五分钟要进行一次的，那么是否这四个动作全部都在同一个时间点进行？
+	如果同时进行，该四个动作又很耗系统资源，如此一来，每五分钟不是会让系统忙得要死？
+	呵呵！此时好好的分配一些运行时间，呵呵！就 OK 啦！所以，注意一下：<br><br>
+
+	<li><span class="text_import1">资源分配不均的问题</span>：</li>
+	<div class="block2">
+		当大量使用 crontab 的时候，总是会有问题发生的，最严重的问题就是『系统资源分配不均』的问题，
+		以鸟哥的系统为例，我有侦测流量的信息，包括：<ul>
+		<li>流量</li>
+		<li>区域内其他 PC 的流量侦测</li>
+		<li>CPU 使用率</li>
+		<li>RAM 使用率</li>
+		<li>在线人数实时侦测</li></ul>
+		如果每个流程都在同一个时间启动的话，呵呵！那么在某个时段时，我的系统会变的相当的繁忙，
+		所以，这个时候就必须要分别设定啦！我可以这样做：<br>
+
+<table class="term"><tbody><tr><td class="term"><pre>[root@linux ~]# <span class="term_command">vi /etc/crontab</span>
+1,6,11,16,21,26,31,36,41,46,51,56 * * * * root  CMD1
+2,7,12,17,22,27,32,37,42,47,52,57 * * * * root  CMD2
+3,8,13,18,23,28,33,38,43,48,53,58 * * * * root  CMD3
+4,9,14,19,24,29,34,39,44,49,54,59 * * * * root  CMD4
+</pre></td></tr></tbody></table>
+
+		看到了没？那个『 , 』分隔的时候，请注意，不要有空格符！（连续的意思）如此一来，
+		则可以将每五分钟工作的流程分别在不同的时刻来工作！则可以让系统的执行较为顺畅呦！<br><br>
+	</div>
+
+	<li><span class="text_import1">取消不要的输出项目</span>：</li>
+	<div class="block2">
+		另外一个困扰发生在『 <span class="text_import2">当有执行成果或者是执行的项目中有输出的数据时，该数据将会
+		mail 给 MAILTO 设定的账号</span> 』，好啦，那么当有一个排程一直出错（例如 DNS
+		的侦测系统当中，若 DNS 上层主机挂掉，那么你就会一直收到错误讯息！）怎么办？呵呵！还记得
+		<a href="http://linux.vbird.org/linux_basic/0430cron/0340bashshell-scripts.php">BASH 与 Shell scripts </a>
+		那一章吧！？直接以『命令重导向』将输出的结果输出到
+		<span class="text_import2">/dev/null</span> 这个垃圾桶当中就好了！<br><br>
+	</div>
+
+	<li><span class="text_import1">安全的检验</span>：</li>
+	<div class="block2">
+		很多时候被植入木马都是以例行命令的方式植入的，所以可以藉由检查 /var/log/cron
+		的内容来视察是否有『非您设定的 cron 被执行了？』这个时候就需要小心一点啰！
+	</div>
+</div>
+
+
+<hr><a name="FAQ"></a><img src="../image/logo.png" alt="大标题的图示" width="35" align="middle" height="34"><span class="text_h1">本章习题练习</span><br>
+( 要看答案请将鼠标移动到『答：』底下的空白处，按下左键圈选空白处即可察看 )
+<div class="block1">
+<ul>
+	<li>今天假设我有一个指令程序，名称为： ping.sh 这个档名！我想要让系统每三分钟执行这个档案一次，
+	但是偏偏这个档案会有很多的讯息显示出来，所以我的
+	root 账号每天都会收到差不多四百多封的信件，光是收信就差不多快要疯掉了！
+	那么请问应该怎么设定比较好呢？</li>
+	<div class="block2"><font color="white" size="-1">
+		这个涉及命令重导向的问题，我们可以将他导入档案或者直接丢弃！如果该讯息不重要的话，
+		那么就予以丢弃，如果讯息很重要的话，才将他保留下来！假设今天这个命令不重要，
+		所以将他丢弃掉！因此，可以这样写：<ul>
+		*/3 * * * * root /usr/local/ping.sh &gt; /dev/null 2&gt;&amp;1</ul>
+	</font></div>
+
+	<li>您预计要在 2006 年的 2 月 14 日寄出一封给 kiki ，只有该年才寄出！该如何下达指令？</li>
+	<div class="block2"><font color="white" size="-1">
+		at 1am 2006-02-14
+	</font></div>
+
+	<li>下达 crontab -e 之后，如果输入这一行，代表什么意思？<br>
+	* 15 * * 1-5 /usr/local/bin/tea_time.sh</li>
+	<div class="block2"><font color="white" size="-1">
+		在每星期的 1~5 ，下午 3 点的每分钟，共进行 60 次 /usr/local/bin/tea_time.sh 这个档案。
+		要特别注意的是，每个星期 1~5 的 3 点都会进行 60 次ㄟ！很麻烦吧～是错误的写法啦～
+		应该是要写成：<br>
+		30 15 * * 1-5 /usr/local/bin/tea_time.sh
+	</font></div>
+
+	<li>我用 vi 编辑 /etc/crontab 这个档案，我编辑的那一行是这样的：<br>
+	25 00 * * 0   /usr/local/bin/backup.sh<br>
+	这一行代表的意义是什么？</li>
+	<div class="block2"><font color="white" size="-1">
+		这一行代表......没有任何意义！因为语法错误！您必须要了解，在 /etc/crontab 
+		当中每一行都必须要有使用者才行！所以，应该要将原本那行改成：<br>
+		25 00 * * 0 root  /usr/local/bin/backup.sh
+	</font></div>
+
+	<li>请问，您的系统每天、每周、每个月各有进行什么工作？</li>
+	<div class="block2"><font color="white" size="-1">
+		因为 FC4 系统默认的例行性命令都放置在 /etc/cron.* 里面，所以，你可以自行去：
+		/etc/cron.daily/, /etc/cron.week/, /etc/cron.monthly/ 这三个目录内看一看，
+		就知道啦！ ^_^
+	</font></div>
+
+	<li>每个星期六凌晨三点去系统搜寻一下内有 SUID/SGID 的任何档案！并将结果输出到 /tmp/uidgid.files</li>
+	<div class="block2"><font color="white" size="-1"><font face="细明体">
+		vi /etc/crontab<br>
+		0 3 * * 6 root find / -perm +6000 &gt; /tmp/uidgid.files
+	</font></font></div>
+
+</ul>
+</div>
+
+
+<hr><span class="text_history">
+2002/05/30：第一次完成<br>
+2003/02/10：重新编排与加入 FAQ<br>
+2005/09/07：将旧的文章移动到 <a href="http://linux.vbird.org/linux_basic/0430cron/0430cron/0430cron.php">此处</a> 。<br>
+2005/09/07：呼呼！终于完成风格啰～同时加入一些习题练习。<hr>
+</span>
+    </td>
+    <td style="width: 16px; font-size: 6px;">　</td></tr>
+<tr><td style="width: 16px; height: 16px;">　</td>
+    <td style="width: 866px; height: 16px;">　</td>
+    <td style="width: 16px; height: 16px;">　</td></tr>
+</tbody></table>
+
+<div style="padding-top: 0px; text-align: center;">
+<span style="font-size: 80%;">
+	<a href="http://linux.vbird.org/" target="_top" title="前往鸟哥的首页">http://linux.vbird.org</a>
+	is designed by <a href="mailto:vbird@mail.vbird.idv.tw" title="联络鸟哥(我不要广告信！)">VBird</a>
+		during 2001-2011. <a href="http://www.ksu.edu.tw/" target="_blank">ksu.edu</a></span>
+                ﻿<div id="apDiv4">
+      <p>本网页主要以Firefox配合解析度 1024x768 作为设计依据&nbsp;&nbsp;&nbsp;&nbsp; 鸟哥自由软件整合应用研究室</p></div></div></div>
+</center>
+</body></html>

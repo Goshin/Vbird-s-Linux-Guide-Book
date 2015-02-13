@@ -1,0 +1,795 @@
+<html><head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf8">
+	<meta name="Author" content="lee">
+	<meta name="Description" content="使用 CentOS 5.x 来安装您的 Linux 练习机">
+	<title>鸟哥的 Linux 私房菜 -- 安装 CentOS 5.x 的 Linux 练习机</title>
+    <script src="../script/SpryMenuBar.js" type="text/javascript"></script>
+	<script src="../script/index.js" type="text/javascript"></script>
+	<link href="../css/SpryMenuBarHorizontal.css" rel="stylesheet" type="text/css" />
+    <link href="../css/main.css" rel="stylesheet" type="text/css" />
+    </head><body style="margin: 0pt; padding: 0pt;" class="table"onload="MM_preloadImages('image/title_19.png','image/title_26.png','image/title_27.png','image/title_28.png','image/title_06.png','image/title_08.png','image/title_10.png','image/title_12.png')">
+
+
+<!-- Copyright � 2005. Spidersoft Ltd -->
+<style>
+A.applink:hover {border: 2px dotted #DCE6F4;padding:2px;background-color:#ffff00;color:green;text-decoration:none}
+A.applink       {border: 2px dotted #DCE6F4;padding:2px;color:#2F5BFF;background:transparent;text-decoration:none}
+A.info          {color:#2F5BFF;background:transparent;text-decoration:none}
+A.info:hover    {color:green;background:transparent;text-decoration:underline}
+</style>
+<div style='BORDER: 1px solid #DCE6F4; MARGIN-TOP: 20px; MARGIN-BOTTOM: 20px; MARGIN-LEFT: 5px; MARGIN-RIGHT: 5px; PADDING: 5px; BACKGROUND-COLOR: #eef8ff;line-height:180%; COLOR: #000000; font-family: Arial; font-size: 8pt; width=100%; FILTER: progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr="#FFFFFFFF", EndColorStr="#F2F5FAFF");'>
+This page was saved using <a class="applink" href="http://www.spidersoft.com"><b>WebZIP 7.0.3.1030</b></a> <a class="applink" href="http://www.spidersoft.com"><b>offline browser</b></a>  (Unregistered) on  02/12/15 12:14:48.<br>
+<b>Address:</b> <a class="info" href="http://vbird.dic.ksu.edu.tw/linux_basic/0157installcentos5_2.php">http://vbird.dic.ksu.edu.tw/linux_basic/0157installcentos5_2.php</a><br>
+<b>Title:</b> 鸟哥的 Linux 私房菜 -- 安装 CentOS 5.x 的 Linux 练习机 &nbsp;&bull;&nbsp; <b>Size:</b> 63312<br></div>
+<!-- /Copyright � 2005. Spidersoft Ltd -->
+
+
+
+<center>
+<div id="apDiv5">
+<div> <LINK REL="SHORTCUT ICON" HREF="favicon.ico">
+<!-- ImageReady Slices (title3.ai) -->
+<table id="___01" width="898" height="81" border="0" align="center" cellpadding="0" cellspacing="0";>
+	<tr>
+		<td colspan="15">
+			<img src="image/title/title_01.png" width="900" height="1" alt=""></td>
+	</tr>
+	<tr>
+		<td rowspan="4" bgcolor="#182448"><p><img src="http://linux.vbird.org/cgi-bin/Count.cgi?dd=C&ft=5&sh=T&md=8&pad=Y&df=vbird.dic.ksu.edu.tw.dat" width="93" align="left" title="計數器" /></p>
+	    <p><font color="#FFFFFF" size="-1">since2012/04/23</font></p></td>
+		<td rowspan="4" align="left" valign="top"><a href="http://vbird.dic.ksu.edu.tw/"><img src="image/title/title_03.png" alt="" width="263" height="79" border="0"></a></td>
+		<td colspan="13">
+			<img src="image/title/title_04.png" alt="" width="535" height="9" border="0"></td>
+	</tr>
+	<tr>
+		<td rowspan="3">
+			<img src="image/title/title_05.png" alt="" width="53" height="70" border="0"></td>
+		<td colspan="2" align="left" valign="top"><a href="0110whatislinux.php.html" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image51','','image/title/title_06.png',1)"><img src="image/title/title3_06.png" name="Image51" width="106" height="25" border="0" id="Image51" alt=""/></a></td>
+		<td rowspan="2">
+			<img src="image/title/title_07.png" alt="" width="27" height="37" border="0"></td>
+		<td colspan="3" align="left" valign="top"><a href="http://vbird.dic.ksu.edu.tw/linux_server/0110network_basic.php" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image52','','image/title/title_08.png',1)"><img src="image/title/title3_08.png" name="Image52" width="107" height="25" border="0" id="Image52" alt=""/></a></td>
+		<td rowspan="2">
+			<img src="image/title/title_09.png" alt="" width="37" height="37" border="0"></td>
+		<td colspan="2" align="left" valign="top"><a href="http://vbird.dic.ksu.edu.tw/about.php" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image53','','image/title/title_10.png',1)"><img src="image/title/title3_10.png" name="Image53" width="75" height="25" border="0" id="Image53" alt=""/></a></td>
+		<td rowspan="3">
+			<img src="image/title/title_11.png" alt="" width="35" height="70" border="0"></td>
+		<td align="left" valign="top"><a href="mailto:vbird@mail.vbird.idv.tw" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image54','','image/title/title_12.png',1)"><img src="image/title/title3_12.png" name="Image54" width="74" height="25" border="0" id="Image54" alt=""/></a></td>
+		<td rowspan="3">
+			<img src="image/title/title_13.png" alt="" width="21" height="70" border="0"></td>
+	</tr>
+	<tr>
+		<td colspan="2">
+			<img src="image/title/title_14.png" alt="" width="106" height="12" border="0"></td>
+		<td colspan="3">
+			<img src="image/title/title_15.png" alt="" width="107" height="12" border="0"></td>
+		<td colspan="2">
+			<img src="image/title/title_16.png" width="75" height="12" alt=""></td>
+		<td rowspan="2">
+			<img src="image/title/title_17.png" alt="" width="74" height="45" border="0"></td>
+	</tr>
+	<tr>
+		<td>
+			<img src="image/title/title_18.png" alt="" width="15" height="33" border="0"></td>
+		<td colspan="3" align="left" valign="top"><ul id="MenuBar1" class="MenuBarHorizontal">
+	  <li><a href="linux_basic.php.html" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image44','','image/title/title_19.png',1)"><img src="image/title/title3_19.png" name="Image44" width="123" height="33" border="0" id="Image44" /></a>
+			    <ul>
+			      <li><a href="Mandrake9.0/mandrake9.0.php.html" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image46','','image/title/title_26.png',1)"><img src="image/title/title_23.png" name="Image46" width="120" height="26" border="0" id="Image46" alt="" /></a></li>
+                  <li><a href="fedora_4/fc4.php.html" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image47','','image/title/title_27.png',1)"><img src="image/title/title_24.png" name="Image47" width="120" height="26" border="0" id="Image47" alt="" /></a></li>
+                  <li><a href="linux_basic.php.html" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image48','','image/title/title_28.png',1)"><img src="image/title/title_25.png" name="Image48" width="120" height="26" border="0" id="Image48" alt="" /></a></li>
+                </ul>
+		      </li>
+		</ul></td>
+		<td>
+			<img src="image/title/title_20.png" alt="" width="42" height="33" border="0"></td>
+		<td colspan="3" align="left" valign="top"><ul id="MenuBar2" class="MenuBarHorizontal">
+	  <li><a href="http://vbird.dic.ksu.edu.tw/linux_server/" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image45','','image/title/title_21.png',1)"><img src="image/title/title3_21.png" name="Image45" width="125" height="33" border="0" id="Image45" /></a>
+			    <ul>
+			      <li><a href="http://vbird.dic.ksu.edu.tw/linux_server/linux_redhat9/redhat9.php" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image43','','image/title/title_26.png',1)"><img src="image/title/title_23.png" name="Image43" width="120" height="26" border="0" id="Image43" alt=""/></a></li>
+			      <li><a href="http://vbird.dic.ksu.edu.tw/linux_server/centos4.php" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image49','','image/title/title_27.png',1)"><img src="image/title/title_24.png" name="Image49" width="120" height="26" border="0" id="Image49" alt="" /></a></li>
+			      <li><a href="http://vbird.dic.ksu.edu.tw/linux_server/" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image50','','image/title/title_28.png',1)"><img src="image/title/title_25.png" name="Image50" width="120" height="26" border="0" id="Image50" alt="" /></a></li>
+		        </ul>
+		      </li>
+		</ul></td>
+		<td>
+			<img src="image/title/title_22.png" alt="" width="47" height="33" border="0"></td>
+	</tr>
+	<tr>
+		<td>
+			<img src="image/title/Spacer.gif" width="101" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="263" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="53" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="15" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="91" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="27" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="5" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="42" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="60" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="37" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="28" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="47" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="35" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="74" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="22" height="1" alt=""></td>
+	</tr>
+</table>
+<!-- End ImageReady Slices -->
+<script type="text/javascript">
+<!--
+var MenuBar1 = new Spry.Widget.MenuBar("MenuBar1", {imgDown:"SpryAssets/SpryMenuBarDownHover.gif", imgRight:"SpryAssets/SpryMenuBarRightHover.gif"});
+var MenuBar2 = new Spry.Widget.MenuBar("MenuBar2", {imgDown:"SpryAssets/SpryMenuBarDownHover.gif", imgRight:"SpryAssets/SpryMenuBarRightHover.gif"});
+//-->
+</script></div>
+<table summary="本文内容的排版" style="width: 898px;" border="0" cellpadding="0" cellspacing="0">
+<tbody><tr><td style="width: 16px; height: 16px;">　</td>
+    <td style="width: 866px; height: 16px;">　</td>
+    <td style="width: 16px; height: 16px;">　</td></tr>
+<tr><td style="width: 16px; font-size: 6px;">　</td>
+    <td width="866">
+
+<!-- 本文的档头部分 -->
+<div style="text-align: center;">
+    <a href="0157installcentos5.php.html">
+    <span class="text_head0">第四章、安装<span class="text_head_en"> CentOS 5.x </span>与多重开机小技巧</span></a><br>
+</div>
+    <div style="text-align: right;">
+        <span class="text_history">最近更新日期：2009/08/11</span>
+    </div>
+<!-- 本文的连结区部分 -->
+<div class="block1">
+<span class="text_h1">
+2. <a href="#centos5">开始安装CentOS 5</a><br>
+	<span class="text_h2">
+	　　2.1 <a href="#centos5_1">调整开机媒体(BIOS)</a><br>
+	　　2.2 <a href="#centos5_2">选择安装模式与开机</a>, <a href="#centos5_2_memtest86">测试内存稳定度</a><br>
+	　　2.3 <a href="#centos5_3">选择语系数据</a><br>
+	　　2.4 <a href="#centos5_4">磁碟分割</a>, <a href="#centos5_4_sraid">进阶软件阵列建置</a><br>
+	　　2.5 <a href="#centos5_5">开机管理程序、网络、时区设定与root密码</a><br>
+	　　2.6 <a href="#centos5_6">软件选择</a><br>
+	　　2.7 <a href="#centos5_7">其他功能：RAM testing, 安装笔记本电脑的核心参数(Option)</a><br>
+	</span>
+</span>
+</div>
+<!-- 本文的正式部分 -->
+<hr><a name="centos5"></a><img src="../image/logo.png" alt="大标题的图示" width="35" align="middle" height="34"><span class="text_h1">开始安装CentOS 5</span><br>
+<div class="block1">
+	<p>由於本章的内容主要是针对安装一部Linux练习机来设定的，所以安装的分割等过程较为简单。
+	如果你已经不是第一次接触Linux，并且想要架设一部要上线的Linux主机，请务必前往<a href="0130designlinux.php.html">第三章</a>看一下整体规划的想法喔！
+	在本章中，你只要依照<a href="#checklist">前一小节的检查表单</a>检查你所需要的安装媒体/硬件/软件资讯等等，
+	然后就能够安装啦！</p>
+
+	<p>安装的步骤在各主要Linux distributions都差不多，主要的内容大概是：</p>
+
+	<ol>
+		<li><a href="#centos5_1">调整开机媒体(BIOS)</a>：务必要使用CD或DVD光盘开机，通常需要调整BIOS；</li>
+		<li><a href="#centos5_2">选择安装模式与开机</a>：包括图形介面/文字介面等，也可加入特殊参数来开机进入安装画面；</li>
+		<li><a href="#centos5_3">选择语系数据</a>：由於不同地区的键盘按键不同，此时需要调整语系/键盘/滑鼠等配备；</li>
+		<li><a href="#centos5_4">磁碟分割</a>：最重要的项目之一了！记得将刚刚的规划单拿出来设定；</li>
+		<li><a href="#centos5_5">开机管理程序、网络、时区设定与root密码</a>：一些需要的系统基础设定！</li>
+		<li><a href="#centos5_6">软件选择</a>：需要什么样的软件？全部安装还是预设安装即可？</li>
+		<li><a href="#post_install">安装后的首次设定</a>：安装完毕后还有一些事项要处理，包括使用者、SELinux与防火墙等！</li>
+	</ol>
+	大概就是这样子吧！好了，底下我们就真的要来安装罗！<br><br>
+
+	<hr><a name="centos5_1"></a><img src="../image/logo.png" alt="小标题的图示" width="24" align="middle" height="23"><span class="text_h2">1. 调整开机媒体(BIOS)</span><br>
+	<div class="block2">
+		<p>你不能在Windows的环境下安装Linux的，你必须要使用Linux的安装光盘开机后才能够进行Linux的安装流程。
+		目前几乎所有的Linux distributions以及主板都有支援光盘开机，所以以往使用软盘开机的安装方式我们就不再介绍了。</p>
+
+		<p>那如何让你的主机可以用光盘开机呢？由<a href="http://vbird.dic.ksu.edu.tw/linux_basic/0130designlinux.php#partition_mbr">前一章的开机流程</a>我们知道开机的装置是由BIOS调整的，
+		所以要让光盘可以开机，当然就得要进入BIOS调整开机装置的顺序了。不过，各家主板使用的BIOS程序不一样，
+		而且进入BIOS的按键也不相同，因此这部份得要参考你的主板说明书才好。鸟哥这里使用的是我的测试机来解释喔。</p>
+
+		<ol>
+		<li><span class="text_import2">开机进入BIOS的按键</span><br>
+		将你的PC重新开机，在开机的画面中按下[del]按键，以进入BIOS画面，如下图的箭头所示：<br><br>
+
+		<center><img src="0157installcentos5_files/centos5_01_01.jpg" alt="按[Del]进入BIOS画面示意图" title="按[Del]进入BIOS画面示意图" border="1"><br>
+		图2.1.1、按[Del]进入BIOS画面示意图<br></center><br></li>
+
+		<li><span class="text_import2">进入BIOS操作介面</span><br>
+		然后会出现如下的图示，显示出目前你的BIOS主要架构：<br><br>
+
+		<center><img src="0157installcentos5_files/centos5_01_02.jpg" alt="BIOS画面示意图" title="BIOS画面示意图" border="1"><br>
+		图2.1.2、BIOS画面示意图<br></center><br>
+
+		上图画面中最上方为主选单部分，计有『Main, Advanced, Power, Boot, Exit』等项目。我们有兴趣的地方在『Boot』中。
+		上图最下方则是一些BIOS操作说明，包括使用上、下、左、右等按键以及[Enter]按键等。
+		此时，请按照BIOS的操作说明，利用向右的方向键将选单移动到『Boot』项目<br><br></li>
+
+		<li><span class="text_import2">开机装置的顺序调整</span><br>
+		进入到Boot的画面后，你就可以使用[+][-]按键来调整开机顺序。以鸟哥的环境来说，我就调整开机装置为光盘啦！
+		如下图所示：<br><br>
+
+		<center><img src="0157installcentos5_files/centos5_01_03.jpg" alt="BIOS内的开机顺序选单" title="BIOS内的开机顺序选单" border="1"><br>
+		图2.1.3、BIOS内的开机顺序选单<br></center><br></li>
+
+		<li><span class="text_import2">储存后离开</span><br>
+		接下来，只要输入[F10]然后按下[Enter]就能够储存刚刚的设定，系统会自动重新开机，就能够使用光驱里面的光盘来开机了。
+		就是这么简单啊！</li>
+		</ol>
+
+		<div style="padding: 10pt 0pt;" align="right"><table width="90%"><tbody><tr><td><b>Tips:</b><br><span style="color: rgb(0, 144, 0);"><font size="-1">		另外一款常见的BIOS画面中，会有一个『BIOS Features Setup』之类字眼的选项，进入该选项后找到『Boot Sequence』
+		或者是『First Boot Device』之类的字样，并选择CD-ROM开机为第一优先即可。
+		通常鸟哥都是用CD-ROM为第一项，然后是硬盘(HD-0)。
+		</font></span></td><td><img src="0157installcentos5_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div>
+		<p>在调整完BIOS内的开机装置的顺序后，理论上你的主机已经可使用可开机光盘来开机了！
+		如果发生一些错误讯息导致无法以CentOS 5.x DVD来开机，很可能是由於：<span class="text_import2">1)计算机硬件不支援； 2)光驱会挑片； 3)光盘片有问题；</span>
+		如果是这样，那么建议你再仔细的确认一下你的硬件是否有超频？或者其他不正常的现象。
+		另外，你的光盘来源也需要再次的确认！</p>
+
+		<p>在进行完上面的步骤之后，请放入我们的CentOS 5.x i386的DVD进入光驱中，重新开机准备进入安装画面吧！</p>
+	</div>
+
+
+	<hr><a name="centos5_2"></a><img src="../image/logo.png" alt="小标题的图示" width="24" align="middle" height="23"><span class="text_h2">2. 选择安装模式与开机</span><br>	<div class="block2">
+		<p>由於为了画面撷取的解析度，鸟哥使用Virtualbox(<a href="#ps1">注1</a>)这套软件来捉图给大家看。
+		所以如果有看到与上面练习机的规划的资讯不同时，请大家多多包涵啊！好了，
+		如果一切都没问题，那么使用DVD开机后，你应该会看到萤幕出现如下的画面了：</p>
+
+		<center><img src="0157installcentos5_files/centos5_02_01.jpg" alt="安装程序的安装模式选择画面，预设的[F1]画面" title="安装程序的安装模式选择画面，预设的[F1]画面" border="1"><br>
+		图2.2.1、安装程序的安装模式选择画面，预设的[F1]画面<br></center>
+
+		<p>上面的画面中说明了：</p>
+		<ol class="text_import2">
+		<li>你可以直接按下&lt;Enter&gt;来进入图形介面的安装方式；</li>
+		<li>也可以直接在boot:(上图箭头4所指处)后面输入『linux text』来进入文字介面的安装；</li>
+		<li>还有其他功能选单，可按下键盘最上方那一列的[F1]...[F5]按键来查阅各功能。</li>
+		</ol>
+
+		<p>要特别注意的是，<span class="text_import2">如果你在 10 
+		秒钟内没有按下任何按键的话，那么安装程序预设会使用图形介面来开始安装流程喔！</span>
+		由於目前安装程序都作的非常棒！因此，建议你可以使用图形介面来安装即可。鸟哥底下就是使用图形介面来安装的。
+		如果想要知道安装程序还提供什么功能，我们可以按下功能键。例如底下就是[F2]的功能说明：</p>
+
+		<a name="centos5_2_memtest86"></a>
+		<center><img src="0157installcentos5_files/centos5_02_02.jpg" alt="安装程序的安装模式选择画面，[F2]的画面" title="安装程序的安装模式选择画面，[F2]的画面" border="1"><br>
+		图2.2.2、安装程序的安装模式选择画面，[F2]的画面<br></center>
+
+		<p>上图中箭头指的地方需要留意一点点，那个是还算常用的功能！意义是这样的：</p>
+		<ul>
+		<li><span class="text_import1">linux noprobe (1号箭头)</span>：<br>
+		不进行硬件的侦测，如果你有特殊硬件时，或许可以使用这一项来停止硬件侦测；<br><br></li>
+		<li><span class="text_import1">linux askmethod (2号箭头)</span>：<br>
+		进入互动模式，安装程序会进行一些询问。如果你的硬盘内含有安装媒体时，
+		或者是你的环境内有安装服务器(Installation server)，那就可以选这一项来填入正确的网络主机来安装；<br><br></li>
+		<li><span class="text_import1">memtest86 (3号箭头)</span>：<br>
+		这个有趣了！这个项目会一直进行内存的读写，如果你怀疑你的内存稳定度不足的话，
+		可以使用这个项目来测试你的内存喔！测试完成后需要重新开机！</li>
+		</ul>
+
+		<p>那如果按下的是[F5]时，就会进入到救援模式的说明画面，如下图所示：</p>
+
+		<center><img src="0157installcentos5_files/centos5_02_03.jpg" alt="安装程序的安装模式选择画面，[F5]的救援模式说明画面" title="安装程序的安装模式选择画面，[F5]的救援模式说明画面" border="1"><br>
+		图2.2.3、安装程序的安装模式选择画面，[F5]的救援模式说明画面<br></center>
+
+		<p>上图的意思是说，如果你的Linux系统因为设定错误导致无法开机时，可以使用『<span class="text_import2">linux rescue</span>』来进入救援模式。这个救援模式很有帮助喔！
+		在我们后面各章节的练习中有很多练习是需要更动到系统设定档的，万一你设定错误将可能会导致无法开机。
+		此时请拿出此片DVD来进行救援模式，能够救回你的Linux而不需要重新安装呢！</p>
+
+		<p>因为我们是首次安装Linux嘛！所以就请直接按下&lt;Enter&gt;按键，此时安装程序会开始去侦测硬件，
+		侦测的结果会回报到你的萤幕上，如下所示：</p>
+
+		<center><img src="0157installcentos5_files/centos5_02_04.jpg" alt="安装程序的核心进行硬件侦测流程示意图" title="安装程序的核心进行硬件侦测流程示意图" border="1"><br>
+		图2.2.4、安装程序的核心进行硬件侦测流程示意图<br></center>
+
+		<p>如果侦测过程中没有问题，那么就会出现要你选择是否要进行储存媒体的检验画面，如下所示：</p>
+
+		<center><img src="0157installcentos5_files/centos5_02_05.jpg" alt="是否进行安装媒体的检测示意图" title="是否进行安装媒体的检测示意图" border="1"><br>
+		图2.2.5、是否进行安装媒体的检测示意图<br></center>
+
+		<p>如果你确定你所下载的DVD或光盘没有问题的话，那么<span class="text_import2">这里可以选择『Skip(忽略)』</span>，
+		不过，你也可以按下『OK』来进行DVD的分析，因为通过DVD的分析后，后续的安装比较不会出现奇怪的问题。
+		不过如果你按下『OK』后，程序会开始分析光盘内的所有档案的资讯，会花非常多的时间喔！如下所示：<br><br></p>
+
+		<center><img src="0157installcentos5_files/centos5_02_06.jpg" alt="是否真的要测试光盘或 DVD 碟？" title="是否真的要测试光盘或 DVD 碟？" border="1"><br>
+		图2.2.6、是否真的要测试光盘或 DVD 碟？<br></center>
+
+		<p>若没有问题，请按下『 Test 』按钮，此时会出现分析过程如下图所示：</p>
+
+		<center><img src="0157installcentos5_files/centos5_02_07.jpg" alt="开始分析 DVD 的内容！" title="开始分析 DVD 的内容！" border="1"><br>
+		图2.2.7、开始分析 DVD 的内容！<br></center>
+
+		<p>最终的分析结果如下所示，按下『 OK 』即可！如果你发现了分析错误的情况，很可能是你下载的 DVD 来源档案不完整，
+		或者是光盘/DVD被你的光驱挑片，或者是烧录的速度倍数太高而导致烧录不完整等等，总之，可能就是要你再重新捉一片新的 DVD 
+		啦！这就是测试 DVD 的优点，虽然会花去一些时间就是了。</p>
+
+		<center><img src="0157installcentos5_files/centos5_02_08.jpg" alt="检验结果是正确的情况" title="检验结果是正确的情况" border="1"><br>
+		图2.2.8、检验结果是正确的情况<br></center>
+
+		<p>如果还有其他光盘想要被测试时，在下图中按下『 Test 』继续！不过我们仅有一片 DVD 而已，
+		因此这边选择『 Continue 』来进入安装的程序喔！</p>
+
+		<center><img src="0157installcentos5_files/centos5_02_09.jpg" alt="检验结束，开始安装的流程" title="检验结束，开始安装的流程" border="1"><br>
+		图2.2.9、检验结束，开始安装的流程<br></center>
+	</div>
+
+	<hr><a name="centos5_3"></a><img src="../image/logo.png" alt="小标题的图示" width="24" align="middle" height="23"><span class="text_h2">3. 选择语系数据</span><br>
+	<div class="block2">
+		<p>接下来就是整个安装的程序了。安装的画面如下所示：</p>
+
+		<center><img src="0157installcentos5_files/centos5_02_11.jpg" alt="欢迎画面萤幕" title="欢迎画面萤幕" border="1"><br>
+		图2.3.1、欢迎画面萤幕<br></center>
+
+		<p>如果你想要了解这一版的CentOS 5.3有什么公告的注意事项，请按下上图的『Release Notes』按钮(1号箭头处)，
+		就能够看到释出公告的项目。如果没有问题的话，请按下『Next』开始安装程序啦！如下所示会出现语系的选择了。</p>
+
+		<center><img src="0157installcentos5_files/centos5_02_12.jpg" alt="安装过程的语系选择" title="安装过程的语系选择" border="1"><br>
+		图2.3.2、安装过程的语系选择<br></center>
+
+		<p>我们惯用的中文为繁体中文，请先选择繁体中文的项目(Chinese, Traditional)，然后继续给他『Next』即可出现如下画面：</p>
+
+		<center><img src="0157installcentos5_files/centos5_02_13.jpg" alt="键盘字元对应表的选择" title="键盘字元对应表的选择" border="1"><br>
+		图2.3.3、键盘字元对应表的选择<br></center>
+
+		<p>因为繁体中文预设也是使用美式英文的键盘对照表，因此你会看到画面直接就是美式英文，你只要按下『下一步』即可！
+		此时你也会发现，整个画面通通变成中文介面啦！真是好具有亲和力喔！</p>
+
+		<p> 如果没有问题的话，理论上应该会进入下个步骤，亦即是磁碟分割的画面才对。不过，如果你的硬盘是全新的，
+		而且并没有经过任何的磁碟分割时，就会出现如下的警告讯息：</p>
+
+		<center><img src="0157installcentos5_files/centos5_02_14.jpg" alt="安装程序找不到磁碟分割表的警告图示" title="安装程序找不到磁碟分割表的警告图示" border="1"><br>
+		图2.3.4、安装程序找不到磁碟分割表的警告图示<br></center>
+
+		<p>因为鸟哥使用的是Virtualbox虚拟机器的环境，所以预设的那颗硬盘是全新的，所以才会出现上述的讯息。
+		请在上图中按下『是』吧！你的主机内的硬盘如果不是全新的，上述的警告画面不会出现！而如果你曾经安装过 Linux 
+		的话，那么可能会出现如下图的样子：</p>
+
+		<center><img src="0157installcentos5_files/centos5_02_15.jpg" alt="曾经安装过 CentOS 出现的全新安装或升级" title="曾经安装过 CentOS 出现的全新安装或升级" border="1"><br>
+		图2.3.5、曾经安装过 CentOS 出现的全新安装或升级<br></center>
+
+		<p>如果没有其他特别的需求，那就选择全新安装吧！接下来让我们开始磁碟分割去！</p>
+
+	</div>
+
+	<hr><a name="centos5_4"></a><img src="../image/logo.png" alt="小标题的图示" width="24" align="middle" height="23"><span class="text_h2">4. 磁碟分割</span><br>
+	<div class="block2">
+		<p>如同前面谈到的，磁碟分割是整个安装过程里面最重要的部分了。CentOS预设给了我们四种分割模式，分别为：</p>
+		<ul>
+		<li><span class="text_import2">移除所选磁碟上的所有分割区，并建立预设分割模式</span>：
+		如果选择这种模式，你硬盘会整个被Linux拿去使用，并且硬盘里面的分割全部被删除后，
+		以安装程序的预设方式重新建立分割槽，使用上要特别注意！<br><br></li>
+		<li><span class="text_import2">移除所选磁碟上的 Linux 分割区，并建立预设的分割模式</span>：
+		在这个硬盘内，只有Linux的分割槽会被删除，然后再以安装程序的预设方式重新建立分割槽。<br><br></li>
+		<li><span class="text_import2">使用所选取磁碟上的未使用空间，建立预设的分割模式</span>：
+		如果你的这颗硬盘内还有未被分割的磁柱空间(注意，是未被分割，而不是该分割槽内没有数据的意思！)，
+		那么使用这个项目后，他不会更动原有的分割槽，只会就剩余的未分割区块进行预设分割的建置。<br><br></li>
+		<li><span class="text_import2">建立自订的分割模式</span>：
+		就是我们要使用的啦！不要使用安装程序的预设分割方式，使用我们需要的分割方式来处理。</li>
+		</ul>
+
+		<p>如果你想要玩一玩不同的分割模式，那如下图箭头所指的地方，点一下该按钮就会出现上面说明的四种模式了。自己玩玩先！
+		但是因为我们已经规划好要建立四个分割槽，分别是/, /boot, /home与swap四个，所以不想要使用安装程序预设的分割方式。
+		因此如下所示，我们所使用的是自订分割的模式。不要搞错喔！</p>
+
+		<center><img src="0157installcentos5_files/centos5_03_02.jpg" alt="磁碟分割方式的挑选" title="磁碟分割方式的挑选" border="1"><br>
+		图2.4.1、磁碟分割方式的挑选<br></center>
+
+		<p>按下『下一步』后就会出现如下的分割视窗。这个画面主要分为三大区块，最上方为硬盘的分割示意图，
+		目前因为鸟哥的硬盘并未分割，所以呈现的就是一整块而且为Free的字样。中间则是指令区，下方则是每个分割槽的装置档名、
+		挂载点目录、文件系统类型、是否需要格式化、分割槽容量大小、开始与结束的磁柱号码等。</p>
+
+		<center><img src="0157installcentos5_files/centos5_03_03.jpg" alt="磁碟分割操作主画面" title="磁碟分割操作主画面" border="1"><br>
+		图2.4.2、磁碟分割操作主画面<br></center>
+
+		<p>至於指令区，总共有六大区块，其中RAID与LVM是硬盘特殊的应用，这部份我们会在后续的<a href="0420quota.php.html">第十五章的进阶档案系统</a>当中再来说明。至於其他指令的作用如下：</p>
+		<ul>
+		<li><span class="text_import2">『新增』</span>是增加新分割，亦即进行分割动作，以建立新的磁碟分割槽；</li>
+		<li><span class="text_import2">『编辑』</span>则是编辑已经存在的磁碟分割槽，
+		你可以在实际状态显示区点选想要修改的分割槽，然后再点选『编辑』即可进行该分割槽的编辑动作。</li>
+		<li><span class="text_import2">『删除』</span>则是删除一个磁碟分割槽，同样的，
+		你得要在实际状态显示区点选想要删除的分割槽喔！</li>
+		<li><span class="text_import2">『重设』</span>则是恢复最原始的磁碟分割状态！ </li>
+		</ul>
+
+		<p>需要注意的是，你的系统与鸟哥的系统当然不可能完全一样，所以你萤幕上的硬盘资讯应该不会与鸟哥的相同的喔！
+		所以看到不同，不要太紧张啊，那是正常的！<br><br></p>
+
+		<hr><ul class="list1"><li class="text_import1">建立根目录的分割槽</li></ul>
+
+		<p>好，接下来我们就尝试来建立根目录(/)的分割槽看看。按下『新增』后，就会出现如下的画面。
+		由於我们需要的根目录是使用Linux的档案系统，因此预设就是ext3这个档案系统啦！
+		至於在挂载点的地方，你可以手动输入也可以用滑鼠来挑选。
+		最后在大小(MB)的地方输入你所需要的磁碟容量即可。不过由於鸟哥这个系统当中只有一颗磁碟，
+		所以在『可用的磁碟机』里面就不能够自由挑选罗！</p>
+
+		<center><img src="0157installcentos5_files/centos5_03_04.jpg" alt="新增磁碟分割槽的画面" title="新增磁碟分割槽的画面" border="1"><br>
+		图2.4.3、新增磁碟分割槽的画面<br></center>
+
+		<p>如果你想要知道Linux还支援什么档案系统类型，点一下上图中的ext3那个按钮，就会出现如下的画面啦！</p>
+
+		<center><img src="0157installcentos5_files/centos5_03_05.jpg" alt="分割过程的档案系统类型挑选" title="分割过程的档案系统类型挑选" border="1"><br>
+		图2.4.4、分割过程的档案系统类型挑选<br></center>
+
+		<p>这几种档案系统类型分别是：</p>
+		<ul>
+		<li><span class="text_import2">ext2/ext3</span>：是Linux适用的档案系统类型。由於ext3档案系统多了日志的记录，
+		对於系统的复原比较快速，因此建议你务必要选择新的ext3不要用ext2了。
+		(日志式档案系统我们会在后续的<a href="0230filesystem.php.html">第八章</a>介绍他的意义。)<br><br></li>
+		<li><span class="text_import2">physical volume (LVM)</span>：这是用来弹性调整档案系统容量的一种机制，
+		可以让你的档案系统容量变大或变小而不改变原有的档案数据内容！这部份我们会在<a href="0420quota.php.html">第十五章、进阶档案系统管理</a>中谈到！<br><br></li>
+		<li><span class="text_import2">software RAID</span>：利用Linux操作系统的特性，用软件模拟出磁盘阵列的功能！
+		这东西很棒！不过目前我们还用不到！在后续的<a href="0420quota.php.html">第十五章</a>再跟大家报告了！<br><br></li>
+		<li><span class="text_import2">swap</span>：就是内存置换空间！由於swap并不会使用到目录树的挂载，
+		所以用swap就不需要指定挂载点喔！<br><br></li>
+		<li><span class="text_import2">vfat</span>：同时被Linux与Windows所支援的档案系统类型。
+		如果你的主机硬盘内同时存在Windows与Linux操作系统，为了数据的交换，确实可以建置一个vfat的档案系统喔！</li>
+		</ul>
+
+		<p>这几样东西都很有趣！不过，毕竟我们才刚刚碰这个Linux嘛！先安装起来其他的以后再说。
+		所以，你只要使用ext3以及swap这两者即可啦！</p>
+
+		<p>一切数据都填入妥当后，就会出现如下的画面。因为我们的根目录就是需要10GB的容量，
+		因此在大小(MB)的地方就得要填入10000的大小。
+		因为1G=1000M比较好记忆嘛！而且我们的根目录容量是固定的，所以在下图的大小选项就选择『固定大小』了。
+		此外，如果你硬要自己调整主要/延伸/逻辑分割的类型时，最后那个『强制成为主要分割』可以自己玩一玩先！最后按下确定吧！</p>
+
+		<center><img src="0157installcentos5_files/centos5_03_06.jpg" alt="新增根目录分割槽的最终图示" title="新增根目录分割槽的最终图示" border="1"><br>
+		图2.4.5、新增根目录分割槽的最终图示<br></center>
+
+		<p>按下确定后就会回到原本的分割操作画面(如下图所示)。此时你会看到分割示意图多了一个hda1，且在实际分割区域显示中，
+		也会看到/dev/hda1是对应到根目录的。在『格式化』的项目中出现一个打勾的符号，
+		那代表后续的安装会将/dev/hda1重新格式化的意思。接下来，我们继续按下『新增』来建立/boot这个分割槽吧！</p>
+
+		<center><img src="0157installcentos5_files/centos5_03_07.jpg" alt="磁碟分割主画面的改变示意图" title="磁碟分割主画面的改变示意图" border="1"><br>
+		图2.4.6、磁碟分割主画面的改变示意图<br></center>
+
+		<hr><ul class="list1"><li class="text_import1">建立/boot目录的分割槽</li></ul>
+
+		<p>同样的，在按下『新增』后，如下依序填入正确的资讯，包括挂载点、档案系统、档案大小等。
+		由於<a href="http://vbird.dic.ksu.edu.tw/linux_basic/0130designlinux.php#largehd">第三章的大硬盘配合旧主机</a>当中我们谈到如果有/boot独立分割槽时，
+		务必让该分割槽在整颗硬盘的最前面部分。因此，我们针对/boot就选择『强制成为主要分割』罗！如下图所示：</p>
+
+		<center><img src="0157installcentos5_files/centos5_03_08.jpg" alt="新增/boot分割槽的最终结果" title="新增/boot分割槽的最终结果" border="1"><br>
+		图2.4.7、新增/boot分割槽的最终结果<br></center>
+
+		<p>最终建立/boot分割槽的结果如下所示，仔细看输出的结果喔！安装程序还挺聪明的，
+		他会主动的将/boot这个特殊目录移到磁碟最前面，<span class="text_import2">所以你会看到/boot所在的磁碟分割槽为/dev/hda1，而起始磁柱则为1号呢</span>！
+		很有趣吧！情况如下图所示：</p>
+
+		<center><img src="0157installcentos5_files/centos5_03_09.jpg" alt="/boot分割槽自动调整磁柱号码示意图" title="/boot分割槽自动调整磁柱号码示意图" border="1"><br>
+		图2.4.8、/boot分割槽自动调整磁柱号码示意图<br></center>
+
+		<hr><ul class="list1"><li class="text_import1">建立内存置换空间swap的分割槽</li></ul>
+
+		<p>在上图中继续按下『新增』来处理内存置换空间(swap)。如同上面谈到的，
+		因为swap是内存置换空间，因此不需要有挂载点。所以，请如同下图所示，在『档案系统类型』处挑选为『swap』吧！</p>
+
+		<center><img src="0157installcentos5_files/centos5_03_10.jpg" alt="swap档案系统的挑选示意图" title="swap档案系统的挑选示意图" border="1"><br>
+		图2.4.9、swap档案系统的挑选示意图<br></center>
+
+		<p>挑选了swap之后，你就会发现到『挂载点』部分自动变成『不适用』了！因为不需要挂载啦！那么swap应该要选多大呢？
+		虽然我们已经自订为1GB这么大的置换空间，不过，在传统的Linux说明文件当中特别有指定到
+		『<span class="text_import2">swap最好为实体内存的1.5到2倍之间</span>』。swap置换空间是很重要的，
+		因为他可以避免因为实体内存不足而造成的系统效能低落的问题。但是如果你的实体内存有4GB以上时，
+		老实说，swap也可以不必额外设定啦！</p>
+
+		<div style="padding: 10pt 0pt;" align="right"><table width="90%"><tbody><tr><td><b>Tips:</b><br><span style="color: rgb(0, 144, 0);"><font size="-1">		swap内存置换空间的功能是：当有数据被存放在实体内存里面，但是这些数据又不是常被CPU所取用时，
+		那么这些不常被使用的程序将会被丢到硬盘的swap置换空间当中，
+		而将速度较快的实体内存空间释放出来给真正需要的程序使用！
+		所以，如果你的系统不很忙，而内存又很大，自然不需要swap罗。
+		</font></span></td><td><img src="0157installcentos5_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div>
+		<center><img src="0157installcentos5_files/centos5_03_11.jpg" alt="新增swap分割的最终结果" title="新增swap分割的最终结果" border="1"><br>
+		图2.4.10、新增swap分割的最终结果<br></center>
+
+		<p>某些安装程序在你没有指定swap为内存的1.5~2倍时会有警告讯息的告知，此时只要将警告讯息忽略，按下一步即可。
+		好了，如果一切都顺利完成的话，那么你就会看到如下的分割结果罗！</p>
+
+		<center><img src="0157installcentos5_files/centos5_03_12.jpg" alt="详细的分割参数结果" title="详细的分割参数结果" border="1"><br>
+		图2.4.11、详细的分割参数结果<br></center>
+
+		<hr><ul class="list1"><li class="text_import1">建立/home目录的分割槽</li></ul>
+
+		<p>让我们继续完成最后一个分割槽的分割吧！继续按下上图的『新增』然后完成如下数据的填写并按下确定：</p>
+
+		<center><img src="0157installcentos5_files/centos5_03_13.jpg" alt="新增/home分割槽的最终结果" title="新增/home分割槽的最终结果" border="1"><br>
+		图2.4.12、新增/home分割槽的最终结果<br></center>
+
+		<p>分割的最终结果终於出炉！如下图所示。你会发现到系统自动的将/dev/hda4变成延伸分割喔！然后将所有容量都给/dev/hda4，
+		并且将swap分配到/dev/hda5去了！这就是分割的用途！这也是为什么我们要在<a href="0130designlinux.php.html">第三章</a>花这么多时间来解释分割的原因啦！</p>
+
+		<center><img src="0157installcentos5_files/centos5_03_14.jpg" alt="详细的分割参数结果" title="详细的分割参数结果" border="1"><br>
+		图2.4.13、详细的分割参数结果<br></center>
+
+		<p>到此为止，我们这个练习机的分割就已经完成了！底下我们额外介绍如果你还想要删除与建立软件磁盘阵列，
+		该如何在安装时就制作呢？<br><br></p>
+
+		<hr><ul class="list1"><li class="text_import1">删除已存在分割的方法：(Option, 看看就好别实作)</li></ul>
+
+		<p>如果你想要将某个分割槽删除，或者是你刚刚错误指定了一个分割槽的相关参数，想要重新处理时，要怎办啊？
+		举例来说，我想要将上图的/dev/hda5那个swap分割槽删除掉。好，先将滑鼠指定到swap上面点一下，如下图所示，
+		该分割槽会反白，然后再按下『删除』此时会如下图所示跳出一个视窗，在该视窗内按下『删除』这个分割槽就被删除啦！</p>
+
+		<center><img src="0157installcentos5_files/centos5_03_15.jpg" alt="删除已存在分割的方法" title="删除已存在分割的方法" border="1"><br>
+		图2.4.14、删除已存在分割的方法<br></center>
+
+		<a name="centos5_4_sraid"></a>
+		<hr><ul class="list1"><li class="text_import1">建立软件磁盘阵列的方法：(Option, 看看就好别实作)</li></ul>
+
+		<p>如果你知道什么是磁盘阵列的话，那么底下的步骤可以让你建置一个软件模拟的磁盘阵列喔！
+		由於磁盘阵列在后面<a href="0420quota.php.html">第十五章、进阶档案系统管理</a>才会讲到，这里只是先告诉您，
+		其实磁盘阵列可以在安装时就建置了呢！首先，同样的，在分割操作按键区按下『新增』，然后出现下图，选择『Software 
+		RAID』项目，并填入1000MB的大小，按下确定！</p>
+
+		<center><img src="0157installcentos5_files/centos5_03_21.jpg" alt="软件磁盘阵列分割槽的建立示意图" title="软件磁盘阵列分割槽的建立示意图" border="1"><br>
+		图2.4.15、软件磁盘阵列分割槽的建立示意图<br></center>
+
+		<p>上述的动作『请要连续作两次』之后，就会出现如下图示。注意喔，由於我们尚未讲到RAID的等级(level)，
+		所以你应该还不了解为什么要作两次。没关系，先有个底，读完整份数据后再回来查阅时，你就会知道如何处理了。
+		两个软件RAID的分割资讯如下图所示：</p>
+
+		<center><img src="0157installcentos5_files/centos5_03_22.jpg" alt="已具有软件磁盘阵列分割槽的状态下建置RAID" title="已具有软件磁盘阵列分割槽的状态下建置RAID" border="1"><br>
+		图2.4.16、在已具有软件磁盘阵列分割槽的状态下建置RAID<br></center>
+
+		<p>由於我们已经具有件RAID的分割槽，此时才能按下『RAID』来建立软件磁盘阵列的装置。
+		如上图所示，看到了两个软件磁盘阵列，然后按下右上方的RAID按钮，就会出现如下图示：</p>
+
+		<center><img src="0157installcentos5_files/centos5_03_23.jpg" alt="建立软件磁盘阵列/dev/md0" title="建立软件磁盘阵列/dev/md0" border="1"><br>
+		图2.4.17、建立软件磁盘阵列/dev/md0<br></center>
+
+		<p>与一般装置档名不同的，<span class="text_import2">第一个软件磁盘阵列的装置名称为/dev/md0</span>。
+		如上图所示，你会发现到系统多出了一个怪怪的装置名称，这个档名就是未来给我们格式化用的装置啦！
+		而这个软件磁盘阵列的装置其实是利用实体的分割槽来建立的哩。按下上图的『确定』后就会出现如下的图示：</p>
+
+		<center><img src="0157installcentos5_files/centos5_03_24.jpg" alt="软件磁盘阵列的挂载点、等级与档案系统格式" title="软件磁盘阵列的挂载点、等级与档案系统格式" border="1"><br>
+		图2.4.18、软件磁盘阵列的挂载点、等级与档案系统格式<br></center>
+
+		<p>由於我们仅建立两个软件磁盘阵列分割槽，因此在这边只能选择RAID0或RAID1。我们以RAID0来作为示范，
+		你会发现中间白色框框的地方会有两个可以选择的分割槽，那就是刚刚我们建立起来的software RAID分割槽。
+		我们将这个/dev/md0挂载到/myshare目录去！然后再按下确定吧！</p>
+
+		<center><img src="0157installcentos5_files/centos5_03_25.jpg" alt="最终细部分割参数示意图" title="最终细部分割参数示意图" border="1"><br>
+		图2.4.19、最终细部分割参数示意图<br></center>
+
+		<p>最终的结果就像上图所示，在实际分割区就会显示/dev/md0，而由於这个装置是Linux系统模拟来的，
+		所以在磁柱号码(开始/结束)的地方就会留白！这样可以了解吗？</p>
+	</div>
+
+
+	<hr><a name="centos5_5"></a><img src="../image/logo.png" alt="小标题的图示" width="24" align="middle" height="23"><span class="text_h2">5. 开机管理程序、网络、
+	时区设定与root密码</span><br>
+	<div class="block2">
+		<ul class="list1"><li class="text_import1">开机管理程序的处理</li></ul>
+		<p>分割完成后就会进入开机管理程序的安装了，目前较新的Linux distributions大多使用grub管理程序，
+		而且我们也必须要将他安装到MBR里面才行！因此如下图所示，在1号箭头的地方就得要选择整部磁碟的档名 (/dev/hda)，
+		其实那就代表该颗硬盘的MBR之意。</p>
+		<p>下图中2号箭头所指的就是开机时若出现选单，那么选单内就会有一个名为『CentOS』的可选择标签。
+		这个标签代表他根目录所在的位置为/dev/hda2这样的意思。而如果开机内5秒钟不按下任何按键，就预设会以此一标签来开机。</p>
+		<p>如果你还想要加入/编辑各个标签，那可以按下3号箭头所指的那三个按键喔！</p>
+
+		<center><img src="0157installcentos5_files/centos5_04_01.jpg" alt="开机管理程序的处理" title="开机管理程序的处理" border="1"><br>
+		图2.5.1、开机管理程序的处理<br></center>
+
+		<p>如果你觉得『CentOS』这个选单不好看，想要自订自己的选单名称，那么在上图中先点一下『CentOS』那个标签，
+		然后按下3号箭头所指的『编辑』按钮，就会出现如下画面。在如下画面中可以填写你自己想要的选单名称喔！
+		鸟哥是很讨厌麻烦的，所以就使用预设的选单名称而已。</p>
+
+		<center><img src="0157installcentos5_files/centos5_04_02.jpg" alt="编辑开机选单的标签名称" title="编辑开机选单的标签名称" border="1"><br>
+		图2.5.2、编辑开机选单的标签名称<br></center>
+
+		<p>如果你的计算机系统当中还有其他的『已安装操作系统』时，而且你想要让Linux在开机的时候就能够让你选择不同的操作系统开机，
+		那么就如同下图所示，你可以先按下『新增』，然后在2号箭头的地方选择其他操作系统所在的分割槽，
+		并在3号箭头处填入适当的名称(例如WindowsXP等等)，按下确定就能够在开机时新增一个选单罗！</p>
+
+		<center><img src="0157installcentos5_files/centos5_04_03.jpg" alt="新增开机选单标签的示意图" title="新增开机选单标签的示意图" border="1"><br>
+		图2.5.3、新增开机选单标签的示意图<br></center>
+
+		<p>如果你是个很龟毛的人，你希望你的系统除非你自己在计算机前面开机并输入密码后才能开始开机流程的话，
+		那么可以如同下图所示加入密码管理机制。不过grub开机管理程序加入密码虽然有好处，
+		但是如此一来我们就无法在远端重新开机了，因此鸟哥暂时不建议你设定开机管理程序的密码喔！
+		底下只是一个示意图，让你知道如何加入密码管理而已！</p>
+
+		<center><img src="0157installcentos5_files/centos5_04_04.jpg" alt="设定开机管理程序的密码" title="设定开机管理程序的密码" border="1"><br>
+		图2.5.4、设定开机管理程序的密码<br></center>
+
+		<hr><ul class="list1"><li class="text_import1">将开机管理程序安装到boot sector(Option, 看看就好，不要实作)</li></ul>
+
+		<p>如果你因为特殊需求，所以Linux的开机管理程序无法安装到MBR时，那就得要安装到每块partition的开机磁区(boot 
+		sector)了。果真如此的话，那么如同下图所示，先勾选『设定进阶开机管理程序选项』的地方：</p>
+
+		<center><img src="0157installcentos5_files/centos5_04_21.jpg" alt="进阶开机管理程序选项" title="进阶开机管理程序选项" border="1"><br>
+		图2.5.5、进阶开机管理程序选项<br></center>
+
+		<p>然后就会出现如下的图示，预设Linux会将开机管理程序安装到MBR，如果你想要安装到不同的地方去，
+		请如同下图的箭头处，选择『开机分割区的第一个磁区』就是该分割槽的boot sector罗！</p>
+
+		<center><img src="0157installcentos5_files/centos5_04_22.jpg" alt="将开机管理程序安装到boot sector的方法" title="将开机管理程序安装到boot sector的方法" border="1"><br>
+		图2.5.6、将开机管理程序安装到boot sector的方法<br></center>
+
+		<hr><ul class="list1"><li class="text_import1">网络参数的给予</li></ul>
+
+		<p>如果你的网络卡可以被安装程序捉到的话，那么你就可以设定网络参数了！例如下图所示的模样。
+		目前各大版本几乎都会预设网络卡IP的取得方式为『自动取得IP』，也就是所谓的『DHCP』网络协定啦！
+		不过，由於这个协定需要有DHCP服务器的辅助才行，如果你的环境没有种服务器存在的话，
+		那开机的过程中可能会等待一段时间。所以通常鸟哥都改成手动设定。不过，无论如何，都要与你的网络环境相同才是。</p>
+
+		<center><img src="0157installcentos5_files/centos5_04_05.jpg" alt="设定网络参数的过程" title="设定网络参数的过程" border="1"><br>
+		图2.5.7、设定网络参数的过程<br></center>
+
+		<p>在上图中我们可以看到所有的网络参数都是经过dhcp取得的，所以通通不需要设定任何项目。
+		至於网络装置内的白色框框中仅有一张网卡的显示。由於我们要将IP改为手动给予，
+		但我们尚未谈到服务器与网络基础，所以这里你不懂也没有关系，请先按照先前我们所规划的IP参数去填写即可。
+		请按下上图的『编辑』按钮，就会出现如下的画面了：</p>
+
+		<center><img src="0157installcentos5_files/centos5_04_07.jpg" alt="手动编辑网络IP参数" title="手动编辑网络IP参数" border="1"><br>
+		图2.5.8、手动编辑网络IP参数<br></center>
+
+		<p>在上图中的最上方我们可以看到这张网络卡的制造商(AMD)与网卡卡号(Hardware address:)，
+		并且我们的Linux也支援IPv4与IPv6(第四版与第六版的IP参数)。因为目前(2009)支援IPv6的环境还是很少，
+		所以我们先将IPv6的支援取消(3号箭头处)。</p>
+
+		<p>至於IPv4的IP参数给予，如上图所示，你得先在1号箭头处点选手动设定(Manual configuration)，
+		然后在2号箭头处输入正确的IP与子遮罩网络(Netmask)，最后再按下确定即可。处理完毕后就会显示如下的图示了：</p>
+
+		<center><img src="0157installcentos5_files/centos5_04_08.jpg" alt="设定网络参数的过程" title="设定网络参数的过程" border="1"><br>
+		图2.5.9、设定网络参数的过程<br></center>
+
+		<p>完成IP参数的设定后，接下来是这部练习机的主机名称，请输入你喜欢的主机名称。
+		因为目前我们的主机尚未能与网际网络接轨，所以你可以随便填写任何你喜欢的主机名称。
+		主机名称通常的格式都是『主机名.网域名』，其实就有点像是『名字.姓氏』的样子。
+		为了不与网际网络的其他主机冲突，因此这里鸟哥使用我自己的名字作为主机名！
+		填写完毕后请按下『下一步』吧！</p>
+
+		<center><img src="0157installcentos5_files/centos5_04_09.jpg" alt="未设定闸道器的警告讯息" title="未设定闸道器的警告讯息" border="1"><br>
+		图2.5.10、未设定闸道器的警告讯息<br></center>
+
+		<p>咦！怎么会出现如同上图所示的错讯息呢？别担心，因为我们的主机还不能够连上Internet，
+		所以出现这个错误讯息是正常的。请按下『继续』来往后处理吧！<br><br></p>
+
+		<a name="20110317"></a>
+		<hr><ul class="list1"><li class="text_import1">时区的选择</li></ul>
+
+		<p>时区是很重要的！因为不同的时区会有不一样的日期/时间显示嘛！可能造成档案时间的不一致呢，
+		所以，得要告知系统我们的时区在哪里才行啊！ 如下图所示，你可以直接在1号箭头处选择亚洲台北，
+		或直接用滑鼠在地图上面点选也可以！要特别注意的是那个『UTC』，由於广泛使用的 GMT 时间与现实的时间有点脱节了，
+		因此我们可以透过 UTC 这个原子钟时间的计算方式，取得较为正确的时间喔！
+		不过，要不要选择随你开心啦！预设是需要支援的喔！</p>
+
+		<center><img src="0157installcentos5_files/centos5_04_10.jpg" alt="时区的选择" title="时区的选择" border="1"><br>
+		图2.5.11、时区的选择<br></center>
+
+		<hr><ul class="list1"><li class="text_import1">设定root的密码</li></ul>
+		<p>再来则是最重要的『<span class="text_import2">系统管理员的密码</span>』设定啦！
+		在Linux底下系统管理员的预设帐号名称为root，请注意，这个密码很重要！虽然我们是练习用的主机，
+		不过，还是请你养成良好的习惯，最好root的密码可以设定的严格一点。可以设定至少8个字元以上，
+		而且含有特殊符号更好，例如：I&amp;my_dog之类，有点怪，但是对你又挺好记的密码！</p>
+
+		<center><img src="0157installcentos5_files/centos5_04_11.jpg" alt="设定root密码" title="设定root密码" border="1"><br>
+		图2.5.12、设定root密码<br></center>
+	</div>
+
+
+	<hr><a name="centos5_6"></a><img src="../image/logo.png" alt="小标题的图示" width="24" align="middle" height="23"><span class="text_h2">6. 软件选择</span><br>
+	<div class="block2">
+		<p>一切都差不多之后，就能够开始挑选软件的安装啦！咦！我怎么知道我要什么套件？哈哈！
+		您当然不可能会知道～知道的话.....就不会来这儿查阅数据了 @_@ 没有啦！开开玩笑....呼～好冷～～</p>
+
+		<p>关於软件的安装有非常多的想法，如果你是初次接触Linux的话，当然是全部安装最好。
+		如果是已经安装过多次Linux了，那么使用预设安装即可，以后有需要其他的软件时，再透过网络安装就好了！
+		这样你的系统也会比较干净。但是在这个练习机的安装中，我们使用预设值加上CentOS提供的选项来安装即可。
+		如下图所示：</p>
+
+		<center><img src="0157installcentos5_files/centos5_05_02.jpg" alt="额外选择多的软件群组" title="额外选择多的软件群组" border="1"><br>
+		图2.6.1、额外选择多的软件群组<br></center>
+
+		<p>如上图所示，你可以增加1号箭头所指的三个项目，然后在2号箭头处保持预设值，再给他下一步即可。
+		这样的安装对於初学者来说已经是非常OK的啦！<br><br></p>
+
+		<hr><ul class="list1"><li class="text_import1">额外的软件自订模式(Option, 进阶使用者可以参考)</li></ul>
+
+		<p>在Linux的软件安装中，由於每个各别软件的功能非常庞大，很多软件的开发工具其实一般用户都用不到。
+		如果每个软件都仅释出一个档案给我们安装，那么我们势必会安装到很多不需要的档案。
+		所以，Linux开发商就将一项软件分成多个档案来给使用者选择。如果你想要了解每项软件背后的档案数据，
+		就可以如同下图所示，选择『立即自订』来设定专属的软件功能。</p>
+
+		<center><img src="0157installcentos5_files/centos5_05_21.jpg" alt="软件自订安装的功能" title="软件自订安装的功能" border="1"><br>
+		图2.6.2、软件自订安装的功能<br></center>
+
+		<p>自订软件的画面如下所示，1号箭头处为软件群组，是开发商将某些相似功能的软件绑在一起成为一个群组。
+		你可以在1号箭头处选择你有兴趣的功能，然后在2号箭头处挑选该项目内的细项。如下图所示，
+		鸟哥挑选了『程序开发』的群组后，在2号箭头处挑选了鸟哥有兴趣的『开发工具』等，
+		而这些工具的意义在3号箭头处所指的白色框框中就会有详细的说明了。</p>
+
+		<center><img src="0157installcentos5_files/centos5_05_22.jpg" alt="自己选择所需软件的画面" title="自己选择所需软件的画面" border="1"><br>
+		图2.6.3、自己选择所需软件的画面<br></center>
+
+		<p>检查完毕后安装程序会去检查你所挑选的软件有没有冲突(相依性检查)，然后就会出现下列视窗，
+		告诉你你的安装过程写入到/root/install.log档案中，并且你刚刚选择的所有项目则写入到/root/anaconda-ks.cfg档案内。
+		这两个档案很有趣，安装完毕后你可以自己先看看。</p>
+
+		<center><img src="0157installcentos5_files/centos5_05_24.jpg" alt="准备开始安装" title="准备开始安装" border="1"><br>
+		图2.6.4、准备开始安装<br></center>
+
+		<p>然后就是开始一连串的等待了！这个等待的过程与你的硬件以及选择的软件数量有关。
+		如下图所示，2号箭头处所指的则是安装程序评估的剩余时间这个时间不见得准啦！看看就好！</p>
+
+		<center><img src="0157installcentos5_files/centos5_05_27.jpg" alt="安装过程的画面示意图" title="安装过程的画面示意图" border="1"><br>
+		图2.6.5、安装过程的画面示意图<br></center>
+
+		<p>安装完毕并按下『Reboot』重新开机后，萤幕会出现如下的讯息，这是正确的资讯，不要担心出问题啊！
+		此时请拿出你的DVD光盘，让系统自动重新开机。其他的后续设定，请参考下一小节呢！</p>
+
+		<center><img src="0157installcentos5_files/centos5_05_29.jpg" alt="安装完毕后，重新开机的示意图" title="安装完毕后，重新开机的示意图" border="1"><br>
+		图2.6.6、安装完毕后，重新开机的示意图<br></center>
+	</div>
+
+
+	<hr><a name="centos5_7"></a><img src="../image/logo.png" alt="小标题的图示" width="24" align="middle" height="23"><span class="text_h2">7. 其他功能：RAM testing, 
+	安装笔记本电脑的核心参数(Option)</span><br>
+	<div class="block2">
+		<ul class="list1"><li class="text_import1">内存压力测试：memtest86</li></ul>
+		<p>CentOS的DVD除了提供一般PC来安装Linux之外，还提供了不少有趣的东西，其中一个就是进行『烧机』的任务！
+		这个烧机不是台湾名产烧酒鸡啊，而是当你组装了一部新的个人计算机，想要测试这部主机是否稳定时，
+		就在这部主机上面运作一些比较耗系统资源的程序，让系统在高负载的情况下去运作一阵子(可能是一天)，
+		去测试稳定度的一种情况，就称为『烧机』啦！</p>
+
+		<p>那要如何进行呢？同样的，放入CentOS的DVD到你的光盘中，然后用这片DVD重新开机，在进入到开机选单时，
+		输入memtest86即可。如下图所示：</p>
+
+		<center><img src="0157installcentos5_files/centos5_06_01.jpg" alt="RAM测试" title="RAM测试" border="1"><br>
+		图2.7.1、RAM测试<br></center>
+
+		<p>之后系统就会进入这支内存测试的程序中，开始一直不断的对内存写入与读出！
+		如果烧机个一两天，这支程序还是不断的跑而没有因为任何原因来当机，表示你的内存应该还算稳定啦！
+		如下所示。如果不想跑这支程序了，就按下箭头所指的『ESC』处，亦即按下[Esc]按键，就能够重新开机罗！</p>
+
+		<center><img src="0157installcentos5_files/centos5_06_02.jpg" alt="RAM测试" title="RAM测试" border="1"><br>
+		图2.7.2、RAM测试<br></center>
+
+		<p>对memtest86有兴趣的朋友，可以参考如下的连结喔：</p>
+		<ul><li><a href="http://www.memtest.org/" target="_blank">http://www.memtest.org/</a></li></ul>
+
+		<hr><ul class="list1"><li class="text_import1">安装笔记本电脑或其他类PC计算机的参数</li></ul>
+
+		<p>由於笔记本电脑加入了非常多的省电机制或者是其他硬件的管理机制，包括显示卡常常是整合型的，
+		因此在笔记本电脑上面的硬件常常与一般桌上型计算机不怎么相同。所以当你使用适合於一般桌上型计算机的DVD来安装Linux时，
+		可能常常会出现一些问题，导致无法顺利的安装Linux到你的笔记本电脑中啊！那怎办？</p>
+
+		<p>其实很简单，只要在安装的时候，告诉安装程序的linux核心不要载入一些特殊功能即可。
+		最常使用的方法就是，在使用DVD开机时，加入底下这些选项：</p>
+
+<table class="term"><tbody><tr><td class="term"><pre>boot: <span class="term_command">linux nofb apm=off acpi=off pci=noacpi</span>
+</pre></td></tr></tbody></table>
+
+		<p>apm(Advanced Power Management)是早期的电源管理模组，acpi(Advanced Configuration and Power 
+		Interface)则是近期的电源管理模组。这两者都是硬件本身就有支援的，但是笔记本电脑可能不是使用这些机制，
+		因此，当安装时启动这些机制将会造成一些错误，导致无法顺利安装。</p>
+
+		<p>nofb则是取消显示卡上面的缓冲内存侦测。因为笔记本电脑的显示卡常常是整合型的，
+		Linux安装程序本身可能就不是很能够侦测到该显示卡模组。此时加入nofb将可能使得你的安装过程顺利一些。</p>
+
+		<p>对於这些在开机的时候所加入的参数，我们称为『核心参数』，这些核心参数是有意义的！
+		如果你对这些核心参数有兴趣的话，可以参考文后的参考资料来查询更多资讯(<a href="#ps2">注2</a>)。</p>
+	</div>
+</div>
+<hr />
+    </td>
+    <td style="width: 16px; font-size: 6px;">　</td></tr>
+<tr><td style="width: 16px; height: 16px;">　</td>
+    <td style="width: 866px; height: 16px;">　</td>
+    <td style="width: 16px; height: 16px;">　</td></tr>
+</tbody></table>
+
+<div style="padding-top: 0px; text-align: center;">
+<span style="font-size: 80%;">
+	<a href="http://vbird.dic.ksu.edu.tw/" target="_top" title="前往鸟哥的首页">http://linux.vbird.org</a>
+	is designed by <a href="mailto:vbird@mail.vbird.idv.tw" title="联络鸟哥(我不要广告信！)">VBird</a>
+		during 2001-2011. <a href="http://www.ksu.edu.tw/" target="_blank">ksu.edu</a></span>
+         ﻿<div id="apDiv4">
+      <p>本网页主要以Firefox配合解析度 1024x768 作为设计依据&nbsp;&nbsp;&nbsp;&nbsp; 鸟哥自由软件整合应用研究室</p></div></div>
+</div>
+</center>
+</body></html>

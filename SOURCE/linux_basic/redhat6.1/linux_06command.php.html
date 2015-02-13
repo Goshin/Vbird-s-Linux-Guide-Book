@@ -1,0 +1,1645 @@
+﻿<!DOCTYPE HTML PUBLIC "-//w3c//dtd html 4.0 transitional//en">
+<html><head>
+
+
+   <meta http-equiv="Content-Type" content="text/html; charset=utf8">
+   <meta name="Author" content="VBird">
+   <title>鸟哥的 Linux 私房菜 -- 关于指令应用</title>
+<style>
+   <!--
+   body{background-image:url(http://linux.vbird.org/images/VBirdLinux.jpg);
+	background-ATTACHMENT:FIXED}
+   -->
+</style>
+</head><body>
+
+
+<!-- Copyright � 2005. Spidersoft Ltd -->
+<style>
+A.applink:hover {border: 2px dotted #DCE6F4;padding:2px;background-color:#ffff00;color:green;text-decoration:none}
+A.applink       {border: 2px dotted #DCE6F4;padding:2px;color:#2F5BFF;background:transparent;text-decoration:none}
+A.info          {color:#2F5BFF;background:transparent;text-decoration:none}
+A.info:hover    {color:green;background:transparent;text-decoration:underline}
+</style>
+<div style='BORDER: 1px solid #DCE6F4; MARGIN-TOP: 20px; MARGIN-BOTTOM: 20px; MARGIN-LEFT: 5px; MARGIN-RIGHT: 5px; PADDING: 5px; BACKGROUND-COLOR: #eef8ff;line-height:180%; COLOR: #000000; font-family: Arial; font-size: 8pt; width=100%; FILTER: progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr="#FFFFFFFF", EndColorStr="#F2F5FAFF");'>
+This page was saved using <a class="applink" href="http://www.spidersoft.com"><b>WebZIP 7.0.3.1030</b></a> <a class="applink" href="http://www.spidersoft.com"><b>offline browser</b></a>  (Unregistered) on  02/12/15 12:14:49.<br>
+<b>Address:</b> <a class="info" href="http://vbird.dic.ksu.edu.tw/linux_basic/redhat6.1/linux_06command.php">http://vbird.dic.ksu.edu.tw/linux_basic/redhat6.1/linux_06command.php</a><br>
+<b>Title:</b> 鸟哥的 Linux 私房菜 -- 关于指令应用 &nbsp;&bull;&nbsp; <b>Size:</b> 108432<br></div>
+<!-- /Copyright � 2005. Spidersoft Ltd -->
+
+
+<center><b><font color="#3333ff"><font size="+2"><font face="标楷体">鸟哥的</font><font face="Times New Roman,Times"> Linux </font><font face="标楷体">与</font><font face="Times New Roman,Times"> ADSL </font><font face="标楷体">私房菜</font></font></font></b>
+<br>
+<a href="http://linux.vbird.org/" target="_top"><img src="linux_06command_files/VBirdTitle2.jpg" nosave="" width="90" border="0" height="25"></a>
+<a href="http://linux.vbird.org/linux_basic"><img src="linux_06command_files/icon_system.gif" nosave="" width="90" border="0" height="25"></a>
+<a href="http://linux.vbird.org/linux_server"><img src="linux_06command_files/icon_server.gif" nosave="" width="90" border="0" height="25"></a>
+<a href="http://linux.vbird.org/linux_security"><img src="linux_06command_files/icon_security.jpg" nosave="" width="90" border="0" height="25"></a>
+<a href="http://phorum.vbird.org/" target="_blank"><img src="linux_06command_files/icon_forums.gif" nosave="" width="90" border="0" height="25"></a>
+<a href="http://linux.vbird.org/adsl"><img src="linux_06command_files/icon_adsl.gif" nosave="" width="90" border="0" height="25"></a>
+<br>
+<hr width="100%">
+</center>
+<center><font color="#3333ff"><font size="+2"><font face="Times New Roman Baltic">Linux</font><font face="标楷体">
+基本指令介绍</font></font></font></center>
+
+<div align="right"><font face="新细明体"><font color="#3333ff"><font size="-1">最近更新日期：2001/08/04</font></font></font></div>
+<font face="标楷体"><font color="#3333ff"><font size="+1">一定要先学会的指令：</font></font></font><font face="Times New Roman Baltic"><font color="#000099"><a href="#ls">ls</a>,
+<a href="#more">more</a>,
+<a href="#cd">cd</a>,
+<a href="#pwd">pwd</a>,
+<a href="#rpm">rpm</a>,
+<a href="#ifconfig">ifconfig</a>,
+<a href="#find">find</a></font></font>
+<br><font color="#000099"><font face="标楷体"><font size="+1"><a href="#loginout">登入与注销（开机与关机）</a>：</font></font><font face="Times New Roman Baltic"><a href="#telnet">telnet</a>,
+<a href="#login">login</a>,
+<a href="#exit">exit</a>,
+<a href="#shutdown">shoudown</a>,
+<a href="#reboot">reboot</a></font></font>
+<br><font color="#000099"><font size="+1"><a href="#back_ground"><font face="Times New Roman Baltic">Linux</font><font face="标楷体">
+多人多任务与背景执行功能</font></a><font face="标楷体">：</font></font><font face="Times New Roman Baltic"><a href="#ctrl+z">&amp;
+与 [ctrl]+[z]</a>, <a href="#fg">fg</a>, <a href="#ps">ps</a>, <a href="#kill">kill</a></font></font>
+<br><font color="#000099"><font face="标楷体"><font size="+1"><a href="#filesystem">档案与目录管理</a>：</font></font><font face="Times New Roman Baltic"><a href="#cd">cd</a>,
+<a href="#pwd">pwd</a>,
+<a href="#ls">ls</a>,
+<a href="#cat">cat</a>,
+<a href="#more">more</a>,
+<a href="#mkdir">mkdir</a>,
+<a href="#rm">rm</a>,
+<a href="#rmdir">rmdir</a>,
+<a href="#mv">mv</a>,
+<a href="#cp">cp</a>,
+<a href="#ln">ln</a>,
+<a href="#find">find</a>,
+<a href="#whereis">whereis</a>,
+<a href="#chmod">chmod</a>,
+<a href="#chown">chown</a>,
+<a href="#chgrp">chgrp</a>,
+<a href="#df">df</a>,
+<a href="#du">du</a></font></font>
+<br><font color="#000099"><font face="标楷体"><font size="+1"><a href="#hardware">磁盘与硬件管理</a>：</font></font><font face="Times New Roman Baltic"><a href="#mount">mount</a>,
+<a href="#fdformat">fdformat</a>,
+<a href="#fdisk">fdisk</a>,
+<a href="#mke2fs">mke2fs</a>,
+<a href="#mkbootdisk">mkbootdisk</a>,
+<a href="#badblocks">badblocks</a>,
+<a href="#fsck">fsck</a>,
+<a href="#rpm">rpm</a></font></font>
+<br><font color="#000099"><font face="标楷体"><font size="+1"><a href="#systemman">系统管理员</a>：</font></font><font face="Times New Roman Baltic"><a href="#su">su</a>,
+<a href="#clear">clear</a>,
+<a href="#dmesg">dmesg</a>,
+<a href="#groupadd">groupadd</a>,
+<a href="#useradd">useradd</a>,
+<a href="#userconf">userconf</a>,
+<a href="#passwd">passwd</a>,
+<a href="#who">who</a>,
+<a href="#whoami">whoami</a>,
+<a href="#top">top</a>,
+<a href="#free">free</a>,
+<a href="#quotacheck">quotacheck</a>,
+<a href="#quotacheck">edquota</a></font></font>
+<br><font color="#000099"><font face="标楷体"><font size="+1"><a href="#tar_compre">压缩指令</a></font></font><font face="Times New Roman Baltic">：<a href="#compress">compress</a>,
+<a href="#gzip">gzip</a>,
+<a href="#tar">tar</a></font></font>
+<br><font color="#000099"><font face="标楷体"><font size="+1"><a href="#somenet">一些网络功能</a></font></font><font face="Times New Roman Baltic">：<a href="#ifconfig">ifconfig</a>,
+<a href="#route">route</a>,
+<a href="#netstate">netstat</a>,
+<a href="#hostname">hostname</a>,
+<a href="#ping">ping</a>,
+<a href="#nslookup">nslookup</a>,<a href="#talk">talk</a>,
+<a href="#traceroute">traceroute</a>,
+<a href="#mail">mail</a></font></font>
+<br><font color="#000099"><font face="标楷体"><font size="+1"><a href="#others">其他有的没的</a></font></font><font face="Times New Roman Baltic">：<a href="#date">date</a>,
+<a href="#cal">cal</a>,
+<a href="#grep">grep</a></font></font>
+<br><font color="#000099"><font size="+1"><a href="#ftp_ncftp"><font face="Times New Roman Baltic">ftp</font><font face="标楷体">
+指令</font></a></font><font face="Times New Roman Baltic">：<a href="#ftp">ftp</a>,
+<a href="#ncftp">ncftp</a>,
+<a href="#gftp">gftp</a></font></font>
+<br><font color="#000099"><font face="标楷体"><font size="+1"><a href="#aboutsysconf">相关设定指令</a>：</font></font><font face="Times New Roman Baltic"><a href="#set">set</a>,
+<a href="#uname">uname</a>,
+<a href="#setup">setup</a>,
+<a href="#lilo">lilo</a>,
+<a href="#Xconfigurator">Xconfigurator</a>,
+<a href="#xf86config">xf86config</a></font></font>
+<br><font color="#000099"><font size="+1"><a href="#x-window"><font face="Times New Roman Baltic">X-Window</font><font face="标楷体">内的设定指令</font></a><font face="Times New Roman Baltic">：</font></font><font face="Times New Roman Baltic"><a href="#startx">startx</a>,
+<a href="#netconf">netconf</a>,
+<a href="#netcfg">netcfg</a>,
+<a href="#XF86Setup">XF86Setup</a></font></font>
+<br><font color="#000099"><font size="+1"><font face="标楷体"><a href="#QA">问题讨论</a></font><font face="Times New Roman Baltic">：</font></font><font face="标楷体"><a href="#newHardDisk">增加新硬盘</a>,<a href="#newuser">增加新使用者</a>,<a href="#openfloppy">制作启动盘</a>,</font></font>
+<br>
+<hr width="100%">
+<br><font face="标楷体"><font color="#000099"><font size="+1">特别说明：</font></font></font>
+<blockquote>先说明一下，基本上虽然 Linux 目前对于图形界面的使用已经支持的相当的不错，但是对于一些比较细微的设定方面，毕竟是比不上使用传统的文字接口来的有效！并且，使用文字接口来设定对于了解
+Linux 有一定的帮助，毕竟 Linux 与 MS 的咚咚是不太相同的！鸟哥特别建议大家使用文字接口来解决问题！
+<p>除此之外，使用文字接口登入 Linux 对于系统资源的损耗也比较少，相对的，就有比较多的资源可以做为网络的用途，进而增加
+Linux 的效能。尤其，在我们这个网页中，基本上是以一般被淘汰的 586 系列计算机做为主机，因此对于内存与
+CPU 的效能要求并不高，所以能有效的减少系统资源的浪费就尽量的减少一些容易耗掉系统资源的废物吧！
+</p><p>底下我们会分门别类的将各个比较常用的指令给搬上来，你可以参考一下。另外一个最重要的地方是，在
+Linux 主机上，已经内建各个指令的说明内容了，而且是很详细的联机帮助，你可以使用：
+<br>&nbsp;
+<table width="90%" bgcolor="#000000" cols="1">
+<tbody><tr>
+<td><font size="-1"><font color="#ffffff">[root@tsai&nbsp; root]#&nbsp; man&nbsp;
+command
+</font><font color="#ffff00">&lt;=== command 为你欲查询的指令名称</font></font></td>
+</tr>
+
+<tr>
+<td><font color="#ffffff"><font size="-1">[root@tsai&nbsp; root]#&nbsp; info&nbsp;
+command&nbsp;</font></font></td>
+</tr>
+</tbody></table>
+
+</p><p>在上表中，针对 command 这个指令你可以使用 man 或者是 info 来查询他的功能与说明，例如你要查寻
+ls 这个指令时，你可以输入：<font color="#000066"> man&nbsp; ls </font>或&nbsp;<font color="#000066">
+info&nbsp; ls</font> 来查询一下！适当的利用在线查询对于你的英文及相关的指令功能有一定程度的帮助喔！</p></blockquote>
+
+<hr width="100%">
+<br><a name="loginout"></a><font face="标楷体"><font color="#000099"><font size="+1">登入与注销（开机与关机）</font></font></font>
+<blockquote>
+<dt>
+<a name="telnet"></a><font face="Times New Roman Baltic"><font color="#3333ff"><font size="+1">telnet</font></font></font></dt>
+
+<blockquote>
+<dt>
+<font color="#000000">这套软件在 Windows 及 Linux 系统中都存在，只是接口有点不很相同就是了。基本上，这个程序是
+user 端用来联机登入远程主机的。例如鸟哥人在台南，但是我可以在台南使用可以连上
+Internet 的计算机，经由 telnet 联机上家里的 Linux 主机，而进行设定！感觉上就好像在家里玩自己的
+Linux 主机一样！</font></dt>
+
+<dt>
+<font color="#000000">一般来说，如果你是使用 Winodows 系统，则你可以在『开始』--&gt;『执行』后，输入&nbsp;
+telnet&nbsp; xxx.yyy.zzz.qqq ，其中， xxx.yyy.zzz.qqq 为 IP 地址，则可以连上主机（或者是
+BBS ）啰。当然，如果您是在 Linux 系统下，亦可直接输入 telnet xxx.yyy.zzz.qqq
+来连上主机或BBS喔！</font></dt>
+
+<dt>
+<font face="细明体"><font color="#000066">语法： </font><font color="#3333ff">telnet
+主机地址（或主机名）</font></font></dt>
+</blockquote>
+
+<dt>
+<a name="login"></a><font face="Times New Roman Baltic"><font color="#3333ff"><font size="+1">login</font></font></font></dt>
+
+<blockquote>
+<dt>
+<font color="#000000">登入系统的指令，在远程进入系统时，程序会自动执行。假设你所要登入的系统主机为
+sun.os.test.com ，则你可以在 Windows 底下的 Telnet 软件，或其他软件上，执行：</font></dt>
+
+<dt>
+<font color="#000000">&nbsp;</font></dt>
+
+<dt>
+<font color="#000000">telnet&nbsp; sun.os.test.com</font></dt>
+
+<dt>
+<font color="#000000">&nbsp;</font></dt>
+
+<dt>
+<font color="#000000">则会出现如下的画面：</font></dt>
+
+<table width="50%" bgcolor="#000000" cols="1">
+<tbody><tr>
+<td><font color="#ffffff"><font size="-1">SunOS&nbsp; 5.7</font></font>
+<p><font color="#ffffff"><font size="-1">login:&nbsp; username</font></font>
+<br><font color="#ffffff"><font size="-1">Password:</font></font>
+</p><p><font color="#ffffff"><font size="-1">sun# _</font></font></p></td>
+</tr>
+</tbody></table>
+
+<dt>
+<font color="#000000"><font size="+1">&nbsp;</font></font></dt>
+
+<dt>
+<font color="#000000">你只要有 </font><font color="#000066">username</font><font color="#000000">
+及 pass </font><font color="#000066">word</font><font color="#000000">
+就可以登入系统啦！在你登入系统后， sun# 是提示字符，相当于古早的&nbsp;
+C:\&gt; 的意思！</font></dt>
+</blockquote>
+
+<dt>
+<a name="exit"></a><font face="Times New Roman Baltic"><font color="#3333ff"><font size="+1">exit</font></font></font></dt>
+
+<blockquote>
+<dt>
+<font color="#000000">这是离开 Linux 系统的指令，相当于 login out 的意思。</font></dt>
+
+<table width="50%" bgcolor="#000000" cols="1">
+<tbody><tr>
+<td><font color="#ffffff">sun#&nbsp; exit</font></td>
+</tr>
+</tbody></table>
+</blockquote>
+<a name="shutdown"></a><font face="Times New Roman Baltic"><font color="#3333ff"><font size="+1">shutdown</font></font></font>
+<blockquote>Linux 用来关机的指令，这个指令只有 root 才有权力下！ shutdown
+的用法如下：
+<br>&nbsp;
+<table width="90%" bgcolor="#000000" cols="1">
+<tbody><tr>
+<td><font face="细明体"><font size="-1"><font color="#ffffff">[root@tsai&nbsp;
+root]#&nbsp;&nbsp; shutdown&nbsp; </font><font color="#ffff00">&lt;==系统在两分钟后关机，并传送讯息给在在线的人</font></font></font>
+<br><font face="细明体"><font size="-1"><font color="#ffffff">[root@tsai&nbsp;
+root]#&nbsp;&nbsp; shutdown&nbsp; -h&nbsp; now&nbsp; </font><font color="#ffff00">&lt;==系统立刻关机</font></font></font>
+<br><font face="细明体"><font size="-1"><font color="#ffffff">[root@tsai&nbsp;
+root]#&nbsp;&nbsp; shutdown&nbsp; -r&nbsp; now&nbsp; </font><font color="#ffff00">&lt;==系统立刻重新启动</font></font></font>
+<br><font face="细明体"><font size="-1"><font color="#ffffff">[root@tsai&nbsp;
+root]#&nbsp;&nbsp; shutdown&nbsp; -h&nbsp; 20:30&nbsp; </font><font color="#ffff00">&lt;==系统在今天的
+20:30 分关机</font></font></font>
+<br><font face="细明体"><font size="-1"><font color="#ffffff">[root@tsai&nbsp;
+root]#&nbsp;&nbsp; shutdown&nbsp; -h&nbsp; +10&nbsp;&nbsp; </font><font color="#ffff00">&lt;==系统在
+10 分钟后关机</font></font></font></td>
+</tr>
+</tbody></table>
+</blockquote>
+<a name="reboot"></a><font face="Times New Roman Baltic"><font color="#3333ff"><font size="+1">reboot</font></font></font>
+<blockquote>这是鸟哥最常用来重新启动的指令（或关机），可以配合写入缓冲数据的
+sync 指令动作，如下：
+<br>&nbsp;
+<table width="90%" bgcolor="#000000" cols="1">
+<tbody><tr>
+<td><font face="细明体"><font color="#ffffff"><font size="-1">[root@tsai&nbsp;
+root]# sync; sync; sync; reboot</font></font></font></td>
+</tr>
+</tbody></table>
+</blockquote>
+</blockquote>
+
+<hr width="100%">
+<br><a name="back_ground"></a><font color="#000099"><font size="+1"><font face="Times New Roman Baltic">Linux</font><font face="标楷体">
+多人多任务与背景执行功能</font></font></font>
+<blockquote><font color="#000066">多人多任务</font>
+<p>Linux 最为人所称道的即是其多人多任务的能力，你可以在任何时刻联机上来你的
+Linux 主机，并且同时做很多的工作，例如同时执行 http 的 Web 功能，同时进行
+fortran 等程序语言的编辑，并同时上网聊天！你会怀疑， Windows 98 也可以做到这样的地步呀！不过，不要忘了，在
+Linux 的系统下，你所做的任何工作都是独立的，你可以随时将你所不要的工作给杀掉，而且，当其中某一个程序当掉的时候，
+Linux 并不会当机，只要你在其他的窗口再开启一个终端接口，然后查出当机的那一个指令的
+process （过程），然后将之杀掉就可以了！根本不用再重新启动！也因为这种多人多任务的强大能力，因此，
+Linux 系统一般来说是很少当机的，并且，由于其内存的管理功能完善，因此也不容易有
+CPU 过热的情况发生（如果只是做为一般服务器使用）。
+</p><p>在你的 Linux 主机中，可以支持七个终端窗口接口，你可以按[Alt]+[F1].....[F7]来切换不同的终端机接口！所以当其中一个终端机接口当机的时候，你可以在另外一个终端机登入，然后查出错误的所在（使用
+ps -aux 的功能），再以 kill 将错误的地方杀掉即可！
+</p><p><font color="#000066">背景执行</font>
+</p><p>另外一个功能，就是『背景执行』的功夫了。当你输入
+<br>&nbsp;
+<table width="90%" bgcolor="#000000" cols="1">
+<tbody><tr>
+<td><font color="#ffffff"><font size="-1">[root@tsai&nbsp; root]#&nbsp; cp&nbsp;
+file1&nbsp; file2&nbsp; &amp;</font></font></td>
+</tr>
+</tbody></table>
+
+</p><p>这一串指令的时候，表示将 file1 这个档案复制为 file2 ，且放置于背景中执行，也就是说执行这一个命令之后，在这一个终端接口仍然可以做其他的工作！而当这一个指令（
+cp&nbsp; file1&nbsp; file2 ）执行完毕之后，系统将会在您的终端接口显示完成的消息！很便利喔！
+</p><p><font color="#000066">多人多任务的问题</font>
+</p><p>多人多任务确实有很多的好处，但其实也有管理上的困扰，因为使用者越来越多，将导致你管理上的困扰哩！另外，由于使用者日盛，当使用者达到一定的人数后，通常你的机器便需要升级了，因为
+CPU 的运算与 RAM 的大小可能就会不敷使用！
+</p><p><a name="ctrl+z"></a><font face="Times New Roman Baltic"><font color="#3333ff"><font size="+1">&amp;
+与 [Ctrl]+[z]</font></font></font>
+</p><blockquote>如前所述，背景执行可以提供你在同一个终端机接口（命令模式）当中同时做很多的事情，你可以使用
+&amp; 或 [Ctrl]+[z] 来将指令放置背景中执行。例如执行 <font color="#3333ff">find&nbsp;
+"/"&nbsp; -name&nbsp; httpd &amp;</font> 这一行命令，表示将寻找 httpd 这个档案的指令放置到背景中执行的意思。另外，当你执行一个需要长时间的程序，例如执行
+ftp 程序时，在程序进行当中，也可以经由按下 [Ctrl]+[z] 来将程序放置于背景中。那如何由背景中将程序在叫回屏幕上呢？请参考下一个指令
+<a href="#fg">fg</a>。</blockquote>
+<a name="fg"></a><font face="Times New Roman Baltic"><font color="#3333ff"><font size="+1">fg</font></font></font>
+<blockquote>fg 是将程序再叫回屏幕上显示的一个指令，在终端模式中输入 fg
+即可。当然，如果你当时并没有程序在执行的话，系统会告诉你，并无执行中程序（no
+such job）。</blockquote>
+<a name="ps"></a><font face="Times New Roman Baltic"><font color="#3333ff"><font size="+1">ps&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+-aux</font></font></font>
+<blockquote>这是察看执行中的程序的一个指令，你可以配合其参数&nbsp; -aux&nbsp;
+来执行，如下：
+<br>&nbsp;
+<table width="90%" bgcolor="#000000" cols="1">
+<tbody><tr>
+<td><font color="#ffffff">[root@tsai&nbsp; root]#&nbsp; ps&nbsp; -aux</font></td>
+</tr>
+</tbody></table>
+
+<p>则系统将会列出连同系统服务的程序，在输出的第一列中会出现 『PID』字样，在那一栏中的咚咚就是每一个程序执行的代码。例如下面的输出画面。
+<br>&nbsp;
+<table width="90%" bgcolor="#000000" cols="1">
+<tbody><tr>
+<td><font face="细明体"><font color="#ffffff"><font size="-1">[root@tsai&nbsp;
+root]#&nbsp; ps&nbsp; -aux</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">USER&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+PID %CPU %MEM&nbsp;&nbsp; VSZ&nbsp; RSS TTY&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+STAT START&nbsp;&nbsp; TIME COMMAND</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">root&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+1&nbsp; 0.0&nbsp; 0.1&nbsp; 1324&nbsp; 532 ?&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+S&nbsp;&nbsp;&nbsp; Jul16&nbsp;&nbsp; 0:14 init [3]</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">root&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+2&nbsp; 0.0&nbsp; 0.0&nbsp;&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp; 0 ?&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+SW&nbsp;&nbsp; Jul16&nbsp;&nbsp; 0:05 [kflushd]</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">root&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+3&nbsp; 0.0&nbsp; 0.0&nbsp;&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp; 0 ?&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+SW&nbsp;&nbsp; Jul16&nbsp;&nbsp; 0:29 [kupdate]</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">root&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+4&nbsp; 0.0&nbsp; 0.0&nbsp;&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp; 0 ?&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+SW&nbsp;&nbsp; Jul16&nbsp;&nbsp; 0:00 [kpiod]</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">root&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+5&nbsp; 0.0&nbsp; 0.0&nbsp;&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp; 0 ?&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+SW&nbsp;&nbsp; Jul16&nbsp;&nbsp; 0:00 [kswapd]</font></font></font></td>
+</tr>
+</tbody></table>
+
+</p><p>在上图中， init 这个程序的 PID 为 1 。</p></blockquote>
+<a name="kill"></a><font face="Times New Roman Baltic"><font color="#3333ff"><font size="+1">kill</font></font></font>
+<blockquote>这是用来杀掉执行中程序的指令，需配合 <a href="#ps">ps</a> 这个指令，当你执行一个
+ftp 程序，但是他有点当当的时候，你可以 <font color="#3333ff">ps&nbsp; -aux</font>
+这个指令查出&nbsp; ftp&nbsp; 这个程序的代码（PID），假设其 PID 为 110 ，然后输入：
+<br>&nbsp;
+<table width="90%" bgcolor="#000000" cols="1">
+<tbody><tr>
+<td><font face="细明体"><font color="#ffffff">[root@tsai&nbsp; root]# kill&nbsp;
+110</font></font></td>
+</tr>
+</tbody></table>
+
+<p>即可杀掉这个 ftp 程序。</p></blockquote>
+</blockquote>
+
+<hr width="100%">
+<br><a name="filesystem"></a><font face="标楷体"><font color="#000099"><font size="+1">档案与目录管理</font></font></font>
+<blockquote><a name="cd"></a><font face="Times New Roman Baltic"><font color="#3333ff"><font size="+1">cd</font></font></font>
+<blockquote>这是用来变换工作路径的指令。一登入 Linux 系统后，root 会在
+/root 下，至于使用者会在预设的 /home/username 底下，例如鸟哥的 ID 为 vbird
+，则以 vbird 的身份登入后，会到 /home/vbird 这个路径下。OK！那回到上一层可以用
+cd .. 而到相对路径可到 cd ../bird，至于绝对路径则是 cd /usr/sbin ！注意喔，在前面的<font color="#000066">提示字符会改变路径名称</font>！
+<br>&nbsp;
+<table width="90%" bgcolor="#000000" cols="1">
+<tbody><tr>
+<td><font face="细明体"><font size="-1"><font color="#ffffff">[root@tsai
+/root]#&nbsp; cd ..&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </font><font color="#ffff00">&lt;==
+回到上一层</font></font></font>
+<br><font face="细明体"><font size="-1"><font color="#ffffff">[root@tsai
+/]#&nbsp; cd&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </font><font color="#ffff00">&lt;==
+回到用户目录</font></font></font>
+<br><font face="细明体"><font size="-1"><font color="#ffffff">[root@tsai
+root]#&nbsp; cd /usr/bin&nbsp; </font><font color="#ffff00">&lt;== 到 /usr/bin
+这一个目录</font></font></font>
+<br><font face="细明体"><font size="-1"><font color="#ffffff">[root@tsai
+bin]#&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#ffff00">
+&lt;== 看吧！到 bin 这个目录下啰！</font></font></font></td>
+</tr>
+</tbody></table>
+</blockquote>
+<a name="pwd"></a><font face="Times New Roman Baltic"><font color="#3333ff"><font size="+1">pwd</font></font></font>
+<blockquote>这是显示目前所在目录的指令，例如在上个表格最后的目录是 /usr/bin
+这个目录，但是提示字符仅显示 bin ，如果你想要知道目前所在的目录，可以输入
+pwd 即可：
+<br>&nbsp;
+<table width="90%" bgcolor="#000000" cols="1">
+<tbody><tr>
+<td><font face="细明体"><font color="#ffffff"><font size="-1">[root@tsai
+bin]#&nbsp; pwd</font></font></font>
+<br><font face="细明体"><font size="-1"><font color="#ffffff">/usr/bin&nbsp;
+</font><font color="#ffff00">&lt;== 显示路径啰！</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">[root@tsai
+bin]#&nbsp;</font></font></font></td>
+</tr>
+</tbody></table>
+</blockquote>
+<a name="ls"></a><font face="Times New Roman Baltic"><font color="#3333ff"><font size="+1">ls</font></font></font>
+<blockquote>这是用来显示文件名与内容的指令，档案的内容说明已经在 <a href="http://linux.vbird.org/linux_basic/redhat6.1/linux_05file.php">这里</a>
+说明过了，在此不再重复！ ls 的语法为：
+<br>&nbsp;
+<table width="90%" bgcolor="#000000" cols="1">
+<tbody><tr>
+<td><font face="细明体"><font size="-1"><font color="#ffffff">[root@tsai
+bin]# ls --color
+</font><font color="#ffff00">以彩色显示档案数据</font></font></font>
+<br><font face="细明体"><font size="-1"><font color="#ffffff">[root@tsai
+bin]# ls -l&nbsp;&nbsp;&nbsp;&nbsp; </font><font color="#ffff00">详细列出文件系统结构</font></font></font>
+<br><font face="细明体"><font size="-1"><font color="#ffffff">[root@tsai
+bin]# ls -a&nbsp;&nbsp;&nbsp;&nbsp; </font><font color="#ffff00">显示隐藏文件
+（以"."开头的档案）</font></font></font>
+<br><font face="细明体"><font size="-1"><font color="#ffffff">[root@tsai
+bin]# ls -al&nbsp;&nbsp;&nbsp; </font><font color="#ffff00">同时显示隐藏文件与详细数据</font></font></font>
+<br><font face="细明体"><font size="-1"><font color="#ffffff">[root@tsai
+bin]# ls -al|more
+</font><font color="#ffff00">将档案内容以一页一页显示</font></font></font></td>
+</tr>
+</tbody></table>
+</blockquote>
+<a name="cat"></a><font face="Times New Roman Baltic"><font color="#3333ff"><font size="+1">cat</font></font></font>
+<blockquote>这是将档案内容列出的指令。例如在 /root 下有一个档名为 .bashrc
+（这是系统默认的档案，是隐藏档），你可以按下 cd 回到 /root 目录后，执行：
+<br>&nbsp;
+<table width="90%" bgcolor="#000000" cols="1">
+<tbody><tr>
+<td><font face="细明体"><font color="#ffffff"><font size="-1">[root@tsai
+/root]# cat .bashrc</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1"># .bashrc</font></font></font>
+<p><font face="细明体"><font color="#ffffff"><font size="-1"># User specific
+aliases and functions</font></font></font>
+</p><p><font face="细明体"><font color="#ffffff"><font size="-1">alias rm='rm
+-i'</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">alias cp='cp
+-i'</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">alias mv='mv
+-i'</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">alias ll='ls
+-l'</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">alias lm='ls
+-al|more'</font></font></font></p></td>
+</tr>
+</tbody></table>
+上面显示的就是 .bashrc 这个档案的内容啦！基本上，cat 与 DOS 下的 type 是相同的！</blockquote>
+<a name="more"></a><font face="Times New Roman Baltic"><font color="#3333ff"><font size="+1">more</font></font></font>
+<blockquote>是否觉得 cat 在读取较大的档案的时候会有看不到的信息呢（如果档案太大的话），这时候你可以用
+more 来一页页读取喔！另外， more 也可以与其他的程序合并使用，例如 ls ！（如下表中，『｜』就是竖线，可以将两个指令放在一起执行！）
+<br>&nbsp;
+<table width="90%" bgcolor="#000000" cols="1">
+<tbody><tr>
+<td><font face="细明体"><font color="#ffffff"><font size="-1">[root@tsai
+/root]# more .bashrc</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">[root@tsai
+/root]# ls -al|more</font></font></font></td>
+</tr>
+</tbody></table>
+</blockquote>
+<a name="mkdir"></a><font face="Times New Roman Baltic"><font color="#3333ff"><font size="+1">mkdir</font></font></font>
+<blockquote>建立新的目录！例如我们要建立一个 test 的目录，你可以这样下指令：
+<br>&nbsp;
+<table width="90%" bgcolor="#000000" cols="1">
+<tbody><tr>
+<td><font face="细明体"><font color="#ffffff"><font size="-1">[root@tsai
+/root]# mkdir test</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">[root@tsai
+/root]# ls -l</font></font></font></td>
+</tr>
+</tbody></table>
+再执行了 ls -l 之后，你就可以看到 test 这个目录啦！</blockquote>
+<a name="rm"></a><font face="Times New Roman Baltic"><font color="#3333ff"><font size="+1">rm&nbsp;&nbsp;&nbsp;
+-irf</font></font></font>
+<blockquote>这是移除的指令，相当于 dos 下的 del 指令！这里要注意的是，通常在
+Linux 系统下，为了怕档案被误杀，所以都已经有 -i 这个参数， -i 是指每个档案被杀掉之前都会确认一次。而如果要连目录下的东西都一起杀掉的话，就要使用
+-rf 这个参数了！你可以用下面这个例子来试试看有什么不同的现象！
+<br>&nbsp;
+<table width="90%" bgcolor="#000000" cols="1">
+<tbody><tr>
+<td><font face="细明体"><font color="#ffffff"><font size="-1">[root@tsai
+/root]# rm test</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">[root@tsai
+/root]# rm -rf test</font></font></font></td>
+</tr>
+</tbody></table>
+</blockquote>
+<a name="rmdir"></a><font face="Times New Roman Baltic"><font color="#3333ff"><font size="+1">rmdir</font></font></font>
+<blockquote>mkdir 是建立目录，而 rmdir 就是移除目录的指令。不过，若是欲移除的目录里头有档案或其他目录存在，就无法移除，这时就要用刚刚的
+rm -rf 来移除啦！</blockquote>
+<a name="mv"></a><font face="Times New Roman Baltic"><font color="#3333ff"><font size="+1">mv</font></font></font>
+<blockquote>这是移动档案或目录的指令，例如我们要将 .bashrc 这个档案移动至根目录下，则：
+<br>&nbsp;
+<table width="90%" bgcolor="#000000" cols="1">
+<tbody><tr>
+<td><font face="细明体"><font color="#ffffff"><font size="-1">[root@tsai
+/root]# mv .bashrc /</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">[root@tsai
+/root]# mv /.bashrc .</font></font></font></td>
+</tr>
+</tbody></table>
+而将档案移动至目前的工作目录，则加上 "." 这个字！
+<p><font face="细明体">语法：<font color="#3333ff"> mv 来源文件（或目录）
+目的文件（或目录）</font></font></p></blockquote>
+<a name="cp"></a><font face="Times New Roman Baltic"><font color="#3333ff"><font size="+1">cp</font></font></font>
+<blockquote>就是 copy 的意思。例如我们要将 .bashrc 这个档案复制到 /home
+底下，可以：
+<br>&nbsp;
+<table width="90%" bgcolor="#000000" cols="1">
+<tbody><tr>
+<td><font face="细明体"><font color="#ffffff"><font size="-1">[root@tsai
+/root]# cp .bashrc /home</font></font></font></td>
+</tr>
+</tbody></table>
+
+<p><font face="细明体">语法：<font color="#3333ff"> cp 来源档 目的檔</font></font></p></blockquote>
+<a name="ln"></a><font face="Times New Roman Baltic"><font color="#3333ff"><font size="+1">ln</font></font></font>
+<blockquote>&nbsp;ln&nbsp; -s&nbsp; 真实目录或档案&nbsp;&nbsp; 链接的目录或档案：这是链接档案或目录的指令，通常我们都会加
+-s 这个参数，例如我们将 /usr/bin 这个目录连接到 /root 底下，可以这样输入：
+<br>&nbsp;
+<table width="90%" bgcolor="#000000" cols="1">
+<tbody><tr>
+<td><font face="细明体"><font color="#ffffff"><font size="-1">[root@tsai
+/root]# ln -s /usr/bin bin</font></font></font></td>
+</tr>
+</tbody></table>
+不过请注意喔，在你的 /root 底下的 bin 这个目录中的所有档案其实都是 /usr/bin
+里面的东西，所以你如果进入 /root/bin 内乱杀东西的话，等于是将 /usr/bin
+内的档案杀掉喔！
+<p><font face="细明体">语法：<font color="#3333ff"> ln -s 来源文件（或目录）
+目的文件（或目录）</font></font></p></blockquote>
+<a name="find"></a><font face="Times New Roman Baltic"><font color="#3333ff"><font size="+1">find</font></font></font>
+<blockquote>寻找档案的指令，会将欲寻找的档案找出来，例如下面的例子：
+<br>&nbsp;
+<table width="90%" bgcolor="#000000" cols="1">
+<tbody><tr>
+<td><font face="细明体"><font color="#ffffff"><font size="-1">[root@tsai
+/root]# find / -name bin</font></font></font></td>
+</tr>
+</tbody></table>
+上面的意思为：<font color="#000066">在 / 目录（根目录）下寻找文件名（-name）为
+bin 的档案</font>，要注意的是，因为 Linux 的档案很多，如果你的计算机比较旧，可能会找很久...
+<p>语法：<font face="细明体"><font color="#3333ff"> find 路径 -name 文件名</font></font></p></blockquote>
+<a name="whereis"></a><font face="Times New Roman Baltic"><font color="#3333ff"><font size="+1">whereis</font></font></font>
+<blockquote>相对于 find ，你也可以使用 whereis 这个指令来下达找寻的档案，whereis
+利用曾经找过的系统信息内的数据去找档案，所以速度会很快，不过，如果 whereis
+找不到的话，并不代表该档案真的不存在！这个要小心！
+<br>&nbsp;
+<table width="90%" bgcolor="#000000" cols="1">
+<tbody><tr>
+<td><font face="细明体"><font color="#ffffff"><font size="-1">[root@tsai
+/root]# whereis bin</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">bin: /usr/bin</font></font></font></td>
+</tr>
+</tbody></table>
+</blockquote>
+<a name="chmod"></a><font face="Times New Roman Baltic"><font color="#3333ff"><font size="+1">chmod</font></font></font>
+<blockquote>这是变更文件属性的指令，通常鸟哥都是以数字作为改变属性的依据；在档案的属性中，
+r 为4分、w 为2分， x 为1分，如果你想要让你刚建立的一个档案，让大家都看到的话，即你需要『-rw-r--r--』，这是你的三个群组的分数分别是
+r+w=6, r=4, r=4，所以可以下达：
+<br>&nbsp;
+<table width="90%" bgcolor="#000000" cols="1">
+<tbody><tr>
+<td><font face="细明体"><font color="#ffffff"><font size="-1">[root@tsai
+/root]# chmod 644 .bashrc</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">[root@tsai
+/root]# ls -al .bashrc</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">-rw-r--r--&nbsp;&nbsp;
+1 root&nbsp;&nbsp;&nbsp;&nbsp; root&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+216 Apr&nbsp; 8 13:54 .bashrc</font></font></font></td>
+</tr>
+</tbody></table>
+</blockquote>
+<a name="chown"></a><font face="Times New Roman Baltic"><font color="#3333ff"><font size="+1">chown</font></font></font>
+<blockquote>记得档案有『拥有人』及『拥有群组』吧，这个 chown 就是在改变拥有者的指令。例如你
+copy 一个档案给 vbird ，但是因为你的身份是 root ，所以你 copy 过去的档案
+vbird 可能不能使用，因此你需要将档案的拥有人改成 vbird 才可以！如下：
+<br>&nbsp;
+<table width="90%" bgcolor="#000000" cols="1">
+<tbody><tr>
+<td><font face="细明体"><font color="#ffffff"><font size="-1">[root@tsai
+/root]# cp .bashrc /home/vbird</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">[root@tsai
+/root]# cd /home/vbird</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">[root@tsai
+vbird]# chown vbird .bashrc</font></font></font></td>
+</tr>
+</tbody></table>
+那如果想要将整个目录下的档案都改变拥有者与拥有群组呢？可以下达
+<br><font color="#000066">chown&nbsp; -R&nbsp; username:groupname&nbsp;
+directory&nbsp; (ex&gt; chown -R root:root /root)</font>
+<br>即可喔！</blockquote>
+<a name="chgrp"></a><font face="Times New Roman Baltic"><font color="#3333ff"><font size="+1">chgrp</font></font></font>
+<blockquote>作用与 <a href="#chown">chown</a> 相似，只是在改变档案或目录的『拥有群组』。</blockquote>
+<a name="df"></a><font face="Times New Roman Baltic"><font color="#3333ff"><font size="+1">df</font></font></font>
+<blockquote>这是用来察看硬盘空间的指令。由于我们目前将档案都建立在根目录『/』下，所以只要没有空间，则所有档案都无法复制进来系统。不过，若你规划出多的硬盘，则可以察看你的硬盘空间信息，如下所示：
+<br>&nbsp;
+<table width="90%" bgcolor="#000000" cols="1">
+<tbody><tr>
+<td><font face="细明体"><font color="#ffffff"><font size="-1">[root@tsai
+/root]# df</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">Filesystem&nbsp;&nbsp;&nbsp;&nbsp;
+1k-blocks&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Used Available Use% Mounted on</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">/dev/hda5&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+964312&nbsp;&nbsp;&nbsp;&nbsp; 87648&nbsp;&nbsp;&nbsp; 827680&nbsp; 10%
+/</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">/dev/hdb5&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+2150420&nbsp;&nbsp;&nbsp; 745500&nbsp;&nbsp; 1295680&nbsp; 37% /home</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">/dev/hdb1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+2016016&nbsp;&nbsp; 1419708&nbsp;&nbsp;&nbsp; 493896&nbsp; 74% /usr</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">/dev/hda1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+1022080&nbsp;&nbsp;&nbsp; 349880&nbsp;&nbsp;&nbsp; 672200&nbsp; 34% /win98</font></font></font></td>
+</tr>
+</tbody></table>
+上面说，Filesystem 是硬盘所在的划分表， Used 是指使用掉的硬盘空间（KB），Available是剩下空间，Mounted
+on则是这颗硬盘代表哪一个目录。如上所示，根目录(/)在 hda5 这颗硬盘，总空间有
+964312 KB，剩下可用空间为 827680KB，至于 /win98 则在 hda1 中，且全部空间有
+1022080 KB。
+<p>如果要将数据型态以 MB 数显示的话，可以输入 df -m 来达成。</p></blockquote>
+<a name="du"></a><font face="Times New Roman Baltic"><font color="#3333ff"><font size="+1">du</font></font></font>
+<blockquote>这是用来察看目录内所有档案使用掉的空间的情况，如下所示：
+<br>&nbsp;
+<table width="90%" bgcolor="#000000" cols="1">
+<tbody><tr>
+<td><font face="细明体"><font color="#ffffff">[root@tsai /root]# du -m</font></font></td>
+</tr>
+</tbody></table>
+其中， du 默认的档案输出数据为 KB，以参数 -m 使档案数据显示为 MB。</blockquote>
+</blockquote>
+
+<hr width="100%">
+<br><a name="hardware"></a><font face="标楷体"><font color="#000099"><font size="+1">磁盘与硬件管理</font></font></font>
+<blockquote><a name="mount"></a><font face="Times New Roman Baltic"><font color="#3333ff"><font size="+1">mount</font></font></font>
+<blockquote>这是将硬盘或者是光盘、软盘接挂上系统的指令！之前有提过，在
+Linux 下面，每一个装置都是一个档案（或目录），而每一种装置的档案型态都不相同，因此对于
+mount 后面加的参数就很重要啰：例如：
+<br>&nbsp;
+<table width="90%" bgcolor="#000000" cols="1">
+<tbody><tr>
+<td><font face="细明体"><font size="-1"><font color="#ffffff">[root@tsai
+/root]# mount -t iso9660 /dev/cdrom /mnt/cdrom </font><font color="#ffff00">&lt;=光盘</font></font></font>
+<br><font face="细明体"><font size="-1"><font color="#ffffff">[root@tsai
+/root]# mount -t vfat /dev/fd0 /mnt/floppy&nbsp;&nbsp;&nbsp;&nbsp; </font><font color="#ffff00">&lt;=软盘(windows
+系统文件)</font></font></font>
+<br><font face="细明体"><font size="-1"><font color="#ffffff">[root@tsai
+/root]# mount -t ext2 /dev/fd0 /mnt/floppy&nbsp;&nbsp;&nbsp;&nbsp; </font><font color="#ffff00">&lt;=软盘(Linux
+系统文件)</font></font></font>
+<br><font face="细明体"><font size="-1"><font color="#ffffff">[root@tsai
+/root]# mount -t ext2 /dev/hdc1 /mnt/harddisk&nbsp; </font><font color="#ffff00">&lt;=硬盘</font></font></font></td>
+</tr>
+</tbody></table>
+<font color="#3333ff">光盘装置文件=/dev/cdrom、软盘装置文件=/dev/fd0、硬盘装置文件=/dev/hdxx。</font>
+<br>如上表所示， -t 是参数，至于 iso9660, vfat, ext2则是这些装置的档案型态！后面接的则是这个装置所在的目录！千万记得，这些目录需要是早已存在的，而且最好是空的目录，不然目录里面原本存在的档案会不见去！
+<br>另外，注意喔！当你 mount 上光驱或软盘的时候，请不要轻易的拿出磁盘（而且光盘片也不会被你退出），因为会造成系统读取的错误！你应该用
+umount 来退出！指令为
+<br><font color="#000066">umount&nbsp; /mnt/cdrom&nbsp; （umount&nbsp;
+装置所在目录）</font></blockquote>
+<a name="fdformat"></a><font face="Times New Roman Baltic"><font color="#3333ff"><font size="+1">fdformat</font></font></font>
+<blockquote>这是用来『<font color="#000066">低阶格式化</font>』软盘的指令。（注意：软盘的装置文件为
+<font color="#3333ff">/dev/fd0</font>
+）不必将软盘 mount 就可以格式化了，指令内容为：
+<br>&nbsp;
+<table width="90%" bgcolor="#000000" cols="1">
+<tbody><tr>
+<td><font face="细明体"><font color="#ffffff">[root@tsai /root]# fdformat
+/dev/fd0H1440</font></font></td>
+</tr>
+</tbody></table>
+注意喔！在上面的装置档案为 <font color="#3333ff">/dev/fd0H1440</font> ，其中加在
+/fd0 之后的 <font color="#3333ff">H1440</font> 为表示 <font color="#3333ff">1.44MB</font>
+的软盘容量！在低阶格式化之后，还要将软盘的文件格式化为 Linux 的 ext2 之型态，则需要使用
+<a href="#mke2fs">mke2fs</a>
+指令！</blockquote>
+<a name="fdisk"></a><font face="Times New Roman Baltic"><font color="#3333ff"><font size="+1">fdisk</font></font></font>
+<blockquote>这是对硬盘（也可以对软盘喔）做分割的程序。基本的用法为=&gt; <font color="#000066">fdisk
+装置档案</font>，假设您有一颗硬盘要重新规划，而这颗硬盘为 hdc ，则你可以输入：
+<br>&nbsp;
+<table width="90%" bgcolor="#000000" cols="1">
+<tbody><tr>
+<td><font face="细明体"><font color="#ffffff"><font size="-1">[root@tsai
+/root]# fdisk /dev/hdc</font></font></font></td>
+</tr>
+</tbody></table>
+然后，按下 m 会出现 help 的选单，要知道的大概只有两个子指令，一个是删除
+partition 按 d ，一个是增加 partition 按 n，假设你要增加一个 primary partition，按下
+n 再按 p 再按你要的 primary partition 号码（1-4）就可以了。假设你的 hdc
+需要规划成为一个硬盘（即 hdc1）则在输入 fdisk /dev/hdc 后，需要按：
+<br><font color="#3333ff">n</font>（增加） -&gt; <font color="#3333ff">p</font>（primary
+partition） -&gt;<font color="#3333ff"> 1</font>（partition 1） -&gt;<font color="#3333ff">
+w</font> （储存写入） -&gt; <font color="#3333ff">q</font> （离开）
+<br>同样的，分割完硬盘（或软盘）后，要以 <a href="#mke2fs">mke2fs</a> 格式化！</blockquote>
+<a name="mke2fs"></a><font face="Times New Roman Baltic"><font color="#3333ff"><font size="+1">mke2fs</font></font></font>
+<blockquote>这是用来将磁盘格式化成 Linux 系统文件的指令。基本上，只要写入对的装置档案就可以了。例如我们要格式化软盘的话，或是新的硬盘
+hdc1 ，则可以如此写：
+<br>&nbsp;
+<table width="90%" bgcolor="#000000" cols="1">
+<tbody><tr>
+<td><font face="细明体"><font color="#ffffff"><font size="-1">[root@tsai
+/root]# mke2fs -c /dev/fd0</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">[root@tsai
+/root]# mke2fs -c /dev/hdc1</font></font></font></td>
+</tr>
+</tbody></table>
+要记得的是，在你做这个格式化的动作时，软盘与硬盘均不可 mount 到 Linux 的系统中。</blockquote>
+<a name="mkbootdisk"></a><font face="Times New Roman Baltic"><font color="#3333ff"><font size="+1">mkbootdisk</font></font></font>
+<blockquote>这是制作启动盘的指令。指令很简单：
+<br>&nbsp;
+<table width="90%" bgcolor="#000000" cols="1">
+<tbody><tr>
+<td><font face="细明体"><font color="#ffffff"><font size="-1">[root@tsai
+/root]# mkbootdisk --device /dev/fd0 `uname -r`</font></font></font></td>
+</tr>
+</tbody></table>
+其中， `uname -r` 是目前 Linux 系统所使用的核心版本，如果你有多个核心版本的话，你以可以直接输入核心版本。例如在这个网页中所使用的核心有两个版本，一个是
+2.2.12-20，另一个是 2.2.18，若要以 2.2.18 设定开机的话，可以使用：<font color="#000066">
+mkbootdisk&nbsp; --device&nbsp; /dev/fd0&nbsp; 2.2.18 </font>！</blockquote>
+<a name="badblocks"></a><font face="Times New Roman Baltic"><font color="#3333ff"><font size="+1">badblocks</font></font></font>
+<blockquote>这是用来检查硬盘或软盘有没有坏轨的指令，你可以用底下的方式来下达：
+<br>&nbsp;
+<table width="90%" bgcolor="#000000" cols="1">
+<tbody><tr>
+<td><font face="细明体"><font color="#ffffff"><font size="-1">[root@tsai
+/root]# badblocks&nbsp; -svw&nbsp; /dev/hdc1</font></font></font></td>
+</tr>
+</tbody></table>
+</blockquote>
+<a name="fsck"></a><font face="Times New Roman Baltic"><font color="#3333ff"><font size="+1">fsck</font></font></font>
+<blockquote>这是用来检查与修正硬盘错误的指令。<font color="#000066">注意：通常只有身为
+root 且你的系统有问题的时候才使用这个指令，否则在正常状况下使用此一指令，可能会造成对档案的危害</font>！
+<br>&nbsp;
+<table width="90%" bgcolor="#000000" cols="1">
+<tbody><tr>
+<td><font face="细明体"><font color="#ffffff"><font size="-1">[root@tsai
+/root]#&nbsp; fsck&nbsp; /dev/hdc1</font></font></font></td>
+</tr>
+</tbody></table>
+通常使用这个指令的场合都是在系统出现极大的问题，导致你在 Linux 开机的时候得进入单人单机模式下进行维护的行为时，才必须使用此一指令！</blockquote>
+<a name="rpm"></a><font face="Times New Roman Baltic"><font color="#3333ff"><font size="+1">rpm</font></font></font>
+<blockquote>这是一个安装或者是解安装 RedHat 软件的指令，在 RedHat 中已经有设定了一些有点像
+Windows 的软件安装功能，这就是 rpm 这套软件了！而 rpm 所安装的软件又分为两种形式，因此你可以分别使用下面两种参数对不同的档案进行安装：
+<br>&nbsp;
+<table width="90%" bgcolor="#000000" cols="1">
+<tbody><tr>
+<td><font face="细明体"><font size="-1"><font color="#ffffff">[root@tsai
+/root]# rpm&nbsp; -ivh&nbsp; xxxxx.rpm&nbsp; </font><font color="#ffff00">&lt;==将
+xxxxx.rpm 档案安装于 Linux 系统中</font></font></font>
+<br><font face="细明体"><font size="-1"><font color="#ffffff">[root@tsai
+/root]# rpm&nbsp; -ivh&nbsp; --nodeps xxxxx.rpm&nbsp; </font><font color="#ffff00">&lt;==将
+xxxxx.rpm 档案『强制』安装于 Linux 系统中</font></font></font>
+<br><font face="细明体"><font size="-1"><font color="#ffffff">[root@tsai
+/root]# rpm&nbsp; -Uvh&nbsp; xxxxx.rpm&nbsp; </font><font color="#ffff00">&lt;==将
+xxxxx.rpm 升级</font></font></font>
+<br><font face="细明体"><font size="-1"><font color="#ffffff">[root@tsai
+/root]# rpm&nbsp; -e&nbsp;&nbsp;&nbsp; xxxxx.rpm&nbsp; </font><font color="#ffff00">&lt;==将
+xxxxx.rpm 卸载</font></font></font>
+<br><font face="细明体"><font size="-1"><font color="#ffffff">[root@tsai
+/root]# rpm&nbsp; -q&nbsp;&nbsp;&nbsp; squid&nbsp; </font><font color="#ffff00">&lt;==察看
+squid 这一个软件的版本</font></font></font>
+<br><font face="细明体"><font size="-1"><font color="#ffffff">[root@tsai
+/root]# rpm&nbsp; --recompile&nbsp; yyyyy.src.rpm&nbsp; </font><font color="#ffff00">&lt;==安装档名为
+.src.rpm 的档案！</font></font></font></td>
+</tr>
+</tbody></table>
+这里要注意的是， rpm 的档案主要有两种形式，一种是已经经过编译的 i386.rpm
+档案，令一种是未经编译的 .src.rpm 档案，两种档案形式的安装参数是不一样的，请小心注意！</blockquote>
+</blockquote>
+
+<hr width="100%">
+<br><a name="systemman"></a><font face="标楷体"><font color="#000099"><font size="+1">系统管理员</font></font></font>
+<blockquote><a name="su"></a><font face="Times New Roman Baltic"><font color="#3333ff"><font size="+1">su</font></font></font>
+<blockquote>这是一个用来转换你身份成为 super user （系统管理员）的指令，任何人只要知道
+root 的密码，就可以成为 super user，所以密码可千万不要外流呀！由于 RedHat
+在主机之外的终端机上，无法以 root 的身份直接联机，所以你需要以一般身份的
+user 联机之后，再以 su 指令来成为 super user：
+<br>&nbsp;
+<table width="90%" bgcolor="#000000" cols="1">
+<tbody><tr>
+<td><font face="细明体"><font size="-1"><font color="#ffffff">[vbird@tsai
+vbird]# su&nbsp; </font><font color="#ffff00">&lt;==输入指令</font></font></font>
+<br><font face="细明体"><font size="-1"><font color="#ffffff">Password:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</font><font color="#ffff00">&lt;==在这里输入 root 的密码</font></font></font>
+<br><font face="细明体"><font size="-1"><font color="#ffffff">[root@tsai
+vibrd]#&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </font><font color="#ffff00">&lt;==看，使用者名称变啰！</font></font></font></td>
+</tr>
+</tbody></table>
+</blockquote>
+<a name="clear"></a><font face="Times New Roman Baltic"><font color="#3333ff"><font size="+1">clear</font></font></font>
+<blockquote>这是用来清除屏幕画面用的，没有什么太大的用处。通常是你觉得画面太乱的时候输入用的！直接输入
+clear 就可以了！</blockquote>
+<a name="dmesg"></a><font face="Times New Roman Baltic"><font color="#3333ff"><font size="+1">dmesg</font></font></font>
+<blockquote>在开机的时候你会发现有很多的讯息出现吧，例如 CPU 的形式、硬盘、光盘型号及硬盘分割表等等。但是讯息都是『刷』的一声就跑过去了！这些讯息有时候对于系统管理员是很重要的，因为他提供了系统的信息呀！要看这些讯息你可以用
+dmesg 这个指令来观看！
+<br>&nbsp;
+<table width="90%" bgcolor="#000000" cols="1">
+<tbody><tr>
+<td><font face="细明体"><font color="#ffffff"><font size="-1">[root@tsai
+/root]# dmesg|more</font></font></font></td>
+</tr>
+</tbody></table>
+<font color="#000000">加上 |more 的原因是因为讯息太多了，所以可以加入这个管线指令来使画面暂停！</font></blockquote>
+<a name="groupadd"></a><font face="Times New Roman Baltic"><font color="#3333ff"><font size="+1">groupadd</font></font></font>
+<blockquote>这是用来增加群组的指令，通常鸟哥都不用这个指令的，因为有更容易使用的指令
+<a href="#userconf">/bin/userconf</a>
+可以使用哩（注意，在 RedHat 7.0 以后的版本，就要使用 /sbin/userconf 哩）！</blockquote>
+<a name="useradd"></a><font face="Times New Roman Baltic"><font color="#3333ff"><font size="+1">useradd</font></font></font>
+<blockquote>这是用来增加用户的指令，鸟哥通常不使用这个指令，你可以使用
+<a href="#userconf">/bin/userconf</a>
+这个指令，更简单易用喔（是窗口接口的喔！）（注意，在 RedHat 7.0 以后的版本，就要使用
+/sbin/userconf 哩）</blockquote>
+<a name="userconf"></a><font face="Times New Roman Baltic"><font color="#3333ff"><font size="+1">userconf</font></font></font>
+<blockquote>这是用来增加使用者、群组等，且以窗口为接口的一个指令！如果你是以远程登录，并使用
+su 指令成为 super user 的话，直接输入 userconf 可能会找不到这个指令，你可以输入：
+<font color="#3333ff">/bin/userconf</font>
+来启动这个指令！（注意，在 RedHat 7.0 以后的版本，就要使用 <font color="#3333ff">/sbin/userconf</font>
+哩），由于这个指令的图标较多，请到<a href="http://linux.vbird.org/linux_basic/redhat6.1/linux_06userconf.php" target="_blank">这里</a>来看看！</blockquote>
+<a name="passwd"></a><font face="Times New Roman Baltic"><font color="#3333ff"><font size="+1">passwd</font></font></font>
+<blockquote>这是用来更改密码的指令，很简单，只要在提示字符下输入 <font color="#000066">passwd</font>
+，然后输入目前的密码，再输入两次欲修改成的新密码，就修改OK了！不过要注意，密码的形式：<font color="#000099">不能与账号相同，且需要
+8 个字符以上，另外，账号也不能太简单！否则系统会不接受！</font>
+<br>&nbsp;
+<table width="90%" bgcolor="#333333" cols="1">
+<tbody><tr>
+<td><font face="细明体"><font color="#ffffff"><font size="-1">[vbird@tsai
+vbird]# passwd</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">Changing password
+for vbird</font></font></font>
+<br><font face="细明体"><font size="-1"><font color="#ffffff">(current) UNIX
+password:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </font><font color="#ffff00">&lt;==这里输入目前的密码</font></font></font>
+<br><font face="细明体"><font size="-1"><font color="#ffffff">New UNIX password:&nbsp;&nbsp;&nbsp;&nbsp;
+</font><font color="#ffff00">&lt;==这里输入新的密码</font></font></font>
+<br><font face="细明体"><font size="-1"><font color="#ffffff">Retype new
+UNIX password:&nbsp;&nbsp;&nbsp;&nbsp; </font><font color="#ffff00">&lt;==这里再输入新的密码一次</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">passwd: all
+authentication tokens updated successfully</font></font></font></td>
+</tr>
+</tbody></table>
+</blockquote>
+<a name="who"></a><font face="Times New Roman Baltic"><font color="#3333ff"><font size="+1">who</font></font></font>
+<blockquote>这是用来视察目前在系统上的用户指令，你也可以使用 w 这个指令来下达动作。
+<br>&nbsp;
+<table width="90%" bgcolor="#000000" cols="1">
+<tbody><tr>
+<td><font face="细明体"><font color="#ffffff"><font size="-1">[root@tsai
+/root]# who</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">root&nbsp;&nbsp;&nbsp;&nbsp;
+pts/0&nbsp;&nbsp;&nbsp; Aug&nbsp; 2 20:43</font></font></font>
+<p><font face="细明体"><font color="#ffffff"><font size="-1">[root@tsai /root]#
+w</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp; 8:48pm&nbsp;
+up 4 days,&nbsp; 5:08,&nbsp; 1 user,&nbsp; load average: 0.00, 0.00, 0.00</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">USER&nbsp;&nbsp;&nbsp;&nbsp;
+TTY&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; FROM&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+LOGIN@&nbsp;&nbsp; IDLE&nbsp;&nbsp; JCPU&nbsp;&nbsp; PCPU&nbsp; WHAT</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">root&nbsp;&nbsp;&nbsp;&nbsp;
+pts/0&nbsp;&nbsp;&nbsp; 192.168.1.2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+8:43pm&nbsp; 0.00s&nbsp; 0.38s&nbsp;&nbsp; ?&nbsp;&nbsp;&nbsp;&nbsp; -</font></font></font></p></td>
+</tr>
+</tbody></table>
+基本上，who 与 w 的功能是相同的，只是 who 仅列出使用者名称与登入时间，至于
+w 则会列出使用者的
+<ul>
+<li>
+来源地址（IP）：就是 FROM 那一项即是IP；</li>
+
+<li>
+登入时间：即是 LOGIN@ 那一项；</li>
+
+<li>
+工作项目：就是 WHAT 那一项！</li>
+</ul>
+</blockquote>
+<a name="whoami"></a><font face="Times New Roman Baltic"><font color="#3333ff"><font size="+1">whoami</font></font></font>
+<blockquote>这是用来确认你目前的身份的指令，由于你可能会有几个身份在你的机器上，所以需要以这个指令来确认你的身份，不过由于
+Linux 会将用户名称写在提示字符上，所以这个指令目前比较少用到了。</blockquote>
+<a name="top"></a><font face="Times New Roman Baltic"><font color="#3333ff"><font size="+1">top</font></font></font>
+<blockquote>这是用来指示目前系统的服务项目的动态数据。
+<br>&nbsp;
+<table width="90%" bgcolor="#000000" cols="1">
+<tbody><tr>
+<td><font face="细明体"><font color="#ffffff"><font size="-1">[root@tsai
+/root]# top</font></font></font>
+<br><font face="细明体"><font color="#ffcc00"><font size="-1">&nbsp;10:14pm&nbsp;
+up 4 days,&nbsp; 6:34,&nbsp; 1 user,&nbsp; load average: 0.01, 0.01, 0.00</font></font></font>
+<br><font face="细明体"><font color="#ffcc00"><font size="-1">40 processes:
+39 sleeping, 1 running, 0 zombie, 0 stopped</font></font></font>
+<br><font face="细明体"><font color="#ffcc00"><font size="-1">CPU states:&nbsp;
+0.5% user,&nbsp; 0.3% system,&nbsp; 0.0% nice, 99.0% idle</font></font></font>
+<br><font face="细明体"><font color="#ffcc00"><font size="-1">Mem:&nbsp;&nbsp;
+63124K av,&nbsp; 60844K used,&nbsp;&nbsp; 2280K free,&nbsp; 23604K shrd,&nbsp;
+35648K buff</font></font></font>
+<br><font face="细明体"><font color="#ffcc00"><font size="-1">Swap: 104380K
+av,&nbsp;&nbsp; 1684K used, 102696K 
+free&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+10788K
+ cached</font></font></font>
+<p><font face="细明体"><font color="#ffffcc"><font size="-1">&nbsp; PID USER&nbsp;&nbsp;&nbsp;&nbsp;
+PRI&nbsp; NI&nbsp; SIZE&nbsp; RSS SHARE STAT&nbsp; LIB %CPU %MEM&nbsp;&nbsp;
+TIME COMMAND</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp;3121
+root&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 20&nbsp;&nbsp; 0&nbsp; 1016 1016&nbsp;&nbsp;
+820 R&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0&nbsp; 0.9&nbsp; 1.6&nbsp;&nbsp;
+0:47 top</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp;&nbsp;&nbsp;
+1 root&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp; 0&nbsp;&nbsp;
+380&nbsp; 368&nbsp;&nbsp; 320 S&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0&nbsp;
+0.0&nbsp; 0.5&nbsp;&nbsp; 0:04 init</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp;&nbsp;&nbsp;
+2 root&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp;&nbsp;
+0&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp;&nbsp; 0 SW&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+0&nbsp; 0.0&nbsp; 0.0&nbsp;&nbsp; 0:00 kflushd</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp;&nbsp;&nbsp;
+3 root&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp;&nbsp;
+0&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp;&nbsp; 0 SW&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+0&nbsp; 0.0&nbsp; 0.0&nbsp;&nbsp; 0:00 kupdate</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp;&nbsp;&nbsp;
+4 root&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp;&nbsp;
+0&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp;&nbsp; 0 SW&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+0&nbsp; 0.0&nbsp; 0.0&nbsp;&nbsp; 0:00 kpiod</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp;&nbsp;&nbsp;
+5 root&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp;&nbsp;
+0&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp;&nbsp; 0 SW&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+0&nbsp; 0.0&nbsp; 0.0&nbsp;&nbsp; 0:00 kswapd</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp;&nbsp;&nbsp;
+6 root&nbsp;&nbsp;&nbsp;&nbsp; -20 -20&nbsp;&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp;
+0&nbsp;&nbsp;&nbsp;&nbsp; 0 SW&lt;&nbsp;&nbsp;&nbsp;&nbsp; 0&nbsp; 0.0&nbsp;
+0.0&nbsp;&nbsp; 0:00 mdrecoveryd</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp; 366
+bin&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp; 0&nbsp;&nbsp;
+308&nbsp; 288&nbsp;&nbsp; 228 S&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0&nbsp;
+0.0&nbsp; 0.4&nbsp;&nbsp; 0:00 portmap</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp; 382
+root&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp; 0&nbsp;&nbsp; 392&nbsp;
+376&nbsp;&nbsp; 328 S&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0&nbsp; 0.0&nbsp;
+0.5&nbsp;&nbsp; 0:00 apmd</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp; 435
+root&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp; 0&nbsp;&nbsp; 488&nbsp;
+480&nbsp;&nbsp; 388 S&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0&nbsp; 0.0&nbsp;
+0.7&nbsp;&nbsp; 0:00 syslogd</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp; 446
+root&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp; 0&nbsp;&nbsp; 688&nbsp;
+676&nbsp;&nbsp; 316 S&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0&nbsp; 0.0&nbsp;
+1.0&nbsp;&nbsp; 0:00 klogd</font></font></font></p></td>
+</tr>
+</tbody></table>
+输入 top 之后，会出现类似上面的显示情况。上图中说明了你的内存有63124K，而下方的面版说明了目前正在执行中的工作内容！</blockquote>
+<a name="free"></a><font face="Times New Roman Baltic"><font color="#3333ff"><font size="+1">free</font></font></font>
+<blockquote>这是用来察看内存的指令。
+<br>&nbsp;
+<table width="90%" bgcolor="#000000" cols="1">
+<tbody><tr>
+<td><font face="细明体"><font color="#ffffff"><font size="-1">[root@tsai
+/root]# free</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+total&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; used&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+free&nbsp;&nbsp;&nbsp;&nbsp; shared&nbsp;&nbsp;&nbsp; buffers&nbsp;&nbsp;&nbsp;&nbsp;
+cached</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">Mem:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+63124&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 60732&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+2392&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 23136&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+35648&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 10796</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">-/+ buffers/cache:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+14288&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 48836</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">Swap:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+104380&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1684&nbsp;&nbsp;&nbsp;&nbsp;
+102696</font></font></font></td>
+</tr>
+</tbody></table>
+如上图中，说明总内存容量为 63124K，而使用了 60732K，另外，虚拟内存（Swap）共有
+104380K（亦即共有 100MB 的虚拟内存）。</blockquote>
+<a name="quotacheck"></a><font face="Times New Roman Baltic"><font color="#3333ff"><font size="+1">quotacheck,
+edquota</font></font></font>
+<blockquote>这些档案是用来限制用户在 Linux 主机上的硬盘使用容量。例如，有十个人同时分享一个
+2G 的硬盘空间，但是有一个使用者就用了 1.5 GB 的容量，那相对的，其他人可使用的空间就只有剩下
+0.5G 啦！不公平对不对，而且也怕被使用者填充大量的垃圾，而使用系统资源被瓜分掉！因此就有
+Quota 这个咚咚的出现啦！由于执行的步骤较为繁琐，所以额外写了一个页面，请到<a href="http://linux.vbird.org/linux_basic/redhat6.1/linux_06quota.php" target="_blank">这里</a>来看看。</blockquote>
+</blockquote>
+
+<hr width="100%">
+<br><a name="tar_compre"></a><font face="标楷体"><font color="#000099"><font size="+1">压缩指令</font></font></font>
+<blockquote><a name="compress"></a><font face="Times New Roman Baltic"><font color="#3333ff"><font size="+1">compress</font></font></font>
+<blockquote><font face="新细明体"><font color="#000000">这是用来压缩及解压缩文件名为
+.Z 的压缩文件。要注意的是，用 compress 压缩的时候，会将原档案杀掉而变成档名为
+.Z 的档案，例如你压缩一个名为 bird.test 的档案，则压缩完成后只会剩下 bird.test.Z
+这个压缩文件！当然，解压缩的时候也是一样的，压缩文件不见了，只有剩下被解压缩的档案。指令如下：</font></font>
+<br>&nbsp;
+<table width="90%" bgcolor="#000000" cols="1">
+<tbody><tr>
+<td><font face="细明体"><font size="-1"><font color="#ffffff">[root@tsai
+/root]# compress xxxxx&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </font><font color="#ffff00">&lt;==将
+xxxxx 文件压缩成为 xxxxx.Z 檔名</font></font></font>
+<br><font face="细明体"><font size="-1"><font color="#ffffff">[root@tsai
+/root]# compress -d xxxxx.Z&nbsp;&nbsp; </font><font color="#ffff00">&lt;==将
+xxxxx.Z 解压缩成 xxxxx</font></font></font></td>
+</tr>
+</tbody></table>
+<font face="新细明体"><font color="#000000">上表中，解压缩也可以用 </font><font color="#000066">uncompress
+xxxxx.Z</font><font color="#000000"> 来达成！</font></font></blockquote>
+<a name="gzip"></a><font face="Times New Roman Baltic"><font color="#3333ff"><font size="+1">gzip</font></font></font>
+<blockquote><font face="新细明体"><font color="#000000">这个也是一个压缩指令，与
+compress 很相似，指令的用法也相同！只是压缩的档名为 .gz 罢了！</font></font>
+<br>&nbsp;
+<table width="90%" bgcolor="#000000" cols="1">
+<tbody><tr>
+<td><font face="细明体"><font size="-1"><font color="#ffffff">[root@tsai
+/root]# gzip&nbsp; xxxxx&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#ffff00">
+&lt;==</font><font color="#ffffff">这是压缩指令</font></font></font>
+<br><font face="细明体"><font size="-1"><font color="#ffffff">[root@tsai
+/root]# gzip&nbsp; -d&nbsp; xxxxx.gz&nbsp; </font><font color="#ffff00">&lt;==这是解压缩指令</font></font></font></td>
+</tr>
+</tbody></table>
+</blockquote>
+<a name="tar"></a><font face="Times New Roman Baltic"><font color="#3333ff"><font size="+1">tar</font></font></font>
+<blockquote>这是一个很棒的压缩指令，这个指令可以配合 gzip 来进行整个目录的压缩！例如有一个名为
+bird 的目录要被你整合成一个档案，你可以使用：<font color="#000066">tar&nbsp;
+-xvf&nbsp; *.tar&nbsp; *</font>（其中 * 为你所要整合的目录名称）。
+<br>&nbsp;
+<table width="90%" bgcolor="#000000" cols="1">
+<tbody><tr>
+<td><font face="细明体"><font size="-1"><font color="#ffffff">[root@tsai
+/root]# tar&nbsp; -cvf&nbsp; bird.tar&nbsp; bird&nbsp; </font><font color="#ffff00">&lt;==只有将目录转成一个档案，没有压缩</font></font></font>
+<br><font face="细明体"><font size="-1"><font color="#ffffff">[root@tsai
+/root]# tar&nbsp; -zcvf&nbsp; bird.tar.gz&nbsp; bird </font><font color="#ffff00">&lt;==压缩一整个目录成为
+.tar.gz 档案</font></font></font></td>
+</tr>
+</tbody></table>
+上面这个例子的 bird.tar 只是将 bird 这个目录整个拷贝成为一个档案而已，并没有压缩，而
+bird.tar.gz 则是将 bird 这个目录压缩成为一个档案！基本上，我们都是使用
+-zxvf 来压缩一整个目录的！而如果是要解压缩呢？由于有没有压缩所下的参数并不相同，所以针对两种档案也是有两种参数的组合：
+<br>&nbsp;
+<table width="90%" bgcolor="#000000" cols="1">
+<tbody><tr>
+<td><font face="细明体"><font color="#ffffff"><font size="-1">[root@tsai
+/root]# tar&nbsp; -xvf&nbsp; bird.tar</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">[root@tsai
+/root]# tar&nbsp; -zxvf&nbsp; bird.tar.gz</font></font></font></td>
+</tr>
+</tbody></table>
+上面则是解压缩的参数！
+<br>注意了，用 compress 及 gzip 压缩及解压缩的时候，会将原档案取代掉！而使用
+tar 来压缩及解压缩的时候，原档案将会与产生档案同时存在！通常我们都是使用
+tar 来进行压缩或解压缩的！（当然，你还是可以使用 compress 及 gzip 来压缩一个大的档案！）</blockquote>
+</blockquote>
+
+<hr width="100%">
+<br><a name="somenet"></a><font face="标楷体"><font color="#000099"><font size="+1">一些网络功能</font></font></font>
+<blockquote><a name="ifconfig"></a><font face="Times New Roman Baltic"><font color="#3333ff"><font size="+1">ifconfig</font></font></font>
+<blockquote>这是用来查询目前我们这个系统的网络卡的状况的指令，可以查询
+IP、子屏蔽网络及网络卡的硬件信息等等。例如：
+<br>&nbsp;
+<table width="90%" bgcolor="#000000" cols="1">
+<tbody><tr>
+<td><font face="细明体"><font color="#ffffff"><font size="-1">[root@tsai
+/root]# ifconfig</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">eth0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Link encap:Ethernet&nbsp; HWaddr 00:50:FC:20:F1:4D</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+inet addr:192.168.1.2&nbsp; Bcast:192.168.1.255&nbsp; Mask:255.255.255.0</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+UP BROADCAST RUNNING MULTICAST&nbsp; MTU:1500&nbsp; Metric:1</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+RX packets:7651977 errors:0 dropped:0 overruns:0 frame:0</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+TX packets:7467862 errors:0 dropped:0 overruns:0 carrier:0</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+collisions:961 txqueuelen:100</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Interrupt:10 Base address:0x6100</font></font></font>
+<p><font face="细明体"><font color="#ffffff"><font size="-1">eth1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Link encap:Ethernet&nbsp; HWaddr 00:80:C8:5A:87:01</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+UP BROADCAST RUNNING MULTICAST&nbsp; MTU:1500&nbsp; Metric:1</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+RX packets:7492497 errors:0 dropped:0 overruns:0 frame:0</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+TX packets:7617653 errors:0 dropped:0 overruns:0 carrier:0</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+collisions:289 txqueuelen:100</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Interrupt:9 Base address:0x6200</font></font></font>
+</p><p><font face="细明体"><font color="#ffffff"><font size="-1">lo&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Link encap:Local Loopback</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+inet addr:127.0.0.1&nbsp; Mask:255.0.0.0</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+UP LOOPBACK RUNNING&nbsp; MTU:3924&nbsp; Metric:1</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+RX packets:512 errors:0 dropped:0 overruns:0 frame:0</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+TX packets:512 errors:0 dropped:0 overruns:0 carrier:0</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+collisions:0 txqueuelen:0</font></font></font>
+</p><p><font face="细明体"><font color="#ffffff"><font size="-1">ppp0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Link encap:Point-to-Point Protocol</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+inet addr:211.74.249.38&nbsp; P-t-P:172.16.11.8&nbsp; Mask:255.255.255.255</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+UP POINTOPOINT RUNNING NOARP MULTICAST&nbsp; MTU:1492&nbsp; Metric:1</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+RX packets:7469726 errors:0 dropped:0 overruns:0 frame:0</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+TX packets:7617651 errors:0 dropped:0 overruns:0 carrier:0</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+collisions:0 txqueuelen:10</font></font></font></p></td>
+</tr>
+</tbody></table>
+由于上面的例子是使用两张网络卡，因此会有 eth0 及 eth1 两个界面，至于 lo
+是系统内设的递归网络，这是一定会有的咚咚，而且其 inet addr（IP）一定是
+127.0.0.1！另外， ppp0 则是 ADSL 拨接之后所产生的虚拟接口（对外的接口！）。在这个例子中，鸟哥使用了两张网络卡，
+eth0 用在内部网络， eth1 用在 ADSL 拨接，所以 eth1 就没有 address。至于第一张网络卡的网络地址是虚拟的
+192.168.1.2。而真正的对外联系是 ppp0 这一个拨接界面，其 internet 是 211.74.249.38！</blockquote>
+<a name="route"></a><font face="Times New Roman Baltic"><font color="#3333ff"><font size="+1">route</font></font></font>
+<blockquote>这是用来看你的网络通讯包传送的路由情况的指令。由于通信包是藉由一个一个的路由表来传递的，所以观察你的路由表，对于网络除错（debuge）就很重要啦！
+<br>&nbsp;
+<table width="90%" bgcolor="#000000" cols="1">
+<tbody><tr>
+<td><font face="细明体"><font color="#ffffff"><font size="-1">[root@tsai
+/root]# route</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">Kernel IP routing
+table</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">Destination&nbsp;&nbsp;&nbsp;&nbsp;
+Gateway&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Genmask&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Flags Metric Ref&nbsp;&nbsp;&nbsp; Use Iface</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">192.168.1.2&nbsp;&nbsp;&nbsp;&nbsp;
+*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+255.255.255.255 UH&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+0 eth0</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">172.16.11.8&nbsp;&nbsp;&nbsp;&nbsp;
+*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+255.255.255.255 UH&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+0 ppp0</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">192.168.1.0&nbsp;&nbsp;&nbsp;&nbsp;
+*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+255.255.255.0&nbsp;&nbsp; U&nbsp;&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0 eth0</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">127.0.0.0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+255.0.0.0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; U&nbsp;&nbsp;&nbsp;&nbsp;
+0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+0 lo</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">default&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+172.16.11.8&nbsp;&nbsp;&nbsp;&nbsp; 0.0.0.0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+UG&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+0 ppp0</font></font></font></td>
+</tr>
+</tbody></table>
+例如上表中，所有的通讯都是藉由 ppp0 这一个适配卡（Iface）并且其通讯闸（Gateway）为
+172.16.11.8 这一个！另外，在虚拟 IP （内部网络）则是藉由 eth0 （192.168.1.2）这一块网卡来联机的！
+<p>另外，你也可以使用 route 来加入你的路由表，假如你要将一个网络为 192.56.76.XXX
+且子网为 255.255.255.0 的位置加入你的 eth0 这个网络卡的联机处理中，就可以使用如下的语法：
+<br>&nbsp;
+<table width="90%" bgcolor="#000000" cols="1">
+<tbody><tr>
+<td><font face="细明体"><font color="#ffffff"><font size="-1">[root@tsai
+/root]# route add -net 192.56.76.0 netmask 255.255.255.0 dev eth0</font></font></font></td>
+</tr>
+</tbody></table>
+</p></blockquote>
+<a name="netstate"></a><font face="Times New Roman Baltic"><font color="#3333ff"><font size="+1">netstat</font></font></font>
+<blockquote>这也是用来观察网络状况的指令。
+<br>&nbsp;
+<table width="90%" bgcolor="#000000" cols="1">
+<tbody><tr>
+<td><font face="细明体"><font color="#ffffff"><font size="-1">[root@tsai
+/root]# netstat</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">Active Internet
+connections (w/o servers)</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">Proto Recv-Q
+Send-Q Local Address&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Foreign Address&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; State</font></font></font>
+<br><font face="细明体"><font color="#ffff00"><font size="-1">tcp&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+0&nbsp;&nbsp;&nbsp; 126 swks249-38.adsl.:telnet 192.168.1.15:1341&nbsp;&nbsp;&nbsp;&nbsp;
+ESTABLISHED</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">Active UNIX
+domain sockets (w/o servers)</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">Proto RefCnt
+Flags&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Type&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+State&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; I-Node Path</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">unix&nbsp;
+2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [ ]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+DGRAM&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+87643&nbsp; /dev/log</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">unix&nbsp;
+0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [ ]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+STREAM&nbsp;&nbsp;&nbsp;&nbsp; CONNECTED&nbsp;&nbsp;&nbsp;&nbsp; 116&nbsp;&nbsp;&nbsp;
+@00000012</font></font></font></td>
+</tr>
+</tbody></table>
+在上表黄色的部分，由于鸟哥是在另一部计算机联机进入的，所以网络地址就会不同啰！</blockquote>
+<a name="hostname"></a><font face="Times New Roman Baltic"><font color="#3333ff"><font size="+1">hostname</font></font></font>
+<blockquote>这只是用来观看你的主机名而已。
+<br>&nbsp;
+<table width="90%" bgcolor="#000000" cols="1">
+<tbody><tr>
+<td><font face="细明体"><font color="#ffffff"><font size="-1">[root@tsai
+/root]# hostname</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">tsai.adsldns.org</font></font></font></td>
+</tr>
+</tbody></table>
+</blockquote>
+<a name="ping"></a><font face="Times New Roman Baltic"><font color="#3333ff"><font size="+1">ping</font></font></font>
+<blockquote>这是用来察看对方网络是否有动作的指令，这个指令亦可以在 windows
+上面执行！
+<br>&nbsp;
+<table width="90%" bgcolor="#000000" cols="1">
+<tbody><tr>
+<td><font face="细明体"><font color="#ffffff"><font size="-1">[root@tsai
+/root]# ping www.kimo.com.tw</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">PING www.kimo.com.tw
+(202.1.237.21) from 211.74.249.38 : 56(84) bytes of data.</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">64 bytes from
+202.1.237.21: icmp_seq=0 ttl=245 time=56.7 ms</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">64 bytes from
+202.1.237.21: icmp_seq=1 ttl=245 time=58.0 ms</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">64 bytes from
+202.1.237.21: icmp_seq=2 ttl=245 time=58.7 ms</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">64 bytes from
+202.1.237.21: icmp_seq=3 ttl=245 time=52.0 ms</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">64 bytes from
+202.1.237.21: icmp_seq=4 ttl=245 time=72.2 ms</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">--- www.kimo.com.tw
+ping statistics ---</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">5 packets transmitted,
+5 packets received, 0% packet loss</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">round-trip
+min/avg/max = 52.0/59.5/72.2 ms</font></font></font></td>
+</tr>
+</tbody></table>
+例如上表中，我们去观察 www.kimo.com.tw 是否有启动，看每一列的最后一行，会告诉你讯息响应的时间大约是
+56ms！（10<sup>-3</sup> sec.）</blockquote>
+<a name="nslookup"></a><font face="Times New Roman Baltic"><font color="#3333ff"><font size="+1">nslookup</font></font></font>
+<blockquote>这是用来查询或反查询 DNS 的指令！例如我们要知道 奇摩 的网络地址，则可以如此查询：
+<br>&nbsp;
+<table width="90%" bgcolor="#000000" cols="1">
+<tbody><tr>
+<td><font face="细明体"><font color="#ffffff"><font size="-1">[root@tsai
+/root]# nslookup www.kimo.com.tw</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">Server:&nbsp;
+ksdns.seed.net.tw</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">Address:&nbsp;
+139.175.10.20</font></font></font>
+<p><font face="细明体"><font color="#ffffff"><font size="-1">Non-authoritative
+answer:</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">Name:&nbsp;&nbsp;&nbsp;
+www.kimo.com.tw</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">Address:&nbsp;
+202.1.237.21</font></font></font></p></td>
+</tr>
+</tbody></table>
+系统会告诉你，我们使用的 DNS server 是 ksdns.seed.net.tw，而查询到的网址是
+202.1.237.21。如果需要更详细的查询，可以用下面的方式来查！
+<br>&nbsp;
+<table width="90%" bgcolor="#000000" cols="1">
+<tbody><tr>
+<td><font face="细明体"><font color="#ffffff"><font size="-1">[root@tsai
+/root]# nslookup</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">Default Server:&nbsp;
+ksdns.seed.net.tw</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">Address:&nbsp;
+139.175.10.20</font></font></font>
+<p><font face="细明体"><font size="-1"><font color="#ffffff">&gt; set type=any&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#ffff00">&nbsp;
+&lt;==告诉系统我们要详细的数据！</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">&gt; www.kimo.com.tw</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">Server:&nbsp;
+ksdns.seed.net.tw</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">Address:&nbsp;
+139.175.10.20</font></font></font>
+</p><p><font face="细明体"><font color="#ffffff"><font size="-1">Non-authoritative
+answer:</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">www.kimo.com.tw
+internet address = 202.1.237.21</font></font></font>
+</p><p><font face="细明体"><font color="#ffffff"><font size="-1">Authoritative
+answers can be found from:</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">kimo.com.tw&nbsp;&nbsp;&nbsp;&nbsp;
+nameserver = ns1.kimo.com.tw</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">kimo.com.tw&nbsp;&nbsp;&nbsp;&nbsp;
+nameserver = ns1.yahoo.com</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">kimo.com.tw&nbsp;&nbsp;&nbsp;&nbsp;
+nameserver = ns3.europe.yahoo.com</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">kimo.com.tw&nbsp;&nbsp;&nbsp;&nbsp;
+nameserver = ns5.dcx.yahoo.com</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">ns1.kimo.com.tw
+internet address = 210.59.144.1</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">ns1.yahoo.com&nbsp;&nbsp;
+internet address = 204.71.200.33</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">ns3.europe.yahoo.com&nbsp;&nbsp;&nbsp;
+internet address = 217.12.4.71</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">ns5.dcx.yahoo.com&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+internet address = 216.32.74.10</font></font></font></p></td>
+</tr>
+</tbody></table>
+</blockquote>
+<a name="talk"></a><font face="Times New Roman Baltic"><font color="#3333ff"><font size="+1">talk</font></font></font>
+<blockquote>这是用来交谈的指令。</blockquote>
+<a name="traceroute"></a><font face="Times New Roman Baltic"><font color="#3333ff"><font size="+1">traceroute</font></font></font>
+<blockquote>这是用来追查通讯包传送的情况，例如我们要从 seednet 的网络上查询到成大的代理服务器的通讯状况，可以使用如下的指令：
+<br>&nbsp;
+<table width="90%" bgcolor="#000000" cols="1">
+<tbody><tr>
+<td><font face="细明体"><font color="#ffffff"><font size="-1">[root@tsai
+/root]# /usr/sbin/traceroute proxy.ncku.edu.tw</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">traceroute
+to proxy.ncku.edu.tw (163.28.112.100), 30 hops max, 38 byte packets</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp;1&nbsp;
+172.16.11.8 (172.16.11.8)&nbsp; 128.378 ms&nbsp; 68.920 ms&nbsp; 118.313
+ms</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp;2&nbsp;
+139.175.15.1 (139.175.15.1)&nbsp; 54.146 ms&nbsp; 38.557 ms&nbsp; 44.320
+ms</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp;3&nbsp;
+R58-37.seed.net.tw (139.175.58.37)&nbsp; 61.339 ms&nbsp; 43.177 ms&nbsp;
+39.548 ms</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp;4&nbsp;
+R56-162.seed.net.tw (139.175.56.162)&nbsp; 66.631 ms&nbsp; 43.182 ms&nbsp;
+41.429 ms</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp;5&nbsp;
+203.72.191.222 (203.72.191.222)&nbsp; 65.538 ms&nbsp; 61.379 ms&nbsp; 38.887
+ms</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp;6&nbsp;
+140.116.241.230 (140.116.241.230)&nbsp; 40.159 ms&nbsp; 46.107 ms&nbsp;
+46.854 ms</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp;7&nbsp;
+proxy.tnrc.edu.tw (163.28.112.100)&nbsp; 38.641 ms&nbsp; 57.286 ms&nbsp;
+46.380 ms</font></font></font></td>
+</tr>
+</tbody></table>
+系统会告诉你，总共通过了7个路由，并列出了每一个路由的 Internet 地址。这个东西有个好处，可以告诉你，当网络出问题时，问题是在哪一个地方！</blockquote>
+<a name="mail"></a><font face="Times New Roman Baltic"><font color="#3333ff"><font size="+1">mail</font></font></font>
+<blockquote>这是用来收发信件的指令，详细的流程我们会在 mail 架站中提及。</blockquote>
+</blockquote>
+
+<hr width="100%">
+<br><a name="others"></a><font face="标楷体"><font color="#000099"><font size="+1">其他有的没的</font></font></font>
+<blockquote><a name="date"></a><font face="Times New Roman Baltic"><font color="#3333ff"><font size="+1">date</font></font></font>
+<blockquote><font face="Times New Roman Baltic"><font color="#000000">这是用来察看日期的指令。</font></font>
+<br>&nbsp;
+<table width="90%" bgcolor="#000000" cols="1">
+<tbody><tr>
+<td><font face="细明体"><font color="#ffffff"><font size="-1">[root@tsai
+/root]# date</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">Fri Aug&nbsp;
+3 19:09:31 CST 2001</font></font></font></td>
+</tr>
+</tbody></table>
+</blockquote>
+<a name="cal"></a><font face="Times New Roman Baltic"><font color="#3333ff"><font size="+1">cal</font></font></font>
+<blockquote><font face="Times New Roman Baltic"><font color="#000000">这是用来叫出日历的指令。</font></font>
+<br>&nbsp;
+<table width="90%" bgcolor="#000000" cols="1">
+<tbody><tr>
+<td><font face="细明体"><font color="#ffffff"><font size="-1">[root@tsai
+/root]# cal</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp;&nbsp;&nbsp;&nbsp;
+August 2001</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">Su Mo Tu We
+Th Fr Sa</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+1&nbsp; 2&nbsp; 3&nbsp; 4</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp;5&nbsp;
+6&nbsp; 7&nbsp; 8&nbsp; 9 10 11</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">12 13 14 15
+16 17 18</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">19 20 21 22
+23 24 25</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">26 27 28 29
+30 31</font></font></font></td>
+</tr>
+</tbody></table>
+</blockquote>
+<a name="grep"></a><font face="Times New Roman Baltic"><font color="#3333ff"><font size="+1">grep</font></font></font>
+<blockquote>这是用来搜寻某些特定字符的指令。例如使用 ps -aux 查询系统服务时，我们只需要知道
+sendmail 是否有动作，则可以使用管线指令『|』来加入 grep 这个指令同时运作。
+<br>&nbsp;
+<table width="90%" bgcolor="#000000" cols="1">
+<tbody><tr>
+<td><font face="细明体"><font color="#ffffff"><font size="-1">[root@tsai
+/root]# ps -aux|grep sendmail</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">root&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+443&nbsp; 0.0&nbsp; 1.0&nbsp; 2092&nbsp; 660 ?&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+S&nbsp;&nbsp;&nbsp; Jul26&nbsp;&nbsp; 0:36 sendmail: accepti</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">vbird&nbsp;&nbsp;&nbsp;&nbsp;
+8387&nbsp; 0.0&nbsp; 0.7&nbsp; 1240&nbsp; 492 pts/1&nbsp;&nbsp;&nbsp; S&nbsp;&nbsp;&nbsp;
+19:11&nbsp;&nbsp; 0:00 grep sendmail</font></font></font></td>
+</tr>
+</tbody></table>
+上表则表示 sendmail 有在运作了！</blockquote>
+</blockquote>
+
+<hr width="100%">
+<br><a name="ftp_ncftp"></a><font color="#000099"><font size="+1"><font face="Times New Roman Baltic">ftp</font><font face="标楷体">
+指令</font></font></font>
+<blockquote><a name="ftp"></a><font face="Times New Roman Baltic"><font color="#3333ff"><font size="+1">ftp</font></font></font>
+<blockquote><font face="Times New Roman Baltic"><font color="#000000">FTP
+这个功能不用再多谈了吧？这是用来捉取网络上免费档案的一套软件。例如我们要连上交大的
+FTP 站捉东西，可以如下：</font></font>
+<br>&nbsp;
+<table width="90%" bgcolor="#000000" cols="1">
+<tbody><tr>
+<td><font face="细明体"><font color="#ffffff"><font size="-1">[root@tsai
+/root]#&nbsp; ftp linux.cis.nctu.edu.tw</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">Connected to
+linux.cis.nctu.edu.tw.</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">220 ProFTPD
+1.2.0rc3 Server (Linux.CIS FTP server) [linux.cis.nctu.edu.tw]</font></font></font>
+<br><font face="细明体"><font size="-1"><font color="#ffffff">Name (linux.cis.nctu.edu.tw:vbird):
+</font><font color="#ffff00">anonymous
+&lt;==输入 anonymous 匿名登录</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">331 Anonymous
+login ok, send your complete email address as your password.</font></font></font>
+<br><font face="细明体"><font size="-1"><font color="#ffffff">Password:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#ffff00">
+&lt;==输入 name@server.xxx.xxx 型态的 mail-address 密码</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">230 Anonymous
+access granted, restrictions apply.</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">Remote system
+type is UNIX.</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">Using binary
+mode to transfer files.</font></font></font>
+<br><font face="细明体"><font size="-1"><font color="#ffffff">ftp&gt; </font><font color="#ffff00">dir&nbsp;&nbsp;
+&lt;==检查网站上的目录</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">200 PORT command
+successful.</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">150 Opening
+ASCII mode data connection for file list.</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">-rw-rw-rw-&nbsp;&nbsp;
+1 linux&nbsp;&nbsp;&nbsp; adm&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 39491400 Aug&nbsp;
+3 21:00 00ls-lR</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">-rw-rw-rw-&nbsp;&nbsp;
+1 linux&nbsp;&nbsp;&nbsp; adm&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 3091546
+Aug&nbsp; 3 21:01 00ls-lR.gz</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">-rw-r--r--&nbsp;&nbsp;
+1 linux&nbsp;&nbsp;&nbsp; wheel&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+232 Mar 15 22:00 00mirror.today</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">drwxr-xr-x&nbsp;&nbsp;
+5 linux&nbsp;&nbsp;&nbsp; wheel&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+4096 Oct 29&nbsp; 2000 java</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">drwxr-xr-x&nbsp;
+14 linux&nbsp;&nbsp;&nbsp; wheel&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+4096 Aug&nbsp; 2 19:31 kernel</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">drwxr-xr-x&nbsp;&nbsp;
+4 linux&nbsp;&nbsp;&nbsp; wheel&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+4096 Sep 28&nbsp; 2000 mirrors</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">226-Transfer
+complete.</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">226 Quotas
+off</font></font></font>
+<br><font face="细明体"><font size="-1"><font color="#ffffff">ftp&gt; cd kernel/v2.4
+</font><font color="#ffff00">&lt;==进入
+kernel 底下的 v2.4 目录</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">250 CWD command
+successful.</font></font></font>
+<br><font face="细明体"><font size="-1"><font color="#ffffff">ftp&gt; get linux-2.4.0.tar.bz2.sign
+</font><font color="#ffff00">&lt;==捉下
+linux-2.4.0.tar.bz.2.sign 这个档</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">local: linux-2.4.0.tar.bz2.sign
+remote: linux-2.4.0.tar.bz2.sign</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">200 PORT command
+successful.</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">150 Opening
+BINARY mode data connection for linux-2.4.0.tar.bz2.sign (248 bytes)</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">.</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">226 Transfer
+complete.</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">248 bytes received
+in 0.014 secs (17 Kbytes/sec)</font></font></font></td>
+</tr>
+</tbody></table>
+</blockquote>
+<a name="ncftp"></a><font face="Times New Roman Baltic"><font color="#3333ff"><font size="+1">ncftp</font></font></font>
+<blockquote>在使用 FTP 功能的时候，因为只能一次捉一个档案，所以要捉一群档案的时候就会有困扰。这时我们可以使用更容易登入匿名
+FTP 站的 ncftp 来执行 FTP 功能！
+<br>&nbsp;
+<table width="90%" bgcolor="#000000" cols="1">
+<tbody><tr>
+<td><font face="细明体"><font color="#ffffff"><font size="-1">[root@tsai
+/root]# ncftp linux.cis.nctu.edu.tw</font></font></font>
+<br><font face="细明体"><font size="-1"><font color="#ffffff">ncftp / &gt; mget&nbsp;
+-R&nbsp; kernel&nbsp; </font><font color="#ffff00">&lt;==将 kernel 这个目录的东西全捉下来！</font></font></font></td>
+</tr>
+</tbody></table>
+加上了 <font color="#3333ff">mget -R 目录</font> 这个指令后，就可以将目录下的东西完全捉下来！好用吧！</blockquote>
+<a name="gftp"></a><font face="Times New Roman Baltic"><font color="#3333ff"><font size="+1">gftp</font></font></font>
+<blockquote>这是在 X-Windows 使用的图形接口 FTP 咚咚！这个咚咚的使用方法就跟
+CutFTP 很相似！</blockquote>
+</blockquote>
+
+<hr width="100%">
+<br><a name="aboutsysconf"></a><font face="标楷体"><font color="#000099"><font size="+1">相关程序设定指令</font></font></font>
+<blockquote><a name="set"></a><font face="Times New Roman Baltic"><font color="#3333ff"><font size="+1">set</font></font></font>
+<blockquote>这是用来设定或是观看目前系统的设定的指令，若只打入 set 则仅会列出目前系统的参数。</blockquote>
+<a name="uname"></a><font face="Times New Roman Baltic"><font color="#3333ff"><font size="+1">uname</font></font></font>
+<blockquote>这是用来观看系统名称的指令，可以打入 -a 参数来列出所有信息。
+<br>&nbsp;
+<table width="90%" bgcolor="#000000" cols="1">
+<tbody><tr>
+<td><font face="细明体"><font color="#ffffff"><font size="-1">[root@tsai
+/root]# uname -a</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">Linux vbird.adsldns.org
+2.2.12-20 #1 Mon Sep 27 10:25:54 EDT 1999 i586 unknown</font></font></font></td>
+</tr>
+</tbody></table>
+</blockquote>
+<a name="setup"></a><font face="Times New Roman Baltic"><font color="#3333ff"><font size="+1">setup</font></font></font>
+<blockquote>这个是常常使用来设定系统的一个指令，执行之后会有一个窗口出现，较常使用的是
+<font color="#3333ff">System
+services</font> 这一项，可用来设定开机的时候要开放的服务！</blockquote>
+<a name="lilo"></a><font face="Times New Roman Baltic"><font color="#3333ff"><font size="+1">lilo</font></font></font>
+<blockquote>这是用来设定多重引导，或是开机选项的指令，详细的流程请到<a href="http://linux.vbird.org/linux_basic/redhat6.1/linux_04begin_lilo.php#lilo">这里</a>来看看！</blockquote>
+<a name="Xconfigurator"></a><font face="Times New Roman Baltic"><font color="#3333ff"><font size="+1">Xconfigurator</font></font></font>
+<blockquote><font face="Times New Roman Baltic"><font color="#000000">这是用来简易的设定
+X-Windows 的指令，当你的 X-Windows 确定是可以跑的，而你想要改变一些设定，例如：分辨率、色彩度等等，就直接使用这个指令啦！</font></font></blockquote>
+<a name="xf86config"></a><font face="Times New Roman Baltic"><font color="#3333ff"><font size="+1">xf86config</font></font></font>
+<blockquote>这是用来设定 X-Windows 的指令！这个指令会比 Xconfigurator 麻烦，不过当你的
+X-Windows 没有办法跑的时候，这个咚咚是很好用的！</blockquote>
+</blockquote>
+
+<hr width="100%">
+<br><a name="x-window"></a><font color="#000099"><font size="+1"><font face="Times New Roman Baltic">X-Window</font><font face="标楷体">内的设定指令</font></font></font>
+<blockquote><a name="startx"></a><font face="Times New Roman Baltic"><font color="#3333ff"><font size="+1">startx</font></font></font>
+<blockquote><font face="Times New Roman Baltic"><font color="#000000">这是开始执行
+X-Windows 的指令！</font></font></blockquote>
+<a name="netconf"></a><font face="Times New Roman Baltic"><font color="#3333ff"><font size="+1">netconf</font></font></font>
+<blockquote><font face="Times New Roman Baltic"><font color="#000000">这是网络设定的指令！</font></font></blockquote>
+<a name="netcfg"></a><font face="Times New Roman Baltic"><font color="#3333ff"><font size="+1">netcfg</font></font></font>
+<blockquote><font face="Times New Roman Baltic"><font color="#000000">这也是网络设定的指令！</font></font></blockquote>
+<a name="XF86Setup"></a><font face="Times New Roman Baltic"><font color="#3333ff"><font size="+1">XF86Setup</font></font></font>
+<blockquote><font face="Times New Roman Baltic"><font color="#000000">这是在
+X-Windows 下以图形接口设定 分辨率、色彩度 的设定指令。</font></font></blockquote>
+</blockquote>
+
+<hr width="100%">
+<br><a name="QA"></a><font face="标楷体"><font color="#000099"><font size="+1">本章问题讨论：</font></font></font>
+<blockquote>
+<ol>
+<li>
+<font size="+2">Q</font>：在 Linux 上面都是一些在线的英文说明，有没有中文说明，或更详细的说明资料呢？</li>
+
+<br><font color="#000066"><font size="+2">A</font>：</font>
+<br><font color="#000066">其实在网络上已经有一票高手在进行 Linux how to
+的翻译工作，这是一个很有意义的事情，因为可以让新手或者是一些有需要使用
+Linux 的人，有一个很好的学习文件。你可以来下面的网址看看：</font>
+<br><font color="#000066">中文How-to：<a href="http://www.linux.org.tw/CLDP/" target="_blank">http://www.linux.org.tw/CLDP/</a></font>
+<br><font color="#000066">英文How-to：<a href="http://www.ibiblio.org/mdw/HOWTO/HOWTO-INDEX/howtos.html" target="_blank">http://www.ibiblio.org/mdw/HOWTO/HOWTO-INDEX/howtos.html</a></font>
+<br>&nbsp;
+<li>
+<a name="newHardDisk"></a><font size="+2">Q</font>：在 Linux 中如何加入新硬盘？</li>
+
+<br><font color="#000066"><font size="+2">A</font>：</font>
+<br><font color="#000066">其实加入新硬盘的方法也是很简单的：</font>
+<ul>
+<li>
+<font color="#3333ff">安装硬盘</font><font color="#000066">：关掉 Linux
+主机电源，调整 Hard Disk 的 Jump （master 或 slave），串接在 IDE 的接口，请注意，留意你增加的硬盘所串接的
+IDE 接口为哪一个插槽，例如你插在 IDE2 的 Master ，则你的硬盘应为 hdc；</font></li>
+
+<li>
+<font color="#3333ff">新增硬件于BIOS</font><font color="#000066">：开启计算机后，按
+del 键进入 BIOS，选择 IDE Hard Disk Detector 字样的选项，让BIOS去捉硬盘，然后再选择
+Save and Exit；</font></li>
+
+<li>
+<font color="#3333ff">Linux 安装</font><font color="#000066">：开机进入
+Linux 的时候，系统会告诉你有捉到一个新的硬件，你可以按 『configure』 由系统直接安装即可；</font></li>
+
+<li>
+<font color="#3333ff">格式化硬盘</font><font color="#000066">：以 root
+的身份进入 Linux 后，执行以下两个程序：</font></li>
+
+<ul>
+<li>
+<font color="#000066"><a href="#fdisk">fdisk</a>&nbsp; /dev/hdc&nbsp; &lt;==
+hdc 与你的硬盘串接的IDE接口有关，关于这个指令的介绍请参考上面的指令说明；</font></li>
+
+<li>
+<font color="#000066"><a href="#mke2fs">mke2fs</a>&nbsp; -c&nbsp; /dev/hdc1&nbsp;
+&lt;==假设硬盘全部配置成一个大硬盘，则硬盘应为 hdc1 ，以 mke2fs 将系统规划为
+Linux 的系统文件。</font></li>
+</ul>
+
+<li>
+<font color="#3333ff">开机自动加载</font><font color="#000066">：再来则是以
+vi 修改 /etc/fstab 档案，让每次开机把这个硬盘直接挂入系统中。例如 hdc1
+这颗硬盘挂在 /mnt/hdc1 中，则 fstab 的档案有点像这样：（</font><font color="#000000">/dev/hdc1
+那一行是新加入的</font><font color="#000066">！）</font></li>
+
+<br>&nbsp;
+<table width="90%" bgcolor="#000000" cols="1">
+<tbody><tr>
+<td><font face="细明体"><font color="#ffffff"><font size="-1">/dev/hda1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+/&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ext2&nbsp;&nbsp;&nbsp;
+ defaults&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+1 1</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">/dev/hda5&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+swap&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+swap&nbsp;&nbsp;&nbsp; defaults&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+0 0</font></font></font>
+<br><font face="细明体"><font color="#ffff00"><font size="-1">/dev/hdc1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+/mnt/hdc1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ext2&nbsp;&nbsp;&nbsp; defaults&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+1 1</font></font></font></td>
+</tr>
+</tbody></table>
+
+<li>
+<font color="#000099">安装完成</font><font color="#000066">：然后再重新启动就可以啦！</font></li>
+</ul>
+
+<li>
+<a name="newuser"></a><font size="+2">Q</font>：在 Linux 中如何增加新使用者呢？</li>
+
+<br><font color="#000066"><font size="+2">A</font>：</font>
+<br><font color="#000066">无论是加入新使用者或者是加入新群组，都可以使用
+<a href="http://linux.vbird.org/linux_basic/redhat6.1/linux_06userconf.php" target="_blank">/bin/userconf</a>
+这个程序来完成，使用这个程序，只要输入 ID 及 pass word 就可以啦！（不过你必须是
+root 的身份才可以执行！）详细的执行请看上面的指令说明。</font>
+<br>&nbsp;
+<li>
+<a name="openfloppy"></a><font size="+2">Q</font>：在 Linux 中如何制作开机片？</li>
+
+<br><font color="#000066"><font size="+2">A</font>：</font>
+<br><font color="#000066">无论何种系统，有个开机片总是比较安心的！ Linux
+也是一样！虽然他很稳定，但是并不是说就不会有问题，因此制作可启动盘以利解救
+Linux 问题是一个好习惯！制作开机片的方法很简单，只要下达：</font>
+<ul>
+<li>
+<font color="#000066"><a href="#mkbootdisk">mkbootdisk</a> --device /dev/fd0
+`uname -r`</font></li>
+</ul>
+<font color="#000066">就可以啦！</font>
+<br>&nbsp;
+<li>
+等待加入新讨论：</li>
+</ol>
+</blockquote>
+<font face="新细明体"><font color="#3333ff"><font size="-1">2002/ 01/01以来统计人数</font></font></font>
+<br><img src="linux_06command_files/Count.gif" nosave="" width="60" align="ABSCENTER" height="15"><hr width="100%">
+<center>
+<a href="http://linux.vbird.org/" target="_top"><img src="linux_06command_files/VBirdTitle2.jpg" nosave="" width="90" border="0" height="25"></a>
+<a href="http://linux.vbird.org/linux_basic"><img src="linux_06command_files/icon_system.gif" nosave="" width="90" border="0" height="25"></a>
+<a href="http://linux.vbird.org/linux_server"><img src="linux_06command_files/icon_server.gif" nosave="" width="90" border="0" height="25"></a>
+<a href="http://linux.vbird.org/linux_security"><img src="linux_06command_files/icon_security.jpg" nosave="" width="90" border="0" height="25"></a>
+<a href="http://phorum.vbird.org/" target="_blank"><img src="linux_06command_files/icon_forums.gif" nosave="" width="90" border="0" height="25"></a>
+<a href="http://linux.vbird.org/adsl"><img src="linux_06command_files/icon_adsl.gif" nosave="" width="90" border="0" height="25"></a>
+<br><font color="#000066"><font size="-1">Designed by <a href="mailto:vbird@mail.vbird.idv.tw">VBird</a>
+during 2001-2004.&nbsp; Aerosol Lab.</font></font></center>
+</body></html>

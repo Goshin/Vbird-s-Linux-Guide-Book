@@ -1,0 +1,124 @@
+@charset "UTF-8";
+
+body {
+	margin-left: 0px;
+	margin-top: 0px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+	background-color:#FAFAFA;
+}
+
+#apDiv1 {
+	position:static;
+	width: 860px;
+	z-index:-50;
+	font-family: "细明体";
+	font-size: 36px;
+	color: #182448;
+	margin-top:auto;
+	font-weight: bold;
+	background-color: #FFFFFF;
+	border-style:solid;
+	border-width:0px;
+	border-color:#182448;
+	text-align: left;
+}
+#apDiv2 {
+	position:static;
+	width:860px;
+	height:300px;
+	z-index:-2;
+	font-family: "细明体";
+	left: 0;
+	top: 0px;
+	font-size: 18px;
+	text-align: left;
+	background-color: #FFFFFF;
+}
+#apDiv3 {
+	position:static;
+	width:898px;
+	height:50px;
+	z-index:-3;
+	left: 0;
+	top: 0px;
+	font-family: "细明体";
+	font-size: 16px;
+	text-align: left;
+	background-color: #FFFFFF;
+}
+#apDiv4 {
+	position:static;
+	width:898px;
+	height:30px;
+	z-index:4;
+	top: 0;
+	left: 0;
+	background-color: #182448;
+	color: #FFF;
+	font-size: 16px;
+	text-align: right;
+	font-weight: normal;
+	font-family: "细明体";
+}
+#apDiv5 {	
+	position:static;
+	width: 898px;
+	z-index:-10;
+	background-color: #FFFFFF;
+	border-style:solid;
+	border-width:1px;
+	border-color:#182448;
+}
+
+
+
+		body,th,td,input,select,textarea,select,checkbox {
+			font-family: '新细明体', 'Times New Roman', serif;
+			font-size: 11pt ;
+		}
+		a:link		{text-decoration: none; color: blue}
+		a:visited	{text-decoration: none; color: blue}
+		a:active	{text-decoration: none; color: blue}
+		a:hover		{text-decoration: underline; color: #ff0000}
+				table.head1	{width:95%; background-color: #182448; 
+				 border-style:groove;border-width:5px;border-color: #182448; margin:0;
+				 padding: 5px 5px}
+		   		   td.head1	{font: 10pt "新细明体", serif; color: #FFFFFF; }
+		   		   td.info1	{font: 11pt "新细明体", serif; color: #FFFFFF; text-align:center; width:14%}
+		   td.info2	{font: 11pt "新细明体", serif; color: #000066; text-align:center; width:12%}
+		    *.info21	{font: 11pt "新细明体", serif; color: #000066; }
+		    *.info22	{font: 11pt "新细明体", serif; color: blue  ; }
+		    *.info23	{font: 11pt "新细明体", serif; color: green ; }
+		   td.info3	{font: 11pt "新细明体", serif; color: #000066; text-align:justify}
+				*.text_head0	{font-size:20pt; font-family:'标楷体','Times New Roman','Times', serif; color: #182448; font-weight: bold }
+		*.text_head_en	{font-size:18pt; font-family:'Times New Roman','Times', serif; }
+				*.text_h1	{font: 15pt "新细明体", serif; color: #0000BB; font-weight: bold }
+				*.text_h2	{font: 13pt "新细明体", serif; color: #0000BB; font-weight: bold }
+				*.text_h3	{font: 13pt "新细明体", serif; color: #FFFFFF; font-weight: bold }
+				*.text_import1	{font:  11pt "新细明体", serif; color: #000088; font-weight: bold  }
+		*.text_import2	{font:  11pt "新细明体", serif; color: #000088; font-weight: normal}
+		*.text_import3	{font:  11pt "新细明体", serif; color: #182448; font-weight: bold}
+		*.text_vbird	{font:  11pt "新细明体", serif; color: #000088; font-weight: normal; 
+				 font-style: italic;}
+		*.text_history	{font:  10pt "新细明体", serif; color: #000066; }
+		*.text_date	{font:  10pt "新细明体", serif; color: #3333FF; }
+				*.block1	{padding: 10px 20px 10px 25px; text-align:left }
+				*.block2	{padding: 10px 0px  10px 25px; text-align:left }
+	    table.term2		{width: 350px; background-color: #000000;
+				 border-style:groove;border-width:3px;border-color: #FFCCCC; margin:10px 0px;}
+	    	    table.term		{width: 580px; background-color: #000000;
+				 border-style:groove;border-width:3px;border-color: #FFCCCC; margin:10px 0px;}
+	       	       td.term		{font:  10pt "细明体", Fixedsys, serif; color: #FFFFFF; }
+		*.term_hd	{font:  10pt "细明体", Fixedsys, serif; color: #BBBBBB; }
+		*.term_note	{font:  10pt "细明体", Fixedsys, serif; color: #777777; font-weight: normal }
+		*.term_note_b	{font:  10pt "细明体", Fixedsys, serif; color: #FF77FF; font-weight: bolder }
+		*.term_command	{font:  10pt "细明体", Fixedsys, serif; color: yellow ; font-weight: bolder }
+		*.term_write	{font:  10pt "细明体", Fixedsys, serif; color: yellow ; font-weight: normal }
+		*.term_say	{font:  10pt "细明体", Fixedsys, serif; color: #FF6666; font-weight: normal }
+		*.term_white	{font:  10pt "细明体", Fixedsys, serif; color: #000000; background-color: #FFFFFF }
+		*.list1		{list-style-type: square ; padding-left:0; margin-bottom:0 }
+		*.listol	{                          padding-left:0; margin-bottom:0 }
+		*.blockex	{padding: 10px 0px  10px 25px ; font: 9pt "新细明体", serif; color: #FFFFFF ; text-align: left }
+		*.fontwidth	{font-family: 细明体 }
+		*.fontwidth td 	{	font-family: 细明体;	text-align: left;}

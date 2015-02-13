@@ -1,0 +1,261 @@
+﻿<!DOCTYPE HTML PUBLIC "-//w3c//dtd html 4.0 transitional//en">
+<html><head>
+
+
+   <meta http-equiv="Content-Type" content="text/html; charset=utf8">
+   <meta name="Author" content="VBird">
+   <title>鸟哥的 Linux 私房菜 -- 例行性命令</title>
+<style>
+   <!--
+   body{background-image:url(http://linux.vbird.org/images/VBirdLinux.jpg);
+	background-ATTACHMENT:FIXED}
+   -->
+</style>
+</head><body>
+
+
+<!-- Copyright � 2005. Spidersoft Ltd -->
+<style>
+A.applink:hover {border: 2px dotted #DCE6F4;padding:2px;background-color:#ffff00;color:green;text-decoration:none}
+A.applink       {border: 2px dotted #DCE6F4;padding:2px;color:#2F5BFF;background:transparent;text-decoration:none}
+A.info          {color:#2F5BFF;background:transparent;text-decoration:none}
+A.info:hover    {color:green;background:transparent;text-decoration:underline}
+</style>
+<div style='BORDER: 1px solid #DCE6F4; MARGIN-TOP: 20px; MARGIN-BOTTOM: 20px; MARGIN-LEFT: 5px; MARGIN-RIGHT: 5px; PADDING: 5px; BACKGROUND-COLOR: #eef8ff;line-height:180%; COLOR: #000000; font-family: Arial; font-size: 8pt; width=100%; FILTER: progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr="#FFFFFFFF", EndColorStr="#F2F5FAFF");'>
+This page was saved using <a class="applink" href="http://www.spidersoft.com"><b>WebZIP 7.0.3.1030</b></a> <a class="applink" href="http://www.spidersoft.com"><b>offline browser</b></a>  (Unregistered) on  02/12/15 12:14:49.<br>
+<b>Address:</b> <a class="info" href="http://vbird.dic.ksu.edu.tw/linux_basic/redhat6.1/linux_11cron.php">http://vbird.dic.ksu.edu.tw/linux_basic/redhat6.1/linux_11cron.php</a><br>
+<b>Title:</b> 鸟哥的 Linux 私房菜 -- 例行性命令 &nbsp;&bull;&nbsp; <b>Size:</b> 14988<br></div>
+<!-- /Copyright � 2005. Spidersoft Ltd -->
+
+
+<center><b><font color="#3333ff"><font size="+2"><font face="标楷体">鸟哥的</font><font face="Times New Roman,Times"> Linux </font><font face="标楷体">与</font><font face="Times New Roman,Times"> ADSL </font><font face="标楷体">私房菜</font></font></font></b>
+<br>
+<a href="http://linux.vbird.org/" target="_top"><img src="linux_11cron_files/VBirdTitle2.jpg" nosave="" width="90" border="0" height="25"></a>
+<a href="http://linux.vbird.org/linux_basic"><img src="linux_11cron_files/icon_system.gif" nosave="" width="90" border="0" height="25"></a>
+<a href="http://linux.vbird.org/linux_server"><img src="linux_11cron_files/icon_server.gif" nosave="" width="90" border="0" height="25"></a>
+<a href="http://linux.vbird.org/linux_security"><img src="linux_11cron_files/icon_security.jpg" nosave="" width="90" border="0" height="25"></a>
+<a href="http://phorum.vbird.org/" target="_blank"><img src="linux_11cron_files/icon_forums.gif" nosave="" width="90" border="0" height="25"></a>
+<a href="http://linux.vbird.org/adsl"><img src="linux_11cron_files/icon_adsl.gif" nosave="" width="90" border="0" height="25"></a>
+<br>
+<hr width="100%">
+</center>
+
+<center><font color="#3333ff"><font size="+2"><font face="Times New Roman Baltic">Linux</font><font face="标楷体">
+例行性命令的建立</font></font></font></center>
+
+<div align="right"><font face="新细明体"><font color="#3333ff"><font size="-1">最近更新日期：2001/11/04</font></font></font></div>
+<font face="标楷体"><font color="#000099"><font size="+1"><a href="#%ABe%A8%A5">前言</a></font></font></font>
+<br><font color="#000099"><font size="+1"><a href="#usercron"><font face="标楷体">使用
+</font><font face="Times New Roman Baltic">crontab</font><font face="标楷体">
+指令</font></a></font></font>
+<br><font color="#000099"><font size="+1"><a href="#crontab"><font face="标楷体">修改
+</font><font face="Times New Roman Baltic">/etc/crontab</font><font face="标楷体">
+档案</font></a></font></font>
+<br>
+<hr width="100%"><a name="前言"></a><font face="标楷体"><font color="#000099"><font size="+1">前言</font></font></font>
+<blockquote>假如你每一天早上 8:00 钟要服务器连接上音响，并启动音乐来唤你起床；而中午
+12:00 希望 Linux 可以发一封信到你的邮件信箱，提醒你可以去吃午餐了；另外，在每年的你爱人的生日的前一天，先发封信提醒你，以免忘记这么重要的一天.....要怎样达到这个目的呢？其实是很简单的，只要使用
+<font color="#000099">crontab</font>
+就可以啦！</blockquote>
+
+<blockquote>其实，Linux 本身在背景下的工作可是很多的，尤其是网络开放的情况下，建立与取消联机、MySQL
+数据库的实时更新、以及一些例行的系统指令，例如释放内存的工作等等。由于例行的工作非常的多，实在不可能每天都要管理员来手动输入吧！因此我们就需要了解一下
+Linux 是如何建立例行性工作的！</blockquote>
+
+<blockquote>crontab 基本上有两种建立例行性命令的方式，一种是针对所有使用者，可以藉由
+crontab -e 的指令来下达工作排程；另一种是针对系统管理员，你可以直接藉由修改
+/etc/crontab 这一个文本文件，来直接排程！那 crontab 的主要命令要如何执行呢？待鸟哥慢慢道来！</blockquote>
+
+<hr width="100%"><a name="usercron"></a><font color="#000099"><font size="+1"><font face="标楷体">使用
+</font><font face="Times New Roman Baltic">crontab</font><font face="标楷体">
+指令</font></font></font>
+<blockquote><font color="#000099">建立个人用户的例行性命令：</font></blockquote>
+
+<blockquote>假如你需要在每天的正午 12:00 发一封信给你自己，而且信的内容已经写好了，那要怎样作呢？而且，另一个假设是，你在
+Linux Server 中的权限仅止于一般使用者，并不是 root （管理员）身份，那要怎样设定你的例行性命令呢？哈哈！那就使用
+crontab 这个指令吧！你只要执行 crontab -e 就可以进入 vi 的编辑画面来编辑你的例行性命令说！
+<br>&nbsp;
+<table width="90%" bgcolor="#000000" cols="1">
+<tbody><tr>
+<td><font face="细明体"><font color="#ffffff"><font size="-1">[vbird@tsai
+vbird]# crontab -e</font></font></font>
+<p><font face="细明体"><font color="#ffffff"><font size="-1">0 12 * * * mail
+vbird@tsai.adsldns.org &lt; /home/vbird/test.txt</font></font></font></p></td>
+</tr>
+</tbody></table>
+在上面的例子中，输入 crontab -e 时，会出现一个 vi 画面，然后你在 vi 画面中输入上面的一行字，之后按
+<font color="#3333ff">:wq
+</font>储存后离开！即可完成编辑！容易吧！那上面那一行字代表什么意义呢？你可以看到，在真正执行命令之前（就是
+mail vbird@tsai.adsldns.org &lt; /home/vbird/test.txt ）总共有五个数字，这五个数字分别代表：
+<blockquote><font color="#000099">分（0-59）</font>
+<br><font color="#000099">小时（0-23）</font>
+<br><font color="#000099">日期（1-31）</font>
+<br><font color="#000099">月份（1-12）</font>
+<br><font color="#000099">周（0-6）</font>
+<table width="80%" border="1" cols="6">
+<tbody><tr>
+<td bgcolor="#ffffcc">数字代表的意义</td>
+
+<td>分钟</td>
+
+<td>小时</td>
+
+<td>日期</td>
+
+<td>月份</td>
+
+<td>周</td>
+</tr>
+
+<tr>
+<td bgcolor="#ffffcc">范围</td>
+
+<td>0-59</td>
+
+<td>0-23</td>
+
+<td>1-31</td>
+
+<td>1-12</td>
+
+<td>0-6 (0为星期天)</td>
+</tr>
+</tbody></table>
+</blockquote>
+另外，如果是『 ＊&nbsp; 』的时候，代表所有数字都适用的意思。所以，你就可以知道我上面那一行写的意义为何了！那就是不论何月、何日、星期几的
+12 点 0 分时，执行 mail vbird@tsai.adsldns.org &lt; /home/vbird/test.txt
+这个命令！还不了解？没关系，我们这里作几个例子！
+<ul>
+<li>
+<font color="#3333ff">例题一</font>：假如你的女朋友生日是 5 月 2 日，你想要在
+5 月 1 日的 23:59 发一封信给他，这封信的内容已经写在 /home/vbird/lover.txt
+中了那你要如何编辑呢？呵呵，使用：</li>
+
+<table width="90%" bgcolor="#000000" cols="1">
+<tbody><tr>
+<td><font face="细明体"><font color="#ffffff"><font size="-1">[vbird@tsai
+vbird]# crontab -e</font></font></font>
+<p><font face="细明体"><font color="#ffffff"><font size="-1">59 23 1 5 *
+mail pigpp@tsai.adsldns.org &lt; /home/vbird/lover.txt</font></font></font></p></td>
+</tr>
+</tbody></table>
+就可以啰！那样的话，每年 pigpp 都会收到你的这封信喔！（当然啰，信的内容就要每年变一变啦！）</ul>
+
+<ul>
+<li>
+<font color="#3333ff">例题二</font>：假设你每隔五分钟就要去 check 你的一个名为
+test.sh 这个批处理文件一次！要如何写呢？</li>
+
+<table width="90%" bgcolor="#000000" cols="1">
+<tbody><tr>
+<td><font face="细明体"><font color="#ffffff"><font size="-1">[vbird@tsai
+vbird]# crontab -e</font></font></font>
+<p><font face="细明体"><font color="#ffffff"><font size="-1">*/5 * * * *
+/home/vbird/test.sh</font></font></font></p></td>
+</tr>
+</tbody></table>
+就可以啦！有两件事要注意一下：(1) 指令的路径最好是下达绝对路径，这样比较不会找不到执行的档案喔！；(2)
+第一个数字 <font color="#3333ff">*/5 </font>表示『每五分钟执行一次』的意思！</ul>
+
+<ul>
+<li>
+<font color="#3333ff">例题三</font>：假如你每个礼拜五下午 4:30 要告诉朋友星期六的约会不要忘记，如何下达指令？</li>
+
+<table width="90%" bgcolor="#000000" cols="1">
+<tbody><tr>
+<td><font face="细明体"><font color="#ffffff"><font size="-1">[vbird@tsai
+vbird]# crontab -e</font></font></font>
+<p><font face="细明体"><font color="#ffffff"><font size="-1">30 16 * * 5
+mail frend@test.domain.name &lt; /home/vbird/frend.txt</font></font></font></p></td>
+</tr>
+</tbody></table>
+就成功啦！这样了不了呀！</ul>
+<font color="#000099">察看个人用户的例行性命令：</font></blockquote>
+
+<blockquote>如果你一直使用 crontab 这个方法来下达例行性命令的话，有可能有一些指令你会忘记了！那怎办呢？没关系，只要下达：
+<blockquote><font face="细明体"><font color="#3333ff">crontab -l</font><font color="#000099">
+（注： -l 是 L 的小写喔！）</font></font></blockquote>
+就可以知道你曾经下达的 crontab 的命令啰！</blockquote>
+
+<blockquote><font color="#000099">删除例行性命令：</font>
+<br>这个更简单，使用 <font face="细明体"><font color="#3333ff">crontab
+-r</font></font> 就删除了！</blockquote>
+
+<hr width="100%"><a name="crontab"></a><font color="#000099"><font size="+1"><font face="标楷体">修改
+</font><font face="Times New Roman Baltic">/etc/crontab</font><font face="标楷体">
+档案</font></font></font>
+<ul>如果你是系统管理员的话，那么是否还是需要以 crontab -e 来管理你的例行性命令呢？当然不需要，你只要编辑
+<font color="#3333ff">/etc/crontab
+</font>这个档案就可以啦！有一点需要特别注意喔！那就是 crontab -e 这个 crontab
+其实是 /usr/bin/crontab 这个执行档，但是 /etc/crontab 可是一个『纯文本档』喔！你可以
+root 的身份编辑一下这个档案哩！
+<br>&nbsp;
+<table width="90%" bgcolor="#000000" cols="1">
+<tbody><tr>
+<td><font face="细明体"><font color="#ffffff"><font size="-1">[root@tsai
+/root]# vi /etc/crontab</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">SHELL=/bin/bash</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">PATH=/sbin:/bin:/usr/sbin:/usr/bin</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">MAILTO=root</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">HOME=/</font></font></font>
+<p><font face="细明体"><font color="#ffffff"><font size="-1"># run-parts</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">01&nbsp; *
+* * * root run-parts /etc/cron.hourly</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">02&nbsp; 4
+* * * root run-parts /etc/cron.daily</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">22&nbsp; 4
+* * 0 root run-parts /etc/cron.weekly</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">42&nbsp; 4
+1 * * root run-parts /etc/cron.monthly</font></font></font></p></td>
+</tr>
+</tbody></table>
+看到这个档案的内容你大概就了解了吧！呵呵，没错！这个档案与将刚刚我们下达
+crontab -e 的内容几乎完全一模一样！只是有几个地方不太相同：</ul>
+
+<ul>
+<ul>
+<li>
+<font color="#3333ff">MAILTO=root</font>：是说，当 /etc/crontab 这个档案中的例行性命令发生错误时，会将错误讯息或者是屏幕显示的讯息传给谁？由于
+root 并无法在客户端中收信，因此，我通常都将这个 e-mail 改成自己的账号，好让我随时了解系统的状况！</li>
+</ul>
+</ul>
+
+<ul>
+<ul>
+<li>
+<font face="细明体"><font color="#3333ff">01 * * * * root run-parts /etc/cron.hourly</font></font>：在
+#run-parts 这一行以后的命令，我们可以发现，五个数字后面接的是 root 喔！没错，这一行代表的是『<font color="#3333ff">执行的层级为
+root 身份</font>』当然啰，你也可以将这一行改写成其他的身份哩！而 <font color="#3333ff">run-parts</font>
+代表后面接的 /etc/cron.hourly 是『<font color="#3333ff">一个目录内（/etc/cron.hourly）的所有可执行文件</font>』，这也就是说，<font color="#000099">每</font><font color="#3333ff">个小时的
+01 分，系统会以 root 层级的使用者去 /etc/cron.hourly 这个目录下执行所有可以执行的档案</font>！后面的三行也都是类似的意思！你可以到
+/etc/ 底下去看看，系统本来就默认了这四个目录了！你可以将每天需要执行的命令直接写到
+/etc/cron.daily 即可，还不需要使用到 crontab -e 的程序呢！方便吧！</li>
+</ul>
+</ul>
+
+<ul>好！你现在大概了解了这一个咚咚吧！OK！假设你现在要作一个目录，让系统可以每
+2 分钟去执行这个目录下的所有可以执行的档案，你可以写下如下的这一行在 /etc/crontab
+中：
+<ul><font face="细明体"><font color="#3333ff">*/2 * * * * root run-parts
+/etc/cron.min</font></font></ul>
+当然啰， /etc/cron.min 这个目录是需要存在的喔！那如果我需要执行的是一个『程序』而已，不需要用到一个目录呢？该如何是好？例如在侦测<a href="http://linux.vbird.org/linux_security/old/04mrtg.php">网络流量</a>时，我们希望每五分钟侦测分析一次，可以这样写：
+<ul><font face="细明体"><font color="#3333ff">*/5 * * * * root /usr/local/mrtg-2/bin/mrtg
+/usr/local/apache/htdocs/mrtg/net/mrtg.cfg</font></font></ul>
+没有了 run-parts 就是代表『一个档案』的意思啦！</ul>
+
+<ul>如何！？建立例行性命令很简单吧！如果你是系统管理员的话，直接修改 /etc/crontab
+这个档案即可喔！又便利，又方便管理呢！</ul>
+<font face="新细明体"><font color="#3333ff"><font size="-1">2002/ 01/01以来统计人数</font></font></font>
+<br><img src="linux_11cron_files/Count.gif" nosave="" width="60" align="ABSCENTER" height="15">
+<hr width="100%">
+<center>
+<a href="http://linux.vbird.org/" target="_top"><img src="linux_11cron_files/VBirdTitle2.jpg" nosave="" width="90" border="0" height="25"></a>
+<a href="http://linux.vbird.org/linux_basic"><img src="linux_11cron_files/icon_system.gif" nosave="" width="90" border="0" height="25"></a>
+<a href="http://linux.vbird.org/linux_server"><img src="linux_11cron_files/icon_server.gif" nosave="" width="90" border="0" height="25"></a>
+<a href="http://linux.vbird.org/linux_security"><img src="linux_11cron_files/icon_security.jpg" nosave="" width="90" border="0" height="25"></a>
+<a href="http://phorum.vbird.org/" target="_blank"><img src="linux_11cron_files/icon_forums.gif" nosave="" width="90" border="0" height="25"></a>
+<a href="http://linux.vbird.org/adsl"><img src="linux_11cron_files/icon_adsl.gif" nosave="" width="90" border="0" height="25"></a>
+<br><font color="#000066"><font size="-1">Designed by <a href="mailto:vbird@mail.vbird.idv.tw">VBird</a>
+during 2001-2004.&nbsp; Aerosol Lab.</font></font></center>
+
+</body></html>

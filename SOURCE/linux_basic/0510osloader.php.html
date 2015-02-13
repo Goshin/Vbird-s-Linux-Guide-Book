@@ -1,0 +1,2192 @@
+<html><head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta name="Author" content="2011/04/20,white">
+	<meta name="Description" content="整个 Linux 系统下的开关机流程介绍，以及启动管理软件的介绍">
+	<title>鸟哥的 Linux 私房菜 -- 启动关机流程与 Loader</title>
+    <script src="../script/SpryMenuBar.js" type="text/javascript"></script>
+	<script src="../script/index.js" type="text/javascript"></script>
+	<link href="../css/SpryMenuBarHorizontal.css" rel="stylesheet" type="text/css" />
+    <link href="../css/main.css" rel="stylesheet" type="text/css" />
+    </head><body style="margin: 0pt; padding: 0pt;" class="table"onload="MM_preloadImages('image/title_19.png','image/title_26.png','image/title_27.png','image/title_28.png','image/title_06.png','image/title_08.png','image/title_10.png','image/title_12.png')">
+
+
+<!-- Copyright � 2005. Spidersoft Ltd -->
+<style>
+A.applink:hover {border: 2px dotted #DCE6F4;padding:2px;background-color:#ffff00;color:green;text-decoration:none}
+A.applink       {border: 2px dotted #DCE6F4;padding:2px;color:#2F5BFF;background:transparent;text-decoration:none}
+A.info          {color:#2F5BFF;background:transparent;text-decoration:none}
+A.info:hover    {color:green;background:transparent;text-decoration:underline}
+</style>
+<div style='BORDER: 1px solid #DCE6F4; MARGIN-TOP: 20px; MARGIN-BOTTOM: 20px; MARGIN-LEFT: 5px; MARGIN-RIGHT: 5px; PADDING: 5px; BACKGROUND-COLOR: #eef8ff;line-height:180%; COLOR: #000000; font-family: Arial; font-size: 8pt; width=100%; FILTER: progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr="#FFFFFFFF", EndColorStr="#F2F5FAFF");'>
+This page was saved using <a class="applink" href="http://www.spidersoft.com"><b>WebZIP 7.0.3.1030</b></a> <a class="applink" href="http://www.spidersoft.com"><b>offline browser</b></a>  (Unregistered) on  02/12/15 12:14:49.<br>
+<b>Address:</b> <a class="info" href="http://vbird.dic.ksu.edu.tw/linux_basic/0510osloader.php">http://vbird.dic.ksu.edu.tw/linux_basic/0510osloader.php</a><br>
+<b>Title:</b> 鸟哥的 Linux 私房菜 -- 启动关机流程与 Loader &nbsp;&bull;&nbsp; <b>Size:</b> 160515<br></div>
+<!-- /Copyright � 2005. Spidersoft Ltd -->
+
+
+
+<center>
+<div id="apDiv5">
+<div> <LINK REL="SHORTCUT ICON" HREF="favicon.ico">
+<!-- ImageReady Slices (title3.ai) -->
+<table id="___01" width="898" height="81" border="0" align="center" cellpadding="0" cellspacing="0";>
+	<tr>
+		<td colspan="15">
+			<img src="image/title/title_01.png" width="900" height="1" alt=""></td>
+	</tr>
+	<tr>
+		<td rowspan="4" bgcolor="#182448"><p><img src="http://linux.vbird.org/cgi-bin/Count.cgi?dd=C&ft=5&sh=T&md=8&pad=Y&df=vbird.dic.ksu.edu.tw.dat" width="93" align="left" title="計數器" /></p>
+	    <p><font color="#FFFFFF" size="-1">since2012/04/23</font></p></td>
+		<td rowspan="4" align="left" valign="top"><a href="http://vbird.dic.ksu.edu.tw/"><img src="image/title/title_03.png" alt="" width="263" height="79" border="0"></a></td>
+		<td colspan="13">
+			<img src="image/title/title_04.png" alt="" width="535" height="9" border="0"></td>
+	</tr>
+	<tr>
+		<td rowspan="3">
+			<img src="image/title/title_05.png" alt="" width="53" height="70" border="0"></td>
+		<td colspan="2" align="left" valign="top"><a href="0110whatislinux.php.html" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image51','','image/title/title_06.png',1)"><img src="image/title/title3_06.png" name="Image51" width="106" height="25" border="0" id="Image51" alt=""/></a></td>
+		<td rowspan="2">
+			<img src="image/title/title_07.png" alt="" width="27" height="37" border="0"></td>
+		<td colspan="3" align="left" valign="top"><a href="http://vbird.dic.ksu.edu.tw/linux_server/0110network_basic.php" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image52','','image/title/title_08.png',1)"><img src="image/title/title3_08.png" name="Image52" width="107" height="25" border="0" id="Image52" alt=""/></a></td>
+		<td rowspan="2">
+			<img src="image/title/title_09.png" alt="" width="37" height="37" border="0"></td>
+		<td colspan="2" align="left" valign="top"><a href="http://vbird.dic.ksu.edu.tw/about.php" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image53','','image/title/title_10.png',1)"><img src="image/title/title3_10.png" name="Image53" width="75" height="25" border="0" id="Image53" alt=""/></a></td>
+		<td rowspan="3">
+			<img src="image/title/title_11.png" alt="" width="35" height="70" border="0"></td>
+		<td align="left" valign="top"><a href="mailto:vbird@mail.vbird.idv.tw" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image54','','image/title/title_12.png',1)"><img src="image/title/title3_12.png" name="Image54" width="74" height="25" border="0" id="Image54" alt=""/></a></td>
+		<td rowspan="3">
+			<img src="image/title/title_13.png" alt="" width="21" height="70" border="0"></td>
+	</tr>
+	<tr>
+		<td colspan="2">
+			<img src="image/title/title_14.png" alt="" width="106" height="12" border="0"></td>
+		<td colspan="3">
+			<img src="image/title/title_15.png" alt="" width="107" height="12" border="0"></td>
+		<td colspan="2">
+			<img src="image/title/title_16.png" width="75" height="12" alt=""></td>
+		<td rowspan="2">
+			<img src="image/title/title_17.png" alt="" width="74" height="45" border="0"></td>
+	</tr>
+	<tr>
+		<td>
+			<img src="image/title/title_18.png" alt="" width="15" height="33" border="0"></td>
+		<td colspan="3" align="left" valign="top"><ul id="MenuBar1" class="MenuBarHorizontal">
+	  <li><a href="linux_basic.php.html" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image44','','image/title/title_19.png',1)"><img src="image/title/title3_19.png" name="Image44" width="123" height="33" border="0" id="Image44" /></a>
+			    <ul>
+			      <li><a href="Mandrake9.0/mandrake9.0.php.html" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image46','','image/title/title_26.png',1)"><img src="image/title/title_23.png" name="Image46" width="120" height="26" border="0" id="Image46" alt="" /></a></li>
+                  <li><a href="fedora_4/fc4.php.html" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image47','','image/title/title_27.png',1)"><img src="image/title/title_24.png" name="Image47" width="120" height="26" border="0" id="Image47" alt="" /></a></li>
+                  <li><a href="linux_basic.php.html" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image48','','image/title/title_28.png',1)"><img src="image/title/title_25.png" name="Image48" width="120" height="26" border="0" id="Image48" alt="" /></a></li>
+                </ul>
+		      </li>
+		</ul></td>
+		<td>
+			<img src="image/title/title_20.png" alt="" width="42" height="33" border="0"></td>
+		<td colspan="3" align="left" valign="top"><ul id="MenuBar2" class="MenuBarHorizontal">
+	  <li><a href="http://vbird.dic.ksu.edu.tw/linux_server/" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image45','','image/title/title_21.png',1)"><img src="image/title/title3_21.png" name="Image45" width="125" height="33" border="0" id="Image45" /></a>
+			    <ul>
+			      <li><a href="http://vbird.dic.ksu.edu.tw/linux_server/linux_redhat9/redhat9.php" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image43','','image/title/title_26.png',1)"><img src="image/title/title_23.png" name="Image43" width="120" height="26" border="0" id="Image43" alt=""/></a></li>
+			      <li><a href="http://vbird.dic.ksu.edu.tw/linux_server/centos4.php" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image49','','image/title/title_27.png',1)"><img src="image/title/title_24.png" name="Image49" width="120" height="26" border="0" id="Image49" alt="" /></a></li>
+			      <li><a href="http://vbird.dic.ksu.edu.tw/linux_server/" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image50','','image/title/title_28.png',1)"><img src="image/title/title_25.png" name="Image50" width="120" height="26" border="0" id="Image50" alt="" /></a></li>
+		        </ul>
+		      </li>
+		</ul></td>
+		<td>
+			<img src="image/title/title_22.png" alt="" width="47" height="33" border="0"></td>
+	</tr>
+	<tr>
+		<td>
+			<img src="image/title/Spacer.gif" width="101" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="263" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="53" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="15" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="91" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="27" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="5" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="42" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="60" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="37" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="28" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="47" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="35" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="74" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="22" height="1" alt=""></td>
+	</tr>
+</table>
+<!-- End ImageReady Slices -->
+<script type="text/javascript">
+<!--
+var MenuBar1 = new Spry.Widget.MenuBar("MenuBar1", {imgDown:"SpryAssets/SpryMenuBarDownHover.gif", imgRight:"SpryAssets/SpryMenuBarRightHover.gif"});
+var MenuBar2 = new Spry.Widget.MenuBar("MenuBar2", {imgDown:"SpryAssets/SpryMenuBarDownHover.gif", imgRight:"SpryAssets/SpryMenuBarRightHover.gif"});
+//-->
+</script></div>
+<table summary="本文内容的排版" style="width: 898px;" border="0" cellpadding="0" cellspacing="0">
+<tbody><tr><td style="width: 16px; height: 16px;">　</td>
+    <td style="width: 866px; height: 16px;">　</td>
+    <td style="width: 16px; height: 16px;">　</td></tr>
+<tr><td style="width: 16px; font-size: 6px;">　</td>
+    <td width="866">
+
+<!-- 本文的档头部分 -->
+<div style="text-align: center;">
+    <a href="0510osloader.php.html">
+    <span class="text_head0">第二十章、启动流程、模块管理与<span class="text_head_en"> Loader</span></span></a><br>
+</div>
+    <div style="text-align: right;">
+        <span class="text_history">最近升级日期：2009/09/14</span>
+    </div>
+
+<!-- 本文的档头部分 -->
+<center><table class="head1" summary="排版：文章档头的说明"><tbody><tr><td class="head1">
+	系统启动其实是一项非常复杂的程序，因为核心得要侦测硬件并加载适当的驱动程序后，
+	接下来则必须要呼叫程序来准备好系统运行的环境，以让使用者能够顺利的操作整部主机系统。
+	如果你能够理解启动的原理，那么将有助於你在系统出问题时能够很快速的修复系统喔！
+	而且还能够顺利的配置多重操作系统的多重启动问题。为了多重启动的问题，你就不能不学学
+	grub 这个 Linux 底下优秀的启动管理程序 (boot loader)。
+	而在系统运行期间，你也得要学会管理核心模块呢！
+</td></tr></tbody></table></center><br>
+
+<!-- 本文的连结区部分 -->
+<div class="block1">
+<span class="text_h1">
+1. <a href="#startup">Linux 的启动流程分析</a><br>
+	<span class="text_h2">
+	　　1.1 <a href="#startup_intro">启动流程一览</a><br>
+	　　1.2 <a href="#startup_loader">BIOS, boot loader 与 kernel 加载</a><br>
+	　　1.3 <a href="#startup_init">第一支程序 init 及配置档 /etc/inittab 与 runlevel</a><br>
+	　　1.4 <a href="#startup_sysinit">init 处理系统初始化流程 (/etc/rc.d/rc.sysinit)</a><br>
+	　　1.5 <a href="#startup_runlevel">启动系统服务与相关启动配置档 (/etc/rc.d/rc N &amp; /etc/sysconfig)</a><br>
+	　　1.6 <a href="#startup_local">使用者自订启动启动程序 (/etc/rc.d/rc.local)</a><br>
+	　　1.7 <a href="#startup_term">根据 /etc/inittab 之配置，加载终端机或 X-Window 介面</a><br>
+	　　1.8 <a href="#startup_other">启动过程会用到的主要配置档</a>：
+		/etc/modprobe.conf, /etc/sysconfig/*<br>
+	　　1.9 <a href="#startup_chrunlevel">Run level 的切换</a>： <a href="#runlevel">runlevel</a>,
+		<a href="#init">init</a><br>
+	</span>
+2. <a href="#kernel">核心与核心模块</a><br>
+	<span class="text_h2">
+	　　2.1 <a href="#kernel_depmod">核心模块与相依性</a>： <a href="#depmod">depmod</a><br>
+	　　2.2 <a href="#kernel_look">核心模块的观察</a>： <a href="#lsmod">lsmod</a>, <a href="#modinfo">modinfo</a><br>
+	　　2.3 <a href="#kernel_load">核心模块的加载与移除</a>：<a href="#insmod">insmod</a>, 
+		<a href="#modprobe">modprobe</a>, <a href="#rmmod">rmmod</a><br>
+	　　2.4 <a href="#kernel_modprobe">核心模块的额外参数配置：/etc/modprobe.conf</a><br>
+	</span>
+3. <a href="#grub">Boot loader: Grub</a><br>
+	<span class="text_h2">
+	　　3.1 <a href="#grub_loader">boot loader 的两个 stage</a><br>
+	　　3.2 <a href="#grub_menulist">grub 的配置档 /boot/grub/menu.lst 与菜单类型</a>： 
+		<a href="#grub_hd">磁碟代号</a>, <a href="#grub_menu_lst">menu.lst</a><br>
+	　　3.3 <a href="#grub_initrd">initrd 的重要性与创建新 initrd 文件</a>： <a href="#mkinitrd">mkinitrd</a><br>
+	　　3.4 <a href="#grub_install">测试与安装 grub</a>： <a href="#grub-install">grub-install</a>, 
+		<a href="#grubshell">grub shell</a><br>
+	　　3.5 <a href="#grub_other">启动前的额外功能修改</a><br>
+	　　3.6 <a href="#grub_vga">关於核心功能当中的 vga 配置</a><br>
+	　　3.7 <a href="#grub_hd">BIOS 无法读取大硬盘的问题</a><br>
+	　　3.8 <a href="#grub_password">为个别菜单加上口令</a>： <a href="#grub-md5-crypt">grub-md5-crypt</a><br>
+	</span>
+4. <a href="#solution">启动过程的问题解决</a><br>
+	<span class="text_h2">
+	　　4.1 <a href="#solution_root">忘记 root 口令的解决之道</a><br>
+	　　4.2 <a href="#solution_init">init 配置档错误</a><br>
+	　　4.3 <a href="#solution_hd">BIOS 磁碟对应的问题 (device.map)</a><br>
+	　　4.4 <a href="#solution_config">因文件系统错误而无法启动</a><br>
+	　　4.5 <a href="#solution_chroot">利用 chroot 切换到另一颗硬盘工作</a><br>
+	</span>
+5. <a href="#hint">重点回顾</a><br>
+6. <a href="#ex">本章习题</a><br>
+7. <a href="#reference">参考数据与延伸阅读</a><br>
+<span class="text_h2">
+8. <a href="http://phorum.vbird.org/viewtopic.php?t=23891" target="_blank">针对本文的建议：http://phorum.vbird.org/viewtopic.php?t=23891</a>
+</span>
+</span>
+</div>
+
+
+<!-- 本文的正式部分 -->
+<hr><a name="startup"></a><img src="../image/logo.png" alt="大标题的图示" width="35" align="middle" height="34"><span class="text_h1">Linux 的启动流程分析</span><br>
+<div class="block1">
+	<p>启动不是只要按一下电源钮而关机只要关掉电源钮就可以了吗？有何大学问？话是这样没错啦，但是由於
+	Linux 是一套多人多工的操作系统，你难保你在关机时没有人在线上，如果你关机的时候碰巧一大群人在线上工作，
+	那会让当时在线上工作的人马上断线的！那不是害死人了！一些数据可是无价之宝哩！</p>
+
+	<p>另外 Linux 在运行的时候，虽然你在画面上只会看到黑压压的一片，完全没有任何画面，
+	但其实他是有很多的程序在背景底下运行的，例如登录档管控程序、前面提到的例行性工作排程等，
+	当然还有一大堆网络服务，如邮件服务器、WWW 服务器等等。你如果随便关机的话，
+	是很容易伤害硬盘及数据传输的动作的！所以在 Linux 下关机可是一门大学问喔。<br><br></p>
+
+	<hr><a name="startup_intro"></a><img src="../image/logo.png" alt="小标题的图示" width="24" align="middle" height="23"><span class="text_h2">启动流程一览</span><br>
+	<div class="block2">
+		<p>既然启动是很严肃的一件事，那我们就来了解一下整个启动的过程吧！
+		好让大家比较容易发现启动过程里面可能会发生问题的地方，以及出现问题后的解决之道！
+		不过，由於启动的过程中，那个启动管理程序 (Boot Loader) 使用的软件可能不一样，例如目前各大 
+		Linux distributions 的主流为 grub，但早期 Linux 默认是使用 LILO ，台湾地区则很多朋友喜欢使用 
+		<a href="0140spfdisk.php">spfdisk</a> 。
+		但无论如何，我们总是得要了解整个 boot loader 的工作情况，才能了解为何进行多重启动的配置时，
+		老是听人家讲要先安装 Windows 再安装 Linux 的原因～</p>
+
+		<p>假设以个人计算机架设的 Linux 主机为例 (先回到<a href="0105computers.php.html">第零章计算机概论</a>看看相关的硬件常识喔)，
+		当你按下电源按键后计算机硬件会主动的读取 BIOS 来加载硬件资讯及进行硬件系统的自我测试，
+		之后系统会主动的去读取第一个可启动的装置 (由 BIOS 配置的) ，此时就可以读入启动管理程序了。</p>
+
+		<p>启动管理程序可以指定使用哪个核心文件来启动，并实际加载核心到内存当中解压缩与运行，
+		此时核心就能够开始在内存内活动，并侦测所有硬件资讯与加载适当的驱动程序来使整部主机开始运行，
+		等到<span class="text_import2">核心侦测硬件与加载驱动程序完毕后，一个最阳春的操作系统就开始在你的 PC 
+		上面跑了</span>。</p>
+
+		<p>主机系统开始运行后，此时 Linux 才会呼叫外部程序开始准备软件运行的环境，
+		并且实际的加载所有系统运行所需要的软件程序哩！最后系统就会开始等待你的登陆与操作啦！
+		简单来说，系统启动的经过可以汇整成底下的流程的：</p>
+
+		<ol class="text_import2">
+		<li><a href="#process_1">加载 BIOS 的硬件资讯与进行自我测试，并依据配置取得第一个可启动的装置；</a></li>
+		<li><a href="#process_2">读取并运行第一个启动装置内 MBR 的 boot Loader (亦即是 grub, spfdisk 等程序)；</a></li>
+		<li><a href="#process_3">依据 boot loader 的配置加载 Kernel ，Kernel 会开始侦测硬件与加载驱动程序；</a></li>
+		<li><a href="#startup_init">在硬件驱动成功后，Kernel 会主动呼叫 init 程序，而 init 会取得 run-level 资讯；</a></li>
+		<li><a href="#startup_sysinit">init 运行 /etc/rc.d/rc.sysinit 文件来准备软件运行的作业环境 (如网络、时区等)；</a></li>
+		<li><a href="#startup_runlevel">init 运行 run-level 的各个服务之启动 (script 方式)；</a></li>
+		<li><a href="#startup_local">init 运行 /etc/rc.d/rc.local 文件；</a></li>
+		<li><a href="#startup_term">init 运行终端机模拟程序 mingetty 来启动 login 程序，最后就等待使用者登陆啦；</a></li>
+		</ol>
+
+		<p>大概的流程就是上面写的那个样子啦，你会发现 init 这个家伙占的比重非常重！
+		所以我们才会在<a href="http://vbird.dic.ksu.edu.tw/linux_basic/0440processcontrol.php#pstree">第十七章的 pstree</a> 命令中谈到这家伙。
+		那每一个程序的内容主要是在干嘛呢？底下就分别来谈一谈吧！</p>
+	</div>
+
+	<hr><a name="startup_loader"></a><img src="../image/logo.png" alt="小标题的图示" width="24" align="middle" height="23"><span class="text_h2">BIOS, boot loader 与 kernel 加载</span><br>
+	<div class="block2">
+		<p>我们在<a href="http://vbird.dic.ksu.edu.tw/linux_basic/0130designlinux.php#partition_mbr">第三章</a>曾经谈过简单的启动流程与 MBR 的功能，
+		当时为了多重启动而进行的简短的介绍。现在你已经有足够的 Linux 基础了，所以底下让我们来加强说明啦！<br><br></p>
+
+		<a name="process_1"></a>
+		<hr><ul class="list1"><li class="text_import1">BIOS, 启动自我测试与 MBR</li></ul>
+
+		<p>我们在<a href="0105computers.php.html">第零章的计算机概论</a>就曾谈过计算机主机架构，
+		在个人计算机架构下，你想要启动整部系统首先就得要让系统去加载 BIOS (Basic Input Output System)，并透过 BIOS 
+		程序去加载 CMOS 的资讯，并且藉由 CMOS 内的配置值取得主机的各项硬件配置，
+		例如 CPU 与周边设备的沟通时脉啊、启动装置的搜寻顺序啊、硬盘的大小与类型啊、
+		系统时间啊、各周边汇流排的是否启动 Plug and Play (PnP, 随插即用装置) 啊、
+		各周边设备的 I/O 位址啊、以及与 CPU 沟通的 IRQ 岔断等等的资讯。</p>
+
+		<p>在取得这些资讯后，BIOS 还会进行启动自我测试 (Power-on Self Test, POST) (<a href="#ps1">注1</a>)。
+		然后开始运行硬件侦测的初始化，并配置 PnP 装置，之后再定义出可启动的装置顺序，
+		接下来就会开始进行启动装置的数据读取了 (MBR 相关的任务开始)。</p>
+
+		<p>由於我们的系统软件大多放置到硬盘中嘛！所以 BIOS 会指定启动的装置好让我们可以读取磁碟中的操作系统核心文件。
+		但由於不同的操作系统他的文件系统格式不相同，因此我们必须要以一个启动管理程序来处理核心文件加载 (load) 的问题，
+		因此这个<span class="text_import2">启动管理程序就被称为 Boot Loader 了。那这个 Boot Loader 
+		程序安装在哪里呢？就在启动装置的第一个磁区 (sector) 内，也就是我们一直谈到的 MBR 
+		(Master Boot Record, 主要启动记录区)</span>。</p>
+
+		<p>那你会不会觉得很奇怪啊？既然核心文件需要 loader 来读取，那每个操作系统的 loader 都不相同，
+		这样的话 BIOS 又是如何读取 MBR 内的 loader 呢？很有趣的问题吧！其实 BIOS 是透过硬件的 INT 13 中断功能来读取 MBR
+		的，也就是说，只要 BIOS 能够侦测的到你的磁碟 (不论该磁碟是 SATA 还是 IDE 介面)，那他就有办法透过 INT 13
+		这条通道来读取该磁碟的第一个磁区内的 MBR 啦！(<a href="#ps2">注2</a>)
+		这样 boot loader 也就能够被运行罗！</p>
+
+		<div style="padding: 10pt 0pt;" align="right"><table width="90%"><tbody><tr><td><b>Tips:</b><br><span style="color: rgb(0, 144, 0);"><font size="-1">		我们知道每颗硬盘的第一个磁区内含有 446 bytes的 MBR 区域，那么如果我的主机上面有两颗硬盘的话，
+		系统会去哪颗硬盘的 MBR 读取 boot loader 呢？这个就得要看 BIOS 的配置了。
+		基本上，我们常常讲的『系统的 MBR』其实指的是 <b>第一个启动装置的 MBR</b> 才对！
+		所以，改天如果你要将启动管理程序安装到某颗硬盘的 MBR 时，
+		要特别注意当时系统的『第一个启动装置』是哪个，否则会安装到错误的硬盘上面的 MBR 喔！重要重要！
+		</font></span></td><td><img src="0510osloader_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div>
+		<a name="process_2"></a>
+		<hr><ul class="list1"><li class="text_import1">Boot Loader 的功能</li></ul>
+
+		<p>刚刚说到 Loader 的最主要功能是要认识操作系统的文件格式并据以加载核心到主内存中去运行。
+		由於不同操作系统的文件格式不一致，因此每种操作系统都有自己的 boot loader 啦！用自己的 loader
+		才有办法加载核心文件嘛！那问题就来啦，你应该有听说过多重操作系统吧？也就是在一部主机上面安装多种不同的操作系统。
+		既然你 <span class="text_import2">(1)必须要使用自己的 loader 才能够加载属於自己的操作系统核心，而 
+		(2)系统的 MBR 只有一个，那你怎么会有办法同时在一部主机上面安装 Windows 与 Linux 呢？</span></p>
+
+		<p>这就得要回到<a href="0230filesystem.php.html">第八章的磁碟文件系统</a>去回忆一下文件系统功能了。
+		其实每个文件系统 (filesystem, 或者是 partition) 都会保留一块启动磁区 (boot sector) 提供操作系统安装 boot loader ，
+		而通常操作系统默认都会安装一份 loader 到他根目录所在的文件系统的 boot sector 上。如果我们在一部主机上面安装 Windows
+		与 Linux 后，该 boot sector, boot loader 与 MBR 的相关性会有点像下图：</p>
+
+		<center><img src="0510osloader_files/mbr_boot_sector.gif" alt="boot loader 安装在 MBR, boot sector 与操作系统的关系" title="boot loader 安装在 MBR, boot sector 与操作系统的关系" border="0"><br>
+		图 1.2.1、 boot loader 安装在 MBR, boot sector 与操作系统的关系<br></center>
+
+		<p>如上图所示，每个操作系统默认是会安装一套 boot loader 到他自己的文件系统中 (就是每个 filesystem 
+		左下角的方框)，而在 Linux 系统安装时，你可以选择将 boot loader 安装到 MBR 去，也可以选择不安装。
+		如果选择安装到 MBR 的话，那理论上你在 MBR 与 boot sector 都会保有一份 boot loader 程序的。
+		至於 Windows 安装时，他默认会主动的将 MBR 与 boot sector 都装上一份 boot loader！所以啦，
+		你会发现安装多重操作系统时，你的 MBR 常常会被不同的操作系统的 boot loader 所覆盖啦！ ^_^</p>
+
+		<p>我们刚刚提到的两个问题还是没有解决啊！虽然各个操作系统都可以安装一份 boot loader 到他们的 boot sector 中，
+		这样操作系统可以透过自己的 boot loader 来加载核心了。问题是系统的 MBR 只有一个哩！
+		你要怎么运行 boot sector 里面的 loader 啊？这个我们得要回忆一下<a href="http://vbird.dic.ksu.edu.tw/linux_basic/0130designlinux.php#partition_mbr">第三章约略提过的 boot loader 的功能了</a>。boot loader
+		主要的功能如下：</p>
+
+		<ul class="text_import2">
+		<li><b>提供菜单</b>：使用者可以选择不同的启动项目，这也是多重启动的重要功能！</li>
+		<li><b>加载核心文件</b>：直接指向可启动的程序区段来开始操作系统；</li>
+		<li><b>转交其他 loader</b>：将启动管理功能转交给其他 loader 负责。</li>
+		</ul>
+
+		<p>由於具有菜单功能，因此我们可以选择不同的核心来启动。而由於具有控制权转交的功能，因此我们可以加载其他 boot sector
+		内的 loader 啦！不过 Windows 的 loader 默认不具有控制权转交的功能，因此你不能使用 Windows 的 loader
+		来加载 Linux 的 loader 喔！这也是为啥第三章谈到 MBR 与多重启动时，会特别强调先装 Windows 再装 Linux 的缘故。
+		我们将上述的三个功能以底下的图示来解释你就看的懂了！(与第三章的图示也非常类似啦！)</p>
+
+		<center><img src="0510osloader_files/loader_menu.gif" alt="启动管理程序的菜单功能与控制权转交功能示意图" title="启动管理程序的菜单功能与控制权转交功能示意图" border="0"><br>
+		图 1.2.2、 启动管理程序的菜单功能与控制权转交功能示意图<br></center>
+
+		<p>如上图所示，我的 MBR 使用 Linux 的 grub 这个启动管理程序，并且里面假设已经有了三个菜单，
+		第一个菜单可以直接指向 Linux 的核心文件并且直接加载核心来启动；第二个菜单可以将启动管理程序控制权交给 Windows
+		来管理，此时 Windows 的 loader 会接管启动流程，这个时候他就能够启动 windows 了。第三个菜单则是使用 Linux 
+		在 boot sector 内的启动管理程序，此时就会跳出另一个 grub 的菜单啦！了解了吗？</p>
+
+		<p>而最终 boot loader 的功能就是『<span class="text_import2">加载 kernel 文件</span>』啦！<br><br></p>
+
+		<a name="process_3"></a>
+		<hr><ul class="list1"><li class="text_import1">加载核心侦测硬件与 initrd 的功能</li></ul>
+
+		<p>当我们藉由 boot loader 的管理而开始读取核心文件后，接下来， Linux 就会将核心解压缩到主内存当中，
+		并且利用核心的功能，开始测试与驱动各个周边装置，包括储存装置、CPU、网络卡、声卡等等。
+		此时 <span class="text_import2">Linux 核心会以自己的功能重新侦测一次硬件，而不一定会使用 BIOS 
+		侦测到的硬件资讯喔！也就是说，核心此时才开始接管 BIOS 后的工作了</span>。
+		那么核心文件在哪里啊？一般来说，他会被放置到 /boot 里面，并且取名为 /boot/vmlinuz 才对！</p>
+
+<table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">ls --format=single-column -F /boot</span>
+config-2.6.18-92.el5      <span class="term_note">&lt;==此版本核心被编译时选择的功能与模块配置档</span>
+grub/                     <span class="term_note">&lt;==就是启动管理程序 grub 相关数据目录</span>
+<span class="term_write">initrd-2.6.18-92.el5.img</span>  <span class="term_note">&lt;==虚拟文件系统档！</span>
+System.map-2.6.18-92.el5  <span class="term_note">&lt;==核心功能放置到内存位址的对应表</span>
+<span class="term_write">vmlinuz-2.6.18-92.el5</span>     <span class="term_note">&lt;==就是核心文件啦！最重要者！</span>
+</pre></td></tr></tbody></table>
+
+		<p>从上表我们也可以知道此版本的 Linux 核心为 2.6.18-92.el5 这个版本！为了硬件开发商与其他核心功能开发者的便利，
+		因此 Linux 核心是可以透过动态加载核心模块的 (就请想成驱动程序即可)，这些核心模块就放置在 /lib/modules/ 目录内。
+		<span class="text_import2">由於模块放置到磁碟根目录内 (要记得 /lib 不可以与 / 分别放在不同的 partition ！)，
+		因此在启动的过程中核心必须要挂载根目录，这样才能够读取核心模块提供加载驱动程序的功能。</span>
+		而且为了担心影响到磁碟内的文件系统，因此启动过程中根目录是以唯读的方式来挂载的喔。</p>
+
+		<p>一般来说，非必要的功能且可以编译成为模块的核心功能，目前的 Linux distributions 都会将他编译成为模块。
+		因此 <span class="text_import2">U盘, SATA, SCSI... 等磁碟装置的驱动程序通常都是以模块的方式来存在的</span>。
+		现在来思考一种情况，假设你的 linux 是安装在 SATA 磁碟上面的，你可以透过 BIOS 的 INT 13 取得 boot loader 与 
+		kernel 文件来启动，然后 kernel 会开始接管系统并且侦测硬件及尝试挂载根目录来取得额外的驱动程序。</p>
+
+		<p>问题是，<span class="text_import2">核心根本不认识 SATA 磁碟，所以需要加载 SATA 磁碟的驱动程序，
+		否则根本就无法挂载根目录。但是 SATA 的驱动程序在 /lib/modules 内，你根本无法挂载根目录又怎么读取到 
+		/lib/modules/ 内的驱动程序？</span>是吧！非常的两难吧！在这个情况之下，你的 Linux 是无法顺利启动的！
+		那怎办？没关系，我们可以透过虚拟文件系统来处理这个问题。</p>
+
+		<p><span class="text_import2">虚拟文件系统 (Initial RAM Disk) 一般使用的档名为 /boot/initrd</span>
+		，这个文件的特色是，他也能够透过 boot loader 来加载到内存中，
+		然后这个文件会被解压缩并且在内存当中模拟成一个根目录，
+		且此模拟在内存当中的文件系统能够提供一支可运行的程序，透过该程序来<span class="text_import2">加载启动过程中所最需要的核心模块，
+		通常这些模块就是 U盘, RAID, LVM, SCSI 等文件系统与磁碟介面的驱动程序啦</span>！等加载完成后，
+		会帮助核心重新呼叫 /sbin/init 来开始后续的正常启动流程。</p>
+
+		<center><img src="0510osloader_files/0510osloader-flow.jpg" alt="BIOS 与 boot loader 及核心加载流程示意图" title="BIOS 与 boot loader 及核心加载流程示意图" border="1"><br>
+		图 1.2.3、 BIOS 与 boot loader 及核心加载流程示意图<br></center>
+
+		<p>如上图所示，boot loader 可以加载 kernel  与 initrd ，然后在内存中让 initrd 解压缩成为根目录，
+		kernel 就能够藉此加载适当的驱动程序，最终释放虚拟文件系统，并挂载实际的根目录文件系统，
+		就能够开始后续的正常启动流程。更详细的 initrd 说明，你可以自行使用 man initrd 去查阅看看。
+		底下让我们来了解一下 CentOS 5.x 的 initrd 文件内容有什么吧！ ^_^</p>
+
+
+<table class="term"><tbody><tr><td class="term"><pre><span class="term_hd"># 1. 先将 /boot/initrd 复制到 /tmp/initrd 目录中，等待解压缩：</span>
+[root@www ~]# <span class="term_command">mkdir /tmp/initrd</span>
+[root@www ~]# <span class="term_command">cp /boot/initrd-2.6.18-92.el5.img /tmp/initrd/</span>
+[root@www ~]# <span class="term_command">cd /tmp/initrd</span>
+[root@www initrd]# <span class="term_command">file initrd-2.6.18-92.el5.img</span>
+initrd-2.6.18-92.el5.img: <span class="term_write">gzip compressed data</span>, ...
+<span class="term_say"># 原来是 gzip 的压缩档！因为是 gzip ，所以扩展名给他改成 .gz 吧！</span>
+
+<span class="term_hd"># 2. 将上述的文件解压缩：</span>
+[root@www initrd]# <span class="term_command">mv initrd-2.6.18-92.el5.img initrd-2.6.18-92.el5.gz</span>
+[root@www initrd]# <span class="term_command">gzip -d initrd-2.6.18-92.el5.gz</span>
+[root@www initrd]# <span class="term_command">file initrd-2.6.18-92.el5</span>
+initrd-2.6.18-92.el5: ASCII <span class="term_write">cpio archive</span> (SVR4 with no CRC)
+<span class="term_say"># 搞了老半天，原来还是 cpio 的命令压缩成的文件啊！解压缩看看！</span>
+
+<span class="term_hd"># 3. 用 cpio 解压缩</span>
+[root@www initrd]# <span class="term_command">cpio -ivcdu &lt; initrd-2.6.18-92.el5</span>
+[root@www initrd]# <span class="term_command">ll</span>
+drwx------ 2 root root    4096 Apr 10 02:05 bin
+drwx------ 3 root root    4096 Apr 10 02:05 dev
+drwx------ 2 root root    4096 Apr 10 02:05 etc
+<span class="term_write">-rwx------ 1 root root    1888 Apr 10 02:05 init</span>
+-rw------- 1 root root 5408768 Apr 10 02:00 initrd-2.6.18-92.el5
+drwx------ 3 root root    4096 Apr 10 02:05 lib
+drwx------ 2 root root    4096 Apr 10 02:05 proc
+lrwxrwxrwx 1 root root       3 Apr 10 02:05 sbin -&gt; bin
+drwx------ 2 root root    4096 Apr 10 02:05 sys
+drwx------ 2 root root    4096 Apr 10 02:05 sysroot
+<span class="term_say"># 看！是否很像根目录！尤其也是有 init 这个运行档！务必看一下权限！
+# 接下来看看 init 这个文件内有啥咚咚？</span>
+
+<span class="term_hd"># 4. 观察 init 文件内较重要的运行项目</span>
+[root@www initrd]# <span class="term_command">cat init</span>
+#!/bin/nash                  <span class="term_note">&lt;==使用类似 bash 的 shell 来运行</span>
+mount -t proc /proc /proc    <span class="term_note">&lt;==挂载内存的虚拟文件系统</span>
+<span class="term_say">....(中间省略)....</span>
+echo Creating initial device nodes
+mknod /dev/null c 1 3        <span class="term_note">&lt;==创建系统所需要的各项装置！</span>
+<span class="term_say">....(中间省略)....</span>
+echo "Loading ehci-hcd.ko module"
+insmod /lib/ehci-hcd.ko      <span class="term_note">&lt;==加载各项核心模块，就是驱动程序！</span>
+<span class="term_say">....(中间省略)....</span>
+echo Creating root device.
+mkrootdev -t ext3 -o defaults,ro hdc2 <span class="term_note">&lt;==尝试挂载根目录啦！</span>
+<span class="term_say">....(底下省略)....</span>
+</pre></td></tr></tbody></table>
+
+		<p>嘿嘿！透过上述运行档的内容，我们可以知道 initrd 有加载模块并且尝试挂载了虚拟文件系统。
+		接下来就能够顺利的运行啦！那么是否一定需要 initrd 呢？</p>
+
+<table border="1" cellpadding="5" cellspacing="0" width="90%"><tbody><tr><td>
+例题：<div class="block2">
+是否没有 initrd 就无法顺利启动？
+</div>
+答：<div class="block2">
+不见得的！需要 initrd 最重要的原因是，当启动时无法挂载根目录的情况下，
+此时就一定需要 initrd ，例如你的根目录在特殊的磁碟介面 (U盘, SATA, SCSI) ，
+或者是你的文件系统较为特殊 (LVM, RAID) 等等，才会需要 initrd。<br><br>
+
+如果你的 Linux 是安装在 IDE 介面的磁碟上，并且使用默认的 ext2/ext3 文件系统，
+那么不需要 initrd 也能够顺利的启动进入 Linux 的！
+</div>
+</td></tr></tbody></table><br>
+
+		<p>在核心完整的加载后，您的主机应该就开始正确的运行了，接下来，就是要开始运行系统的第一支程序： /sbin/init。</p>
+	</div>
+
+	<hr><a name="startup_init"></a><img src="../image/logo.png" alt="小标题的图示" width="24" align="middle" height="23"><span class="text_h2">第一支程序 init 及配置档
+	/etc/inittab 与 runlevel</span><br>
+	<div class="block2">
+		<p>在核心加载完毕、进行完硬件侦测与驱动程序加载后，此时你的主机硬件应该已经准备就绪了 (ready) ，
+		此时核心会主动的呼叫第一支程序，那就是 /sbin/init 罗。这也是为啥<a href="http://vbird.dic.ksu.edu.tw/linux_basic/0440processcontrol.php#pstree">第十七章的 pstree</a> 命令介绍时，你会发现 init 的 PID 号码是一号啦。
+		/sbin/init 最主要的功能就是准备软件运行的环境，包括系统的主机名称、网络配置、语系处理、文件系统格式及其他服务的启动等。
+		而所有的动作都会透过 init 的配置档，亦即是 <span class="text_import2">/etc/inittab</span> 来规划，而 
+		inittab 内还有一个很重要的配置项目，那就是默认的 runlevel (启动运行等级) 啦！<br><br></p>
+
+		<hr><ul class="list1"><li class="text_import1">Run level：运行等级有哪些？</li></ul>
+
+		<p>那么什么是 run level 呢？他有什么功用啊？其实很简单啦， Linux 就是藉由配置 run level 
+		来规定系统使用不同的服务来启动，让 Linux 的使用环境不同。基本上，依据有无网络与有无 X Window
+		而将 run level 分为 7 个等级，分别是：</p>
+		<ul class="text_import2">
+		<li>0 - halt (系统直接关机)</li>
+		<li>1 - single user mode (单人维护模式，用在系统出问题时的维护)</li>
+		<li>2 - Multi-user, without NFS (类似底下的 runlevel 3，但无 NFS 服务)</li>
+		<li>3 - Full multi-user mode (完整含有网络功能的纯文字模式)</li>
+		<li>4 - unused (系统保留功能)</li>
+		<li>5 - X11 (与 runlevel 3 类似，但加载使用 X Window)</li>
+		<li>6 - reboot (重新启动)</li>
+		</ul>
+
+		<p>由於 run level 0, 4, 6 不是关机、重新启动就是系统保留的，所以：『 
+		<span class="text_import2">您当然不能将默认的 run level 配置为这三个值</span> 』，
+		否则系统就会不断的自动关机或自动重新启动....
+		好了，那么我们启动时，到底是如何取得系统的 run level 的？当然是 /etc/inittab 所配置的罗！
+		那么 /etc/inittab 到底有什么资讯呢？我们先来看看这个文件的内容好了：<br><br></p>
+
+		<hr><ul class="list1"><li class="text_import1">/etc/inittab 的内容与语法</li></ul>
+
+<table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">vim /etc/inittab</span>
+id:5:initdefault:                 <span class="term_note">&lt;==默认的 runlevel 配置, 此 runlevel 为 5 </span>
+
+si::sysinit:/etc/rc.d/rc.sysinit  <span class="term_note">&lt;==准备系统软件运行的环境的脚本运行档</span>
+
+<span class="term_say"># 7 个不同 run level 的，需要启动的服务的 scripts 放置路径：</span>
+l0:0:wait:/etc/rc.d/rc 0    <span class="term_note">&lt;==runlevel 0 在 /etc/rc.d/rc0.d/</span>
+l1:1:wait:/etc/rc.d/rc 1    <span class="term_note">&lt;==runlevel 1 在 /etc/rc.d/rc1.d/</span>
+l2:2:wait:/etc/rc.d/rc 2    <span class="term_note">&lt;==runlevel 2 在 /etc/rc.d/rc2.d/</span>
+l3:3:wait:/etc/rc.d/rc 3    <span class="term_note">&lt;==runlevel 3 在 /etc/rc.d/rc3.d/</span>
+l4:4:wait:/etc/rc.d/rc 4    <span class="term_note">&lt;==runlevel 4 在 /etc/rc.d/rc4.d/</span>
+l5:5:wait:/etc/rc.d/rc 5    <span class="term_note">&lt;==runlevel 5 在 /etc/rc.d/rc5.d/</span>
+l6:6:wait:/etc/rc.d/rc 6    <span class="term_note">&lt;==runlevel 6 在 /etc/rc.d/rc6.d/</span>
+
+<span class="term_say"># 是否允许按下 [ctrl]+[alt]+[del] 就重新启动的配置项目：</span>
+ca::ctrlaltdel:/sbin/shutdown -t3 -r now
+
+<span class="term_say"># 底下两个配置则是关於不断电系统的 (UPS)，一个是没电力时的关机，一个是复电的处理</span>
+pf::powerfail:/sbin/shutdown -f -h +2 "Power Failure; System Shutting Down"
+pr:12345:powerokwait:/sbin/shutdown -c "Power Restored; Shutdown Cancelled"
+
+1:2345:respawn:/sbin/mingetty tty1  <span class="term_note">&lt;==其实 tty1~tty6 是由底下这六行决定的。</span>
+2:2345:respawn:/sbin/mingetty tty2
+3:2345:respawn:/sbin/mingetty tty3
+4:2345:respawn:/sbin/mingetty tty4
+5:2345:respawn:/sbin/mingetty tty5
+6:2345:respawn:/sbin/mingetty tty6
+
+x:5:respawn:/etc/X11/prefdm -nodaemon <span class="term_note">&lt;==X window 则是这行决定的！</span>
+</pre></td></tr></tbody></table>
+
+		<p>让我们解析一下这个文件吧！首先，这个文件的语法是利用冒号 (:) 将配置分隔成为四个栏位，每个栏位的意义与说明如下：</p>
+
+<table class="term"><tbody><tr><td class="term"><pre>[配置项目]:[run level]:[init 的动作行为]:[命令项目]
+</pre></td></tr></tbody></table>
+
+		<ol>
+		<li>配置项目：最多四个字节，代表 init 的主要工作项目，只是一个简单的代表说明。<br><br></li>
+
+		<li>run level：该项目在哪些 run level 底下进行的意思。如果是 35 则代表 runlevel 3 与 5 都会运行。<br><br></li>
+
+		<li>init 的动作项目：主要可以进行的动作项目意义有：<br>
+
+<table bgcolor="lightyellow" border="1" cellpadding="3" cellspacing="0" width="95%">
+<tbody><tr align="center" bgcolor="#182448"><td width="100"><font color="#FFFFFF">inittab 配置值</font></td><td><font color="#FFFFFF">意义说明</font></td></tr>
+<tr><td align="center">initdefault</td><td>代表默认的 run level 配置值</td></tr>
+<tr><td align="center">sysinit</td><td>代表系统初始化的动作项目</td></tr>
+<tr><td align="center">ctrlaltdel</td><td>代表 [ctrl]+[alt]+[del] 三个按键是否可以重新启动的配置</td></tr>
+<tr><td align="center">wait</td><td>代表后面栏位配置的命令项目必须要运行完毕才能继续底下其他的动作</td></tr>
+<tr><td align="center">respawn</td><td>代表后面栏位的命令可以无限制的再生 (重新启动)。举例来说， tty1 的 mingetty 产生的可登陆画面，
+	在你注销而结束后，系统会再开一个新的可登陆画面等待下一个登陆。</td></tr>
+</tbody></table>
+   		更多的配置项目请参考 man inittab 的说明。<br><br></li>
+
+		<li>命令项目：亦即应该可以进行的命令，通常是一些 script 罗。</li>
+		</ol><br>
+
+		<hr><ul class="list1"><li class="text_import1">init 的处理流程</li></ul>
+
+		<p>事实上 /etc/inittab 的配置也有点类似 shell script 啦，因为该文件内容的配置也是一行一行的从上往下处理的，
+		因此我们可以知道 CentOS 的 init 依据 inittab 配置的处理流程会是：</p>
+		<ol>
+		<li>先取得 runlevel 亦即默认运行等级的相关等级 (以鸟哥的测试机为例，为 5 号)；</li>
+		<li>使用 /etc/rc.d/rc.sysinit 进行系统初始化</li>
+		<li>由於 runlevel 是 5 ，因此只进行『l5:5:wait:/etc/rc.d/rc 5』，其他行则略过</li>
+		<li>配置好 [ctrl]+[alt]+[del] 这组的组合键功能</li>
+		<li>配置不断电系统的 pf, pr 两种机制；</li>
+		<li>启动 mingetty 的六个终端机 (tty1 ~ tty6)</li>
+		<li>最终以 /etc/X11/perfdm -nodaemon 启动图形介面啦！</li>
+		</ol>
+
+		<p>现在你可以知道为啥 [ctrl]+[alt]+[del] 可以重新启动而我们默认提供 6 个虚拟终端机 (tty1~tty6) 
+		给你使用了吧！由於整个配置都是依据 /etc/inittab 来决定的，因此如果你想要修改任何细节的话，
+		可以这样做喔：</p>
+
+		<ul>
+		<li>如果不想让使用者利用 [crtl]+[alt]+[del] 来重新启动系统，可以将『<span class="text_import2">
+		ca::ctrlaltdel:/sbin/shutdown -t3 -r now</span> 』加上注解 (#) 来取消该配置<br><br></li>
+
+		<li>规定启动的默认 run level 是纯文字的 3 号或者是具有图形介面的 5 号 ，可经由
+		『 <span class="text_import2">id:5:initdefault:</span> 』那个数字来决定！
+		以鸟哥自己这个文件为例，我是使用默认的图形介面。如果你想要关闭图形介面的话，将该行 5 改成 3 
+		即可。<br><br></li>
+
+		<li>如果不想要启动六个终端机 (tty1~tty6)，那么可以将『
+		<span class="text_import2">6:2345:respawn:/sbin/mingetty tty6</span>』关闭数个。但务必至少启动一个喔！</li>
+
+		</ul>
+
+		<p>所以说，你现在会自行修改登陆时的默认 run level 配置值了吗？够简单的吧？
+		一般来说，我们默认都是 3 或者是 5 来作为默认的 run level 的。但有时后可能需要进入 run level 1，
+		也就是单人维护模式的环境当中。这个 run level 1 有点像是 Windows 系统当中的『安全模式』啦，
+		专门用来处理当系统有问题时的操作环境。此外，当系统发现有问题时，举例来说，不正常关机造成
+		filesystem 的不一致现象时，系统会主动的进入单人维护模式呢！</p>
+
+		<p>好了， init 在取得 run level 之后，接下来要干嘛？
+		上面 /etc/inittab 文件内容不是有提到 sysinit 吗？准备初始化系统了吧！</p>
+	</div>
+
+	<hr><a name="startup_sysinit"></a><img src="../image/logo.png" alt="小标题的图示" width="24" align="middle" height="23"><span class="text_h2">init 处理系统初始化流程 
+	(/etc/rc.d/rc.sysinit)</span><br>
+	<div class="block2">
+		<p>还记得上面提到 /etc/inittab 里头有这一句『 si::sysinit:/etc/rc.d/rc.sysinit 』吧？
+		这表示：『<span class="text_import2">我开始加载各项系统服务之前，得先做好整个系统环境，我主要利用
+		/etc/rc.d/rc.sysinit 这个 shell script 来配置好我的系统环境的。</span>』够清楚了吧？
+		所以，我想要知道到底 CentOS 启动的过程当中帮我进行了什么动作，就得要仔细的分析 /etc/rc.d/rc.sysinit 罗。</p>
+
+		<div style="padding: 10pt 0pt;" align="right"><table width="90%"><tbody><tr><td><b>Tips:</b><br><span style="color: rgb(0, 144, 0);"><font size="-1">		老实说，这个文件的档名在各不同的 distributions 当中都不相同，
+		例如 SuSE server 9 就使用 /etc/init.d/boot 与 /etc/init.d/rc 来进行的。
+		所以，你最好还是自行到 /etc/inittab 去察看一下系统的工作喔！ ^_^
+		</font></span></td><td><img src="0510osloader_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div>
+		<p>如果你使用 vim 去查阅过 /etc/rc.d/rc.sysinit 的话，那么可以发现他主要的工作大抵有这几项：</p>
+
+		<ol>
+		<li><span class="text_import2">取得网络环境与主机类型：</span><br>
+			读取网络配置档 /etc/sysconfig/network ，取得主机名称与默认通讯闸 (gateway) 等网络环境。</li>
+		<li><span class="text_import2">测试与挂载内存装置 /proc 及 U盘 装置 /sys：</span><br>
+			除挂载内存装置 /proc 之外，还会主动侦测系统上是否具有 usb 的装置，
+			若有则会主动加载 usb 的驱动程序，并且尝试挂载 usb 的文件系统。</li>
+		<li><span class="text_import2">决定是否启动 SELinux ：</span><br>
+			我们在<a href="0440processcontrol.php.html">第十七章</a>谈到的 SELinux 在此时进行一些检测，
+			并且检测是否需要帮所有的文件重新编写标准的 SELinux 类型 (auto relabel)。</li>
+		<li><span class="text_import2">启动系统的乱数产生器</span><br>
+			乱数产生器可以帮助系统进行一些口令加密演算的功能，在此需要启动两次乱数产生器。</li>
+		<li><span class="text_import2">配置终端机 (console) 字形：</span></li>
+		<li><span class="text_import2">配置显示於启动过程中的欢迎画面 (text banner)；</span></li>
+		<li><span class="text_import2">配置系统时间 (clock) 与时区配置：</span>需读入 /etc/sysconfig/clock 配置值</li>
+		<li><span class="text_import2">周边设备的侦测与 Plug and Play (PnP) 参数的测试：</span><br>
+			根据核心在启动时侦测的结果 (/proc/sys/kernel/modprobe ) 开始进行 ide / scsi /
+			网络 / 音效 等周边设备的侦测，以及利用以加载的核心模块进行 PnP 装置的参数测试。</li>
+		<li><span class="text_import2">使用者自订模块的加载</span><br>
+			使用者可以在 /etc/sysconfig/modules/*.modules 加入自订的模块，则此时会被加载到系统当中</li>
+		<li><span class="text_import2">加载核心的相关配置：</span><br>
+			系统会主动去读取 /etc/sysctl.conf 这个文件的配置值，使核心功能成为我们想要的样子。</li>
+		<li><span class="text_import2">配置主机名称与初始化电源管理模块 (ACPI)</span></li>
+		<li><span class="text_import2">初始化软件磁盘阵列：</span>主要是透过 /etc/mdadm.conf 来配置好的。</li>
+		<li><span class="text_import2">初始化 LVM 的文件系统功能</span></li>
+		<li><span class="text_import2">以 fsck 检验磁碟文件系统：</span>会进行 filesystem check </li>
+		<li><span class="text_import2">进行磁碟配额 quota 的转换 (非必要)：</span></li>
+		<li><span class="text_import2">重新以可读写模式挂载系统磁碟：</span></li>
+		<li><span class="text_import2">启动 quota 功能：</span>所以我们不需要自订 quotaon 的动作</li>
+		<li><span class="text_import2">启动系统虚拟乱数产生器 (pseudo-random)：</span></li>
+		<li><span class="text_import2">清除启动过程当中的缓存文件：</span></li>
+		<li><span class="text_import2">将启动相关资讯加载 /var/log/dmesg 文件中。</span></li>
+		</ol>
+
+		<p>在 /etc/rc.d/rc.sysinit 将基本的系统配置数据都写好了，也将系统的数据配置完整！
+		而如果你想要知道到底启动的过程中发生了什么事情呢？那么就运行『 dmesg 』吧。
+		另外，基本上，在这个文件当中所进行的很多工作的默认配置档，其实都在 /etc/sysconfig/ 当中呢！
+		所以，请记得将 /etc/sysconfig/ 内的文件好好的瞧一瞧喔！ ^_^</p>
+
+		<p>在这个过程当中，比较值得注意的是自订模块的加载！在 CentOS 当中，如果我们想要加载核心模块的话，
+		可以将整个模块写入到 /etc/sysconfig/modules/*.modules 当中，在该目录下，
+		只要记得档名最后是以 .modules 结尾即可。
+		这个过程是非必要的，因为我们目前的默认模块实在已经很够用了，除非是您的主机硬件实在太新了，
+		非要自己加载新的模块不可，否则，在经过 /etc/rc.d/rc.sysinit 的处理后，
+		你的主机系统应该是已经跑得很顺畅了啦！就等著你将系统相关的服务与网络服务启动罗！</p>
+	</div>
+
+	<hr><a name="startup_runlevel"></a><img src="../image/logo.png" alt="小标题的图示" width="24" align="middle" height="23"><span class="text_h2">启动系统服务与相关启动配置档 
+	(/etc/rc.d/rc N &amp; /etc/sysconfig)</span><br>
+	<div class="block2">
+		<p>加载核心让整个系统准备接受命令来工作，再经过 /etc/rc.d/rc.sysinit
+		的系统模块与相关硬件资讯的初始化后，你的 CentOS 系统应该已经顺利工作了。
+		只是，我们还得要启动系统所需要的各项『服务』啊！这样主机才能提供我们相关的网络或者是主机功能嘛！
+		这个时候，依据我们在 /etc/inittab 里面提到的 run level 配置值，就可以来决定启动的服务项目了。
+		举例来说，使用 run level 3 当然就不需要启动 X Window 的相关服务罗，您说是吧？</p>
+
+		<p>那么各个不同的 run level 服务启动的各个 shell script 放在哪？还记得 /etc/inittab 里面提到的：</p>
+
+<table class="term"><tbody><tr><td class="term"><pre>l0:0:wait:/etc/rc.d/rc 0
+l1:1:wait:/etc/rc.d/rc 1
+l2:2:wait:/etc/rc.d/rc 2
+l3:3:wait:/etc/rc.d/rc 3
+l4:4:wait:/etc/rc.d/rc 4
+<span class="term_write">l5:5:wait:/etc/rc.d/rc 5</span>  <span class="term_note">&lt;==本例中，以此项目来解释</span>
+l6:6:wait:/etc/rc.d/rc 6
+</pre></td></tr></tbody></table>
+
+		<p>上面提到的就是各个 run level 要运行的各项脚本放置处啦！主要是透过 /etc/rc.d/rc 这个命令来处理相关任务！
+		由於鸟哥使用默认的 runlevel 5 ，因此我们主要针对上述特殊字体那行来解释好了： /etc/rc.d/rc 5 的意义是这样的
+		(建议您自行使用 vim 去观察一下 /etc/rc.d/rc 这个文件，你会更有概念！)：</p>
+
+		<ul class="text_import2" style="font-family: '细明体';">
+		<li>透过外部第一号参数 ($1) 来取得想要运行的脚本目录。亦即由 /etc/rc.d/rc <u><b>5</b></u> 可以取得 
+		/etc/rc<u><b>5</b></u>.d/ 这个目录来准备处理相关的脚本程序；</li>
+		<li>找到 /etc/rc5.d/K??* 开头的文件，并进行『 /etc/rc5.d/K??* stop 』的动作；</li>
+		<li>找到 /etc/rc5.d/S??* 开头的文件，并进行『 /etc/rc5.d/S??* start 』的动作；</li>
+		</ul>
+
+		<p>透过上面的说明我们可以知道所有的项目都与 /etc/rc5.d/ 有关，那么我们就来瞧瞧这个目录下有些什么玩意儿吧！</p>
+
+<table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">ll /etc/rc5.d/</span>
+lrwxrwxrwx 1 root root 16 Sep  4  2008 <span class="term_write">K02</span>dhcdbd -&gt; ../init.d/dhcdbd
+<span class="term_say">....(中间省略)....</span>
+lrwxrwxrwx 1 root root 14 Sep  4  2008 <span class="term_write">K91</span>capi -&gt; ../init.d/capi
+lrwxrwxrwx 1 root root 23 Sep  4  2008 <span class="term_write">S00</span>microcode_ctl -&gt; ../init.d/microcode_ctl
+lrwxrwxrwx 1 root root 22 Sep  4  2008 <span class="term_write">S02</span>lvm2-monitor -&gt; ../init.d/lvm2-monitor
+<span class="term_say">....(中间省略)....</span>
+lrwxrwxrwx 1 root root 17 Sep  4  2008 <span class="term_write">S10</span>network -&gt; ../init.d/network
+<span class="term_say">....(中间省略)....</span>
+lrwxrwxrwx 1 root root 11 Sep  4  2008 <span class="term_write">S99</span>local -&gt; ../rc.local
+lrwxrwxrwx 1 root root 16 Sep  4  2008 <span class="term_write">S99</span>smartd -&gt; ../init.d/smartd
+<span class="term_say">....(底下省略)....</span>
+</pre></td></tr></tbody></table>
+
+		<p>在这个目录下的文件很有趣，主要具有几个特点：</p>
+		<ul>
+		<li>档名全部以 Sxx 或 Kxx ，其中 xx 为数字，且这些数字在文件之间是有相关性的！</li>
+		<li>全部是连结档，连结到 stand alone 服务启动的目录 /etc/init.d/ 去</li>
+		</ul>
+
+		<p>我们在<a href="0560daemons.php.html">第十八章</a>谈过服务的启动主要是以『<span class="text_import2">/etc/init.d/服务档名 {start,stop}</span>』来启动与关闭的，那么透过刚刚 /etc/rc.d/rc 
+		程序的解说，我们可以清楚的了解到了 /etc/rc5.d/[SK]xx  其实就是跑到 /etc/init.d/ 去找到相对应的服务脚本，
+		然后分别进行 start (Sxx) 或 stop (Kxx) 的动作而已啦！举例来说，以上述的表格内的 K91capi 及 S10network 为例好了，
+		透过 /etc/rc.d/rc 5 的运行，这两个文件会这样进行：</p>
+
+		<ul class="text_import2" style="font-family: '细明体';">
+		<li>/etc/rc5.d/K91capi stop --&gt; /etc/init.d/capi stop</li>
+		<li>/etc/rc5.d/S10network start --&gt; /etc/init.d/network start</li>
+		</ul>
+
+		<p>所以说，你有想要启动该 runlevel 时就运行的服务，那么利用 Sxx 并指向 /etc/init.d/ 的特定服务启动脚本后，
+		该服务就能够在启动时启动啦！就这么简单！问题是，你需要自行处理这个 K, S 开头的连结档吗？
+		并不需要的，<a href="http://vbird.dic.ksu.edu.tw/linux_basic/0560daemons.php#chkconfig">第十八章谈到的 chkconfig</a> 
+		就是在负责处理这个连结档啦！这样有没有跟第十八章的观念串在一起了呢？ ^_^</p>
+
+		<p>那么为什么 K 与 S 后面要有数字呢？因为各不同的服务其实还是互有关系的。举例来说，如果要启动 
+		WWW 服务，总是得要有网络吧？所以 /etc/init.d/network 就会比较先被启动啦！那么您就会知道在 S 或者是 K 
+		后面接的数字是啥意思了吧？嘿嘿，那就是运行的顺序啦！那么哪个文件被最后运行呢？
+		看到最后一个被运行的项目是啥？没错，就是 S99local ，亦即是：
+		<span class="text_import2">/etc/rc.d/rc.local</span> 这个文件啦！</p>
+	</div>
+
+	<hr><a name="startup_local"></a><img src="../image/logo.png" alt="小标题的图示" width="24" align="middle" height="23"><span class="text_h2">使用者自订启动启动程序 
+	(/etc/rc.d/rc.local)</span><br>
+	<div class="block2">
+		<p>在完成默认 runlevel 指定的各项服务的启动后，如果我还有其他的动作想要完成时，举例来说，
+		我还想要寄一封 mail 给某个系统管理帐号，通知他，系统刚刚重新启动完毕，那么是否应该要制作一个 shell 
+		script 放置在 /etc/init.d/ 里面，然后再以连结方式连结到
+		/etc/rc5.d/ 里面呢？呵呵！当然不需要！还记得上一小节提到的 /etc/rc.d/rc.local 吧？
+		这个文件就可以运行您自己想要运行的系统命令了。</p>
+
+		<p>也就是说，我有任何想要在启动时就进行的工作时，直接将他写入 /etc/rc.d/rc.local ，
+		那么该工作就会在启动的时候自动被加载喔！而不必等我们登陆系统去启动呢！
+		是否很方便啊！一般来说，鸟哥就很喜欢把自己制作的 shell script 完整档名写入
+		/etc/rc.d/rc.local ，如此一来，启动就会将我的 shell script 运行过，真是好棒那！</p>
+	</div>
+
+	<hr><a name="startup_term"></a><img src="../image/logo.png" alt="小标题的图示" width="24" align="middle" height="23"><span class="text_h2">根据 /etc/inittab 
+	之配置，加载终端机或 X-Window 介面</span><br>
+	<div class="block2">
+		<p>在完成了系统所有服务的启动后，接下来 Linux 就会启动终端机或者是 X Window 来等待使用者登陆啦！
+		实际参考的项目是 /etc/inittab 内的这一段：</p>
+
+<table class="term"><tbody><tr><td class="term"><pre>1:2345:respawn:/sbin/mingetty tty1
+2:2345:respawn:/sbin/mingetty tty2
+3:2345:respawn:/sbin/mingetty tty3
+4:2345:respawn:/sbin/mingetty tty4
+5:2345:respawn:/sbin/mingetty tty5
+6:2345:respawn:/sbin/mingetty tty6
+x:5:respawn:/etc/X11/prefdm -nodaemon
+</pre></td></tr></tbody></table>
+
+		<p>这一段代表，在 run level 2, 3, 4, 5 时，都会运行 /sbin/mingetty 这个咚咚，
+		而且运行六个，这也是为何我们 Linux 会提供『六个纯文字终端机』的配置所在啊！
+		因为 mingetty 就是在启动终端机的命令说。</p>
+
+		<p>要注意的是那个 respawn 的 init 动作项目，他代表『当后面的命令被终止 (terminal) 时，
+		init 会主动的重新启动该项目。』这也是为何我们登陆 tty1 终端机介面后，以 exit 离开后，
+		系统还是会重新显示等待使用者输入的画面的原因啊！</p>
+
+		<p>如果改天您不想要有六个终端机时，可以取消某些终端机介面吗？当然可以啊！
+		就将上面表格当中的某些项目注解掉即可！例如不想要 tty5 与 tty6 ，就将那两行注解，
+		则下次重新启动后，您的 Linux 就只剩下『 F1 ~ F4 』有效而已，这样说，可以了解吧！！^_^</p>
+
+		<p>至於如果我们使用的是 run level 5 呢？那么除了这六个终端机之外， init 还会运行 /etc/X11/prefdm -nodaemon
+		那个命令喔！该命令我们会在<a href="0590xwindow.php.html">第二十四章、X Window</a> 再来详谈！
+		他主要的功能就是在启动 X Window 啦！</p>
+	</div>
+
+	<hr><a name="startup_other"></a><img src="../image/logo.png" alt="小标题的图示" width="24" align="middle" height="23"><span class="text_h2">启动过程会用到的主要配置档</span><br>
+	<div class="block2">
+		<p>我们在 /sbin/init 的运行过程中有谈到许多运行脚本，包括 /etc/rc.d/rc.sysinit 以及 /etc/rc.d/rc 等等，
+		其实这些脚本都会使用到相当多的系统配置档，这些启动过程会用到的配置档则大多放置在 /etc/sysconfig/ 目录下。
+		同时，由於核心还是需要加载一些驱动程序 (核心模块)，此时系统自订的装置与模块对应档 (/etc/modprobe.conf) 
+		就显的挺重要了喔！<br><br></p>
+
+		<hr><ul class="list1"><li class="text_import1">关於模块： /etc/modprobe.conf</li></ul>
+
+		<p>还记得我们在 <a href="#startup_sysinit">/etc/rc.d/rc.sysinit</a> 
+		当中谈到的加载使用者自订模块的地方吗？就是在 /etc/sysconfig/modules/ 目录下啊！
+		虽然核心提供的默认模块已经很足够我们使用了，但是，某些条件下我们还是得对模块进行一些参数的规划，
+		此时就得要使用到 /etc/modprobe.conf 罗！举例来说，鸟哥的 CentOS 主机的 modprobe.conf 有点像这样：</p>
+
+<table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">cat /etc/modprobe.conf</span>
+alias eth0 8139too               <span class="term_note">&lt;==让 eth0 使用 8139too 的模块</span>
+alias scsi_hostadapter pata_sis
+alias snd-card-0 snd-trident
+options snd-card-0 index=0       <span class="term_note">&lt;==额外指定 snd-card-0 的参数功能</span>
+options snd-trident index=0
+</pre></td></tr></tbody></table>
+
+		<p>这个文件大多在指定系统内的硬件所使用的模块啦！这个文件通常系统是可以自行产生的，所以你不必手动去订正他！
+		不过，如果系统捉到错误的驱动程序，或者是你想要使用升级的驱动程序来对应相关的硬件配备时，
+		你就得要自行手动的处理一下这个文件了。</p>
+
+		<p>以上表的第一行为例，鸟哥使用螃蟹卡 (Realtek 的芯片组) 来作为我的网络卡，那螃蟹卡使用的模块就是 8139too
+		啦！这样看的懂了吧？当我要启动网络卡时，系统会跑到这个文件来查阅一下，然后加载 8139too 
+		驱动程序来驱动网络卡罗！更多的相关说明，请 man modprobe.conf 喔！<br><br></p>
+
+		<hr><ul class="list1"><li class="text_import1">/etc/sysconfig/*</li></ul>
+
+		<p>不说您也知道，整个启动的过程当中，老是读取的一些服务的相关配置档都是记录在 /etc/sysconfig 
+		目录下的！那么该目录底下有些啥玩意儿？我们找几个重要的文件来谈谈：</p>
+
+		<ul>
+		<li><span class="text_import1">authconfig</span>：<br>
+		这个文件主要在规范使用者的身份认证的机制，包括是否使用本机的 /etc/passwd, /etc/shadow 等，
+		以及 /etc/shadow 口令记录使用何种加密演算法，还有是否使用外部口令服务器提供的帐号验证 (NIS, LDAP) 等。
+		系统默认使用 MD5 加密演算法，并且不使用外部的身份验证机制；<br><br></li>
+
+		<li><span class="text_import1">clock</span>：<br>
+		此文件在配置 Linux 主机的时区，可以使用格林威治时间(GMT)，也可以使用台湾的本地时间 (local)。基本上，在 
+		<span class="text_import2">clock 文件内的配置项目『 ZONE 』所参考的时区位於 /usr/share/zoneinfo 
+		目录下的相对路径中</span>。而且要修改时区的话，还得将 /usr/share/zoneinfo/Asia/Taipei 
+		这个文件复制成为 /etc/localtime 才行！<br><br></li>
+
+		<li><span class="text_import1">i18n</span>：<br>
+		i18n 在配置一些语系的使用方面，例如最麻烦的文字介面下的日期显示问题！
+		如果你是以中文安装的，那么默认语系会被选择 zh_TW.UTF8 ，所以在纯文字介面之下，
+		你的文件日期显示可能就会呈现乱码！这个时候就需要更改一下这里啦！更动这个 i18n 
+		的文件，将里面的 LC_TIME 改成 en 即可！<br><br></li>
+
+		<li><span class="text_import1">keyboard &amp; mouse</span>：<br>
+		keyboard 与 mouse 就是在配置键盘与鼠标的形式；<br><br></li>
+
+		<li><span class="text_import1">network</span>：<br>
+		network 可以配置是否要启动网络，以及配置主机名称还有通讯闸 (GATEWAY) 这两个重要资讯呢！<br><br></li>
+
+		<li><span class="text_import1">network-scripts/</span>：<br>
+		至於 network-scripts 里面的文件，则是主要用在配置网络卡～
+		这部份我们在<a href="http://vbird.dic.ksu.edu.tw/linux_server">服务器架设篇</a>才会提到！</li>
+		</ul>
+
+		<p>总而言之一句话，这个目录下的文件很重要的啦！启动过程里面常常会读取到的！</p>
+	</div>
+
+	<hr><a name="startup_chrunlevel"></a><img src="../image/logo.png" alt="小标题的图示" width="24" align="middle" height="23"><span class="text_h2">Run level 的切换</span><br>
+	<div class="block2">
+		<p>在我们完成上面的所有资讯后，其实整个 Linux 主机就已经在等待我们使用者的登陆啦！
+		但是，相信您应该还是会有一点疑问的地方，那就是：『<span class="text_import2">我该如何切换 
+		run level 呢？</span>』会不会很难啊？不会啦！很简单～但是依据运行的时间而有不同的方式啊！</p>
+
+		<p>事实上，<span class="text_import2">与 run level 有关的启动其实是在 /etc/rc.d/rc.sysinit 
+		运行完毕之后</span>。也就是说，其实 run level 的不同仅是 /etc/rc[0-6].d 
+		里面启动的服务不同而已。不过，依据启动是否自动进入不同 run level 的配置，我们可以说：</p>
+
+		<ol class="text_import2">
+		<li>要每次启动都运行某个默认的 run level ，则需要修改 /etc/inittab  内的配置项目，
+			亦即是『 id:<u>5</u>:initdefault: 』里头的数字啊；<br><br></li>
+		<li>如果仅只是暂时变更系统的 run level 时，则使用 init [0-6] 来进行 run level 的变更。
+			但下次重新启动时，依旧会是以 /etc/inittab 的配置为准。</li>
+		</ol>
+
+		<p>假设原本我们是以 run level 5 登陆系统的，但是因为某些因素，想要切换成为 run level 3 时，
+		该怎么办呢？很简单啊，运行『 init 3 』即可切换。但是 init 3 这个动作到底做了什么呢？
+		我们不是说了吗？事实上，不同的 run level 只是加载的服务不同罢了，
+		亦即是 /etc/rc5.d/ 还有 /etc/rc3.d 内的 Sxxname 与 Kxxname 有差异而已。
+		所以说，当运行 init 3 时，系统会：</p>
+
+		<ul>
+		<li>先比对 /etc/rc3.d/ 及 /etc/rc5.d 内的 K 与 S 开头的文件；</li>
+		<li>在新的 runlevel 亦即是 /etc/rc3.d/ 内有多的 K 开头文件，则予以关闭；</li>
+		<li>在新的 runlevel 亦即是 /etc/rc3.d/ 内有多的 S 开头文件，则予以启动；</li>
+		</ul>
+
+		<p>也就是说，两个 run level 都存在的服务就不会被关闭啦！如此一来，就很容易切换 run level 了，
+		而且还不需要重新启动呢！真方便。那我怎么知道目前的 run level 是多少呢？
+		直接在 bash 当中输入 runlevel 即可啊！</p>
+
+<a name="runlevel"></a>
+<table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">runlevel</span>
+N 5
+<span class="term_say"># 左边代表前一个 runlevel ，右边代表目前的 runlevel。
+# 由於之前并没有切换过 runlevel ，因此前一个 runlevel 不存在 (N)</span>
+</pre></td></tr></tbody></table>
+
+<a name="init"></a>
+<table class="term"><tbody><tr><td class="term"><pre><span class="term_hd"># 将目前的 runlevel 切换成为 3 (注意， tty7 的数据会消失！)</span>
+[root@www ~]# <span class="term_command">init 3</span>
+NIT: Sending processes the TERM signal
+Applying Intel CPU microcode update:        [  OK  ]
+Starting background readahead:              [  OK  ]
+Starting irqbalance:                        [  OK  ]
+Starting httpd:                             [  OK  ]
+Starting anacron:                           [  OK  ]
+<span class="term_say"># 这代表，新的 runlevel 亦即是 runlevel3 比前一个 runlevel 多出了上述 5 个服务</span>
+
+[root@www ~]# <span class="term_command">runlevel</span>
+5 3
+<span class="term_say"># 看吧！前一个是 runlevel 5 ，目前的是 runlevel 3 啦！</span>
+</pre></td></tr></tbody></table>
+
+		<p>那么你能不能利用 init 来进行关机与重新启动呢？可以的啦！利用『 init 0 』就能够关机，
+		而『 init 6 』就能够重新启动！为什么？往前翻一下 runlevel 的定义即可了解吧！</p>
+	</div>
+</div>
+
+
+<hr><a name="kernel"></a><img src="../image/logo.png" alt="大标题的图示" width="35" align="middle" height="34"><span class="text_h1">核心与核心模块</span><br>
+<div class="block1">
+	<p>谈完了整个启动的流程，您应该会知道，在整个启动的过程当中，是否能够成功的驱动我们主机的硬件配备，
+	是核心 (kernel) 的工作！而核心一般都是压缩档，因此在使用核心之前，就得要将他解压缩后，
+	才能加载主内存当中。</p>
+
+	<p>另外，为了应付日新月异的硬件，目前的核心都是具有『可读取模块化驱动程序』的功能，
+	亦即是所谓的『 modules (模块化)』的功能啦！所谓的模块化可以将他想成是一个『外挂程序』，
+	该外挂程序可能由硬件开发厂商提供，也有可能我们的核心本来就支持～不过，较新的硬件，
+	通常都需要硬件开发商提供驱动程序模块啦！</p>
+
+	<p>那么核心与核心模块放在哪？</p>
+
+	<ul>
+	<li>核心： /boot/vmlinuz 或 /boot/vmlinuz-version；</li>
+	<li>核心解压缩所需 RAM Disk： /boot/initrd (/boot/initrd-version)；</li>
+	<li>核心模块： /lib/modules/version/kernel 或 /lib/modules/$(uname -r)/kernel；</li>
+	<li>核心原始码： /usr/src/linux 或 /usr/src/kernels/ (要安装才会有，默认不安装)</li>
+	</ul>
+
+	<p>如果该核心被顺利的加载系统当中了，那么就会有几个资讯纪录下来：</p>
+
+	<ul>
+	<li>核心版本： /proc/version</li>
+	<li>系统核心功能： /proc/sys/kernel</li>
+	</ul>
+
+	<p>问题来啦，如果我有个新的硬件，偏偏我的操作系统不支持，该怎么办？很简单啊！</p>
+
+	<ul>
+	<li>重新编译核心，并加入最新的硬件驱动程序原始码；</li>
+	<li>将该硬件的驱动程序编译成为模块，在启动时加载该模块</li>
+	</ul>
+
+	<p>上面第一点还很好理解，反正就是重新编译核心就是了。不过，核心编译很不容易啊！
+	我们会在后续章节约略介绍核心编译的整个程序。比较有趣的则是将该硬件的驱动程序编译成为模块啦！
+	关於编译的方法，可以参考后续的<a href="0520source_code_and_tarball.php.html">第二十二章、原始码与 tarball</a>的介绍。
+	我们这个章节仅是说明一下，如果想要加载一个已经存在的模块时，该如何是好？<br><br></p>
+
+	<hr><a name="kernel_depmod"></a><img src="../image/logo.png" alt="小标题的图示" width="24" align="middle" height="23"><span class="text_h2">核心模块与相依性</span><br>
+	<div class="block2">
+		<p>既然要处理核心模块，自然就得要了解了解我们核心提供的模块之间的相关性啦！
+		基本上，核心模块的放置处是在 /lib/modules/$(uname -r)/kernel 当中，里面主要还分成几个目录：</p>
+
+<table class="term"><tbody><tr><td class="term"><pre>arch	：与硬件平台有关的项目，例如 CPU 的等级等等；
+crypto	：核心所支持的加密的技术，例如 md5 或者是 des 等等；
+drivers	：一些硬件的驱动程序，例如显卡、网络卡、PCI 相关硬件等等；
+fs	：核心所支持的 filesystems ，例如 vfat, reiserfs, nfs 等等；
+lib	：一些函式库；
+net	：与网络有关的各项协议数据，还有防火墙模块 (net/ipv4/netfilter/*) 等等；
+sound	：与音效有关的各项模块；
+</pre></td></tr></tbody></table>
+
+		<p>如果要我们一个一个的去检查这些模块的主要资讯，然后定义出他们的相依性，
+		我们可能会疯掉吧！所以说，我们的 Linux 当然会提供一些模块相依性的解决方案罗～
+		对啦！那就是检查 <span class="text_import2">/lib/modules/$(uname -r)/modules.dep</span>
+		这个文件啦！他记录了在核心支持的模块的各项相依性。</p>
+
+		<p>那么这个文件如何创建呢？挺简单！利用 depmod 这个命令就可以达到创建该文件的需求了！</p>
+
+<a name="depmod"></a>
+<table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">depmod [-Ane]</span>
+<span class="term_say">选项与参数：
+-A  ：不加任何参数时， depmod 会主动的去分析目前核心的模块，并且重新写入
+      /lib/modules/$(uname -r)/modules.dep 当中。若加入 -A 参数时，则 depmod
+      会去搜寻比 modules.dep 内还要新的模块，如果真找到新模块，才会升级。
+-n  ：不写入 modules.dep ，而是将结果输出到萤幕上(standard out)；
+-e  ：显示出目前已加载的不可运行的模块名称</span>
+
+<span class="term_hd">范例一：若我做好一个网络卡驱动程序，档名为 a.ko，该如何升级核心相依性？</span>
+[root@www ~]# <span class="term_command">cp a.ko /lib/modules/$(uname -r)/kernel/drivers/net</span>
+[root@www ~]# <span class="term_command">depmod</span>
+</pre></td></tr></tbody></table>
+
+		<p>以上面的范例一为例，我们的 Linux kernel 2.6.x 版本的核心模块扩展名一定是 .ko 结尾的，
+		当你使用 depmod 之后，该程序会跑到模块标准放置目录 /lib/modules/$(uname -r)/kernel ，
+		并依据相关目录的定义将全部的模块捉出来分析，最终才将分析的结果写入 modules.dep 文件中的呐！
+		这个文件很重要喔！因为他会影响到本章稍后会介绍的 <a href="#modprobe">modprobe</a> 命令的应用！</p>
+	</div>
+
+	<hr><a name="kernel_look"></a><img src="../image/logo.png" alt="小标题的图示" width="24" align="middle" height="23"><span class="text_h2">核心模块的观察</span><br>
+	<div class="block2">
+		<p>那你到底晓不晓得目前核心加载了多少的模块呢？粉简单啦！利用 lsmod 即可！</p>
+
+<a name="lsmod"></a>
+<table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">lsmod</span>
+Module                  Size  Used by
+autofs4                24517  2
+hidp                   23105  2
+<span class="term_say">....(中间省略)....</span>
+8139too                28737  0
+8139cp                 26305  0
+mii                     9409  2 8139too,8139cp <span class="term_note">&lt;==mii 还被 8139cp, 8139too 使用</span>
+<span class="term_say">....(中间省略)....</span>
+uhci_hcd               25421  0  <span class="term_note">&lt;==底下三个是 U盘 相关的模块！</span>
+ohci_hcd               23261  0
+ehci_hcd               33357  0
+</pre></td></tr></tbody></table>
+
+		<p>使用 lsmod 之后，系统会显示出目前已经存在於核心当中的模块，显示的内容包括有：</p>
+
+		<ul class="text_import2">
+		<li>模块名称(Module)；</li>
+		<li>模块的大小(size)；</li>
+		<li>此模块是否被其他模块所使用 (Used by)。</li></ul>
+
+		<p>也就是说，模块其实真的有相依性喔！举上表为例， mii 这个模块会被 8139too 所使用。
+		简单的说，就是『当你要加载 8139too 时，需要先加载 mii 这个模块才可以顺利的加载 8139too』的意思。
+		那么除了显示出目前的模块外，我还可以查阅每个模块的资讯吗？举例来说，我们知道 8139too
+		是螃蟹卡的驱动程序，那么 mii 是什么咚咚？就用 modinfo 来观察吧！</p>
+
+<a name="modinfo"></a>
+<table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">modinfo [-adln] [module_name|filename]</span>
+<span class="term_say">选项与参数：
+-a  ：仅列出作者名称；
+-d  ：仅列出该 modules 的说明 (description)；
+-l  ：仅列出授权 (license)；
+-n  ：仅列出该模块的详细路径。</span>
+
+<span class="term_hd">范例一：由上个表格当中，请列出 mii 这个模块的相关资讯：</span>
+[root@www ~]# <span class="term_command">modinfo mii</span>
+<span class="term_write">filename:       /lib/modules/2.6.18-92.el5/kernel/drivers/net/mii.ko</span>
+license:        GPL
+<span class="term_write">description:    MII hardware support library</span>
+author:         Jeff Garzik &lt;jgarzik@pobox.com&gt;
+srcversion:     16DCEDEE4B5629C222C352D
+depends:
+vermagic:       2.6.18-92.el5 SMP mod_unload 686 REGPARM 4KSTACKS gcc-4.1
+<span class="term_say"># 可以看到这个模块的来源，以及该模块的简易说明！(是硬件支持函式库)</span>
+
+<span class="term_hd">范例二：我有一个模块名称为 a.ko ，请问该模块的资讯为？</span>
+[root@www ~]# <span class="term_command">modinfo a.ko</span>
+<span class="term_say">....(省略)....</span>
+</pre></td></tr></tbody></table>
+
+		<p>事实上，这个 modinfo 除了可以『查阅在核心内的模块』之外，还可以检查『某个模块文件』，
+		因此，如果你想要知道某个文件代表的意义为何，利用 modinfo 加上完整档名吧！
+		看看就晓得是啥玩意儿罗！ ^_^</p>
+	</div>
+
+	<hr><a name="kernel_load"></a><img src="../image/logo.png" alt="小标题的图示" width="24" align="middle" height="23"><span class="text_h2">核心模块的加载与移除</span><br>
+	<div class="block2">
+		<p>好了，如果我想要自行手动加载模块，又该如何是好？有很多方法啦，最简单而且建议的，是使用 modprobe 这个命令来加载模块，
+		这是因为 modprobe 会主动的去搜寻 modules.dep 的内容，先克服了模块的相依性后，
+		才决定需要加载的模块有哪些，很方便。至於 insmod 则完全由使用者自行加载一个完整档名的模块，
+		并不会主动的分析模块相依性啊！</p>
+
+<a name="insmod"></a>
+<table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">insmod [/full/path/module_name] [parameters]</span>
+
+<span class="term_hd">范例一：请尝试加载 cifs.ko 这个『文件系统』模块</span>
+[root@www ~]# <span class="term_command">insmod /lib/modules/$(uname -r)/kernel/fs/cifs/cifs.ko</span>
+[root@www ~]# <span class="term_command">lsmod | grep cifs</span>
+cifs                  212789  0
+</pre></td></tr></tbody></table>
+
+		<p>他立刻就将该模块加载罗～但是 insmod 后面接的模块必须要是完整的『档名』才行！那如何移除这个模块呢？</p>
+
+<a name="rmmod"></a>
+<table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">rmmod [-fw] module_name</span>
+<span class="term_say">选项与参数：
+-f  ：强制将该模块移除掉，不论是否正被使用；
+-w  ：若该模块正被使用，则 rmmod 会等待该模块被使用完毕后，才移除他！</span>
+
+<span class="term_hd">范例一：将刚刚加载的 cifs 模块移除！</span>
+[root@www ~]# <span class="term_command">rmmod cifs</span>
+
+<span class="term_hd">范例二：请加载 vfat 这个『文件系统』模块</span>
+[root@www ~]# <span class="term_command">insmod /lib/modules/$(uname -r)/kernel/fs/vfat/vfat.ko</span>
+insmod: error inserting '/lib/modules/2.6.18-92.el5/kernel/fs/vfat/vfat.ko': 
+-1 Unknown symbol in module
+<span class="term_say"># 无法加载 vfat 这个模块啊！伤脑筋！</span>
+</pre></td></tr></tbody></table>
+
+		<p>使用 insmod 与 rmmod 的问题就是，你必须要自行找到模块的完整档名才行，而且如同上述范例二的结果，
+		万一模块有相依属性的问题时，你将无法直接加载或移除该模块呢！所以近年来我们都建议直接使用 modprobe 
+		来处理模块加载的问题，这个命令的用法是：</p>
+
+<a name="modprobe"></a>
+<table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">modprobe [-lcfr] module_name</span>
+<span class="term_say">选项与参数：
+-c  ：列出目前系统所有的模块！(更详细的代号对应表)
+-l  ：列出目前在 /lib/modules/`uname -r`/kernel 当中的所有模块完整档名；
+-f  ：强制加载该模块；
+-r  ：类似 rmmod ，就是移除某个模块罗～</span>
+
+<span class="term_hd">范例一：加载 cifs 模块</span>
+[root@www ~]# <span class="term_command">modprobe cifs</span>
+<span class="term_say"># 很方便吧！不需要知道完整的模块档名，这是因为该完整档名已经记录到
+# /lib/modules/`uname -r`/modules.dep 当中的缘故啊！如果要移除的话：</span>
+[root@www ~]# <span class="term_command">modprobe -r cifs</span>
+</pre></td></tr></tbody></table>
+
+		<p>使用 modprobe 真的是要比 insmod 方便很多！因为他是直接去搜寻 modules.dep 的纪录，
+		所以罗，当然可以克服模块的相依性问题，而且还不需要知道该模块的详细路径呢！
+		好方便！ ^_^</p>
+
+<table border="1" cellpadding="5" cellspacing="0" width="90%"><tbody><tr><td>
+例题：<div class="block2">
+尝试使用 modprobe 加载 vfat 这个模块，并且观察该模块的相关模块是哪个？
+</div>
+答：<div class="block2">
+我们使用 modprobe 来加载，再以 lsmod 来观察与 grep 撷取关键字看看：<br>
+
+<table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">modprobe vfat</span>
+[root@www ~]# <span class="term_command">lsmod | grep vfat</span>
+vfat                   15809  0
+fat                    51165  1 vfat <span class="term_note">&lt;==原来就是 fat 这个模块啊！</span>
+
+[root@www ~]# <span class="term_command">modprobe -r vfat</span> <span class="term_note">&lt;==测试完移除此模块</span>
+</pre></td></tr></tbody></table>
+</div>
+</td></tr></tbody></table><br>
+	</div>
+
+	<hr><a name="kernel_modprobe"></a><img src="../image/logo.png" alt="小标题的图示" width="24" align="middle" height="23"><span class="text_h2">核心模块的额外参数配置：
+	/etc/modprobe.conf</span><br>
+	<div class="block2">
+		<p>这个文件我们之前已经谈过了，这里只是再强调一下而已，如果您想要修改某些模块的额外参数配置，
+		就在这个文件内配置吧！我们假设一个案例好了，假设我的网络卡 eth0 是使用 ne ，
+		但是 eth1 同样也使用 ne ，为了避免同一个模块会导致网络卡的错乱，
+		因此，我可以先找到 eth0 与 eth1 的 I/O 与 IRQ ，假设：</p>
+		<ul>
+		<li>eth0 ： I/O (0x300) 且 IRQ=5</li>
+		<li>eth1 ： I/O (0x320) 且 IRQ=7</li>
+		</ul>
+		<p>则：</p>
+
+<table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">vi /etc/modprobe.conf</span>
+alias eth0 ne
+alias eth1 ne
+options eth0 io=0x300 irq=5
+options eth1 io=0x320 irq=7
+</pre></td></tr></tbody></table>
+
+		<p>嘿嘿！如此一来，我的 Linux 就不会捉错网络卡的对应罗！因为被我强制指定某个 I/O 咯嘛！ ^_^</p>
+	</div>
+</div>
+
+
+<hr><a name="grub"></a><img src="../image/logo.png" alt="大标题的图示" width="35" align="middle" height="34"><span class="text_h1">Boot Loader: Grub</span><br>
+<div class="block1">
+	<p>在看完了前面的整个启动流程，以及核心模块的整理之后，你应该会发现到一件事情，
+	那就是『 boot loader 是加载核心的重要工具』啊！没有 boot loader 的话，那么
+	kernel 根本就没有办法被系统加载的呢！所以，底下我们会先谈一谈 boot loader 的功能，
+	然后再讲一讲现阶段 Linux 里头最主流的 grub 这个 boot loader 吧！<br><br></p>
+
+	<hr><a name="grub_loader"></a><img src="../image/logo.png" alt="小标题的图示" width="24" align="middle" height="23"><span class="text_h2">boot loader 的两个 stage</span><br>
+	<div class="block2">
+		<p>我们在第一小节启动流程的地方曾经讲过，在 BIOS 读完资讯后，接下来就是会<a href="#process_2">到第一个启动装置的 MBR 去读取 boot loader</a> 了。这个 boot loader 
+		可以具有菜单功能、直接加载核心文件以及控制权移交的功能等，
+		系统必须要有 loader 才有办法加载该操作系统的核心就是了。但是我们都知道， <span class="text_import2">MBR 
+		是整个硬盘的第一个 sector 内的一个区块，充其量整个大小也才 446 bytes 而已。</span>
+		我们的 loader 功能这么强，光是程序码与配置数据不可能只占不到 446 bytes 的容量吧？那如何安装？</p>
+
+		<p>为了解决这个问题，所以 Linux 将 boot loader 的程序码运行与配置值加载分成两个阶段 (stage) 来运行：</p>
+
+		<ul>
+		<li><span class="text_import2">Stage 1：运行 boot loader 主程序：</span><br>
+		第一阶段为运行 boot loader 的主程序，这个主程序必须要被安装在启动区，亦即是 MBR 或者是 boot sector
+		。但如前所述，因为 MBR 实在太小了，所以，MBR 或 boot sector 通常仅安装 boot loader 的最小主程序，
+		并没有安装 loader 的相关配置档；<br><br></li>
+
+		<li><span class="text_import2">Stage 2：主程序加载配置档：</span><br>
+		第二阶段为透过 boot loader 加载所有配置档与相关的环境参数文件 (包括文件系统定义与主要配置档 menu.lst)，
+		一般来说，配置档都在 /boot 底下。</li>
+		</ul>
+
+		<p>那么这些配置档是放在哪里啊？这些与 grub 有关的文件都放置到 /boot/grub 中，那我们就来看看有哪些文件吧！</p>
+
+<table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">ls -l /boot/grub</span>
+-rw-r--r--  device.map              <span class="term_note">&lt;==grub 的装置对应档(底下会谈到)</span>
+-rw-r--r--  e2fs_stage1_5           <span class="term_note">&lt;==ext2/ext3 文件系统之定义档</span>
+-rw-r--r--  fat_stage1_5            <span class="term_note">&lt;==FAT 文件系统之定义档</span>
+-rw-r--r--  ffs_stage1_5            <span class="term_note">&lt;==FFS 文件系统之定义档</span>
+-rw-------  grub.conf               <span class="term_note">&lt;==grub 在 Red Hat 的配置档</span>
+-rw-r--r--  iso9660_stage1_5        <span class="term_note">&lt;==光驱文件系统定义档</span>
+-rw-r--r--  jfs_stage1_5            <span class="term_note">&lt;==jfs 文件系统定义档</span>
+lrwxrwxrwx  menu.lst -&gt; ./grub.conf <span class="term_note">&lt;==其实 menu.lst 才是配置档！</span>
+-rw-r--r--  minix_stage1_5          <span class="term_note">&lt;==minix 文件系统定义档</span>
+-rw-r--r--  reiserfs_stage1_5       <span class="term_note">&lt;==reiserfs 文件系统定义档</span>
+-rw-r--r--  splash.xpm.gz           <span class="term_note">&lt;==启动时在 grub 底下的背景图示</span>
+-rw-r--r--  stage1                  <span class="term_note">&lt;==stage 1 的相关说明</span>
+-rw-r--r--  stage2                  <span class="term_note">&lt;==stage 2 的相关说明</span>
+-rw-r--r--  ufs2_stage1_5           <span class="term_note">&lt;==UFS 的文件系统定义档</span>
+-rw-r--r--  vstafs_stage1_5         <span class="term_note">&lt;==vstafs 文件系统定义档</span>
+-rw-r--r--  xfs_stage1_5            <span class="term_note">&lt;==xfs 文件系统定义档</span>
+</pre></td></tr></tbody></table>
+
+		<p>从上面的说明你可以知道 /boot/grub/ 目录下最重要的就是配置档 (menu.lst) 以及各种文件系统的定义！
+		我们的 loader 读取了这种文件系统定义数据后，就能够认识文件系统并读取在该文件系统内的核心文件罗。
+		至於 grub  的配置档档名，其实应该是 menu.lst 的，只是在 Red Hat 里面被定义成为 /boot/grub.conf 而已。
+		鸟哥建议您还是记忆 menu.lst 比较好喔！</p>
+
+		<p>所以从上面的文件来看， grub 认识的文件系统真的非常多喔！正因为如此，所以 grub
+		才会取代 Lilo 这个老牌的 boot loader 嘛！好了，接下来就来瞧瞧配置档内有啥配置值吧！</p>
+	</div>
+
+	<hr><a name="grub_menulist"></a><img src="../image/logo.png" alt="小标题的图示" width="24" align="middle" height="23"><span class="text_h2">grub 的配置档 
+	/boot/grub/menu.lst 与菜单类型</span><br>
+	<div class="block2">
+		<p>grub 是目前使用最广泛的 Linux 启动管理程序，旧的 Lilo 这个启动管理程序现在已经很少见了，
+		所以本章才会将 Lilo 的介绍舍弃的说。grub 的优点挺多的，包括有：</p>
+
+		<ul>
+		<li>认识与支持较多的文件系统，并且可以使用 grub 的主程序直接在文件系统中搜寻核心档名；</li>
+		<li>启动的时候，可以『自行编辑与修改启动配置项目』，类似 bash 的命令模式；</li>
+		<li>可以动态搜寻配置档，而不需要在修改配置档后重新安装 grub 。亦即是我们只要修改完
+			/boot/grub/menu.lst 里头的配置后，下次启动就生效了！</li>
+		</ul>
+
+		<p>上面第三点其实就是 Stage 1, Stage 2 分别安装在 MBR (主程序) 与文件系统当中 (配置档与定义档) 的原因啦！
+		好了，接下来，让我们好好了解一下 grub 的配置档： /boot/grub/menu.lst 这玩意儿吧！
+		要注意喔，那个 lst 是 LST 的小写，不要搞错罗！<br><br></p>
+
+		<a name="grub_hd"></a>
+		<hr><ul class="list1"><li class="text_import1">硬盘与分割槽在 grub 中的代号</li></ul>
+
+		<p>安装在 MBR 的 grub 主程序，最重要的任务之一就是<span class="text_import2">从磁碟当中加载核心文件</span>，
+		以让核心能够顺利的驱动整个系统的硬件。所以罗， grub 必须要认识硬盘才行啊！那么 grub 到底是如何认识硬盘的呢？
+		嘿嘿！ grub 对硬盘的代号配置与传统的 Linux 磁碟代号可完全是不同的！grub 对硬盘的识别使用的是如下的代号：</p>
+
+		<blockquote class="text_import2" style="font-family: '细明体';">(hd0,0)</blockquote>
+
+		<p>够神了吧？跟 /dev/hda1 风马牛不相干～怎么办啊？其实只要注意几个东西即可，那就是：</p>
+
+		<ul class="text_import2">
+		<li>硬盘代号以小括号 ( ) 包起来；</li>
+		<li>硬盘以 hd 表示，后面会接一组数字；</li>
+		<li>以『搜寻顺序』做为硬盘的编号，而不是依照硬盘排线的排序！(这个重要！)</li>
+		<li>第一个搜寻到的硬盘为 0 号，第二个为 1 号，以此类推；</li>
+		<li>每颗硬盘的第一个 partition 代号为 0 ，依序类推。</li>
+		</ul>
+
+		<p>所以说，第一颗『搜寻到的硬盘』代号为：『(hd0)』，而该颗硬盘的第一号分割槽为『(hd0,0)』，这样说了解了吧？
+		反正你要记得，在 grub 里面，他开始的数字是 0 而不是 1 就是了！</p>
+
+		<div style="padding: 10pt 0pt;" align="right"><table width="90%"><tbody><tr><td><b>Tips:</b><br><span style="color: rgb(0, 144, 0);"><font size="-1">		在较旧的主板上面，通常第一颗硬盘会插在 IDE 1 的 master 上，就会是 /dev/hda，所以常常我们可能会误会 
+		/dev/hda 就是 (hd0)，其实不是喔！要看你的 BIOS 配置值才行！有的主板 BIOS 
+		可以调整启动的硬盘搜寻顺序，那么就要注意了，因为 grub 的硬盘代号可能会跟著改变呐！留意留意！
+		</font></span></td><td><img src="0510osloader_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div>
+		<p>所以说，整个硬盘代号为：</p>
+
+
+<table bgcolor="lightyellow" border="1" cellpadding="3" cellspacing="0" width="95%">
+<tbody><tr align="center" bgcolor="#182448"><td><font color="#FFFFFF">硬盘搜寻顺序</font></td><td><font color="#FFFFFF">在 Grub  当中的代号</font></td></tr>
+<tr><td align="center">第一颗</td><td>(hd0) (hd0,0) (hd0,1) (hd0,4)....</td></tr>
+<tr><td align="center">第二颗</td><td>(hd1) (hd1,0) (hd1,1) (hd1,4)....</td></tr>
+<tr><td align="center">第三颗</td><td>(hd2) (hd2,0) (hd2,1) (hd2,4)....</td></tr>
+</tbody></table>
+
+		<p>这样应该比较好看出来了吧？第一颗硬盘的 MBR 安装处的硬盘代号就是『(hd0)』，
+		而第一颗硬盘的第一个分割槽的 boot sector 代号就是『(hd0,0)』第一颗硬盘的第一个逻辑分割槽的 
+		boot sector 代号为『(hd0,4)』了了吧！</p>
+
+<table border="1" cellpadding="5" cellspacing="0" width="90%"><tbody><tr><td>
+例题：<div class="block2">
+假设你的系统仅有一颗 SATA 硬盘，请说明该硬盘的第一个逻辑分割槽在 Linux 与 grub 当中的档名与代号：
+</div>
+答：<div class="block2">
+因为是 SATA 磁碟，加上使用逻辑分割槽，因此 Linux 当中的档名为 /dev/sda5 才对 (1~4 保留给 primary 与 extended 使用)。
+至於 grub 当中的磁碟代号则由於仅有一颗磁碟，因此代号会是『 (hd0,4) 』才对。
+</div>
+</td></tr></tbody></table><br>
+
+		<a name="grub_menu_lst"></a>
+		<hr><ul class="list1"><li class="text_import1">/boot/grub/menu.lst 配置档：</li></ul>
+
+		<p>了解了 grub 当中最麻烦的硬盘代号后，接下来，我们就可以瞧一瞧配置档的内容了。先看一下鸟哥的 CentOS
+		内的 /boot/grub/menu.lst 好了：</p>
+
+<table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">vim /boot/grub/menu.lst</span>
+default=0     <span class="term_note">&lt;==默认启动选项，使用第 1 个启动菜单 (title)</span>
+timeout=5     <span class="term_note">&lt;==若 5 秒内未动键盘，使用默认菜单启动</span>
+splashimage=(hd0,0)/grub/splash.xpm.gz <span class="term_note">&lt;==背景图示所在的文件</span>
+hiddenmenu    <span class="term_note">&lt;==读秒期间是否显示出完整的菜单画面(默认隐藏)</span>
+title CentOS (2.6.18-92.el5)    <span class="term_note">&lt;==第一个菜单的内容</span>
+        root (hd0,0)
+        kernel /vmlinuz-2.6.18-92.el5 ro root=LABEL=/1 rhgb quiet
+        initrd /initrd-2.6.18-92.el5.img
+</pre></td></tr></tbody></table>
+
+		<p>在 title 以前的四行，都是属於 grub 的整体配置，包括默认的等待时间与默认的启动项目，
+		还有显示的画面特性等等。至於 title 后面才是指定启动的核心文件或者是 boot loader 控制权。
+		在整体配置方面的项目主要常见的有：</p>
+
+		<ul>
+		<li><span class="text_import1">default=0</span><br>
+		这个必须要与 title 作为对照，在配置档里面有几个 title ，启动的时候就会有几个菜单可以选择。
+		由於 grub 启始号码为 0 号，因此 default=0 代表使用『第一个 title 项目』来启动的意思。
+		default 的意思是，如果在读秒时间结束前都没有动到键盘， grub 默认使用此 title 项目 (在此为 0 号) 来启动。<br><br></li>
+
+		<li><span class="text_import1">timeout=5</span><br>
+		启动时会进行读秒，如果在 5 秒钟内没有按下任何按键，就会使用上面提到的 default 后面接的那个 title 
+		项目来启动的意思。如果你觉得 5 秒太短，那可以将这个数值调大 (例如 30 秒) 即可。此外，如果 timeout=0 
+		代表直接使用 default 值进行启动而不读秒，timeout=-1 则代表直接进入菜单不读秒了！<br><br></li>
+
+		<li><span class="text_import1">splashimage=(hd0,0)/grub/splash.xpm.gz</span><br>
+		有没有发现你的 CentOS 在启动的时候背景不是黑白而是有色彩变化的呢？那就是这个文件提供的背景图示啦(<a href="#ps3">注3</a>)！不过这个文件的实际路径写法怎么会是这样啊？很简单啊～上述的意思是：<span class="text_import2">在 (hd0,0)	这个分割槽内的最顶层目录中，底下的 grub/splash.xpm.gz 那个文件</span>的意思。
+		由於鸟哥将 /boot 这个目录独立成为 /dev/hda1 ，因此这边就会写成『在 /dev/hda1 
+		里面的 grub/splash.xpm.gz 』的意思啦！想一想，如果你的 /boot 目录并没有独立成为一个分割槽，
+		这里会写成如何？<br><br></li>
+
+		<li><span class="text_import1">hiddenmenu</span><br>
+		这个说的是，启动时是否要显示菜单？目前 CentOS 默认是不要显示菜单，
+		如果您想要显示菜单，那就将这个配置值注解掉！</li>
+		</ul>
+
+		<p>整体配置的地方大概是这样，而底下那个 title 则是显示启动的配置项目。如同前一小节提到的，启动时可以选择
+		<span class="text_import2">(1)直接指定核心文件启动或 (2)将 boot loader 控制权转移到下个 loader 
+		(此过程称为 chain-loader)</span>。每个 title 后面接的是『该启动项目名称的显示』，亦即是在菜单出现时，菜单上面的名称而已。
+		那么这两种方式的配置有啥不同呢？</p>
+
+		<ol>
+		<li><span class="text_import1">直接指定核心启动</span><br><br>
+
+		既然要指定核心启动，所以当然要找到核心文件啦！此外，有可能还需要用到 initrd 的 RAM Disk 配置档。但是如前说的，
+		尚未启动完成，所以我们必须要以 grub 的硬盘识别方式找出完整的 kernel 与 initrd 档名才行。
+		因此，我们可能需要有底下的方式来配置才行！<br>
+
+<table class="term"><tbody><tr><td class="term"><pre><span class="term_hd">1. 先指定核心文件放置的 partition，再读取文件 (目录树)，
+   最后才加入文件的实际档名与路径 (kernel 与 initrd)；
+   鸟哥的 /boot 为 /dev/hda1 ，因此核心文件的配置则成为：</span>
+root    (hd0,0)          <span class="term_note">&lt;==代表核心文件放在那个 partition 当中</span>
+kernel  /vmlinuz-2.6.18-92.el5 ro root=LABEL=/1 rhgb quiet
+initrd  /initrd-2.6.18-92.el5.img
+</pre></td></tr></tbody></table>
+
+		上面的 root, kernel, initrd 后面接的参数的意义说明如下：<br><br>
+
+		<span class="text_import2">root</span> ：代表的是『核心文件放置的那个 partition 而不是根目录』喔！不要搞错了！
+		以鸟哥的案例来说，我的根目录为 /dev/hda2 而 /boot 独立为 /dev/hda1 ，因为与 /boot 有关，
+		所以磁碟代号就会成为 (hd0,0) 罗。<br><br>
+
+		<span class="text_import2">kernel</span> ：至於 kernel 后面接的则是核心的档名，而在档名后面接的则是核心的参数。
+		由於启动过程中需要挂载根目录，因此 kernel 后面接的那个 root=LABEL=/1 指的是『Linux 的根目录在哪个 partition 』的意思。
+		还记得<a href="http://vbird.dic.ksu.edu.tw/linux_basic/0230filesystem.php#e2label">第八章谈过的 LABEL 挂载</a>功能吧？
+		是的，这里使用 LABEL 来挂载根目录。至於 rhgb 为色彩显示而 quiet 则是安静模式 (萤幕不会输出核心侦测的资讯)。
+		<br><br>
+
+		<span class="text_import2">initrd</span> ：就是前面提到的 initrd 制作出 RAM Disk 的文件档名啦！<br>
+
+<table class="term"><tbody><tr><td class="term"><pre><span class="term_hd">2. 直接指定 partition 与档名，不需要额外指定核心文件所在装置代号</span>
+kernel  (hd0,0)/vmlinuz-2.6.18-92.el5 ro root=LABEL=/1 rhgb quiet
+initrd  (hd0,0)/initrd-2.6.18-92.el5.img
+</pre></td></tr></tbody></table>
+
+		老实说，鸟哥比较喜欢这种样式的档名写法，因为这样我们就能够知道核心文件是在哪个装置内的某个档名，
+		而不会去想到我们的根目录 (/, root) 啦！让我们来想想 /boot 有独立分割与无独立分割的情况吧！<br><br>
+
+<table border="1" cellpadding="5" cellspacing="0" width="90%"><tbody><tr><td>
+例题：<div class="block2">
+我的系统分割是： /dev/hda1 (/), /dev/hda2 (swap) 而已，且我的核心文件为 /boot/vmlinuz，请问 grub 的 menu.lst 
+内该如何撰写核心文件位置？
+</div>
+答：<div class="block2">
+我们使用叠代的方式来了解一下好了。由於核心档名为 /boot/vmlinuz，转成装置档名与代号会成为如下的过程：<pre>原始文件：  <u>/</u>boot/vmlinuz ↓
+Linux 装置：<u>(/dev/hda1)</u>/boot/vmlinuz ↓
+grub  装置：<u>(hd0,0)</u>/boot/vmlinuz</pre>
+所以最终的 kernel 写法会变成：
+<blockquote class="text_import2" style="font-family: '细明体';">kernel (hd0,0)/boot/vmlinuz root=/dev/hda1 ...</blockquote>
+</div>
+</td></tr></tbody></table><br>
+
+<table border="1" cellpadding="5" cellspacing="0" width="90%"><tbody><tr><td>
+例题：<div class="block2">
+同上，只是我的分割情况变成： /dev/sda1 (/boot), /dev/sda5 (/) 时？
+</div>
+答：<div class="block2">
+由於 /boot 被独立出来了，所以情况会不一样喔！如下所示：<pre>原始文件：  <u>/boot</u>/vmlinuz ↓
+Linux 装置：<u>(/dev/sda1)</u>/vmlinuz ↓
+grub  装置：<u>(hd0,0)</u>/vmlinuz</pre>
+所以最终的 kernel 写法会变成：
+<blockquote class="text_import2" style="font-family: '细明体';">kernel (hd0,0)/vmlinuz root=/dev/sda5 ...</blockquote>
+</div>
+</td></tr></tbody></table><br></li>
+
+		<li><span class="text_import1">利用 chain loader 的方式转交控制权</span><br><br>
+
+		所谓的 chain loader (启动管理程序的链结) 仅是在将控制权交给下一个 boot loader 而已，
+		所以 grub 并不需要认识与找出 kernel 的档名 ，『 <span class="text_import2">他只是将 boot
+		的控制权交给下一个 boot sector 或 MBR 内的 boot loader 而已</span> 』
+		所以通常他也不需要去查验下一个 boot loader 的文件系统！<br><br>
+
+		一般来说， chain loader 的配置只要两个就够了，一个是预计要前往的 boot sector 所在的分割槽代号，
+		另一个则是配置 chainloader 在那个分割槽的 boot sector (第一个磁区) 上！假设我的 Windows 分割槽在 
+		/dev/hda1 ，且我又只有一颗硬盘，那么要 grub 将控制权交给 windows 的 loader 只要这样就够了：<br>
+
+<table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">vi /boot/grub/menu.lst</span>
+<span class="term_say">....前略....</span>
+title Windows partition
+	root (hd0,0)    <span class="term_note">&lt;==配置使用此分割槽</span>
+	chainloader +1  <span class="term_note">&lt;== +1 可以想成第一个磁区，亦即是 boot sector</span>
+</pre></td></tr></tbody></table>
+
+		上面的范例中，我们可以很简单的这样想：那个 (hd0,0) 就是 Windows 的 C 槽所在磁碟，
+		而 chainloader +1 就是让系统加载该分割槽当中的第一个磁区 (就是 boot sector) 内的启动管理程序。
+		不过，由於 Windows 的启动碟需要配置为活化 (active) 状态，且我们的 grub 默认会去检验该分割槽的文件系统。
+		因此我们可以重新将上面的范例改写成这样：<br>
+
+<table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">vi /boot/grub/menu.lst</span>
+<span class="term_say">....前略....</span>
+title Windows partition
+	rootnoverify (hd0,0)   <span class="term_note">&lt;==不检验此分割槽</span>
+	chainloader +1
+	makeactive             <span class="term_note">&lt;==配置此分割槽为启动碟(active)</span>
+</pre></td></tr></tbody></table>
+
+		grub 的功能还不止此，他还能够隐藏某些分割槽。举例来说，我的 /dev/hda5 是安装 Linux 的分割槽，
+		我不想让 Windows 能够认识这个分割槽时，你可以这样做：<br>
+
+<table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">vi /boot/grub/menu.lst</span>
+<span class="term_say">....前略....</span>
+title Windows partition
+	hide (hd0,4)           <span class="term_note">&lt;==隐藏 (hd0,4) 这个分割槽</span>
+	rootnoverify (hd0,0)
+	chainloader +1
+	makeactive
+</pre></td></tr></tbody></table>
+
+		</li></ol>
+	</div>
+
+	<hr><a name="grub_initrd"></a><img src="../image/logo.png" alt="小标题的图示" width="24" align="middle" height="23"><span class="text_h2">initrd 的重要性与创建新 
+	initrd 文件</span><br>
+	<div class="block2">
+		<p>我们在本章稍早之前『 <a href="#startup_loader">boot loader 与 kernel 加载</a>』的地方已经提到过 initrd 
+		这玩意儿，他的目的在於提供启动过程中所需要的最重要核心模块，以让系统启动过程可以顺利完成。
+		会需要 initrd 的原因，是因为核心模块放置於 /lib/modules/$(uname -r)/kernel/ 当中，
+		这些模块必须要根目录 (/) 被挂载时才能够被读取。但是如果核心本身不具备磁碟的驱动程序时，
+		当然无法挂载根目录，也就没有办法取得驱动程序，因此造成两难的地步。</p>
+
+		<p>initrd 可以将 /lib/modules/.... 内的『启动过程当中一定需要的模块』包成一个文件 (档名就是 initrd)，
+		然后在启动时透过主机的 INT 13 硬件功能将该文件读出来解压缩，并且 initrd 在内存内会模拟成为根目录，
+		由於此虚拟文件系统 (Initial RAM Disk) 主要包含磁碟与文件系统的模块，因此我们的核心最后就能够认识实际的磁碟，
+		那就能够进行实际根目录的挂载啦！所以说：『<span class="text_import2">initrd
+		内所包含的模块大多是与启动过程有关，而主要以文件系统及硬盘模块 (如 usb, SCSI 等) 为主</span>』的啦！</p>
+
+		<p>一般来说，需要 initrd 的时刻为：</p>
+
+		<ul class="text_import2">
+		<li>根目录所在磁碟为 SATA、U盘 或 SCSI 等连接介面；</li>
+		<li>根目录所在文件系统为 LVM, RAID 等特殊格式；</li>
+		<li>根目录所在文件系统为非传统 Linux 认识的文件系统时；</li>
+		<li>其他必须要在核心加载时提供的模块。</li>
+		</ul>
+
+		<div style="padding: 10pt 0pt;" align="right"><table width="90%"><tbody><tr><td><b>Tips:</b><br><span style="color: rgb(0, 144, 0);"><font size="-1">		之前鸟哥忽略 initrd 这个文件的重要性，是因为鸟哥很穷... ^_^。因为鸟哥的 Linux 主机都是较早期的硬件，
+		使用的是 IDE 介面的硬盘，而且并没有使用 LVM 等特殊格式的文件系统，而 Linux 核心本身就认识 IDE 介面的磁碟，
+		因此不需要 initrd 也可以顺利启动完成的。<u>自从 SATA 硬盘流行起来后，没有 initrd 就没办法启动了</u>！
+		因为 SATA 硬盘使用的是 SCSI 模块来驱动的，而 Linux 默认将 SCSI 功能编译成为模块....
+		</font></span></td><td><img src="0510osloader_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div>
+		<p>一般来说，各 distribution 提供的核心都会附上 initrd 文件，但如果你有特殊需要所以想重制 initrd 文件的话，
+		可以使用 mkinitrd 来处理的。这个文件的处理方式很简单， man mkinitrd 就知道了！ ^_^。
+		我们还是简单的介绍一下去！</p>
+
+<a name="mkinitrd"></a>
+<table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">mkinitrd [-v] [--with=模块名称] initrd档名 核心版本</span>
+<span class="term_say">选项与参数：
+-v  ：显示 mkinitrd 的运行过程
+--with=模块名称：模块名称指的是模块的名字而已，不需要填写档名。举例来说，
+       目前核心版本的 ext3 文件系统模块为底下的档名：
+       /lib/modules/$(uname -r)/kernel/fs/ext3/ext3.ko
+       那你应该要写成： --with=ext3 就好了 (省略 .ko)
+initrd档名：你所要创建的 initrd 档名，尽量取有意义又好记的名字。
+核心版本  ：某一个核心的版本，如果是目前的核心则是『 $(uname -r) 』</span>
+
+<span class="term_hd">范例一：以 mkinitrd 的默认功能创建一个 initrd 虚拟磁碟文件</span>
+[root@www ~]# <span class="term_command">mkinitrd -v initrd_$(uname -r) $(uname -r)</span>
+Creating initramfs
+Looking for deps of module ehci-hcd
+Looking for deps of module ohci-hcd
+<span class="term_say">....(中间省略)....</span>
+Adding module ehci-hcd  <span class="term_note">&lt;==最终加入 initrd 的就是底下的模块</span>
+Adding module ohci-hcd
+Adding module uhci-hcd
+Adding module jbd
+Adding module ext3
+Adding module scsi_mod
+Adding module sd_mod
+Adding module libata
+Adding module pata_sis
+
+[root@www ~]# <span class="term_command">ll initrd_*</span>
+-rw------- 1 root root 2406443 Apr 30 02:55 initrd_2.6.18-92.el5
+<span class="term_say"># 由於目前的核心版本可使用 uname -r 取得，因此鸟哥使用较简单的命令来处理罗～
+# 此时 initrd 会被创建起来，你可以将他移动到 /boot 等待使用。</span>
+
+<span class="term_hd">范例二：添加 8139too 这个模块的 initrd 文件</span>
+[root@www ~]# <span class="term_command">mkinitrd -v --with=8139too initrd_vbirdtest $(uname -r)</span>
+<span class="term_say">....(前面省略)....</span>
+Adding module mii
+Adding module 8139too  <span class="term_note">&lt;==看到没！这样就加入了！</span>
+</pre></td></tr></tbody></table>
+
+		<p>initrd 创建完成之后，同时核心也处理完毕后，我们就可以使用 grub 来创建菜单了！底下继续瞧一瞧吧！</p>
+	</div>
+
+	<hr><a name="grub_install"></a><img src="../image/logo.png" alt="小标题的图示" width="24" align="middle" height="23"><span class="text_h2">测试与安装 grub</span><br>
+	<div class="block2">
+		<p>如果你的 Linux 主机本来就是使用 grub 作为 loader 的话，那么你就不需要重新安装 grub 了，
+		因为 grub 本来就会主动去读取配置档啊！您说是吧！但如果你的 Linux 原来使用的并非 grub ，
+		那么就需要来安装啦！如何安装呢？首先，你必须要使用 grub-install 将一些必要的文件复制到
+		/boot/grub 里面去，你应该这样做的：</p>
+
+		<div style="padding: 10pt 0pt;" align="right"><table width="90%"><tbody><tr><td><b>Tips:</b><br><span style="color: rgb(0, 144, 0);"><font size="-1">		安装些什么呢？因为 boot loader 有两个 stage ，而配置档得要放置到适当的地方。
+		这个 grub-install 就是在安装配置档 (包括文件系统定义档与 menu.lst 等等) 而已！
+		如果要将 grub 的 stage1 主程序安装起来，就得要使用 grub shell 的功能喔！本章稍后会介绍。
+		</font></span></td><td><img src="0510osloader_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div>
+<a name="grub-install"></a>
+<table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">grub-install [--root-directory=DIR] INSTALL_DEVICE</span>
+<span class="term_say">选项与参数：
+--root-directory=DIR 那个 DIR 为实际的目录，使用 grub-install 默认会将
+  grub 所有的文件都复制到 /boot/grub/* ，如果想要复制到其他目录与装置去，
+  就得要用这个参数。
+INSTALL_DEVICE 安装的装置代号啦！</span>
+
+<span class="term_hd">范例一：将 grub 安装在目前系统的 MBR 底下，我的系统为 /dev/hda：</span>
+[root@www ~]# <span class="term_command">grub-install /dev/hda</span>
+<span class="term_say"># 因为原本 /dev/hda 就是使用 grub ，所以似乎不会出现什么特别的信息。
+# 如果去查阅一下 /boot/grub 的内容，会发现所有的文件都升级了，因为我们重装了！</span>
+
+<span class="term_hd">范例二：我的 /home 为独立的 /dev/hda3 ，如何安装 grub 到 /dev/hda3 (boot sector)</span>
+[root@www ~]# <span class="term_command">grub-install --root-directory=/home /dev/hda3</span>
+Probing devices to guess BIOS drives. This may take a long time.
+Installation finished. No error reported.
+This is the contents of the device map <span class="term_write">/home/boot/grub/device.map.</span>
+Check if this is correct or not. If any of the lines is incorrect,
+fix it and re-run the script `grub-install'.
+
+(fd0)   /dev/fd0
+(hd0)   /dev/hda   <span class="term_note">&lt;==会给予装置代号的对应表！</span>
+
+[root@www ~]# <span class="term_command">ll /home/boot/grub/</span>
+-rw-r--r-- 1 root root     30 Apr 30 11:12 device.map
+-rw-r--r-- 1 root root   7584 Apr 30 11:12 e2fs_stage1_5
+<span class="term_say">....(底下省略)....</span>
+<span class="term_say"># 看！文件都安装进来了！但是注意到，我们并没有配置档喔！那要自己创建！</span>
+</pre></td></tr></tbody></table>
+
+		<p>所以说， <span class="text_import2">grub-install 是安装 grub 相关的文件 (例如文件系统定义档) 
+		到你的装置上面去等待在启动时被读取，但还需要配置好配置档 (menu.lst) 后，再以 grub shell 来安装 grub 主程序到 
+		MBR 或者是 boot sector 上面去喔</span>！好了，那我们来思考一下想要安装的数据。</p>
+
+<table border="1" cellpadding="5" cellspacing="0" width="90%"><tbody><tr><td>
+例题：<div class="block2">
+我预计启动时要直接显示菜单，且菜单倒数为 30 秒。另外，在原本的 menu.lst 当中新增三个启动菜单，分别如下说明：
+<ol><li>假设 /dev/hda1 内含有 boot loader ，此 loader 如何取得控制权？</li>
+<li>如何重新读取 MBR 内的 loader ？</li>
+<li>利用你原本的系统核心文件，创建一个可强制进入单人维护模式的菜单</li>
+</ol>
+</div>
+答：<div class="block2">
+第一点很简单，就利用上一小节的说明来处理即可。至於第二点，MBR 的读取读的是整颗硬盘的第一个磁区，
+因此 root (hd0) 才是对的。第三点则与核心的后续参数有关。整个文件可以被改写成这样：<br>
+
+<table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">vim /boot/grub/menu.lst</span>
+default=0
+<span class="term_write">timeout=30</span>
+splashimage=(hd0,0)/grub/splash.xpm.gz
+<span class="term_write">#hiddenmenu</span>
+title CentOS (2.6.18-92.el5)
+        root (hd0,0)
+        kernel /vmlinuz-2.6.18-92.el5 ro root=LABEL=/1 rhgb quiet
+        initrd /initrd-2.6.18-92.el5.img
+title /dev/hda1 boot sector  <span class="term_note">&lt;==本例中的第一个新增菜单</span>
+        root (hd0,0)
+        chainloader +1
+title MBR loader             <span class="term_note">&lt;==新增的第二个菜单</span>
+        root (hd0)           <span class="term_note">&lt;==MBR 为整颗磁碟的第一个磁区，所以用整颗磁碟的代号</span>
+        chainloader +1
+title single user mode       <span class="term_note">&lt;==新增的第三个菜单(其实由原本的title复制来的)</span>
+        root (hd0,0)
+        kernel /vmlinuz-2.6.18-92.el5 ro root=LABEL=/1 rhgb quiet <span class="term_write">single</span>
+        initrd /initrd-2.6.18-92.el5.img
+</pre></td></tr></tbody></table>
+
+	下次启动时，你就会发现有四个菜单可以选择，而默认会以第一个菜单来启动喔！
+</div>
+</td></tr></tbody></table><br>
+
+		<a name="grubshell"></a>
+		<p>我们已经将配置档处理完毕，但是你要知道的是，我们并不知道 /dev/hda1 到底有没有包含 grub 的主程序，
+		因此我们想要将 grub 主程序再次的安装到 /dev/hda1 的 boot sector  ，也想要重新安装 grub 到 MBR 上面去。
+		此时我们就得要使用 grub shell 罗！整个安装与 grub shell 的动作其实很简单，
+		如果您有兴趣研究的话，可以使用 info grub 去查阅～鸟哥这里仅介绍几个有用的命令而已。</p>
+
+		<ul class="text_import2">
+		<li>用『 root (hdx,x) 』选择含有 grub 目录的那个 partition 代号；</li>
+		<li>用『 find /boot/grub/stage1 』看看能否找到安装资讯文件；</li>
+		<li>用『 find /boot/vmlinuz 』看看能否找到 kernel file (不一定要成功！)；</li>
+		<li>用『 setup (hdx,x) 』或『 setup (hdx) 』将 grub 安装在 boot sector 或 MBR；</li>
+		<li>用『 quit 』来离开 grub shell ！</li>
+		</ul>
+
+		<p>由於我们最需要安装的就是那个 stage1 啦！那才是 grub 的主程序嘛！而且配置档通常与主程序摆在同一个目录下。
+		因此我们需要使用 root (hd0,0) 去找到 /boot/grub/stage1 喔！接下来，请用 grub 来进入 grub shell 吧！进入 
+		grub 后，会出现一个『 grub&gt; 』的提示字节啊！</p>
+
+<table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">grub</span>
+
+<span class="term_hd"># 1. 先配置一下含有 grub 目录的那个 partition 啊！</span>
+grub&gt; <span class="term_command">root (hd0,0)</span>
+ Filesystem type is ext2fs, partition type 0x83
+<span class="term_say"># 鸟哥主机的分割中，/boot/grub 在 /boot 的分割槽，亦即是 /dev/hda1 内喔！
+# 另外， grub 也能够分辨出该分割槽的文件系统 (ext2)。</span>
+
+<span class="term_hd"># 2. 搜寻一下，是否存在 stage1 这个资讯文件？</span>
+grub&gt; <span class="term_command">find /boot/grub/stage1</span>
+ (hd0,2)
+<span class="term_say"># 见鬼！怎么会只有一个！我们明明有 /boot/grub 与 /home/boot/grub 啊！
+# 因为 /boot 是独立的，因此要找到该档名就得要用如下的方式：</span>
+
+grub&gt; <span class="term_command">find /grub/stage1</span>
+ (hd0,0)
+<span class="term_say"># 这样就能够找到罗！要特别注意 grub 找到不是目录树，而是装置内的文件。</span>
+
+<span class="term_hd"># 3. 搜寻一下是否可以找到核心？ /boot/vmlinuz-2.6.18-92.el5 ？</span>
+grub&gt; <span class="term_command">find /boot/vmlinuz-2.6.18-92.el5</span>
+Error 15: File not found
+grub&gt; <span class="term_command">find /vmlinuz-2.6.18-92.el5</span>
+ (hd0,0)
+<span class="term_say"># 再次强调，因为 /boot/ 是独立的，因此就会变成上头的模样罗！</span>
+
+<span class="term_hd"># 4. 将主程序安装上去吧！安装到 MBR 看看！</span>
+grub&gt; <span class="term_command">setup (hd0)</span>
+ Checking if "/boot/grub/stage1" exists... no <span class="term_note">&lt;==因为 /boot 是独立的</span>
+ Checking if "/grub/stage1" exists... yes     <span class="term_note">&lt;==所以这个档名才是对的！</span>
+ Checking if "/grub/stage2" exists... yes
+ Checking if "/grub/e2fs_stage1_5" exists... yes
+ Running "embed /grub/e2fs_stage1_5 (hd0)"...  15 sectors are embedded.
+succeeded
+ Running "install /grub/stage1 (hd0) (hd0)1+15 p (hd0,0)/grub/stage2 
+/grub/grub.conf"... succeeded  <span class="term_note">&lt;==将 stage1 程序安装妥当罗！</span>
+Done.
+<span class="term_say"># 很好！确实有装起来～这样 grub 就在 MBR 当中了！</span>
+
+<span class="term_hd"># 5. 那么重复安装到我的 /dev/hda1 呢？亦即是 boot sector 当中？</span>
+grub&gt; <span class="term_command">setup (hd0,0)</span>
+ Checking if "/boot/grub/stage1" exists... no
+ Checking if "/grub/stage1" exists... yes
+ Checking if "/grub/stage2" exists... yes
+ Checking if "/grub/e2fs_stage1_5" exists... yes
+ Running "embed /grub/e2fs_stage1_5 (hd0,0)"... <span class="term_write">failed (this is not fatal)</span>
+ Running "embed /grub/e2fs_stage1_5 (hd0,0)"... <span class="term_write">failed (this is not fatal)</span>
+ Running "install /grub/stage1 (hd0,0) /grub/stage2 p /grub/grub.conf "... 
+<span class="term_write">succeeded</span>
+Done.
+<span class="term_say"># 虽然无法将 stage1_5 安装到 boot sector 去，不过，还不会有问题，
+# 重点是最后面那个 stage1 要安装后，显示 succeeded 字样就可以了！</span>
+
+grub&gt; <span class="term_command">quit</span>
+</pre></td></tr></tbody></table>
+
+		<p>如此一来，就已经将 grub 安装到 MBR 及 /dev/hda1 的 boot sector 里面去了！
+		而且读取的是 (hd0,0) 里面的 /grub/menu.lst 那个文件喔！真是很重要啊！重要到不行！</p>
+
+		<p>最后总结一下：</p>
+		<ol class="text_import2">
+		<li>如果是从其他 boot loader 转成 grub 时，得先使用 grub-install 安装 grub 配置档；</li>
+		<li>开始编辑 menu.lst 这个重要的配置档；</li>
+		<li>透过 grub 来将主程序安装到系统中，如 MBR 的 (hd0) 或 boot sector 的 (hd0,0) 等等。</li>
+		</ol>
+	</div>
+
+	<hr><a name="grub_other"></a><img src="../image/logo.png" alt="小标题的图示" width="24" align="middle" height="23"><span class="text_h2">启动前的额外功能修改</span><br>
+	<div class="block2">
+		<p>事实上，上一个小节配置好之后，你的 grub 就已经在你的 Linux 系统上面了，而且同时存在於
+		MBR 与 boot sector 当中呢！所以，我们已经可以重新启动来查阅看看啦！
+		另外，如果你正在进行启动，那么请注意，我们可以在默认菜单 (鸟哥的范例当中是 30 秒) 按下任意键，
+		还可以进行 grub 的『线上编修』功能喔！真是棒啊！先来看看启动画面吧！</p>
+
+		<center><img src="0510osloader_files/grub-01.jpg" alt="grub 启动画面示意图" title="grub 启动画面示意图" border="1"><br>
+		图 3.5.1、grub 启动画面示意图<br></center>
+
+		<p>由於鸟哥将隐藏菜单的功能取消了，因此你会直接看到这四个菜单，同时会有读秒的咚咚在倒数。
+		菜单部分的画面其实就是 title 后面的文字啦！你现在知道如何修改 title 后面的文字了吧！ ^_^。
+		如果你使用上下键去选择第二 (/dev/hda1 boot sector) 或第三 (MBR loader) 时，会发现同样的画面重复出现！
+		这是因为那两个是 loader 移交而已嘛！而我们都使用相同的 grub 与相同的 menu.lst 配置档！
+		因此这个画面就会重复出现了！这样了解乎？</p>
+
+		<p>另外，如果你再仔细看的话，会发现到上图中底部还有一些细部的选项，似乎有个 'e' edit 的样子！
+		没错～ grub 支持线上编修命令喔！这是个很有用的功能！假如刚刚你将 menu.lst 的内容写错了，导致出现无法启动的问题时，
+		我们可以查阅该 title 菜单的内容并加以修改喔！举例来说，我想要知道第一个菜单的实际内容时，将反白光棒移动到第一个菜单，
+		再按下 'e' 会进入如下画面：</p>
+
+		<center><img src="0510osloader_files/grub-02.jpg" alt="grub 单一菜单内容" title="grub 单一菜单内容" border="1"><br>
+		图 3.5.2、grub 单一菜单内容<br></center>
+
+		<p>哈哈！这不就是我们在 menu.lst 里面配置的东西吗？没错！此时你还可以继续进一步修改喔！
+		注意看到上图最底下的说明，你还可以使用：</p>
+
+		<ul>
+		<li>e：进入 grub shell 的编辑画面；</li>
+		<li>o：在光标所在行底下再新增一行；</li>
+		<li>d：将光标所在行删除。</li></ul>
+
+		<p>我们说过， grub 是可以直接使用核心文件来启动的，所以，如果您很清楚的知道你的根目录 (/) 
+		在那个 partition ，而且知道你的核心文件档名 (通常都会有个 /boot/vmlinuz 连结到正确的档名)，
+		那么直接在图三的画面当中，以上述的 o, d, e 三个按键来编修，成为类似底下这样：</p>
+
+		<center><img src="0510osloader_files/grub-03.jpg" alt="grub edit 的线上编修功能" title="grub edit 的线上编修功能" border="1"><br>
+		图 3.5.3、grub edit 的线上编修功能<br></center>
+
+		<p>按下 [Enter] 按键后，然后输入 b 来 boot ，就可以启动啦！所以说，万一你的 /boot/grub/menu.lst 
+		配置错误，或者是因为安装的缘故，或者是因为核心文件的缘故，导致无法顺利启动时，记得啊，可以在 grub 的菜单部分，
+		使用 grub shell 的方式去查询 (find) 或者是直接指定核心文件，就能够启动啦！ ^_^</p>
+
+		<p>另外，很多时候我们的 grub 可能会发生错误，导致『连 grub 都无法启动』，那么根本就无法使用
+		grub 的线上编修功能嘛！怎么办？没关系啊！我们可以利用具有 grub 启动的 CD 来启动，
+		然后再以 CD 的 grub 的线上编修，嘿嘿！同样可以使用硬盘上面的核心文件来启动啦！很好玩吧！ ^_^</p>
+	</div>
+
+	<hr><a name="grub_vga"></a><img src="../image/logo.png" alt="小标题的图示" width="24" align="middle" height="23"><span class="text_h2">关於核心功能当中的 vga 配置</span><br>
+	<div class="block2">
+		<p>事实上，你的 tty1~tty6 除了 80x24 的解析度外，还能够有其他解析度的支持喔！但前提之下是你的核心必须支持
+		FRAMEBUFFER_CONSOLE 这个核心功能选项才行。如何确定有没有支持呢？你可以查阅 /boot/config-2.6.18-92.el5 
+		这个文件，然后这样搜寻：</p>
+
+<table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">grep 'FRAMEBUFFER_CONSOLE' /boot/config-2.6.18-92.el5</span>
+CONFIG_FRAMEBUFFER_CONSOLE=y
+<span class="term_say"># 这个项目如果出现 y 那就是有支持啦！如果被注解或是 n ，那就是没支持啦！</span>
+</pre></td></tr></tbody></table>
+
+		<p>那么如何调整 tty1 ~ tty6 终端机的解析度呢？先参考底下的表格再说 (此为十进位数值)：</p>
+
+
+<table bgcolor="lightyellow" border="1" cellpadding="3" cellspacing="0" width="95%">
+<tbody><tr align="center" bgcolor="#182448"><td><font color="#FFFFFF">彩度\解析度</font></td><td><font color="#FFFFFF">640x480</font></td><td><font color="#FFFFFF">800x600</font></td><td><font color="#FFFFFF">1024x768</font></td>
+	<td><font color="#FFFFFF">1280x1024</font></td><td><font color="#FFFFFF">bit</font></td></tr>
+<tr align="center"><td bgcolor="#182448"><font color="#FFFFFF">256</font></td><td>769</td><td>771</td><td>773</td><td>775</td><td>8 bit</td></tr>
+<tr align="center"><td bgcolor="#182448"><font color="#FFFFFF">32768</font></td><td>784</td><td>787</td><td>790</td><td>793</td><td>15 bit</td></tr>
+<tr align="center"><td bgcolor="#182448"><font color="#FFFFFF">65536</font></td><td>785</td><td>788</td><td>791</td><td>794</td><td>16 bit</td></tr>
+<tr align="center"><td bgcolor="#182448"><font color="#FFFFFF">16.8M</font></td><td>786</td><td>789</td><td>792</td><td>795</td><td>32 bit</td></tr>
+</tbody></table>
+
+		<p>假设你想要将你的终端机萤幕解析度调整到 1024x768 ，且色彩深度为 15bit 色的时候，就得要指定 vga=790 那个数字！
+		举例来说，鸟哥的 tty1 就想要这样的解析度时，你可以这样做：</p>
+
+<table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">vim /boot/grub/menu.lst</span>
+<span class="term_say">....(前面省略)....</span>
+title CentOS (2.6.18-92.el5)
+        root (hd0,0)
+        kernel /vmlinuz-2.6.18-92.el5 ro root=LABEL=/1 rhgb quiet <span class="term_write">vga=790</span>
+        initrd /initrd-2.6.18-92.el5.img
+<span class="term_say">....(后面省略)....</span>
+</pre></td></tr></tbody></table>
+
+		<p>重新启动并选择此菜单进入 Linux，你跑到 tty1 去看看，嘿嘿！就已经是 1024x768 的解析度罗！
+		只是字会变的很小，但是画面的范围会加大就是了。不过，某些版本支持的是 16 进位制，所以还需要修改一下格式呢！
+		一般使用上表当中的值应该就可以了。不过，由於不同的操作系统与硬件可能会有不一样的情况，因此，
+		上面的值不见得一定可以在您的机器上面测试成功，建议您可以分别配置看看哩～以找出可以使用的值！ ^_^</p>
+	</div>
+
+	<hr><a name="grub_hd"></a><img src="../image/logo.png" alt="小标题的图示" width="24" align="middle" height="23"><span class="text_h2">BIOS 无法读取大硬盘的问题</span><br>
+	<div class="block2">
+		<p>现今的硬盘容量越来越大，如果你使用旧的主板来安插大容量硬盘时，可能由於系统 BIOS 或者是其他问题，
+		导致 BIOS 无法判断该硬盘的容量，此时你的系统读取可能会有问题。为什么呢？</p>
+
+		<p>我们在本章一开始的启动流程讲过，当进入 Linux 核心功能后，他会主动的再去侦测一下整个系统，
+		因此 BIOS 捉不到的硬件在 Linux 核心反而可能会可以捉到而正常使用。举例来说，过去很多朋友常常会发现，
+		『<span class="text_import2">我的系统使用 DVD 启动安装时，可以顺利的安装好 Linux ，但是第一次启动时，
+		萤幕只出现黑压压的一片，且出现 grub&gt; 的字样，而无法进入 Linux 系统中</span>』，这又是怎么一回事？</p>
+
+		<ul>
+		<li>在安装的过程中，由於是使用 DVD 或 CD 启动，因此加载 Linux 核心不成问题，而核心会去侦测系统硬件，因此可以捉到
+		BIOS 捉不到的硬盘，此时你确实可以安装 Linux 在大容量的硬盘上，且不会出现任何问题。<br><br></li>
+		<li>但是在进入硬盘启动时，由於 kernel 与 initrd 文件都是透过 BIOS 的 INT 13 通道读取的，
+		因此你的 kernel 与 initrd  如果放置在 BIOS 无法判断的磁区中，当然就无法被系统加载，而仅会出现 grub shell (grub&gt;)
+		等待你的处理而已。</li>
+		</ul>
+
+		<p>更多 grub 错误的代码查询可以到底下的连结查阅：</p>
+		<ul><li><a href="http://orgs.man.ac.uk/documentation/grub/grub_toc.html#SEC_Contents" target="_blank">http://orgs.man.ac.uk/documentation/grub/grub_toc.html#SEC_Contents</a></li></ul>
+
+		<p>现在你知道问题所在啦！那就是 <span class="text_import2">BIOS 无法读取大容量磁碟内的 kernel 与 initrd 文件</span>。
+		那如何解决呢？很简单啦！就让 kernel 与 initrd 文件放置在大硬盘的最前头，由於 BIOS 至少可以读到大磁碟的
+		1024 磁柱内的数据，因此就能够读取核心与虚拟文件系统的文件罗。那如何让 kernel 与 initrd 
+		放置到整颗硬盘的最前面呢？简单的要命吧！就<span class="text_import2">创建 /boot 独立分割槽，并将 /boot 
+		放置到最前面</span>即可！更多其他的解决方案可参考文后的延伸阅读(<a href="#ps4">注4</a>)</p>
+
+		<p>万一你已经安装了 Linux 且发生了上述的问题，那该怎办？你可以这样作的：</p>
+
+		<ul>
+		<li>最简单的做法，就是直接重灌，并且制作出 /boot 挂载的 partition ，同时确认该 partition 是在 1024 cylinder 
+		之前才行。<br><br></li>
+		<li>如果实在不想重灌，没有关系，利用我们刚刚上头提到的 grub 功能，额外创建一个可启动软盘，
+		或者是直接以光驱启动，然后以 grub 的编写能力进入 Linux 。<br><br></li>
+		<li>另外的办法其实是骗过 BIOS ，直接将硬盘的 cylinder, head, sector 等等资讯直接写到
+		BIOS 当中去，如此一来你的 BIOS 可能就可以读得到与支持的到你的大硬盘了。</li>
+		</ul>
+
+		<p>不过，鸟哥还是建议您可以重新安装，并且制作出 /boot 这个 partition 啦！ ^_^！这也是为啥这次更版中，
+		鸟哥特别强调要分割出 /boot 这个分割槽的原因啊！</p>
+	</div>
+
+	<hr><a name="grub_password"></a><img src="../image/logo.png" alt="小标题的图示" width="24" align="middle" height="23"><span class="text_h2">为个别菜单加上口令</span><br>
+	<div class="block2">
+		<p>想像一个环境，如果你管理的是一间计算机教室，这间计算机教室因为可对外开放，但是你又担心某些 partition 
+		被学生不小心的弄乱，因此你可能会想要将某些启动菜单作个保护。这个时候，为每个菜单作个加密的口令就是个可行的方案啦！
+		那如何在启动的过程里面提供口令保护呢？首先，你必须要创建口令，而且还需要是加密过后的喔！
+		否则人家跑到 /boot/grub/menu.lst 不就可以探查到你的启动口令了？那如何创建加密的口令呢？
+		我们可以透过 grub 提供的 md5 编码来处理的，如下所示：</p>
+
+<a name="grub-md5-crypt"></a>
+<table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">grub-md5-crypt</span>
+Password: <span class="term_note">&lt;==输入口令</span>
+Retype password: <span class="term_note">&lt;==再输入一次</span>
+$1$kvlI0/$byrbNgkt/.REKPQdfg287. <span class="term_note">&lt;==这就是产生的 md5 口令！</span>
+</pre></td></tr></tbody></table>
+
+		<p>上面产生的最后一行，由 $ 开始到 . 结束的那行，就是你的口令经过 md5 编码过后的咚咚！
+		将这个口令复制下来吧！假设我们要将第一个选项加入这个口令，而第四个选项加入另外的口令，
+		那你应该要这样做：</p>
+
+<table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">vim /boot/grub/menu.lst</span>
+<span class="term_say">....(前面省略)....</span>
+title CentOS (2.6.18-92.el5)
+        <span class="term_write">password --md5 $1$kvlI0/$byrbNgkt/.REKPQdfg287.</span>
+        root (hd0,0)
+        kernel /vmlinuz-2.6.18-92.el5 ro root=LABEL=/1 rhgb quiet vga=790
+        initrd /initrd-2.6.18-92.el5.img
+<span class="term_say">....(中间省略)....</span>
+title single user mode
+        <span class="term_write">password --md5 $1$GFnI0/$UuiZc/7snugLtVN4J/WyM/</span>
+        root (hd0,0)
+        kernel /vmlinuz-2.6.18-92.el5 ro root=LABEL=/1 rhgb quiet single
+        initrd /initrd-2.6.18-92.el5.img
+</pre></td></tr></tbody></table>
+
+		<p>上表的案例中，我们两个菜单进入的口令并不相同，可以进行同学的分类啦！不过这样也造成一个问题，
+		那就是一定要输入口令才能够进入启动流程，如果你在远程使用 reboot 重新启动，并且主机前面并没有任何人的话....
+		你的主机并不会主动进入启动程序喔！ ^_^</p>
+
+		<p>你必须要注意的是：<span class="text_import2">password 这个项目一定要在 title 底下的第一行</span>。
+		不过，此项功能还是可能被破解的，因为使用者可以透过编辑模式 (e) 进入菜单，并删除口令栏位并按下 b 
+		就能够进行启动流程了！真糟糕！那怎办？只好透过整体的 password (放在所有的 title 之前) ，
+		然后在 title 底下的第一行配置 lock ，那使用者想要编辑时，也得要输入口令才行啊！配置有点像这样：</p>
+
+<table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">vim /boot/grub/menu.lst</span>
+default=0
+timeout=30
+<span class="term_write">password --md5 $1$kvlI0/$byrbNgkt/.REKPQdfg287.</span>  <span class="term_note">&lt;==放在整体配置处</span>
+splashimage=(hd0,0)/grub/splash.xpm.gz
+#hiddenmenu
+title CentOS (2.6.18-92.el5)
+        <span class="term_write">lock</span>  <span class="term_note">&lt;==多了锁死的功能</span>
+        root (hd0,0)
+        kernel /vmlinuz-2.6.18-92.el5 ro root=LABEL=/1 rhgb quiet vga=790
+        initrd /initrd-2.6.18-92.el5.img
+</pre></td></tr></tbody></table>
+
+		<p>那么重新启动后，画面会像这样：</p>
+
+		<center><img src="0510osloader_files/grub-04.jpg" alt="grub 加密的示意图" title="grub 加密的示意图" border="1"><br>
+		图 3.8.1、 grub 加密的示意图<br></center>
+
+		<p>你可以看到最下方仅出现 p 的功能，由於 2, 3, 4 菜单并没有使用 lock ，因此这三个菜单使用者还是可以运行启动程序，
+		但是第一个菜单由於有 lock 项目，因此除非你输入正确的口令，否则第一个菜单是无法被加载运行的。
+		另外，这个项目也能够避免你的 menu.lst 在启动的过程中被乱改，是具有保密 menu.lst 的功能啦！
+		与刚刚的菜单口令功能不同。</p>
+	</div>
+</div>
+
+
+<hr><a name="solution"></a><img src="../image/logo.png" alt="大标题的图示" width="35" align="middle" height="34"><span class="text_h1">启动过程的问题解决</span><br>
+<div class="block1">
+	<p>很多时候，我们可能因为做了某些配置，或者是因为不正常关机 (例如未经通知的停电等等) 而导致系统的
+	filesystem 错乱，此时，Linux 可能无法顺利启动成功，那怎么办呢？难道要重灌？当然不需要啦！
+	进入 run level 1 (单人维护模式) 去处理处理，应该就 OK 的啦！底下我们就来谈一谈如何处理几个常见的问题！<br><br></p>
+
+	<hr><a name="solution_root"></a><img src="../image/logo.png" alt="小标题的图示" width="24" align="middle" height="23"><span class="text_h2">忘记 root 口令的解决之道</span><br>
+	<div class="block2">
+		<p>大家都知道鸟哥的记忆力不佳，容易忘东忘西的，那如果连 root 的口令都忘记了，怎么办？
+		其实在 Linux 环境中 root 口令忘记时还是可以救回来的！只要能够进入并且挂载 / ，
+		然后重新配置一下 root 的口令，就救回来啦！这是因为启动流程中，若强制核心进入 runlevel 1 时，
+		默认是不需要口令即可取得一个 root 的 shell 来救援的。整个动作有点像这样：</p>
+
+		<ol>
+		<li>重新启动！一定要重新启动！怎么重开都没关系；<br><br></li>
+
+		<li>在启动进入 grub 菜单后， (1)在你要进入的菜单上面点 'e' 进入详细配置； (2)将光棒移动到 kernel 
+		上方并点 'e' 进入编辑画面； (3)然后出现如下画面来处理：<br>
+
+<table class="term"><tbody><tr><td class="term"><pre>grub edit&gt; kernel /vmlinuz-2.6.18-92.el5 ro root=LABEL=/ rhgb quiet <span class="term_write">single</span>
+</pre></td></tr></tbody></table>
+
+		重点就是那个特殊字体的咚咚啦！按下 [enter] 再按下 b 就能够启动进入单人维护模式了。<br><br></li>
+
+		<li>进入单人维护模式后，系统会以 root 的权限直接给你一个 shell ，此时你就能够运行『 passwd 』这个命令来重建 root 
+		的口令啦！然后直接『 init 5 』就可以切换成为 X 窗口介面罗！就是这么简单。</li>
+		</ol>
+	</div>
+
+	<hr><a name="solution_init"></a><img src="../image/logo.png" alt="小标题的图示" width="24" align="middle" height="23"><span class="text_h2">init 配置档错误</span><br>
+	<div class="block2">
+		<p>前一个 root 口令挽救的方法其实可以用在很多地方，唯一一个无法挽救的情况，那就是 /etc/inittab 
+		这个文件配置错误导致的无法启动！根据启动流程，我们知道 runlevel 0~6 都会读取 /etc/inittab 配置档，
+		因此你使用 single mode (runlevel 1) 当然也是要读取 /etc/inittab 来进行启动的。那既然无法进入单人维护模式，
+		就表示这题无解罗？非也非也，既然默认的 init 无法运行，那我们就告诉核心不要运行 init ，改呼叫 bash 啊！
+		可以略过 init 吗？可以的，同样在启动进入 grub 后，同样在 grub edit 的情况下这样做：</p>
+
+<table class="term"><tbody><tr><td class="term"><pre>grub edit&gt; kernel /vmlinuz-2.6.18-92.el5 ro root=LABEL=/ rhgb quiet <span class="term_write">init=/bin/bash</span>
+</pre></td></tr></tbody></table>
+
+		<p>因为我们指定了核心呼叫的第一支程序 (init) 变成 /bin/bash，因此 /sbin/init 就不会被运行。
+		又根据启动流程的说明，我们知道此时虽然可以利用 root 取得 bash 来工作，但此时 (1)除了根目录外，其他的目录都没有被挂载；
+		(2)根目录被挂载成为唯读状态。因此我们还需要进行一些动作才行！如下所示：</p>
+
+		<center><img src="0510osloader_files/grub-05.jpg" alt="直接进入 bash 的环境" title="直接进入 bash 的环境" border="1"><br>
+		图 4.2.1、 略过 init 的程序，直接进入 bash shell<br></center>
+
+		<p>鸟哥仅下达两个命令，『 mount -o remount,rw / 』用途是将根目录重新挂载成为可读写，<span class="text_import2">至於『 mount -a 』则是参考 /etc/fstab 的内容重新挂载文件系统</span>！
+		此时你又可以启动进行救援的工作了！只是救援完毕后，你得要使用『 reboot 』重新启动一次才行！</p>
+	</div>
+
+	<hr><a name="solution_hd"></a><img src="../image/logo.png" alt="小标题的图示" width="24" align="middle" height="23"><span class="text_h2">BIOS 磁碟对应的问题 (device.map)</span><br>
+	<div class="block2">
+		<p>由於目前硬盘很便宜啊，所以很多朋友就想说：『那我能不能将 Windows 安装在 /dev/hda 而 Linux 安装在 /dev/hdb ，
+		然后调整 BIOS 的启动装置顺序，如此则两套系统各有各的 loader 安装在个别硬盘的 MBR 当中了！』。
+		这个想法非常好，如此一来两者就不会互相干扰，因为每颗磁碟的 MBR 个别有不同操作系统的 loader 嘛！
+		问题是，<span class="text_import2">grub 对磁碟的装置代号使用的是侦测到的顺序</span>啊！
+		也就是说，你调整了 BIOS 磁碟启动顺序后，你的 menu.lst 内的装置代号就可能会对应到错误的磁碟上了！啊！真想哭！</p>
+
+		<p>没关系的，我们可以透过 /boot/grub/device.map 这个文件来写死每个装置对 grub 磁碟代号的对应喔！
+		举例来说，鸟哥的这个文件内容如下：</p>
+
+<table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">cat /boot/grub/device.map</span>
+(fd0)   /dev/fd0
+(hd0)   /dev/hda
+</pre></td></tr></tbody></table>
+
+		<p>如果你不清楚如何处理的话，也可以利用 grub-install 的功能喔！例如：</p>
+
+<table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">grub-install --recheck /dev/hda1</span>
+</pre></td></tr></tbody></table>
+
+		<p>这样 device.map 就会主动的被升级了！这样了解乎？</p>
+	</div>
+
+	<hr><a name="solution_config"></a><img src="../image/logo.png" alt="小标题的图示" width="24" align="middle" height="23"><span class="text_h2">因文件系统错误而无法启动</span><br>
+	<div class="block2">
+		<p>如果因为配置错误导致无法启动时，要怎么办啊？这就更简单了！最容易出错的配置而导致无法顺利启动的步骤，通常就是 
+		/etc/fstab 这个文件了，尤其是使用者在<a href="0420quota.php.html">实作 Quota</a> 时，最容易写错参数，
+		又没有经过 mount -a 来测试挂载，就立刻直接重新启动，真要命！无法启动成功怎么办？
+		这种情况的问题大多如下面的画面所示：</p>
+
+		<center><img src="0510osloader_files/grub-06.jpg" alt="文件系统错误的示意图" title="文件系统错误的示意图" border="1"><br>
+		图 4.4.1、 文件系统错误的示意图<br></center>
+
+		<p>看到最后两行，他说可以输入 root 的口令继续加以救援喔！那请输入 root 的口令来取得 bash 并以
+		mount -o remount,rw / 将根目录挂载成可读写后，继续处理吧！其实会造成上述画面可能的原因除了 /etc/fstab
+		编辑错误之外，如果你曾经不正常关机后，也可能导致文件系统不一致 (Inconsistent) 的情况，
+		也有可能会出现相同的问题啊！如果是磁区错乱的情况，请看到上图中的第二行处， fsck 告知其实是 /dev/md0 出错，
+		此时你就应该要利用 fsck 去检测 /dev/md0 才是！等到系统发现错误，并且出现『clear [Y/N]』时，输入『 y 』吧！</p>
+
+		<p>这个 fsck 的过程可能会很长，而且如果你的 partition 上面的 filesystem 有过多的数据损毁时，
+		即使 fsck 完成后，可能因为伤到系统槽，导致某些关键系统文件数据的损毁，那么依旧是无法进入 Linux 
+		的。此时，就好就是将系统当中的重要数据复制出来，然后重新安装，并且检验一下，
+		是否实体硬盘有损伤的现象才好！不过一般来说，不太可能会这样啦～
+		通常都是 fsck 处理完毕后，就能够顺利再次进入 Linux 了。</p>
+	</div>
+
+	<hr><a name="solution_chroot"></a><img src="../image/logo.png" alt="小标题的图示" width="24" align="middle" height="23"><span class="text_h2">利用 chroot 
+	切换到另一颗硬盘工作</span><br>
+	<div class="block2">
+		<p>仔细检查一下，你的 Linux 里面应该会有一个名为 chroot 的命令才对！这是啥？
+		这是『 change root directory 』的意思啦！意思就是说，可以暂时将根目录移动到某个目录下，
+		然后去处理某个问题，最后再离开该 root 而回到原本的系统当中。</p>
+
+		<p>举例来说，补习班中心最容易有两三个 Linux 系统在同一个主机上面，假设我的第一个 Linux
+		无法进入了，那么我可以使用第二个 Linux 启动，然后在第二个 Linux 系统下将第一个 Linux 挂载起来，
+		最后用 chroot 变换到第一个 Linux ，就能够进入到第一个 Linux 的环境当中去处理工作了。</p>
+
+		<p>你同样也可以将你的 Linux 硬盘拔到另一个 Linux 主机上面去，然后用这个 chroot 来切换，
+		以处理你的硬盘问题啊！那怎么做啊？粉简单啦！</p>
+
+		<ol>
+		<li>用尽任何方法，进入一个完整的 Linux 系统 ( run level 3 或 5 )；<br><br></li>
+
+		<li>假设有问题的 Linux 磁碟在 /dev/hdb1 上面，且他整个系统的排列是：<br>
+<pre>	挂载点   装置档名
+	/     → /dev/hdb1
+	/var  → /dev/hdb2
+	/home → /dev/hdb3
+	/usr  → /dev/hdb5</pre>
+		若如此的话，那么在我目前的这个 Linux 底下，我可以创建一个目录，然后可以这样做：<br>
+<pre>	挂载点           装置档名
+	/chroot/      → /dev/hdb1
+	/chroot/var/  → /dev/hdb2
+	/chroot/home/ → /dev/hdb3
+	/chroot/usr/  → /dev/hdb5</pre></li>
+
+		<li>全部挂载完毕后，再输入『 chroot /chroot 』嘿嘿！你就会发现，怎么根目录 (/) 
+		变成那个 /dev/hdb1 的环境啦！这样说明，了了吗？ ^_^</li>
+		</ol>
+	</div>
+</div>
+
+
+<hr><a name="hint"></a><img src="../image/logo.png" alt="大标题的图示" width="35" align="middle" height="34"><span class="text_h1">重点回顾</span><br>
+<div class="block1">
+<ul class="text_import2">
+	<li>Linux 不可随意关机，否则容易造成文件系统错乱或者是其他无法启动的问题；</li>
+	<li>启动流程主要是：BIOS、MBR、Loader、kernel+initrd、/sbin/init 等流程</li>
+	<li>Loader 具有提供菜单、加载核心文件、转交控制权给其他 loader 等功能。</li>
+	<li>boot loader 可以安装在 MBR 或者是每个分割槽的 boot sector 区域中</li>
+	<li>initrd 可以提供核心在启动过程中所需要的最重要的模块，通常与磁碟及文件系统有关的模块；</li>
+	<li>init 的配置档为 /etc/inittab ，此文件内容可以配置默认 runlevel、系统初始化脚本、不同运行等级的服务启动等；</li>
+	<li>额外的装置与模块对应，可写入 /etc/modprobe.conf 中；</li>
+	<li>核心模块的管理可使用 lsmod, modinfo, rmmod, insmod, modprobe 等命令；</li>
+	<li>modprobe 主要参考 /lib/modules/$(uanem -r)/modules.dep 的配置来加载与卸载核心模块；</li>
+	<li>grub 的配置档与相关文件系统定义档大多放置於 /boot/grub 目录中，配置档名为 menu.lst</li>
+	<li>grub 对磁碟的代号配置与 Linux  不同，主要透过侦测的顺序来给予配置。如 (hd0) 及 (hd0,0) 等。</li>
+	<li>menu.lst 内每个菜单与 titile 有关，而直接指定核心启动时，至少需要 kernel 及 initrd 两个项目</li>
+	<li>menu.lst 内配置 loader 控制权移交时，最重要者为 chainloader +1 这个项目。</li>
+	<li>若想要重建 initrd ，可使用 mkinitrd 处理</li>
+	<li>重新安装 grub 到 MBR 或 boot sector 时，可以利用 grub shell 来处理。</li>
+	<li>若想要进入救援模式，可於启动菜单过程中，在 kernel 的项目后面加入『 single 』或『 init=/bin/bash 』等方式来进入救援模式。</li>
+	<li>我们可以对 grub 的个别菜单给予不同的口令。</li>
+</ul>
+</div>
+
+
+<hr><a name="ex"></a><img src="../image/logo.png" alt="大标题的图示" width="35" align="middle" height="34"><span class="text_h1">本章习题</span><br>
+( 要看答案请将鼠标移动到『答：』底下的空白处，按下左键圈选空白处即可察看 )
+<div class="block1">
+<ul>
+	<li>情境模拟题一：利用救援光盘来处理系统的错误导致无法启动的问题。<br><br>
+	<ul>
+		<li>目标：了解救援光盘的功能；</li>
+		<li>前提：了解 grub 的原理，并且知道如何使用 chroot 功能；</li>
+		<li>需求：打字可以再加快一点啊！ ^_^</li>
+	</ul><br>
+
+	这个部分鸟哥就不捉图了，请大家自行处理罗～假设你的系统出问题而无法顺利启动，此时拿出原版光盘，然后重新以光盘来启动你的系统。
+	然后你应该要这样作的：<br><br>
+
+	<ol>
+		<li>利用光盘启动时，到了看到 boot: 的阶段，按下 [F5] 之后会看到可以输入的选项，此时请输入：<br>
+
+<table class="term"><tbody><tr><td class="term"><pre>boot: <span class="term_command">linux rescue</span>
+</pre></td></tr></tbody></table>
+
+		就能够进入救援模式的侦测了！<br><br></li>
+
+		<li>然后请选择语系与键盘对应，这个与安装过程是一模一样啦！所以选择『 <span class="text_import1">English</span>
+		』与『 <span class="text_import1">us</span> 』即可！<br><br></li>
+
+		<li>接下来会问你是否需要启动网络，因为我们的系统是出问题要处理，所以不需要启动网络啦！选择『
+		<span class="text_import1">No</span>』即可；<br><br></li>
+
+		<li>然后就进入救援光盘模式的文件系统搜寻了！这个救援光盘会去找出目前你的主机里面与 CentOS 5.x 相关的操作系统，
+		并将该操作系统汇整成为一个 chroot 的环境等待你的处置！但是他会有三个模式可以选择，分别是『continue』继续成为可读写挂载；
+		『Read-Only』将侦测到的操作系统变成唯读挂载；『Skip』略过这次的救援动作。在这里我们选择『 
+		<span class="text_import1">Continue</span> 』吧！<br><br></li>
+
+		<li>然后系统会将侦测到的资讯通知你！一般来说，可能会在萤幕上显示类似这样的信息：『 
+		<span class="text_import1">chroot /mnt/sysimage</span>』此时请按下 <span class="text_import1">OK</span> 
+		吧！<br><br></li>
+
+		<li>按下 OK 后，系统会丢给你一个 shell 使用，先用 <span class="text_import1">df</span> 看一下挂载情况是否正确？
+		若不正确请手动挂载其他未被挂载的 partition 。等到一切搞定后，利用 <span class="text_import1">chroot /mnt/sysimage</span>
+		来转成你原本的操作系统环境吧！等到你将一切出问题的地方都搞定，请 reboot 系统，且取出光盘，用硬盘启动吧！</li>
+	</ol></li>
+</ul>
+
+<hr>简答题部分：
+<ul>
+	<li>如何察看与修改 runlevel 呢？
+	<div class="blockex">
+		察看很简单，只要输入『 runlevel 』就可以得知。而如果要修改目前的 runlevel ，
+		可以直接输入 init [level] 例如要去到 runlevel 3 可以：『 init 3 』即可。
+		如果想要每次启动都配置固定的 runlevel ，那么可以修改 /etc/inittab 这个文件！
+		将里面这一行改成：『id:3:initdefault:』即可。
+	</div></li>
+
+	<li>我有个朋友跟我说，他想要让一个程序在 Linux 系统下一启动就启动，但是在关机前会自动的先结束该程序，我该怎么建议他？
+	<div class="blockex">
+		由於 /etc/rc.d/rc[0-6].d 里面有的 Sxxname 与
+		Kxxname 可以配置启动启动与关机结束的事项！所以我就可以轻易的写一个 script
+		放在 /etc/rc.d/init.d 里面，并连结到我的 run-level 里头，就可以让他自由自在的启动与结束了！
+	</div></li>
+
+	<li>万一不幸，我的一些模块没有办法让 Linux 的核心捉到，但是偏偏这个核心明明就有支持该模块，
+		我要让该模块在启动的时候就被加载，那么应该写入那个文件？
+	<div class="blockex">
+		应该写入 /etc/modprobe.conf (kernel 2.6.x) 或者是 /etc/modules.conf (kernel 2.4.x) 
+		这个文件，他是模块加载相关的地方呢！当然，也可以写入 /etc/sysconfig/modules/* 里面。 
+	</div></li>
+
+	<li>如何在 grub 启动过程当中，指定以『 run level 1 』来启动？
+	<div class="blockex">
+		在启动进入 boot loader 之后，利用 grub shell 的功能，亦即输入『 e 』进入编辑模式，
+		然后在 kernel 后面添加：<br>
+		<font face="细明体">kernel (hd0,0)/boot/vmlinuz ro root=/dev/hda1 .... single</font><br>
+		那个 single 也可以改成 1 ，就能够进入。同样的，若使用 lilo 时，按下 tab 按键后，
+		输入<br>
+		label_name -s <br>
+		就能够进入 run level 1 罗！
+	</div></li>
+
+	<li>由於一些无心之过，导致系统启动时，只要运行 init 就会产生错误而无法继续启动，
+		我们知道可以在启动的时候，不要以 init 加载系统，可以转换第一支运行程序，
+		假设我第一支运行程序想要改为 /bin/bash ，好让我自行维护系统(不同於 run level 1 喔！)，
+		该如何进行此一工作？
+	<div class="blockex">
+		在启动的过程当中，进入 lilo 或 grub 的画面后，在 kernel 的参数环境下，加入 <b>init=/bin/bash</b>
+		来取代 /sbin/init ，则可略过 init 与 /etc/inittab 的配置项目，不过，您必须相当熟悉 grub 
+		与 lilo 的配置才行喔！ ^_^
+	</div></li>
+
+	<li>在 CentOS 当中，我们如何自动可加载的模块？
+	<div class="blockex">
+		可以经由配置 /etc/modprobe.conf 或者是将自行做好的配置档写入到 /etc/sysconfig/modules/ 目录中，
+		并且将档名取为 filename.modules ，注意喔，文件结果务必是 .modules 才行。
+		相关资讯可以参考 /etc/rc.d/rc.sysinit 喔！
+	</div></li>
+
+	<li>如果你不小心先安装 Linux 再安装 Windows 导致 boot loader 无法找到 Linux 的启动菜单，该如何挽救？<br>
+	<div class="blockex">
+		方法有很多，例如：<br>
+		(1)藉助第三方软件，安装类似 spfdisk 的软件在 MBR 里面，因为他同时认识 Linux 与 Windows ，所以就可以用他来进入 
+		Linux 啦！<br>
+		(2)或者使用类似 KNOPPIX 的 Live CD 以光盘启动进入 Linux 之后，再以 chroot 软件切换根目录 
+		(/)，然后重新安装 grub 等 boot loader ，同样也可以重新让两个操作系统存在啦！<br>
+		总之，只要你知道 MBR / Super block / boot loader 之间的相关性，怎么切换都可能啊！ ^_^
+	</div></li>
+</ul>
+</div>
+
+
+<hr><a name="reference"></a><img src="../image/logo.png" alt="大标题的图示" width="35" align="middle" height="34"><span class="text_h1">参考数据与延伸阅读</span><br>
+<div class="block1">
+<ul>
+	<li><a name="ps1"></a>注1：BIOS 的 POST 功能解释：<a href="http://en.wikipedia.org/wiki/Power-on_self-test" target="_blank">http://en.wikipedia.org/wiki/Power-on_self-test</a></li>
+	<li><a name="ps2"></a>注2：BIOS 的 INT 13 硬件中断解释：<a href="http://en.wikipedia.org/wiki/INT_13" target="_blank">http://en.wikipedia.org/wiki/INT_13</a></li>
+	<li><a name="ps3"></a>注3：关於 splash 的相关说明：<a href="http://ruslug.rutgers.edu/%7Emcgrof/grub-images/" target="_blank">http://ruslug.rutgers.edu/~mcgrof/grub-images/</a></li>
+	<li><a name="ps4"></a>注4：一些 grub 出错时的解决之道：<br>
+		<a href="http://wiki.linuxquestions.org/wiki/GRUB_boot_menu" target="_blank">http://wiki.linuxquestions.org/wiki/GRUB_boot_menu</a><br>
+		<a href="http://forums.gentoo.org/viewtopic.php?t=122656&highlight=grub+error+collection" target="_blank">http://forums.gentoo.org/viewtopic.php?t=122656&amp;highlight=grub+error+collection</a></li>
+	<li>info grub</li>
+	<li>GNU 官方网站关於 grub 的说明文件：<br>
+		<a href="http://www.gnu.org/software/grub/manual/html_node/" target="_blank">http://www.gnu.org/software/grub/manual/html_node/</a></li>
+	<li>纯文字萤幕解析度的修改方法：<br>
+		<a href="http://phorum.study-area.org/viewtopic.php?t=14776" target="_blank">http://phorum.study-area.org/viewtopic.php?t=14776</a></li>
+</ul>
+</div>
+
+<hr><span class="text_history">
+2003/02/10：第一次完成<br>
+2005/09/19：将旧的文章移动到 <a href="http://linux.vbird.org/linux_basic/0510osloader/0510osloader.php">此处</a> 。<br>
+2005/09/26：将 <a href="http://linux.vbird.org/linux_basic/0540kernel.php">核心编译</a> 一文订为进阶篇，不一定要学啦！但是核心模块不可不题，所以，新增一小节！<br>
+2005/09/28：终於给他完成去！好累～<br>
+2005/10/09：加上参考文献数据，以及修改一些些 kernel 启动时， grub 的 vga 配置值的解说。<br>
+2005/11/09：加上了关於较大硬盘所产生的困扰！<br>
+2006/08/21：MBR 应该只有 512 bytes ，结果误植为 512 Kbytes ，抱歉！<br>
+2007/06/27：新增 initrd 的说明，请参考<a href="#grub_initrd">这里</a>。<br>
+2009/04/09：将旧的基於 FC4 的文章移动到<a href="http://linux.vbird.org/linux_basic/0510osloader/0510osloader-fc4.php">此处</a>。<br>
+2009/04/10：取消了 LILO 的 boot loader 说明！毕竟这玩意儿已经退流行！所以不再强调！有需要请查询<a href="http://linux.vbird.org/linux_basic/0510osloader/0510osloader-fc4.php#lilo">此处</a>。<br>
+2009/04/30：修订完毕，加强 init=/bin/bash 的说明，以及 grub 的口令管理！<br>
+2009/09/14：加入情境模拟，并根据讨论区 linuxfans 兄的建议，修改了一些地方！详情请参考讨论区建议！<hr>
+</span>
+    </td>
+    <td style="width: 16px; font-size: 6px;">　</td></tr>
+<tr><td style="width: 16px; height: 16px;">　</td>
+    <td style="width: 866px; height: 16px;">　</td>
+    <td style="width: 16px; height: 16px;">　</td></tr>
+</tbody></table>
+
+<div style="padding-top: 0px; text-align: center;">
+<span style="font-size: 80%;">
+	<a href="http://vbird.dic.ksu.edu.tw/" target="_top" title="前往鸟哥的首页">http://linux.vbird.org</a>
+	is designed by <a href="mailto:vbird@mail.vbird.idv.tw" title="联络鸟哥(我不要广告信！)">VBird</a>
+		during 2001-2011. <a href="http://www.ksu.edu.tw/" target="_blank">ksu.edu</a></span>
+         ﻿<div id="apDiv4">
+      <p>本网页主要以Firefox配合解析度 1024x768 作为设计依据&nbsp;&nbsp;&nbsp;&nbsp; 鸟哥自由软件整合应用研究室</p></div></div>
+</div>
+</center>
+</body></html>

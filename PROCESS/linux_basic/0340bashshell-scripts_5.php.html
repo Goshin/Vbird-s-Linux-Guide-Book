@@ -1,0 +1,445 @@
+<html><head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf8">
+	<meta name="Author" content="2011/04/18,lee">
+	<meta name="Description" content="学习 Shell Scripts">
+	<title>鸟哥的 Linux 私房菜 -- 学习 Shell Scripts</title>
+    <script src="../script/SpryMenuBar.js" type="text/javascript"></script>
+	<script src="../script/index.js" type="text/javascript"></script>
+	<link href="../css/SpryMenuBarHorizontal.css" rel="stylesheet" type="text/css" />
+    <link href="../css/main.css" rel="stylesheet" type="text/css" />
+    </head><body style="margin: 0pt; padding: 0pt;" class="table"onload="MM_preloadImages('image/title_19.png','image/title_26.png','image/title_27.png','image/title_28.png','image/title_06.png','image/title_08.png','image/title_10.png','image/title_12.png')">
+
+
+<!-- Copyright � 2005. Spidersoft Ltd -->
+<style>
+A.applink:hover {border: 2px dotted #DCE6F4;padding:2px;background-color:#ffff00;color:green;text-decoration:none}
+A.applink       {border: 2px dotted #DCE6F4;padding:2px;color:#2F5BFF;background:transparent;text-decoration:none}
+A.info          {color:#2F5BFF;background:transparent;text-decoration:none}
+A.info:hover    {color:green;background:transparent;text-decoration:underline}
+</style>
+<div style='BORDER: 1px solid #DCE6F4; MARGIN-TOP: 20px; MARGIN-BOTTOM: 20px; MARGIN-LEFT: 5px; MARGIN-RIGHT: 5px; PADDING: 5px; BACKGROUND-COLOR: #eef8ff;line-height:180%; COLOR: #000000; font-family: Arial; font-size: 8pt; width=100%; FILTER: progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr="#FFFFFFFF", EndColorStr="#F2F5FAFF");'>
+This page was saved using <a class="applink" href="http://www.spidersoft.com"><b>WebZIP 7.0.3.1030</b></a> <a class="applink" href="http://www.spidersoft.com"><b>offline browser</b></a>  (Unregistered) on  02/12/15 12:14:49.<br>
+<b>Address:</b> <a class="info" href="http://vbird.dic.ksu.edu.tw/linux_basic/0340bashshell-scripts_5.php">http://vbird.dic.ksu.edu.tw/linux_basic/0340bashshell-scripts_5.php</a><br>
+<b>Title:</b> 鸟哥的 Linux 私房菜 -- 学习 Shell Scripts &nbsp;&bull;&nbsp; <b>Size:</b> 24815<br></div>
+<!-- /Copyright � 2005. Spidersoft Ltd -->
+
+
+
+<center>
+<div id="apDiv5">
+<div> <LINK REL="SHORTCUT ICON" HREF="favicon.ico">
+<!-- ImageReady Slices (title3.ai) -->
+<table id="___01" width="898" height="81" border="0" align="center" cellpadding="0" cellspacing="0";>
+	<tr>
+		<td colspan="15">
+			<img src="image/title/title_01.png" width="900" height="1" alt=""></td>
+	</tr>
+	<tr>
+		<td rowspan="4" bgcolor="#182448"><p><img src="http://linux.vbird.org/cgi-bin/Count.cgi?dd=C&ft=5&sh=T&md=8&pad=Y&df=vbird.dic.ksu.edu.tw.dat" width="93" align="left" title="計數器" /></p>
+	    <p><font color="#FFFFFF" size="-1">since2012/04/23</font></p></td>
+		<td rowspan="4" align="left" valign="top"><a href="http://vbird.dic.ksu.edu.tw/"><img src="image/title/title_03.png" alt="" width="263" height="79" border="0"></a></td>
+		<td colspan="13">
+			<img src="image/title/title_04.png" alt="" width="535" height="9" border="0"></td>
+	</tr>
+	<tr>
+		<td rowspan="3">
+			<img src="image/title/title_05.png" alt="" width="53" height="70" border="0"></td>
+		<td colspan="2" align="left" valign="top"><a href="0110whatislinux.php.html" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image51','','image/title/title_06.png',1)"><img src="image/title/title3_06.png" name="Image51" width="106" height="25" border="0" id="Image51" alt=""/></a></td>
+		<td rowspan="2">
+			<img src="image/title/title_07.png" alt="" width="27" height="37" border="0"></td>
+		<td colspan="3" align="left" valign="top"><a href="http://vbird.dic.ksu.edu.tw/linux_server/0110network_basic.php" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image52','','image/title/title_08.png',1)"><img src="image/title/title3_08.png" name="Image52" width="107" height="25" border="0" id="Image52" alt=""/></a></td>
+		<td rowspan="2">
+			<img src="image/title/title_09.png" alt="" width="37" height="37" border="0"></td>
+		<td colspan="2" align="left" valign="top"><a href="http://vbird.dic.ksu.edu.tw/about.php" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image53','','image/title/title_10.png',1)"><img src="image/title/title3_10.png" name="Image53" width="75" height="25" border="0" id="Image53" alt=""/></a></td>
+		<td rowspan="3">
+			<img src="image/title/title_11.png" alt="" width="35" height="70" border="0"></td>
+		<td align="left" valign="top"><a href="mailto:vbird@mail.vbird.idv.tw" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image54','','image/title/title_12.png',1)"><img src="image/title/title3_12.png" name="Image54" width="74" height="25" border="0" id="Image54" alt=""/></a></td>
+		<td rowspan="3">
+			<img src="image/title/title_13.png" alt="" width="21" height="70" border="0"></td>
+	</tr>
+	<tr>
+		<td colspan="2">
+			<img src="image/title/title_14.png" alt="" width="106" height="12" border="0"></td>
+		<td colspan="3">
+			<img src="image/title/title_15.png" alt="" width="107" height="12" border="0"></td>
+		<td colspan="2">
+			<img src="image/title/title_16.png" width="75" height="12" alt=""></td>
+		<td rowspan="2">
+			<img src="image/title/title_17.png" alt="" width="74" height="45" border="0"></td>
+	</tr>
+	<tr>
+		<td>
+			<img src="image/title/title_18.png" alt="" width="15" height="33" border="0"></td>
+		<td colspan="3" align="left" valign="top"><ul id="MenuBar1" class="MenuBarHorizontal">
+	  <li><a href="linux_basic.php.html" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image44','','image/title/title_19.png',1)"><img src="image/title/title3_19.png" name="Image44" width="123" height="33" border="0" id="Image44" /></a>
+			    <ul>
+			      <li><a href="Mandrake9.0/mandrake9.0.php.html" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image46','','image/title/title_26.png',1)"><img src="image/title/title_23.png" name="Image46" width="120" height="26" border="0" id="Image46" alt="" /></a></li>
+                  <li><a href="fedora_4/fc4.php.html" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image47','','image/title/title_27.png',1)"><img src="image/title/title_24.png" name="Image47" width="120" height="26" border="0" id="Image47" alt="" /></a></li>
+                  <li><a href="linux_basic.php.html" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image48','','image/title/title_28.png',1)"><img src="image/title/title_25.png" name="Image48" width="120" height="26" border="0" id="Image48" alt="" /></a></li>
+                </ul>
+		      </li>
+		</ul></td>
+		<td>
+			<img src="image/title/title_20.png" alt="" width="42" height="33" border="0"></td>
+		<td colspan="3" align="left" valign="top"><ul id="MenuBar2" class="MenuBarHorizontal">
+	  <li><a href="http://vbird.dic.ksu.edu.tw/linux_server/" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image45','','image/title/title_21.png',1)"><img src="image/title/title3_21.png" name="Image45" width="125" height="33" border="0" id="Image45" /></a>
+			    <ul>
+			      <li><a href="http://vbird.dic.ksu.edu.tw/linux_server/linux_redhat9/redhat9.php" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image43','','image/title/title_26.png',1)"><img src="image/title/title_23.png" name="Image43" width="120" height="26" border="0" id="Image43" alt=""/></a></li>
+			      <li><a href="http://vbird.dic.ksu.edu.tw/linux_server/centos4.php" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image49','','image/title/title_27.png',1)"><img src="image/title/title_24.png" name="Image49" width="120" height="26" border="0" id="Image49" alt="" /></a></li>
+			      <li><a href="http://vbird.dic.ksu.edu.tw/linux_server/" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image50','','image/title/title_28.png',1)"><img src="image/title/title_25.png" name="Image50" width="120" height="26" border="0" id="Image50" alt="" /></a></li>
+		        </ul>
+		      </li>
+		</ul></td>
+		<td>
+			<img src="image/title/title_22.png" alt="" width="47" height="33" border="0"></td>
+	</tr>
+	<tr>
+		<td>
+			<img src="image/title/Spacer.gif" width="101" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="263" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="53" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="15" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="91" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="27" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="5" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="42" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="60" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="37" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="28" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="47" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="35" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="74" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="22" height="1" alt=""></td>
+	</tr>
+</table>
+<!-- End ImageReady Slices -->
+<script type="text/javascript">
+<!--
+var MenuBar1 = new Spry.Widget.MenuBar("MenuBar1", {imgDown:"SpryAssets/SpryMenuBarDownHover.gif", imgRight:"SpryAssets/SpryMenuBarRightHover.gif"});
+var MenuBar2 = new Spry.Widget.MenuBar("MenuBar2", {imgDown:"SpryAssets/SpryMenuBarDownHover.gif", imgRight:"SpryAssets/SpryMenuBarRightHover.gif"});
+//-->
+</script></div>
+<table summary="本文内容的排版" style="width: 898px;" border="0" cellpadding="0" cellspacing="0">
+<tbody><tr><td style="width: 16px; height: 16px;">　</td>
+    <td style="width: 866px; height: 16px;">　</td>
+    <td style="width: 16px; height: 16px;">　</td></tr>
+<tr><td style="width: 16px; font-size: 6px;">　</td>
+    <td width="866">
+
+<!-- 本文的档头部分 -->
+<div style="text-align: center;">
+    <a href="0340bashshell-scripts.php.html">
+    <span class="text_head0">第十三章、学习<span class="text_head_en"> Shell Scripts</span></span></a><br>
+</div>
+    <div style="text-align: right;">
+        <span class="text_history">最近升级日期：2009/02/18</span>
+    </div>
+<!-- 本文的连结区部分 -->
+<div class="block1">
+<span class="text_h1">
+5. <a href="#loop">回圈 (loop)</a><br>
+	<span class="text_h2">
+	　　5.1 <a href="#while">while...do...done, until...do...done (不定回圈)</a><br>
+	　　5.2 <a href="#for">for...do...done (固定回圈)</a>： <a href="#for_account">帐号检查</a>,
+		<a href="#for_ping">网络状态 $(seq )</a><br>
+	　　5.3 <a href="#for_2">for...do...done 的数值处理</a><br>
+	</span>
+</span></div>
+<!-- 本文的正式部分 -->
+<hr><a name="loop"></a><img src="../image/logo.png" alt="大标题的图示" width="35" align="middle" height="34"><span class="text_h1">回圈 (loop)</span><br>
+<div class="block1">
+	<p>除了 if...then...fi 这种条件判断式之外，回圈可能是程序当中最重要的一环了～
+	<span class="text_import2">回圈可以不断的运行某个程序段落，直到使用者配置的条件达成为止。</span>
+	所以，重点是那个『条件的达成』是什么。除了这种依据判断式达成与否的不定回圈之外，
+	还有另外一种已经固定要跑多少次的回圈形态，可称为固定回圈的形态呢！底下我们就来谈一谈：<br><br></p>
+
+	<a name="while"></a>
+	<hr><img src="../image/logo.png" alt="小标题的图示" width="24" align="middle" height="23"><span class="text_h2">while do done, until do done (不定回圈)</span><br>
+	<div class="block2">
+		<p>一般来说，不定回圈最常见的就是底下这两种状态了：</p>
+
+<table class="term"><tbody><tr><td class="term"><pre><span class="term_command">while [</span> condition <span class="term_command">]  <span class="term_note">&lt;==中括号内的状态就是判断式</span>
+do</span>            <span class="term_note">&lt;==do 是回圈的开始！</span>
+	程序段落
+<span class="term_command">done</span>          <span class="term_note">&lt;==done 是回圈的结束</span>
+</pre></td></tr></tbody></table>
+
+		<p>while 的中文是『当....时』，所以，这种方式说的是『<span class="text_import2">当 condition 
+		条件成立时，就进行回圈，直到 condition 的条件不成立才停止</span>』的意思。还有另外一种不定回圈的方式：</p>
+
+<table class="term"><tbody><tr><td class="term"><pre><span class="term_command">until [</span> condition <span class="term_command">]
+do</span>
+	程序段落
+<span class="term_command">done</span>
+</pre></td></tr></tbody></table>
+
+		<p>这种方式恰恰与 while 相反，它说的是『<span class="text_import2">当 condition 条件成立时，就终止回圈，
+		否则就持续进行回圈的程序段。</span>』是否刚好相反啊～我们以 while 来做个简单的练习好了。
+		假设我要让使用者输入 yes 或者是 YES 才结束程序的运行，否则就一直进行告知使用者输入字串。</p>
+
+<table class="term"><tbody><tr><td class="term"><pre>[root@www scripts]# <span class="term_command">vi sh13.sh</span>
+<span class="term_write">#!/bin/bash
+# Program:
+#	Repeat question until user input correct answer.
+# History:
+# 2005/08/29	VBird	First release
+PATH=/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin:~/bin
+export PATH
+
+while [ "$yn" != "yes" -a "$yn" != "YES" ]
+do
+	read -p "Please input yes/YES to stop this program: " yn
+done
+echo "OK! you input the correct answer."</span>
+</pre></td></tr></tbody></table>
+
+		<p>上面这个例题的说明是『当 $yn 这个变量不是 "yes" 且 $yn 也不是 "YES" 时，才进行回圈内的程序。』
+		而如果 $yn 是 "yes" 或 "YES" 时，就会离开回圈罗～那如果使用 until 呢？呵呵有趣罗～
+		他的条件会变成这样：</p>
+
+<table class="term"><tbody><tr><td class="term"><pre>[root@www scripts]# <span class="term_command">vi sh13-2.sh</span>
+<span class="term_write">#!/bin/bash
+# Program:
+#	Repeat question until user input correct answer.
+# History:
+# 2005/08/29	VBird	First release
+PATH=/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin:~/bin
+export PATH
+
+until [ "$yn" == "yes" -o "$yn" == "YES" ]
+do
+	read -p "Please input yes/YES to stop this program: " yn
+done
+echo "OK! you input the correct answer."</span>
+</pre></td></tr></tbody></table>
+
+		<p>仔细比对一下这两个东西有啥不同喔！ ^_^再来，如果我想要计算 1+2+3+....+100 这个数据呢？
+		利用回圈啊～他是这样的：</p>
+
+<table class="term"><tbody><tr><td class="term"><pre>[root@www scripts]# <span class="term_command">vi sh14.sh</span>
+<span class="term_write">#!/bin/bash
+# Program:
+#	Use loop to calculate "1+2+3+...+100" result.
+# History:
+# 2005/08/29	VBird	First release
+PATH=/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin:~/bin
+export PATH
+
+s=0  <span class="term_note"># 这是加总的数值变量</span>
+i=0  <span class="term_note"># 这是累计的数值，亦即是 1, 2, 3....</span>
+while [ "$i" != "100" ]
+do
+	i=$(($i+1))   <span class="term_note"># 每次 i 都会添加 1 </span>
+	s=$(($s+$i))  <span class="term_note"># 每次都会加总一次！</span>
+done
+echo "The result of '1+2+3+...+100' is ==&gt; $s"</span>
+</pre></td></tr></tbody></table>
+
+		<p>嘿嘿！当你运行了『 sh sh14.sh 』之后，就可以得到 5050 这个数据才对啊！这样了呼～
+		那么让你自行做一下，如果想要让使用者自行输入一个数字，让程序由 1+2+... 直到你输入的数字为止，
+		该如何撰写呢？应该很简单吧？答案可以参考一下<a href="#ex">习题练习</a>里面的一题喔！</p>
+	</div>
+
+	<hr><a name="for"></a><img src="../image/logo.png" alt="小标题的图示" width="24" align="middle" height="23"><span class="text_h2">for...do...done (固定回圈)</span><br>
+	<div class="block2">
+		<p>相对於 while, until 的回圈方式是必须要『符合某个条件』的状态， for 这种语法，则是『
+		<span class="text_import2">已经知道要进行几次回圈</span>』的状态！他的语法是：</p>
+
+<table class="term"><tbody><tr><td class="term"><pre><span class="term_command">for</span> var <span class="term_command">in</span> con1 con2 con3 ...
+<span class="term_command">do</span>
+	程序段
+<span class="term_command">done</span>
+</pre></td></tr></tbody></table>
+
+		<p>以上面的例子来说，这个 $var 的变量内容在回圈工作时：</p>
+		<ol>
+		<li>第一次回圈时， $var 的内容为 con1 ；</li>
+		<li>第二次回圈时， $var 的内容为 con2 ；</li>
+		<li>第三次回圈时， $var 的内容为 con3 ；</li>
+		<li>....</li>
+		</ol>
+
+		<p>我们可以做个简单的练习。假设我有三种动物，分别是 dog, cat, elephant 三种，
+		我想每一行都输出这样：『There are dogs...』之类的字样，则可以：</p>
+
+<table class="term"><tbody><tr><td class="term"><pre>[root@www scripts]# <span class="term_command">vi sh15.sh</span>
+<span class="term_write">#!/bin/bash
+# Program:
+# 	Using for .... loop to print 3 animals
+# History:
+# 2005/08/29	VBird	First release
+PATH=/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin:~/bin
+export PATH
+
+for animal in dog cat elephant
+do
+	echo "There are ${animal}s.... "
+done</span>
+</pre></td></tr></tbody></table>
+
+		<a name="for_account"></a>
+		<p>等你运行之后就能够发现这个程序运行的情况啦！让我们想像另外一种状况，由於系统上面的各种帐号都是写在 
+		/etc/passwd 内的第一个栏位，你能不能透过管线命令的 <a href="http://vbird.dic.ksu.edu.tw/linux_basic/0320bash.php#cut">cut</a>
+		捉出单纯的帐号名称后，以 <a href="http://vbird.dic.ksu.edu.tw/linux_basic/0410accountmanager.php#id">id</a> 及 
+		<a href="http://vbird.dic.ksu.edu.tw/linux_basic/0410accountmanager.php#finger">finger</a> 
+		分别检查使用者的识别码与特殊参数呢？由於不同的 Linux 系统上面的帐号都不一样！此时实际去捉 /etc/passwd
+		并使用回圈处理，就是一个可行的方案了！程序可以如下：</p>
+
+<table class="term"><tbody><tr><td class="term"><pre>[root@www scripts]# <span class="term_command">vi sh16.sh</span>
+<span class="term_write">#!/bin/bash
+# Program
+#       Use id, finger command to check system account's information.
+# History
+# 2009/02/18    VBird   first release
+PATH=/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin:~/bin
+export PATH
+users=$(cut -d ':' -f1 /etc/passwd)  <span class="term_note"># 撷取帐号名称</span>
+for username in $users               <span class="term_note"># 开始回圈进行！</span>
+do
+        id $username
+        finger $username
+done</span>
+</pre></td></tr></tbody></table>
+
+		<a name="for_ping"></a>
+		<p>运行上面的脚本后，你的系统帐号就会被捉出来检查啦！这个动作还可以用在每个帐号的删除、重整上面呢！
+		换个角度来看，如果我现在需要一连串的数字来进行回圈呢？举例来说，我想要利用 ping 这个可以判断网络状态的命令，
+		来进行网络状态的实际侦测时，我想要侦测的网域是本机所在的 192.168.1.1~192.168.1.100，由於有 100 台主机，
+		总不会要我在 for 后面输入 1 到 100 吧？此时你可以这样做喔！</p>
+
+<table class="term"><tbody><tr><td class="term"><pre>[root@www scripts]# <span class="term_command">vi sh17.sh</span>
+<span class="term_write">#!/bin/bash
+# Program
+#       Use ping command to check the network's PC state.
+# History
+# 2009/02/18    VBird   first release
+PATH=/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin:~/bin
+export PATH
+network="192.168.1"              <span class="term_note"># 先定义一个网域的前面部分！</span>
+for sitenu in $(seq 1 100)       <span class="term_note"># seq 为 sequence(连续) 的缩写之意</span>
+do
+	<span class="term_note"># 底下的程序在取得 ping 的回传值是正确的还是失败的！</span>
+        ping -c 1 -w 1 ${network}.${sitenu} &amp;&gt; /dev/null &amp;&amp; result=0 || result=1
+	<span class="term_note"># 开始显示结果是正确的启动 (UP) 还是错误的没有连通 (DOWN)</span>
+        if [ "$result" == 0 ]; then
+                echo "Server ${network}.${sitenu} is UP."
+        else
+                echo "Server ${network}.${sitenu} is DOWN."
+        fi
+done</span>
+</pre></td></tr></tbody></table>
+
+		<p>上面这一串命令运行之后就可以显示出 192.168.1.1~192.168.1.100 共 100 部主机目前是否能与你的机器连通！
+		如果你的网域与鸟哥所在的位置不同，则直接修改上头那个 network 的变量内容即可！其实这个范例的重点在 $(seq ..) 
+		那个位置！那个 seq 是连续 (sequence) 的缩写之意！代表后面接的两个数值是一直连续的！
+		如此一来，就能够轻松的将连续数字带入程序中罗！</p>
+
+		<p>最后，让我们来玩判断式加上回圈的功能！我想要让使用者输入某个目录档名，
+		然后我找出某目录内的档名的权限，该如何是好？呵呵！可以这样做啦～</p>
+
+<table class="term"><tbody><tr><td class="term"><pre>[root@www scripts]# <span class="term_command">vi sh18.sh</span>
+<span class="term_write">#!/bin/bash
+# Program:
+#	User input dir name, I find the permission of files.
+# History:
+# 2005/08/29	VBird	First release
+PATH=/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin:~/bin
+export PATH
+
+<span class="term_say"># 1. 先看看这个目录是否存在啊？</span>
+read -p "Please input a directory: " dir
+if [ "$dir" == "" -o ! -d "$dir" ]; then
+	echo "The $dir is NOT exist in your system."
+	exit 1
+fi
+
+<span class="term_say"># 2. 开始测试文件罗～</span>
+filelist=$(ls $dir)        <span class="term_note"># 列出所有在该目录下的文件名称</span>
+for filename in $filelist
+do
+	perm=""
+	test -r "$dir/$filename" &amp;&amp; perm="$perm readable"
+	test -w "$dir/$filename" &amp;&amp; perm="$perm writable"
+	test -x "$dir/$filename" &amp;&amp; perm="$perm executable"
+	echo "The file $dir/$filename's permission is $perm "
+done</span>
+</pre></td></tr></tbody></table>
+
+		<p>呵呵！很有趣的例子吧～利用这种方式，你可以很轻易的来处理一些文件的特性呢。接下来，让我们来玩玩另一种 for 
+		回圈的功能吧！主要用在数值方面的处理喔！</p>
+	</div>
+
+	<hr><a name="for_2"></a><img src="../image/logo.png" alt="小标题的图示" width="24" align="middle" height="23"><span class="text_h2">for...do...done 的数值处理</span><br>
+	<div class="block2">
+		<p>除了上述的方法之外，for 回圈还有另外一种写法！语法如下：</p>
+
+<table class="term"><tbody><tr><td class="term"><pre><span class="term_command">for ((</span> 初始值<span class="term_command">;</span> 限制值<span class="term_command">;</span> 运行步阶 <span class="term_command">))
+do</span>
+	程序段
+<span class="term_command">done</span>
+</pre></td></tr></tbody></table>
+
+		<p>这种语法适合於数值方式的运算当中，在 for 后面的括号内的三串内容意义为：</p>
+		<ul class="text_import2">
+		<li>初始值：某个变量在回圈当中的起始值，直接以类似 i=1 配置好；</li>
+		<li>限制值：当变量的值在这个限制值的范围内，就继续进行回圈。例如 i&lt;=100；</li>
+		<li>运行步阶：每作一次回圈时，变量的变化量。例如 i=i+1。</li>
+		</ul>
+
+		<p>值得注意的是，在『运行步阶』的配置上，如果每次添加 1 ，则可以使用类似『i++』的方式，亦即是 i 
+		每次回圈都会添加一的意思。好，我们以这种方式来进行 1 累加到使用者输入的回圈吧！</p>
+
+<table class="term"><tbody><tr><td class="term"><pre>[root@www scripts]# <span class="term_command">vi sh19.sh</span>
+<span class="term_write">#!/bin/bash
+# Program:
+# 	Try do calculate 1+2+....+${your_input}
+# History:
+# 2005/08/29	VBird	First release
+PATH=/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin:~/bin
+export PATH
+
+read -p "Please input a number, I will count for 1+2+...+your_input: " nu
+
+s=0
+for (( i=1; i&lt;=$nu; i=i+1 ))
+do
+	s=$(($s+$i))
+done
+echo "The result of '1+2+3+...+$nu' is ==&gt; $s"</span>
+</pre></td></tr></tbody></table>
+
+		<p>一样也是很简单吧！利用这个 for 则可以直接限制回圈要进行几次呢！</p>
+	</div>
+</div>
+<hr />
+    </td>
+    <td style="width: 16px; font-size: 6px;">　</td></tr>
+<tr><td style="width: 16px; height: 16px;">　</td>
+    <td style="width: 866px; height: 16px;">　</td>
+    <td style="width: 16px; height: 16px;">　</td></tr>
+</tbody></table>
+
+<div style="padding-top: 0px; text-align: center;">
+<span style="font-size: 80%;">
+	<a href="http://vbird.dic.ksu.edu.tw/" target="_top" title="前往鸟哥的首页">http://linux.vbird.org</a>
+	is designed by <a href="mailto:vbird@mail.vbird.idv.tw" title="联络鸟哥(我不要广告信！)">VBird</a>
+		during 2001-2011. <a href="http://www.ksu.edu.tw/" target="_blank">ksu.edu</a></span>
+         ﻿<div id="apDiv4">
+      <p>本网页主要以Firefox配合解析度 1024x768 作为设计依据&nbsp;&nbsp;&nbsp;&nbsp; 鸟哥自由软件整合应用研究室</p></div></div>
+</div>
+</center>
+</body></html>
