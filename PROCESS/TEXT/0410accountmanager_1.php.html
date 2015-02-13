@@ -1,666 +1,1 @@
-<html><head>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf8">
-	<meta name="Author" content="2011/04/19,lee">
-	<meta name="Description" content="在 Linux 系统下管理用户的身份与账号！">
-	<title>鸟哥的 Linux 私房菜 -- Linux 账号管理</title>
-    <script src="../script/SpryMenuBar.js" type="text/javascript"></script>
-	<script src="../script/index.js" type="text/javascript"></script>
-	<link href="../css/SpryMenuBarHorizontal.css" rel="stylesheet" type="text/css" />
-    <link href="../css/main.css" rel="stylesheet" type="text/css" />
-    </head><body style="margin: 0pt; padding: 0pt;" class="table"onload="MM_preloadImages('image/title_19.png','image/title_26.png','image/title_27.png','image/title_28.png','image/title_06.png','image/title_08.png','image/title_10.png','image/title_12.png')">
-
-
-<!-- Copyright � 2005. Spidersoft Ltd -->
-<style>
-A.applink:hover {border: 2px dotted #DCE6F4;padding:2px;background-color:#ffff00;color:green;text-decoration:none}
-A.applink       {border: 2px dotted #DCE6F4;padding:2px;color:#2F5BFF;background:transparent;text-decoration:none}
-A.info          {color:#2F5BFF;background:transparent;text-decoration:none}
-A.info:hover    {color:green;background:transparent;text-decoration:underline}
-</style>
-<div style='BORDER: 1px solid #DCE6F4; MARGIN-TOP: 20px; MARGIN-BOTTOM: 20px; MARGIN-LEFT: 5px; MARGIN-RIGHT: 5px; PADDING: 5px; BACKGROUND-COLOR: #eef8ff;line-height:180%; COLOR: #000000; font-family: Arial; font-size: 8pt; width=100%; FILTER: progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr="#FFFFFFFF", EndColorStr="#F2F5FAFF");'>
-This page was saved using <a class="applink" href="http://www.spidersoft.com"><b>WebZIP 7.0.3.1030</b></a> <a class="applink" href="http://www.spidersoft.com"><b>offline browser</b></a>  (Unregistered) on  02/12/15 12:14:49.<br>
-<b>Address:</b> <a class="info" href="http://vbird.dic.ksu.edu.tw/linux_basic/0410accountmanager_1.php">http://vbird.dic.ksu.edu.tw/linux_basic/0410accountmanager_1.php</a><br>
-<b>Title:</b> 鸟哥的 Linux 私房菜 -- Linux 账号管理 &nbsp;&bull;&nbsp; <b>Size:</b> 51165<br></div>
-<!-- /Copyright � 2005. Spidersoft Ltd -->
-
-
-
-<center>
-<div id="apDiv5">
-<div> <LINK REL="SHORTCUT ICON" HREF="favicon.ico">
-<!-- ImageReady Slices (title3.ai) -->
-<table id="___01" width="898" height="81" border="0" align="center" cellpadding="0" cellspacing="0";>
-	<tr>
-		<td colspan="15">
-			<img src="image/title/title_01.png" width="900" height="1" alt=""></td>
-	</tr>
-	<tr>
-		<td rowspan="4" bgcolor="#182448"><p><img src="http://linux.vbird.org/cgi-bin/Count.cgi?dd=C&ft=5&sh=T&md=8&pad=Y&df=vbird.dic.ksu.edu.tw.dat" width="93" align="left" title="計數器" /></p>
-	    <p><font color="#FFFFFF" size="-1">since2012/04/23</font></p></td>
-		<td rowspan="4" align="left" valign="top"><a href="http://vbird.dic.ksu.edu.tw/"><img src="image/title/title_03.png" alt="" width="263" height="79" border="0"></a></td>
-		<td colspan="13">
-			<img src="image/title/title_04.png" alt="" width="535" height="9" border="0"></td>
-	</tr>
-	<tr>
-		<td rowspan="3">
-			<img src="image/title/title_05.png" alt="" width="53" height="70" border="0"></td>
-		<td colspan="2" align="left" valign="top"><a href="0110whatislinux.php.html" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image51','','image/title/title_06.png',1)"><img src="image/title/title3_06.png" name="Image51" width="106" height="25" border="0" id="Image51" alt=""/></a></td>
-		<td rowspan="2">
-			<img src="image/title/title_07.png" alt="" width="27" height="37" border="0"></td>
-		<td colspan="3" align="left" valign="top"><a href="http://vbird.dic.ksu.edu.tw/linux_server/0110network_basic.php" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image52','','image/title/title_08.png',1)"><img src="image/title/title3_08.png" name="Image52" width="107" height="25" border="0" id="Image52" alt=""/></a></td>
-		<td rowspan="2">
-			<img src="image/title/title_09.png" alt="" width="37" height="37" border="0"></td>
-		<td colspan="2" align="left" valign="top"><a href="http://vbird.dic.ksu.edu.tw/about.php" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image53','','image/title/title_10.png',1)"><img src="image/title/title3_10.png" name="Image53" width="75" height="25" border="0" id="Image53" alt=""/></a></td>
-		<td rowspan="3">
-			<img src="image/title/title_11.png" alt="" width="35" height="70" border="0"></td>
-		<td align="left" valign="top"><a href="mailto:vbird@mail.vbird.idv.tw" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image54','','image/title/title_12.png',1)"><img src="image/title/title3_12.png" name="Image54" width="74" height="25" border="0" id="Image54" alt=""/></a></td>
-		<td rowspan="3">
-			<img src="image/title/title_13.png" alt="" width="21" height="70" border="0"></td>
-	</tr>
-	<tr>
-		<td colspan="2">
-			<img src="image/title/title_14.png" alt="" width="106" height="12" border="0"></td>
-		<td colspan="3">
-			<img src="image/title/title_15.png" alt="" width="107" height="12" border="0"></td>
-		<td colspan="2">
-			<img src="image/title/title_16.png" width="75" height="12" alt=""></td>
-		<td rowspan="2">
-			<img src="image/title/title_17.png" alt="" width="74" height="45" border="0"></td>
-	</tr>
-	<tr>
-		<td>
-			<img src="image/title/title_18.png" alt="" width="15" height="33" border="0"></td>
-		<td colspan="3" align="left" valign="top"><ul id="MenuBar1" class="MenuBarHorizontal">
-	  <li><a href="linux_basic.php.html" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image44','','image/title/title_19.png',1)"><img src="image/title/title3_19.png" name="Image44" width="123" height="33" border="0" id="Image44" /></a>
-			    <ul>
-			      <li><a href="Mandrake9.0/mandrake9.0.php.html" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image46','','image/title/title_26.png',1)"><img src="image/title/title_23.png" name="Image46" width="120" height="26" border="0" id="Image46" alt="" /></a></li>
-                  <li><a href="fedora_4/fc4.php.html" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image47','','image/title/title_27.png',1)"><img src="image/title/title_24.png" name="Image47" width="120" height="26" border="0" id="Image47" alt="" /></a></li>
-                  <li><a href="linux_basic.php.html" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image48','','image/title/title_28.png',1)"><img src="image/title/title_25.png" name="Image48" width="120" height="26" border="0" id="Image48" alt="" /></a></li>
-                </ul>
-		      </li>
-		</ul></td>
-		<td>
-			<img src="image/title/title_20.png" alt="" width="42" height="33" border="0"></td>
-		<td colspan="3" align="left" valign="top"><ul id="MenuBar2" class="MenuBarHorizontal">
-	  <li><a href="http://vbird.dic.ksu.edu.tw/linux_server/" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image45','','image/title/title_21.png',1)"><img src="image/title/title3_21.png" name="Image45" width="125" height="33" border="0" id="Image45" /></a>
-			    <ul>
-			      <li><a href="http://vbird.dic.ksu.edu.tw/linux_server/linux_redhat9/redhat9.php" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image43','','image/title/title_26.png',1)"><img src="image/title/title_23.png" name="Image43" width="120" height="26" border="0" id="Image43" alt=""/></a></li>
-			      <li><a href="http://vbird.dic.ksu.edu.tw/linux_server/centos4.php" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image49','','image/title/title_27.png',1)"><img src="image/title/title_24.png" name="Image49" width="120" height="26" border="0" id="Image49" alt="" /></a></li>
-			      <li><a href="http://vbird.dic.ksu.edu.tw/linux_server/" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image50','','image/title/title_28.png',1)"><img src="image/title/title_25.png" name="Image50" width="120" height="26" border="0" id="Image50" alt="" /></a></li>
-		        </ul>
-		      </li>
-		</ul></td>
-		<td>
-			<img src="image/title/title_22.png" alt="" width="47" height="33" border="0"></td>
-	</tr>
-	<tr>
-		<td>
-			<img src="image/title/Spacer.gif" width="101" height="1" alt=""></td>
-		<td>
-			<img src="image/title/Spacer.gif" width="263" height="1" alt=""></td>
-		<td>
-			<img src="image/title/Spacer.gif" width="53" height="1" alt=""></td>
-		<td>
-			<img src="image/title/Spacer.gif" width="15" height="1" alt=""></td>
-		<td>
-			<img src="image/title/Spacer.gif" width="91" height="1" alt=""></td>
-		<td>
-			<img src="image/title/Spacer.gif" width="27" height="1" alt=""></td>
-		<td>
-			<img src="image/title/Spacer.gif" width="5" height="1" alt=""></td>
-		<td>
-			<img src="image/title/Spacer.gif" width="42" height="1" alt=""></td>
-		<td>
-			<img src="image/title/Spacer.gif" width="60" height="1" alt=""></td>
-		<td>
-			<img src="image/title/Spacer.gif" width="37" height="1" alt=""></td>
-		<td>
-			<img src="image/title/Spacer.gif" width="28" height="1" alt=""></td>
-		<td>
-			<img src="image/title/Spacer.gif" width="47" height="1" alt=""></td>
-		<td>
-			<img src="image/title/Spacer.gif" width="35" height="1" alt=""></td>
-		<td>
-			<img src="image/title/Spacer.gif" width="74" height="1" alt=""></td>
-		<td>
-			<img src="image/title/Spacer.gif" width="22" height="1" alt=""></td>
-	</tr>
-</table>
-<!-- End ImageReady Slices -->
-<script type="text/javascript">
-<!--
-var MenuBar1 = new Spry.Widget.MenuBar("MenuBar1", {imgDown:"SpryAssets/SpryMenuBarDownHover.gif", imgRight:"SpryAssets/SpryMenuBarRightHover.gif"});
-var MenuBar2 = new Spry.Widget.MenuBar("MenuBar2", {imgDown:"SpryAssets/SpryMenuBarDownHover.gif", imgRight:"SpryAssets/SpryMenuBarRightHover.gif"});
-//-->
-</script></div>
-<table summary="本文内容的排版" style="width: 898px;" border="0" cellpadding="0" cellspacing="0">
-<tbody><tr><td style="width: 16px; height: 16px;">　</td>
-    <td style="width: 866px; height: 16px;">　</td>
-    <td style="width: 16px; height: 16px;">　</td></tr>
-<tr><td style="width: 16px; font-size: 6px;">　</td>
-    <td width="866">
-
-<!-- 本文的档头部分 -->
-<div style="text-align: center;">
-    <a href="0410accountmanager.php.html">
-    <span class="text_head0">第十四章、<span class="text_head_en">Linux </span>账号管理与<span class="text_head_en"> ACL </span>权限配置</span></a><br>
-</div>
-    <div style="text-align: right;">
-        <span class="text_history">最近升级日期：2009/09/09</span>
-    </div>
-<!-- 本文的连结区部分 -->
-<div class="block1">
-<span class="text_h1">
-1. <a href="#account">Linux 的账号与群组</a><br>
-	<span class="text_h2">
-	　　1.1 <a href="#account_id">使用者标识符： UID 与 GID</a><br>
-	　　1.2 <a href="#account_user">使用者账号</a>：<a href="#passwd_file">/etc/passwd 文件结构</a>, 
-		<a href="#shadow_file">/etc/shadow 文件结构</a><br>
-	　　1.3 <a href="#account_group">关于群组</a>： <a href="#group_file">/etc/group 文件结构</a>,
-		<a href="#account_group_init">有效与初始群组</a>, <a href="#groups">groups</a>, 
-		<a href="#newgrp">newgrp</a>, <a href="#gshadow_file">/etc/gshadow</a><br>
-	</span>
-</span></div>
-<!-- 本文的正式部分 -->
-<hr><a name="account"></a><img src="../image/logo.png" alt="大标题的图示" width="35" align="middle" height="34"><span class="text_h1">Linux 的账号与群组</span><br>
-<div class="block1">
-	<p>管理员的工作中，相当重要的一环就是『管理账号』啦！因为整个系统都是你在管理的，
-	并且所有一般用户的账号申请，都必须要透过你的协助才行！所以你就必须要了解一下如何管理好一个服务器主机的账号啦！
-	在管理 Linux 主机的账号时，我们必须先来了解一下 Linux 到底是如何辨别每一个使用者的！<br><br></p>
-
-	<hr><a name="account_id"></a><img src="../image/logo.png" alt="小标题的图示" width="24" align="middle" height="23"><span class="text_h2">使用者标识符： UID 与 GID</span><br>
-	<div class="block2">
-		<p>虽然我们登陆 Linux 主机的时候，输入的是我们的账号，但是其实 Linux 
-		主机并不会直接认识你的『账号名称』的，他仅认识 ID 啊 (ID 就是一组号码啦)。
-		由于计算机仅认识 0 与 1，所以主机对于数字比较有概念的；至于账号只是为了让人们容易记忆而已。
-		而你的 ID 与账号的对应就在 /etc/passwd 当中哩。</p>
-
-		<div style="padding: 10pt 0pt;" align="right"><table width="90%"><tbody><tr><td><b>Tips:</b><br><span style="color: rgb(0, 144, 0);"><font size="-1">		如果你曾经在网络上下载过 <a href="http://vbird.dic.ksu.edu.tw/linux_basic/0240tarcompress.php#pack">tarball</a> 类型的文件，
-		那么应该不难发现，在解压缩之后的文件中，文件拥有者的字段竟然显示『不明的数字』？奇怪吧？这没什么好奇怪的，因为 Linux 
-		说实在话，他真的只认识代表你身份的号码而已！
-		</font></span></td><td><img src="0410accountmanager_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div>
-		<p>那么到底有几种 ID 呢？还记得我们在<a href="0210filepermission.php.html">第六章</a>内有提到过，
-		每一个文件都具有『拥有人与拥有群组』的属性吗？没错啦～每个登陆的使用者至少都会取得两个 ID ，一个是使用者 
-		ID (User ID ，简称 UID)、一个是群组 ID (Group ID ，简称 GID)。</p>
-
-		<p>那么文件如何判别他的拥有者与群组呢？其实就是利用 UID 与 GID 啦！每一个文件都会有所谓的拥有者 ID 
-		与拥有群组 ID ，当我们有要显示文件属性的需求时，系统会依据 /etc/passwd 与 /etc/group 的内容，
-		找到 UID / GID 对应的账号与组名再显示出来！我们可以作个小实验，你可以用 root 的身份 
-		vi /etc/passwd ，然后将你的一般身份的使用者的 
-		ID 随便改一个号码，然后再到你的一般身份的目录下看看原先该账号拥有的文件，你会发现该文件的拥有人变成了
-		『数字了』呵呵！这样可以理解了吗？来看看底下的例子：</p>
-
-<table class="term"><tbody><tr><td class="term"><pre><span class="term_hd"># 1. 先察看一下，系统里面有没有一个名为 dmtsai 的用户？</span>
-[root@www ~]# <span class="term_command">grep 'dmtsai' /etc/passwd</span>
-dmtsai:x:503:504::/home/dmtsai:/bin/bash   <span class="term_note">&lt;==是有这个账号喔！</span>
-[root@www ~]# <span class="term_command">ll -d /home/dmtsai</span>
-drwx------ 4 <span class="term_write">dmtsai</span> dmtsai 4096 Feb  6 18:25 /home/dmtsai
-<span class="term_say"># 瞧一瞧，使用者的字段正是 dmtsai 本身喔！</span>
-
-<span class="term_hd"># 2. 修改一下，将刚刚我们的 dmtsai 的 503 UID 改为 2000 看看：</span>
-[root@www ~]# <span class="term_command">vi /etc/passwd</span>
-<span class="term_say">....(前面省略)....</span>
-dmtsai:x:<span class="term_write">2000</span>:504::/home/dmtsai:/bin/bash <span class="term_note">&lt;==修改一下特殊字体部分，由 503 改过来</span>
-[root@www ~]# <span class="term_command">ll -d /home/dmtsai</span>
-drwx------ 4 <span class="term_write">503</span> dmtsai 4096 Feb  6 18:25 /home/dmtsai
-<span class="term_say"># 很害怕吧！怎么变成 503 了？因为文件只会记录数字而已！
-# 因为我们乱改，所以导致 503 找不到对应的账号，因此显示数字！</span>
-
-<span class="term_hd"># 3. 记得将刚刚的 2000 改回来！</span>
-[root@www ~]# <span class="term_command">vi /etc/passwd</span>
-<span class="term_say">....(前面省略)....</span>
-dmtsai:x:<span class="term_write">503</span>:504::/home/dmtsai:/bin/bash <span class="term_note">&lt;==赶紧改回来！</span>
-</pre></td></tr></tbody></table>
-
-		<p>你一定要了解的是，上面的例子仅是在说明 UID 与账号的对应性，<span class="text_import2">在一部正常运行的 Linux 主机环境下，上面的动作不可随便进行</span>，
-		这是因为系统上已经有很多的数据被创建存在了，随意修改系统上某些账号的 UID 
-		很可能会导致某些程序无法进行，这将导致系统无法顺利运行的结果。
-		因为权限的问题啊！所以，了解了之后，请赶快回到 /etc/passwd 里面，将数字改回来喔！</p>
-
-		<div style="padding: 10pt 0pt;" align="right"><table width="90%"><tbody><tr><td><b>Tips:</b><br><span style="color: rgb(0, 144, 0);"><font size="-1">		举例来说，如果上面的测试最后一个步骤没有将 2000 改回原本的 UID，那么当 dmtsai 下次登陆时将没有办法进入自己的家目录！
-		因为他的 UID 已经改为 2000 ，但是他的家目录 (/home/dmtsai) 却记录的是 503 ，由于权限是 700 ，
-		因此他将无法进入原本的家目录！是否非常严重啊？
-		</font></span></td><td><img src="0410accountmanager_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div>	</div>
-
-	<hr><a name="account_user"></a><img src="../image/logo.png" alt="小标题的图示" width="24" align="middle" height="23"><span class="text_h2">使用者账号</span><br>
-	<div class="block2">
-		<p>Linux 系统上面的用户如果需要登陆主机以取得 shell 的环境来工作时，他需要如何进行呢？
-		首先，他必须要在计算机前面利用 tty1~tty7 的终端机提供的 login 接口，并输入账号与口令后才能够登陆。
-		如果是透过网络的话，那至少使用者就得要学习 ssh 这个功能了 (服务器篇再来谈)。
-		那么你输入账号口令后，系统帮你处理了什么呢？</p>
-
-		<ol class="text_import2">
-		<li>先找寻 /etc/passwd 里面是否有你输入的账号？如果没有则跳出，如果有的话则将该账号对应的
-		UID 与 GID (在 /etc/group 中) 读出来，另外，该账号的家目录与 shell 配置也一并读出；<br><br></li>
-		<li>再来则是核对口令表啦！这时 Linux 会进入 /etc/shadow 里面找出对应的账号与 
-		UID，然后核对一下你刚刚输入的口令与里头的口令是否相符？<br><br></li>
-		<li>如果一切都 OK 的话，就进入 Shell 控管的阶段啰！</li>
-		</ol>
-
-		<p>大致上的情况就像这样，所以当你要登陆你的 Linux 主机的时候，那个 /etc/passwd 与 /etc/shadow 
-		就必须要让系统读取啦 (这也是很多攻击者会将特殊账号写到 /etc/passwd 里头去的缘故)，所以呢，如果你要备份 
-		Linux 的系统的账号的话，那么这两个文件就一定需要备份才行呦！</p>
-
-		<p>由上面的流程我们也知道，跟使用者账号有关的有两个非常重要的文件，一个是管理使用者 UID/GID 重要参数的
-		/etc/passwd ，一个则是专门管理口令相关数据的 /etc/shadow 啰！那这两个文件的内容就非常值得进行研究啦！
-		底下我们会简单的介绍这两个文件，详细的说明可以参考 man 5 passwd 及 man 5 shadow (<a href="#ps1">注1</a>)。<br><br></p>
-
-		<a name="passwd_file"></a>
-		<hr><ul class="list1"><li class="text_import1">/etc/passwd 文件结构</li></ul>
-
-		<p>这个文件的构造是这样的：<span class="text_import2">每一行都代表一个账号，有几行就代表有几个账号在你的系统中！
-		不过需要特别留意的是，里头很多账号本来就是系统正常运行所必须要的，我们可以简称他为系统账号，
-		例如 bin, daemon, adm, nobody 等等，这些账号请不要随意的杀掉他呢！</span>
-		这个文件的内容有点像这样：</p>
-
-		<div style="padding: 10pt 0pt;" align="right"><table width="90%"><tbody><tr><td><b>Tips:</b><br><span style="color: rgb(0, 144, 0);"><font size="-1">		鸟哥在接触 Linux 之前曾经碰过 Solaris 系统 (1999 年)，当时鸟哥啥也不清楚！由于『听说』Linux 
-		上面的账号越复杂会导致系统越危险！所以鸟哥就将 /etc/passwd 上面的账号全部删除到只剩下 root 
-		与鸟哥自己用的一般账号！结果你猜发生什么事？那就是....呼叫升阳的工程师来维护系统 @_@！糗到一个不行！大家不要学啊！
-		</font></span></td><td><img src="0410accountmanager_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div>
-<table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">head -n 4 /etc/passwd</span>
-<span class="term_write">root:x:0:0:root:/root:/bin/bash</span>  <span class="term_note">&lt;==等一下做为底下说明用</span>
-bin:x:1:1:bin:/bin:/sbin/nologin
-daemon:x:2:2:daemon:/sbin:/sbin/nologin
-adm:x:3:4:adm:/var/adm:/sbin/nologin
-</pre></td></tr></tbody></table>
-
-		<p>我们先来看一下每个 Linux 系统都会有的第一行，就是 root 这个系统管理员那一行好了，
-		你可以明显的看出来，每一行使用『:』分隔开，共有七个咚咚，分别是：</p>
-
-		<ol>
-		<li><span class="text_import1">账号名称</span>：<br>
-		就是账号啦！用来对应 UID 的。例如 root 的 UID 对应就是 0 (第三字段)；<br><br></li>
-
-		<li><span class="text_import1">口令</span>：<br>
-		早期 Unix 系统的口令就是放在这字段上！但是因为这个文件的特性是<span class="text_import2">所有的程序都能够读取</span>，这样一来很容易造成口令数据被窃取，
-		因此后来就将这个字段的口令数据给他改放到 <a href="#shadow_file">/etc/shadow</a> 
-		中了。所以这里你会看到一个『 x 』，呵呵！<br><br></li>
-
-		<li><span class="text_import1">UID</span>：<br>
-		这个就是使用者标识符啰！通常 Linux 对于 UID 有几个限制需要说给您了解一下：<br><br>
-
-<table bgcolor="lightyellow" border="1" cellpadding="3" cellspacing="0" width="90%">
-<tbody><tr align="center" bgcolor="#182448"><td width="90"><font color="#FFFFFF">id 范围</font></td><td><font color="#FFFFFF">该 ID 使用者特性</font></td></tr>
-<tr><td align="center">0<br>(系统管理员)</td><td>当 UID 是 0 时，代表这个账号是『系统管理员』！
-	所以当你要让其他的账号名称也具有 root 的权限时，将该账号的 UID 改为 0 即可。
-	这也就是说，一部系统上面的系统管理员不见得只有 root 喔！
-	不过，很不建议有多个账号的 UID 是 0 啦～</td></tr>
-<tr><td align="center">1~499<br>(系统账号)</td><td>保留给系统使用的 ID，其实<span class="text_import2">除了 0 之外，其他的 UID 权限与特性并没有不一样</span>。默认 500 
-	以下的数字让给系统作为保留账号只是一个习惯。<br><br>
-	由于系统上面启动的服务希望使用较小的权限去运行，因此不希望使用 root 的身份去运行这些服务，
-	所以我们就得要提供这些运行中程序的拥有者账号才行。这些系统账号通常是不可登陆的，
-	所以才会有我们在<a href="0320bash.php.html">第十一章</a>提到的 /sbin/nologin 这个特殊的 shell 存在。<br><br>
-	根据系统账号的由来，通常系统账号又约略被区分为两种：<br>
-	1~99：由 distributions 自行创建的系统账号；<br>
-	100~499：若用户有系统账号需求时，可以使用的账号 UID。</td></tr>
-<tr><td align="center">500~65535<br>(可登陆账号)</td><td>给一般使用者用的。事实上，目前的 linux 核心 (2.6.x 版)已经可以支持到
-	4294967295 (2^32-1) 这么大的 UID 号码喔！</td></tr>
-</tbody></table><br>
-
-		上面这样说明可以了解了吗？是的， UID 为 0 的时候，就是 root 呦！所以请特别留意一下你的 
-		/etc/passwd 文件！<br><br></li>
-
-		<li><span class="text_import1">GID</span>：<br>
-		这个与 /etc/group 有关！其实 /etc/group 
-		的观念与 /etc/passwd 差不多，只是他是用来规范组名与 GID 的对应而已！<br><br></li>
-
-		<li><span class="text_import1">用户信息说明栏</span>：<br>
-		这个字段基本上并没有什么重要用途，只是用来解释这个账号的意义而已！不过，如果您提供使用 finger 的功能时，
-		这个字段可以提供很多的信息呢！本章后面的 <a href="#chfn">chfn</a> 命令会来解释这里的说明。<br><br></li>
-
-		<li><span class="text_import1">家目录</span>：<br>
-		这是用户的家目录，以上面为例， root 的家目录在 /root ，所以当 root 登陆之后，就会立刻跑到 /root 目录里头啦！呵呵！
-		如果你有个账号的使用空间特别的大，你想要将该账号的家目录移动到其他的硬盘去该怎么作？
-		没有错！可以在这个字段进行修改呦！默认的用户家目录在 /home/yourIDname<br><br></li>
-
-		<li><span class="text_import1">Shell</span>：<br>
-		我们在<a href="0320bash.php.html">第十一章 BASH</a> 提到很多次，当用户登陆系统后就会取得一个 Shell
-		来与系统的核心沟通以进行用户的操作任务。那为何默认 shell 会使用 bash 呢？就是在这个字段指定的啰！
-		这里比较需要注意的是，有一个 shell 可以用来替代成让账号无法取得 shell 环境的登陆动作！那就是
-		/sbin/nologin 这个东西！这也可以用来制作纯 pop 邮件账号者的数据呢！</li>
-		</ol><br>
-
-		<a name="shadow_file"></a>
-		<hr><ul class="list1"><li class="text_import1">/etc/shadow 文件结构</li></ul>
-
-		<p>我们知道很多程序的运行都与权限有关，而权限与 UID/GID 有关！因此各程序当然需要读取 /etc/passwd 来了解不同账号的权限。
-		<span class="text_import2">因此 /etc/passwd 的权限需配置为 -rw-r--r-- 这样的情况</span>，
-		虽然早期的口令也有加密过，但却放置到 /etc/passwd 的第二个字段上！这样一来很容易被有心人士所窃取的，
-		加密过的口令也能够透过暴力破解法去 try and error (试误) 找出来！</p>
-
-		<p>因为这样的关系，所以后来发展出将口令移动到 /etc/shadow 这个文件分隔开来的技术，
-		而且还加入很多的口令限制参数在 /etc/shadow 里头呢！在这里，我们先来了解一下这个文件的构造吧！
-		鸟哥的 /etc/shadow 文件有点像这样：</p>
-
-<table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">head -n 4 /etc/shadow</span>
-<span class="term_write">root:$1$/30QpE5e$y9N/D0bh6rAACBEz.hqo00:14126:0:99999:7:::</span>  <span class="term_note">&lt;==底下说明用</span>
-bin:*:14126:0:99999:7:::
-daemon:*:14126:0:99999:7:::
-adm:*:14126:0:99999:7:::
-</pre></td></tr></tbody></table>
-
-		<p>基本上， shadow 同样以『:』作为分隔符，如果数一数，会发现共有九个字段啊，这九个字段的用途是这样的：</p>
-
-		<ol>
-		<li><span class="text_import1">账号名称</span>：<br>
-		由于口令也需要与账号对应啊～因此，这个文件的第一栏就是账号，必须要与 /etc/passwd 相同才行！<br><br></li>
-
-		<li><span class="text_import1">口令</span>：<br>
-		这个字段内的数据才是真正的口令，而且是<span class="text_import2">经过编码的口令 (加密) </span>啦！
-		你只会看到有一些特殊符号的字母就是了！需要特别留意的是，虽然这些加密过的口令很难被解出来，
-		但是『很难』不等于『不会』，所以，这个文件的默认权限是『-rw-------』或者是『-r--------』，亦即只有 root 
-		才可以读写就是了！你得随时注意，不要不小心更动了这个文件的权限呢！<br><br>
-
-		另外，由于各种口令编码的技术不一样，因此不同的编码系统会造成这个字段的长度不相同。
-		举例来说，旧式的 DES 编码系统产生的口令长度就与目前惯用的 MD5 不同(<a href="#ps2">注2</a>)！MD5 
-		的口令长度明显的比较长些。由于固定的编码系统产生的口令长度必须一致，因此『<span class="text_import2">当你让这个字段的长度改变后，该口令就会失效(算不出来)</span>』。
-		很多软件透过这个功能，<span class="text_import2">在此字段前加上 ! 或 * 改变口令字段长度，就会让口令『暂时失效』了。
-		</span><br><br></li>
-
-		<li><span class="text_import1">最近更动口令的日期</span>：<br>
-		这个字段记录了『更动口令那一天』的日期，不过，很奇怪呀！在我的例子中怎么会是 14126 
-		呢？呵呵，这个是因为计算 Linux 日期的时间是以 1970 年 1 月 1 日作为 1 而累加的日期，1971 年 1 月 1 日则为 366 啦！
-		得注意一下这个数据呦！上述的 14126 指的就是 2008-09-04 那一天啦！了解乎？
-		而想要了解该日期可以使用本章后面 <a href="#chage">chage</a> 命令的帮忙！至于想要知道某个日期的累积日数，
-		可使用如下的程序计算：<br>
-
-<table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">echo $(($(date --date="2008/09/04" +%s)/86400+1))</span>
-14126
-</pre></td></tr></tbody></table>
-
-		上述命令中，2008/09/04 为你想要计算的日期，86400 为每一天的秒数， %s 为 1970/01/01 以来的累积总秒数。
-		由于 bash 仅支持整数，因此最终需要加上 1 补齐 1970/01/01 当天。<br><br></li>
-
-		<li><span class="text_import1">口令不可被更动的天数</span>：(与第 3 字段相比)<br>
-		第四个字段记录了：这个账号的口令在最近一次被更改后需要经过几天才可以再被变更！如果是 0 的话，
-		表示口令随时可以更动的意思。这的限制是为了怕口令被某些人一改再改而设计的！如果配置为 
-		20 天的话，那么当你配置了口令之后， 20 天之内都无法改变这个口令呦！<br><br></li>
-
-		<li><span class="text_import1">口令需要重新变更的天数</span>：(与第 3 字段相比)<br>
-		经常变更口令是个好习惯！为了强制要求用户变更口令，这个字段可以指定在最近一次更改口令后，
-		在多少天数内需要再次的变更口令才行。<span class="text_import2">你必须要在这个天数内重新配置你的口令，否则这个账号的口令将会『变为过期特性』</span>。
-		而如果像上面的 99999 (计算为 273 年) 的话，那就表示，呵呵，口令的变更没有强制性之意。<br><br></li>
-
-		<li><span class="text_import1">口令需要变更期限前的警告天数</span>：(与第 5 字段相比)<br>
-		当账号的口令有效期限快要到的时候 (第 5 字段)，系统会依据这个字段的配置，发出『警告』言论给这个账号，提醒他『再过 n 
-		天你的口令就要过期了，请尽快重新配置你的口令呦！』，如上面的例子，则是口令到期之前的 
-		7 天之内，系统会警告该用户。<br><br></li>
-
-		<li><span class="text_import1">口令过期后的账号宽限时间(口令失效日)</span>：(与第 5 字段相比)<br>
-		口令有效日期为『升级日期(第3字段)』+『重新变更日期(第5字段)』，过了该期限后用户依旧没有升级口令，那该口令就算过期了。
-		虽然口令过期但是该账号还是可以用来进行其他工作的，包括登陆系统取得 bash 。<span class="text_import2">不过如果口令过期了，
-		那当你登陆系统时，系统会强制要求你必须要重新配置口令才能登陆继续使用喔，这就是口令过期特性</span>。<br><br>
-
-		那这个字段的功能是什么呢？是在口令过期几天后，如果使用者还是没有登陆更改口令，那么这个账号的口令将会『失效』，
-		亦即该账号再也无法使用该口令登陆了。要注意<span class="text_import2">口令过期与口令失效并不相同</span>。<br><br></li>
-
-		<li><span class="text_import1">账号失效日期</span>：<br>
-		这个日期跟第三个字段一样，都是使用 1970 年以来的总日数配置。这个字段表示：
-		<span class="text_import2">这个账号在此字段规定的日期之后，将无法再使用</span>。
-		就是所谓的『账号失效』，此时不论你的口令是否有过期，这个『账号』都不能再被使用！
-		这个字段会被使用通常应该是在『收费服务』的系统中，你可以规定一个日期让该账号不能再使用啦！<br><br></li>
-
-		<li><span class="text_import1">保留</span>：<br>
-		最后一个字段是保留的，看以后有没有新功能加入。</li>
-		</ol>
-
-		<p>举个例子来说好了，假如我的 dmtsai 这个用户的口令栏如下所示：</p>
-
-<table class="term"><tbody><tr><td class="term"><pre>dmtsai:$1$vyUuj.eX$omt6lKJvMcIZHx4H7RI1V.:14299:5:60:7:5:14419:
-</pre></td></tr></tbody></table>
-
-		<p>这表示什么呢？先要注意的是 14299 是 2009/02/24 。所以 dmtsai 这个用户的口令相关意义是：</p>
-
-		<ul>
-		<li>由于口令几乎仅能单向运算(由明码计算成为口令，无法由口令反推回明码)，因此由上表的数据我们<span class="text_import2">无法得知 dmstai 的实际口令明文</span>；<br><br></li>
-
-		<li>此账号最近一次更动口令的日期是 2009/02/24 (14299)；<br><br></li>
-
-		<li>能够再次修改口令的时间是 5 天以后，也就是 <span class="text_import2">2009/03/01 以前 dmtsai 
-			不能修改自己的口令</span>；如果用户还是尝试要更动自己的口令，系统就会出现这样的信息：<br>
-<table class="term"><tbody><tr><td class="term"><pre>You must wait longer to change your password
-passwd: Authentication token manipulation error
-</pre></td></tr></tbody></table>
-			画面中告诉我们：你必须要等待更久的时间才能够变更口令之意啦！<br><br></li>
-
-		<li>由于口令过期日期定义为 60 天后，亦即累积日数为： 14299+60=14359，经过计算得到此日数代表日期为 2009/04/25。
-			这表示：『<span class="text_import2">使用者必须要在 2009/03/01 到 2009/04/25 之间的 60 
-			天限制内去修改自己的口令，若 2009/04/25 之后还是没有变更口令时，该口令就宣告为过期</span>』了！<br><br></li>
-
-		<li>警告日期设为 7 天，亦即是口令过期日前的 7 天，在本例中则代表 2009/04/19 ~ 2009/04/25 这七天。
-			如果用户一直没有更改口令，那么在这 7 天中，只要 dmtsai 登陆系统就会发现如下的信息：<br> 
-<table class="term"><tbody><tr><td class="term"><pre>Warning: your password will expire in 5 days
-</pre></td></tr></tbody></table><br></li>
-
-		<li>如果该账号一直到 2009/04/25 都没有更改口令，那么口令就过期了。但是由于有 5 天的宽限天数，
-			因此 <span class="text_import2">dmtsai 在 2009/04/30 前都还可以使用旧口令登陆主机。
-			不过登陆时会出现强制更改口令的情况</span>，画面有点像底下这样：<br>
-
-<table class="term"><tbody><tr><td class="term"><pre>You are required to change your password immediately (password aged)
-WARNING: Your password has expired.
-You must change your password now and login again!
-Changing password for user dmtsai.
-Changing password for dmtsai
-(current) UNIX password:
-</pre></td></tr></tbody></table>
-
-			你必须要输入一次旧口令以及两次新口令后，才能够开始使用系统的各项资源。如果你是在 2009/04/30 以后尝试以 
-			dmtsai 登陆的话，那么就会出现如下的错误信息且无法登陆，因为此时你的口令就失效去啦！<br>
-
-<table class="term"><tbody><tr><td class="term"><pre>Your account has expired; please contact your system administrator
-</pre></td></tr></tbody></table><br></li>
-
-		<li>如果使用者在 2009/04/25 以前变更过口令，那么第 3 个字段的那个 14299 的天数就会跟着改变，因此，
-			所有的限制日期也会跟着相对变动喔！^_^<br><br></li>
-
-		<li>无论使用者如何动作，到了 14419 (大约是 2009/07/24 左右) 该账号就失效了～</li>
-		</ul>
-
-		<p>透过这样的说明，您应该会比较容易理解了吧？由于 shadow 有这样的重要性，因此可不能随意修改喔！
-		但在某些情况底下你得要使用各种方法来处理这个文件的！举例来说，常常听到人家说：『我的口令忘记了』，
-		或者是『我的口令不晓得被谁改过，跟原先的不一样了』，这个时候怎么办？</p>
-
-		<ul>
-		<li><span class="text_import2">一般用户的口令忘记了</span>：这个最容易解决，请系统管理员帮忙，
-		他会重新配置好你的口令而不需要知道你的旧口令！利用 root 的身份使用 <a href="#passwd">passwd</a> 
-		命令来处理即可。<br><br></li>
-
-		<li><span class="text_import2">root 口令忘记了</span>：这就麻烦了！因为你无法使用 root 的身份登陆了嘛！
-		但我们知道 root 的口令在 /etc/shadow 当中，因此你可以使用各种可行的方法启动进入 Linux 再去修改。
-		例如重新启动进入单人维护模式(<a href="0510osloader.php.html">第二十章</a>)后，系统会主动的给予 root 权限的 bash 接口，
-		此时再以 passwd 修改口令即可；或以 Live CD 启动后挂载根目录去修改 /etc/shadow，将里面的 root 的口令字段清空，
-		再重新启动后 root 将不用口令即可登陆！登陆后再赶快以 passwd 命令去配置 root 口令即可。</li>
-		</ul>
-
-		<div style="padding: 10pt 0pt;" align="right"><table width="90%"><tbody><tr><td><b>Tips:</b><br><span style="color: rgb(0, 144, 0);"><font size="-1">		曾经听过一则笑话，某位老师主要是在教授 Linux 操作系统，但是他是兼任的老师，因此对于该系的计算机环境不熟。
-		由于当初安装该计算机教室 Linux 操作系统的人员已经离职且找不到联络方式了，也就是说 root 口令已经没有人晓得了！
-		此时该老师就对学生说：『在 Linux 里面 root 口令不见了，我们只能重新安装』...感觉有点无力～
-		又是个被 Windows 制约的人才！
-		</font></span></td><td><img src="0410accountmanager_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div>	</div>
-
-	<hr><a name="account_group"></a><img src="../image/logo.png" alt="小标题的图示" width="24" align="middle" height="23"><span class="text_h2">关于群组：
-	有效与初始群组、groups, newgrp</span>
-	<div class="block2">
-		<p>认识了账号相关的两个文件 /etc/passwd 与 /etc/shadow 之后，你或许还是会觉得奇怪，
-		那么群组的配置文件在哪里？还有，在 /etc/passwd 的第四栏不是所谓的 GID 吗？那又是啥？
-		呵呵～此时就需要了解 /etc/group 与 /etc/gshadow 啰～<br><br></p>
-
-		<a name="group_file"></a>
-		<hr><ul class="list1"><li class="text_import1">/etc/group 文件结构</li></ul>
-
-		<p>这个文件就是在记录 GID 与组名的对应了～鸟哥测试机的 /etc/group 内容有点像这样：</p>
-
-
-<table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">head -n 4 /etc/group</span>
-<span class="term_write">root:x:0:root</span>
-bin:x:1:root,bin,daemon
-daemon:x:2:root,bin,daemon
-sys:x:3:root,bin,adm
-</pre></td></tr></tbody></table>
-
-		<p>这个文件每一行代表一个群组，也是以冒号『:』作为字段的分隔符，共分为四栏，每一字段的意义是：</p>
-
-		<ol>
-		<li><span class="text_import1">组名</span>：<br>
-		就是组名啦！<br><br></li>
-
-		<li><span class="text_import1">群组口令</span>：<br>
-		通常不需要配置，这个配置通常是给『群组管理员』使用的，目前很少有这个机会配置群组管理员啦！
-		同样的，口令已经移动到 /etc/gshadow 去，因此这个字段只会存在一个『x』而已；<br><br></li>
-
-		<li><span class="text_import1">GID</span>：<br>
-		就是群组的 ID 啊。我们 /etc/passwd 第四个字段使用的 GID 对应的群组名，就是由这里对应出来的！<br><br></li>
-
-		<li><span class="text_import1">此群组支持的账号名称</span>：<br>
-		我们知道一个账号可以加入多个群组，那某个账号想要加入此群组时，将该账号填入这个字段即可。
-		举例来说，如果我想要让 dmtsai 也加入 root 这个群组，那么在第一行的最后面加上『,dmtsai』，注意不要有空格，
-		使成为『 root:x:0:root,dmtsai 』就可以啰～</li>
-		</ol>
-
-		<p>谈完了 /etc/passwd, /etc/shadow, /etc/group 之后，我们可以使用一个简单的图示来了解一下 UID / GID 与口令之间的关系，
-		图示如下。其实重点是 /etc/passwd 啦，其他相关的数据都是根据这个文件的字段去找寻出来的。
-		下图中， root 的 UID 是 0 ，而 GID 也是 0 ，去找 /etc/group 可以知道 GID 为 0  时的组名就是 root 哩。
-		至于口令的寻找中，会找到 /etc/shadow 与 /etc/passwd 内同账号名称的那一行，就是口令相关数据啰。</p>
-
-		<center><img src="0410accountmanager_files/id_link.gif" alt="账号相关文件之间的 UID/GID 与口令相关性示意图" title="账号相关文件之间的 UID/GID 与口令相关性示意图" border="0"><br>
-		图 1.3.1 、账号相关文件之间的 UID/GID 与口令相关性示意图<br></center>
-
-		<p>至于在 /etc/group 比较重要的特色在于第四栏啦，因为每个使用者都可以拥有多个支持的群组，这就好比在学校念书的时候，
-		我们可以加入多个社团一样！ ^_^。不过这里你或许会觉得奇怪的，那就是：『<span class="text_import2">假如我同时加入多个群组，那么我在作业的时候，到底是以那个群组为准？</span>』
-		底下我们就来谈一谈这个『有效群组』的概念。<br><br></p>
-
-		<a name="account_group_init"></a>
-		<hr><ul class="list1"><li class="text_import1">有效群组(effective group)与初始群组(initial group)</li></ul>
-
-		<p>还记得每个使用者在他的 /etc/passwd 里面的第四栏有所谓的 GID 吧？那个 GID 就是所谓的『初始群组 
-		(initial group) 』！也就是说，当用户一登陆系统，立刻就拥有这个群组的相关权限的意思。
-		举例来说，我们上面提到 dmtsai 这个使用者的 /etc/passwd 与 /etc/group 还有 /etc/gshadow 
-		相关的内容如下：</p>
-
-<table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">usermod -G users dmtsai</span>  <span class="term_note">&lt;==先配置好次要群组</span>
-[root@www ~]# <span class="term_command">grep dmtsai /etc/passwd /etc/group /etc/gshadow</span>
-/etc/passwd:dmtsai:x:503:<span class="term_write">504</span>::/home/dmtsai:/bin/bash
-/etc/group:users:x:100:<span class="term_write">dmtsai</span>  <span class="term_note">&lt;==次要群组的配置</span>
-/etc/group:dmtsai:x:<span class="term_write">504</span>:       <span class="term_note">&lt;==因为是初始群组，所以第四字段不需要填入账号</span>
-/etc/gshadow:users:::<span class="term_write">dmtsai</span>    <span class="term_note">&lt;==次要群组的配置</span>
-/etc/gshadow:dmtsai:!::
-</pre></td></tr></tbody></table>
-
-		<p>仔细看到上面这个表格，在 /etc/passwd 里面，dmtsai 这个使用者所属的群组为 GID=504 ，搜寻一下 /etc/group
-		得到 504 是那个名为 dmtsai 的群组啦！这就是 initial group。因为是初始群组，
-		使用者一登陆就会主动取得，不需要在 /etc/group 的第四个字段写入该账号的！</p>
-
-		<p>但是非 initial group 的其他群组可就不同了。举上面这个例子来说，我将 dmtsai 加入 users
-		这个群组当中，由于 users 这个群组并非是 dmtsai 的初始群组，因此，
-		我必须要在 /etc/group 这个文件中，找到 users 那一行，并且将 dmtsai 这个账号加入第四栏，
-		这样 dmtsai 才能够加入 users 这个群组啊。</p>
-
-		<p>那么在这个例子当中，因为我的 dmtsai 账号同时支持 dmtsai 与 users 这两个群组，
-		因此，在读取/写入/运行文件时，针对群组部分，只要是 users 与 dmtsai 这两个群组拥有的功能，
-		我 dmtsai 这个使用者都能够拥有喔！这样瞭呼？不过，这是针对已经存在的文件而言，
-		如果今天我要创建一个新的文件或者是新的目录，请问一下，<span class="text_import2">新文件的群组是 dmtsai 还是 
-		users</span> ？呵呵！这就得要检查一下当时的有效群组了 (effective group)。<br><br></p>
-
-		<a name="groups"></a>
-		<hr><ul class="list1"><li class="text_import1">groups: 有效与支持群组的观察</li></ul>
-
-		<p>如果我以 dmtsai 这个使用者的身份登陆后，该如何知道我所有支持的群组呢？
-		很简单啊，直接输入 groups 就可以了！注意喔，是 groups 有加 s 呢！结果像这样：</p>
-
-<table class="term"><tbody><tr><td class="term"><pre>[dmtsai@www ~]$ <span class="term_command">groups</span>
-dmtsai users
-</pre></td></tr></tbody></table>
-
-		<p>在这个输出的信息中，可知道 dmtsai 这个用户同时属于 dmtsai 及 users 这个两个群组，而且，
-		<span class="text_import2">第一个输出的群组即为有效群组 (effective group) 了</span>。
-		也就是说，我的有效群组为 dmtsai 啦～此时，如果我以 touch 去创建一个新档，例如：
-		『 touch test 』，那么这个文件的拥有者为 dmtsai ，而且群组也是 dmtsai 的啦。</p>
-
-<table class="term"><tbody><tr><td class="term"><pre>[dmtsai@www ~]$ <span class="term_command">touch test</span>
-[dmtsai@www ~]$ <span class="term_command">ll</span>
--rw-rw-r-- 1 dmtsai <span class="term_write">dmtsai</span> 0 Feb 24 17:26 test
-</pre></td></tr></tbody></table>
-
-		<p>这样是否可以了解什么是有效群组了？通常有效群组的作用是在新建文件啦！那么有效群组是否能够变换？<br><br></p>
-
-		<a name="newgrp"></a>
-		<hr><ul class="list1"><li class="text_import1">newgrp: 有效群组的切换</li></ul>
-
-		<p>那么如何变更有效群组呢？就使用 newgrp 啊！不过使用 newgrp 是有限制的，那就是<span class="text_import2">你想要切换的群组必须是你已经有支持的群组。</span>举例来说， dmtsai 可以在 dmtsai/users 
-		这两个群组间切换有效群组，但是 dmtsai 无法切换有效群组成为 sshd 啦！使用的方式如下：</p>
-
-<table class="term"><tbody><tr><td class="term"><pre>[dmtsai@www ~]$ <span class="term_command">newgrp users</span>
-[dmtsai@www ~]$ <span class="term_command">groups</span>
-users dmtsai
-[dmtsai@www ~]$ <span class="term_command">touch test2</span>
-[dmtsai@www ~]$ <span class="term_command">ll</span>
--rw-rw-r-- 1 dmtsai dmtsai 0 Feb 24 17:26 test
--rw-r--r-- 1 dmtsai <span class="term_write">users</span>  0 Feb 24 17:33 test2
-</pre></td></tr></tbody></table>
-
-		<p>此时，dmtsai 的有效群组就成为 users 了。
-		我们额外的来讨论一下 newgrp 这个命令，这个命令可以变更目前用户的有效群组，
-		而且是<span class="text_import2">另外以一个 shell 来提供这个功能</span>的喔，所以，以上面的例子来说，
-		dmtsai 这个使用者目前是以另一个 shell 登陆的，而且新的 shell 给予 dmtsai 有效 GID 为
-		users 就是了。如果以图示来看就是如下所示：</p>
-
-		<center><img src="0410accountmanager_files/newgrp.gif" alt="newgrp 的运行示意图" title="newgrp 的运行示意图" border="0"><br>
-		图 1.3.2 、newgrp 的运行示意图<br></center>
-
-		<p>虽然用户的环境配置(例如环境变量等等其他数据)不会有影响，但是使用者的『群组权限』将会重新被计算。
-		但是需要注意，由于是新取得一个 shell ，因此如果你想要回到原本的环境中，请输入 exit 回到原本的 shell 喔！</p>
-
-		<p>既然如此，也就是说，只要我的用户有支持的群组就是能够切换成为有效群组！好了，
-		那么如何让一个账号加入不同的群组就是问题的所在啰。你要加入一个群组有两个方式，一个是透过系统管理员 (root) 利用
-		<a href="#usermod">usermod</a> 帮你加入，如果 root 太忙了而且你的系统有配置群组管理员，那么你可以透过群组管理员以 
-		<a href="#gpasswd">gpasswd</a> 帮你加入他所管理的群组中！详细的作法留待下一小节再来介绍啰！<br><br></p>
-
-		<a name="gshadow_file"></a>
-		<hr><ul class="list1"><li class="text_import1">/etc/gshadow</li></ul>
-
-		<p>刚刚讲了很多关于『有效群组』的概念，另外，也提到 newgrp 这个命令的用法，
-		但是，如果 /etc/gshadow 这个配置没有搞懂得话，那么 newgrp 是无法动作的呢！
-		鸟哥测试机的 /etc/gshadow 的内容有点像这样：</p>
-
-<table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">head -n 4 /etc/gshadow</span>
-<span class="term_write">root:::root</span>
-bin:::root,bin,daemon
-daemon:::root,bin,daemon
-sys:::root,bin,adm
-</pre></td></tr></tbody></table>
-
-		<p>这个文件内同样还是使用冒号『:』来作为字段的分隔字符，而且你会发现，这个文件几乎与 /etc/group 
-		一模一样啊！是这样没错～不过，要注意的大概就是第二个字段吧～第二个字段是口令栏，
-		如果口令栏上面是『!』时，表示该群组不具有群组管理员！至于第四个字段也就是支持的账号名称啰～
-		这四个字段的意义为：</p>
-		<ol class="text_import2">
-		<li>组名</li>
-		<li>口令栏，同样的，开头为 ! 表示无合法口令，所以无群组管理员</li>
-		<li>群组管理员的账号 (相关信息在 <a href="#gpasswd">gpasswd</a> 中介绍)</li>
-		<li>该群组的所属账号 (与 /etc/group 内容相同！)</li></ol>
-
-		<p>以系统管理员的角度来说，这个 gshadow 最大的功能就是<span class="text_import2">创建群组管理员</span>啦！
-		那么什么是群组管理员呢？由于系统上面的账号可能会很多，但是我们 root 可能平时太忙碌，所以当有使用者想要加入某些群组时，
-		root 或许会没有空管理。此时如果能够创建群组管理员的话，那么<span class="text_import2">该群组管理员就能够将那个账号加入自己管理的群组中</span>！
-		可以免去 root 的忙碌啦！不过，由于目前有类似 <a href="#sudo">sudo</a> 之类的工具，
-		所以这个群组管理员的功能已经很少使用了。我们会在后续的 gpasswd 中介绍这个实作。</p>
-	</div>
-</div>
-<hr />
-    </td>
-    <td style="width: 16px; font-size: 6px;">　</td></tr>
-<tr><td style="width: 16px; height: 16px;">　</td>
-    <td style="width: 866px; height: 16px;">　</td>
-    <td style="width: 16px; height: 16px;">　</td></tr>
-</tbody></table>
-
-<div style="padding-top: 0px; text-align: center;">
-<span style="font-size: 80%;">
-	<a href="http://vbird.dic.ksu.edu.tw/" target="_top" title="前往鸟哥的首页">http://linux.vbird.org</a>
-	is designed by <a href="mailto:vbird@mail.vbird.idv.tw" title="联络鸟哥(我不要广告信！)">VBird</a>
-		during 2001-2011. <a href="http://www.ksu.edu.tw/" target="_blank">ksu.edu</a></span>
-         ﻿<div id="apDiv4">
-      <p>本网页主要以Firefox配合解析度 1024x768 作为设计依据&nbsp;&nbsp;&nbsp;&nbsp; 鸟哥自由软件整合应用研究室</p></div></div>
-</div>
-</center>
-</body></html>
+<html><head> 	<meta http-equiv="Content-Type" content="text/html; charset=utf8"> 	<meta name="Author" content="2011/04/19,lee"> 	<meta name="Description" content="在 Linux 系统下管理用户的身份与账号！"> 	<title>鸟哥的 Linux 私房菜 -- Linux 账号管理</title>     <script src="../script/SpryMenuBar.js" type="text/javascript"></script> 	<script src="../script/index.js" type="text/javascript"></script> 	<link href="../css/SpryMenuBarHorizontal.css" rel="stylesheet" type="text/css" />     <link href="../css/main.css" rel="stylesheet" type="text/css" />     </head><body style="margin: 0pt; padding: 0pt;" class="table"onload="MM_preloadImages('image/title_19.png','image/title_26.png','image/title_27.png','image/title_28.png','image/title_06.png','image/title_08.png','image/title_10.png','image/title_12.png')">   <!-- Copyright � 2005. Spidersoft Ltd --> <style> A.applink:hover {border: 2px dotted #DCE6F4;padding:2px;background-color:#ffff00;color:green;text-decoration:none} A.applink       {border: 2px dotted #DCE6F4;padding:2px;color:#2F5BFF;background:transparent;text-decoration:none} A.info          {color:#2F5BFF;background:transparent;text-decoration:none} A.info:hover    {color:green;background:transparent;text-decoration:underline} </style> <div style='BORDER: 1px solid #DCE6F4; MARGIN-TOP: 20px; MARGIN-BOTTOM: 20px; MARGIN-LEFT: 5px; MARGIN-RIGHT: 5px; PADDING: 5px; BACKGROUND-COLOR: #eef8ff;line-height:180%; COLOR: #000000; font-family: Arial; font-size: 8pt; width=100%; FILTER: progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr="#FFFFFFFF", EndColorStr="#F2F5FAFF");'> This page was saved using <a class="applink" href="http://www.spidersoft.com"><b>WebZIP 7.0.3.1030</b></a> <a class="applink" href="http://www.spidersoft.com"><b>offline browser</b></a>  (Unregistered) on  02/12/15 12:14:49.<br> <b>Address:</b> <a class="info" href="http://vbird.dic.ksu.edu.tw/linux_basic/0410accountmanager_1.php">http://vbird.dic.ksu.edu.tw/linux_basic/0410accountmanager_1.php</a><br> <b>Title:</b> 鸟哥的 Linux 私房菜 -- Linux 账号管理 &nbsp;&bull;&nbsp; <b>Size:</b> 51165<br></div> <!-- /Copyright � 2005. Spidersoft Ltd -->    <center> <div id="apDiv5"> <div> <LINK REL="SHORTCUT ICON" HREF="favicon.ico"> <!-- ImageReady Slices (title3.ai) --> <table id="___01" width="898" height="81" border="0" align="center" cellpadding="0" cellspacing="0";> 	<tr> 		<td colspan="15"> 			<img src="image/title/title_01.png" width="900" height="1" alt=""></td> 	</tr> 	<tr> 		<td rowspan="4" bgcolor="#182448"><p><img src="http://linux.vbird.org/cgi-bin/Count.cgi?dd=C&ft=5&sh=T&md=8&pad=Y&df=vbird.dic.ksu.edu.tw.dat" width="93" align="left" title="計數器" /></p> 	    <p><font color="#FFFFFF" size="-1">since2012/04/23</font></p></td> 		<td rowspan="4" align="left" valign="top"><a href="http://vbird.dic.ksu.edu.tw/"><img src="image/title/title_03.png" alt="" width="263" height="79" border="0"></a></td> 		<td colspan="13"> 			<img src="image/title/title_04.png" alt="" width="535" height="9" border="0"></td> 	</tr> 	<tr> 		<td rowspan="3"> 			<img src="image/title/title_05.png" alt="" width="53" height="70" border="0"></td> 		<td colspan="2" align="left" valign="top"><a href="0110whatislinux.php.html" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image51','','image/title/title_06.png',1)"><img src="image/title/title3_06.png" name="Image51" width="106" height="25" border="0" id="Image51" alt=""/></a></td> 		<td rowspan="2"> 			<img src="image/title/title_07.png" alt="" width="27" height="37" border="0"></td> 		<td colspan="3" align="left" valign="top"><a href="http://vbird.dic.ksu.edu.tw/linux_server/0110network_basic.php" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image52','','image/title/title_08.png',1)"><img src="image/title/title3_08.png" name="Image52" width="107" height="25" border="0" id="Image52" alt=""/></a></td> 		<td rowspan="2"> 			<img src="image/title/title_09.png" alt="" width="37" height="37" border="0"></td> 		<td colspan="2" align="left" valign="top"><a href="http://vbird.dic.ksu.edu.tw/about.php" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image53','','image/title/title_10.png',1)"><img src="image/title/title3_10.png" name="Image53" width="75" height="25" border="0" id="Image53" alt=""/></a></td> 		<td rowspan="3"> 			<img src="image/title/title_11.png" alt="" width="35" height="70" border="0"></td> 		<td align="left" valign="top"><a href="mailto:vbird@mail.vbird.idv.tw" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image54','','image/title/title_12.png',1)"><img src="image/title/title3_12.png" name="Image54" width="74" height="25" border="0" id="Image54" alt=""/></a></td> 		<td rowspan="3"> 			<img src="image/title/title_13.png" alt="" width="21" height="70" border="0"></td> 	</tr> 	<tr> 		<td colspan="2"> 			<img src="image/title/title_14.png" alt="" width="106" height="12" border="0"></td> 		<td colspan="3"> 			<img src="image/title/title_15.png" alt="" width="107" height="12" border="0"></td> 		<td colspan="2"> 			<img src="image/title/title_16.png" width="75" height="12" alt=""></td> 		<td rowspan="2"> 			<img src="image/title/title_17.png" alt="" width="74" height="45" border="0"></td> 	</tr> 	<tr> 		<td> 			<img src="image/title/title_18.png" alt="" width="15" height="33" border="0"></td> 		<td colspan="3" align="left" valign="top"><ul id="MenuBar1" class="MenuBarHorizontal"> 	  <li><a href="linux_basic.php.html" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image44','','image/title/title_19.png',1)"><img src="image/title/title3_19.png" name="Image44" width="123" height="33" border="0" id="Image44" /></a> 			    <ul> 			      <li><a href="Mandrake9.0/mandrake9.0.php.html" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image46','','image/title/title_26.png',1)"><img src="image/title/title_23.png" name="Image46" width="120" height="26" border="0" id="Image46" alt="" /></a></li>                   <li><a href="fedora_4/fc4.php.html" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image47','','image/title/title_27.png',1)"><img src="image/title/title_24.png" name="Image47" width="120" height="26" border="0" id="Image47" alt="" /></a></li>                   <li><a href="linux_basic.php.html" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image48','','image/title/title_28.png',1)"><img src="image/title/title_25.png" name="Image48" width="120" height="26" border="0" id="Image48" alt="" /></a></li>                 </ul> 		      </li> 		</ul></td> 		<td> 			<img src="image/title/title_20.png" alt="" width="42" height="33" border="0"></td> 		<td colspan="3" align="left" valign="top"><ul id="MenuBar2" class="MenuBarHorizontal"> 	  <li><a href="http://vbird.dic.ksu.edu.tw/linux_server/" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image45','','image/title/title_21.png',1)"><img src="image/title/title3_21.png" name="Image45" width="125" height="33" border="0" id="Image45" /></a> 			    <ul> 			      <li><a href="http://vbird.dic.ksu.edu.tw/linux_server/linux_redhat9/redhat9.php" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image43','','image/title/title_26.png',1)"><img src="image/title/title_23.png" name="Image43" width="120" height="26" border="0" id="Image43" alt=""/></a></li> 			      <li><a href="http://vbird.dic.ksu.edu.tw/linux_server/centos4.php" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image49','','image/title/title_27.png',1)"><img src="image/title/title_24.png" name="Image49" width="120" height="26" border="0" id="Image49" alt="" /></a></li> 			      <li><a href="http://vbird.dic.ksu.edu.tw/linux_server/" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image50','','image/title/title_28.png',1)"><img src="image/title/title_25.png" name="Image50" width="120" height="26" border="0" id="Image50" alt="" /></a></li> 		        </ul> 		      </li> 		</ul></td> 		<td> 			<img src="image/title/title_22.png" alt="" width="47" height="33" border="0"></td> 	</tr> 	<tr> 		<td> 			<img src="image/title/Spacer.gif" width="101" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="263" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="53" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="15" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="91" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="27" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="5" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="42" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="60" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="37" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="28" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="47" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="35" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="74" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="22" height="1" alt=""></td> 	</tr> </table> <!-- End ImageReady Slices --> <script type="text/javascript"> <!-- var MenuBar1 = new Spry.Widget.MenuBar("MenuBar1", {imgDown:"SpryAssets/SpryMenuBarDownHover.gif", imgRight:"SpryAssets/SpryMenuBarRightHover.gif"}); var MenuBar2 = new Spry.Widget.MenuBar("MenuBar2", {imgDown:"SpryAssets/SpryMenuBarDownHover.gif", imgRight:"SpryAssets/SpryMenuBarRightHover.gif"}); //--> </script></div> <table summary="本文内容的排版" style="width: 898px;" border="0" cellpadding="0" cellspacing="0"> <tbody><tr><td style="width: 16px; height: 16px;">　</td>     <td style="width: 866px; height: 16px;">　</td>     <td style="width: 16px; height: 16px;">　</td></tr> <tr><td style="width: 16px; font-size: 6px;">　</td>     <td width="866">  <!-- 本文的档头部分 --> <div style="text-align: center;">     <a href="0410accountmanager.php.html">     <span class="text_head0">第十四章、<span class="text_head_en">Linux </span>账号管理与<span class="text_head_en"> ACL </span>权限配置</span></a><br> </div>     <div style="text-align: right;">         <span class="text_history">最近升级日期：2009/09/09</span>     </div> <!-- 本文的连结区部分 --> <div class="block1"> <span class="text_h1"> 1. <a href="#account">Linux 的账号与群组</a><br> 	<span class="text_h2"> 	　　1.1 <a href="#account_id">使用者标识符： UID 与 GID</a><br> 	　　1.2 <a href="#account_user">使用者账号</a>：<a href="#passwd_file">/etc/passwd 文件结构</a>,  		<a href="#shadow_file">/etc/shadow 文件结构</a><br> 	　　1.3 <a href="#account_group">关于群组</a>： <a href="#group_file">/etc/group 文件结构</a>, 		<a href="#account_group_init">有效与初始群组</a>, <a href="#groups">groups</a>,  		<a href="#newgrp">newgrp</a>, <a href="#gshadow_file">/etc/gshadow</a><br> 	</span> </span></div> <!-- 本文的正式部分 --> <hr><a name="account"></a><img src="../image/logo.png" alt="大标题的图示" width="35" align="middle" height="34"><span class="text_h1">Linux 的账号与群组</span><br> <div class="block1"> 	<p>管理员的工作中，相当重要的一环就是『管理账号』啦！因为整个系统都是你在管理的， 	并且所有一般用户的账号申请，都必须要透过你的协助才行！所以你就必须要了解一下如何管理好一个服务器主机的账号啦！ 	在管理 Linux 主机的账号时，我们必须先来了解一下 Linux 到底是如何辨别每一个使用者的！<br><br></p>  	<hr><a name="account_id"></a><img src="../image/logo.png" alt="小标题的图示" width="24" align="middle" height="23"><span class="text_h2">使用者标识符： UID 与 GID</span><br> 	<div class="block2"> 		<p>虽然我们登陆 Linux 主机的时候，输入的是我们的账号，但是其实 Linux  		主机并不会直接认识你的『账号名称』的，他仅认识 ID 啊 (ID 就是一组号码啦)。 		由于计算机仅认识 0 与 1，所以主机对于数字比较有概念的；至于账号只是为了让人们容易记忆而已。 		而你的 ID 与账号的对应就在 /etc/passwd 当中哩。</p>  		<div style="padding: 10pt 0pt;" align="right"><table width="90%"><tbody><tr><td><b>Tips:</b><br><span style="color: rgb(0, 144, 0);"><font size="-1">		如果你曾经在网络上下载过 <a href="http://vbird.dic.ksu.edu.tw/linux_basic/0240tarcompress.php#pack">tarball</a> 类型的文件， 		那么应该不难发现，在解压缩之后的文件中，文件拥有者的字段竟然显示『不明的数字』？奇怪吧？这没什么好奇怪的，因为 Linux  		说实在话，他真的只认识代表你身份的号码而已！ 		</font></span></td><td><img src="0410accountmanager_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div> 		<p>那么到底有几种 ID 呢？还记得我们在<a href="0210filepermission.php.html">第六章</a>内有提到过， 		每一个文件都具有『拥有人与拥有群组』的属性吗？没错啦～每个登陆的使用者至少都会取得两个 ID ，一个是使用者  		ID (User ID ，简称 UID)、一个是群组 ID (Group ID ，简称 GID)。</p>  		<p>那么文件如何判别他的拥有者与群组呢？其实就是利用 UID 与 GID 啦！每一个文件都会有所谓的拥有者 ID  		与拥有群组 ID ，当我们有要显示文件属性的需求时，系统会依据 /etc/passwd 与 /etc/group 的内容， 		找到 UID / GID 对应的账号与组名再显示出来！我们可以作个小实验，你可以用 root 的身份  		vi /etc/passwd ，然后将你的一般身份的使用者的  		ID 随便改一个号码，然后再到你的一般身份的目录下看看原先该账号拥有的文件，你会发现该文件的拥有人变成了 		『数字了』呵呵！这样可以理解了吗？来看看底下的例子：</p>  <table class="term"><tbody><tr><td class="term"><pre><span class="term_hd"># 1. 先察看一下，系统里面有没有一个名为 dmtsai 的用户？</span> [root@www ~]# <span class="term_command">grep 'dmtsai' /etc/passwd</span> dmtsai:x:503:504::/home/dmtsai:/bin/bash   <span class="term_note">&lt;==是有这个账号喔！</span> [root@www ~]# <span class="term_command">ll -d /home/dmtsai</span> drwx------ 4 <span class="term_write">dmtsai</span> dmtsai 4096 Feb  6 18:25 /home/dmtsai <span class="term_say"># 瞧一瞧，使用者的字段正是 dmtsai 本身喔！</span>  <span class="term_hd"># 2. 修改一下，将刚刚我们的 dmtsai 的 503 UID 改为 2000 看看：</span> [root@www ~]# <span class="term_command">vi /etc/passwd</span> <span class="term_say">....(前面省略)....</span> dmtsai:x:<span class="term_write">2000</span>:504::/home/dmtsai:/bin/bash <span class="term_note">&lt;==修改一下特殊字体部分，由 503 改过来</span> [root@www ~]# <span class="term_command">ll -d /home/dmtsai</span> drwx------ 4 <span class="term_write">503</span> dmtsai 4096 Feb  6 18:25 /home/dmtsai <span class="term_say"># 很害怕吧！怎么变成 503 了？因为文件只会记录数字而已！ # 因为我们乱改，所以导致 503 找不到对应的账号，因此显示数字！</span>  <span class="term_hd"># 3. 记得将刚刚的 2000 改回来！</span> [root@www ~]# <span class="term_command">vi /etc/passwd</span> <span class="term_say">....(前面省略)....</span> dmtsai:x:<span class="term_write">503</span>:504::/home/dmtsai:/bin/bash <span class="term_note">&lt;==赶紧改回来！</span> </pre></td></tr></tbody></table>  		<p>你一定要了解的是，上面的例子仅是在说明 UID 与账号的对应性，<span class="text_import2">在一部正常运行的 Linux 主机环境下，上面的动作不可随便进行</span>， 		这是因为系统上已经有很多的数据被创建存在了，随意修改系统上某些账号的 UID  		很可能会导致某些程序无法进行，这将导致系统无法顺利运行的结果。 		因为权限的问题啊！所以，了解了之后，请赶快回到 /etc/passwd 里面，将数字改回来喔！</p>  		<div style="padding: 10pt 0pt;" align="right"><table width="90%"><tbody><tr><td><b>Tips:</b><br><span style="color: rgb(0, 144, 0);"><font size="-1">		举例来说，如果上面的测试最后一个步骤没有将 2000 改回原本的 UID，那么当 dmtsai 下次登陆时将没有办法进入自己的家目录！ 		因为他的 UID 已经改为 2000 ，但是他的家目录 (/home/dmtsai) 却记录的是 503 ，由于权限是 700 ， 		因此他将无法进入原本的家目录！是否非常严重啊？ 		</font></span></td><td><img src="0410accountmanager_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div>	</div>  	<hr><a name="account_user"></a><img src="../image/logo.png" alt="小标题的图示" width="24" align="middle" height="23"><span class="text_h2">使用者账号</span><br> 	<div class="block2"> 		<p>Linux 系统上面的用户如果需要登陆主机以取得 shell 的环境来工作时，他需要如何进行呢？ 		首先，他必须要在计算机前面利用 tty1~tty7 的终端机提供的 login 接口，并输入账号与口令后才能够登陆。 		如果是透过网络的话，那至少使用者就得要学习 ssh 这个功能了 (服务器篇再来谈)。 		那么你输入账号口令后，系统帮你处理了什么呢？</p>  		<ol class="text_import2"> 		<li>先找寻 /etc/passwd 里面是否有你输入的账号？如果没有则跳出，如果有的话则将该账号对应的 		UID 与 GID (在 /etc/group 中) 读出来，另外，该账号的家目录与 shell 配置也一并读出；<br><br></li> 		<li>再来则是核对口令表啦！这时 Linux 会进入 /etc/shadow 里面找出对应的账号与  		UID，然后核对一下你刚刚输入的口令与里头的口令是否相符？<br><br></li> 		<li>如果一切都 OK 的话，就进入 Shell 控管的阶段啰！</li> 		</ol>  		<p>大致上的情况就像这样，所以当你要登陆你的 Linux 主机的时候，那个 /etc/passwd 与 /etc/shadow  		就必须要让系统读取啦 (这也是很多攻击者会将特殊账号写到 /etc/passwd 里头去的缘故)，所以呢，如果你要备份  		Linux 的系统的账号的话，那么这两个文件就一定需要备份才行呦！</p>  		<p>由上面的流程我们也知道，跟使用者账号有关的有两个非常重要的文件，一个是管理使用者 UID/GID 重要参数的 		/etc/passwd ，一个则是专门管理口令相关数据的 /etc/shadow 啰！那这两个文件的内容就非常值得进行研究啦！ 		底下我们会简单的介绍这两个文件，详细的说明可以参考 man 5 passwd 及 man 5 shadow (<a href="#ps1">注1</a>)。<br><br></p>  		<a name="passwd_file"></a> 		<hr><ul class="list1"><li class="text_import1">/etc/passwd 文件结构</li></ul>  		<p>这个文件的构造是这样的：<span class="text_import2">每一行都代表一个账号，有几行就代表有几个账号在你的系统中！ 		不过需要特别留意的是，里头很多账号本来就是系统正常运行所必须要的，我们可以简称他为系统账号， 		例如 bin, daemon, adm, nobody 等等，这些账号请不要随意的杀掉他呢！</span> 		这个文件的内容有点像这样：</p>  		<div style="padding: 10pt 0pt;" align="right"><table width="90%"><tbody><tr><td><b>Tips:</b><br><span style="color: rgb(0, 144, 0);"><font size="-1">		鸟哥在接触 Linux 之前曾经碰过 Solaris 系统 (1999 年)，当时鸟哥啥也不清楚！由于『听说』Linux  		上面的账号越复杂会导致系统越危险！所以鸟哥就将 /etc/passwd 上面的账号全部删除到只剩下 root  		与鸟哥自己用的一般账号！结果你猜发生什么事？那就是....呼叫升阳的工程师来维护系统 @_@！糗到一个不行！大家不要学啊！ 		</font></span></td><td><img src="0410accountmanager_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div> <table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">head -n 4 /etc/passwd</span> <span class="term_write">root:x:0:0:root:/root:/bin/bash</span>  <span class="term_note">&lt;==等一下做为底下说明用</span> bin:x:1:1:bin:/bin:/sbin/nologin daemon:x:2:2:daemon:/sbin:/sbin/nologin adm:x:3:4:adm:/var/adm:/sbin/nologin </pre></td></tr></tbody></table>  		<p>我们先来看一下每个 Linux 系统都会有的第一行，就是 root 这个系统管理员那一行好了， 		你可以明显的看出来，每一行使用『:』分隔开，共有七个咚咚，分别是：</p>  		<ol> 		<li><span class="text_import1">账号名称</span>：<br> 		就是账号啦！用来对应 UID 的。例如 root 的 UID 对应就是 0 (第三字段)；<br><br></li>  		<li><span class="text_import1">口令</span>：<br> 		早期 Unix 系统的口令就是放在这字段上！但是因为这个文件的特性是<span class="text_import2">所有的程序都能够读取</span>，这样一来很容易造成口令数据被窃取， 		因此后来就将这个字段的口令数据给他改放到 <a href="#shadow_file">/etc/shadow</a>  		中了。所以这里你会看到一个『 x 』，呵呵！<br><br></li>  		<li><span class="text_import1">UID</span>：<br> 		这个就是使用者标识符啰！通常 Linux 对于 UID 有几个限制需要说给您了解一下：<br><br>  <table bgcolor="lightyellow" border="1" cellpadding="3" cellspacing="0" width="90%"> <tbody><tr align="center" bgcolor="#182448"><td width="90"><font color="#FFFFFF">id 范围</font></td><td><font color="#FFFFFF">该 ID 使用者特性</font></td></tr> <tr><td align="center">0<br>(系统管理员)</td><td>当 UID 是 0 时，代表这个账号是『系统管理员』！ 	所以当你要让其他的账号名称也具有 root 的权限时，将该账号的 UID 改为 0 即可。 	这也就是说，一部系统上面的系统管理员不见得只有 root 喔！ 	不过，很不建议有多个账号的 UID 是 0 啦～</td></tr> <tr><td align="center">1~499<br>(系统账号)</td><td>保留给系统使用的 ID，其实<span class="text_import2">除了 0 之外，其他的 UID 权限与特性并没有不一样</span>。默认 500  	以下的数字让给系统作为保留账号只是一个习惯。<br><br> 	由于系统上面启动的服务希望使用较小的权限去运行，因此不希望使用 root 的身份去运行这些服务， 	所以我们就得要提供这些运行中程序的拥有者账号才行。这些系统账号通常是不可登陆的， 	所以才会有我们在<a href="0320bash.php.html">第十一章</a>提到的 /sbin/nologin 这个特殊的 shell 存在。<br><br> 	根据系统账号的由来，通常系统账号又约略被区分为两种：<br> 	1~99：由 distributions 自行创建的系统账号；<br> 	100~499：若用户有系统账号需求时，可以使用的账号 UID。</td></tr> <tr><td align="center">500~65535<br>(可登陆账号)</td><td>给一般使用者用的。事实上，目前的 linux 核心 (2.6.x 版)已经可以支持到 	4294967295 (2^32-1) 这么大的 UID 号码喔！</td></tr> </tbody></table><br>  		上面这样说明可以了解了吗？是的， UID 为 0 的时候，就是 root 呦！所以请特别留意一下你的  		/etc/passwd 文件！<br><br></li>  		<li><span class="text_import1">GID</span>：<br> 		这个与 /etc/group 有关！其实 /etc/group  		的观念与 /etc/passwd 差不多，只是他是用来规范组名与 GID 的对应而已！<br><br></li>  		<li><span class="text_import1">用户信息说明栏</span>：<br> 		这个字段基本上并没有什么重要用途，只是用来解释这个账号的意义而已！不过，如果您提供使用 finger 的功能时， 		这个字段可以提供很多的信息呢！本章后面的 <a href="#chfn">chfn</a> 命令会来解释这里的说明。<br><br></li>  		<li><span class="text_import1">家目录</span>：<br> 		这是用户的家目录，以上面为例， root 的家目录在 /root ，所以当 root 登陆之后，就会立刻跑到 /root 目录里头啦！呵呵！ 		如果你有个账号的使用空间特别的大，你想要将该账号的家目录移动到其他的硬盘去该怎么作？ 		没有错！可以在这个字段进行修改呦！默认的用户家目录在 /home/yourIDname<br><br></li>  		<li><span class="text_import1">Shell</span>：<br> 		我们在<a href="0320bash.php.html">第十一章 BASH</a> 提到很多次，当用户登陆系统后就会取得一个 Shell 		来与系统的核心沟通以进行用户的操作任务。那为何默认 shell 会使用 bash 呢？就是在这个字段指定的啰！ 		这里比较需要注意的是，有一个 shell 可以用来替代成让账号无法取得 shell 环境的登陆动作！那就是 		/sbin/nologin 这个东西！这也可以用来制作纯 pop 邮件账号者的数据呢！</li> 		</ol><br>  		<a name="shadow_file"></a> 		<hr><ul class="list1"><li class="text_import1">/etc/shadow 文件结构</li></ul>  		<p>我们知道很多程序的运行都与权限有关，而权限与 UID/GID 有关！因此各程序当然需要读取 /etc/passwd 来了解不同账号的权限。 		<span class="text_import2">因此 /etc/passwd 的权限需配置为 -rw-r--r-- 这样的情况</span>， 		虽然早期的口令也有加密过，但却放置到 /etc/passwd 的第二个字段上！这样一来很容易被有心人士所窃取的， 		加密过的口令也能够透过暴力破解法去 try and error (试误) 找出来！</p>  		<p>因为这样的关系，所以后来发展出将口令移动到 /etc/shadow 这个文件分隔开来的技术， 		而且还加入很多的口令限制参数在 /etc/shadow 里头呢！在这里，我们先来了解一下这个文件的构造吧！ 		鸟哥的 /etc/shadow 文件有点像这样：</p>  <table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">head -n 4 /etc/shadow</span> <span class="term_write">root:$1$/30QpE5e$y9N/D0bh6rAACBEz.hqo00:14126:0:99999:7:::</span>  <span class="term_note">&lt;==底下说明用</span> bin:*:14126:0:99999:7::: daemon:*:14126:0:99999:7::: adm:*:14126:0:99999:7::: </pre></td></tr></tbody></table>  		<p>基本上， shadow 同样以『:』作为分隔符，如果数一数，会发现共有九个字段啊，这九个字段的用途是这样的：</p>  		<ol> 		<li><span class="text_import1">账号名称</span>：<br> 		由于口令也需要与账号对应啊～因此，这个文件的第一栏就是账号，必须要与 /etc/passwd 相同才行！<br><br></li>  		<li><span class="text_import1">口令</span>：<br> 		这个字段内的数据才是真正的口令，而且是<span class="text_import2">经过编码的口令 (加密) </span>啦！ 		你只会看到有一些特殊符号的字母就是了！需要特别留意的是，虽然这些加密过的口令很难被解出来， 		但是『很难』不等于『不会』，所以，这个文件的默认权限是『-rw-------』或者是『-r--------』，亦即只有 root  		才可以读写就是了！你得随时注意，不要不小心更动了这个文件的权限呢！<br><br>  		另外，由于各种口令编码的技术不一样，因此不同的编码系统会造成这个字段的长度不相同。 		举例来说，旧式的 DES 编码系统产生的口令长度就与目前惯用的 MD5 不同(<a href="#ps2">注2</a>)！MD5  		的口令长度明显的比较长些。由于固定的编码系统产生的口令长度必须一致，因此『<span class="text_import2">当你让这个字段的长度改变后，该口令就会失效(算不出来)</span>』。 		很多软件透过这个功能，<span class="text_import2">在此字段前加上 ! 或 * 改变口令字段长度，就会让口令『暂时失效』了。 		</span><br><br></li>  		<li><span class="text_import1">最近更动口令的日期</span>：<br> 		这个字段记录了『更动口令那一天』的日期，不过，很奇怪呀！在我的例子中怎么会是 14126  		呢？呵呵，这个是因为计算 Linux 日期的时间是以 1970 年 1 月 1 日作为 1 而累加的日期，1971 年 1 月 1 日则为 366 啦！ 		得注意一下这个数据呦！上述的 14126 指的就是 2008-09-04 那一天啦！了解乎？ 		而想要了解该日期可以使用本章后面 <a href="#chage">chage</a> 命令的帮忙！至于想要知道某个日期的累积日数， 		可使用如下的程序计算：<br>  <table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">echo $(($(date --date="2008/09/04" +%s)/86400+1))</span> 14126 </pre></td></tr></tbody></table>  		上述命令中，2008/09/04 为你想要计算的日期，86400 为每一天的秒数， %s 为 1970/01/01 以来的累积总秒数。 		由于 bash 仅支持整数，因此最终需要加上 1 补齐 1970/01/01 当天。<br><br></li>  		<li><span class="text_import1">口令不可被更动的天数</span>：(与第 3 字段相比)<br> 		第四个字段记录了：这个账号的口令在最近一次被更改后需要经过几天才可以再被变更！如果是 0 的话， 		表示口令随时可以更动的意思。这的限制是为了怕口令被某些人一改再改而设计的！如果配置为  		20 天的话，那么当你配置了口令之后， 20 天之内都无法改变这个口令呦！<br><br></li>  		<li><span class="text_import1">口令需要重新变更的天数</span>：(与第 3 字段相比)<br> 		经常变更口令是个好习惯！为了强制要求用户变更口令，这个字段可以指定在最近一次更改口令后， 		在多少天数内需要再次的变更口令才行。<span class="text_import2">你必须要在这个天数内重新配置你的口令，否则这个账号的口令将会『变为过期特性』</span>。 		而如果像上面的 99999 (计算为 273 年) 的话，那就表示，呵呵，口令的变更没有强制性之意。<br><br></li>  		<li><span class="text_import1">口令需要变更期限前的警告天数</span>：(与第 5 字段相比)<br> 		当账号的口令有效期限快要到的时候 (第 5 字段)，系统会依据这个字段的配置，发出『警告』言论给这个账号，提醒他『再过 n  		天你的口令就要过期了，请尽快重新配置你的口令呦！』，如上面的例子，则是口令到期之前的  		7 天之内，系统会警告该用户。<br><br></li>  		<li><span class="text_import1">口令过期后的账号宽限时间(口令失效日)</span>：(与第 5 字段相比)<br> 		口令有效日期为『升级日期(第3字段)』+『重新变更日期(第5字段)』，过了该期限后用户依旧没有升级口令，那该口令就算过期了。 		虽然口令过期但是该账号还是可以用来进行其他工作的，包括登陆系统取得 bash 。<span class="text_import2">不过如果口令过期了， 		那当你登陆系统时，系统会强制要求你必须要重新配置口令才能登陆继续使用喔，这就是口令过期特性</span>。<br><br>  		那这个字段的功能是什么呢？是在口令过期几天后，如果使用者还是没有登陆更改口令，那么这个账号的口令将会『失效』， 		亦即该账号再也无法使用该口令登陆了。要注意<span class="text_import2">口令过期与口令失效并不相同</span>。<br><br></li>  		<li><span class="text_import1">账号失效日期</span>：<br> 		这个日期跟第三个字段一样，都是使用 1970 年以来的总日数配置。这个字段表示： 		<span class="text_import2">这个账号在此字段规定的日期之后，将无法再使用</span>。 		就是所谓的『账号失效』，此时不论你的口令是否有过期，这个『账号』都不能再被使用！ 		这个字段会被使用通常应该是在『收费服务』的系统中，你可以规定一个日期让该账号不能再使用啦！<br><br></li>  		<li><span class="text_import1">保留</span>：<br> 		最后一个字段是保留的，看以后有没有新功能加入。</li> 		</ol>  		<p>举个例子来说好了，假如我的 dmtsai 这个用户的口令栏如下所示：</p>  <table class="term"><tbody><tr><td class="term"><pre>dmtsai:$1$vyUuj.eX$omt6lKJvMcIZHx4H7RI1V.:14299:5:60:7:5:14419: </pre></td></tr></tbody></table>  		<p>这表示什么呢？先要注意的是 14299 是 2009/02/24 。所以 dmtsai 这个用户的口令相关意义是：</p>  		<ul> 		<li>由于口令几乎仅能单向运算(由明码计算成为口令，无法由口令反推回明码)，因此由上表的数据我们<span class="text_import2">无法得知 dmstai 的实际口令明文</span>；<br><br></li>  		<li>此账号最近一次更动口令的日期是 2009/02/24 (14299)；<br><br></li>  		<li>能够再次修改口令的时间是 5 天以后，也就是 <span class="text_import2">2009/03/01 以前 dmtsai  			不能修改自己的口令</span>；如果用户还是尝试要更动自己的口令，系统就会出现这样的信息：<br> <table class="term"><tbody><tr><td class="term"><pre>You must wait longer to change your password passwd: Authentication token manipulation error </pre></td></tr></tbody></table> 			画面中告诉我们：你必须要等待更久的时间才能够变更口令之意啦！<br><br></li>  		<li>由于口令过期日期定义为 60 天后，亦即累积日数为： 14299+60=14359，经过计算得到此日数代表日期为 2009/04/25。 			这表示：『<span class="text_import2">使用者必须要在 2009/03/01 到 2009/04/25 之间的 60  			天限制内去修改自己的口令，若 2009/04/25 之后还是没有变更口令时，该口令就宣告为过期</span>』了！<br><br></li>  		<li>警告日期设为 7 天，亦即是口令过期日前的 7 天，在本例中则代表 2009/04/19 ~ 2009/04/25 这七天。 			如果用户一直没有更改口令，那么在这 7 天中，只要 dmtsai 登陆系统就会发现如下的信息：<br>  <table class="term"><tbody><tr><td class="term"><pre>Warning: your password will expire in 5 days </pre></td></tr></tbody></table><br></li>  		<li>如果该账号一直到 2009/04/25 都没有更改口令，那么口令就过期了。但是由于有 5 天的宽限天数， 			因此 <span class="text_import2">dmtsai 在 2009/04/30 前都还可以使用旧口令登陆主机。 			不过登陆时会出现强制更改口令的情况</span>，画面有点像底下这样：<br>  <table class="term"><tbody><tr><td class="term"><pre>You are required to change your password immediately (password aged) WARNING: Your password has expired. You must change your password now and login again! Changing password for user dmtsai. Changing password for dmtsai (current) UNIX password: </pre></td></tr></tbody></table>  			你必须要输入一次旧口令以及两次新口令后，才能够开始使用系统的各项资源。如果你是在 2009/04/30 以后尝试以  			dmtsai 登陆的话，那么就会出现如下的错误信息且无法登陆，因为此时你的口令就失效去啦！<br>  <table class="term"><tbody><tr><td class="term"><pre>Your account has expired; please contact your system administrator </pre></td></tr></tbody></table><br></li>  		<li>如果使用者在 2009/04/25 以前变更过口令，那么第 3 个字段的那个 14299 的天数就会跟着改变，因此， 			所有的限制日期也会跟着相对变动喔！^_^<br><br></li>  		<li>无论使用者如何动作，到了 14419 (大约是 2009/07/24 左右) 该账号就失效了～</li> 		</ul>  		<p>透过这样的说明，您应该会比较容易理解了吧？由于 shadow 有这样的重要性，因此可不能随意修改喔！ 		但在某些情况底下你得要使用各种方法来处理这个文件的！举例来说，常常听到人家说：『我的口令忘记了』， 		或者是『我的口令不晓得被谁改过，跟原先的不一样了』，这个时候怎么办？</p>  		<ul> 		<li><span class="text_import2">一般用户的口令忘记了</span>：这个最容易解决，请系统管理员帮忙， 		他会重新配置好你的口令而不需要知道你的旧口令！利用 root 的身份使用 <a href="#passwd">passwd</a>  		命令来处理即可。<br><br></li>  		<li><span class="text_import2">root 口令忘记了</span>：这就麻烦了！因为你无法使用 root 的身份登陆了嘛！ 		但我们知道 root 的口令在 /etc/shadow 当中，因此你可以使用各种可行的方法启动进入 Linux 再去修改。 		例如重新启动进入单人维护模式(<a href="0510osloader.php.html">第二十章</a>)后，系统会主动的给予 root 权限的 bash 接口， 		此时再以 passwd 修改口令即可；或以 Live CD 启动后挂载根目录去修改 /etc/shadow，将里面的 root 的口令字段清空， 		再重新启动后 root 将不用口令即可登陆！登陆后再赶快以 passwd 命令去配置 root 口令即可。</li> 		</ul>  		<div style="padding: 10pt 0pt;" align="right"><table width="90%"><tbody><tr><td><b>Tips:</b><br><span style="color: rgb(0, 144, 0);"><font size="-1">		曾经听过一则笑话，某位老师主要是在教授 Linux 操作系统，但是他是兼任的老师，因此对于该系的计算机环境不熟。 		由于当初安装该计算机教室 Linux 操作系统的人员已经离职且找不到联络方式了，也就是说 root 口令已经没有人晓得了！ 		此时该老师就对学生说：『在 Linux 里面 root 口令不见了，我们只能重新安装』...感觉有点无力～ 		又是个被 Windows 制约的人才！ 		</font></span></td><td><img src="0410accountmanager_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div>	</div>  	<hr><a name="account_group"></a><img src="../image/logo.png" alt="小标题的图示" width="24" align="middle" height="23"><span class="text_h2">关于群组： 	有效与初始群组、groups, newgrp</span> 	<div class="block2"> 		<p>认识了账号相关的两个文件 /etc/passwd 与 /etc/shadow 之后，你或许还是会觉得奇怪， 		那么群组的配置文件在哪里？还有，在 /etc/passwd 的第四栏不是所谓的 GID 吗？那又是啥？ 		呵呵～此时就需要了解 /etc/group 与 /etc/gshadow 啰～<br><br></p>  		<a name="group_file"></a> 		<hr><ul class="list1"><li class="text_import1">/etc/group 文件结构</li></ul>  		<p>这个文件就是在记录 GID 与组名的对应了～鸟哥测试机的 /etc/group 内容有点像这样：</p>   <table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">head -n 4 /etc/group</span> <span class="term_write">root:x:0:root</span> bin:x:1:root,bin,daemon daemon:x:2:root,bin,daemon sys:x:3:root,bin,adm </pre></td></tr></tbody></table>  		<p>这个文件每一行代表一个群组，也是以冒号『:』作为字段的分隔符，共分为四栏，每一字段的意义是：</p>  		<ol> 		<li><span class="text_import1">组名</span>：<br> 		就是组名啦！<br><br></li>  		<li><span class="text_import1">群组口令</span>：<br> 		通常不需要配置，这个配置通常是给『群组管理员』使用的，目前很少有这个机会配置群组管理员啦！ 		同样的，口令已经移动到 /etc/gshadow 去，因此这个字段只会存在一个『x』而已；<br><br></li>  		<li><span class="text_import1">GID</span>：<br> 		就是群组的 ID 啊。我们 /etc/passwd 第四个字段使用的 GID 对应的群组名，就是由这里对应出来的！<br><br></li>  		<li><span class="text_import1">此群组支持的账号名称</span>：<br> 		我们知道一个账号可以加入多个群组，那某个账号想要加入此群组时，将该账号填入这个字段即可。 		举例来说，如果我想要让 dmtsai 也加入 root 这个群组，那么在第一行的最后面加上『,dmtsai』，注意不要有空格， 		使成为『 root:x:0:root,dmtsai 』就可以啰～</li> 		</ol>  		<p>谈完了 /etc/passwd, /etc/shadow, /etc/group 之后，我们可以使用一个简单的图示来了解一下 UID / GID 与口令之间的关系， 		图示如下。其实重点是 /etc/passwd 啦，其他相关的数据都是根据这个文件的字段去找寻出来的。 		下图中， root 的 UID 是 0 ，而 GID 也是 0 ，去找 /etc/group 可以知道 GID 为 0  时的组名就是 root 哩。 		至于口令的寻找中，会找到 /etc/shadow 与 /etc/passwd 内同账号名称的那一行，就是口令相关数据啰。</p>  		<center><img src="0410accountmanager_files/id_link.gif" alt="账号相关文件之间的 UID/GID 与口令相关性示意图" title="账号相关文件之间的 UID/GID 与口令相关性示意图" border="0"><br> 		图 1.3.1 、账号相关文件之间的 UID/GID 与口令相关性示意图<br></center>  		<p>至于在 /etc/group 比较重要的特色在于第四栏啦，因为每个使用者都可以拥有多个支持的群组，这就好比在学校念书的时候， 		我们可以加入多个社团一样！ ^_^。不过这里你或许会觉得奇怪的，那就是：『<span class="text_import2">假如我同时加入多个群组，那么我在作业的时候，到底是以那个群组为准？</span>』 		底下我们就来谈一谈这个『有效群组』的概念。<br><br></p>  		<a name="account_group_init"></a> 		<hr><ul class="list1"><li class="text_import1">有效群组(effective group)与初始群组(initial group)</li></ul>  		<p>还记得每个使用者在他的 /etc/passwd 里面的第四栏有所谓的 GID 吧？那个 GID 就是所谓的『初始群组  		(initial group) 』！也就是说，当用户一登陆系统，立刻就拥有这个群组的相关权限的意思。 		举例来说，我们上面提到 dmtsai 这个使用者的 /etc/passwd 与 /etc/group 还有 /etc/gshadow  		相关的内容如下：</p>  <table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">usermod -G users dmtsai</span>  <span class="term_note">&lt;==先配置好次要群组</span> [root@www ~]# <span class="term_command">grep dmtsai /etc/passwd /etc/group /etc/gshadow</span> /etc/passwd:dmtsai:x:503:<span class="term_write">504</span>::/home/dmtsai:/bin/bash /etc/group:users:x:100:<span class="term_write">dmtsai</span>  <span class="term_note">&lt;==次要群组的配置</span> /etc/group:dmtsai:x:<span class="term_write">504</span>:       <span class="term_note">&lt;==因为是初始群组，所以第四字段不需要填入账号</span> /etc/gshadow:users:::<span class="term_write">dmtsai</span>    <span class="term_note">&lt;==次要群组的配置</span> /etc/gshadow:dmtsai:!:: </pre></td></tr></tbody></table>  		<p>仔细看到上面这个表格，在 /etc/passwd 里面，dmtsai 这个使用者所属的群组为 GID=504 ，搜寻一下 /etc/group 		得到 504 是那个名为 dmtsai 的群组啦！这就是 initial group。因为是初始群组， 		使用者一登陆就会主动取得，不需要在 /etc/group 的第四个字段写入该账号的！</p>  		<p>但是非 initial group 的其他群组可就不同了。举上面这个例子来说，我将 dmtsai 加入 users 		这个群组当中，由于 users 这个群组并非是 dmtsai 的初始群组，因此， 		我必须要在 /etc/group 这个文件中，找到 users 那一行，并且将 dmtsai 这个账号加入第四栏， 		这样 dmtsai 才能够加入 users 这个群组啊。</p>  		<p>那么在这个例子当中，因为我的 dmtsai 账号同时支持 dmtsai 与 users 这两个群组， 		因此，在读取/写入/运行文件时，针对群组部分，只要是 users 与 dmtsai 这两个群组拥有的功能， 		我 dmtsai 这个使用者都能够拥有喔！这样瞭呼？不过，这是针对已经存在的文件而言， 		如果今天我要创建一个新的文件或者是新的目录，请问一下，<span class="text_import2">新文件的群组是 dmtsai 还是  		users</span> ？呵呵！这就得要检查一下当时的有效群组了 (effective group)。<br><br></p>  		<a name="groups"></a> 		<hr><ul class="list1"><li class="text_import1">groups: 有效与支持群组的观察</li></ul>  		<p>如果我以 dmtsai 这个使用者的身份登陆后，该如何知道我所有支持的群组呢？ 		很简单啊，直接输入 groups 就可以了！注意喔，是 groups 有加 s 呢！结果像这样：</p>  <table class="term"><tbody><tr><td class="term"><pre>[dmtsai@www ~]$ <span class="term_command">groups</span> dmtsai users </pre></td></tr></tbody></table>  		<p>在这个输出的信息中，可知道 dmtsai 这个用户同时属于 dmtsai 及 users 这个两个群组，而且， 		<span class="text_import2">第一个输出的群组即为有效群组 (effective group) 了</span>。 		也就是说，我的有效群组为 dmtsai 啦～此时，如果我以 touch 去创建一个新档，例如： 		『 touch test 』，那么这个文件的拥有者为 dmtsai ，而且群组也是 dmtsai 的啦。</p>  <table class="term"><tbody><tr><td class="term"><pre>[dmtsai@www ~]$ <span class="term_command">touch test</span> [dmtsai@www ~]$ <span class="term_command">ll</span> -rw-rw-r-- 1 dmtsai <span class="term_write">dmtsai</span> 0 Feb 24 17:26 test </pre></td></tr></tbody></table>  		<p>这样是否可以了解什么是有效群组了？通常有效群组的作用是在新建文件啦！那么有效群组是否能够变换？<br><br></p>  		<a name="newgrp"></a> 		<hr><ul class="list1"><li class="text_import1">newgrp: 有效群组的切换</li></ul>  		<p>那么如何变更有效群组呢？就使用 newgrp 啊！不过使用 newgrp 是有限制的，那就是<span class="text_import2">你想要切换的群组必须是你已经有支持的群组。</span>举例来说， dmtsai 可以在 dmtsai/users  		这两个群组间切换有效群组，但是 dmtsai 无法切换有效群组成为 sshd 啦！使用的方式如下：</p>  <table class="term"><tbody><tr><td class="term"><pre>[dmtsai@www ~]$ <span class="term_command">newgrp users</span> [dmtsai@www ~]$ <span class="term_command">groups</span> users dmtsai [dmtsai@www ~]$ <span class="term_command">touch test2</span> [dmtsai@www ~]$ <span class="term_command">ll</span> -rw-rw-r-- 1 dmtsai dmtsai 0 Feb 24 17:26 test -rw-r--r-- 1 dmtsai <span class="term_write">users</span>  0 Feb 24 17:33 test2 </pre></td></tr></tbody></table>  		<p>此时，dmtsai 的有效群组就成为 users 了。 		我们额外的来讨论一下 newgrp 这个命令，这个命令可以变更目前用户的有效群组， 		而且是<span class="text_import2">另外以一个 shell 来提供这个功能</span>的喔，所以，以上面的例子来说， 		dmtsai 这个使用者目前是以另一个 shell 登陆的，而且新的 shell 给予 dmtsai 有效 GID 为 		users 就是了。如果以图示来看就是如下所示：</p>  		<center><img src="0410accountmanager_files/newgrp.gif" alt="newgrp 的运行示意图" title="newgrp 的运行示意图" border="0"><br> 		图 1.3.2 、newgrp 的运行示意图<br></center>  		<p>虽然用户的环境配置(例如环境变量等等其他数据)不会有影响，但是使用者的『群组权限』将会重新被计算。 		但是需要注意，由于是新取得一个 shell ，因此如果你想要回到原本的环境中，请输入 exit 回到原本的 shell 喔！</p>  		<p>既然如此，也就是说，只要我的用户有支持的群组就是能够切换成为有效群组！好了， 		那么如何让一个账号加入不同的群组就是问题的所在啰。你要加入一个群组有两个方式，一个是透过系统管理员 (root) 利用 		<a href="#usermod">usermod</a> 帮你加入，如果 root 太忙了而且你的系统有配置群组管理员，那么你可以透过群组管理员以  		<a href="#gpasswd">gpasswd</a> 帮你加入他所管理的群组中！详细的作法留待下一小节再来介绍啰！<br><br></p>  		<a name="gshadow_file"></a> 		<hr><ul class="list1"><li class="text_import1">/etc/gshadow</li></ul>  		<p>刚刚讲了很多关于『有效群组』的概念，另外，也提到 newgrp 这个命令的用法， 		但是，如果 /etc/gshadow 这个配置没有搞懂得话，那么 newgrp 是无法动作的呢！ 		鸟哥测试机的 /etc/gshadow 的内容有点像这样：</p>  <table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">head -n 4 /etc/gshadow</span> <span class="term_write">root:::root</span> bin:::root,bin,daemon daemon:::root,bin,daemon sys:::root,bin,adm </pre></td></tr></tbody></table>  		<p>这个文件内同样还是使用冒号『:』来作为字段的分隔字符，而且你会发现，这个文件几乎与 /etc/group  		一模一样啊！是这样没错～不过，要注意的大概就是第二个字段吧～第二个字段是口令栏， 		如果口令栏上面是『!』时，表示该群组不具有群组管理员！至于第四个字段也就是支持的账号名称啰～ 		这四个字段的意义为：</p> 		<ol class="text_import2"> 		<li>组名</li> 		<li>口令栏，同样的，开头为 ! 表示无合法口令，所以无群组管理员</li> 		<li>群组管理员的账号 (相关信息在 <a href="#gpasswd">gpasswd</a> 中介绍)</li> 		<li>该群组的所属账号 (与 /etc/group 内容相同！)</li></ol>  		<p>以系统管理员的角度来说，这个 gshadow 最大的功能就是<span class="text_import2">创建群组管理员</span>啦！ 		那么什么是群组管理员呢？由于系统上面的账号可能会很多，但是我们 root 可能平时太忙碌，所以当有使用者想要加入某些群组时， 		root 或许会没有空管理。此时如果能够创建群组管理员的话，那么<span class="text_import2">该群组管理员就能够将那个账号加入自己管理的群组中</span>！ 		可以免去 root 的忙碌啦！不过，由于目前有类似 <a href="#sudo">sudo</a> 之类的工具， 		所以这个群组管理员的功能已经很少使用了。我们会在后续的 gpasswd 中介绍这个实作。</p> 	</div> </div> <hr />     </td>     <td style="width: 16px; font-size: 6px;">　</td></tr> <tr><td style="width: 16px; height: 16px;">　</td>     <td style="width: 866px; height: 16px;">　</td>     <td style="width: 16px; height: 16px;">　</td></tr> </tbody></table>  <div style="padding-top: 0px; text-align: center;"> <span style="font-size: 80%;"> 	<a href="http://vbird.dic.ksu.edu.tw/" target="_top" title="前往鸟哥的首页">http://linux.vbird.org</a> 	is designed by <a href="mailto:vbird@mail.vbird.idv.tw" title="联络鸟哥(我不要广告信！)">VBird</a> 		during 2001-2011. <a href="http://www.ksu.edu.tw/" target="_blank">ksu.edu</a></span>          ﻿<div id="apDiv4">       <p>本网页主要以Firefox配合解析度 1024x768 作为设计依据&nbsp;&nbsp;&nbsp;&nbsp; 鸟哥自由软件整合应用研究室</p></div></div> </div> </center> </body></html> 
