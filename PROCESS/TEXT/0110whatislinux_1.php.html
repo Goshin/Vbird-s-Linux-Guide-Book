@@ -1,0 +1,625 @@
+<html lang="zh-TW"><head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf8">
+	<meta name="Author" content="lee">
+	<meta name="Description" content="学操作系统之前还是要对计算机有一定的概念比较妥当！">
+	<title>鸟哥的 Linux 私房菜 -- Linux是什么？从Linux的历史谈起</title>
+    <script src="../script/SpryMenuBar.js" type="text/javascript"></script>
+	<script src="../script/index.js" type="text/javascript"></script>
+	<link href="../css/SpryMenuBarHorizontal.css" rel="stylesheet" type="text/css" />
+    <link href="../css/main.css" rel="stylesheet" type="text/css" />
+    </head><body style="margin: 0pt; padding: 0pt;" class="table"onload="MM_preloadImages('image/title_19.png','image/title_26.png','image/title_27.png','image/title_28.png','image/title_06.png','image/title_08.png','image/title_10.png','image/title_12.png')">
+
+
+<!-- Copyright � 2005. Spidersoft Ltd -->
+<style>
+A.applink:hover {border: 2px dotted #DCE6F4;padding:2px;background-color:#ffff00;color:green;text-decoration:none}
+A.applink       {border: 2px dotted #DCE6F4;padding:2px;color:#2F5BFF;background:transparent;text-decoration:none}
+A.info          {color:#2F5BFF;background:transparent;text-decoration:none}
+A.info:hover    {color:green;background:transparent;text-decoration:underline}
+</style>
+<div style='BORDER: 1px solid #DCE6F4; MARGIN-TOP: 20px; MARGIN-BOTTOM: 20px; MARGIN-LEFT: 5px; MARGIN-RIGHT: 5px; PADDING: 5px; BACKGROUND-COLOR: #eef8ff;line-height:180%; COLOR: #000000; font-family: Arial; font-size: 8pt; width=100%; FILTER: progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr="#FFFFFFFF", EndColorStr="#F2F5FAFF");'>
+This page was saved using <a class="applink" href="http://www.spidersoft.com"><b>WebZIP 7.0.3.1030</b></a> <a class="applink" href="http://www.spidersoft.com"><b>offline browser</b></a>  (Unregistered) on  02/12/15 12:14:48.<br>
+<b>Address:</b> <a class="info" href="http://vbird.dic.ksu.edu.tw/linux_basic/0110whatislinux_1.php">http://vbird.dic.ksu.edu.tw/linux_basic/0110whatislinux_1.php</a><br>
+<b>Title:</b> 鸟哥的 Linux 私房菜 -- Linux是什么？从Linux的历史谈起 &nbsp;&bull;&nbsp; <b>Size:</b> 53150<br></div>
+<!-- /Copyright � 2005. Spidersoft Ltd -->
+
+
+
+<center>
+<div id="apDiv5">
+<div> <LINK REL="SHORTCUT ICON" HREF="favicon.ico">
+<!-- ImageReady Slices (title3.ai) -->
+<table id="___01" width="898" height="81" border="0" align="center" cellpadding="0" cellspacing="0";>
+	<tr>
+		<td colspan="15">
+			<img src="image/title/title_01.png" width="900" height="1" alt=""></td>
+	</tr>
+	<tr>
+		<td rowspan="4" bgcolor="#182448"><p><img src="http://linux.vbird.org/cgi-bin/Count.cgi?dd=C&ft=5&sh=T&md=8&pad=Y&df=vbird.dic.ksu.edu.tw.dat" width="93" align="left" title="計數器" /></p>
+	    <p><font color="#FFFFFF" size="-1">since2012/04/23</font></p></td>
+		<td rowspan="4" align="left" valign="top"><a href="http://vbird.dic.ksu.edu.tw/"><img src="image/title/title_03.png" alt="" width="263" height="79" border="0"></a></td>
+		<td colspan="13">
+			<img src="image/title/title_04.png" alt="" width="535" height="9" border="0"></td>
+	</tr>
+	<tr>
+		<td rowspan="3">
+			<img src="image/title/title_05.png" alt="" width="53" height="70" border="0"></td>
+		<td colspan="2" align="left" valign="top"><a href="0110whatislinux.php.html" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image51','','image/title/title_06.png',1)"><img src="image/title/title3_06.png" name="Image51" width="106" height="25" border="0" id="Image51" alt=""/></a></td>
+		<td rowspan="2">
+			<img src="image/title/title_07.png" alt="" width="27" height="37" border="0"></td>
+		<td colspan="3" align="left" valign="top"><a href="http://vbird.dic.ksu.edu.tw/linux_server/0110network_basic.php" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image52','','image/title/title_08.png',1)"><img src="image/title/title3_08.png" name="Image52" width="107" height="25" border="0" id="Image52" alt=""/></a></td>
+		<td rowspan="2">
+			<img src="image/title/title_09.png" alt="" width="37" height="37" border="0"></td>
+		<td colspan="2" align="left" valign="top"><a href="http://vbird.dic.ksu.edu.tw/about.php" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image53','','image/title/title_10.png',1)"><img src="image/title/title3_10.png" name="Image53" width="75" height="25" border="0" id="Image53" alt=""/></a></td>
+		<td rowspan="3">
+			<img src="image/title/title_11.png" alt="" width="35" height="70" border="0"></td>
+		<td align="left" valign="top"><a href="mailto:vbird@mail.vbird.idv.tw" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image54','','image/title/title_12.png',1)"><img src="image/title/title3_12.png" name="Image54" width="74" height="25" border="0" id="Image54" alt=""/></a></td>
+		<td rowspan="3">
+			<img src="image/title/title_13.png" alt="" width="21" height="70" border="0"></td>
+	</tr>
+	<tr>
+		<td colspan="2">
+			<img src="image/title/title_14.png" alt="" width="106" height="12" border="0"></td>
+		<td colspan="3">
+			<img src="image/title/title_15.png" alt="" width="107" height="12" border="0"></td>
+		<td colspan="2">
+			<img src="image/title/title_16.png" width="75" height="12" alt=""></td>
+		<td rowspan="2">
+			<img src="image/title/title_17.png" alt="" width="74" height="45" border="0"></td>
+	</tr>
+	<tr>
+		<td>
+			<img src="image/title/title_18.png" alt="" width="15" height="33" border="0"></td>
+		<td colspan="3" align="left" valign="top"><ul id="MenuBar1" class="MenuBarHorizontal">
+	  <li><a href="linux_basic.php.html" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image44','','image/title/title_19.png',1)"><img src="image/title/title3_19.png" name="Image44" width="123" height="33" border="0" id="Image44" /></a>
+			    <ul>
+			      <li><a href="Mandrake9.0/mandrake9.0.php.html" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image46','','image/title/title_26.png',1)"><img src="image/title/title_23.png" name="Image46" width="120" height="26" border="0" id="Image46" alt="" /></a></li>
+                  <li><a href="fedora_4/fc4.php.html" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image47','','image/title/title_27.png',1)"><img src="image/title/title_24.png" name="Image47" width="120" height="26" border="0" id="Image47" alt="" /></a></li>
+                  <li><a href="linux_basic.php.html" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image48','','image/title/title_28.png',1)"><img src="image/title/title_25.png" name="Image48" width="120" height="26" border="0" id="Image48" alt="" /></a></li>
+                </ul>
+		      </li>
+		</ul></td>
+		<td>
+			<img src="image/title/title_20.png" alt="" width="42" height="33" border="0"></td>
+		<td colspan="3" align="left" valign="top"><ul id="MenuBar2" class="MenuBarHorizontal">
+	  <li><a href="http://vbird.dic.ksu.edu.tw/linux_server/" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image45','','image/title/title_21.png',1)"><img src="image/title/title3_21.png" name="Image45" width="125" height="33" border="0" id="Image45" /></a>
+			    <ul>
+			      <li><a href="http://vbird.dic.ksu.edu.tw/linux_server/linux_redhat9/redhat9.php" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image43','','image/title/title_26.png',1)"><img src="image/title/title_23.png" name="Image43" width="120" height="26" border="0" id="Image43" alt=""/></a></li>
+			      <li><a href="http://vbird.dic.ksu.edu.tw/linux_server/centos4.php" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image49','','image/title/title_27.png',1)"><img src="image/title/title_24.png" name="Image49" width="120" height="26" border="0" id="Image49" alt="" /></a></li>
+			      <li><a href="http://vbird.dic.ksu.edu.tw/linux_server/" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image50','','image/title/title_28.png',1)"><img src="image/title/title_25.png" name="Image50" width="120" height="26" border="0" id="Image50" alt="" /></a></li>
+		        </ul>
+		      </li>
+		</ul></td>
+		<td>
+			<img src="image/title/title_22.png" alt="" width="47" height="33" border="0"></td>
+	</tr>
+	<tr>
+		<td>
+			<img src="image/title/Spacer.gif" width="101" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="263" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="53" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="15" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="91" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="27" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="5" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="42" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="60" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="37" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="28" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="47" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="35" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="74" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="22" height="1" alt=""></td>
+	</tr>
+</table>
+<!-- End ImageReady Slices -->
+<script type="text/javascript">
+<!--
+var MenuBar1 = new Spry.Widget.MenuBar("MenuBar1", {imgDown:"SpryAssets/SpryMenuBarDownHover.gif", imgRight:"SpryAssets/SpryMenuBarRightHover.gif"});
+var MenuBar2 = new Spry.Widget.MenuBar("MenuBar2", {imgDown:"SpryAssets/SpryMenuBarDownHover.gif", imgRight:"SpryAssets/SpryMenuBarRightHover.gif"});
+//-->
+</script></div>
+<table summary="本文内容的排版" style="width: 898px;" border="0" cellpadding="0" cellspacing="0">
+<tbody><tr><td style="width: 16px; height: 16px;">　</td>
+    <td style="width: 866px; height: 16px;">　</td>
+    <td style="width: 16px; height: 16px;">　</td></tr>
+<tr><td style="width: 16px; font-size: 6px;">　</td>
+    <td width="866">
+<!-- 本文的档头部分 -->
+<div style="text-align: center;"> 
+    <a href="0110whatislinux.php.html"> 
+    <span class="text_head0">第一章、<span class="text_head_en">Linux</span>是什么</span></a><br> 
+</div> 
+    <div style="text-align: right;"> 
+        <span class="text_history">最近更新日期：2009/08/05</span> 
+    </div> 
+<!-- 本文的连结区部分 --> 
+<div class="block1"> 
+<span class="text_h1"> 
+1. <a href="#whatislinux">Linux是什么</a><br> 
+	<span class="text_h2"> 
+	　　1.1 <a href="#whatislinux_os">Linux是什么</a><br> 
+	　　1.2 <a href="#whatislinux_unix">Linux之前，Unix的历史</a><br> 
+	　　1.3 <a href="#whatislinux_gnu">关于GNU计划</a><br> 
+	</span> 
+</span></div>
+<!-- 本文的正式部分 --> 
+<hr><a name="whatislinux"></a><img src="../image/logo.png" alt="大标题的图示" width="35" align="middle" height="34"><span class="text_h1">Linux是什么</span><br> 
+<div class="block1"> 
+	<p>我们知道Linux这玩意儿是在计算机上面运作的，所以说Linux就是一组软件。问题是这个软件是操作系统还是应用程序？ 
+	且Linux可以在哪些种类的计算机上面运作？而Linux源自哪里？为什么 Linux 还不用钱？这些我们都得来谈一谈先！<br><br></p> 
+ 
+	<hr><a name="whatislinux_os"></a><img src="../image/logo.png" alt="小标题的图示" width="24" align="middle" height="23"><span class="text_h2">Linux是什么</span><br> 
+	<div class="block2"> 
+		<p>我们在<a href="0105computers.php.html">第零章、计算器概论</a>里面有提到过整个计算机系统的概念， 
+		计算机是由一堆硬件所组成的，为了有效率的控制这些硬件资源，于是乎就有操作系统的产生了。 
+		操作系统除了有效率的控制这些硬件资源的分配，并提供计算机运作所需要的功能(如网络功能)之外， 
+		为了要提供程序设计师更容易开发软件的环境，所以操作系统也会提供一整组系统呼叫接口来给软件设计师开发用喔！</p> 
+ 
+		<p>知道为什么要讲这些了吗？嘿嘿！没错，因为<span class="text_import2">Linux就是一套操作系统</span>！如同下图所示， 
+		Linux就是核心与系统呼叫接口那两层。至于应用程序算不算Linux呢？当然不算啦！这点要特别注意喔！</p> 
+ 
+		<center><img src="0110whatislinux_files/os_01.gif" alt="操作系统的角色" title="操作系统的角色" border="0"><br> 
+		图1.1.1、操作系统的角色<br></center> 
+ 
+		<p>由上图中我们可以看到其实核心与硬件的关系非常的强烈。早期的Linux是针对386来开发的， 
+		由于Linux只是一套操作系统并不含有其他的应用程序，因此很多工程师在下载了 Linux 
+		核心并且实际安装之后，就只能看着计算机开始运作了！ 
+		接下来这些高级工程师为了自己的需求，再在Linux上面安装他们所需要的软件就是了。</p> 
+ 
+		<div style="padding: 10pt 0pt;" align="right"><table width="90%"><tbody><tr><td><b>Tips:</b><br><span style="color: rgb(0, 144, 0);"><font size="-1">		Torvalds先生在写出Linux的时候，其实该核心仅能『驱动386所有的硬件』而已， 
+		所谓的『让386计算机开始运作，并且等待用户指令输入』而已，事实上， 
+		当时能够在Linux上面跑的软件还很少呢！ 
+		</font></span></td><td><img src="0110whatislinux_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div> 
+		<p>由于不同的硬件他的功能函数并不相同，例如IBM的Power CPU与Intel的x86架构就是不一样！ 
+		所以同一套操作系统是无法在不同的硬件平台上面运作的！举例来说，如果你想要让x86上面跑的那套操作系统也能够在Power  
+		CPU上运作时，就得要将该操作系统进行修改才行。如果能够参考硬件的功能函数并据以修改你的操作系统程序代码， 
+		那经过改版后的操作系统就能够在另一个硬件平台上面运作了。 
+		这个动作我们通常就称为『<span class="text_import2">软件移植</span>』了！</p> 
+ 
+<table width="90%" border="1" cellpadding="5" cellspacing="0"><tbody><tr><td> 
+例题：<div class="block2"> 
+请问Windows操作系统能否在苹果公司的麦金塔计算机(MAC)上面安装与运作？ 
+</div> 
+答：<div class="block2"> 
+由上面的说明中，我们知道硬件是由『核心』来控制的，而每种操作系统都有他自己的核心。 
+在2006年以前的苹果计算机公司是请IBM公司帮忙开发硬件(所谓的Power CPU)， 
+而苹果计算机公司则在该硬件架构上发展自家的操作系统(就是俗称的麦金塔，MAC是也)。Windows则是开发在x86架构上的操作系统之一， 
+因此Windows是没有办法安装到麦金塔计算机硬件上面的。<br><br> 
+ 
+不过，在2006年以后，苹果计算机转而请Intel设计其硬件架构，亦即其硬件架构已经转为x86系统， 
+因此在2006年以后的苹果计算机若使用x86架构时，其硬件则『可能』可以安装Windows操作系统了。 
+不过，你可能需要自己想些方式来处理该硬件的兼容性啰！ 
+</div> 
+</td></tr></tbody></table><br> 
+ 
+		<div style="padding: 10pt 0pt;" align="right"><table width="90%"><tbody><tr><td><b>Tips:</b><br><span style="color: rgb(0, 144, 0);"><font size="-1">		Windows操作系统本来就是针对个人计算机x86架构的硬件去设计的，所以他当然只能在x86的个人计算机上面运作， 
+		在不同的平台当然就无法运行了。也就是说，每种操作系统都是在他专门的机器上面运行的喔！这点得要先了解。 
+		不过，Linux由于是Open Source的操作系统，所以他的程序代码可以被修改成适合在各种机器上面运行的， 
+		也就是说，Linux是具有『可移植性』，这可是很重要的一个功能喔！ ^_^ 
+		</font></span></td><td><img src="0110whatislinux_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div> 
+		<p>Linux提供了一个完整的操作系统当中最底层的硬件控制与资源管理的完整架构， 
+		这个架构是沿袭Unix良好的传统来的，所以相当的稳定而功能强大！此外， 
+		由于这个优良的架构可以在目前的个人计算机(x86系统)上面跑， 
+		所以很多的软件开发者渐渐的将他们的工作心血移转到这个架构上面，所以 Linux 操作系统也有很多的应用软件啦！</p> 
+ 
+		<p>虽然Linux仅是其核心与核心提供的工具，不过由于核心、核心工具与这些软件开发者提供的软件的整合， 
+		使得Linux成为一个更完整的、功能强大的操作系统啰！约略了解Linux是何物之后，接下来，我们要谈一谈， 
+		『<span class="text_import2">为什么说Linux是很稳定的操作系统呢？他是如何来的？</span>』</p> 
+	</div> 
+ 
+	<hr><a name="whatislinux_unix"></a><img src="../image/logo.png" alt="小标题的图示" width="24" align="middle" height="23"><span class="text_h2">Linux之前，Unix的历史</span><br> 
+	<div class="block2"> 
+		<p>早在Linux出现之前的二十年(大约在1970 年代)，就有一个相当稳定而成熟的操作系统存在了！ 
+		那就是Linux的老大哥『Unix』是也！怎么这么说呢？他们这两个家伙有什么关系呀？这里就给他说一说啰！</p> 
+ 
+		<p>众所皆知的，<span class="text_import2">Linux的核心是由Linus Torvalds在1991年的时候给他开发出来的，</span> 
+		并且丢到网络上提供大家下载，后来大家觉得这个小东西(Linux Kernel)相当的小而精巧， 
+		所以慢慢的就有相当多的朋友投入这个小东西的研究领域里面去了！ 
+		但是为什么这个小东西这么棒呢？又为什么大家都可以免费的下载这个东西呢？ 
+		嗯！等鸟哥慢慢的道来！<br><br></p> 
+ 
+		<hr><ul class="list1"><li><span class="text_import1">1969年以前：一个伟大的梦想--Bell,MIT与GE的『Multics』系统</span></li></ul> 
+ 
+		<p>早期的计算机并不像现在的个人计算机一样普遍，他可不是一般人碰的起的呢～ 
+		除非是军事或者是高科技用途，或者是学术单位的学术研究，否则真的很难接触到。 
+		非但如此，早期的计算机架构还很难使用，除了指令周期并不快之外，操作接口也很困扰的！ 
+		<span class="text_import2">因为那个时候的输入设备只有卡片阅读机、输出设备只有打印机， 
+		用户也无法与操作系统互动(批次型操作系统)。</span></p> 
+ 
+		<p>在那个时候，写程序是件很可怜的事情，因为程序设计者，必须要将程序相关的信息在读卡纸上面打洞， 
+		然后再将读卡纸插入卡片阅读机来将信息读入主机中运算。光是这样就很麻烦了，如果程序有个小地方写错， 
+		哈哈！光是重新打卡就很惨，加上主机少，用户众多，光是等待，就耗去很多的时间了！</p> 
+ 
+		<p>在那之后，由于硬件与操作系统的改良，使得后来可以使用键盘来进行信息的输入。 
+		不过，在一间学校里面，主机毕竟可能只有一部，如果多人等待使用，那怎么办？大家还是得要等待啊！ 
+		好在1960年代初期麻省理工学院(MIT)发展了所谓的： 
+		『<span class="text_import2">兼容分时系统(Compatible Time-Sharing System, CTSS)</span>』， 
+		它可以让大型主机透过提供数个终端机(terminal)以联机进入主机，来利用主机的资源进行运算工作。 
+		架构有点像这样：</p> 
+ 
+		<a name="fig2"></a> 
+		<center><img src="0110whatislinux_files/0110whatislinux_2.jpg" alt="早期主机与终端机的相关性图标" title="早期主机与终端机的相关性图标" border="1"><br> 
+		图1.2.1、早期主机与终端机的相关性图标<br></center> 
+ 
+		<div style="padding: 10pt 0pt;" align="right"><table width="90%"><tbody><tr><td><b>Tips:</b><br><span style="color: rgb(0, 144, 0);"><font size="-1">		这个兼容分时系统可以说是近代操作系统的始祖呢！他可以让多个使用者在某一段时间内分别使用CPU的资源， 
+		感觉上你会觉得大家是同时使用该主机的资源！事实上，是CPU在每个使用者的工作之间进行切换， 
+		在当时，这可是个划时代的技术喔！ 
+		</font></span></td><td><img src="0110whatislinux_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div> 
+		<p>如此一来，无论主机在哪里，只要在终端机前面进行输入输出的作业，就可利用主机提供的功能了。 
+		不过，需要注意的是，此时终端机只具有输入/输出的功能，本身完全不具任何运算或者软件安装的能力。 
+		而且，比较先进的主机大概也只能提供30个不到的终端机而已。</p> 
+ 
+		<p>为了更加强化大型主机的功能，以让主机的资源可以提供更多使用者来利用，所以在1965年前后， 
+		由贝尔实验室(Bell)、麻省理工学院(MIT)及奇异公司(GE, 或称为通用电器)共同发起了Multics的计划， 
+		Multics计划的目的是想要让大型主机可以达成提供300个以上的终端机联机使用的目标。 
+		不过，到了1969年前后，计划进度落后，资金也短缺，所以该计划虽然继续在研究，但贝尔实验室还是退出了该计划的研究工作。 
+		(注：Multics有复杂、多数的意思存在。)</p> 
+ 
+		<div style="padding: 10pt 0pt;" align="right"><table width="90%"><tbody><tr><td><b>Tips:</b><br><span style="color: rgb(0, 144, 0);"><font size="-1">		最终Multics还是有成功的发展出他们的系统，完整的历史说明可以参考： 
+		<a href="http://www.multicians.org/" target="_blank">http://www.multicians.org/</a>网站内容。 
+		Multics计划虽然后来没有受到很大的重视，但是他培养出来的人材是相当优秀的！ ^_^ 
+		</font></span></td><td><img src="0110whatislinux_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div> 
+ 
+		<hr><ul class="list1"><li><span class="text_import1">1969年：Ken Thompson的小型file server system</span></li></ul> 
+ 
+		<p>在认为Multics计划不可能成功之后，<a href="http://www.bell-labs.com/" target="_blank">贝尔研究室</a>就退出该计划。不过，原本参与Multics计划的人员中，已经从该计划当中获得一些点子， 
+		<a href="http://plan9.bell-labs.com/cm/cs/who/ken/index.html" target="_blank">Ken Thompson</a> 
+		就是其中一位！</p> 
+ 
+		<p>Thompson因为自己的需要，希望开发一个小小的操作系统以提供自己的需求。 
+		在开发时，有一部DEC(Digital Equipment Corporation)公司推出的PDP-7刚好没人使用， 
+		于是他就准备针对这部主机进行操作系统核心程序的撰写。本来Thompson应该是没时间的(有家有小孩的宿命？)， 
+		无巧不巧的是，在1969年八月份左右，刚好Thompson的妻儿去了美西探亲， 
+		于是他有了额外的一个月的时间好好的待在家将一些构想实现出来！</p> 
+ 
+		<p>经过四个星期的奋斗，他终于以汇编语言(Assembler)写出了一组核心程序，同时包括一些核心工具程序， 
+		以及一个小小的文件系统。那个系统就是<span class="text_import2">Unix</span>的原型！ 
+		当时Thompson将Multics庞大的复杂系统简化了不少，于是同实验室的朋友都戏称这个系统为：Unics。(当时尚未有Unix的名称)</p> 
+ 
+		<p>Thompson 的这个文件系统有两个重要的概念，分别是：</p> 
+		<ul> 
+		<li><span class="text_import2">所有的程序或系统装置都是档案</span></li> 
+		<li><span class="text_import2">不管建构编辑器还是附属档案，所写的程序只有一个目的，且要有效的完成目标。</span></li> 
+		</ul> 
+		<p>这些概念在后来对于Linux的发展有相当重要的影响喔！</p> 
+ 
+		<div style="padding: 10pt 0pt;" align="right"><table width="90%"><tbody><tr><td><b>Tips:</b><br><span style="color: rgb(0, 144, 0);"><font size="-1">		套一句常听到的广告词：『科技始终来自于人性』，当初Thompson会写这套Unix核心程序， 
+		却是想要移植一套名为『太空旅游』的游戏呢！ ^_^ 
+		</font></span></td><td><img src="0110whatislinux_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div> 
+		<hr><ul class="list1"><li><span class="text_import1">1973年：Unix的正式诞生，Ritchie等人以C语言写出第一个正式Unix核心</span></li></ul> 
+ 
+		<p>由于Thompson写的那个操作系统实在太好用了，所以在贝尔实验室内部广为流传，并且数度经过改版。 
+		但是因为Unics本来是以汇编语言写成的，而如<a href="0105computers.php.html">第零章计算器概论</a>谈到的， 
+		汇编语言具有专一性，加上当时的计算机机器架构都不太相同，所以每次要安装到不同的机器都得要重新编写汇编语言，真不方便！</p> 
+ 
+		<p>后来Thompson与Ritchie合作想将Unics改以高阶程序语言来撰写。当时现成的高阶程序语言有B语言。 
+		但是由B语言所编译出来的核心效能不是很好。后来<a href="http://cm.bell-labs.com/cm/cs/who/dmr/" target="_blank">Dennis Ritchie</a>将B语言重新改写成C语言，再以C语言重新改写与编译Unics的核心， 
+		最后正名与发行出Unix的正式版本！</p> 
+ 
+		<div style="padding: 10pt 0pt;" align="right"><table width="90%"><tbody><tr><td><b>Tips:</b><br><span style="color: rgb(0, 144, 0);"><font size="-1">		这群高级黑客实在很厉害！因为自己的需求来开发出这么多好用的工具！ 
+		C程序语言开发成功后，甚至一直沿用至今呢！你说厉不厉害啊！这个故事也告诉我们，不要小看自己的潜能喔！ 
+		你想作的，但是现实生活中没有的，就动手自己搞一个来玩玩吧！ 
+		</font></span></td><td><img src="0110whatislinux_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div> 
+		<p>由于贝尔实验室是隶属于美国电信大厂<a href="http://www.att.com/">AT&amp;T</a>公司的， 
+		只是AT&amp;T当时忙于其他商业活动，对于Unix并不支持也不排斥。此外，Unix在这个时期的发展者都是贝尔实验室的工程师， 
+		这些工程师对于程序当然相当有研究，所以，Unix在此时当然是不容易被一般人所接受的！不过对于学术界的学者来说， 
+		这个 Unix 真是学者们进行研究的福音！因为程序代码可改写并且可作为学术研究之用嘛！</p> 
+ 
+		<p>需要特别强调的是，由于Unix是以较高阶的C语言写的，相对于汇编语言需要与硬件有密切的配合， 
+		高阶的C语言与硬件的相关性就没有这么大了！所以，<span class="text_import2">这个改变也使得Unix很容易被移植到不同的机器上面喔！</span><br><br></p> 
+ 
+		<hr><ul class="list1"><li><span class="text_import1">1977年：重要的Unix分支--BSD的诞生</span></li></ul> 
+ 
+		<p>虽然贝尔属于AT&amp;T，但是AT&amp;T此时对于Unix是采取较开放的态度，此外，Unix是以高阶的C语言写成的， 
+		理论上是具有可移植性的！亦即只要取得Unix的原始码，并且针对大型主机的特性加以修订原有的原始码(Source Code)， 
+		就可能将Unix移植到另一部不同的主机上头了。所以在1973年以后，Unix便得以与学术界合作开发！ 
+		最重要的接触就是与加州柏克莱(Berkeley)大学的合作了。</p> 
+ 
+		<p>柏克莱大学的Bill Joy在取得了Unix的核心原始码后，着手修改成适合自己机器的版本， 
+		并且同时增加了很多工具软件与编译程序，最终将它命名为<span class="text_import2">Berkeley Software  
+		Distribution (BSD)</span>。这个BSD是Unix很重要的一个分支，Bill Joy也是Unix业者『Sun(升阳)』这家公司的创办者！ 
+		Sun公司即是以BSD发展的核心进行自己的商业Unix版本的发展的。 
+		(后来可以安装在x86硬件架构上面FreeBSD即是BSD改版而来！)<br><br></p> 
+ 
+		<hr><ul class="list1"><li><span class="text_import1">1979年：重要的 System V 架构与版权宣告</span></li></ul> 
+ 
+		<p>由于Unix的高度可移植性与强大的效能，加上当时并没有版权的纠纷， 
+		所以让很多商业公司开始了Unix操作系统的发展，例如AT&amp;T自家的System V、IBM的AIX以及HP与DEC等公司， 
+		都有推出自家的主机搭配自己的Unix操作系统。</p> 
+ 
+		<p>但是，如同我们前面提到的，<span class="text_import2">操作系统的核心(Kernel)必须要跟硬件配合， 
+		以提供及控制硬件的资源进行良好的工作！</span>而在早期每一家生产计算机硬件的公司还没有所谓的『协议』的概念， 
+		所以每一个计算机公司出产的硬件自然就不相同啰！因此他们必须要为自己的计算机硬件开发合适的Unix系统。 
+		例如在学术机构相当有名的Sun、Cray与HP就是这一种情况。 
+		他们开发出来的Unix操作系统以及内含的相关软件并没有办法在其他的硬件架构下工作的！ 
+		另外，由于没有厂商针对个人计算机设计Unix系统，因此，在早期并没有支持个人计算机的Unix操作系统的出现。</p> 
+ 
+		<div style="padding: 10pt 0pt;" align="right"><table width="90%"><tbody><tr><td><b>Tips:</b><br><span style="color: rgb(0, 144, 0);"><font size="-1">		如同兼容分时系统的功能一般，Unix强调的是多人多任务的环境！ 
+		但早期的286个人计算机架构下的CPU是没有能力达到多任务的作业，因此，并没有人对移植Unix到x86的计算机上有兴趣。 
+		</font></span></td><td><img src="0110whatislinux_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div> 
+		<p>每一家公司自己出的Unix虽然在架构上面大同小异，但是却真的仅能支持自身的硬件， 
+		所以啰，<span class="text_import2">早先的Unix只能与服务器(Server)或者是大型工作站(Workstation)划上等号</span>！ 
+		但到了 1979 年时，AT&amp;T推出 System V 第七版 Unix 后，这个情况就有点改善了。 
+		这一版最重要的特色是可以支持x86架构的个人计算机系统，也就是说 System V 可以在个人计算机上面安装与运作了。</p> 
+ 
+		<p>不过因为AT&amp;T由于商业的考虑，以及在当时现实环境下的思考，于是想将Unix的版权收回去。因此， 
+		AT&amp;T在1979年发行的第七版Unix中，特别提到了 
+		『<span class="text_import2">不可对学生提供原始码</span>』的严格限制！ 
+		同时，也造成Unix业界之间的紧张气氛，并且也引爆了很多的商业纠纷～</p> 
+ 
+		<div style="padding: 10pt 0pt;" align="right"><table width="90%"><tbody><tr><td><b>Tips:</b><br><span style="color: rgb(0, 144, 0);"><font size="-1">		目前被称为纯种的Unix指的就是System V以及BSD这两套啰！ 
+		</font></span></td><td><img src="0110whatislinux_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div> 
+		<hr><ul class="list1"><li><span class="text_import1">1984年之一：x86架构的Minix操作系统诞生</span></li></ul> 
+ 
+		<p>关于1979年的版权声明中，影响最大的当然就是学校教Unix核心原始码相关学问的教授了！ 
+		想一想，如果没有核心原始码，那么如何教导学生认识Unix呢？这问题对于Andrew  
+		Tanenbaum(谭宁邦)教授来说，实在是很伤脑筋的！不过，学校的课程还是得继续啊！那怎么办？</p> 
+ 
+		<p><span class="text_import2">既然1979年的Unix第七版可以在Intel的x86架构上面进行移植， 
+		那么是否意味着可以将Unix改写并移植到x86上面了呢？</span>在这个想法上， 
+		谭宁邦教授于是乎自己动手写了Minix这个Unix Like的核心程序！ 
+		在撰写的过程中，为了避免版权纠纷，谭宁邦完全不看Unix核心原始码！ 
+		并且强调他的Minix必须能够与Unix兼容才行！谭宁邦在1984年开始撰写核心程序， 
+		到了1986年终于完成，并于次年出版Minix相关书籍，同时与新闻组(BBS及News)相结合～</p> 
+ 
+		<div style="padding: 10pt 0pt;" align="right"><table width="90%"><tbody><tr><td><b>Tips:</b><br><span style="color: rgb(0, 144, 0);"><font size="-1">		之所以称为Minix的原因，是因为他是个Mini的Unix系统啰！^_^ 
+		</font></span></td><td><img src="0110whatislinux_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div> 
+		<p>这个Minix版本比较有趣的地方是，他并不是完全免费的，无法在网络上提供下载！ 
+		必须要透过磁盘/磁带购买才行！虽然真的很便宜～不过，毕竟因为没有在网络上流传， 
+		所以Minix的传递速度并没有很快速！此外，购买时，随磁盘还会附上Minix的原始码！ 
+		这意味着使用者可以学习Minix的核心程序设计概念喔！ 
+		(<span class="text_import2">这个特色对于Linux的启始开发阶段，可是有很大的关系喔！</span>)</p> 
+ 
+		<p>此外，Minix操作系统的开发者仅有谭宁邦教授，因为学者很忙啊！加上谭宁邦始终认为Minix主要用在教育用途上面， 
+		所以对于Minix是点到为止！没错，Minix是很受欢迎，不过，使用者的要求/需求的声音可能就比较没有办法上升到比较高的地方了！ 
+		这样说，你明白吧？^_^ <br><br></p> 
+ 
+		<hr><ul class="list1"><li><span class="text_import1">1984年之二：GNU计划与FSF基金会的成立</span></li></ul> 
+ 
+		<p>Richard Mathew Stallman(史托曼)在1984年发起的GNU计划，对于现今的自由软件风潮， 
+		真有不可磨灭的地位！目前我们所使用得很多自由软件，几乎均直接或间接受益于GNU这个计划呢！ 
+		那么史托曼是何许人也？为何他会发起这个GNU计划呢？</p> 
+ 
+		<ul style="padding-left: 20px; list-style-type: circle;"> 
+		<li><span class="text_import2">一个分享的环境：</span><br><br> 
+ 
+		<a href="http://www.stallman.org/" target="_blank">Richard Mathew Stallman</a>(生于1953年， 
+		网络上自称的ID为RMS)从小就很聪明！他在1971年的时候，进入黑客圈中相当出名的人工智能实验室(AI Lab.)， 
+		这个时候的黑客专指计算机功力很强的人，而非破坏计算机的怪客(cracker)喔！<br><br> 
+ 
+		当时的黑客圈对于软件的着眼点几乎都是在『分享』，所以并没有专利方面的困扰！ 
+		这个特色对于史托曼的影响很大！不过，后来由于管理阶层的问题，导致实验室的优秀黑客离开该实验室， 
+		并且进入其他商业公司继续发展优秀的软件。但史托曼并不服输，仍然持续在原来的实验室开发新的程序与软件。 
+		后来，他发现到，自己一个人并无法完成所有的工作，于是想要成立一个开放的团体来共同努力！<br><br></li> 
+ 
+		<li><span class="text_import2">使用Unix开发阶段：</span><br><br> 
+ 
+		1983年以后，因为实验室硬件的更换，使得史托曼无法继续以原有的硬件与操作系统继续自由程序的撰写～ 
+		而且他进一步发现到，过去他所使用的Lisp操作系统，是麻省理工学院的专利软件， 
+		是无法共享的，这对于想要成立一个开放团体的史托曼是个阻碍。于是他便放弃了Lisp这个系统。 
+		后来，他接触到Unix这个系统，并且发现，Unix在理论与实际上，都可以在不同的机器间进行移植。虽然 Unix 依旧是专利软件， 
+		但至少 Unix 架构上还是比较开放的！于是他开始转而使用Unix系统。<br><br> 
+ 
+		因为Lisp与Unix是不同的系统，所以，他原本已经撰写完毕的软件是无法在Unix上面运行的！为此， 
+		他就开始将软件移植到Unix上面。并且，为了让软件可以在不同的平台上运作， 
+		因此，史托曼将他发展的软件均撰写成可以移植的型态！也就是他都会将程序的原始码公布出来！<br><br></li> 
+ 
+		<li><span class="text_import2">GNU计划的推展：</span><br><br> 
+ 
+		1984年，史托曼开始<a href="http://www.gnu.org/" target="_blank">GNU</a>计划， 
+		<span class="text_import2">这个计划的目的是：建立一个自由、开放的Unix操作系统(Free Unix)。</span> 
+		但是建立一个操作系统谈何容易啊！而且在当时的GNU是仅有自己一个人单打独斗的史托曼～ 
+		这实在太麻烦，但又不想放弃这个计划，那可怎么办啊？<br><br> 
+ 
+		聪明的史托曼干脆反其道而行～『既然操作系统太复杂，我就先写可以在Unix上面运行的小程序，这总可以了吧？』在这个想法上， 
+		史托曼开始参考Unix上面现有的软件，并依据这些软件的作用开发出功能相同的软件，且开发期间史托曼绝不看其他软件的原始码， 
+		以避免吃上官司。后来一堆人知道免费的GNU软件，并且实际使用后发现与原有的专利软件也差不了太多，于是便转而使用GNU软件， 
+		于是GNU计划逐渐打开知名度。<br><br> 
+ 
+		虽然GNU计划渐渐打开知名度，但是能见度还是不够。这时史托曼又想：不论是什么软件， 
+		都得要进行编译成为二进制文件(binary program)后才能够执行，如果能够写出一个不错的编译程序，那不就是大家都需要的软件了吗？ 
+		因此他便开始撰写C语言的编译程序，那就是现在相当有名的GNU C Compiler(gcc)！ 
+		这个点相当的重要！这是因为C语言编译程序版本众多，但都是专利软件， 
+		如果他写的C编译程序够棒，效能够佳，那么将会大大的让GNU计划出现在众人眼前！如果忘记啥是编译程序， 
+		请回到<a href="http://vbird.dic.ksu.edu.tw/linux_basic/0105computers.php#program_mechin">第零章</a>去瞧瞧编译程序吧！<br><br> 
+ 
+		但开始撰写GCC时并不顺利，为此，他先转而将他原先就已经写过的Emacs编辑器写成可以在Unix上面跑的软件，并公布原始码。 
+		Emacs是一种程序编辑器，他可以在用户撰写程序的过程中就进行程序语法的检验，此一功能可以减少程序设计师除错的时间！ 
+		因为Emacs太优秀了，因此，很多人便直接向他购买。<br><br> 
+ 
+		此时因特网尚未流行，所以，<span class="text_import2">史托曼便借着Emacs以磁带(tape)出售，赚了一点钱</span> 
+		，进而开始全力撰写其他软件。并且成立<span class="text_import2">自由软件基金会(FSF,  
+		Free Software Foundation)</span>，请更多工程师与志工撰写软件。终于还是完成了GCC，这比Emacs还更有帮助！ 
+		此外，他还撰写了更多可以被呼叫的C函式库(GNU C library)，以及可以被使用来操作操作系统的基本接口BASH shell！ 
+		这些都在1990年左右完成了！<br><br> 
+ 
+		<div style="padding: 10pt 0pt;" align="right"><table width="90%"><tbody><tr><td><b>Tips:</b><br><span style="color: rgb(0, 144, 0);"><font size="-1">		如果纯粹使用文本编辑器来编辑程序的话，那么程序语法如果写错时，只能利用编译时发生的错误讯息来修订了，这样实在很没有效率。 
+		Emacs则是一个很棒的编辑器！注意！是编辑(editor)而非编译(compiler)！ 
+		他可以很快的立刻显示出你写入的语法可能有错误的地方，这对于程序设计师来说， 
+		实在是一个好到不能再好的工具了！所以才会这么的受到欢迎啊！ 
+		</font></span></td><td><img src="0110whatislinux_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div></li> 
+ 
+		<a name="gpl"></a> 
+		<li><span class="text_import2">GNU的通用公共许可证：</span><br><br> 
+ 
+		到了1985年，为了避免GNU所开发的自由软件被其他人所利用而成为专利软件， 
+		所以他与律师草拟了有名的<span class="text_import2">通用公共许可证(General Public License, GPL)</span>， 
+		并且称呼他为<span class="text_import2">copyleft</span>(相对于专利软件的copyright！)。 
+		关于GPL的相关内容我们在下一个小节继续谈论，在这里，必须要说明的是， 
+		由于有GNU所开发的几个重要软件，如：<br><br> 
+ 
+		<ul class="text_import2" style="list-style-type: square;"> 
+		<li>Emacs</li> 
+		<li>GNU C (GCC)</li> 
+		<li>GNU C Library (glibc)</li> 
+		<li>Bash shell</li> 
+		</ul><br> 
+ 
+		造成后来很多的软件开发者可以藉由这些基础的工具来进行程序开发！ 
+		进一步壮大了自由软件团体！这是很重要的！不过，对于GNU的最初构想 
+		『建立一个自由的Unix操作系统』来说，有这些优秀的程序是仍无法满足， 
+		因为，当下并没有『自由的Unix核心』存在...所以这些软件仍只能在那些有专利的  
+		Unix平台上工作～～一直到Linux的出现...更多的FSF开发的软件可以参考如下网页：<br><br> 
+ 
+		<ul style="list-style-type: square;"><li><a href="https://www.fsf.org/resources" target="_blank">https://www.fsf.org/resources</a></li></ul></li> 
+		</ul><br> 
+ 
+		<hr><ul class="list1"><li><span class="text_import1">1988年：图形接口XFree86计划</span></li></ul> 
+ 
+		<p>有鉴于图形用户接口(<span class="text_import2">Graphical User Interface, GUI</span>) 
+		的需求日益加重，在1984年由MIT与其他第三方首次发表了X Window System 
+		，并且更在1988年成立了非营利性质的XFree86这个组织。所谓的XFree86其实是 
+		<span class="text_import2">X Window System + Free + x86</span>的整合名称呢！ 
+		而这个XFree86的GUI界面更在Linux的核心1.0版于1994年释出时，整合于Linux操作系统当中！</p> 
+ 
+		<div style="padding: 10pt 0pt;" align="right"><table width="90%"><tbody><tr><td><b>Tips:</b><br><span style="color: rgb(0, 144, 0);"><font size="-1">		为什么称图形用户接口为X呢？因为由英文单字来看，Window的W接的就是X啦！意指Window的下一版就是了！ 
+		需注意的是，X Window并不是X Window<b>s</b>喔！ 
+		</font></span></td><td><img src="0110whatislinux_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div> 
+		<hr><ul class="list1"><li><span class="text_import1">1991年：芬兰大学生Linus Torvalds的一则简讯</span></li></ul> 
+ 
+		<p>到了1991年，芬兰的赫尔辛基大学的Linus Torvalds在BBS上面贴了一则消息， 
+		宣称他以bash, gcc等工具写了一个小小的核心程序，这个核心程序可以在Intel的386机器上面运作， 
+		让很多人很感兴趣！从此开始了Linux不平凡的路程！</p> 
+	</div> 
+ 
+	<hr><a name="whatislinux_gnu"></a><img src="../image/logo.png" alt="小标题的图示" width="24" align="middle" height="23"><span class="text_h2">关于GNU计划</span><br> 
+	<div class="block2"> 
+		<p>GNU计划对于整个自由软件来说是占有非常重要的角色！底下我们就来谈谈这些！<br><br></p> 
+ 
+		<hr><ul class="list1"><li><span class="text_import1">自由软件的活动：</span></li></ul> 
+ 
+		<p>1984年创立GNU计划与FSF基金会的Stallman先生认为，写程序最大的快乐就是让自己发展的良好的软件让大家来使用了！ 
+		而既然程序是想要分享给大家使用的，不过，每个人所使用的计算机软硬件并不相同， 
+		既然如此的话，那么该程序的原始码(Source code)就应该要同时释出， 
+		这样才能方便大家修改而适用于每个人的计算机中呢！这个将原始码连同软件程序释出的举动， 
+		就称为自由软件(Free Software)运动！</p> 
+ 
+		<p>此外，史托曼同时认为，如果你将你程序的Source code分享出来时，若该程序是很优秀的，那么将会有很多人使用， 
+		而每个人对于该程序都可以查阅source code，无形之中，就会有一票人帮你除错啰！ 
+		你的这支程序将会越来越壮大！越来越优秀呢！<br><br></p> 
+ 
+		<hr><ul class="list1"><li><span class="text_import1">自由软件的版权GNU GPL：</span></li></ul> 
+ 
+		<p>而为了避免自己的开发出来的Open source自由软件被拿去做成专利软件， 
+		于是Stallman同时将GNU与FSF发展出来的软件，都挂上GPL的版权宣告～ 
+		这个FSF的核心观念是『<span class="text_import2">版权制度是促进社会进步的手段， 
+		版权本身不是自然权力。</span>』对于FSF有兴趣或者对于GNU想要更深入的了解时，请参考<a href="http://www.cyut.edu.tw/%7Eckhung/" target="_blank">朝阳科技大学洪朝贵教授</a>的网站 
+		<a href="http://people.ofset.org/%7Eckhung/a/c_83.php" target="_blank">http://people.ofset.org/~ckhung/a/c_83.php</a>，或直接到GNU去： 
+		<a href="http://www.gnu.org/" target="_blank">http://www.gnu.org</a> 里面有更为深入的解说！</p> 
+ 
+		<div style="padding: 10pt 0pt;" align="right"><table width="90%"><tbody><tr><td><b>Tips:</b><br><span style="color: rgb(0, 144, 0);"><font size="-1">		为什么要称为GNU呢？其实GNU是GNU's Not Unix的缩写，意思是说，GNU并不是Unix啊！那么GNU又是什么呢？ 
+		就是GNU's Not Unix嘛！.....如果你写过程序就会知道，这个GNU = GNU's Not Unix可是无穷循环啊！忙碌～<br><br> 
+		另外，什么是Open Source呢？所谓的source是程序发展者写出的源代码， 
+		Open Source就是，软件在发布时，同时将作者的原始码一起公布的意思！ 
+		</font></span></td><td><img src="0110whatislinux_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div> 
+		<hr><ul class="list1"><li><span class="text_import1">自由(Free)的真谛：</span></li></ul> 
+ 
+		<p>那么这个GPL(GNU General Public License, GPL)是什么玩意儿？ 
+		为什么要将自由软件挂上GPL的『版权宣告』呢？这个版权宣告对于作者有何好处？ 
+		首先，Stallman对GPL一直是强调Free的，这个Free的意思是这样的：</p> 
+ 
+		<p><span class="text_import2">"Free software" is a matter of liberty, not price.  
+		To understand the concept, you should think of "free speech", not "free beer".   
+		"Free software" refers to the users' freedom to run, copy, distribute,  
+		study, change, and improve the software </span></p> 
+ 
+		<p>大意是说，Free Software(自由软件)是一种自由的权力，并非是『价格！』 
+		举例来说，你可以拥有自由呼吸的权力、你拥有自由发表言论的权力， 
+		但是，这并不代表你可以到处喝『免费的啤酒！(free beer)』，也就是说， 
+		<span class="text_import2">自由软件的重点并不是指『免费』的，而是指具有『自由度, freedom』的软件</span>， 
+		史托曼进一步说明了自由度的意义是：<span class="text_import2"> 
+		使用者可以自由的执行、复制、再发行、学习、修改与强化自由软件</span>。</p> 
+ 
+		<p>这无疑是个好消息！因为如此一来，你所拿到的软件可能原先只能在Unix上面跑， 
+		但是经过原始码的修改之后，你将可以拿他在Linux或者是Windows上面来跑！总之， 
+		一个软件挂上了GPL版权宣告之后，他自然就成了自由软件！这个软件就具有底下的特色：</p> 
+ 
+		<ul class="text_import2" style="list-style-type: circle;"> 
+		<li>取得软件与原始码：你可以根据自己的需求来执行这个自由软件；</li> 
+		<li>复制：你可以自由的复制该软件；</li> 
+		<li>修改：你可以将取得的原始码进行程序修改工作，使之适合你的工作；</li> 
+		<li>再发行：你可以将你修改过的程序，再度的自由发行，而不会与原先的撰写者冲突；</li> 
+		<li>回馈：你应该将你修改过的程序代码回馈于社群！</li></ul> 
+ 
+		<p>但请特别留意，你所修改的任何一个自由软件都不应该也不能这样：</p> 
+ 
+		<ul class="text_import2" style="list-style-type: circle;"> 
+		<li>修改授权：你不能将一个GPL授权的自由软件，在你修改后而将他取消GPL授权～</li> 
+		<li>单纯贩卖：你不能单纯的贩卖自由软件。</li></ul> 
+ 
+		<p>也就是说，既然GPL是站在互助互利的角度上去开发的，你自然不应该将大家的成果占为己有， 
+		对吧！因此你当然不可以将一个GPL软件的授权取消，即使你已经对该软件进行大幅度的修改！ 
+		那么自由软件也不能贩卖吗？当然不是！还记得上一个小节里面， 
+		我们提到史托曼藉由贩卖Emacs取得一些经费，让自己生活不至于匮乏吧？是的！ 
+		自由软件是可以贩卖的，不过，不可仅贩卖该软件，应同时搭配售后服务与相关手册～ 
+		这些可就需要工本费了呢！<br><br></p> 
+ 
+		<hr><ul class="list1"><li><span class="text_import1">自由软件与商业行为：</span></li></ul> 
+ 
+		<p>很多人还是有疑问，目前不是有很多Linux开发商吗？为何他们可以贩卖Linux这个GPL授权的软件？ 
+		原因很简单，因为他们大多都是贩卖『售后服务！』所以，他们所使用的自由软件， 
+		都可以在他们的网站上面下载！(当然，每个厂商他们自己开发的工具软件就不是GPL的授权软件了！) 
+		但是，你可以购买他们的Linux光盘，如果你购买了光盘，他们会提供相关的手册说明文件， 
+		同时也会提供你数年不等的咨询、售后服务、软件升级与其他协力工作等等的附加价值！</p> 
+ 
+		<p>所以说，目前自由软件工作者，他们所赖以维生的，几乎都是在『服务』这个领域呢！ 
+		毕竟自由软件并不是每个人都会撰写，有人有需要你的自由软件时，他就会请求你的协助， 
+		此时，你就可以透过服务来收费了！这样来说， 
+		<span class="text_import2">自由软件确实还是具有商业空间的喔！</span></p> 
+ 
+		<div style="padding: 10pt 0pt;" align="right"><table width="90%"><tbody><tr><td><b>Tips:</b><br><span style="color: rgb(0, 144, 0);"><font size="-1">		很多人对于GPL授权一直很疑惑，对于GPL的商业行为更是无法接受！ 
+		关于这一点，鸟哥在这里还是要再次的申明，GPL是可以从事商业行为的！ 
+		而很多的作者也是藉由这些商业行为来得以取得生活所需，更进一步去发展更优秀的自由软件！ 
+		千万不要听到『商业』就排斥！这对于发展优良软件的朋友来说，是不礼貌的！ 
+		</font></span></td><td><img src="0110whatislinux_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div> 
+		<p>上面提到的大多是与用户有关的项目，那么 GPL 对于自由软件的作者有何优点呢？大致的优点有这些：</p> 
+		<ul style="list-style-type: circle;"> 
+		<li>软件安全性较佳；</li> 
+		<li>软件执行效能较佳；</li> 
+		<li>软件除错时间较短；</li> 
+		<li>贡献的原始码永远都存在。</li></ul> 
+ 
+		<p>这是因为既然是Open Source的自由软件，那么你的程序代码将会有很多人帮你查阅， 
+		如此一来，程序的漏洞与程序的优化将会进展的很快！所以，在安全性与效能上面， 
+		自由软件一点都不输给商业软件喔！此外，因为GPL授权当中，修改者并不能修改授权， 
+		因此，你如果曾经贡献过程序代码，嘿嘿！你将名留青史呢！不错吧！ ^_^</p> 
+ 
+		<p>对于程序开发者来说，GPL实在是一个非常好的授权，因为大家可以互相学习对方的程序撰写技巧， 
+		而且自己写的程序也有人可以帮忙除错。那你会问啊，对于我们这些广大的终端用户，GPL有没有什么好处啊？有啊！当然有！ 
+		虽然终端用户或许不会自己编译程序代码或者是帮人家除错，但是终端用户使用的软件绝大部分就是GPL的软件， 
+		全世界有一大票的工程师在帮你维护你的系统，这难道不是一件非常棒的事吗？ ^_^</p> 
+	</div> 
+</div> 
+<hr>
+    </td>
+    <td style="width: 16px; font-size: 6px;">　</td></tr>
+<tr><td style="width: 16px; height: 16px;">　</td>
+    <td style="width: 866px; height: 16px;">　</td>
+    <td style="width: 16px; height: 16px;">　</td></tr>
+</tbody></table>
+
+<div style="padding-top: 0px; text-align: center;">
+<span style="font-size: 80%;">
+	<a href="http://vbird.dic.ksu.edu.tw/" target="_top" title="前往鸟哥的首页">http://linux.vbird.org</a>
+	is designed by <a href="mailto:vbird@mail.vbird.idv.tw" title="联络鸟哥(我不要广告信！)">VBird</a>
+		during 2001-2011. <a href="http://www.ksu.edu.tw/" target="_blank">ksu.edu</a></span>
+         ﻿<div id="apDiv4">
+      <p>本网页主要以Firefox配合解析度 1024x768 作为设计依据&nbsp;&nbsp;&nbsp;&nbsp; 鸟哥自由软件整合应用研究室</p></div></div>
+</div>
+</center>
+</body></html>

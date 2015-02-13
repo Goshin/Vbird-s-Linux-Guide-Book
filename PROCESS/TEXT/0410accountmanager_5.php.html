@@ -1,0 +1,581 @@
+<html><head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf8">
+	<meta name="Author" content="2011/04/19,lee">
+	<meta name="Description" content="在 Linux 系统下管理用户的身份与账号！">
+	<title>鸟哥的 Linux 私房菜 -- Linux 账号管理</title>
+    <script src="../script/SpryMenuBar.js" type="text/javascript"></script>
+	<script src="../script/index.js" type="text/javascript"></script>
+	<link href="../css/SpryMenuBarHorizontal.css" rel="stylesheet" type="text/css" />
+    <link href="../css/main.css" rel="stylesheet" type="text/css" />
+    </head><body style="margin: 0pt; padding: 0pt;" class="table"onload="MM_preloadImages('image/title_19.png','image/title_26.png','image/title_27.png','image/title_28.png','image/title_06.png','image/title_08.png','image/title_10.png','image/title_12.png')">
+
+
+<!-- Copyright � 2005. Spidersoft Ltd -->
+<style>
+A.applink:hover {border: 2px dotted #DCE6F4;padding:2px;background-color:#ffff00;color:green;text-decoration:none}
+A.applink       {border: 2px dotted #DCE6F4;padding:2px;color:#2F5BFF;background:transparent;text-decoration:none}
+A.info          {color:#2F5BFF;background:transparent;text-decoration:none}
+A.info:hover    {color:green;background:transparent;text-decoration:underline}
+</style>
+<div style='BORDER: 1px solid #DCE6F4; MARGIN-TOP: 20px; MARGIN-BOTTOM: 20px; MARGIN-LEFT: 5px; MARGIN-RIGHT: 5px; PADDING: 5px; BACKGROUND-COLOR: #eef8ff;line-height:180%; COLOR: #000000; font-family: Arial; font-size: 8pt; width=100%; FILTER: progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr="#FFFFFFFF", EndColorStr="#F2F5FAFF");'>
+This page was saved using <a class="applink" href="http://www.spidersoft.com"><b>WebZIP 7.0.3.1030</b></a> <a class="applink" href="http://www.spidersoft.com"><b>offline browser</b></a>  (Unregistered) on  02/12/15 12:14:49.<br>
+<b>Address:</b> <a class="info" href="http://vbird.dic.ksu.edu.tw/linux_basic/0410accountmanager_5.php">http://vbird.dic.ksu.edu.tw/linux_basic/0410accountmanager_5.php</a><br>
+<b>Title:</b> 鸟哥的 Linux 私房菜 -- Linux 账号管理 &nbsp;&bull;&nbsp; <b>Size:</b> 40354<br></div>
+<!-- /Copyright � 2005. Spidersoft Ltd -->
+
+
+
+<center>
+<div id="apDiv5">
+<div> <LINK REL="SHORTCUT ICON" HREF="favicon.ico">
+<!-- ImageReady Slices (title3.ai) -->
+<table id="___01" width="898" height="81" border="0" align="center" cellpadding="0" cellspacing="0";>
+	<tr>
+		<td colspan="15">
+			<img src="image/title/title_01.png" width="900" height="1" alt=""></td>
+	</tr>
+	<tr>
+		<td rowspan="4" bgcolor="#182448"><p><img src="http://linux.vbird.org/cgi-bin/Count.cgi?dd=C&ft=5&sh=T&md=8&pad=Y&df=vbird.dic.ksu.edu.tw.dat" width="93" align="left" title="計數器" /></p>
+	    <p><font color="#FFFFFF" size="-1">since2012/04/23</font></p></td>
+		<td rowspan="4" align="left" valign="top"><a href="http://vbird.dic.ksu.edu.tw/"><img src="image/title/title_03.png" alt="" width="263" height="79" border="0"></a></td>
+		<td colspan="13">
+			<img src="image/title/title_04.png" alt="" width="535" height="9" border="0"></td>
+	</tr>
+	<tr>
+		<td rowspan="3">
+			<img src="image/title/title_05.png" alt="" width="53" height="70" border="0"></td>
+		<td colspan="2" align="left" valign="top"><a href="0110whatislinux.php.html" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image51','','image/title/title_06.png',1)"><img src="image/title/title3_06.png" name="Image51" width="106" height="25" border="0" id="Image51" alt=""/></a></td>
+		<td rowspan="2">
+			<img src="image/title/title_07.png" alt="" width="27" height="37" border="0"></td>
+		<td colspan="3" align="left" valign="top"><a href="http://vbird.dic.ksu.edu.tw/linux_server/0110network_basic.php" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image52','','image/title/title_08.png',1)"><img src="image/title/title3_08.png" name="Image52" width="107" height="25" border="0" id="Image52" alt=""/></a></td>
+		<td rowspan="2">
+			<img src="image/title/title_09.png" alt="" width="37" height="37" border="0"></td>
+		<td colspan="2" align="left" valign="top"><a href="http://vbird.dic.ksu.edu.tw/about.php" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image53','','image/title/title_10.png',1)"><img src="image/title/title3_10.png" name="Image53" width="75" height="25" border="0" id="Image53" alt=""/></a></td>
+		<td rowspan="3">
+			<img src="image/title/title_11.png" alt="" width="35" height="70" border="0"></td>
+		<td align="left" valign="top"><a href="mailto:vbird@mail.vbird.idv.tw" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image54','','image/title/title_12.png',1)"><img src="image/title/title3_12.png" name="Image54" width="74" height="25" border="0" id="Image54" alt=""/></a></td>
+		<td rowspan="3">
+			<img src="image/title/title_13.png" alt="" width="21" height="70" border="0"></td>
+	</tr>
+	<tr>
+		<td colspan="2">
+			<img src="image/title/title_14.png" alt="" width="106" height="12" border="0"></td>
+		<td colspan="3">
+			<img src="image/title/title_15.png" alt="" width="107" height="12" border="0"></td>
+		<td colspan="2">
+			<img src="image/title/title_16.png" width="75" height="12" alt=""></td>
+		<td rowspan="2">
+			<img src="image/title/title_17.png" alt="" width="74" height="45" border="0"></td>
+	</tr>
+	<tr>
+		<td>
+			<img src="image/title/title_18.png" alt="" width="15" height="33" border="0"></td>
+		<td colspan="3" align="left" valign="top"><ul id="MenuBar1" class="MenuBarHorizontal">
+	  <li><a href="linux_basic.php.html" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image44','','image/title/title_19.png',1)"><img src="image/title/title3_19.png" name="Image44" width="123" height="33" border="0" id="Image44" /></a>
+			    <ul>
+			      <li><a href="Mandrake9.0/mandrake9.0.php.html" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image46','','image/title/title_26.png',1)"><img src="image/title/title_23.png" name="Image46" width="120" height="26" border="0" id="Image46" alt="" /></a></li>
+                  <li><a href="fedora_4/fc4.php.html" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image47','','image/title/title_27.png',1)"><img src="image/title/title_24.png" name="Image47" width="120" height="26" border="0" id="Image47" alt="" /></a></li>
+                  <li><a href="linux_basic.php.html" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image48','','image/title/title_28.png',1)"><img src="image/title/title_25.png" name="Image48" width="120" height="26" border="0" id="Image48" alt="" /></a></li>
+                </ul>
+		      </li>
+		</ul></td>
+		<td>
+			<img src="image/title/title_20.png" alt="" width="42" height="33" border="0"></td>
+		<td colspan="3" align="left" valign="top"><ul id="MenuBar2" class="MenuBarHorizontal">
+	  <li><a href="http://vbird.dic.ksu.edu.tw/linux_server/" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image45','','image/title/title_21.png',1)"><img src="image/title/title3_21.png" name="Image45" width="125" height="33" border="0" id="Image45" /></a>
+			    <ul>
+			      <li><a href="http://vbird.dic.ksu.edu.tw/linux_server/linux_redhat9/redhat9.php" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image43','','image/title/title_26.png',1)"><img src="image/title/title_23.png" name="Image43" width="120" height="26" border="0" id="Image43" alt=""/></a></li>
+			      <li><a href="http://vbird.dic.ksu.edu.tw/linux_server/centos4.php" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image49','','image/title/title_27.png',1)"><img src="image/title/title_24.png" name="Image49" width="120" height="26" border="0" id="Image49" alt="" /></a></li>
+			      <li><a href="http://vbird.dic.ksu.edu.tw/linux_server/" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image50','','image/title/title_28.png',1)"><img src="image/title/title_25.png" name="Image50" width="120" height="26" border="0" id="Image50" alt="" /></a></li>
+		        </ul>
+		      </li>
+		</ul></td>
+		<td>
+			<img src="image/title/title_22.png" alt="" width="47" height="33" border="0"></td>
+	</tr>
+	<tr>
+		<td>
+			<img src="image/title/Spacer.gif" width="101" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="263" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="53" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="15" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="91" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="27" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="5" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="42" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="60" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="37" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="28" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="47" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="35" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="74" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="22" height="1" alt=""></td>
+	</tr>
+</table>
+<!-- End ImageReady Slices -->
+<script type="text/javascript">
+<!--
+var MenuBar1 = new Spry.Widget.MenuBar("MenuBar1", {imgDown:"SpryAssets/SpryMenuBarDownHover.gif", imgRight:"SpryAssets/SpryMenuBarRightHover.gif"});
+var MenuBar2 = new Spry.Widget.MenuBar("MenuBar2", {imgDown:"SpryAssets/SpryMenuBarDownHover.gif", imgRight:"SpryAssets/SpryMenuBarRightHover.gif"});
+//-->
+</script></div>
+<table summary="本文内容的排版" style="width: 898px;" border="0" cellpadding="0" cellspacing="0">
+<tbody><tr><td style="width: 16px; height: 16px;">　</td>
+    <td style="width: 866px; height: 16px;">　</td>
+    <td style="width: 16px; height: 16px;">　</td></tr>
+<tr><td style="width: 16px; font-size: 6px;">　</td>
+    <td width="866">
+
+<!-- 本文的档头部分 -->
+<div style="text-align: center;">
+    <a href="0410accountmanager.php.html">
+    <span class="text_head0">第十四章、<span class="text_head_en">Linux </span>账号管理与<span class="text_head_en"> ACL </span>权限配置</span></a><br>
+</div>
+    <div style="text-align: right;">
+        <span class="text_history">最近升级日期：2009/09/09</span>
+    </div>
+<!-- 本文的连结区部分 -->
+<div class="block1">
+<span class="text_h1">
+5. <a href="#usershell">使用者的特殊 shell 与 PAM 模块</a><br>
+	<span class="text_h2">
+	　　5.1 <a href="#nologin">特殊的 shell :/sbin/nologin</a>, <a href="#nologin.txt">nologin.txt</a><br>
+	　　5.2 <a href="#pam_what">PAM 模块简介</a><br>
+	　　5.3 <a href="#pam_setting">PAM 模块配置语法</a>：验证类别(type)、控制标准(flag)、模块与参数<br>
+	　　5.4 <a href="#pam_module">常用模块简介</a>： <a href="#securetty">securetty</a>,
+		<a href="#nologin_pam">nologin</a>, <a href="#cracklib">pam_cracklib</a>,
+		<a href="#login_pam">login流程</a><br>
+	　　5.5 <a href="#pam_file">其他相关文件</a>： <a href="#limits">limits.conf</a>,<br>
+	</span>
+</span></div>
+<!-- 本文的正式部分 -->
+<hr><a name="usershell"></a><img src="../image/logo.png" alt="大标题的图示" width="35" align="middle" height="34"><span class="text_h1">使用者的特殊 shell 与 PAM 模块</span><br>
+<div class="block1">
+	<p>我们前面一直谈到的大多是一般身份用户与系统管理员 (root) 的相关操作，
+	而且大多是讨论关于可登陆系统的账号来说。那么换个角度想，如果我今天想要创建的，
+	是一个『<span class="text_import2">仅能使用 mail server 相关邮件服务的账号，而该账号并不能登陆 Linux 
+	主机</span>』呢？如果不能给予该账号一个口令，那么该账号就无法使用系统的各项资源，当然也包括 mail 的资源，
+	而如果给予一个口令，那么该账号就可能可以登陆 Linux 主机啊！呵呵～伤脑筋吧～
+	所以，底下让我们来谈一谈这些有趣的话题啰！</p>
+
+	<p>另外，在本章之前谈到过 <a href="#login.defs">/etc/login.defs</a> 文件中，关于口令长度应该默认是 
+	5 个字符串长度，但是我们上面也谈到，该配置值已经被 PAM 模块所取代了，那么 PAM 
+	是什么？为什么他可以影响我们使用者的登陆呢？这里也要来谈谈的！<br><br></p>
+
+	<hr><a name="nologin"></a><img src="../image/logo.png" alt="小标题的图示" width="24" align="middle" height="23"><span class="text_h2">特殊的 shell, /sbin/nologin</span><br>
+	<div class="block2">
+		<p>在本章一开头的 <a href="#passwd_file">passwd 文件结构</a>里面我们就谈过系统账号这玩意儿，这玩意儿的 shell 
+		就是使用 /sbin/nologin ，重点在于系统账号是不需要登陆的！所以我们就给他这个无法登陆的合法 shell。
+		使用了这个 shell 的用户即使有了口令，你想要登陆时他也无法登陆，因为会出现如下的信息喔：</p>
+
+<table class="term"><tbody><tr><td class="term"><pre>This account is currently not available.
+</pre></td></tr></tbody></table>
+
+		<p>我们所谓的『无法登陆』指的仅是：『这个使用者无法使用 bash 或其他 shell 来登陆系统』而已，
+		并不是说这个账号就无法使用其他的系统资源喔！
+		举例来说，各个系统账号，打印作业由 lp 这个账号在管理， WWW 服务由 apache 这个账号在管理，
+		他们都可以进行系统程序的工作，但是『就是无法登陆主机』而已啦！^_^</p>
+
+		<p>换个角度来想，如果我的 Linux 主机提供的是邮件服务，所以说，在这部 Linux 主机上面的账号，
+		其实大部分都是用来收受主机的信件而已，并不需要登陆主机的呢！
+		这个时候，我们就可以考虑让单纯使用 mail 的账号以 /sbin/nologin 做为他们的 shell ，
+		这样，最起码当我的主机被尝试想要登陆系统以取得 shell 环境时，可以拒绝该账号呢！</p>
+
+		<a name="nologin.txt"></a>
+		<p>另外，如果我想要让某个具有 /sbin/nologin 的使用者知道，他们不能登陆主机时，
+		其实我可以创建『 <span class="text_import2">/etc/nologin.txt</span> 』这个文件，
+		并且在这个文件内说明不能登陆的原因，那么下次当这个用户想要登陆系统时，
+		屏幕上出现的就会是 /etc/nologin.txt 这个文件的内容，而不是默认的内容了！</p>
+
+<table border="1" cellpadding="5" cellspacing="0" width="90%"><tbody><tr><td>
+例题：<div class="block2">
+当使用者尝试利用纯 mail 账号 (例如 myuser3) 时，利用 /etc/nologin.txt
+告知用户不要利用该账号登陆系统。
+</div>
+答：<div class="block2">
+直接以 vi 编辑该文件，内容可以是这样：<br>
+
+<table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">vi /etc/nologin.txt</span>
+<span class="term_write">This account is system account or mail account.
+Please DO NOT use this account to login my Linux server.</span>
+</pre></td></tr></tbody></table>
+
+想要测试时，可以使用 myuser3 (此账号的 shell 是 /sbin/nologin) 来测试看看！
+<table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">su - myuser3</span>
+This account is system account or mail account.
+Please DO NOT use this account to login my Linux server.
+[root@www ~]#
+</pre></td></tr></tbody></table>
+结果会发现与原本的默认信息不一样喔！ ^_^
+</div>
+</td></tr></tbody></table><br>
+
+	</div>
+
+	<hr><a name="pam_what"></a><img src="../image/logo.png" alt="小标题的图示" width="24" align="middle" height="23"><span class="text_h2">PAM 模块简介</span><br>
+	<div class="block2">
+		<p>在过去，我们想要对一个使用者进行认证 (authentication)，得要要求用户输入账号口令，
+		然后透过自行撰写的程序来判断该账号口令是否正确。也因为如此，我们常常得使用不同的机制来判断账号口令，
+		所以搞的一部主机上面拥有多个各别的认证系统，也造成账号口令可能不同步的验证问题！
+		为了解决这个问题因此有了 PAM (Pluggable Authentication Modules, 嵌入式模块) 的机制！</p>
+
+		<p><span class="text_import2">PAM 可以说是一套应用程序编程接口 (Application Programming Interface, 
+		API)，他提供了一连串的验证机制，只要使用者将验证阶段的需求告知 PAM 后， PAM 就能够回报使用者验证的结果 
+		(成功或失败)</span>。由于 PAM 仅是一套验证的机制，又可以提供给其他程序所呼叫引用，因此不论你使用什么程序，都可以使用 
+		PAM 来进行验证，如此一来，就能够让账号口令或者是其他方式的验证具有一致的结果！也让程序设计师方便处理验证的问题喔！
+		(<a href="#ps5">注5</a>)</p>
+
+		<center><img src="0410accountmanager_files/pam-1.gif" alt="PAM 模块与其他程序的相关性" title="PAM 模块与其他程序的相关性" border="0"><br>
+		图 5.2.1、 PAM 模块与其他程序的相关性<br></center>
+
+		<p>如上述的图示， PAM 是一个独立的 API 存在，只要任何程序有需求时，可以向 PAM 发出验证要求的通知，
+		PAM 经过一连串的验证后，将验证的结果回报给该程序，然后该程序就能够利用验证的结果来进行可登陆或显示其他无法使用的信息。
+		这也就是说，你可以在写程序的时候将 PAM 模块的功能加入，就能够利用 PAM 的验证功能啰。
+		因此目前很多程序都会利用 PAM 喔！所以我们才要来学习他啊！</p>
+
+		<p>PAM 用来进行验证的数据称为模块 (Modules)，每个 PAM 模块的功能都不太相同。举例来说，
+		还记得我们在本章使用 <a href="#passwd">passwd</a> 命令时，如果随便输入字典上面找的到的字符串，
+		passwd 就会回报错误信息了！这是为什么呢？这就是 PAM 的 pam_cracklib.so 模块的功能！他能够判断该口令是否在字典里面！
+		并回报给口令修改程序，此时就能够了解你的口令强度了。</p>
+
+		<p>所以，当你有任何需要判断是否在字典当中的口令字符串时，就可以使用 pam_cracklib.so 这个模块来验证！
+		并根据验证的回报结果来撰写你的程序呢！这样说，可以理解 PAM 的功能了吧？没错！ PAM 的模块也是很重要的一环！</p>
+	</div>
+
+	<hr><a name="pam_setting"></a><img src="../image/logo.png" alt="小标题的图示" width="24" align="middle" height="23"><span class="text_h2">PAM 模块配置语法</span><br>
+	<div class="block2">
+		<p>PAM 藉由一个与程序相同文件名的配置文件来进行一连串的认证分析需求。我们同样以 passwd 这个命令的呼叫 PAM 来说明好了。
+		当你运行 passwd 后，这支程序呼叫 PAM 的流程是：</p>
+		<ol class="text_import2">
+		<li>用户开始运行 /usr/bin/passwd 这支程序，并输入口令；</li>
+		<li>passwd 呼叫 PAM 模块进行验证；</li>
+		<li>PAM 模块会到 /etc/pam.d/ 找寻与程序 (passwd) 同名的配置文件；</li>
+		<li>依据 /etc/pam.d/passwd 内的配置，引用相关的 PAM 模块逐步进行验证分析；</li>
+		<li>将验证结果 (成功、失败以及其他信息) 回传给 passwd 这支程序；</li>
+		<li>passwd 这支程序会根据 PAM 回传的结果决定下一个动作 (重新输入新口令或者通过验证！)</li>
+		</ol>
+
+		<p>从上头的说明，我们会知道重点其实是 /etc/pam.d/ 里面的配置文件，以及配置文件所呼叫的 PAM 模块进行的验证工作！
+		既然一直谈到 passwd 这个口令修改命令，那我们就来看看 /etc/pam.d/passwd 这个配置文件的内容是怎样吧！</p>
+
+<table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">cat /etc/pam.d/passwd</span>
+#%PAM-1.0  <span class="term_note">&lt;==PAM版本的说明而已！</span>
+auth       include      system-auth <span class="term_note">&lt;==每一行都是一个验证的过程</span>
+account    include      system-auth
+password   include      system-auth
+<span class="term_say">验证类别   控制标准     PAM 模块与该模块的参数</span>
+</pre></td></tr></tbody></table>
+
+		<p>在这个配置文件当中，除了第一行宣告 PAM 版本之外，其他任何『 # 』开头的都是批注，而每一行都是一个独立的验证流程，
+		每一行可以区分为三个字段，分别是验证类别(type)、控制标准(flag)、PAM的模块与该模块的参数。
+		底下我们先来谈谈验证类别与控制标准这两项数据吧！</p>
+
+		<div style="padding: 10pt 0pt;" align="right"><table width="90%"><tbody><tr><td><b>Tips:</b><br><span style="color: rgb(0, 144, 0);"><font size="-1">		你会发现在我们上面的表格当中出现的是『 include 
+		(包括) 』这个关键词，他代表的是『请呼叫后面的文件来作为这个类别的验证』，
+		所以，上述的每一行都要重复呼叫 /etc/pam.d/system-auth 那个文件来进行验证的意思！
+		</font></span></td><td><img src="0410accountmanager_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div>
+		<hr><ul class="list1"><li class="text_import1">第一个字段：验证类别 (Type)</li></ul>
+
+		<p>验证类别主要分为四种，分别说明如下：</p>
+
+		<ul>
+		<li><span class="text_import1">auth</span><br>
+		是 authentication (认证) 的缩写，所以这种类别主要用来检验使用者的身份验证，这种类别通常是需要口令来检验的，
+		所以后续接的模块是用来检验用户的身份。<br><br></li>
+
+		<li><span class="text_import1">account</span><br>
+		account (账号) 则大部分是在进行 authorization (授权)，这种类别则主要在检验使用者是否具有正确的权限，
+		举例来说，当你使用一个过期的口令来登陆时，当然就无法正确的登陆了。<br><br></li>
+
+		<li><span class="text_import1">session</span><br>
+		session 是会议期间的意思，所以 session 管理的就是使用者在这次登陆 (或使用这个命令) 期间，PAM 所给予的环境配置。
+		这个类别通常用在记录用户登陆与注销时的信息！例如，如果你常常使用 su 或者是 sudo 命令的话，
+		那么应该可以在 /var/log/secure 里面发现很多关于 pam 的说明，而且记载的数据是『session open, session close』的信息！
+		<br><br></li>
+
+		<li><span class="text_import1">password</span><br>
+		password 就是口令嘛！所以这种类别主要在提供验证的修订工作，举例来说，就是修改/变更口令啦！</li>
+		</ul>
+
+		<p><span class="text_import2">这四个验证的类型通常是有顺序的</span>，不过也有例外就是了。
+		会有顺序的原因是，(1)我们总是得要先验证身份 (auth) 后，
+		(2)系统才能够藉由用户的身份给予适当的授权与权限配置 (account)，而且(3)登陆与注销期间的环境才需要配置，
+		也才需要记录登陆与注销的信息 (session)。如果在运行期间需要口令修订时，(4)才给予 password 的类别。这样说起来，
+		自然是需要有点顺序吧！<br><br></p>
+
+		<hr><ul class="list1"><li class="text_import1">第二个字段：验证的控制旗标 (control flag)</li></ul>
+
+		<p>那么『验证的控制旗标(control flag)』又是什么？简单的说，他就是『验证通过的标准』啦！
+		这个字段在管控该验证的放行方式，主要也分为四种控制方式：</p>
+
+		<ul>
+		<li><span class="text_import1">required</span><br>
+		此验证若成功则带有 success (成功) 的标志，若失败则带有 failure 的标志，但不论成功或失败都会继续后续的验证流程。
+		由于后续的验证流程可以继续进行，因此相当有利于数据的登录 (log) ，这也是 PAM 最常使用 required 的原因。<br><br></li>
+
+		<li><span class="text_import1">requisite</span><br>
+		若验证失败则立刻回报原程序 failure 的标志，并终止后续的验证流程。若验证成功则带有 success 的标志并继续后续的验证流程。
+		这个项目与 required 最大的差异，就在于失败的时候还要不要继续验证下去？由于 requisite 是失败就终止，
+		因此失败时所产生的 PAM 信息就无法透过后续的模块来记录了。<br><br></li>
+
+		<li><span class="text_import1">sufficient</span><br>
+		若验证成功则立刻回传 success 给原程序，并终止后续的验证流程；若验证失败则带有 failure 标志并继续后续的验证流程。
+		这玩意儿与 requisits 刚好相反！<br><br></li>
+
+		<li><span class="text_import1">optional</span><br>
+		这个模块控件目大多是在显示信息而已，并不是用在验证方面的。</li>
+		</ul>
+
+		<p>如果将这些控制旗标以图示的方式配合成功与否的条件绘图，会有点像底下这样：</p>
+
+		<center><img src="0410accountmanager_files/pam-2.gif" alt="PAM 控制旗标所造成的回报流程" title="PAM 控制旗标所造成的回报流程" border="0"><br>
+		图 5.3.1、 PAM 控制旗标所造成的回报流程<br></center>
+
+		<p>程序运行过程中遇到验证时才会去呼叫 PAM ，而 PAM 验证又分很多类型与控制，不同的控制旗标所回报的信息并不相同。
+		如上图所示， requisite 失败就回报了并不会继续，而 sufficient 则是成功就回报了也不会继续。
+		至于验证结束后所回报的信息通常是『succes 或 failure 』而已，后续的流程还需要该程序的判断来继续运行才行。</p>
+	</div>
+
+	<hr><a name="pam_module"></a><img src="../image/logo.png" alt="小标题的图示" width="24" align="middle" height="23"><span class="text_h2">常用模块简介</span><br>
+	<div class="block2">
+		<p>谈完了配置文件的语法后，现在让我们来查阅一下 CentOS 5.x 提供的 PAM 默认文件的内容是啥吧！
+		由于我们常常需要透过各种方式登陆 (login) 系统，因此就来看看登陆所需要的 PAM 流程为何：</p>
+
+<table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">cat /etc/pam.d/login</span>
+#%PAM-1.0
+auth [user_unknown=ignore success=ok ignore=ignore default=bad] <span class="term_write">pam_securetty.so</span>
+auth       include      system-auth
+account    required     <span class="term_write">pam_nologin.so</span>
+account    include      system-auth
+password   include      system-auth
+# pam_selinux.so close should be the first session rule
+session    required     pam_selinux.so close
+session    include      system-auth
+session    required     pam_loginuid.so
+session    optional     pam_console.so
+# pam_selinux.so open should only be followed by sessions...
+session    required     pam_selinux.so open
+session    optional     pam_keyinit.so force revoke
+<span class="term_say"># 我们可以看到，其实 login 也呼叫多次的 system-auth ，所以底下列出该配置文件</span>
+
+[root@www ~]# <span class="term_command">cat /etc/pam.d/system-auth</span>
+#%PAM-1.0
+# This file is auto-generated.
+# User changes will be destroyed the next time authconfig is run.
+auth     required     pam_env.so
+auth     sufficient   pam_unix.so nullok try_first_pass
+auth     requisite    pam_succeed_if.so uid &gt;= 500 quiet
+auth     required     pam_deny.so
+
+account  required     pam_unix.so
+account  sufficient   pam_succeed_if.so uid &lt; 500 quiet
+account  required     pam_permit.so
+
+password requisite    <span class="term_write">pam_cracklib.so try_first_pass retry=3</span>
+password sufficient   pam_unix.so md5 shadow nullok try_first_pass use_authtok
+password required     pam_deny.so
+
+session  optional     pam_keyinit.so revoke
+session  required     <span class="term_write">pam_limits.so</span>
+session  [success=1 default=ignore] pam_succeed_if.so service in crond quiet \
+                      use_uid
+session  required     pam_unix.so
+</pre></td></tr></tbody></table>
+
+		<p>上面这个表格当中使用到非常多的 PAM 模块，每个模块的功能都不太相同，详细的模块情报可以在你的系统中找到：</p>
+
+		<ul class="text_import2">
+		<li>/etc/pam.d/*：每个程序个别的 PAM 配置文件；</li>
+		<li>/lib/security/*：PAM 模块文件的实际放置目录；</li>
+		<li>/etc/security/*：其他 PAM 环境的配置文件；</li>
+		<li>/usr/share/doc/pam-*/：详细的 PAM 说明文件。</li>
+		</ul>
+
+		<p>例如鸟哥使用未 update 过的 CentOS 5.2 ，pam_nologin 说明文件档在： 
+		/usr/share/doc/pam-0.99.6.2/txts/README.pam_nologin。你可以自行查阅一下该模块的功能。
+		鸟哥这里仅简单介绍几个较常使用的模块，详细的信息还得要您努力查阅参考书呢！ ^_^</p>
+
+		<ul>
+		<li><a name="securetty"></a><span class="text_import1">pam_securetty.so</span>：<br>
+			限制系统管理员 (root) 只能够从安全的 (secure) 终端机登陆；那什么是终端机？例如 
+			tty1, tty2 等就是传统的终端机装置名称。那么<span class="text_import2">安全的终端机配置呢？
+			就写在 /etc/securetty 这个文件中</span>。你可以查阅一下该文件，
+			就知道为什么 root 可以从 tty1~tty7 登陆，但却无法透过 telnet 登陆 Linux 主机了！<br><br></li>
+
+		<li><a name="nologin_pam"></a><span class="text_import1">pam_nologin.so</span>：<br>
+			这个模块可以限制一般用户是否能够登陆主机之用。当 <span class="text_import2">/etc/nologin
+			这个文件存在时，则所有一般使用者均无法再登陆系统了</span>！若 /etc/nologin 存在，则一般使用者在登陆时，
+			在他们的终端机上会将该文件的内容显示出来！所以，正常的情况下，这个文件应该是不能存在系统中的。
+			但这个模块对 root 以及已经登陆系统中的一般账号并没有影响。<br><br></li>
+
+		<li><span class="text_import1">pam_selinux.so</span>：<br>
+			SELinux 是个针对程序来进行细部管理权限的功能，SELinux 这玩意儿我们会在<a href="0440processcontrol.php.html">第十七章</a>的时候再来详细谈论。由于 SELinux 
+			会影响到用户运行程序的权限，因此我们利用 PAM 模块，将 SELinux 暂时关闭，等到验证通过后，
+			再予以启动！<br><br></li>
+
+		<li><span class="text_import1">pam_console.so</span>：<br>
+			当系统出现某些问题，或者是某些时刻你需要使用特殊的终端接口 (例如 RS232 之类的终端联机设备) 登陆主机时，
+			这个模块可以帮助处理一些文件权限的问题，让使用者可以透过特殊终端接口 (console) 顺利的登陆系统。<br><br></li>
+
+		<li><span class="text_import1">pam_loginuid.so</span>：<br>
+			我们知道系统账号与一般账号的 UID 是不同的！一般账号 UID 均大于 500 才合理。
+			因此，为了验证使用者的 UID 真的是我们所需要的数值，可以使用这个模块来进行规范！<br><br></li>
+
+		<li><span class="text_import1">pam_env.so</span>：<br>
+			用来配置环境变量的一个模块，如果你有需要额外的环境变量配置，可以参考
+			/etc/security/pam_env.conf 这个文件的详细说明。<br><br></li>
+
+		<li><span class="text_import1">pam_unix.so</span>：<br>
+			这是个很复杂且重要的模块，这个模块可以用在验证阶段的认证功能，可以用在授权阶段的账号许可证管理，
+			可以用在会议阶段的登录文件记录等，甚至也可以用在口令升级阶段的检验！非常丰富的功能！
+			这个模块在早期使用得相当频繁喔！<br><br></li>
+
+		<li><a name="cracklib"></a><span class="text_import1">pam_cracklib.so</span>：<br>
+			可以用来检验口令的强度！包括口令是否在字典中，口令输入几次都失败就断掉此次联机等功能，都是这模块提供的！
+			这玩意儿很重要！<br><br></li>
+
+		<li><span class="text_import1">pam_limits.so</span>：<br>
+			还记得我们在<a href="http://vbird.dic.ksu.edu.tw/linux_basic/0320bash.php#variable_ulimit">十一章谈到的 ulimit</a> 吗？
+			其实那就是这个模块提供的能力！还有更多细部的配置可以参考：
+			/etc/security/limits.conf 内的说明。</li>
+		</ul>
+
+		<a name="login_pam"></a>
+		<p>了解了这些模块的大致功能后，言归正传，讨论一下 login 的 PAM 验证机制流程是这样的：</p>
+
+		<ol>
+		<li>验证阶段 (auth)：首先，(a)会先经过 pam_securetty.so 判断，如果使用者是 root 时，则会参考 /etc/securetty 的配置；
+			接下来(b)经过 pam_env.so 配置额外的环境变量；再(c)透过 pam_unix.so 检验口令，若通过则回报 login 
+			程序；若不通过则(d)继续往下以 pam_succeed_if.so 判断 UID 是否大于 500 ，若小于 500则回报失败，否则再往下
+			(e)以 pam_deny.so 拒绝联机。<br><br></li>
+
+		<li>授权阶段 (account)：(a)先以 pam_nologin.so  判断 /etc/nologin 是否存在，若存在则不许一般使用者登陆；
+			(b)接下来以 pam_unix 进行账号管理，再以 (c) pam_succeed_if.so 判断 UID 是否小于 500 ，若小于 500 
+			则不记录登录信息。(d)最后以 pam_permit.so 允许该账号登陆。<br><br></li>
+
+		<li>口令阶段 (password)：(a)先以 pam_cracklib.so 配置口令仅能尝试错误 3 次；(b)接下来以
+			pam_unix.so 透过 md5, shadow 等功能进行口令检验，若通过则回报 login 程序，若不通过则 (c)以 pam_deny.so 
+			拒绝登陆。<br><br></li>
+
+		<li>会议阶段 (session)：(a)先以 pam_selinux.so 暂时关闭 SELinux；(b)使用 pam_limits.so 
+			配置好用户能够操作的系统资源； (c)登陆成功后开始记录相关信息在登录文件中； (d)以 pam_loginuid.so 
+			规范不同的 UID 权限；(e)开启 pam_selinux.so 的功能。</li>
+		</ol>
+
+		<p>总之，就是依据验证类别 (type) 来看，然后先由 login 的配置值去查阅，如果出现『 include system-auth 』
+		就转到 system-auth 文件中的相同类别，去取得额外的验证流程就是了。然后再到下一个验证类别，最终将所有的验证跑完！
+		就结束这次的 PAM 验证啦！</p>
+
+		<p>经过这样的验证流程，现在你知道为啥 /etc/nologin 存在会有问题，也会知道为何你使用一些远程联机机制时，
+		老是无法使用 root 登陆的问题了吧？没错！这都是 PAM 模块提供的功能啦！</p>
+
+
+<table border="1" cellpadding="5" cellspacing="0" width="90%"><tbody><tr><td>
+例题：<div class="block2">
+为什么 root 无法以 telnet 直接登陆系统，但是却能够使用 ssh 直接登陆？
+</div>
+答：<div class="block2">
+一般来说， telnet 会引用 login 的 PAM 模块，而 login 的验证阶段会有 /etc/securetty 的限制！
+由于远程联机属于 pts/n (n 为数字) 的动态终端机接口装置名称，并没有写入到 /etc/securetty ，
+因此 root 无法以 telnet 登陆远程主机。至于 ssh 使用的是 /etc/pam.d/sshd 这个模块，
+你可以查阅一下该模块，由于该模块的验证阶段并没有加入 pam_securetty ，因此就没有 /etc/securetty 
+的限制！故可以从远程直接联机到服务器端。<br><br>
+另外，关于 telnet 与 ssh 的细部说明，请参考<a href="http://vbird.dic.ksu.edu.tw/linux_server">鸟哥的 Linux 私房菜服务器篇</a>
+</div>
+</td></tr></tbody></table><br>
+
+	</div>
+
+	<hr><a name="pam_file"></a><img src="../image/logo.png" alt="小标题的图示" width="24" align="middle" height="23"><span class="text_h2">其他相关文件</span><br>
+	<div class="block2">
+		<p>除了前一小节谈到的 /etc/securetty 会影响到 root 可登陆的安全终端机， /etc/nologin
+		会影响到一般使用者是否能够登陆的功能之外，我们也知道 PAM 相关的配置文件在 /etc/pam.d ，
+		说明文件在 /usr/share/doc/pam-(版本) ，模块实际在 /lib/security/ 。那么还有没有相关的 PAM 文件呢？
+		是有的，主要都在 /etc/security 这个目录内！我们底下介绍几个可能会用到的配置文件喔！<br><br></p>
+
+		<a name="limits"></a>
+		<a name="20070415"></a>
+		<hr><ul class="list1"><li class="text_import1">limits.conf</li></ul>
+
+		<p>我们在第十一章谈到的 <a href="http://vbird.dic.ksu.edu.tw/linux_basic/0320bash.php#variable_ulimit">ulimit</a> 功能中，
+		除了修改使用者的 ~/.bashrc 配置文件之外，其实系统管理员可以统一藉由 PAM 来管理的！
+		那就是 /etc/security/limits.conf 这个文件的配置了。这个文件的配置很简单，你可以自行参考一下该文件内容。
+		我们这里仅作个简单的介绍：</p>
+
+<table class="term"><tbody><tr><td class="term"><pre><span class="term_hd">范例一：vbird1 这个用户只能创建 100MB 的文件，且大于 90MB 会警告</span>
+[root@www ~]# <span class="term_command">vi /etc/security/limits.conf</span>
+<span class="term_write">vbird1	soft		fsize		 90000
+vbird1	hard		fsize		100000</span>
+<span class="term_say">#账号   限制依据	限制项目 	限制值
+# 第一字段为账号，或者是群组！若为群组则前面需要加上 @ ，例如 @projecta
+# 第二字段为限制的依据，是严格(hard)，还是仅为警告(soft)；
+# 第三字段为相关限制，此例中限制文件容量，
+# 第四字段为限制的值，在此例中单位为 KB。
+# 若以 vbird1 登陆后，进行如下的操作则会有相关的限制出现！</span>
+
+[vbird1@www ~]$ <span class="term_command">ulimit -a</span>
+<span class="term_say">....(前面省略)....</span>
+file size               (blocks, -f) <span class="term_write">90000</span>
+<span class="term_say">....(后面省略)....</span>
+
+[vbird1@www ~]$ <span class="term_command">dd if=/dev/zero of=test bs=1M count=110</span>
+File size limit exceeded
+[vbird1@www ~]$ <span class="term_command">ll -k test</span>
+-rw-rw-r-- 1 vbird1 vbird1 <span class="term_write">90000</span> Mar  4 11:30 test
+<span class="term_say"># 果然有限制到了</span>
+
+<span class="term_hd">范例二：限制 pro1 这个群组，每次仅能有一个用户登陆系统 (maxlogins)</span>
+[root@www ~]# <span class="term_command">vi /etc/security/limits.conf</span>
+<span class="term_write">@pro1   hard   maxlogins   1</span>
+<span class="term_say"># 如果要使用群组功能的话，这个功能似乎对初始群组才有效喔！
+# 而如果你尝试多个 pro1 的登陆时，第二个以后就无法登陆了。
+# 而且在 /var/log/secure 文件中还会出现如下的信息：
+# pam_limits(login:session): Too many logins (max 1) for pro1</span>
+</pre></td></tr></tbody></table>
+
+		<p>这个文件挺有趣的，而且是配置完成就生效了，你不用重新启动任何服务的！
+		但是 PAM 有个特殊的地方，由于他是在程序呼叫时才予以配置的，因此你修改完成的数据，
+		对于已登陆系统中的用户是没有效果的，要等他再次登陆时才会生效喔！另外，
+		上述的配置请在测试完成后立刻批注掉，否则下次这两个使用者登陆就会发生些许问题啦！ ^_^<br><br></p>
+
+		<hr><ul class="list1"><li class="text_import1">/var/log/secure, /var/log/messages</li></ul>
+
+		<p>如果发生任何无法登陆或者是产生一些你无法预期的错误时，由于 PAM 模块都会将数据记载在
+		/var/log/secure 当中，所以发生了问题请务必到该文件内去查询一下问题点！举例来说，
+		我们在 <a href="#limits">limits.conf</a> 的介绍内的范例二，就有谈到多重登陆的错误可以到 /var/log/secure 内查阅了！
+		这样你也就知道为何第二个 pro1 无法登陆啦！^_^</p>
+	</div>
+
+</div>
+<hr />
+    </td>
+    <td style="width: 16px; font-size: 6px;">　</td></tr>
+<tr><td style="width: 16px; height: 16px;">　</td>
+    <td style="width: 866px; height: 16px;">　</td>
+    <td style="width: 16px; height: 16px;">　</td></tr>
+</tbody></table>
+
+<div style="padding-top: 0px; text-align: center;">
+<span style="font-size: 80%;">
+	<a href="http://vbird.dic.ksu.edu.tw/" target="_top" title="前往鸟哥的首页">http://linux.vbird.org</a>
+	is designed by <a href="mailto:vbird@mail.vbird.idv.tw" title="联络鸟哥(我不要广告信！)">VBird</a>
+		during 2001-2011. <a href="http://www.ksu.edu.tw/" target="_blank">ksu.edu</a></span>
+         ﻿<div id="apDiv4">
+      <p>本网页主要以Firefox配合解析度 1024x768 作为设计依据&nbsp;&nbsp;&nbsp;&nbsp; 鸟哥自由软件整合应用研究室</p></div></div>
+</div>
+</center>
+</body></html>

@@ -1,0 +1,828 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html lang="zh-TW"><head>
+
+
+	<meta http-equiv="Content-Type" content="text/html; charset=utf8">
+	<meta name="Author" content="VBird, 鸟哥">
+	<meta name="Description" content="让用户能够使用的磁盘容量受限制！">
+	<title>鸟哥的 Linux 私房菜 -- 磁盘配额 Quota</title>
+    <script src="../../script/SpryMenuBar.js" type="text/javascript"></script>
+	<script src="../../script/index.js" type="text/javascript"></script>
+	<link href="../../css/SpryMenuBarHorizontal.css" rel="stylesheet" type="text/css" />
+    <link href="../../css/main.css" rel="stylesheet" type="text/css" />
+</head><body style="margin: 0pt; padding: 0pt;" class="table"onload="MM_preloadImages('image/title_19.png','image/title_26.png','image/title_27.png','image/title_28.png','image/title_06.png','image/title_08.png','image/title_10.png','image/title_12.png')">
+
+
+<!-- Copyright � 2005. Spidersoft Ltd -->
+<style>
+A.applink:hover {border: 2px dotted #DCE6F4;padding:2px;background-color:#ffff00;color:green;text-decoration:none}
+A.applink       {border: 2px dotted #DCE6F4;padding:2px;color:#2F5BFF;background:transparent;text-decoration:none}
+A.info          {color:#2F5BFF;background:transparent;text-decoration:none}
+A.info:hover    {color:green;background:transparent;text-decoration:underline}
+</style>
+<div style='BORDER: 1px solid #DCE6F4; MARGIN-TOP: 20px; MARGIN-BOTTOM: 20px; MARGIN-LEFT: 5px; MARGIN-RIGHT: 5px; PADDING: 5px; BACKGROUND-COLOR: #eef8ff;line-height:180%; COLOR: #000000; font-family: Arial; font-size: 8pt; width=100%; FILTER: progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr="#FFFFFFFF", EndColorStr="#F2F5FAFF");'>
+This page was saved using <a class="applink" href="http://www.spidersoft.com"><b>WebZIP 7.0.3.1030</b></a> <a class="applink" href="http://www.spidersoft.com"><b>offline browser</b></a>  (Unregistered) on  02/12/15 12:14:49.<br>
+<b>Address:</b> <a class="info" href="http://vbird.dic.ksu.edu.tw/linux_basic/fedora_4/0420quota-fc4.php">http://vbird.dic.ksu.edu.tw/linux_basic/fedora_4/0420quota-fc4.php</a><br>
+<b>Title:</b> 鸟哥的 Linux 私房菜 -- 磁盘配额 Quota &nbsp;&bull;&nbsp; <b>Size:</b> 54910<br></div>
+<!-- /Copyright � 2005. Spidersoft Ltd -->
+
+
+
+<center>
+<div id="apDiv5">
+<div> <LINK REL="SHORTCUT ICON" HREF="favicon.ico">
+<!-- ImageReady Slices (title3.ai) -->
+<table id="___01" width="898" height="81" border="0" align="center" cellpadding="0" cellspacing="0";>
+	<tr>
+		<td colspan="15">
+			<img src="image/title/title_01.png" width="900" height="1" alt=""></td>
+	</tr>
+	<tr>
+		<td rowspan="4" bgcolor="#182448"><p><img src="http://linux.vbird.org/cgi-bin/Count.cgi?dd=C&ft=5&sh=T&md=8&pad=Y&df=vbird.dic.ksu.edu.tw.dat" width="93" align="left" title="計數器" /></p>
+	    <p><font color="#FFFFFF" size="-1">since2012/04/23</font></p></td>
+		<td rowspan="4" align="left" valign="top"><a href="http://vbird.dic.ksu.edu.tw/"><img src="image/title/title_03.png" alt="" width="263" height="79" border="0"></a></td>
+		<td colspan="13">
+			<img src="image/title/title_04.png" alt="" width="535" height="9" border="0"></td>
+	</tr>
+	<tr>
+		<td rowspan="3">
+			<img src="image/title/title_05.png" alt="" width="53" height="70" border="0"></td>
+		<td colspan="2" align="left" valign="top"><a href="../0110whatislinux.php.html" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image51','','image/title/title_06.png',1)"><img src="image/title/title3_06.png" name="Image51" width="106" height="25" border="0" id="Image51" alt=""/></a></td>
+		<td rowspan="2">
+			<img src="image/title/title_07.png" alt="" width="27" height="37" border="0"></td>
+		<td colspan="3" align="left" valign="top"><a href="http://vbird.dic.ksu.edu.tw/linux_server/0110network_basic.php" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image52','','image/title/title_08.png',1)"><img src="image/title/title3_08.png" name="Image52" width="107" height="25" border="0" id="Image52" alt=""/></a></td>
+		<td rowspan="2">
+			<img src="image/title/title_09.png" alt="" width="37" height="37" border="0"></td>
+		<td colspan="2" align="left" valign="top"><a href="http://vbird.dic.ksu.edu.tw/about.php" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image53','','image/title/title_10.png',1)"><img src="image/title/title3_10.png" name="Image53" width="75" height="25" border="0" id="Image53" alt=""/></a></td>
+		<td rowspan="3">
+			<img src="image/title/title_11.png" alt="" width="35" height="70" border="0"></td>
+		<td align="left" valign="top"><a href="mailto:vbird@mail.vbird.idv.tw" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image54','','image/title/title_12.png',1)"><img src="image/title/title3_12.png" name="Image54" width="74" height="25" border="0" id="Image54" alt=""/></a></td>
+		<td rowspan="3">
+			<img src="image/title/title_13.png" alt="" width="21" height="70" border="0"></td>
+	</tr>
+	<tr>
+		<td colspan="2">
+			<img src="image/title/title_14.png" alt="" width="106" height="12" border="0"></td>
+		<td colspan="3">
+			<img src="image/title/title_15.png" alt="" width="107" height="12" border="0"></td>
+		<td colspan="2">
+			<img src="image/title/title_16.png" width="75" height="12" alt=""></td>
+		<td rowspan="2">
+			<img src="image/title/title_17.png" alt="" width="74" height="45" border="0"></td>
+	</tr>
+	<tr>
+		<td>
+			<img src="image/title/title_18.png" alt="" width="15" height="33" border="0"></td>
+		<td colspan="3" align="left" valign="top"><ul id="MenuBar1" class="MenuBarHorizontal">
+	  <li><a href="../linux_basic.php.html" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image44','','image/title/title_19.png',1)"><img src="image/title/title3_19.png" name="Image44" width="123" height="33" border="0" id="Image44" /></a>
+			    <ul>
+			      <li><a href="../Mandrake9.0/mandrake9.0.php.html" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image46','','image/title/title_26.png',1)"><img src="image/title/title_23.png" name="Image46" width="120" height="26" border="0" id="Image46" alt="" /></a></li>
+                  <li><a href="fc4.php.html" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image47','','image/title/title_27.png',1)"><img src="image/title/title_24.png" name="Image47" width="120" height="26" border="0" id="Image47" alt="" /></a></li>
+                  <li><a href="../linux_basic.php.html" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image48','','image/title/title_28.png',1)"><img src="image/title/title_25.png" name="Image48" width="120" height="26" border="0" id="Image48" alt="" /></a></li>
+                </ul>
+		      </li>
+		</ul></td>
+		<td>
+			<img src="image/title/title_20.png" alt="" width="42" height="33" border="0"></td>
+		<td colspan="3" align="left" valign="top"><ul id="MenuBar2" class="MenuBarHorizontal">
+	  <li><a href="http://vbird.dic.ksu.edu.tw/linux_server/" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image45','','image/title/title_21.png',1)"><img src="image/title/title3_21.png" name="Image45" width="125" height="33" border="0" id="Image45" /></a>
+			    <ul>
+			      <li><a href="http://vbird.dic.ksu.edu.tw/linux_server/linux_redhat9/redhat9.php" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image43','','image/title/title_26.png',1)"><img src="image/title/title_23.png" name="Image43" width="120" height="26" border="0" id="Image43" alt=""/></a></li>
+			      <li><a href="http://vbird.dic.ksu.edu.tw/linux_server/centos4.php" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image49','','image/title/title_27.png',1)"><img src="image/title/title_24.png" name="Image49" width="120" height="26" border="0" id="Image49" alt="" /></a></li>
+			      <li><a href="http://vbird.dic.ksu.edu.tw/linux_server/" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image50','','image/title/title_28.png',1)"><img src="image/title/title_25.png" name="Image50" width="120" height="26" border="0" id="Image50" alt="" /></a></li>
+		        </ul>
+		      </li>
+		</ul></td>
+		<td>
+			<img src="image/title/title_22.png" alt="" width="47" height="33" border="0"></td>
+	</tr>
+	<tr>
+		<td>
+			<img src="image/title/Spacer.gif" width="101" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="263" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="53" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="15" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="91" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="27" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="5" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="42" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="60" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="37" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="28" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="47" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="35" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="74" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="22" height="1" alt=""></td>
+	</tr>
+</table>
+<!-- End ImageReady Slices -->
+<script type="text/javascript">
+<!--
+var MenuBar1 = new Spry.Widget.MenuBar("MenuBar1", {imgDown:"SpryAssets/SpryMenuBarDownHover.gif", imgRight:"SpryAssets/SpryMenuBarRightHover.gif"});
+var MenuBar2 = new Spry.Widget.MenuBar("MenuBar2", {imgDown:"SpryAssets/SpryMenuBarDownHover.gif", imgRight:"SpryAssets/SpryMenuBarRightHover.gif"});
+//-->
+</script></div>
+<table summary="本文内容的排版" style="width: 898px;" border="0" cellpadding="0" cellspacing="0">
+<tbody><tr><td style="width: 16px; height: 16px;">　</td>
+    <td style="width: 866px; height: 16px;">　</td>
+    <td style="width: 16px; height: 16px;">　</td></tr>
+<tr><td style="width: 16px; font-size: 6px;">　</td>
+    <td width="866">
+
+<!-- 本文的档头部分 -->
+<div style="text-align: center;">
+    <a href="http://linux.vbird.org/linux_basic/0420quota/0420quota.php">
+    <span class="text_head0"><span class="text_head_en">Linux </span>磁盘配额 (Quota)</span></a><br>
+</div>
+    <div style="text-align: right;">
+        <span class="text_history">最近更新日期：2005/09/06</span>
+    </div>
+<center>本文已不再维护，更新文章请参考<a href="http://linux.vbird.org/linux_basic/0420quota.php">此处</a></center>
+<!-- 本文的档头部分 -->
+<center><table class="head1" summary="排版：文章档头的说明"><tbody><tr><td class="head1">
+	磁盘配额 ( Quota ) 一直就是个很有用的东西！怎么说呢？举个例子来说明，
+	如果您曾经申请过网络的 mail 服务时，那么肯定就会明白什么是 20MB 的邮件空间、 
+	30MB 的免费网页空间，好了，这个 20MB, 30MB 是怎样定义出来的呢？哈哈！没错，就是 
+	quota 这个东西搞出来的！如果我们要限制用户使用硬盘的容量使用大小，嗯！来这里看看就对了！
+</td></tr></tbody></table></center>
+
+<!-- 本文的连结区部分 -->
+<div class="block1">
+<span class="text_h1">
+1. <a href="#whatis">什么是 quota</a><br>
+2. <a href="#quota_command">基本的 quota 指令介绍：</a><br>
+	<span class="text_h2">
+	　　	<a href="#mtab">/etc/mtab</a>, <a href="#quota">quota</a>, 
+		<a href="#quotacheck">quotacheck</a>, <a href="#edquota">edquota</a>,
+		<a href="#quotaon">quotaon</a>, <a href="#quotaoff">quotaoff</a><br>
+	</span>
+3. <a href="#manual">实作 quota</a><br>
+4. <a href="#nochange">不更动既有系统的 quota 实例</a><br>
+5. <a href="#FAQ">本章习题练习</a><br>
+<span class="text_h2">
+6. <a href="http://phorum.vbird.org/viewtopic.php?t=23888" target="_blank">针对本文的建议：http://phorum.vbird.org/viewtopic.php?t=23888</a>
+</span>
+</span>
+</div>
+
+<!-- 本文的正式部分 -->
+<hr><a name="whatis"></a><img src="../image/logo.png" alt="大标题的图示" width="35" align="middle" height="34"><span class="text_h1">什么是 Quota</span><br>
+<div class="block1">
+	『 quota 』就字面上的意思来看，呵呵！就是有多少『限额』的意思啦！如果是用在零用钱上面，
+	就是类似『<span class="text_import2">有多少零用钱一个月</span>』的意思之类的。如果是在容量空间上面呢？以
+	Linux 来说，呵呵！就是有多少容量限制的意思。<br><br>
+
+	在 Linux 系统中，由于是多人多任务的环境，所以会有多人共同使用一个硬盘空间的情况发生，
+	如果其中有少数几个使用者大量的占掉了硬盘空间的话，那势必压缩其他使用者的使用权力！
+	因此管理员应该适当的开放硬盘的权限给用户，以妥善的分配系统资源！避免有人抗议呀！
+	举例来说，我们用户的默认家目录都是在 /home 底下，如果 /home 是个独立的 partition ，
+	他大概有 10G 好了，而 /home 底下共有 30 个人，也就是说，每个用户平均应该会有 333MB 的空间才对。
+	偏偏有个用户在他的家目录底下塞了好多只影片，占掉了 8GB 的空间，想想看，是否造成其他正常使用者的不便呢？
+	这个时候就得要靠 quota 的帮忙啰！<br><br>
+
+	<li><span class="text_import1">Quota 的一般用途</span></li>
+	<div class="block2">
+		quota 比较常使用的几个情况是：<ul><span class="text_import2">
+		<li>针对 WWW server ，例如：每个人的网页空间的容量限制！
+		</li><li>针对 mail server，例如：每个人的邮件空间限制。
+		</li><li>针对 file server，例如：每个人最大的可用网络硬盘空间。</li></span></ul>
+
+		在 Linux 当中，使用来作为硬盘空间管理的就是所谓的 quota 这个咚咚啦！<br><br>
+	</div>
+
+	<li><span class="text_import1">Quota 的使用限制</span></li>
+	<div class="block2">
+		使用这个模块要有几个步骤，底下就分别说说吧！另外要特别注意的是，使用
+		quota 时有几个基本的限制需要谈一谈：<ul>
+
+		<li><span class="text_import2">仅针对整个 partition：</span><br>
+		quota 实际在运作的时候，是针对『<span class="text_import2">整个 partition</span>』进行限制的，
+		例如：如果你的 /dev/hda5 是挂载在 /home 底下，那么在 /home 底下的所有目录都会受到限制！</li><br>
+
+		<li><span class="text_import2">核心必须支持 quota ：</span><br>
+		Linux 系统核心必须有支持 quota 这个模块才行：如果您是使用 FC4 的预设核心，
+		嘿嘿！那恭喜你了，你的系统已经默认有开放
+		quota 这个模块啰！如果您是自行编译核心的，那么请特别留意您是否已经『真的』开启了
+		quota 这个模块？否则底下的功夫将全部都视为『白工』。至于核心编译的过程我们会在未来进行说明呦！</li><br>
+
+		<li><span class="text_import2">Quota 的记录文件：</span><br>
+		目前新版的 Linux distributions 如： FC4 与 SuSE server 9 等使用的是
+		Kernel 2.6.xx 的核心版本，这个核心版本支持新的 quota 模块，使用的默认档案（
+		aquota.user, aquota.group ）将不同于旧版本的 quota.user, quota.group ！（多了一个
+		a 呦！）而由旧版本的 quota 可以藉由 convertquota 这个程序来转换呢！</li><br>
+
+		<li><span class="text_import2">只对一般身份使用者有效：</span><br>
+		这就有趣了！并不是所有在 Linux 上面的账号都可以设定 quota 呢，例如 root 就不能设定 quota ，
+		因为整个系统所有的数据几乎都是他的啊！ ^_^</li></ul>
+	</div>
+
+	<li><span class="text_import1">quota 这支程序对硬盘配额的限制项目：</span></li>
+	<div class="block2">
+		quota 这支程序针对整个 partition 的限制项目主要分为底下几个部分：
+		<ul>
+		<li><span class="text_import2">soft</span>：<br>
+			这是最低限制容量的意思，用户在宽限期间之内，他的容量可以超过
+			soft ，但必需要宽限时间之内将磁盘容量降低到 soft 的容量限制之下！</li><br>
+		<li><span class="text_import2">hard</span>：<br>
+			这是『绝对不能超过』的容量！跟 soft
+			相比的意思为何呢？通常 hard limit 会比 soft limit 为高，例如网络驱动器空间为
+			30 MB ，那么 hard limit 就设定为 30MB ，但是为了让使用者有一定的警戒心，所以当使用空间超过
+			25 MB 时，例如使用者使用了 27 MB 的空间时，那么系统就会警告用户，
+			让使用者可以在『宽限时间内』将他的档案量降低至
+			25 MB ( 亦即是 soft limit )之内！也就是说， soft 到 hard 
+			之间的容量其实就是宽限的容量啦！可以达到针对使用者的『警示』作用！</li><br>
+		<li><span class="text_import2">宽限时间</span>：<br>
+			那么宽限时间就可以很清楚的知道含意是什么了！也就是当您的使用者使用的空间超过了
+			soft limit ，却还没有到达 hard limit 时，那么在这个『宽限时间』之内，
+			就必需要请用户将使用的磁盘容量降低到
+			soft limit 之下！而当用户将磁盘容量使用情况超过 soft limit 
+			时，『宽限时间』就会自动被启动，而在用户将容量降低到
+			soft limit 之下，那么宽限时间就会自动的取消啰！</li></ul>
+	</div>
+</div>
+
+
+<hr><a name="quota_command"></a><img src="../image/logo.png" alt="大标题的图示" width="35" align="middle" height="34"><span class="text_h1">基本的 quota 指令：</span><br>
+<div class="block1">
+	在开始进行 quota 的实作之前，我们得来了解一下 quota 要使用的指令啰！基本上分为两种，一种是查询功能
+	( quota, quotacheck, quotastats, warnquota, repquota )，另一种则是编辑 quota 的内容 (
+	edquota, setquota ) 。底下我们来谈一谈这些基本的指令吧！<br><br>
+
+	<a name="mtab"></a><hr><li><span class="text_import1">/etc/mtab</span></li>
+	<div class="block2">
+		怪了！不是说好要说明 quota 相关指令的吗？干嘛提这个文件系统 (filesystem) 
+		实际挂载的记录文件？呵呵！要注意了～当我们使用 quota 的时候，基本上，系统会去搜寻：『
+		<span class="text_import2">系统上具有 quota 参数的 partition </span>』
+		所以啰，当我们要使用 quota 的功能时，我们的 filesystem 必须要已经支持 quota 
+		的旗标才行。一般来说，我们是以编辑 /etc/fstab 后，再重新挂载 filesystem 
+		的方法来让系统的 filesystem 支持 quota 的！这个概念可是很重要的喔！ ^_^<br><br>
+	</div>
+
+	<a name="quota"></a><hr><li><span class="text_import1">quota</span></li>
+	<div class="block2">
+
+<table class="term"><tbody><tr><td class="term"><pre>[root@linux ~]# <span class="term_command">quota [-uvsl] [username]</span>
+[root@linux ~]# <span class="term_command">quota [-gvsl] [groupname]</span>
+<span class="term_say">参数：
+-u  ：后面可以接 username ，表示显示出该用户的 quota 限制值。若不接 username 
+      ，表示显示出执行者的 quota 限制值。
+-g  ：后面可接 groupname ，表示显示出该群组的 quota 限制值。
+-v  ：显示每个 filesystem 的 quota 值；
+-s  ：可选择以 inode 或磁盘容量的限制值来显示；
+-l  ：仅显示出目前本机上面的 filesystem 的 quota 值。
+范例：</span>
+
+<span class="term_hd">范例一：秀出目前 root 自己的 quota 限制值：</span>
+[root@linux ~]# <span class="term_command">quota -guvs</span>
+
+<span class="term_hd">范例二：秀出 dmtsai 这个用户的磁盘配额</span>
+[root@linux ~]# <span class="term_command">quota -vs -u dmtsai</span>
+<span class="term_say"># 注意一下这两个范例，如果您的系统上面尚未有任何的 quota 支持的 filesystem 时，
+# 使用这两个范例时，『不会有任何信息列出来』啦！不要以为发生错误啰！</span>
+</pre></td></tr></tbody></table>
+
+		这个指令仅是使用来『显示(display)』目前某个群组或者某个使用者的
+		quota 限值！您可以使用来观察一下呦！<br><br>
+	</div>
+
+	<a name="quotacheck"></a><hr><li><span class="text_import1">quotacheck</span></li>
+	<div class="block2">
+
+<table class="term"><tbody><tr><td class="term"><pre>[root@linux ~]# <span class="term_command">quotacheck [-avug] [/mount_point]</span>
+<span class="term_say">参数：
+-a  ：扫瞄所有在 /etc/mtab 内，含有 quota 支持的 filesystem，加上此参数后， 
+      /mount_point 可不必写，因为扫瞄所有的 filesystem 了嘛！
+-u  ：针对用户扫瞄档案与目录的使用情况，会建立 aquota.user
+-g  ：针对群组扫瞄档案与目录的使用情况，会建立 aquota.group
+-v  ：显示扫瞄过程的信息；
+-M  ：『强制』进行 quotacheck 的扫瞄。
+范例：</span>
+
+<span class="term_hd">范例一：将所有的在 /etc/mtab 内，含有 quota 支持的 partition 进行扫瞄</span>
+[root@linux ~]# <span class="term_command">quotacheck -avug</span>
+quotacheck: Can't find filesystem to check or filesystem not mounted with 
+quota option.
+<span class="term_say"># 不要紧张，这是正常的现象～因为您尚未启用 quota 的参数嘛！
+# 关于 quota 参数的下达方法，我们会在稍后说明。如果正常的进行扫瞄，会像下面这样：</span>
+[root@linux ~]# <span class="term_command">quotacheck -avug</span>
+quotacheck: Scanning /dev/hdb1 [/disk2] done
+quotacheck: Checked 3 directories and 4 files
+[root@linux ~]# <span class="term_command">ll /disk2</span>
+total 32
+-rw-------  1 root root  6144 Sep  5 14:56 <span class="term_write">aquota.group</span>
+-rw-------  1 root root  6144 Sep  5 14:56 <span class="term_write">aquota.user</span>
+drwx------  2 root root 16384 Jun 25 16:22 lost+found
+<span class="term_say"># 第一次操作 quotacheck 可能会有一些错误讯息发生，那应该是正常的！
+# 如果使用 ls -l 去查阅一下有 quota 支持的那个 mount point ，若有出现
+# aquota.group 及 aquota.user ，那应该就是已经建立好了 quota 记录文件了！</span>
+
+<span class="term_hd">范例二：强制扫瞄已挂载的 filesystem</span>
+[root@linux ~]# <span class="term_command">quotacheck -avug -m</span>
+<span class="term_say"># 有些时候，在某些 Linux distributions 上面，进行 quotacheck 时，
+# 可能会出现如下的错误讯息：
+# quotacheck: Cannot get quotafile name for /dev/hda3
+# quotacheck: Cannot get quotafile name for /dev/hda3
+# 果真如此的话，那么你可以如同上面一般，加上 -m 的参数来『强制』扫瞄。
+# 也可以手动先建立记录文件，然后再扫瞄，如下所示：</span>
+[root@linux ~]# <span class="term_command">touch /disk2/aquota.user; touch /disk2/aquota.group</span>
+[root@linux ~]# <span class="term_command">quotacheck -avug</span>
+<span class="term_say"># 必须要注意的是，我这里是以 /disk2 作为一个测试的 mount point ，
+# 您的挂载点不一定会跟鸟哥一样喔！</span>
+</pre></td></tr></tbody></table>
+
+		这这个指令主要的目的在扫瞄某一个磁盘的 quota
+		空间，他会针对该 partitions 进行扫瞄，并且，由于该磁盘若持续运作时，可能扫瞄的过程中，
+		档案可能会增减，造成 quota 扫瞄的错误发生，因此，当使用 quotacheck 时，该磁盘将『
+		<span class="text_import2">自动被设定成为只读扇区 ( read-only )</span> 』 ；至于扫瞄完毕之后，
+		扫瞄所得的磁盘空间结果会写入该扇区最顶端。 ( <span class="text_vbird">例如：在鸟哥的例子中，扫瞄
+		/disk2 这个 /dev/hdb1 的扇区，如果是初次扫瞄，那么扫瞄完毕之后会产生 aquota.user
+		与 aquota.group ，会放置在 /disk2/aquota.user 与 /disk2/aquota.group 底下！而如果是建立 
+		quota 后的扫瞄，那么就会更新这两个档案！</span> ) 另外，
+		Linux 也特别强调 quota 在使用的时候，需要特别注意在 reboot 时，得先将 quota
+		关闭才好！<br><br>
+
+		此外，由于新版的 Linux distribution 在 quota
+		的设计上似乎有点小问题，有时候无法完整的进行 quotacheck ，发生如同上表的情况，解决的方法就是主动手动的建立
+		quotafile 即可喔！例如上面的范例二所显示的。<br><br>
+	</div>
+
+	<a name="edquota"></a><hr><li><span class="text_import1">edquota</span></li>
+	<div class="block2">
+
+<table class="term"><tbody><tr><td class="term"><pre>[root@linux ~]# <span class="term_command">edquota [-u username] [-g groupname]</span>
+[root@linux ~]# <span class="term_command">edquota -t</span>  <span class="term_note">&lt;==修改恕限时间</span>
+[root@linux ~]# <span class="term_command">edquota -p username_demo -u username</span>
+<span class="term_say">参数：
+-u  ：后面接账号名称。可以进入 quota 的编辑画面 (vi) 去设定 username 的限制值；
+-g  ：后面接组名。可以进入 quota 的编辑画面 (vi) 去设定 groupname 的限制值；
+-t  ：可以修改恕限时间 (就是超过 quota 的 soft limit 值后，还能使用硬盘的宽限期限)
+-p  ：复制范本。那个 username_demo 为已经存在并且已设定好 quota 的使用者，
+      意义为『将 username_demo 这个人的 quota 限制值复制给 username 』！
+范例：</span>
+
+<span class="term_hd">范例一：设定 dmtsai 这个使用者的 quota 限制值</span>
+[root@linux ~]# <span class="term_command">edquota -u dmtsai</span>
+Disk quotas for user dmtsai (uid 501):
+  Filesystem    blocks    soft    hard   inodes   soft   hard
+  /dev/hdb1          0       0       0        0      0      0
+<span class="term_say"># 进入编辑画面后，以 vi 的相关行为进行编辑喔！我们可以看到
+# 被编辑的使用者是 dmtsai ，而底下共有七个字段，每个字段的意义我们将在
+# 底下的说明继续介绍。而假设我们对于 dmtsai 的限制是 30MB 的话，那么：</span>
+Disk quotas for user dmtsai (uid 501):
+  Filesystem    blocks    soft    hard   inodes   soft   hard
+  /dev/hdb1          0   <span class="term_write">25000</span>   <span class="term_write">30000</span>        0      0      0
+<span class="term_say"># 然后就可以储存后离开啰！</span>
+
+<span class="term_hd">范例二：将 dmtsai 的 quota 限制值 (30MB) 复制给 vbird1 这个使用者</span>
+[root@linux ~]# <span class="term_command">edquota -p dmtsai -u vbird1</span>
+
+<span class="term_hd">范例三：修订恕限时间</span>
+[root@linux ~]# <span class="term_command">edquota -t</span>
+Grace period before enforcing soft limits for users:
+Time units may be: days, hours, minutes, or seconds
+  Filesystem             Block grace period     Inode grace period
+<span class="term_write">  /dev/hdb1                     7days                  7days</span>
+<span class="term_say"># 预设的恕限时间是 7 天啦！你当然可以修订时间！</span>
+</pre></td></tr></tbody></table>
+
+		这个指令就是在编辑每一个『个人』或者是『群组』的
+		quota 数值！通常我们以 edquota -u username 或者是 edquota -g groupname
+		来编辑个人与群组的 quota 设定值。不过，或许您会觉得一个一个分配似乎很慢的样子！那么您也可以直接
+		copy 一个人的设定值给其他人，就如同上面第二个例子，利用已经建立好的 dmtsai
+		来建立 vbird1 这个人的 quota 限额！这个指令可是很重要的呦！
+		另外，范例一当中出现的那七个字段代表的意义我们得要谈一谈啊：
+		<ul>
+		<li><span class="text_import1">filesystem</span>：<br>
+		代表这个 quota 是针对哪一个 partition 的意思。以范例一的情况来说，指的是 /dev/hdb1 啰！
+		也就是 /disk2 那个目录底下的 quota 限制值啦！</li><br>
+
+		<li><span class="text_import1">blocks</span>：<br>
+		这个是目前使用者 dmtsai ( uid 501 ) 在 /dev/hdb1 这个 filesystem 
+		(参考上面一个信息)，所耗掉的磁盘容量，也就是目前的使用掉的空间啦！单位是
+		Kbytes 喔！<span class="text_import2">这个信息是 quota 程序自己计算出来的，所以请不要修改他！</span></li><br>
+
+		<li><span class="text_import1">soft 与 hard </span>：<br>
+		这个是目前的 dmtsai 使用者在这个 filesystem 之内的 quota 限制值！至于 soft 与 hard 的意思就如同
+		前一节最后面提的那个意思啦！soft 代表的是一个『警告』限值， hard 则是一个『不可超过的限值』，
+		soft 与 hard 中间的差值则为宽限的数值。而<span class="text_import2">当 soft 与 hard 数值为 
+		0 的时候，表示『没有限制』的意思</span>！而数值的单位仍是 Kbytes 喔！</li><br>
+
+		<li><span class="text_import1">inodes</span>：<br>
+		是目前使用掉 inode 的状态，也是 quota 自己计算出来而得到的，所以不要去变更他。一般而言，
+		inode 不容易控制，所以您可以不必去限制 inode 呢！</li></ul>
+	</div>
+
+	<a name="quotaon"></a><hr><li><span class="text_import1">quotaon</span></li>
+	<div class="block2">
+
+<table class="term"><tbody><tr><td class="term"><pre>[root@linux ~]# <span class="term_command">quotaon [-avug]</span>
+[root@linux ~]# <span class="term_command">quotaon [-vug] [/mount_point]</span>
+<span class="term_say">参数：
+-u  ：针对使用者启动 quota (aquota.user)
+-g  ：针对群组启动 quota (aquota.group)
+-v  ：显示启动过程的相关讯息；
+-a  ：根据 /etc/mtab 内的 filesystem 设定启动有关的 quota ，若不加 -a 的话，
+      则后面就需要加上特定的那个 filesystem 喔！
+范例：</span>
+
+<span class="term_hd">范例一：启动所有的具有 quota 的 filesystem</span>
+[root@linux ~]# <span class="term_command">quotaon -auvg</span>
+/dev/hdb1 [/disk2]: group quotas turned on
+/dev/hdb1 [/disk2]: user quotas turned on
+
+<span class="term_hd">范例二：仅启动 /disk2 里面的 user quota 设定值：</span>
+[root@linux ~]# <span class="term_command">quotaon -uv /disk2</span>
+</pre></td></tr></tbody></table>
+
+		这个指令是在启动 quota 的！不过，由于这个指令是启动
+		aquota.group 与 aquota.user 的，所以您就必须要先完成 <a href="#quotacheck">quotacheck</a>
+		的工作了！然后简单的下达 quotaon -a 即可启动！<br><br>
+	</div>
+
+	<a name="quotaoff"></a><hr><li><span class="text_import1">quotaoff</span></li>
+	<div class="block2">
+
+<table class="term"><tbody><tr><td class="term"><pre>[root@linux ~]# <span class="term_command">quotaoff [-a]</span>
+[root@linux ~]# <span class="term_command">quotaoff [-ug] [/mount_point]</span>
+<span class="term_say">参数：
+-a  ：全部的 filesystem 的 quota 都关闭 (根据 /etc/mtab)
+-u  ：仅针对后面接的那个 /mount_point 关闭 user quota
+-g  ：仅针对后面接的那个 /mount_point 关闭 group quota
+范例：</span>
+
+<span class="term_hd">范例一：</span>
+[root@linux ~]# <span class="term_command">quotaoff -a</span>
+</pre></td></tr></tbody></table>
+
+		这个指令就是关闭了 quota 的限制啦！
+	</div>
+</div>
+
+
+<hr><a name="manual"></a><img src="../image/logo.png" alt="大标题的图示" width="35" align="middle" height="34"><span class="text_h1">实作 Quota</span><br>
+<div class="block1">
+	Quota 使用的方向很广啦，不过，他一般的用途大概有这些：
+	<ul>
+	<li><span class="text_import2">限制某一群组所能使用的最大磁盘配额 (使用群组限制)</span> ：<br>
+		你可以将你的主机上的用户分门别类，有点像是目前很流行的付费与免付费会员制的情况，
+		你比较喜好的那一群的使用配额就可以给高一些！呵呵！ ^_^...</li><br>
+	<li><span class="text_import2">限制某一用户的最大磁盘配额 (使用用户限制)</span> ：<br>
+		在限制了群组之后，您也可以再继续针对个人来进行限制，使得同一群组之下还可以有更公平的分配！</li><br>
+	<li><span class="text_import2">以 Link 的方式，来使邮件可以作为限制的配额 (更改 /var/spool/mail 
+	这个路径)</span>：<br>如果是分为付费与免付费会员的『邮件主机系统』，是否需要重新再规划一个硬盘呢？
+		也不需要啦！直接使用 Link 的方式指向 /home （或者其他已经做好的 quota 磁盘）就可以啦！
+		这通常是用在原本规划不好，但是却又不想要更动原有主机架构的情况中啊！</li> </ul>
+
+	那么 Quota 从开始准备 filesystem 的支持到整个设定结束的主要的步骤大概是：<ol>
+	<li><span class="text_import1">设定 partition 的 filesystem 支持 quota 参数：</span><br>
+		由于 quota 必须要让 partition 上面的 filesystem 支持才行，一般来说，
+		支持度最好的是 ext2/ext3 ，其他的 filesystem 类型鸟哥我是没有试过啦！
+		启动 filesystem 支持 quota 最简单就是编辑 <span class="text_import2">/etc/fstab</span> ，使得准备要开放的
+		quota 磁盘可以支持 quota 啰；</li><br>
+	<li><span class="text_import1">建立 quota 记录文件：</span><br>
+		刚刚前面讲过，整个 quota 进行磁盘限制值记录的档案是 aquota.user/aquota.group，
+		要建立这两个档案就必须要先利用 quotacheck 扫瞄才行喔！所以啰，接下来的步骤就是：
+		使用 quotacheck 来扫瞄一下我们要使用的磁盘啰；</li><br>
+	<li><span class="text_import1">编辑 quota 限制值数据：</span><br>
+		再来就是使用 edquota 来编辑每个使用者或群组的可使用空间啰；</li><br>
+	<li><span class="text_import1">重新扫瞄与启动 quota ：</span><br>
+		设定好 quota 之后，建议可以再进行一次 quotacheck ，然后再以 quotaon 来启动吧！</li></ol>
+
+	整个 quota 设定的步骤就只是这样而已，简单吧！我们底下就直接来用一个范例介绍一下整个流程，
+	好让您更清楚的了解到整个步骤喔！我范例是这样的：<ol><span class="text_import2">
+	<li>鸟哥的这部 Linux 主机里面主要针对 quser1 及 quser2 两个用户来进行磁盘配额，
+		且这两个使用者都是挂在 qgroup 群组里面的喔。</li>
+	<li>每个用户总共有 50MB 的磁盘空间 (不考虑 inode) 限制！并且 soft limit 为 45 MB；</li>
+	<li>而宽限时间设定为 1 天，也就是说，这两个人可以突破 45MB 的限制，
+		但是在一天之内必须要将多余的档案砍掉，否则将无法使用剩下的空间 
+		(也就是说，这个账号大概就不能进行档案新增的工作了)；</li>
+	<li>gquota 这个群组考虑最大限额，所以设定为 90 MB 好了！</li></span></ol>
+	多说无用，我们就实际来进行啰！<ol>
+
+	<hr><li><span class="text_import1">准备好测试的环境，使用者与群组的建立：</span><br><br>
+		这两个账号应该是不存在我们的系统的，所以，赶紧将他设定上去吧！<br>
+<table class="term"><tbody><tr><td class="term"><pre>[root@linux ~]# <span class="term_command">groupadd qgroup</span>
+[root@linux ~]# <span class="term_command">useradd -m -g qgroup quser1</span>
+[root@linux ~]# <span class="term_command">useradd -m -g qgroup quser2</span>
+[root@linux ~]# <span class="term_command">passwd quser1</span>
+[root@linux ~]# <span class="term_command">passwd quser2</span>
+</pre></td></tr></tbody></table><br>
+
+	<hr></li><li><span class="text_import1">建立好 filesystem 的 quota 支持：</span><br><br>
+		由于 quota 较完整的支持是需要在 ext2/ext3 的 Linux 延伸格式档案才可以启动，
+		所以建议你就必须要将准备开启 quota 的磁盘启动参数，写进入 quota 的磁盘设定才行
+		( /etc/fstab )！以鸟哥的例子而言，我想要在 /disk2 底下进行 quota 的限制 quser1, quser2 
+		这两个人！这是因为我的 /disk2 是一个独立的扇区，这可以使用 df 来查询。
+		此外，必需要特别留意的是，最好不要以根目录亦即是 / 进行 quota 啦！否则容易有些问题呢！
+		另外，<span class="text_import2">不要针对 root 做 quota 喔！反正做了也没用！</span><br>
+
+<table class="term"><tbody><tr><td class="term"><pre>[root@linux ~]# <span class="term_command">df</span>
+Filesystem           1K-blocks      Used Available Use% Mounted on
+/dev/hda1              5952252   3193292   2451720  57% /
+/dev/hdb1             28267608     77904  26730604   1% /disk2
+/dev/hda5              9492644    227252   8775412   3% /disk1
+</pre></td></tr></tbody></table>
+
+		嗯！我的 /disk2 是独立的 partition ，并且他的装置名为 /dev/hdb1 ，好了！那么我就必须要启动 
+		/disk2 这个 /dev/hdb1 的 quota 文件格式，好了！那么由于文件格式的设定是写在 
+		/etc/fstab 里头，所以我们以 vi 来编辑他吧！只要在 /etc/fstab 里头增加了
+		<span class="text_import2">usrquota, grpquota</span> 就可以啦！
+		(<span class="text_vbird">注：请特别留意，这两个项目请『务必』不要写错了！请在写入 /etc/fstab 
+		之前好好的再次检查，因为写错之后，很有可能造成系统无法开机，虽然机率不高，但是有可能！</span>)<br>
+
+<table class="term"><tbody><tr><td class="term"><pre>[root@linux ~]# <span class="term_command">vi /etc/fstab</span>
+LABEL=/        /          ext3    defaults                    1 1
+LABEL=/disk1   /disk1     ext3    defaults                    1 2
+LABEL=/disk2   /disk2     ext3    defaults<span class="term_write">,usrquota,grpquota</span>  1 2
+/dev/hda3      swap       swap    defaults                    0 0
+</pre></td></tr></tbody></table>
+
+		注意到我们所需要设定的那个 /disk2 的那一行，在第四字段多了 
+		<span class="text_import2">usrquota,grpquota</span> 注意，在『 defaults,usrquota,grpquota
+		』之间都没有空格！<br><br>
+
+		这样就算加入了 quota 的磁盘格式了！不过，由于真正的 quota 在读取的时候是读取 
+		<span class="text_import2">/etc/mtab</span> 这个档案的，偏偏这一个档案需要重新启动之后才能够以 
+		/etc/fstab 的新数据进行改写！所以这个时候你可以选择：<ol><span class="text_import2"><br>
+		<li>重新启动 (reboot) ；
+		</li><li>重新 remount filesystem 来驱动设定值！</li></span></ol><br>
+		我是不太喜欢重新启动的人啦！所以我就这么做：<br>
+
+<table class="term"><tbody><tr><td class="term"><pre>[root@linux ~]# <span class="term_command">umount /dev/hdb1</span>
+[root@linux ~]# <span class="term_command">mount -a</span>
+[root@linux ~]# <span class="term_command">grep '/disk2' /etc/mtab</span>
+/dev/hdb1 /disk2 ext3 rw,usrquota,grpquota 0 0
+
+<span class="term_say"># 事实上，也可以利用 mount 的 remount 功能！</span>
+[root@linux ~]# <span class="term_command">mount -o remount /disk2</span>
+</pre></td></tr></tbody></table>
+
+		嘿嘿嘿嘿！这样我们就已经成功的将 filesystem 的 quota 功能加入啰！另外，鸟哥这里是以 
+		ext3 这个磁盘格式来测试 quota 的呦！<br><br>
+
+	<hr></li><li><span class="text_import1">扫瞄磁盘的用户使用状况，并产生重要的 aquota.group 与 
+	aquota.user：</span><br><br>
+		接着下来就是要来扫瞄一下我们所需要的磁盘到底有没有多余的空间可以让我们来设定 quota 
+		呢？并且将扫瞄的结果输出到这个磁盘的最顶层去（也就是 /disk2 底下）这个时候就需要 
+		quotacheck 这个指令的帮忙了！使用 quotacheck 就可以轻易的将所需要的数据给他输出了！
+		并且在 /disk2 底下会产生 aquota.group 与 aquota.user 这两个档案！ <br>
+
+<table class="term"><tbody><tr><td class="term"><pre>[root@linux ~]# <span class="term_command">quotacheck -avug</span>
+quotacheck: Scanning /dev/hdb1 [/disk2] done
+quotacheck: Checked 3 directories and 4 files
+[root@linux ~]# <span class="term_command">ll /disk2</span>
+-rw-------  1 root root  6144 Sep  6 11:44 aquota.group
+-rw-------  1 root root  6144 Sep  6 11:44 aquota.user
+</pre></td></tr></tbody></table>
+
+		使用 quotacheck 就可以轻易的将所需要的数据给他输出了！但是很奇怪的是，在某些 Linux 
+		版本中，我不能够以 aquota.user(group) 来启动我的 quota ，这有可能是因为旧版 quota 的关系，
+		所以我就另外做了一个 link 档案来欺骗 quota 啰：<br>
+
+<table class="term"><tbody><tr><td class="term"><pre>[root@linux ~]# <span class="term_command">cd /disk2</span>
+[root@linux ~]# <span class="term_command">ln -s aquota.user quota.user</span>
+[root@linux ~]# <span class="term_command">ln -s aquota.group quota.group</span>
+<span class="term_say"># 除非您的 Linux distributions 是比较旧的版本，否则不会有这个问题，
+# 所以，这个动作你不必进行的！</span>
+</pre></td></tr></tbody></table><br>
+
+	<hr></li><li><span class="text_import1">启动 quota 的限额：</span><br><br>
+		再来就是要启动 quota 啦！启动的方式也是很简单的！就是使用 quotaon -av 即可：<br>
+
+<table class="term"><tbody><tr><td class="term"><pre>[root@linux ~]# <span class="term_command">quotaon -avug</span>
+/dev/hdb1 [/disk2]: group quotas turned on
+/dev/hdb1 [/disk2]: user quotas turned on
+</pre></td></tr></tbody></table>
+
+		注意：要看到上面有个 turned on 的出现，才是真的成功了！<br><br>
+
+	<hr></li><li><span class="text_import1">编辑使用者的可使用空间：</span><br><br>
+		由于我们有两个使用者要设定，先来设定 quser1 好了，使用 edquota 就对了：<br>
+
+<table class="term"><tbody><tr><td class="term"><pre>[root@linux ~]# <span class="term_command">edquota -u quser1</span>
+Disk quotas for user quser1 (uid 502):
+  Filesystem    blocks    soft    hard   inodes   soft   hard
+  /dev/hdb1          0   <span class="term_write">45000   50000</span>        0      0      0
+</pre></td></tr></tbody></table>
+
+		再次强调的是，因为我的 /disk2 里面并没有任何数据存在，所以，在上面这个表格当中，
+		blocks 与 inodes 才会都是 0 ，如果您是使用 /home 来进行 quota 设定的，
+		那么 blocks/inodes 肯定不会是 0 ，这里要特别留意的。好了，上面特殊字体的部分就是我们的设定了，
+		分别是 45000 及 50000 ，那个单位是 KBytes 啦，转成 MBytes 应该是要除以 1024 才对，
+		不过，简单算一下就好了，不要太介意喔！^_^。然后将 quser1 的设定直接复制给 quser2 吧！<br>
+
+<table class="term"><tbody><tr><td class="term"><pre>[root@linux ~]# <span class="term_command">edquota -p quser1 quser2</span>
+</pre></td></tr></tbody></table>
+
+		接下来要来设定宽限时间，还是使用 edquota ！<br>
+
+<table class="term"><tbody><tr><td class="term"><pre>[root@linux ~]# <span class="term_command">edquota -t</span>
+Grace period before enforcing soft limits for users:
+Time units may be: days, hours, minutes, or seconds
+  Filesystem             Block grace period     Inode grace period
+  /dev/hdb1                     <span class="term_write">1days</span>                  7days
+</pre></td></tr></tbody></table>
+
+		将时间改为 1 天（原本是 7days 改成 1days ），好了！查询一下是否真的有设定进去呢？使用 
+		quota -v 来查询：<br>
+
+<table class="term"><tbody><tr><td class="term"><pre>[root@linux ~]# <span class="term_command">quota -vu quser1 quser2</span>
+Disk quotas for user quser1 (uid 502):
+     Filesystem  blocks   quota   limit   grace   files   quota   limit   grace
+      /dev/hdb1       0   45000   50000               0       0       0
+Disk quotas for user quser2 (uid 503):
+     Filesystem  blocks   quota   limit   grace   files   quota   limit   grace
+      /dev/hdb1       0   45000   50000               0       0       0
+</pre></td></tr></tbody></table>
+
+		特别注意到，由于我们的使用者尚未超过 45 MB，所以 grace ( 宽限时间 )
+		就不会出现啦！这样很够清楚了吧？！<br><br>
+
+	<hr></li><li><span class="text_import1">编辑群组可使用的空间：</span><br><br>
+
+<table class="term"><tbody><tr><td class="term"><pre>[root@linux ~]# <span class="term_command">edquota -g qgroup</span>
+Disk quotas for group qgroup (gid 502):
+  Filesystem    blocks    soft    hard  inodes   soft   hard
+  /dev/hdb1          0   <span class="term_write">80000   90000</span>       0      0      0
+
+[root@linux ~]# <span class="term_command">quota -vg qgroup</span>
+Disk quotas for group qgroup (gid 502):
+     Filesystem  blocks   quota   limit   grace   files   quota   limit   grace
+      /dev/hdb1       0   80000   90000               0       0       0
+</pre></td></tr></tbody></table>
+
+		这样就设定好了 group 的 quota 啰！同样的，因为整个群组的总使用量还没有到达 80000 KBytes，
+		当然那个 grace 就不会有任何信息显示了！但这个地方倒是有很多朋友来信问到一个小问题，
+		那就是『<span class="text_import2">为什么我两个使用者 quser1, quser2 的设定值在 soft 与 hard
+		分别是 45/50MB ，但为何你的 group 总量 (hard) 设定仅有 90MB 呢？</span>』，也就是说，
+		当我的某个使用者用了 50MB 的量，那另一个不就最多可以使用到 40MB 而已？原因何在啊？<br><br>
+
+		这么说好了，如果是小型的系统，由于用户并不是很多，我们可以针对每个人来进行 quota
+		的设定值，所以，当然针对 users 来进行设定即可，不需要额外的设定 group 的 quota 设定啦。<br><br>
+
+		但如果换个角度来思考，假设您所处的公司人员比较多且分工较细，因此，
+		我们可能无法真正了解每个使用者的需求，此时，针对每个使用者来设定可能就比较麻烦一点。
+		那么我们反过来说，可以针对每个部门 (group) 来进行 quota 的设定，
+		因为部门的需求直接跟部门的负责人询问就好了，比较容易，而该部门的使用者 quota 设定当然可以高一点，
+		因为，可能某些使用者有较为独特的需求啊！反正只要符合 group 的限制即可，
+		该部门如果超过整个 group quota 限制值，呵呵！让他们自己去处理即可！ ^_^<br><br>
+
+	<hr></li><li><span class="text_import1">设定开机时启动 quota：</span><br><br>
+		这个部分就不需要担心了，因为 FC4 与 Red Hat 系列的开机 script (/etc/rc.d/rc.sysinit)
+		已经将 quota 的侦测写入在里头，因此，在预设的情况下， quota 是会主动的被启动的。
+		不过，如果你想要手动的强制 quota 在开机启动一遍，那么可以使用 vi 去编辑
+		/etc/rc.d/rc.local ，在里面加入一行 (直接加在最后一行即可)：<br>
+
+<table class="term"><tbody><tr><td class="term"><pre>[root@linux ~]# <span class="term_command">vi /etc/rc.d/rc.local</span>
+<span class="term_write">/sbin/quotaon -avug</span>
+</pre></td></tr></tbody></table>
+
+		如果要关闭 quota 就是用 quotaoff 吧！没错！这样就将 quota 设定完毕了！很简单吧！！
+		( 如果是 SuSE Server 9 的话，可能就要去修改 /etc/init.d/boot.local 这个档案啰！ )<br><br>
+
+	<hr></li><li><span class="text_import1">利用 repquota 显示更完整的 quota 结果报告：</span><br><br>
+		事实上，除了 quota 可以用来观察使用者与群组使用的 quota 限制值之外，其实，
+		我们还可以使用更详细的 quota 报告指令，就是 repquota 这个指令呢！他的基本用法是这样的：<br>
+
+<table class="term"><tbody><tr><td class="term"><pre>[root@linux ~]# <span class="term_command">repquota -a [-vug]</span>
+<span class="term_say">参数：
+-a  ：直接到 /etc/mtab 搜寻具有 quota 标志的 filesystem ，并报告 quota 的结果；
+-v  ：输出所有的 quota 结果，而非仅下达指令者自己的 quota 限值；
+-u  ：显示出用户的 quota 限值 (这是默认值)；
+-g  ：显示出个别群组的 quota 限值。
+范例：</span>
+
+<span class="term_hd">范例一：查阅系统内所有的具有 quota 的 filesystem 的限值状态：</span>
+[root@linux ~]# <span class="term_command">repquota -av</span>
+*** Report for user quotas on device /dev/hdb1
+Block grace time: 24:00; Inode grace time: 7days
+                        Block limits                File limits
+User            used    soft    hard  grace    used  soft  hard  grace
+----------------------------------------------------------------------
+root      --   77888       0       0              4     0     0
+quser1    --       0   45000   50000              0     0     0
+quser2    --       0   45000   50000              0     0     0
+
+Statistics:          <span class="term_note">&lt;==这是所谓的系统相关信息，用 -v 才会显示</span>
+Total blocks: 7
+Data blocks: 1
+Entries: 3
+Used average: 3.000000
+
+<span class="term_hd">范例二：仅列出 user 与 group 的 quota 限值：</span>
+[root@linux ~]# <span class="term_command">repquota -aug</span>
+*** Report for user quotas on device /dev/hdb1
+Block grace time: 24:00; Inode grace time: 7days
+                        Block limits                File limits
+User            used    soft    hard  grace    used  soft  hard  grace
+----------------------------------------------------------------------
+root      --   77888       0       0              4     0     0
+
+
+*** Report for group quotas on device /dev/hdb1
+Block grace time: 7days; Inode grace time: 7days
+                        Block limits                File limits
+Group           used    soft    hard  grace    used  soft  hard  grace
+----------------------------------------------------------------------
+root      --   77888       0       0              4     0     0
+</pre></td></tr></tbody></table>
+
+		根据这些信息，您就可以知道目前的限制情况啰！ ^_^
+	</li></ol>
+</div>
+
+
+<hr><a name="nochange"></a><img src="../image/logo.png" alt="大标题的图示" width="35" align="middle" height="34"><span class="text_h1">不更动既有系统的 quota 实例</span><br>
+<div class="block1">
+	好了，我们前面 <a href="http://linux.vbird.org/linux_basic/0420quota/0410accountmanager.php">账号管理</a> 的部分曾经提到
+	e-mail 这个东西嘛！如果我们要设定一个对外开启的邮件主机的时候，
+	那么最好对于邮件空间有点限制比较好，免得如同上面提到的一些问题一样，造成使用者的使用权不一！所以说，使用
+	quota 确实是一个好建议！这个时候该怎么办呢？<br><br>
+
+	什么怎么办？嗯！是这样的，由于
+	quota 『<span class="text_import2">只能针对整个 partition 进行整体的磁盘配额，
+	无法针对某个目录进行磁盘配额！</span>』针对这个观念，我们不难发现，『
+	<span class="text_import2">(1)将邮件存在个人的家目录与
+	(2)将邮件统一放在 /home 下的一个共享目录</span> 』是一样的！为什么呢？这是因为
+	quota 针对的是整个磁盘呀！呵呵！所以啰，您必须先确定『<span class="text_import2">您的 /home 是一个独立的
+	partition</span> 』才行！<br><br>
+
+	不过，很可惜的是，当初我们进行 Linux 主机安装时，如果忘记将 /home 独立成一个 partition 时，
+	那该怎么办？是否需要将 /home 进行重新分割与挂载？还有，如果也忘记将 /var/spool/mail 这个
+	mailbox 放置的目录独立出来，又该如何是好啊？举个简单的例子来说，在鸟哥上面的那个实作当中，
+	你会发现，我的 partition 仅有 /, /disk1, /disk2 ，那我的所有使用者都在 /home 里面，
+	邮件在 /var/spool/mail 底下，真要命喔！怎么办啊？<br><br>
+
+	其实没有怎么难啦！既然 quota 是针对整个 partition 来进行限制，那我又已经将 /disk2 做好 quota 了，
+	那么我只要：<ol>
+	<li>将 /home 这整个目录搬移到 /disk2 底下；
+	</li><li>利用 ln -s /disk2/home /home 来建立链接数据；
+	</li><li>将 /var/spool/mail 整个搬移到 /disk2 底下；
+	</li><li>利用 ln -s /disk2/mail /var/spool/mail 来建立链接数据。</li></ol>
+
+	只要这样的一个小步骤，嘿嘿！您家主机的邮件就有一定的限额啰！当然啰！您也可以依据不同的使用者与群组来设定
+	quota 然后同样的以上面的方式来进行 link 的动作！嘿嘿嘿！就有不同的限额针对不同的使用者提出啰！很方便吧！！
+	^_^<br><br>
+</div>
+
+
+<hr><a name="FAQ"></a><img src="../image/logo.png" alt="大标题的图示" width="35" align="middle" height="34"><span class="text_h1">本章习题练习</span><br>
+( 要看答案请将鼠标移动到『答：』底下的空白处，按下左键圈选空白处即可察看 )
+<div class="block1">
+<ul>
+	<li>如果我有一个 Linux 主机，未来想要对外提供 mail 与 WWW 的服务，同时预计提供个人网页空间的服务，然而我希望
+	mail 提供 30 MB 而 WWW 则提供 20MB 的空间，那么我应该如何规划我的主机？</li>
+	<div class="block2"><font color="white" size="-1">
+		在 quota 的限制中，由于他限制的是整个 partition
+		呢！所以既然要分为两个服务来限制，就需要设定成两个 partition 了！这个案例当中是以
+		Linux 为新架设的角度来看，所以我们的规划就较为简单！假设我的硬盘为 30GB
+		的硬盘，那么我可以这样设定：<ul>
+		/&nbsp; 256 MB<br>
+		Swap 2 * RAM<br>
+		/usr&nbsp; 3~5 GB<br>
+		/backup 5GB</ul>
+		其他的空间平均分给<ul>
+		/home<br>
+		/var/spool/mail</ul>
+		这样就可以啦！然后安装完成之后，套用 quota 的设定，即可做好限制啰！很是方便的！
+	</font></div>
+</ul>
+</div>
+
+<hr><span class="text_history">
+2002/07/14：第一次完成<br>
+2003/02/10：重新编排与加入 FAQ<br>
+2003/09/02：加入 <a href="#quotacheck">quotacheck</a> 发生错误时的解决方法。<br>
+2005/09/06：将旧的文章移动到 <a href="http://linux.vbird.org/linux_basic/0420quota/0420quota.php">此处</a> 。<br>
+2005/09/06：进行版面风格的转换，并且进行数据的查询，加入 repquota 的简单说明而已！<hr>
+</span>
+    </td>
+    <td style="width: 16px; font-size: 6px;">　</td></tr>
+<tr><td style="width: 16px; height: 16px;">　</td>
+    <td style="width: 866px; height: 16px;">　</td>
+    <td style="width: 16px; height: 16px;">　</td></tr>
+</tbody></table>
+
+<div style="padding-top: 0px; text-align: center;">
+<span style="font-size: 80%;">
+	<a href="http://linux.vbird.org/" target="_top" title="前往鸟哥的首页">http://linux.vbird.org</a>
+	is designed by <a href="mailto:vbird@mail.vbird.idv.tw" title="联络鸟哥(我不要广告信！)">VBird</a>
+		during 2001-2011. <a href="http://www.ksu.edu.tw/" target="_blank">ksu.edu</a></span>
+                ﻿<div id="apDiv4">
+      <p>本网页主要以Firefox配合解析度 1024x768 作为设计依据&nbsp;&nbsp;&nbsp;&nbsp; 鸟哥自由软件整合应用研究室</p></div></div></div>
+</center>
+</body></html>

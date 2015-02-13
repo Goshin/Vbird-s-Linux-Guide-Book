@@ -1,0 +1,486 @@
+<html><head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta name="Author" content="2011/04/28,lee">
+	<meta name="Description" content="登录文件的分析啦！">
+	<title>鸟哥的 Linux 私房菜 -- 登录文件的分析啦！</title>
+    <script src="../script/SpryMenuBar.js" type="text/javascript"></script>
+	<script src="../script/index.js" type="text/javascript"></script>
+	<link href="../css/SpryMenuBarHorizontal.css" rel="stylesheet" type="text/css" />
+    <link href="../css/main.css" rel="stylesheet" type="text/css" />
+    </head><body style="margin: 0pt; padding: 0pt;" class="table"onload="MM_preloadImages('image/title_19.png','image/title_26.png','image/title_27.png','image/title_28.png','image/title_06.png','image/title_08.png','image/title_10.png','image/title_12.png')">
+
+
+<!-- Copyright � 2005. Spidersoft Ltd -->
+<style>
+A.applink:hover {border: 2px dotted #DCE6F4;padding:2px;background-color:#ffff00;color:green;text-decoration:none}
+A.applink       {border: 2px dotted #DCE6F4;padding:2px;color:#2F5BFF;background:transparent;text-decoration:none}
+A.info          {color:#2F5BFF;background:transparent;text-decoration:none}
+A.info:hover    {color:green;background:transparent;text-decoration:underline}
+</style>
+<div style='BORDER: 1px solid #DCE6F4; MARGIN-TOP: 20px; MARGIN-BOTTOM: 20px; MARGIN-LEFT: 5px; MARGIN-RIGHT: 5px; PADDING: 5px; BACKGROUND-COLOR: #eef8ff;line-height:180%; COLOR: #000000; font-family: Arial; font-size: 8pt; width=100%; FILTER: progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr="#FFFFFFFF", EndColorStr="#F2F5FAFF");'>
+This page was saved using <a class="applink" href="http://www.spidersoft.com"><b>WebZIP 7.0.3.1030</b></a> <a class="applink" href="http://www.spidersoft.com"><b>offline browser</b></a>  (Unregistered) on  02/12/15 12:14:49.<br>
+<b>Address:</b> <a class="info" href="http://vbird.dic.ksu.edu.tw/linux_basic/0570syslog_3.php">http://vbird.dic.ksu.edu.tw/linux_basic/0570syslog_3.php</a><br>
+<b>Title:</b> 鸟哥的 Linux 私房菜 -- 登录文件的分析啦！ &nbsp;&bull;&nbsp; <b>Size:</b> 31207<br></div>
+<!-- /Copyright � 2005. Spidersoft Ltd -->
+
+
+
+<center>
+<div id="apDiv5">
+<div> <LINK REL="SHORTCUT ICON" HREF="favicon.ico">
+<!-- ImageReady Slices (title3.ai) -->
+<table id="___01" width="898" height="81" border="0" align="center" cellpadding="0" cellspacing="0";>
+	<tr>
+		<td colspan="15">
+			<img src="image/title/title_01.png" width="900" height="1" alt=""></td>
+	</tr>
+	<tr>
+		<td rowspan="4" bgcolor="#182448"><p><img src="http://linux.vbird.org/cgi-bin/Count.cgi?dd=C&ft=5&sh=T&md=8&pad=Y&df=vbird.dic.ksu.edu.tw.dat" width="93" align="left" title="計數器" /></p>
+	    <p><font color="#FFFFFF" size="-1">since2012/04/23</font></p></td>
+		<td rowspan="4" align="left" valign="top"><a href="http://vbird.dic.ksu.edu.tw/"><img src="image/title/title_03.png" alt="" width="263" height="79" border="0"></a></td>
+		<td colspan="13">
+			<img src="image/title/title_04.png" alt="" width="535" height="9" border="0"></td>
+	</tr>
+	<tr>
+		<td rowspan="3">
+			<img src="image/title/title_05.png" alt="" width="53" height="70" border="0"></td>
+		<td colspan="2" align="left" valign="top"><a href="0110whatislinux.php.html" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image51','','image/title/title_06.png',1)"><img src="image/title/title3_06.png" name="Image51" width="106" height="25" border="0" id="Image51" alt=""/></a></td>
+		<td rowspan="2">
+			<img src="image/title/title_07.png" alt="" width="27" height="37" border="0"></td>
+		<td colspan="3" align="left" valign="top"><a href="http://vbird.dic.ksu.edu.tw/linux_server/0110network_basic.php" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image52','','image/title/title_08.png',1)"><img src="image/title/title3_08.png" name="Image52" width="107" height="25" border="0" id="Image52" alt=""/></a></td>
+		<td rowspan="2">
+			<img src="image/title/title_09.png" alt="" width="37" height="37" border="0"></td>
+		<td colspan="2" align="left" valign="top"><a href="http://vbird.dic.ksu.edu.tw/about.php" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image53','','image/title/title_10.png',1)"><img src="image/title/title3_10.png" name="Image53" width="75" height="25" border="0" id="Image53" alt=""/></a></td>
+		<td rowspan="3">
+			<img src="image/title/title_11.png" alt="" width="35" height="70" border="0"></td>
+		<td align="left" valign="top"><a href="mailto:vbird@mail.vbird.idv.tw" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image54','','image/title/title_12.png',1)"><img src="image/title/title3_12.png" name="Image54" width="74" height="25" border="0" id="Image54" alt=""/></a></td>
+		<td rowspan="3">
+			<img src="image/title/title_13.png" alt="" width="21" height="70" border="0"></td>
+	</tr>
+	<tr>
+		<td colspan="2">
+			<img src="image/title/title_14.png" alt="" width="106" height="12" border="0"></td>
+		<td colspan="3">
+			<img src="image/title/title_15.png" alt="" width="107" height="12" border="0"></td>
+		<td colspan="2">
+			<img src="image/title/title_16.png" width="75" height="12" alt=""></td>
+		<td rowspan="2">
+			<img src="image/title/title_17.png" alt="" width="74" height="45" border="0"></td>
+	</tr>
+	<tr>
+		<td>
+			<img src="image/title/title_18.png" alt="" width="15" height="33" border="0"></td>
+		<td colspan="3" align="left" valign="top"><ul id="MenuBar1" class="MenuBarHorizontal">
+	  <li><a href="linux_basic.php.html" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image44','','image/title/title_19.png',1)"><img src="image/title/title3_19.png" name="Image44" width="123" height="33" border="0" id="Image44" /></a>
+			    <ul>
+			      <li><a href="Mandrake9.0/mandrake9.0.php.html" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image46','','image/title/title_26.png',1)"><img src="image/title/title_23.png" name="Image46" width="120" height="26" border="0" id="Image46" alt="" /></a></li>
+                  <li><a href="fedora_4/fc4.php.html" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image47','','image/title/title_27.png',1)"><img src="image/title/title_24.png" name="Image47" width="120" height="26" border="0" id="Image47" alt="" /></a></li>
+                  <li><a href="linux_basic.php.html" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image48','','image/title/title_28.png',1)"><img src="image/title/title_25.png" name="Image48" width="120" height="26" border="0" id="Image48" alt="" /></a></li>
+                </ul>
+		      </li>
+		</ul></td>
+		<td>
+			<img src="image/title/title_20.png" alt="" width="42" height="33" border="0"></td>
+		<td colspan="3" align="left" valign="top"><ul id="MenuBar2" class="MenuBarHorizontal">
+	  <li><a href="http://vbird.dic.ksu.edu.tw/linux_server/" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image45','','image/title/title_21.png',1)"><img src="image/title/title3_21.png" name="Image45" width="125" height="33" border="0" id="Image45" /></a>
+			    <ul>
+			      <li><a href="http://vbird.dic.ksu.edu.tw/linux_server/linux_redhat9/redhat9.php" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image43','','image/title/title_26.png',1)"><img src="image/title/title_23.png" name="Image43" width="120" height="26" border="0" id="Image43" alt=""/></a></li>
+			      <li><a href="http://vbird.dic.ksu.edu.tw/linux_server/centos4.php" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image49','','image/title/title_27.png',1)"><img src="image/title/title_24.png" name="Image49" width="120" height="26" border="0" id="Image49" alt="" /></a></li>
+			      <li><a href="http://vbird.dic.ksu.edu.tw/linux_server/" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image50','','image/title/title_28.png',1)"><img src="image/title/title_25.png" name="Image50" width="120" height="26" border="0" id="Image50" alt="" /></a></li>
+		        </ul>
+		      </li>
+		</ul></td>
+		<td>
+			<img src="image/title/title_22.png" alt="" width="47" height="33" border="0"></td>
+	</tr>
+	<tr>
+		<td>
+			<img src="image/title/Spacer.gif" width="101" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="263" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="53" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="15" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="91" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="27" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="5" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="42" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="60" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="37" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="28" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="47" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="35" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="74" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="22" height="1" alt=""></td>
+	</tr>
+</table>
+<!-- End ImageReady Slices -->
+<script type="text/javascript">
+<!--
+var MenuBar1 = new Spry.Widget.MenuBar("MenuBar1", {imgDown:"SpryAssets/SpryMenuBarDownHover.gif", imgRight:"SpryAssets/SpryMenuBarRightHover.gif"});
+var MenuBar2 = new Spry.Widget.MenuBar("MenuBar2", {imgDown:"SpryAssets/SpryMenuBarDownHover.gif", imgRight:"SpryAssets/SpryMenuBarRightHover.gif"});
+//-->
+</script></div>
+<table summary="本文内容的排版" style="width: 898px;" border="0" cellpadding="0" cellspacing="0">
+<tbody><tr><td style="width: 16px; height: 16px;">　</td>
+    <td style="width: 866px; height: 16px;">　</td>
+    <td style="width: 16px; height: 16px;">　</td></tr>
+<tr><td style="width: 16px; font-size: 6px;">　</td>
+    <td width="866">
+
+<!-- 本文的档头部分 -->
+<div style="text-align: center;">
+    <a href="0570syslog.php.html">
+    <span class="text_head0">第十九章、认识与分析登录文件</span></a><br>
+</div>
+    <div style="text-align: right;">
+        <span class="text_history">最近升级日期：2009/09/14</span>
+    </div>
+<!-- 本文的连结区部分 -->
+<div class="block1">
+<span class="text_h1">
+3. <a href="#rotate">登录文件的轮替 (logrotate)</a><br>
+	<span class="text_h2">
+	　　3.1 <a href="#rotate_config">logrotate 的配置档</a><br>
+	　　3.2 <a href="#rotate_command">实际测试 logrotate 的动作</a><br>
+	　　3.3 <a href="#rotate_user">自订登录文件的轮替功能</a><br>
+	</span>
+</span></div>
+<!-- 本文的正式部分 -->
+<hr><a name="rotate"></a><img src="../image/logo.png" alt="大标题的图示" width="35" align="middle" height="34"><span class="text_h1">登录文件的轮替(logrotate)</span><br>
+<div class="block1">
+	<p>假设我们已经将登录数据写入了记录档中了，也已经利用 chattr 配置了 +a 这个属性了，那么该如何进行
+	logrotate 的工作呢？这里请特别留意的是：『<span class="text_import2">syslog 利用的是 daemon 的方式来启动的，
+	当有需求的时候立刻就会被运行的，但是 logrotate 却是在规定的时间到了之后才来进行登录文件的轮替，
+	所以这个 logrotate 程序当然就是挂在 <a href="0430cron.php.html">cron</a> 底下进行的呦！</span>』
+	仔细看一下 /etc/cron.daily/ 里面的文件，嘿嘿～看到了吧！ /etc/cron.daily/logrotate 
+	就是记录了每天要进行的登录文件轮替的行为啦！ ^_^！底下我们就来谈一谈怎么样设计这个 logrotate 吧！<br><br></p>
+
+	<hr><a name="rotate_config"></a><img src="../image/logo.png" alt="小标题的图示" width="24" align="middle" height="23"><span class="text_h2">logrotate 的配置档</span><br>
+	<div class="block2">
+		<p>既然 logrotate 主要是针对登录文件来进行轮替的动作，所以罗，他当然必须要记载『
+		在什么状态下才将登录文件进行轮替』的配置啊！那么 logrotate 这个程序的参数配置档在哪里呢？呵呵！那就是：</p>
+
+		<ul class="text_import2" style="font-family: '细明体';">
+		<li>/etc/logrotate.conf</li>
+		<li>/etc/logrotate.d/</li>
+		</ul>
+
+		<p>那个 logrotate.conf 才是主要的参数文件，至於 logrotate.d 是一个目录，
+		该目录里面的所有文件都会被主动的读入 /etc/logrotate.conf 当中来进行！另外，在
+		/etc/logrotate.d/ 里面的文件中，如果没有规定到的一些细部配置，则以 /etc/logrotate.conf
+		这个文件的规定来指定为默认值！</p>
+
+		<p>好了，刚刚我们提到 logrotate 的主要功能就是将旧的登录文件移动成旧档，
+		并且重新创建一个新的空的文件来记录，他的运行结果有点类似底下的图示：</p>
+
+		<center><img src="0570syslog_files/logrotate.gif" alt="登录文件进行 logrotate 的结果" title="登录文件进行 logrotate 的结果" border="0"><br>
+		图 3.1.1、 登录文件进行 logrotate 的结果<br></center>
+
+		<p>由上面的图示我们可以清楚的知道，当第一次运行完 rotate 之后，原本的 messages 会变成 messages.1
+		而且会制造一个空的 messages 给系统来储存登录文件。而第二次运行之后，则 messages.1 会变成
+		messages.2 而 messages 会变成 messages.1 ，又造成一个空的 messages 
+		来储存登录文件！那么如果我们仅配置保留三个登录文件而已的话，那么运行第四次时，则
+		messages.3 这个文件就会被删除，并由后面的较新的保存登录文件所取代！基本的工作就是这样啦！</p>
+
+		<p>那么多久进行一次这样的 logrotate 工作呢？这些都记录在 logrotate.conf	里面，我们来看一下默认的 
+		logrotate 的内容吧！</p>
+
+<table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">vim /etc/logrotate.conf</span>
+<span class="term_say"># 底下的配置是 "logrotate 的默认配置值" ，如果个别的文件配置了其他的参数，
+# 则将以个别的文件配置为主，若该文件没有配置到的参数则以这个文件的内容为默认值！</span>
+
+<span class="term_write">weekly    <span class="term_note">&lt;==默认每个礼拜对登录文件进行一次 rotate 的工作</span>
+rotate 4  <span class="term_note">&lt;==保留几个登录文件呢？默认是保留四个！</span>
+create    <span class="term_note">&lt;==由於登录文件被更名，因此创建一个新的来继续储存之意！</span>
+#compress <span class="term_note">&lt;==被更动的登录文件是否需要压缩？如果登录文件太大则可考虑此参数启动</span>
+
+include /etc/logrotate.d
+<span class="term_say"># 将 /etc/logrotate.d/ 这个目录中的所有文件都读进来运行 rotate 的工作！</span>
+
+/var/log/wtmp {       <span class="term_note">&lt;==仅针对 /var/log/wtmp 所配置的参数</span>
+    monthly           <span class="term_note">&lt;==每个月一次，取代每周！</span>
+    minsize 1M        <span class="term_note">&lt;==文件容量一定要超过 1M 后才进行 rotate (略过时间参数)</span>
+    create 0664 root utmp <span class="term_note">&lt;==指定新建文件的权限与所属帐号/群组</span>
+    rotate 1          <span class="term_note">&lt;==仅保留一个，亦即仅有 wtmp.1 保留而已。</span>
+}</span>
+<span class="term_say"># 这个 wtmp 可记录登陆者与系统重新启动时的时间与来源主机及登陆期间的时间。
+# 由於具有 minsize 的参数，因此不见得每个月一定会进行一次喔！要看文件容量。
+# 由於仅保留一个登录文件而已，不满意的话可以将他改成 rotate 5 吧！</span>
+</pre></td></tr></tbody></table>
+
+		<p>由这个文件的配置我们可以知道 /etc/logrotate.d 其实就是由 /etc/logrotate.conf
+		所规划出来的目录，所以，其实我们可以将所有的数据都给他写入 /etc/logrotate.conf
+		即可，但是这样一来这个文件就实在是太复杂了，尤其是当我们使用很多的服务在系统上面时，
+		每个服务都要去修改 /etc/logrotate.conf 的配置也似乎不太合理～
+		所以，如果独立出来一个目录，那么每个以 RPM 打包方式所创建的服务的登录文件轮替配置，
+		就可以独自成为一个文件，并且放置到 /etc/logrotate.d/ 当中即可，真是方便又合理的做法啊！ ^_^</p>
+
+		<p>一般来说，这个 /etc/logrotate.conf 是『默认的轮替状态』而已，
+		我们的各个服务都可以拥有自己的登录文件轮替配置，你也可以自行修改成自己喜欢的样式啊！
+		例如，如果你的系统的空间够大，并且担心除错以及黑客的问题，那么可以：</p>
+
+		<ul class="text_import2">
+		<li>将 rotate 4 改成 rotate 9 左右，以保存较多的备份文件；</li>
+		<li>大部分的登录文件不需要 compress 罗！但是空间太小就需要 compress ！尤其是很占磁盘空间的 httpd 更需要 compress 的！</li>
+		</ul>
+
+		<p>好了，上面我们大致介绍了 /var/log/wtmp 这个文件的配置，现在你知道了 logrotate.conf 的配置语法是：</p>
+
+<table class="term"><tbody><tr><td class="term"><pre>登录文件的绝对路径档名 ... {
+	个别的参数配置值，如 monthly, compress 等等
+}
+</pre></td></tr></tbody></table>
+
+		<p>底下我们再以 /etc/logrotate.d/syslog 这个轮替 syslog 服务的文件，来看看该如何配置他的 rotate 呢？</p>
+
+<table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">vi /etc/logrotate.d/syslog</span>
+/var/log/messages /var/log/secure /var/log/maillog /var/log/spooler \
+/var/log/boot.log /var/log/cron {
+  <u>sharedscripts</u>
+  <u>postrotate</u>
+    /bin/kill -HUP `cat /var/run/syslogd.pid 2&gt; /dev/null` 2&gt; /dev/null || true
+    /bin/kill -HUP `cat /var/run/rsyslogd.pid 2&gt; /dev/null` 2&gt; /dev/null || true
+  <u>endscript</u>
+}
+</pre></td></tr></tbody></table>
+
+		<p>在上面的语法当中，我们知道正确的 logrotate 的写法为：</p>
+		<ul>
+		<li><span class="text_import2">档名</span>：被处理的登录文件绝对路径档名写在前面，可以使用空白字节分隔多个登录文件；</li>
+		<li><span class="text_import2">参数</span>：上述档名进行轮替的参数使用 { } 包括起来；</li>
+		<li><span class="text_import2">运行脚本</span>：可呼叫外部命令来进行额外的命令下达，这个配置需与 
+			sharedscripts .... endscript 配置合用才行。至於可用的环境为：<br>
+			<ul>
+			<li><span class="text_import2">prerotate</span>：在启动 logrotate 
+			之前进行的命令，例如修改登录文件的属性等动作；</li>
+			<li><span class="text_import2">postrotate</span>：在做完 logrotate 之后启动的命令，例如重新启动
+				(kill -HUP) 某个服务！</li>
+			<li>Prerotate 与 postrotate 对於已加上特殊属性的文件处理上面，是相当重要的运行程序！</li>
+			</ul></li>
+		</ul>
+
+		<p>那么 /etc/logrotate.d/syslog 内配置的六个文件的轮替功能就变成了：</p>
+
+		<ul>
+		<li>该配置只对 /var/log/ 内的 messages, secure, maillog, spooler, boot.log, cron 有效；</li>
+		<li>登录文件轮替每周一次、保留四个、且轮替下来的登录文件不进行压缩(未更改默认值)；</li>
+		<li>轮替完毕后 (postrotate) 取得 syslog 的 PID 后，以 kill -HUP 重新启动 syslogd </li>
+		</ul>
+
+		<p>假设我们有针对 /var/log/messages 这个文件添加 chattr +a 的属性时，
+		依据 logrotate 的工作原理，我们知道，这个 /var/log/messages 将会被更名成为 
+		/var/log/messages.1 才是。但是由於加上这个 +a 的参数啊，所以更名是不可能成功的！
+		那怎么办呢？呵呵！就利用 prerotate 与 postrotate 来进行登录文件轮替前、后所需要作的动作啊！
+		果真如此时，那么你可以这样修改一下这个文件喔！</p>
+
+<table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">vi /etc/logrotate.d/syslog</span>
+/var/log/messages /var/log/secure /var/log/maillog /var/log/spooler \
+/var/log/boot.log /var/log/cron {
+  sharedscripts
+  <span class="term_write">prerotate
+    /usr/bin/chattr -a /var/log/messages
+  endscript
+  sharedscripts</span>
+  postrotate
+    /bin/kill -HUP `cat /var/run/syslogd.pid 2&gt; /dev/null` 2&gt; /dev/null || true
+    /bin/kill -HUP `cat /var/run/rsyslogd.pid 2&gt; /dev/null` 2&gt; /dev/null || true
+    <span class="term_write">/usr/bin/chattr +a /var/log/messages</span>
+  endscript
+}
+</pre></td></tr></tbody></table>
+
+		<p>看到否？就是先给他去掉 a 这个属性，让登录文件 /var/log/messages 可以进行轮替的动作，
+		然后运行了轮替之后，再给他加入这个属性！请特别留意的是，那个
+		/bin/kill -HUP ... 的意义，这一行的目的在於将系统的 syslogd
+		重新以其参数档 (syslog.conf) 的数据读入一次！也可以想成是 reload 的意思啦！
+		由於我们创建了一个新的空的纪录档，如果不运行此一行来重新启动服务的话，
+		那么记录的时候将会发生错误呦！(请回到<a href="0440processcontrol.php.html">第十七章</a>读一下
+		kill 后面的 signal 的内容说明)</p>
+	</div>
+
+	<hr><a name="rotate_command"></a><img src="../image/logo.png" alt="小标题的图示" width="24" align="middle" height="23"><span class="text_h2">实际测试 logrotate 的动作</span><br>
+	<div class="block2">
+		<p>好了，配置完成之后，我们来测试看看这样的配置是否可行呢？给他运行底下的命令：</p>
+
+<table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">logrotate [-vf] logfile</span>
+<span class="term_say">选项与参数：
+-v  ：启动显示模式，会显示 logrotate 运行的过程喔！
+-f  ：不论是否符合配置档的数据，强制每个登录文件都进行 rotate 的动作！</span>
+
+<span class="term_hd">范例一：运行一次 logrotate 看看整个流程为何？</span>
+[root@www ~]# <span class="term_command">logrotate -v /etc/logrotate.conf</span>
+reading config file /etc/logrotate.conf <span class="term_note">&lt;==读取主要配置档</span>
+including /etc/logrotate.d              <span class="term_note">&lt;==呼叫外部的配置</span>
+reading config file acpid               <span class="term_note">&lt;==就是外部配置啊！</span>
+<span class="term_say">....(中间省略)....</span>
+Handling 21 logs                        <span class="term_note">&lt;==共有 21 个登录文件被记录</span>
+<span class="term_say">....(中间省略)....</span>
+rotating pattern: /var/log/messages /var/log/secure /var/log/maillog \
+/var/log/spooler /var/log/boot.log /var/log/cron  weekly (4 rotations)
+empty log files are rotated, old logs are removed
+considering log /var/log/messages       <span class="term_note">&lt;==开始处理 messages</span>
+  log does not need rotating            <span class="term_note">&lt;==因为时间未到，不需要更动！</span>
+<span class="term_say">....(底下省略)....</span>
+
+<span class="term_hd">范例二：强制进行 logrotate 的动作</span>
+[root@www ~]# <span class="term_command">logrotate -vf /etc/logrotate.conf</span>
+<span class="term_say">....(前面省略)....</span>
+<span style="font-size: 9pt;">rotating log /var/log/messages, log-&gt;rotateCount is 4
+renaming /var/log/messages.4 to /var/log/messages.5 (rotatecount 4, logstart 1, i 4),
+renaming /var/log/messages.3 to /var/log/messages.4 (rotatecount 4, logstart 1, i 3),
+renaming /var/log/messages.2 to /var/log/messages.3 (rotatecount 4, logstart 1, i 2),
+renaming /var/log/messages.1 to /var/log/messages.2 (rotatecount 4, logstart 1, i 1),
+renaming /var/log/messages.0 to /var/log/messages.1 (rotatecount 4, logstart 1, i 0),
+old log /var/log/messages.0 does not exist</span>
+<span class="term_say">....(底下省略)....</span>
+<span class="term_say"># 看到否？整个 rotate 的动作就是这样一步一步进行的～</span>
+
+[root@www ~]# <span class="term_command">ll /var/log/messages*; lsattr /var/log/messages</span>
+-rw------- 1 root root    63 Apr  8 15:19 /var/log/messages
+-rw------- 1 root root   670 Apr  8 14:22 /var/log/messages.1
+-rw------- 1 root root 24984 Apr  1 19:26 /var/log/messages.2
+-rw------- 1 root root  1911 Mar 28 11:32 /var/log/messages.3
+-rw------- 1 root root 25193 Mar 22 04:02 /var/log/messages.4
+-----a------- /var/log/messages <span class="term_note">&lt;==主动加入 a 的隐藏属性罗！</span>
+</pre></td></tr></tbody></table>
+
+		<p>上面那个 -f 具有『强制运行』的意思，如果一切的配置都没有问题的话，那么理论上，你的
+		/var/log 这个目录就会起变化罗！而且应该不会出现错误信息才对！嘿嘿！这样就
+		OK 了！很棒不是吗？！</p>
+
+		<p>由於 logrotate 的工作已经加入 crontab 里头了！所以现在每天系统都会自动的给他查看
+		logrotate 罗！不用担心的啦！只是要注意一下那个 /var/log/messages 里头是否常常有类似底下的字眼：</p>
+		<blockquote class="text_import2" style="font-family: '细明体';">
+		Apr  8 15:19:47 www syslogd 1.4.1: restart (remote reception).</blockquote>
+
+		<p>这说明的是 syslogd 重新启动的时间啦 (就是因为 /etc/logrotate.d/syslog 的配置之缘故！)
+		底下我们来进行一些例题的练习，让你更详细的了解 logrotate 的功用啊！</p>
+	</div>
+
+	<hr><a name="rotate_user"></a><img src="../image/logo.png" alt="小标题的图示" width="24" align="middle" height="23"><span class="text_h2">自订登录文件的轮替功能</span><br>
+	<div class="block2">
+		<p>假设前提是这样的，前一小节当中，假设你已经创建了 /var/log/admin.log 这个文件，
+		现在，你想要将该文件加上 +a 这个隐藏标签，而且配置底下的相关资讯：</p>
+
+		<ul>
+		<li>登录文件轮替一个月进行一次；</li>
+		<li>该登录文件若大於 10MB 时，则主动进行轮替，不需要考虑一个月的期限；</li>
+		<li>保存五个备份文件；</li>
+		<li>备份文件需要压缩</li>
+		</ul>
+
+		<p>那你可以怎么样配置呢？呵呵～很简单啊！看看底下的动作吧！</p>
+
+<table class="term"><tbody><tr><td class="term"><pre><span class="term_hd"># 1. 先创建 +a 这个属性啊！</span>
+[root@www ~]# <span class="term_command">chattr +a /var/log/admin.log</span>
+[root@www ~]# <span class="term_command">lsattr /var/log/admin.log</span>
+-----a------- /var/log/admin.log
+[root@www ~]# <span class="term_command">mv /var/log/admin.log /var/log/admin.log.1</span>
+mv: cannot move `/var/log/admin.log' to `/var/log/admin.log.1': 
+Operation not permitted
+<span class="term_say"># 这里确定了加入 a 的隐藏属性！所以 root 无法移动此登录文件！</span>
+
+<span class="term_hd"># 2. 开始创建 logrotate 的配置档，添加一个文件在 /etc/logrotate.d 内就对了！</span>
+[root@www ~]# <span class="term_command">vi /etc/logrotate.d/admin</span>
+<span class="term_write"># This configuration is from VBird 2009/04/08
+/var/log/admin.log {
+        monthly   <span class="term_note">&lt;==每个月进行一次</span>
+        size=10M  <span class="term_note">&lt;==文件容量大於 10M 则开始处置</span>
+        rotate 5  <span class="term_note">&lt;==保留五个！</span>
+        compress  <span class="term_note">&lt;==进行压缩工作！</span>
+        sharedscripts
+        prerotate
+                /usr/bin/chattr -a /var/log/admin.log
+        endscript
+        sharedscripts
+        postrotate
+                /usr/bin/killall -HUP syslogd
+                /usr/bin/chattr +a /var/log/admin.log
+        endscript
+}</span>
+
+<span class="term_hd"># 3. 测试一下 logrotate 相关功能的资讯显示：</span>
+[root@www ~]# <span class="term_command">logrotate -v /etc/logrotate.conf</span>
+<span class="term_say">....(前面省略)....</span>
+rotating pattern: /var/log/admin.log  10485760 bytes (5 rotations)
+empty log files are rotated, old logs are removed
+considering log /var/log/admin.log
+  log does not need rotating
+not running prerotate script, since no logs will be rotated
+not running postrotate script, since no logs were rotated
+<span class="term_say">....(底下省略)....
+# 因为还不足一个月，文件也没有大於 10M，所以不需进行轮替！</span>
+
+<span class="term_hd"># 4. 测试一下强制 logrotate 与相关功能的资讯显示：</span>
+[root@www ~]# <span class="term_command">logrotate -vf /etc/logrotate.d/admin</span>
+<span style="font-size: 9pt;">reading config file /etc/logrotate.d/admin
+reading config info for /var/log/admin.log
+
+Handling 1 logs
+
+rotating pattern: /var/log/admin.log  forced from command line (5 rotations)
+empty log files are rotated, old logs are removed
+considering log /var/log/admin.log
+  log needs rotating
+rotating log /var/log/admin.log, log-&gt;rotateCount is 5
+renaming /var/log/admin.log.5.gz to /var/log/admin.log.6.gz (rotatecount 5, logstart 1, i 5),
+old log /var/log/admin.log.5.gz does not exist
+renaming /var/log/admin.log.4.gz to /var/log/admin.log.5.gz (rotatecount 5, logstart 1, i 4),
+old log /var/log/admin.log.4.gz does not exist
+renaming /var/log/admin.log.3.gz to /var/log/admin.log.4.gz (rotatecount 5, logstart 1, i 3),
+old log /var/log/admin.log.3.gz does not exist
+renaming /var/log/admin.log.2.gz to /var/log/admin.log.3.gz (rotatecount 5, logstart 1, i 2),
+old log /var/log/admin.log.2.gz does not exist
+renaming /var/log/admin.log.1.gz to /var/log/admin.log.2.gz (rotatecount 5, logstart 1, i 1),
+old log /var/log/admin.log.1.gz does not exist
+renaming /var/log/admin.log.0.gz to /var/log/admin.log.1.gz (rotatecount 5, logstart 1, i 0),
+old log /var/log/admin.log.0.gz does not exist
+log /var/log/admin.log.6.gz doesn't exist -- won't try to dispose of it
+running prerotate script
+renaming /var/log/admin.log to /var/log/admin.log.1
+running postrotate script
+compressing log with: /bin/gzip</span>
+
+
+[root@www ~]# <span class="term_command">lsattr /var/log/admin.log*</span>
+-----a------- /var/log/admin.log
+------------- /var/log/admin.log.1.gz  <span class="term_note">&lt;==有压缩过喔！</span>
+</pre></td></tr></tbody></table>
+
+		<p>看到了吗？透过这个方式，我们可以创建起属於自己的 logrotate 配置文件，
+		很简便吧！尤其是要注意的， /etc/syslog.conf 与 /etc/logrotate.d/* 
+		文件常常要搭配起来，例如刚刚我们提到的两个案例中所创建的 /var/log/admin.log
+		就是一个很好的例子～创建后，还要使用 logrotate 来轮替啊！ ^_^</p>
+	</div>
+</div>
+<hr />
+    </td>
+    <td style="width: 16px; font-size: 6px;">　</td></tr>
+<tr><td style="width: 16px; height: 16px;">　</td>
+    <td style="width: 866px; height: 16px;">　</td>
+    <td style="width: 16px; height: 16px;">　</td></tr>
+</tbody></table>
+
+<div style="padding-top: 0px; text-align: center;">
+<span style="font-size: 80%;">
+	<a href="http://vbird.dic.ksu.edu.tw/" target="_top" title="前往鸟哥的首页">http://linux.vbird.org</a>
+	is designed by <a href="mailto:vbird@mail.vbird.idv.tw" title="联络鸟哥(我不要广告信！)">VBird</a>
+		during 2001-2011. <a href="http://www.ksu.edu.tw/" target="_blank">ksu.edu</a></span>
+         ﻿<div id="apDiv4">
+      <p>本网页主要以Firefox配合解析度 1024x768 作为设计依据&nbsp;&nbsp;&nbsp;&nbsp; 鸟哥自由软件整合应用研究室</p></div></div>
+</div>
+</center>
+</body></html>

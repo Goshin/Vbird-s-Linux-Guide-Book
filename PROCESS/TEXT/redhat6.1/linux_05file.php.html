@@ -1,0 +1,522 @@
+﻿<!DOCTYPE HTML PUBLIC "-//w3c//dtd html 4.0 transitional//en">
+<html><head>
+
+
+   <meta http-equiv="Content-Type" content="text/html; charset=utf8">
+   <meta name="Author" content="VBird">
+   <title>鸟哥的 Linux 私房菜 -- 关于文件系统与架构</title>
+<style>
+   <!--
+   body{background-image:url('http://linux.vbird.org/images/VBirdLinux.jpg');
+	background-ATTACHMENT:FIXED}
+   -->
+</style>
+</head><body>
+
+
+<!-- Copyright � 2005. Spidersoft Ltd -->
+<style>
+A.applink:hover {border: 2px dotted #DCE6F4;padding:2px;background-color:#ffff00;color:green;text-decoration:none}
+A.applink       {border: 2px dotted #DCE6F4;padding:2px;color:#2F5BFF;background:transparent;text-decoration:none}
+A.info          {color:#2F5BFF;background:transparent;text-decoration:none}
+A.info:hover    {color:green;background:transparent;text-decoration:underline}
+</style>
+<div style='BORDER: 1px solid #DCE6F4; MARGIN-TOP: 20px; MARGIN-BOTTOM: 20px; MARGIN-LEFT: 5px; MARGIN-RIGHT: 5px; PADDING: 5px; BACKGROUND-COLOR: #eef8ff;line-height:180%; COLOR: #000000; font-family: Arial; font-size: 8pt; width=100%; FILTER: progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr="#FFFFFFFF", EndColorStr="#F2F5FAFF");'>
+This page was saved using <a class="applink" href="http://www.spidersoft.com"><b>WebZIP 7.0.3.1030</b></a> <a class="applink" href="http://www.spidersoft.com"><b>offline browser</b></a>  (Unregistered) on  02/12/15 12:14:49.<br>
+<b>Address:</b> <a class="info" href="http://vbird.dic.ksu.edu.tw/linux_basic/redhat6.1/linux_05file.php">http://vbird.dic.ksu.edu.tw/linux_basic/redhat6.1/linux_05file.php</a><br>
+<b>Title:</b> 鸟哥的 Linux 私房菜 -- 关于文件系统与架构 &nbsp;&bull;&nbsp; <b>Size:</b> 29743<br></div>
+<!-- /Copyright � 2005. Spidersoft Ltd -->
+
+
+<center><b><font color="#3333ff"><font size="+2"><font face="标楷体">鸟哥的</font><font face="Times New Roman,Times"> Linux </font><font face="标楷体">与</font><font face="Times New Roman,Times"> ADSL </font><font face="标楷体">私房菜</font></font></font></b>
+<br>
+<a href="http://linux.vbird.org/" target="_top"><img src="linux_05file_files/VBirdTitle2.jpg" nosave="" width="90" border="0" height="25"></a>
+<a href="http://linux.vbird.org/linux_basic"><img src="linux_05file_files/icon_system.gif" nosave="" width="90" border="0" height="25"></a>
+<a href="http://linux.vbird.org/linux_server"><img src="linux_05file_files/icon_server.gif" nosave="" width="90" border="0" height="25"></a>
+<a href="http://linux.vbird.org/linux_security"><img src="linux_05file_files/icon_security.jpg" nosave="" width="90" border="0" height="25"></a>
+<a href="http://phorum.vbird.org/" target="_blank"><img src="linux_05file_files/icon_forums.gif" nosave="" width="90" border="0" height="25"></a>
+<a href="http://linux.vbird.org/adsl"><img src="linux_05file_files/icon_adsl.gif" nosave="" width="90" border="0" height="25"></a>
+<br>
+<hr width="100%">
+</center>
+
+<center><font color="#3333ff"><font size="+2"><font face="标楷体">认识
+</font><font face="Times New Roman Baltic">Linux</font><font face="标楷体">
+文件属性及档案配置</font></font></font></center>
+
+<div align="right"><font face="新细明体"><font color="#3333ff"><font size="-1">最近更新日期：2001/09/02</font></font></font></div>
+<font color="#000099"><font size="+1"><a href="#Linux%20file"><font face="Times New Roman Baltic">Linux</font><font face="标楷体">
+文件属性</font></a></font></font>
+<br><font color="#000099"><font size="+1"><a href="#Linux_directory"><font face="Times New Roman Baltic">Linux</font><font face="标楷体">
+档案配置</font></a></font></font>
+<br><font face="标楷体"><font color="#000099"><font size="+1"><a href="#forcus">需要注意的目录</a></font></font></font>
+<br><font face="标楷体"><font color="#000099"><font size="+1"><a href="#server">一般主机可能会分配的磁盘情况</a></font></font></font>
+<br><font face="标楷体"><font color="#000099"><font size="+1"><a href="#QA">问题讨论</a></font></font></font>
+<br>
+<hr width="100%">
+<br><a name="Linux file"></a><font color="#000099"><font size="+1"><font face="Times New Roman Baltic">Linux</font><font face="标楷体">
+文件属性：</font></font></font>
+<blockquote><font face="标楷体"><font color="#000099"><font size="+1">认识档案</font></font></font>
+<p>如果您已经安装好了 Linux ，并且已经以 root 的身份登入了这架主机，那接下来要做些啥？我想，你应该先试着了解一下
+Linux 的主要文件属性，以免不小心砍了一些重要的档案，或者当以一般使用者身份登入时，产生无法进入一些没有权限之目录的情况！
+</p><p>首先，进入 Linux 之后，你可以如下输入一个可以观看文件属性的指令： ls&nbsp;
+-al
+<br>&nbsp;
+<table width="90%" bgcolor="#000000" cols="1">
+<tbody><tr>
+<td><font face="细明体"><font color="#ffffff"><font size="-1">[root @tsai
+root]# ls -al</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">-rw-r--r--&nbsp;&nbsp;
+1 root&nbsp;&nbsp;&nbsp;&nbsp; root&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+1422 Jun 18 17:20 .Xdefaults</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">-rw-r--r--&nbsp;&nbsp;
+1 root&nbsp;&nbsp;&nbsp;&nbsp; root&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+24 Jun 18 17:20 .bash_logout</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">-rw-r--r--&nbsp;&nbsp;
+1 root&nbsp;&nbsp;&nbsp;&nbsp; root&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+230 Jun 18 17:20 .bash_profile</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">-rw-r--r--&nbsp;&nbsp;
+1 root&nbsp;&nbsp;&nbsp;&nbsp; root&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+124 Jun 18 17:20 .bashrc</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">drwxr-xr-x&nbsp;&nbsp;
+3 root&nbsp;&nbsp;&nbsp;&nbsp; root&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+4096 Jun 18 17:20 .kde</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">-rw-r--r--&nbsp;&nbsp;
+1 root&nbsp;&nbsp;&nbsp;&nbsp; root&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+435 Jun 18 17:20 .kderc</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">-rw-r--r--&nbsp;&nbsp;
+1 root&nbsp;&nbsp;&nbsp;&nbsp; root&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+3394 Jun 18 17:20 .screenrc</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">drwxr-xr-x&nbsp;&nbsp;
+5 root&nbsp;&nbsp;&nbsp;&nbsp; root&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+4096 Jun 18 17:20 Desktop</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">lrwxrxwrwx&nbsp;
+
+1 root&nbsp;&nbsp;&nbsp;&nbsp; root&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+10 Jun 18 17:21 link_file -&gt; /home/vbird/test</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">-rw-rw-rw-&nbsp;&nbsp;
+1 root&nbsp;&nbsp;&nbsp;&nbsp; root&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+238 Jun 18 17:22 test.txt</font></font></font>
+<p><font face="细明体"><font color="#ffff00"><font size="-1">第一栏&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+二&nbsp; 三&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 四&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+五&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 六&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+七&nbsp;</font></font></font>
+<br><font face="细明体"><font color="#ffff00"><font size="-1">[文件属性][档案数][拥有者][所有者群组][大小][建檔日期][檔名]</font></font></font></p></td>
+</tr>
+</tbody></table>
+
+</p><p>ls 是『list』的意思，而参数『-al』则表示列出所有的档案（包含隐藏档）。如上所示，在你第一次登入
+Linux 时，如果你输入指令后，应该有上列的几个东西，先解释一下上面七个字段个别的意思：
+</p><ol>
+<li>
+<font color="#3333ff">第一栏代表这个档案的属性</font>，仔细看的话，你应该可以发现这一栏其实共有十个属性，第一个属性代表这个档案是『目录、档案或链接文件』当为[d]则是目录；为[-]则是档案，若是[l]则表示为连结档(link
+file)。接下来的属性中，三个为一组，且均为『rwx』的三个参数的组合。其中，[r]代表可读、[w]代表可写、[x]代表可执行，而第一组为『所有人的权限』、第二组为『同群组的权限』、第三组为『其他非本群组的权限』，若有一个档案的属性为『<font face="细明体">-rwxr-xr--</font>』，简单的可由下面说明之：</li>
+
+<br>&nbsp;
+<table width="90%" cols="1">
+<tbody><tr>
+<td><font face="细明体"><font color="#000066">[-][rwx][r-x][r--]</font></font>
+<br><font face="细明体"><font color="#000066">&nbsp;1&nbsp; 234&nbsp; 567&nbsp;
+890</font></font>
+<br><font face="细明体"><font color="#000066">&nbsp;&nbsp;&nbsp;&nbsp;
+1 为：代表这个文件名为目录或档案（上面为档案）</font></font>
+<br><font face="细明体"><font color="#000066">&nbsp;&nbsp;&nbsp; 234为：拥有人的权限（上面为可读、可写、可执行）</font></font>
+<br><font face="细明体"><font color="#000066">&nbsp;&nbsp;&nbsp; 567为：同群组用户权力（上面为可读可执行）</font></font>
+<br><font face="细明体"><font color="#000066">&nbsp;&nbsp;&nbsp; 890为：其他用户权力（上面为仅可读）</font></font></td>
+</tr>
+</tbody></table>
+
+<p>上面的情况代表一个档案、这个档案的拥有人可读可写可执行、但同群组的人仅可读与执行，非同群组的使用者仅可读的意思！
+<br>&nbsp;
+</p><li>
+第二栏表示有多少档案在这个目录（若为1则通常为档案）；</li>
+
+<br>&nbsp;
+<li>
+第三栏表示这个档案（或目录）的『拥有人』；</li>
+
+<br>&nbsp;
+<li>
+第四栏表示拥有人的群组；</li>
+
+<br>这里解释一下，在 Linux 中，你的 ID （如 root 或 vbird 等账号均是 ID）即是你的身份，而且你还有附属在一个群组之下，例如你有一个团体（即群组）代号为
+bird，且这个群体里有四个人，其代号分别是 bird1, bird2, bird3, bird4，则这四个人为同一群组即
+bird！若看上面的情况，则代表所有人为 root 且群组为 root （群组与所有人名称可以相同）
+<br>&nbsp;
+<li>
+第五栏为这个档案的大小；</li>
+
+<br>&nbsp;
+<li>
+第六栏为这个档案的建档日期，分别为月份、日期及时间；</li>
+
+<br>&nbsp;
+<li>
+第七栏为这个档案的档名，如果档名之前多一个『 . 』，则代表这个档案为『隐藏档』，例如上表第二行的『<font face="细明体"><font color="#000000">.Xdefaults</font></font>』档名即是隐藏档，由于我们有下一个参数为
+ls -al，所以连隐藏档都列出来，如果你只输入 ls 则档名有加『 . 』的档案就不会被显示出来！</li>
+</ol>
+举个例子来说，如果有下面的两个档案：
+<br>&nbsp;
+<table width="80%" bgcolor="#000000" cols="1">
+<tbody><tr>
+<td><font face="细明体"><font color="#ffffff"><font size="-1">-rw-r--r--&nbsp;&nbsp;
+1 root&nbsp;&nbsp;&nbsp;&nbsp; root&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+238 Jun 18 17:22 test.txt</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">-rwxr-xr--&nbsp;&nbsp;
+1 bird1&nbsp;&nbsp;&nbsp; bird&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+5238 Jun 19 10:25 ping_tsai</font></font></font></td>
+</tr>
+</tbody></table>
+
+<p>则档案『 test.txt 』只有 root 可以读写，其他人仅可以读；而另一个档案『
+ping_tsai 』所有人 bird1 可读可写可执行，而 bird2, bird3, bird4 这三个与
+bird1 同样是 bird 群组的仅可读可执行但不能写（亦即不能修改），至于非 bird
+这一个群组的人则仅可以读，不能写也不能执行！
+</p><p><font face="标楷体"><font color="#000099"><font size="+1">连结档</font></font></font>
+</p><p>另一个比较有趣的档案是连结档。如果你常常将应用程序捉到桌面来的话，你就应该知道在
+Windows 底下有所谓的『快捷方式』，你可以将 linux 下的连结档简单的视为一个档案或目录的快捷方式。但是基本上这两个东西是不一样的！在
+Windows 系统的快捷方式中，你将无法修改主程序，但是在 Linux 中，连结档可以直接链接到主程序，因此你只要改了这个链接文件，则主程序亦被改变了！
+</p><p><font face="标楷体"><font color="#000066"><font size="+1">一些档案的分别</font></font></font>
+</p><p>通常在 Linux 底下会有颜色来显示每一种档案型态，主要有底下几种档案型态：
+</p><ul>
+<li>
+一般档案：档案的第一个属性显示 - ；</li>
+
+<li>
+目录： 如果你只输入 ls -l 来察看档案的时候，可以看到档案第一个属性为 d；</li>
+
+<li>
+可执行文件：可以看到文件属性会有 x 这个属性；</li>
+
+<li>
+压缩文件：基本上，只要档案是&nbsp; .Z&nbsp; .z&nbsp; .gz&nbsp; .zip&nbsp;
+.tgz&nbsp; 都是压缩文件喔！</li>
+</ul>
+</blockquote>
+
+<hr width="100%">
+<br><a name="Linux_directory"></a><font color="#000099"><font size="+1"><font face="Times New Roman Baltic">Linux</font><font face="标楷体">
+档案配置：</font></font></font>
+<blockquote>如果你是以系统管理员（root）的身份登入这部 Linux 机器，则你的路径应该是在&nbsp;
+[root@tsai root]# 底下，这时你可以输入：
+<table width="80%" bgcolor="#000000" cols="1">
+<tbody><tr>
+<td><font face="细明体"><font color="#ffffff"><font size="-1">[root @tsai
+root]#&nbsp; cd ..</font></font></font></td>
+</tr>
+</tbody></table>
+会回到根目录『/』下，再输入刚刚学过的指令『ls&nbsp; -al』则会看到如下的画面：
+<br>&nbsp;
+<table width="90%" bgcolor="#000000" cols="1">
+<tbody><tr>
+<td><font face="细明体"><font color="#ffffff"><font size="-1">[root@tsai
+/]$ ls -al</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">total 117</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">drwxr-xr-x&nbsp;&nbsp;
+2 root&nbsp;&nbsp;&nbsp;&nbsp; root&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+4096 May 10 06:50 bin</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">drwxr-xr-x&nbsp;&nbsp;
+3 root&nbsp;&nbsp;&nbsp;&nbsp; root&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+1024 Mar 16 18:37 boot</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">drwxr-xr-x&nbsp;&nbsp;
+7 root&nbsp;&nbsp;&nbsp;&nbsp; root&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+36864 Jul&nbsp; 8 04:02 dev</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">drwxr-xr-x&nbsp;
+42 root&nbsp;&nbsp;&nbsp;&nbsp; root&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+4096 Jul&nbsp; 9 15:21 etc</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">drwxr-xr-x&nbsp;
+35 root&nbsp;&nbsp;&nbsp;&nbsp; root&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+4096 Jul&nbsp; 9 15:20 home</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">drwxr-xr-x&nbsp;&nbsp;
+4 root&nbsp;&nbsp;&nbsp;&nbsp; root&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+4096 Jan 29 22:55 lib</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">drwxr-xr-x&nbsp;&nbsp;
+2 root&nbsp;&nbsp;&nbsp;&nbsp; root&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+16384 Jan 29 22:52 lost+found</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">drwxr-xr-x&nbsp;&nbsp;
+6 root&nbsp;&nbsp;&nbsp;&nbsp; root&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+4096 Mar 27 19:10 mnt</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">drwxr-xr-x&nbsp;&nbsp;
+2 root&nbsp;&nbsp;&nbsp;&nbsp; root&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+4096 Aug 24&nbsp; 1999 opt</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">dr-xr-xr-x&nbsp;
+60 root&nbsp;&nbsp;&nbsp;&nbsp; root&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+0 Jul&nbsp; 1 12:52 proc</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">drwxr-x---&nbsp;
+12 root&nbsp;&nbsp;&nbsp;&nbsp; root&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+4096 Jun&nbsp; 7 14:21 root</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">drwxr-xr-x&nbsp;&nbsp;
+3 root&nbsp;&nbsp;&nbsp;&nbsp; root&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+4096 May 10 06:50 sbin</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">drwxrwxrwt&nbsp;&nbsp;
+6 root&nbsp;&nbsp;&nbsp;&nbsp; root&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+4096 Jul 11 01:04 tmp</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">drwxr-xr-x&nbsp;
+23 root&nbsp;&nbsp;&nbsp;&nbsp; root&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+4096 Sep 16&nbsp; 2000 usr</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">drwxr-xr-x&nbsp;
+23 root&nbsp;&nbsp;&nbsp;&nbsp; root&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+4096 Jan 29 17:11 var</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">drwxr-xr-x&nbsp;&nbsp;
+6 root&nbsp;&nbsp;&nbsp;&nbsp; root&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+4096 Jan&nbsp; 1&nbsp; 1970 win98se</font></font></font></td>
+</tr>
+</tbody></table>
+要说明的是，这里的目录为 RedHat 6.1 的配置，在 RedHat 7.0 中有稍做改变，但其实也是差不多的！底下针对上面几个路径来做说明：
+<ul>
+<li>
+<font color="#000066">/bin&nbsp;</font><font color="#3333ff">&nbsp; </font>：这是放例如：
+ls, mv, rm, mkdir, rmdir, gzip, tar, telnet, 及 ftp 等等常用的执行档的地方（这些执行档的执行方法会在后面提到），而通常这个档案的内容与
+/usr/bin 是一样的（有时候甚至会使用连结档哩）；</li>
+
+<br>&nbsp;
+<li>
+<font color="#000066">/boot&nbsp; </font>：记得我们在之前的 <a href="http://linux.vbird.org/linux_basic/redhat6.1/linux_04begin_lilo.php#lilo">多重引导设定</a>
+那一部份有提到你的开机文件所在位置吧！没错，这里就是放置你 Linux 核心与开机相关档案的地方；</li>
+
+<br>&nbsp;
+<li>
+<font color="#000066">/dev&nbsp;</font>&nbsp; ：摆放一些与装置有关的档案。基本上
+Unix 或 Linux 系统均把装置当成是一个档案来看待，例如 /dev/fd0 代表软盘，亦即
+Windows 系统下的 A 槽，而 /dev/cdrom 则代表光盘，等等！</li>
+
+<br>&nbsp;
+<li>
+<font color="#000066">/etc&nbsp;&nbsp;&nbsp; </font>：系统在开机过程中需要读取的档案均在这个目录中，例如
+Lilo 的参数、人员的账号与密码、系统的主要设定、http 架站的参数内容、你所要开启的服务项目等等都在这个目录中，所以<font color="#000099">在这个目录下工作的时候，请记得一定要备份，</font>否则档案被改掉了可是很麻烦的！</li>
+
+<br>&nbsp;
+<li>
+<font color="#000066">/etc/rc.d</font>&nbsp; ：这个路径主要在记录一些开关机过程中的
+scripts 档案， scripts 有点像是 DOS 下的批处理文件（.bat檔名）；</li>
+
+<br>&nbsp;
+<li>
+<font color="#000066">/etc/xinetd.d&nbsp;</font> ：这个路径在 RedHat 7.0
+以后的版本才有，由于 RedHat 6.1 用来开启服务的档案是<font color="#000099">
+inetd.conf</font> ，但是在 7.0 以后的版本中，开启服务的项目已经变成使用
+<font color="#000099">xinetd.conf</font>
+这个档案，因此，你若需要启动一些额外的服务的话，在 7.0 以后就要到 /etc/xinetd.d
+这个目录下了；</li>
+
+<br>&nbsp;
+<li>
+<font color="#000066">/etc/X11&nbsp;</font>&nbsp; ：这是与 X windows 有关的配置文件；</li>
+
+<br>&nbsp;
+<li>
+<font color="#000066">/home&nbsp; </font>：基本上，这是系统默认的用户的家目录(
+home directory )，另外，在 RedHat 6.1 版中，httpd及 ftp 等程序的家目录也在这个目录下！</li>
+
+<br>&nbsp;
+<li>
+<font color="#000066">/lib&nbsp;&nbsp; </font>：在 Linux 执行或编译核心的时候，均会使用到一些函式库（library），就在这个目录下；</li>
+
+<br>&nbsp;
+<li>
+<font color="#000066">/lost+found </font>：系统不正常产生错误时，会将一些遗失的片段放置于此目录下，通常这个目录会自动出现在装置目录下。例如你加装一棵硬盘于
+/disk 中，那在这个目录下就会自动产生一个这样的目录 /disk/lost+found，这是砍不掉的目录喔；</li>
+
+<br>&nbsp;
+<li>
+<font color="#000066">/mnt&nbsp;</font>&nbsp; ：这是软盘与光盘接挂点的地方；通常软盘挂在
+/mnt/floppy 下，而光盘挂在 /mnt/cdrom 下；</li>
+
+<br>&nbsp;
+<li>
+<font color="#000066">/proc&nbsp; </font>：系统核心与执行程序的一些信息；</li>
+
+<br>&nbsp;
+<li>
+<font color="#000066">/root&nbsp; </font>：系统管理员的家目录；</li>
+
+<br>&nbsp;
+<li>
+<font color="#000066">/sbin</font>&nbsp;&nbsp; ：放置一些系统管理常用的程序，例如：
+fdisk, mke2fs, fsck, mkswap, mount 等等；</li>
+
+<br>&nbsp;
+<li>
+<font color="#000066">/tmp&nbsp; </font>：这是让一般使用者暂时存放档案的地方，例如你在安装
+Linux 下的软件时，可能软件默认的工作目录就是 /tmp ，所以你要定期的清理一下，当然，重要数据最好不要放在这里！</li>
+
+<br>&nbsp;
+<li>
+<font color="#000066">/usr&nbsp;&nbsp; </font>：这是最重要的一个目录了，里面含有相当多的系统信息，内有许多目录，用来存放程序与指令；</li>
+
+<br>&nbsp;
+<li>
+<font color="#000066">/usr/bin&nbsp; </font>：放置可执行程序，如前所说，这个目录的档案与
+/bin 几乎是相同的；</li>
+
+<br>&nbsp;
+<li>
+<font color="#000066">/usr/include&nbsp; </font>：c语言的header文件；</li>
+
+<br>&nbsp;
+<li>
+<font color="#000066">/usr/lib&nbsp;&nbsp;&nbsp; </font>：内含许多程序与子程序所需的函式库
+；</li>
+
+<br>&nbsp;
+<li>
+<font color="#000066">/usr/local&nbsp;&nbsp; </font>：在你安装完了 Linux
+之后，基本上所有的配备你都有了，但是软件总是可以升级的，例如你要升级你的
+proxy 服务，则通常软件默认的安装地方就是在 /usr/local 中（ local 是『当地』的意思），同时，安装完毕之后所得到的执行文件，为了与系统原先的执行文件有分别，因此升级后的执行档通常摆在
+<font color="#000099">/usr/local/bin
+</font>这个地方；</li>
+
+<br>&nbsp;
+<li>
+<font color="#000066">/usr/sbin&nbsp;&nbsp;&nbsp; </font>：放置管理者使用程序，与
+/sbin 相同；</li>
+
+<br>&nbsp;
+<li>
+<font color="#000066">/usr/doc&nbsp;&nbsp;&nbsp; </font>：放置一些系统说明文件的地方，（RedHat
+7.0 以后改放在 /usr/share/doc 下）；</li>
+
+<br>&nbsp;
+<li>
+<font color="#000066">/usr/man</font>&nbsp; ：放置一些程序的说明文件的地方，
+（RedHat 7.0 以后放在 /usr/share/man 底下）；</li>
+
+<br>&nbsp;
+<li>
+<font color="#000066">/usr/src&nbsp;&nbsp;&nbsp;</font> ：这是放置核心原始码的默认目录；</li>
+
+<br>&nbsp;
+<li>
+<font color="#000066">/usr/X11R6&nbsp;</font> ：X Window System存放相关档案的目录&nbsp;
+。</li>
+
+<br>&nbsp;
+<li>
+<font color="#000066">/var&nbsp;&nbsp;&nbsp; </font>：这是系统在工作时，默认的工作目录，例如这架主机用户的登录档案信息、尚未寄出的邮件存放地、接收的邮件放置处等等；</li>
+</ul>
+</blockquote>
+
+<hr width="100%">
+<br><a name="forcus"></a><font face="标楷体"><font color="#000099"><font size="+1">需要注意的目录</font></font></font>
+<blockquote>在 Linux 系统中，有几个目录是特别需要注意的，以下提供几个需要注意的目录，以及默认相关的用途：
+<ul>
+<li>
+<font color="#3333ff">/etc</font>：这个目录相当重要，如前所述，你的开机与系统数据文件均在这个目录之下，因此当这个目录被破坏，那你的系统大概也就差不多该死掉了！而在往后的文件中，你会发现我们常常使用这个目录下的<font color="#3333ff">
+/etc/rc.d/init.d </font>这个子目录，因为这个 init.d 子目录是开启一些 redhat
+这个 Linux 系统服务的 scripts （可以想成是 批处理文件 ）的地方。而在 <font color="#3333ff">/etc/rc.d/rc.local
+</font>与
+<font color="#3333ff">/etc/rc.d/rc.sysinit </font>这两个档案是开机的执行档，有点像是旧
+Windows 系统下的 autoexec.bat 及 config.sys 檔。所以，如果你有需要在开机加载的服务或执行档案，可以写在这两个档案的最后一行，则开机时就会自动帮你加载执行档了！</li>
+</ul>
+
+<ul>
+<li>
+<font color="#3333ff">/bin, /sbin, /usr/bin, /usr/sbin</font>：这是系统默认的执行文件的放置目录，例如
+root 常常使用的 userconf, netconf, perl, gcc, c++ 等等的数据都放在这几个目录中，所以如果你在提示字符下找不到某个执行档时，可以在这四个目录中查一查！</li>
+</ul>
+
+<ul>
+<li>
+<font color="#3333ff">/usr/local</font>：这是系统默认的让你安装你后来升级的套件的目录。例如，当你发现有更新的
+Web 套件（如 Apache ）可以安装，而你又不想以 rpm 的方式升级你的套件，则你可以将
+apache 这个套件安装在 /usr/local 底下。安装在这里有个好处，因为目前大家的系统都是差不多的，所以如果你的系统要让别人接管的话，也比较容易上手呀！也比较容易找的到数据喔！因此，如果你有需要的话，<font color="#3333ff">通常我都会将
+/usr/local/bin 这个路径加到我的 path 中</font>。</li>
+</ul>
+
+<ul>
+<li>
+<font color="#3333ff">/home</font>：这个是系统将有账号的人口的家目录设置的地方。</li>
+</ul>
+
+<ul>
+<li>
+<font color="#3333ff">/var</font>：这个路径就重要了！不论是登入、各类服务的问题发生时的记录、以及常态性的服务记录等等的记录目录，所以当你的系统有问题时，就需要来这个目录记录的档案数据中察看问题的所在啰！而
+mail 的预设放置也是在这里，所以他是很重要的喔！</li>
+</ul>
+
+<ul>
+<li>
+<font color="#3333ff">/usr/man, /usr/local/man</font>：这两个目录为放置各类套件说明档的地方，例如你如果执行
+man man，则系统会自动去找这两个目录下的所有说明文件，如果有相同的数据就会叫出来给你幽！</li>
+</ul>
+</blockquote>
+
+<hr width="100%">
+<br><a name="server"></a><font face="标楷体"><font color="#000099"><font size="+1">一般主机可能会分配的磁盘情况</font></font></font>
+<blockquote>通常一般的大型主机都不会将所有的数据放置在一个磁盘中（就是只有一个『
+/ 』根目录），这有几个目的：
+<ol>
+<li>
+<font color="#3333ff">安全性考虑</font>：你的系统通常是在 /usr/ 中，而数据库则可能放置在
+/home 当中，至于一些开机数据则放置在 /etc 
+当中。如果将所有的数据放在一起，当你的系统不小心被黑客破坏，或者不小心自己砍了一个小东西，则所有的咚咚也都跟着不见了.....这对于我们市井小民
+或许无所谓，再安装一次就好了，但是对于一些大型企业可不行这样！因此需要将数据分别放置于不同的磁盘中，会比较保险些。</li>
+
+<li>
+<font color="#3333ff">便利性</font>：如果你需要升级你的系统的话，是否需要重新
+format 安装呢？有些数据例如 /home 里面的数据为个人用户的数据，似乎与系统无关！所以如果你将这些数据分别放置于不同的磁盘，则你要升级或者进行一些系统更动时，将比较有弹性。</li>
+</ol>
+你或许可以将你的系统做成这样的分布：
+<ul>
+<li>
+<font color="#3333ff">/</font></li>
+
+<li>
+<font color="#3333ff">/boot</font></li>
+
+<li>
+<font color="#3333ff">/usr</font></li>
+
+<li>
+<font color="#3333ff">/home</font></li>
+
+<li>
+<font color="#3333ff">/var</font></li>
+</ul>
+这是比较常见的磁盘分布情况，其中，
+<ol>
+<li>
+<font color="#3333ff">/ </font>根目录可以分配约 256 MB 以内；</li>
+
+<li>
+<font color="#3333ff">/boot </font>大概在 50 MB 就可以了，因为启动文件并不大；</li>
+
+<li>
+<font color="#3333ff">&nbsp;/var</font> 就至少需要 1GB 以上，因为你的 mail
+、 proxy 默认的储存区都在这个目录中，除非你要将一些设定改变！</li>
+
+<li>
+<font color="#3333ff">/home</font> 与<font color="#3333ff"> /usr </font>通常是最大的，因为你所安装的数据都是在
+/usr/ 当中，而用户数据则放置在 /home 当中，因此通常书上都会建议你将所剩下的磁盘空间平均分配给这两个目录说！</li>
+</ol>
+</blockquote>
+<font face="新细明体"><font color="#3333ff"><font size="-1">2002/ 01/01以来统计人数</font></font></font>
+<br><img src="linux_05file_files/Count.gif" nosave="" width="60" align="ABSCENTER" height="15">
+<hr width="100%">
+<br><a name="QA"></a><font face="标楷体"><font color="#000099"><font size="+1">本章问题讨论：</font></font></font>
+<blockquote>
+<ol>
+<li>
+<font size="+2">Q</font>：Xwindows 的配置文件为 XF86Config，请问这个档案在
+RedHad 的哪里？</li>
+
+<br><font color="#000066"><font size="+2">A</font>：</font>
+<br><font color="#000066">这个档案放置在 /etc/X11 底下，通常我们在设定
+X-Windows 时，比较喜欢用 Xconfigurator 来做简单的设定，也可以使用 XF86Setup
+来做设定；</font>
+<br>&nbsp;
+<li>
+等待加入新讨论：</li>
+</ol>
+</blockquote>
+<hr width="100%">
+<center>
+<a href="http://linux.vbird.org/" target="_top"><img src="linux_05file_files/VBirdTitle2.jpg" nosave="" width="90" border="0" height="25"></a>
+<a href="http://linux.vbird.org/linux_basic"><img src="linux_05file_files/icon_system.gif" nosave="" width="90" border="0" height="25"></a>
+<a href="http://linux.vbird.org/linux_server"><img src="linux_05file_files/icon_server.gif" nosave="" width="90" border="0" height="25"></a>
+<a href="http://linux.vbird.org/linux_security"><img src="linux_05file_files/icon_security.jpg" nosave="" width="90" border="0" height="25"></a>
+<a href="http://phorum.vbird.org/" target="_blank"><img src="linux_05file_files/icon_forums.gif" nosave="" width="90" border="0" height="25"></a>
+<a href="http://linux.vbird.org/adsl"><img src="linux_05file_files/icon_adsl.gif" nosave="" width="90" border="0" height="25"></a>
+<br><font color="#000066"><font size="-1">Designed by <a href="mailto:vbird@mail.vbird.idv.tw">VBird</a>
+during 2001-2004.&nbsp; Aerosol Lab.</font></font></center>
+</body></html>

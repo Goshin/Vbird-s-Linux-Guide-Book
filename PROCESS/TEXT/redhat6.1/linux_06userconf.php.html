@@ -1,0 +1,162 @@
+﻿<!DOCTYPE HTML PUBLIC "-//w3c//dtd html 4.0 transitional//en">
+<html><head>
+
+
+   <meta http-equiv="Content-Type" content="text/html; charset=utf8">
+   <meta name="Author" content="VBird">
+   <title>鸟哥的 Linux 私房菜 -- 关于 Userconf 的使用</title>
+<style>
+   <!--
+   body{background-image:url(http://linux.vbird.org/images/VBirdLinux.jpg);
+	background-ATTACHMENT:FIXED}
+   -->
+</style>
+</head><body>
+
+
+<!-- Copyright � 2005. Spidersoft Ltd -->
+<style>
+A.applink:hover {border: 2px dotted #DCE6F4;padding:2px;background-color:#ffff00;color:green;text-decoration:none}
+A.applink       {border: 2px dotted #DCE6F4;padding:2px;color:#2F5BFF;background:transparent;text-decoration:none}
+A.info          {color:#2F5BFF;background:transparent;text-decoration:none}
+A.info:hover    {color:green;background:transparent;text-decoration:underline}
+</style>
+<div style='BORDER: 1px solid #DCE6F4; MARGIN-TOP: 20px; MARGIN-BOTTOM: 20px; MARGIN-LEFT: 5px; MARGIN-RIGHT: 5px; PADDING: 5px; BACKGROUND-COLOR: #eef8ff;line-height:180%; COLOR: #000000; font-family: Arial; font-size: 8pt; width=100%; FILTER: progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr="#FFFFFFFF", EndColorStr="#F2F5FAFF");'>
+This page was saved using <a class="applink" href="http://www.spidersoft.com"><b>WebZIP 7.0.3.1030</b></a> <a class="applink" href="http://www.spidersoft.com"><b>offline browser</b></a>  (Unregistered) on  02/12/15 12:14:49.<br>
+<b>Address:</b> <a class="info" href="http://vbird.dic.ksu.edu.tw/linux_basic/redhat6.1/linux_06userconf.php">http://vbird.dic.ksu.edu.tw/linux_basic/redhat6.1/linux_06userconf.php</a><br>
+<b>Title:</b> 鸟哥的 Linux 私房菜 -- 关于 Userconf 的使用 &nbsp;&bull;&nbsp; <b>Size:</b> 10147<br></div>
+<!-- /Copyright � 2005. Spidersoft Ltd -->
+
+
+<center><b><font color="#3333ff"><font size="+2"><font face="标楷体">鸟哥的</font><font face="Times New Roman,Times"> Linux </font><font face="标楷体">与</font><font face="Times New Roman,Times"> ADSL </font><font face="标楷体">私房菜</font></font></font></b>
+<br>
+<a href="http://linux.vbird.org/" target="_top"><img src="linux_06userconf_files/VBirdTitle2.jpg" nosave="" width="90" border="0" height="25"></a>
+<a href="http://linux.vbird.org/linux_basic"><img src="linux_06userconf_files/icon_system.gif" nosave="" width="90" border="0" height="25"></a>
+<a href="http://linux.vbird.org/linux_server"><img src="linux_06userconf_files/icon_server.gif" nosave="" width="90" border="0" height="25"></a>
+<a href="http://linux.vbird.org/linux_security"><img src="linux_06userconf_files/icon_security.jpg" nosave="" width="90" border="0" height="25"></a>
+<a href="http://phorum.vbird.org/" target="_blank"><img src="linux_06userconf_files/icon_forums.gif" nosave="" width="90" border="0" height="25"></a>
+<a href="http://linux.vbird.org/adsl"><img src="linux_06userconf_files/icon_adsl.gif" nosave="" width="90" border="0" height="25"></a>
+<br>
+<hr width="100%">
+</center>
+<center><font color="#3333ff"><font size="+2"><font face="标楷体">在
+</font><font face="Times New Roman Baltic">Linux</font><font face="标楷体">
+中新增使用者或群组</font></font></font></center>
+
+<div align="right"><font face="新细明体"><font color="#3333ff"><font size="-1">最近更新日期：2001/08/02</font></font></font></div>
+
+<blockquote>使用 <font color="#3333ff">/bin/userconf</font> （在 7.0 之后为
+<font color="#3333ff">/sbin/userconf</font>）来新增使用者或群组是一件很简单的事情，不过，请注意，<font color="#000066">您的身份必须要是
+root 才可以使用这个档案</font>！在提示字符之下输入： /bin/userconf 则会出现如下的画面：
+<blockquote><img src="linux_06userconf_files/linux_06userconf_1.jpg" width="389" height="409"></blockquote>
+在这个画面中，目前我们所要使用到的功能只有：
+<ul>
+<li>
+User accounts</li>
+
+<li>
+Group definitions</li>
+
+<li>
+Change root password</li>
+</ul>
+当然，其实我们关心的只有 User accounts 这一项啰！<font color="#3333ff">在操作上，使用『上下键』移动反白的线条，而使用『Tab』键来使光标移动到底下的
+Quit 及 Help 按钮！</font>
+<p><font color="#3333ff">1. 进入 User account：</font>在 User accounts
+按下 Enter 键，会出现：
+</p><blockquote><img src="linux_06userconf_files/linux_06userconf_2.jpg" width="412" height="405"></blockquote>
+在这个画面中，第一栏为登入的账号，第二栏为这个账号的名称（可有可无），第三栏是这个账号在这架
+Linux 主机中的编号，第四栏则是这个账号所代表的群组。你可以看到上面有个
+vbird 的账号，这个账号的使用者是 DerMin Tsai（就使鸟哥啦），然后 vbird
+这个账号的编号是 500，而所属的群组是 root 这一个。
+<ul>
+<li>
+<font color="#3333ff">关于Uid编号</font>：这个编号是 Linux 的一个识别的
+ID，通常，使用者的编号都是在 500 号以后，而有关系统的账号，例如上图中的
+lp （打印机服务）、mail（邮件服务）、ftp（FTP服务）等等之编号通常都在 100
+以内。当然你也可以将自己的编号订在 500 号以内，但并不建议这样做，因为可能你的编号会与系统服务的账号相同，而产生一些问题.....</li>
+</ul>
+<font color="#3333ff">2. 新增使用者：</font>在上图中双击 『<font color="#3333ff">Tab</font>』
+键将光标移动至 <font color="#3333ff">Add</font> 这一项，按 Enter，会出现：
+<blockquote><img src="linux_06userconf_files/linux_06userconf_3.jpg" width="684" height="406"></blockquote>
+在这个画面中，你所需要输入的其实只有<font color="#000066"> Login name </font>就可以了，其他的东西系统会自动帮你设定。不过，如果你需要将使用者分门别类的话，最好还是设定一下比较好！
+<ul>
+<li>
+<font color="#000099">Login name</font>：输入要新增的使用者的账号（就是
+ID 啦）；</li>
+
+<br>&nbsp;
+<li>
+<font color="#000099">Full name </font>：这是这个账号的使用者全名，这个地方是可有可无的，不会影响！</li>
+
+<br>&nbsp;
+<li>
+<font color="#000099">group </font>：用来指定这一个 ID 的所属群组，通常鸟哥都会将在我机器上的使用者分成几各类别，而分别给予不同的群组，好方便管控！</li>
+
+<br>&nbsp;
+<li>
+<font color="#000099">Supplementary groups</font>：除了主要的群组之外，Linux
+还提供你其他的支持群组！不过通常不用设定就可以了；</li>
+
+<br>&nbsp;
+<li>
+<font color="#000099">Home directory(opt) </font>：这是用来设定这个账号用户的家目录。通常如果不设定的话，默认的用户家目录都在
+<font color="#000099">/home/userID</font>
+，但是当你的硬盘容量不够大的时候，或者想将某人移动到某一个目录的话，就可以直接在这边改一改啰！</li>
+
+<br>&nbsp;
+<li>
+<font color="#000099">Command interpreter(opt) </font>：这是使用者预设的
+Shell ，通常在 Linux 下，我们都使用 BAShell ，所以不用改啦；</li>
+
+<br>&nbsp;
+<li>
+<font color="#000099">User ID(opt) </font>：注意喔，这个 ID 可不是前面的
+login 的 ID ，这个 ID 是前面说的 Uid 编号，你可以自己设定一个大于 500 且不与其他账号重复的
+ID，也可以交由系统自动设定；</li>
+</ul>
+
+<ul>
+<li>
+<font color="#000099">设定邮件别名（alias）</font>：基本上设定完这里就可以了，其他的保持默认值即可。不过，如果你已经有开启了
+mail 服务，而虽然你的 ID 是 vbird ，但是也想要使用另一个 ID 为 dmtsai 的时候，其实不用再设定另一个账号，只要使用
+alias 的功能即可。将光标往下移动，可以看到如下的画面：</li>
+
+<br><img src="linux_06userconf_files/linux_06userconf_4.jpg" width="689" height="410">
+<br>在上面这个画面中，将光标移动到 Email alias 这一项上面。输入你要的别名(alias)即可。所谓的设定
+邮件别名 的意思是这样的，当你想要让 dmtsai 的邮件也传递到 vbird 这个账号时，使用使用
+邮件别名，则系统在收到 dmtsai 这个 ID 的信件时，会将信直接传送到 vbird
+而不会使用 dmtsai。
+<p>最常使用 邮件别名 的时候是：<font color="#3333ff">当一群人都想要使用同一个账号时</font>。例如：你是一个系统管理员，若你要进行系统维修的时候，会在两天前发
+e-mail 向你的使用者通知。如果是一个小站的话，那你可以慢慢的发个几封信也就是了，但是当你负责的是一个几百甚至几千人的企业时，这样发信是否觉得很麻烦呢？这时就可以使用
+mail alias 的功能了，每个用户的 mail alias 都可以设定为同一个虚拟账号，例如每个人都有一个叫做
+piggg 的账号，则你只要寄信给 piggg 这个账号时，系统会自动帮你把信传送给每一个人喔！好用吧！关于这部份，我们会在
+mail server 中再次提到！</p></ul>
+OK！设定完成之后，按下 『Tab』 键，选择 <font color="#3333ff">Accept</font>
+按 Enter，这时会出现要你输入密码的画面：
+<blockquote><img src="linux_06userconf_files/linux_06userconf_5.jpg" width="492" height="182"></blockquote>
+请输入这个账号所想要的密码。请注意，通常密码的限制是：
+<ul>
+<li>
+密码不能与账号相同；</li>
+
+<li>
+密码需要超过 8 个字符；</li>
+</ul>
+这是主要的限制，不过，由于你是『权力无限大的管理员』，所以密码的形式是『不限的』（虽然没有照规矩来时，在设定中会出现一些错误讯息，不过并不会影响你的设定！）。输入完毕之后会出现在输入一次的画面：
+<blockquote><img src="linux_06userconf_files/linux_06userconf_6.jpg" width="549" height="177"></blockquote>
+再次输入一次密码之后，如果出现如下的画面，那就新增完成了！
+<blockquote><img src="linux_06userconf_files/linux_06userconf_7.jpg" width="335" height="195"></blockquote>
+<font color="#3333ff">3. 新增群组</font>：新增群组的话请选择 Cancel 跳出到最前面的画面，选择<font color="#3333ff">
+Group definitions</font> 这一项，就会出现 Group 的列表，基本上 Group 的增加与新增使用这是相同的方式，在此就不多说了！留给大家去尝试尝试吧！</blockquote>
+<hr width="100%">
+<center>
+<a href="http://linux.vbird.org/" target="_top"><img src="linux_06userconf_files/VBirdTitle2.jpg" nosave="" width="90" border="0" height="25"></a>
+<a href="http://linux.vbird.org/linux_basic"><img src="linux_06userconf_files/icon_system.gif" nosave="" width="90" border="0" height="25"></a>
+<a href="http://linux.vbird.org/linux_server"><img src="linux_06userconf_files/icon_server.gif" nosave="" width="90" border="0" height="25"></a>
+<a href="http://linux.vbird.org/linux_security"><img src="linux_06userconf_files/icon_security.jpg" nosave="" width="90" border="0" height="25"></a>
+<a href="http://phorum.vbird.org/" target="_blank"><img src="linux_06userconf_files/icon_forums.gif" nosave="" width="90" border="0" height="25"></a>
+<a href="http://linux.vbird.org/adsl"><img src="linux_06userconf_files/icon_adsl.gif" nosave="" width="90" border="0" height="25"></a>
+<br><font color="#000066"><font size="-1">Designed by <a href="mailto:vbird@mail.vbird.idv.tw">VBird</a>
+during 2001-2004.&nbsp; Aerosol Lab.</font></font></center>
+</body></html>
