@@ -162,7 +162,7 @@
 		基本上，我们常常讲的『系统的 MBR』其实指的是 <b>第一个启动装置的 MBR</b> 才对！
 		所以，改天如果你要将启动管理程序安装到某颗硬盘的 MBR 时，
 		要特别注意当时系统的『第一个启动装置』是哪个，否则会安装到错误的硬盘上面的 MBR 喔！重要重要！
-		</font></span></td><td><img src="0510osloader_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div>
+		</font></span></td><td><img src="../Images/0510osloader_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div>
 		<a name="process_2"></a>
 		<hr><ul class="list1"><li class="text_import1">Boot Loader 的功能</li></ul>
 
@@ -177,7 +177,7 @@
 		而通常操作系统默认都会安装一份 loader 到他根目录所在的文件系统的 boot sector 上。如果我们在一部主机上面安装 Windows
 		与 Linux 后，该 boot sector, boot loader 与 MBR 的相关性会有点像下图：</p>
 
-		<center><img src="0510osloader_files/mbr_boot_sector.gif" alt="boot loader 安装在 MBR, boot sector 与操作系统的关系" title="boot loader 安装在 MBR, boot sector 与操作系统的关系" border="0"><br>
+		<center><img src="../Images/0510osloader_files/mbr_boot_sector.gif" alt="boot loader 安装在 MBR, boot sector 与操作系统的关系" title="boot loader 安装在 MBR, boot sector 与操作系统的关系" border="0"><br>
 		图 1.2.1、 boot loader 安装在 MBR, boot sector 与操作系统的关系<br></center>
 
 		<p>如上图所示，每个操作系统默认是会安装一套 boot loader 到他自己的文件系统中 (就是每个 filesystem 
@@ -202,7 +202,7 @@
 		来加载 Linux 的 loader 喔！这也是为啥第三章谈到 MBR 与多重启动时，会特别强调先装 Windows 再装 Linux 的缘故。
 		我们将上述的三个功能以底下的图示来解释你就看的懂了！(与第三章的图示也非常类似啦！)</p>
 
-		<center><img src="0510osloader_files/loader_menu.gif" alt="启动管理程序的菜单功能与控制权转交功能示意图" title="启动管理程序的菜单功能与控制权转交功能示意图" border="0"><br>
+		<center><img src="../Images/0510osloader_files/loader_menu.gif" alt="启动管理程序的菜单功能与控制权转交功能示意图" title="启动管理程序的菜单功能与控制权转交功能示意图" border="0"><br>
 		图 1.2.2、 启动管理程序的菜单功能与控制权转交功能示意图<br></center>
 
 		<p>如上图所示，我的 MBR 使用 Linux 的 grub 这个启动管理程序，并且里面假设已经有了三个菜单，
@@ -252,7 +252,7 @@ System.map-2.6.18-92.el5  <span class="term_note">&lt;==核心功能放置到内
 		通常这些模块就是 U盘, RAID, LVM, SCSI 等文件系统与磁碟介面的驱动程序啦</span>！等加载完成后，
 		会帮助核心重新呼叫 /sbin/init 来开始后续的正常启动流程。</p>
 
-		<center><img src="0510osloader_files/0510osloader-flow.jpg" alt="BIOS 与 boot loader 及核心加载流程示意图" title="BIOS 与 boot loader 及核心加载流程示意图" border="1"><br>
+		<center><img src="../Images/0510osloader_files/0510osloader-flow.jpg" alt="BIOS 与 boot loader 及核心加载流程示意图" title="BIOS 与 boot loader 及核心加载流程示意图" border="1"><br>
 		图 1.2.3、 BIOS 与 boot loader 及核心加载流程示意图<br></center>
 
 		<p>如上图所示，boot loader 可以加载 kernel  与 initrd ，然后在内存中让 initrd 解压缩成为根目录，
@@ -470,7 +470,7 @@ x:5:respawn:/etc/X11/prefdm -nodaemon <span class="term_note">&lt;==X window 则
 		<div style="padding: 10pt 0pt;" align="right"><table width="90%"><tbody><tr><td><b>Tips:</b><br><span style="color: rgb(0, 144, 0);"><font size="-1">		老实说，这个文件的档名在各不同的 distributions 当中都不相同，
 		例如 SuSE server 9 就使用 /etc/init.d/boot 与 /etc/init.d/rc 来进行的。
 		所以，你最好还是自行到 /etc/inittab 去察看一下系统的工作喔！ ^_^
-		</font></span></td><td><img src="0510osloader_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div>
+		</font></span></td><td><img src="../Images/0510osloader_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div>
 		<p>如果你使用 vim 去查阅过 /etc/rc.d/rc.sysinit 的话，那么可以发现他主要的工作大抵有这几项：</p>
 
 		<ol>
@@ -1110,7 +1110,7 @@ lrwxrwxrwx  menu.lst -&gt; ./grub.conf <span class="term_note">&lt;==其实 menu
 		<div style="padding: 10pt 0pt;" align="right"><table width="90%"><tbody><tr><td><b>Tips:</b><br><span style="color: rgb(0, 144, 0);"><font size="-1">		在较旧的主板上面，通常第一颗硬盘会插在 IDE 1 的 master 上，就会是 /dev/hda，所以常常我们可能会误会 
 		/dev/hda 就是 (hd0)，其实不是喔！要看你的 BIOS 配置值才行！有的主板 BIOS 
 		可以调整启动的硬盘搜寻顺序，那么就要注意了，因为 grub 的硬盘代号可能会跟著改变呐！留意留意！
-		</font></span></td><td><img src="0510osloader_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div>
+		</font></span></td><td><img src="../Images/0510osloader_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div>
 		<p>所以说，整个硬盘代号为：</p>
 
 
@@ -1321,7 +1321,7 @@ title Windows partition
 		使用的是 IDE 介面的硬盘，而且并没有使用 LVM 等特殊格式的文件系统，而 Linux 核心本身就认识 IDE 介面的磁碟，
 		因此不需要 initrd 也可以顺利启动完成的。<u>自从 SATA 硬盘流行起来后，没有 initrd 就没办法启动了</u>！
 		因为 SATA 硬盘使用的是 SCSI 模块来驱动的，而 Linux 默认将 SCSI 功能编译成为模块....
-		</font></span></td><td><img src="0510osloader_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div>
+		</font></span></td><td><img src="../Images/0510osloader_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div>
 		<p>一般来说，各 distribution 提供的核心都会附上 initrd 文件，但如果你有特殊需要所以想重制 initrd 文件的话，
 		可以使用 mkinitrd 来处理的。这个文件的处理方式很简单， man mkinitrd 就知道了！ ^_^。
 		我们还是简单的介绍一下去！</p>
@@ -1378,7 +1378,7 @@ Adding module 8139too  <span class="term_note">&lt;==看到没！这样就加入
 		<div style="padding: 10pt 0pt;" align="right"><table width="90%"><tbody><tr><td><b>Tips:</b><br><span style="color: rgb(0, 144, 0);"><font size="-1">		安装些什么呢？因为 boot loader 有两个 stage ，而配置档得要放置到适当的地方。
 		这个 grub-install 就是在安装配置档 (包括文件系统定义档与 menu.lst 等等) 而已！
 		如果要将 grub 的 stage1 主程序安装起来，就得要使用 grub shell 的功能喔！本章稍后会介绍。
-		</font></span></td><td><img src="0510osloader_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div>
+		</font></span></td><td><img src="../Images/0510osloader_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div>
 <a name="grub-install"></a>
 <table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">grub-install [--root-directory=DIR] INSTALL_DEVICE</span>
 <span class="term_say">选项与参数：
@@ -1542,7 +1542,7 @@ grub&gt; <span class="term_command">quit</span>
 		另外，如果你正在进行启动，那么请注意，我们可以在默认菜单 (鸟哥的范例当中是 30 秒) 按下任意键，
 		还可以进行 grub 的『线上编修』功能喔！真是棒啊！先来看看启动画面吧！</p>
 
-		<center><img src="0510osloader_files/grub-01.jpg" alt="grub 启动画面示意图" title="grub 启动画面示意图" border="1"><br>
+		<center><img src="../Images/0510osloader_files/grub-01.jpg" alt="grub 启动画面示意图" title="grub 启动画面示意图" border="1"><br>
 		图 3.5.1、grub 启动画面示意图<br></center>
 
 		<p>由於鸟哥将隐藏菜单的功能取消了，因此你会直接看到这四个菜单，同时会有读秒的咚咚在倒数。
@@ -1556,7 +1556,7 @@ grub&gt; <span class="term_command">quit</span>
 		我们可以查阅该 title 菜单的内容并加以修改喔！举例来说，我想要知道第一个菜单的实际内容时，将反白光棒移动到第一个菜单，
 		再按下 'e' 会进入如下画面：</p>
 
-		<center><img src="0510osloader_files/grub-02.jpg" alt="grub 单一菜单内容" title="grub 单一菜单内容" border="1"><br>
+		<center><img src="../Images/0510osloader_files/grub-02.jpg" alt="grub 单一菜单内容" title="grub 单一菜单内容" border="1"><br>
 		图 3.5.2、grub 单一菜单内容<br></center>
 
 		<p>哈哈！这不就是我们在 menu.lst 里面配置的东西吗？没错！此时你还可以继续进一步修改喔！
@@ -1571,7 +1571,7 @@ grub&gt; <span class="term_command">quit</span>
 		在那个 partition ，而且知道你的核心文件档名 (通常都会有个 /boot/vmlinuz 连结到正确的档名)，
 		那么直接在图三的画面当中，以上述的 o, d, e 三个按键来编修，成为类似底下这样：</p>
 
-		<center><img src="0510osloader_files/grub-03.jpg" alt="grub edit 的线上编修功能" title="grub edit 的线上编修功能" border="1"><br>
+		<center><img src="../Images/0510osloader_files/grub-03.jpg" alt="grub edit 的线上编修功能" title="grub edit 的线上编修功能" border="1"><br>
 		图 3.5.3、grub edit 的线上编修功能<br></center>
 
 		<p>按下 [Enter] 按键后，然后输入 b 来 boot ，就可以启动啦！所以说，万一你的 /boot/grub/menu.lst 
@@ -1724,7 +1724,7 @@ title CentOS (2.6.18-92.el5)
 
 		<p>那么重新启动后，画面会像这样：</p>
 
-		<center><img src="0510osloader_files/grub-04.jpg" alt="grub 加密的示意图" title="grub 加密的示意图" border="1"><br>
+		<center><img src="../Images/0510osloader_files/grub-04.jpg" alt="grub 加密的示意图" title="grub 加密的示意图" border="1"><br>
 		图 3.8.1、 grub 加密的示意图<br></center>
 
 		<p>你可以看到最下方仅出现 p 的功能，由於 2, 3, 4 菜单并没有使用 lock ，因此这三个菜单使用者还是可以运行启动程序，
@@ -1779,7 +1779,7 @@ title CentOS (2.6.18-92.el5)
 		又根据启动流程的说明，我们知道此时虽然可以利用 root 取得 bash 来工作，但此时 (1)除了根目录外，其他的目录都没有被挂载；
 		(2)根目录被挂载成为唯读状态。因此我们还需要进行一些动作才行！如下所示：</p>
 
-		<center><img src="0510osloader_files/grub-05.jpg" alt="直接进入 bash 的环境" title="直接进入 bash 的环境" border="1"><br>
+		<center><img src="../Images/0510osloader_files/grub-05.jpg" alt="直接进入 bash 的环境" title="直接进入 bash 的环境" border="1"><br>
 		图 4.2.1、 略过 init 的程序，直接进入 bash shell<br></center>
 
 		<p>鸟哥仅下达两个命令，『 mount -o remount,rw / 』用途是将根目录重新挂载成为可读写，<span class="text_import2">至於『 mount -a 』则是参考 /etc/fstab 的内容重新挂载文件系统</span>！
@@ -1817,7 +1817,7 @@ title CentOS (2.6.18-92.el5)
 		又没有经过 mount -a 来测试挂载，就立刻直接重新启动，真要命！无法启动成功怎么办？
 		这种情况的问题大多如下面的画面所示：</p>
 
-		<center><img src="0510osloader_files/grub-06.jpg" alt="文件系统错误的示意图" title="文件系统错误的示意图" border="1"><br>
+		<center><img src="../Images/0510osloader_files/grub-06.jpg" alt="文件系统错误的示意图" title="文件系统错误的示意图" border="1"><br>
 		图 4.4.1、 文件系统错误的示意图<br></center>
 
 		<p>看到最后两行，他说可以输入 root 的口令继续加以救援喔！那请输入 root 的口令来取得 bash 并以

@@ -371,7 +371,7 @@
 		也是仅备份有差异的数据而已。</span>如此一来，由於仅备份有差异的数据，因此备份的数据量小且快速！备份也很有效率。
 		我们可以从下图来说明：</p>
 
-		<center><img src="0580backup_files/incremental.gif" alt="累积备份 (incremental backup) 操作示意图" title="累积备份 (incremental backup) 操作示意图" border="0"><br>
+		<center><img src="../Images/0580backup_files/incremental.gif" alt="累积备份 (incremental backup) 操作示意图" title="累积备份 (incremental backup) 操作示意图" border="0"><br>
 		图 2.1.1、 累积备份 (incremental backup) 操作示意图<br></center>
 
 		<p>假如我在星期一作好完整备份，则星期二的累积备份是系统与完整备份间的差异数据；星期三的备份是系统与星期二的差异数据，
@@ -429,7 +429,7 @@
 		<p>差异备份与累积备份有点类似，也是需要进行第一次的完整备份后才能够进行。只是差异备份指的是：<span class="text_import2">每次的备份都是与原始的完整备份比较的结果。</span>所以系统运行的越久，离完整备份时间越长，
 		那么该次的差异备份数据可能就会越大！差异备份的示意图如下所示：</p>
 
-		<center><img src="0580backup_files/differential.gif" alt="差异备份 (differential backup) 操作示意图" title="差异备份 (differential backup) 操作示意图" border="0"><br>
+		<center><img src="../Images/0580backup_files/differential.gif" alt="差异备份 (differential backup) 操作示意图" title="差异备份 (differential backup) 操作示意图" border="0"><br>
 		图 2.2.1、 差异备份 (differential backup) 操作示意图<br></center>
 
 		<p>差异备份常用的工具与累积备份差不多！因为都需要完整备份嘛！如果使用 dump 来备份的话，那么每次备份的等级 (level)
@@ -630,7 +630,7 @@ cd /var/www
 		举例来说，当你备份 MySQL 数据库时，刚好有人利用你的数据库发表文章，此时，
 		可能会发生一些错误的信息。要避免这类的问题时，可以在备份前，将该服务先关掉，
 		备份完成后，再启动该服务即可！感谢讨论区 duncanlo 提供这个方法！
-		</font></span></td><td><img src="0580backup_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div>	</div>
+		</font></span></td><td><img src="../Images/0580backup_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div>	</div>
 
 	<hr><a name="remote"></a><img src="../images/logo.png" alt="小标题的图示" width="24" align="middle" height="23"><span class="text_h2">远程备援的 script</span><br>
 	<div class="block2">

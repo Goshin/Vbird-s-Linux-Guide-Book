@@ -112,7 +112,7 @@
 		在运行上，X Client 应用程序会将所想要呈现的画面告知 X Server ，最终由 X server 来将结果透过他所管理的硬件绘制出来！
 		整体的架构我们大约可以使用如下的图示来作个介绍：(<a href="#ps2">注2</a>)</p>
 
-		<center><img src="0590xwindow_files/x_ser_cli.gif" alt="X Window System 的架构" title="X Window System 的架构" border="0"><br>
+		<center><img src="../Images/0590xwindow_files/x_ser_cli.gif" alt="X Window System 的架构" title="X Window System 的架构" border="0"><br>
 		图 1.2.1、 X Window System 的架构 (<a href="#ps2">注2</a>)<br></center>
 
 		<p>上面的图示非常有趣喔！我们在用户端想要取得来自服务器的图形数据时，我们用户端使用的当然是用户端的硬件设备啊，
@@ -172,7 +172,7 @@
 		X Server 用的是什么硬件？用的是哪套操作系统？服务器端的 X Client 根本不需要知道～相当的先进与优秀～对吧！ ^_^
 		整个运行流程可以参考下图：用户端用的是什么操作系统在 Linux 主机端是不在乎的！</p>
 
-		<center><img src="0590xwindow_files/x_client_os.gif" alt="X Server 用户端的操作系统与 X client 的沟通示意" title="X Server 用户端的操作系统与 X client 的沟通示意" border="0"><br>
+		<center><img src="../Images/0590xwindow_files/x_client_os.gif" alt="X Server 用户端的操作系统与 X client 的沟通示意" title="X Server 用户端的操作系统与 X client 的沟通示意" border="0"><br>
 		图 1.2.2、 X Server 用户端的操作系统与 X client 的沟通示意<br></center><br>
 
 		<hr><ul class="list1"><li class="text_import1">X Window Manager：特殊的 X Client ，负责管理所有的 X client
@@ -360,7 +360,7 @@
 		<div style="padding: 10pt 0pt;" align="right"><table width="90%"><tbody><tr><td><b>Tips:</b><br><span style="color: rgb(0, 144, 0);"><font size="-1">		不论怎么说，鸟哥还是希望大家可以透过解析 startx 这个 script 的内容去找到每个文件，
 		再根据分析每个文件来找到您 distributions 上面的 X 相关文件～
 		毕竟每个版本的 Linux 还是有所差异的～
-		</font></span></td><td><img src="0590xwindow_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div>
+		</font></span></td><td><img src="../Images/0590xwindow_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div>
 		<p>另外，如果有特殊需求，你当然可以自订 X client 的参数！这就得要修改你家目录下的 ~/.xinitrc 这个文件罗。
 		不过要注意的是，如果你的 .xinitrc 配置档里面有启动的 x client 很多的时候，千万注意将除了最后一个 
 		window manager 或 X Client 之外，都放到背景里面去运行啊！举例来说，像底下这样：</p>
@@ -412,7 +412,7 @@
 [root@www ~]# <span class="term_command">X :1 &amp;</span>
 </pre></td></tr></tbody></table>
 
-		<center><img src="0590xwindow_files/xwin_test_1.gif" alt="单纯启动 X server的情况" title="单纯启动 X server的情况" border="1"><br>
+		<center><img src="../Images/0590xwindow_files/xwin_test_1.gif" alt="单纯启动 X server的情况" title="单纯启动 X server的情况" border="1"><br>
 		图 1.4.1 、 单纯启动 X server的情况<br></center>
 
 		<p>上述的 X 是大写，那个 :1 是写在一起的，至於 &amp; 则是放到背景去运行。此时系统会主动的跳到第二个图形介面终端机，亦即 
@@ -425,7 +425,7 @@
 [root@www ~]# <span class="term_command">xterm -display :1  &amp;</span>
 </pre></td></tr></tbody></table>
 
-		<center><img src="0590xwindow_files/xwin_test_2.gif" alt="在 X 上面启动 xterm 终端机显示的结果" title="在 X 上面启动 xterm 终端机显示的结果" border="1"><br>
+		<center><img src="../Images/0590xwindow_files/xwin_test_2.gif" alt="在 X 上面启动 xterm 终端机显示的结果" title="在 X 上面启动 xterm 终端机显示的结果" border="1"><br>
 		图 1.4.2 、 在 X 上面启动 xterm 终端机显示的结果<br></center>
 
 		<p>那个 xterm 是必须要在 X 底下才能够运行的终端机介面。加入的参数 -display 则是指出这个 xterm 要在那个 display 
@@ -440,7 +440,7 @@
 [root@www ~]# <span class="term_command">xeyes -display :1  &amp;</span>
 </pre></td></tr></tbody></table>
 
-		<center><img src="0590xwindow_files/xwin_test_3.gif" alt="分别启动 xclock 时钟与 xeyes 眼睛的结果" title="分别启动 xclock 时钟与 xeyes 眼睛的结果" border="1"><br>
+		<center><img src="../Images/0590xwindow_files/xwin_test_3.gif" alt="分别启动 xclock 时钟与 xeyes 眼睛的结果" title="分别启动 xclock 时钟与 xeyes 眼睛的结果" border="1"><br>
 		图 1.4.3 、 分别启动 xclock 时钟与 xeyes 眼睛的结果<br></center>
 
 		<p>跟前面一样的，我们又多运行了两个 X client ，其中 xclock 会显示时钟，而 xeyes 则是会出现一双大眼睛来盯著光标！
@@ -451,7 +451,7 @@
 [root@www ~]# <span class="term_command">twm -display :1  &amp;</span>
 </pre></td></tr></tbody></table>
 
-		<center><img src="0590xwindow_files/xwin_test_4.gif" alt="窗口管理员 twm 的功能显示" title="窗口管理员 twm 的功能显示" border="1"><br>
+		<center><img src="../Images/0590xwindow_files/xwin_test_4.gif" alt="窗口管理员 twm 的功能显示" title="窗口管理员 twm 的功能显示" border="1"><br>
 		图 1.4.4 、 窗口管理员 twm 的功能显示<br></center>
 
 		<p>回到 tty1 后，用最简单的 twm 这个窗口管理员来管理我们的 X 吧！输入之后，去到 tty8
@@ -506,7 +506,7 @@
 		<div style="padding: 10pt 0pt;" align="right"><table width="90%"><tbody><tr><td><b>Tips:</b><br><span style="color: rgb(0, 144, 0);"><font size="-1">		鸟哥刚开始接触 Linux (大约是在 1999 年左右)时，由於不熟，通常都是默认给他激活 X Window 在我的主机上面的。
 		不过，那个时候的图形介面与 Linux kernel 的整合度比较差，
 		老是挂点去，是常常造成主机上面的网络服务无法顺畅的原因之一呢！
-		</font></span></td><td><img src="0590xwindow_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div>
+		</font></span></td><td><img src="../Images/0590xwindow_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div>
 		<a name="20090728"></a>
 		<p>就鸟哥的使用经验来看， GNOME 速度稍微快一点， KDE 的介面感觉比较具有亲和力！不过，总体而言，
 		这个 X Window System 的速度其实并不是那么棒！如果你有其他图形介面的需求时，可以使用 yum
@@ -703,7 +703,7 @@ EndSection
 
 		<div style="padding: 10pt 0pt;" align="right"><table width="90%"><tbody><tr><td><b>Tips:</b><br><span style="color: rgb(0, 144, 0);"><font size="-1">		经由讨论局域网友的说明，如果你发现明明有捉到显卡驱动程序却老是无法顺利启动 X 的话，可以尝试去官网取得驱动程序来安装，
 		也能够将『Device』阶段的『Driver』修改成默认的『Driver  "vesa"』，使用该驱动程序来暂时启动 X 内的显卡喔！
-		</font></span></td><td><img src="0590xwindow_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div>	</div>
+		</font></span></td><td><img src="../Images/0590xwindow_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div>	</div>
 
 	<hr><a name="xserver_xfs"></a><img src="../images/logo.png" alt="小标题的图示" width="24" align="middle" height="23"><span class="text_h2">X Font Server (XFS)
 	与加入额外中文字形</span><br>
@@ -812,7 +812,7 @@ fc-cache: succeeded
 		接下来你就会发现多出了『标楷体、细明体、新细明体』等字体可以选择罗！试看看吧！鸟哥调整成为『Times and Roman』
 		出现如下图的结果呢！参考看看：</p>
 
-		<center><img src="0590xwindow_files/fonts.gif" alt="中文字形的调整结果" title="中文字形的调整结果" border="1"><br>
+		<center><img src="../Images/0590xwindow_files/fonts.gif" alt="中文字形的调整结果" title="中文字形的调整结果" border="1"><br>
 		图 2.2.1、中文字形的调整结果<br></center>
 	</div>
 
@@ -916,42 +916,42 @@ EndSection
 <table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">sh NVIDIA-Linux-x86_64-185.18.14-pkg2.run</span>
 </pre></td></tr></tbody></table>
 
-		<center><img src="0590xwindow_files/driver_nv_01.gif" alt="NVidia 驱动程序安装示意" title="NVidia 驱动程序安装示意" border="1"><br>
+		<center><img src="../Images/0590xwindow_files/driver_nv_01.gif" alt="NVidia 驱动程序安装示意" title="NVidia 驱动程序安装示意" border="1"><br>
 		图 3.1.1、NVidia 驱动程序安装示意<br></center>
 
 		<p>上面说的是授权，你必须要接受 (Accept) 才能继续。</p>
 
-		<center><img src="0590xwindow_files/driver_nv_02.gif" alt="NVidia 驱动程序安装示意" title="NVidia 驱动程序安装示意" border="1"><br>
+		<center><img src="../Images/0590xwindow_files/driver_nv_02.gif" alt="NVidia 驱动程序安装示意" title="NVidia 驱动程序安装示意" border="1"><br>
 		图 3.1.2、NVidia 驱动程序安装示意<br></center>
 
 		<p>我们不预期 NVidia 会帮我们编译好核心模块，因此这里选择 No ，让我们自己编译模块吧！</p>
 
-		<center><img src="0590xwindow_files/driver_nv_03.gif" alt="NVidia 驱动程序安装示意" title="NVidia 驱动程序安装示意" border="1"><br>
+		<center><img src="../Images/0590xwindow_files/driver_nv_03.gif" alt="NVidia 驱动程序安装示意" title="NVidia 驱动程序安装示意" border="1"><br>
 		图 3.1.3、NVidia 驱动程序安装示意<br></center>
 
 		<p>直接按下 OK 来继续下一步即可。</p>
 
-		<center><img src="0590xwindow_files/driver_nv_04.gif" alt="NVidia 驱动程序安装示意" title="NVidia 驱动程序安装示意" border="1"><br>
+		<center><img src="../Images/0590xwindow_files/driver_nv_04.gif" alt="NVidia 驱动程序安装示意" title="NVidia 驱动程序安装示意" border="1"><br>
 		图 3.1.4、NVidia 驱动程序安装示意<br></center>
 
 		<p>开始进行核心模块的编译！这个过程不会太久～</p>
 
-		<center><img src="0590xwindow_files/driver_nv_05.gif" alt="NVidia 驱动程序安装示意" title="NVidia 驱动程序安装示意" border="1"><br>
+		<center><img src="../Images/0590xwindow_files/driver_nv_05.gif" alt="NVidia 驱动程序安装示意" title="NVidia 驱动程序安装示意" border="1"><br>
 		图 3.1.5、NVidia 驱动程序安装示意<br></center>
 
 		<p>是否要安装额外的 OpenGL 函式库？要啊！就选择 Yes 吧！</p>
 
-		<center><img src="0590xwindow_files/driver_nv_06.gif" alt="NVidia 驱动程序安装示意" title="NVidia 驱动程序安装示意" border="1"><br>
+		<center><img src="../Images/0590xwindow_files/driver_nv_06.gif" alt="NVidia 驱动程序安装示意" title="NVidia 驱动程序安装示意" border="1"><br>
 		图 3.1.6、NVidia 驱动程序安装示意<br></center>
 
 		<p>这个时候开始安装显卡的驱动程序，会花费一段时间喔！然后出现下图：</p>
 
-		<center><img src="0590xwindow_files/driver_nv_07.gif" alt="NVidia 驱动程序安装示意" title="NVidia 驱动程序安装示意" border="1"><br>
+		<center><img src="../Images/0590xwindow_files/driver_nv_07.gif" alt="NVidia 驱动程序安装示意" title="NVidia 驱动程序安装示意" border="1"><br>
 		图 3.1.7、NVidia 驱动程序安装示意<br></center>
 
 		<p>让这支安装程序主动的去修改 xorg.conf 吧！比较轻松愉快！就按下 Yes 即可。</p>
 
-		<center><img src="0590xwindow_files/driver_nv_08.gif" alt="NVidia 驱动程序安装示意" title="NVidia 驱动程序安装示意" border="1"><br>
+		<center><img src="../Images/0590xwindow_files/driver_nv_08.gif" alt="NVidia 驱动程序安装示意" title="NVidia 驱动程序安装示意" border="1"><br>
 		图 3.1.8、NVidia 驱动程序安装示意<br></center>
 
 		<p>最后按下 OK 就结束安装罗！这个时候如果你去查阅一下 /etc/X11/xorg.conf 的内容，会发现 Device 的 Driver
@@ -984,27 +984,27 @@ EndSection
 <table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">sh ati-driver-installer-9-6-x86.x86_64.run</span>
 </pre></td></tr></tbody></table>
 
-		<center><img src="0590xwindow_files/driver_ati_01.gif" alt="ATI 显卡驱动程序安装示意" title="ATI 显卡驱动程序安装示意" border="1"><br>
+		<center><img src="../Images/0590xwindow_files/driver_ati_01.gif" alt="ATI 显卡驱动程序安装示意" title="ATI 显卡驱动程序安装示意" border="1"><br>
 		图 3.2.1、ATI 显卡驱动程序安装示意<br></center>
 
 		<p>选择安装吧！</p>
 
-		<center><img src="0590xwindow_files/driver_ati_02.gif" alt="ATI 显卡驱动程序安装示意" title="ATI 显卡驱动程序安装示意" border="1"><br>
+		<center><img src="../Images/0590xwindow_files/driver_ati_02.gif" alt="ATI 显卡驱动程序安装示意" title="ATI 显卡驱动程序安装示意" border="1"><br>
 		图 3.2.2、ATI 显卡驱动程序安装示意<br></center>
 
 		<p>这里的目的是让我们确定一下，是否真的是安装在 x86_64 的硬件上面而已！按下 OK 去！</p>
 
-		<center><img src="0590xwindow_files/driver_ati_03.gif" alt="ATI 显卡驱动程序安装示意" title="ATI 显卡驱动程序安装示意" border="1"><br>
+		<center><img src="../Images/0590xwindow_files/driver_ati_03.gif" alt="ATI 显卡驱动程序安装示意" title="ATI 显卡驱动程序安装示意" border="1"><br>
 		图 3.2.3、ATI 显卡驱动程序安装示意<br></center>
 
 		<p>看完授权之后，直接给他 Exit 离开授权说明，然后会出现接受与否的字样：</p>
 
-		<center><img src="0590xwindow_files/driver_ati_04.gif" alt="ATI 显卡驱动程序安装示意" title="ATI 显卡驱动程序安装示意" border="1"><br>
+		<center><img src="../Images/0590xwindow_files/driver_ati_04.gif" alt="ATI 显卡驱动程序安装示意" title="ATI 显卡驱动程序安装示意" border="1"><br>
 		图 3.2.4、ATI 显卡驱动程序安装示意<br></center>
 
 		<p>要安装啊！所以当然就是 Yes 下去喔！</p>
 
-		<center><img src="0590xwindow_files/driver_ati_05.gif" alt="ATI 显卡驱动程序安装示意" title="ATI 显卡驱动程序安装示意" border="1"><br>
+		<center><img src="../Images/0590xwindow_files/driver_ati_05.gif" alt="ATI 显卡驱动程序安装示意" title="ATI 显卡驱动程序安装示意" border="1"><br>
 		图 3.2.5、ATI 显卡驱动程序安装示意<br></center>
 
 		<p>最后选择默认安装即可！不需要使用专家安装啦！这样就安装完毕了！也是非常快速吧！最后就会在

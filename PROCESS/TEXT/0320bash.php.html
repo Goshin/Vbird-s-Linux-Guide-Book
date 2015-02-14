@@ -119,7 +119,7 @@
 		Shell 』将我们输入的命令与 Kernel 沟通，好让 Kernel 可以控制硬件来正确无误的工作</span>！
 		基本上，我们可以透过底下这张图来说明一下：</p>
 
-		<center><img src="0320bash_files/0320bash_1.jpg" alt="硬件、核心与用户的相关性图标" title="硬件、核心与用户的相关性图示" border="0"><br>
+		<center><img src="../Images/0320bash_files/0320bash_1.jpg" alt="硬件、核心与用户的相关性图标" title="硬件、核心与用户的相关性图示" border="0"><br>
 		图 1.1.1、硬件、核心与用户的相关性图示<br></center>
 
 		<p>我们在<a href="http://vbird.dic.ksu.edu.tw/linux_basic/0105computers.php#program_os">第零章内的操作系统小节</a>曾经提到过，
@@ -139,7 +139,7 @@
 		<div style="padding: 10pt 0pt;" align="right"><table width="90%"><tbody><tr><td><b>Tips:</b><br><span style="color: rgb(0, 144, 0);"><font size="-1">		也就是说，只要能够操作应用程序的接口都能够称为壳程序。狭义的壳程序指的是命令列方面的软件，包括本章要介绍的 bash 等。
 		广义的壳程序则包括图形接口的软件！因为图形接口其实也能够操作各种应用程序来呼叫核心工作啊！
 		不过在本章中，我们主要还是在使用 bash 啦！
-		</font></span></td><td><img src="0320bash_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div>	</div>
+		</font></span></td><td><img src="../Images/0320bash_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div>	</div>
 
 	<hr><a name="bash_why"></a><img src="../images/logo.png" alt="小标题的图示" width="24" align="middle" height="23"><span class="text_h2">为何要学文字接口的 shell？</span><br>
 	<div class="block2">
@@ -211,7 +211,7 @@
 		<div style="padding: 10pt 0pt;" align="right"><table width="90%"><tbody><tr><td><b>Tips:</b><br><span style="color: rgb(0, 144, 0);"><font size="-1">		由于 Linux 为 C 程序语言撰写的，很多程序设计师使用 C 来开发软件，因此 C shell 相对的就很热门了。
 		另外，还记得我们在<a href="0110whatislinux.php.html">第一章、Linux 是什么</a>提到的吧？
 		Sun 公司的创始人就是 Bill Joy，而 BSD 最早就是 Bill Joy 发展出来的啊。
-		</font></span></td><td><img src="0320bash_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div>
+		</font></span></td><td><img src="../Images/0320bash_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div>
 		<p>那么目前我们的 Linux (以 CentOS 5.x 为例) 有多少我们可以使用的 shells 呢？
 		你可以检查一下 /etc/shells 这个文件，至少就有底下这几个可以用的 shells：</p>
 
@@ -430,7 +430,7 @@ cd is a shell builtin             <span class="term_note">&lt;==看到了吗？ 
 		而我们使用信件读取命令 mail 来读取自己的邮件信箱时，嘿嘿，这支程序可以直接读取 MAIL 这个变量的内容，
 		就能够自动的分辨出属于自己的信箱信件啰！这样一来，设计程序的设计师就真的很方便的啦！</p>
 
-		<center><img src="0320bash_files/var_01.gif" alt="程序、变量与不同用户的关系" title="程序、变量与不同用户的关系" border="0"><br>
+		<center><img src="../Images/0320bash_files/var_01.gif" alt="程序、变量与不同用户的关系" title="程序、变量与不同用户的关系" border="0"><br>
 		图 2.1.1、程序、变量与不同用户的关系<br></center>
 
 		<p>如上图所示，由于系统已经帮我们规划好 MAIL 这个变量，所以用户只要知道 mail 这个命令如何使用即可，
@@ -467,7 +467,7 @@ cd is a shell builtin             <span class="term_note">&lt;==看到了吗？ 
 		这个时候如果使用变量，而将该变量的定义写在最前面，后面相关的路径名称都以变量来取代，
 		嘿嘿！那么你只要修改一行就等于修改整篇 script 了！方便的很！所以，良好的程序设计师都会善用变量的定义！</p>
 
-		<center><img src="0320bash_files/var_02.gif" alt="变量应用于 shell script 的示意图" title="变量应用于 shell script 的示意图" border="0"><br>
+		<center><img src="../Images/0320bash_files/var_02.gif" alt="变量应用于 shell script 的示意图" title="变量应用于 shell script 的示意图" border="0"><br>
 		图 2.1.2、变量应用于 shell script 的示意图<br></center>
 
 		<p>最后我们就简单的对『<span class="text_import2">什么是变量</span>』作个简单定义好了：
@@ -687,7 +687,7 @@ uname -r 找出核心版本，然后再以『 cd 目录』到该目录下，当�
 
 		<div style="padding: 10pt 0pt;" align="right"><table width="90%"><tbody><tr><td><b>Tips:</b><br><span style="color: rgb(0, 144, 0);"><font size="-1">		老实说，使用『 version=$(uname -r) 』来取代『 version=`uname -r` 』比较好，因为反单引号大家老是容易打错或看错！
 		所以现在鸟哥都习惯使用 $( 命令 ) 来介绍这个功能！
-		</font></span></td><td><img src="0320bash_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div>
+		</font></span></td><td><img src="../Images/0320bash_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div>
 
 	</div>
 
@@ -887,7 +887,7 @@ name=VBird               <span class="term_note">&lt;== 刚刚配置的自定义
 		接下来你在这个 bash 底下所下达的任何命令都是由这个 bash 所衍生出来的，那些被下达的命令就被称为子程序了。
 		我们可以用底下的图示来简单的说明一下父程序与子程序的概念：</p>
 
-		<center><img src="0320bash_files/ppid.gif" alt="程序相关性示意图" title="程序相关性示意图" border="1"><br>
+		<center><img src="../Images/0320bash_files/ppid.gif" alt="程序相关性示意图" title="程序相关性示意图" border="1"><br>
 		图 2.3.1、程序相关性示意图<br></center>
 
 		<p>如上所示，我们在原本的 bash 底下运行另一个 bash ，结果操作的环境接口会跑到第二个 bash 去(就是子程序)，
@@ -977,7 +977,7 @@ LC_ALL=                      <span class="term_note">&lt;==整体语系的环境
 		例如： en_US 或 en_US.utf8 等等的配置，应该就 OK 的啦！好了，那么系统默认支持多少种语系呢？
 		当我们使用 locale 时，系统是列出目前 Linux 主机内保有的语系文件，
 		这些语系文件都放置在： <span class="text_import2">/usr/lib/locale/</span> 这个目录中。
-		</font></span></td><td><img src="0320bash_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div>
+		</font></span></td><td><img src="../Images/0320bash_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div>
 		<p>你当然可以让每个使用者自己去调整自己喜好的语系，但是整体系统默认的语系定义在哪里呢？
 		其实就是在 /etc/sysconfig/i18n 啰！这个文件在 CentOS 5.x 的内容有点像这样：</p>
 
@@ -993,7 +993,7 @@ LANG="zh_TW.UTF-8"
 		在你将这个文件上传到 Linux 主机后，在 X window 底下打开时，咦！怎么中文字通通变成乱码了？
 		别担心！因为如上所示， i18n 默认是万国码系统嘛！你只要将开启该文件的软件编码由 utf8 
 		改成 big5 就能够看到正确的中文了！
-		</font></span></td><td><img src="0320bash_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div>	</div>
+		</font></span></td><td><img src="../Images/0320bash_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div>	</div>
 
 	<hr><a name="variable_range"></a><img src="../images/logo.png" alt="小标题的图示" width="24" align="middle" height="23"><span class="text_h2">变量的有效范围</span><br>
 	<div class="block2">
@@ -1004,7 +1004,7 @@ LANG="zh_TW.UTF-8"
 
 		<div style="padding: 10pt 0pt;" align="right"><table width="90%"><tbody><tr><td><b>Tips:</b><br><span style="color: rgb(0, 144, 0);"><font size="-1">		在某些不同的书籍会谈到『全局变量, global variable』与『局部变量, local variable』。
 		基本上你可以这样看待：<br>环境变量=全局变量<br>自定义变量=局部变量
-		</font></span></td><td><img src="0320bash_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div>
+		</font></span></td><td><img src="../Images/0320bash_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div>
 		<p>在学理方面，为什么环境变量的数据可以被子程序所引用呢？这是因为内存配置的关系！理论上是这样的：</p>
 		<ul style="padding-left: 25px;">
 		<li>当启动一个 shell，操作系统会分配一记忆区块给 shell 使用，此内存内之变量可让子程序取用</li>
@@ -1195,7 +1195,7 @@ File size limit exceeded <span class="term_note">&lt;==尝试创建 20MB 的文�
 		不过，要注意的是，一般身份使用者如果以 ulimit 配置了 -f 的文件大小，
 		那么他『只能继续减小文件容量，不能添加文件容量喔！』另外，若想要管控使用者的 ulimit 限值，
 		可以参考<a href="http://vbird.dic.ksu.edu.tw/linux_basic/0410accountmanager.php#limits">第十四章的 pam</a> 的介绍。
-		</font></span></td><td><img src="0320bash_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div>	</div>
+		</font></span></td><td><img src="../Images/0320bash_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div>	</div>
 
 	<hr><a name="variable_other"></a><img src="../images/logo.png" alt="小标题的图示" width="24" align="middle" height="23"><span class="text_h2">变量内容的删除、取代与替换</span><br>
 	<div class="block2">
@@ -1388,7 +1388,7 @@ root  <span class="term_note">&lt;==加上『 : 』后若变量内容为空或�
 
 		<div style="padding: 10pt 0pt;" align="right"><table width="90%"><tbody><tr><td><b>Tips:</b><br><span style="color: rgb(0, 144, 0);"><font size="-1">		底下的例子当中，那个 var 与 str 为变量，我们想要针对 str 是否有配置来决定 var 的值喔！
 		一般来说， str: 代表『str 没配置或为空的字符串时』；至于 str 则仅为『没有该变量』。
-		</font></span></td><td><img src="0320bash_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div>
+		</font></span></td><td><img src="../Images/0320bash_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div>
 <a name="20070715"></a>
 <table class="fontwidth" bgcolor="lightyellow" border="1" cellpadding="3" cellspacing="0" width="95%"> 
 <tbody><tr align="center" bgcolor="#182448"><td><font color="#FFFFFF">变量配置方式</font></td><td><font color="#FFFFFF">str 没有配置</font></td>
@@ -1867,7 +1867,7 @@ unset USERNAME
 		也就是说 ~/.bash_profile 其实会再呼叫 ~/.bashrc 的配置内容喔！最后，我们来看看整个 login shell
 		的读取流程：</p>
 
-		<center><img src="0320bash_files/bashrc_1.gif" alt="login shell 的配置文件读取流程" title="login shell 的配置文件读取流程" border="0"><br>
+		<center><img src="../Images/0320bash_files/bashrc_1.gif" alt="login shell 的配置文件读取流程" title="login shell 的配置文件读取流程" border="0"><br>
 		图 4.3.1、login shell 的配置文件读取流程<br></center>
 
 		<p>实线的的方向是主线流程，虚线的方向则是被呼叫的配置文件！从上面我们也可以清楚的知道，在 CentOS 
@@ -2178,7 +2178,7 @@ set output-meta on
 	<div class="block2">
 		<p>什么是数据流重导向啊？这得要由命令的运行结果谈起！一般来说，如果你要运行一个命令，通常他会是这样的：</p>
 
-		<center><img src="0320bash_files/0320bash_4.jpg" alt="命令运行过程的数据传输情况" title="命令运行过程的数据传输情况" border="0"><br>
+		<center><img src="../Images/0320bash_files/0320bash_4.jpg" alt="命令运行过程的数据传输情况" title="命令运行过程的数据传输情况" border="0"><br>
 		图 5.1.1、命令运行过程的数据传输情况<br></center>
 
 		<p>我们运行一个命令的时候，这个命令可能会由文件读入数据，经过处理之后，再将数据输出到屏幕上。
@@ -2439,7 +2439,7 @@ total 0                                 <span class="term_note">&lt;==结果出�
 
 		<p>整个流程图示如下：</p>
 
-		<center><img src="0320bash_files/cmd_1.gif" alt="命令依序运行的关系示意图" title="命令依序运行的关系示意图" border="0"><br>
+		<center><img src="../Images/0320bash_files/cmd_1.gif" alt="命令依序运行的关系示意图" title="命令依序运行的关系示意图" border="0"><br>
 		图 5.2.1、 命令依序运行的关系示意图<br></center>
 
 		<p>上面这张图显示的两股数据中，上方的线段为不存在 /tmp/abc 时所进行的命令行为，下方的线段则是存在 
@@ -2500,7 +2500,7 @@ total 0                                 <span class="term_note">&lt;==结果出�
 	其实<span class="text_import2">这个管线命令『 | 』仅能处理经由前面一个命令传来的正确信息，也就是 standard output 
 	的信息，对于 stdandard error 并没有直接处理的能力</span>。那么整体的管线命令可以使用下图表示：</p>
 
-	<center><img src="0320bash_files/0320bash_3.png" alt="管线命令的处理示意图" title="管线命令的处理示意图" border="0"><br>
+	<center><img src="../Images/0320bash_files/0320bash_3.png" alt="管线命令的处理示意图" title="管线命令的处理示意图" border="0"><br>
 	图 6.1.1、 管线命令的处理示意图<br></center>
 
 	<p>在每个管线后面接的第一个数据必定是『命令』喔！而且<span class="text_import2">这个命令必须要能够接受 standard input
@@ -2738,7 +2738,7 @@ games:x:<span class="term_write">12</span>:100:games:/usr/games:/sbin/nologin
 		否则就无法继续利用这个数据流。万一我想要将这个数据流的处理过程中将某段信息存下来，应该怎么做？
 		利用 tee 就可以啰～我们可以这样简单的看一下：</p>
 
-		<center><img src="0320bash_files/0320bash_5.png" alt="tee 的工作流程示意图" title="tee 的工作流程示意图" border="0"><br>
+		<center><img src="../Images/0320bash_files/0320bash_5.png" alt="tee 的工作流程示意图" title="tee 的工作流程示意图" border="0"><br>
 		图 6.3.1、tee 的工作流程示意图<br></center>
 
 		<p>tee 会同时将数据流分送到文件去与屏幕 (screen)；而输出到屏幕的，其实就是 stdout 

@@ -181,7 +181,7 @@
 		<div style="padding: 10pt 0pt;" align="right"><table width="90%"><tbody><tr><td><b>Tips:</b><br><span style="color: rgb(0, 144, 0);"><font size="-1">		还是要一再地提醒，我们的 Linux 的默认命令列模式 (bash shell) 具有文件补齐功能，
 		你要常常利用 [tab] 按键来达成你的目录完整性啊！这可是个好习惯啊～
 		可以避免你按错键盘输入错字说～ ^_^
-		</font></span></td><td><img src="0220filemanager_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div>
+		</font></span></td><td><img src="../Images/0220filemanager_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div>
 		<a name="pwd"></a>
 		<hr><ul class="list1"><li class="text_import1">pwd (显示目前所在的目录)</li></ul>
 
@@ -1141,7 +1141,7 @@ head -n 20 /etc/man.config | tail -n 10 』，这样就可以得到第 11 到第
 		如果安装行为不当，我们的系统可能会有八小时快转，你的文件就有可能来自八小时后了。<br><br>
 		至於某些情况下，由於BIOS的配置错误，导致系统时间跑到未来时间，并且你又创建了某些文件。
 		等你将时间改回正确的时间时，该文件不就变成来自未来了？^_^
-		</font></span></td><td><img src="0220filemanager_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div>
+		</font></span></td><td><img src="../Images/0220filemanager_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div>
 <table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">touch [-acdmt] 文件</span>
 <span class="term_say">选项与参数：
 -a  ：仅修订 access time；
@@ -1362,7 +1362,7 @@ umask 为 003 ，所以拿掉的权限为 --------wx，因此：<br>
 		如果使用默认属性相加减，则文件变成：666-003=663，亦即是 -rw-rw--wx ，这可是完全不对的喔！
 		想想看，原本文件就已经去除 x 的默认属性了，怎么可能突然间冒出来了？
 		所以，这个地方得要特别小心喔！
-		</font></span></td><td><img src="0220filemanager_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div>
+		</font></span></td><td><img src="../Images/0220filemanager_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div>
 		<p>在默认的情况中， root 的 umask 会拿掉比较多的属性，root 的 umask 默认是 022 ，
 		这是基於安全的考量啦～至於一般身份使用者，通常他们的 umask 为 002 ，亦即保留同群组的写入权力！
 		其实，关於默认 umask 的配置可以参考 /etc/bashrc 这个文件的内容，不过，不建议修改该文件，
@@ -1491,7 +1491,7 @@ drwxrwxrw<span class="term_write">t</span> 7 root root 4096 Sep 27 18:23 /tmp
 		<p>但如果 vbird 使用 cat 去读取 /etc/shadow 时，他能够读取吗？因为 cat 不具有 SUID 的权限，所以 vbird 运行 『cat /etc/shadow』
 		时，是不能读取 /etc/shadow 的。我们用一张示意图来说明如下：</p>
 
-		<center><img src="0220filemanager_files/suid.gif" alt="SUID程序运行的过程示意图" title="SUID程序运行的过程示意图" border="1"><br>
+		<center><img src="../Images/0220filemanager_files/suid.gif" alt="SUID程序运行的过程示意图" title="SUID程序运行的过程示意图" border="1"><br>
 		图4.4.1、SUID程序运行的过程示意图<br></center>
 
 		<p>另外，<span class="text_import2">SUID 仅可用在binary program 上，
@@ -1582,7 +1582,7 @@ drwxrwxrw<span class="term_write">t</span> 7 root root 4096 Sep 27 18:23 /tmp
 		T 的产生喔！参考底下的范例啦！</p>
 		<div style="padding: 10pt 0pt;" align="right"><table width="90%"><tbody><tr><td><b>Tips:</b><br><span style="color: rgb(0, 144, 0);"><font size="-1">		注意：底下的范例只是练习而已，所以鸟哥使用同一个文件来配置，你必须了解
 		SUID 不是用在目录上，而 SBIT 不是用在文件上的喔！
-		</font></span></td><td><img src="0220filemanager_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div>
+		</font></span></td><td><img src="../Images/0220filemanager_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div>
 <table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">cd /tmp</span>
 [root@www tmp]# <span class="term_command">touch test                 </span> <span class="term_note">&lt;==创建一个测试用空档</span>
 [root@www tmp]# <span class="term_command">chmod 4755 test; ls -l test</span> <span class="term_note">&lt;==加入具有 SUID 的权限</span>
@@ -1804,7 +1804,7 @@ passwd: /usr/share/man/man1/passwd.1.gz /usr/share/man/man5/passwd.5.gz
 		<span class="text_import2">find /var -mtime 4</span> 』。有没有加上『+, 
 		-』差别很大喔！我们可以用简单的图示来说明一下：</p>
 
-		<center><img src="0220filemanager_files/find_time.gif" alt="find 相关的时间参数意义" title="find 相关的时间参数意义" border="1"><br>
+		<center><img src="../Images/0220filemanager_files/find_time.gif" alt="find 相关的时间参数意义" title="find 相关的时间参数意义" border="1"><br>
 		图5.2.1、find 相关的时间参数意义<br></center>
 
 		<p>图中最右边为目前的时间，越往左边则代表越早之前的时间轴啦。由图5.2.1我们可以清楚的知道：</p>
@@ -1911,7 +1911,7 @@ passwd: /usr/share/man/man1/passwd.1.gz /usr/share/man/man5/passwd.5.gz
 
 		<p>find 的特殊功能就是能够进行额外的动作(action)。我们将范例八的例子以图解来说明如下：</p>
 
-		<center><img src="0220filemanager_files/find_exec.gif" alt="find 相关的额外动作" title="find 相关的额外动作" border="0"><br>
+		<center><img src="../Images/0220filemanager_files/find_exec.gif" alt="find 相关的额外动作" title="find 相关的额外动作" border="0"><br>
 		图5.2.2、find 相关的额外动作<br></center>
 
 		<p>该范例中特殊的地方有 {} 以及 \; 还有 -exec 这个关键字，这些东西的意义为：</p>

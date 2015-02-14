@@ -70,7 +70,7 @@
 	<p>这个 setup 的处理方法非常的简单，就是利用 root 的身份下达这个命令，如果你已经使用远程操作系统的话，
 	记得最好切换一下语系成为英文语系 (比较不会出现边框是乱码的情况) ，结果就会出现如下的画面了。</p>
 
-	<center><img src="0610hardware_files/setup_01.gif" alt="setup 的命令运行画面示意图" title="setup 的命令运行画面示意图" border="1"><br>
+	<center><img src="../Images/0610hardware_files/setup_01.gif" alt="setup 的命令运行画面示意图" title="setup 的命令运行画面示意图" border="1"><br>
 	图1.0、 setup 的命令运行画面示意图<br></center>
 
 	<p>如上图所示，那就是 setup 提供的各项系统配置功能。这个画面的使用方式其实在图中的最底下一行有说明了，
@@ -114,7 +114,7 @@
 	<div class="block2">
 		<p>在按下了『 Authentication configuration 』项目后，会出现如下画面：</p>
 
-		<center><img src="0610hardware_files/setup_auth.gif" alt="Setup 命令的使用者身份认证机制" title="Setup 命令的使用者身份认证机制" border="1"><br>
+		<center><img src="../Images/0610hardware_files/setup_auth.gif" alt="Setup 命令的使用者身份认证机制" title="Setup 命令的使用者身份认证机制" border="1"><br>
 		图 1.1.1、Setup 命令的使用者身份认证机制<br></center>
 
 		<p>我们的 Linux 除了使用自己提供的使用者口令验证机制之外，还能够使用其他外部身份验证服务器所提供的各项验证功能喔。
@@ -132,7 +132,7 @@
 		那如果每一个同学都想要修改口令，那就糟了！因为每部主机都得要重新修改口令才行啊！这个时候帐号管理服务器就很重要了。
 		他的功能有点像底下这样：</p>
 
-		<center><img src="0610hardware_files/auth.gif" alt="身份管理服务器的功能示意图" title="身份管理服务器的功能示意图" border="0"><br>
+		<center><img src="../Images/0610hardware_files/auth.gif" alt="身份管理服务器的功能示意图" title="身份管理服务器的功能示意图" border="0"><br>
 		图 1.1.2、身份管理服务器的功能示意图<br></center>
 
 		<p>如上图所示，我 vbird 想要登陆某一部主机时，这部主机会向外要求帐号资讯，就是最上方那部服务器。
@@ -142,7 +142,7 @@
 
 		<div style="padding: 10pt 0pt;" align="right"><table width="90%"><tbody><tr><td><b>Tips:</b><br><span style="color: rgb(0, 144, 0);"><font size="-1">		其实 NIS 与 LDAP 等等的，都是一种网络通讯协议，我们可以透过网络通讯协议来进行数据的传输。
 		使用者帐号资讯当然也能够透过这个机制来管理罗！有兴趣的朋友请继续阅读鸟哥写的<a href="http://vbird.dic.ksu.edu.tw/linux_server">服务器篇</a>罗～ ^_^
-		</font></span></td><td><img src="0610hardware_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div>	</div>
+		</font></span></td><td><img src="../Images/0610hardware_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div>	</div>
 
 	<hr><a name="setup_network"></a><img src="../images/logo.png" alt="小标题的图示" width="24" align="middle" height="23"><span class="text_h2">网络配置项目(手动配置IP与自动取得)</span><br>
 	<div class="block2">
@@ -182,14 +182,14 @@
 
 		<p>好了，那就让我们透过 setup 来配置网络吧！按下『 Network Configuration 』会出现如下画面：</p>
 
-		<center><img src="0610hardware_files/setup_network_01.gif" alt="setup 的网络介面选择示意图" title="setup 的网络介面选择示意图" border="1"><br>
+		<center><img src="../Images/0610hardware_files/setup_network_01.gif" alt="setup 的网络介面选择示意图" title="setup 的网络介面选择示意图" border="1"><br>
 		图 1.2.1 、 setup 的网络介面选择示意图<br></center>
 
 		<p>上图中那个 eth1.bak 是系统捉错的文件，因为这个程序会跑到 /etc/sysconfig/network-scripts/ 目录下找出档名为
 		ifcfg-ethN 的文件内容来显示的。因为鸟哥仅有一张网卡，因此那个 eth1 不要理会他！直接点选 eth0 
 		之后就会产生如下的画面：</p>
 
-		<center><img src="0610hardware_files/setup_network_02.gif" alt="网络介面的各项网络参数配置示意图" title="网络介面的各项网络参数配置示意图" border="1"><br>
+		<center><img src="../Images/0610hardware_files/setup_network_02.gif" alt="网络介面的各项网络参数配置示意图" title="网络介面的各项网络参数配置示意图" border="1"><br>
 		图 1.2.2 、 网络介面的各项网络参数配置示意图<br></center>
 
 		<p>上图中那个 Name 与 Device 名称最好要相同，尽量不要修改他！这里的配置是这样的：</p>
@@ -229,7 +229,7 @@ Bringing up interface eth0:                 [  OK  ]
 		提供的这个简单的配置其实有时候反而会让我们困扰不已。基本上，这里仅是介绍『你可以这样做』，但并不代表『你必须这样做』！
 		所以，有兴趣的还是得要再继续钻研网络技术喔！ ^_^。好了，在按下 Firewall configuration 后，会出现如下画面：</p>
 
-		<center><img src="0610hardware_files/setup_firewall_01.gif" alt="setup 进入防火墙配置示意图" title="setup 进入防火墙配置示意图" border="1"><br>
+		<center><img src="../Images/0610hardware_files/setup_firewall_01.gif" alt="setup 进入防火墙配置示意图" title="setup 进入防火墙配置示意图" border="1"><br>
 		图 1.3.1 、 setup 进入防火墙配置示意图<br></center>
 
 		<p>上图中主要出现两个部分，一个是关於 SELinux 的部分，一个则是防火墙的部分。SELinux 我们在<a href="0440processcontrol.php.html">第十七章</a>介绍过了，这里不再浪费篇幅。
@@ -240,7 +240,7 @@ Bringing up interface eth0:                 [  OK  ]
 		那么你务必要启动防火墙来管理网络才好。由於默认你的防火墙会开放远程主机对你的登陆连线，
 		因此最好使用 Customize (客户配置) 来改变配置比较好喔！按下『 Customize 』会出现如下图示：</p>
 
-		<center><img src="0610hardware_files/setup_firewall_02.gif" alt="客制化防火墙抵挡机制的示意图" title="客制化防火墙抵挡机制的示意图" border="1"><br>
+		<center><img src="../Images/0610hardware_files/setup_firewall_02.gif" alt="客制化防火墙抵挡机制的示意图" title="客制化防火墙抵挡机制的示意图" border="1"><br>
 		图 1.3.2 、 客制化防火墙抵挡机制的示意图<br></center>
 
 		<p>这个地方不是三言两语讲的完的！包括信任装置，以及允许进入的服务器封包～很是麻烦。基本上，你只要这样想就好了：</p>
@@ -277,7 +277,7 @@ Bringing up interface eth0:                 [  OK  ]
 		<p>某些情况底下你的键盘可能会发生一些对应错误的情况，举例来说，使用的键盘并非台湾常见的 104 按键导致很多英文对应不起来。
 		此时你可以使用 setup 来修改喔！按下『 Keyboard configuration 』会出现如下的画面：</p>
 
-		<center><img src="0610hardware_files/setup_keyboard.gif" alt="键盘形式选择" title="键盘形式选择" border="1"><br>
+		<center><img src="../Images/0610hardware_files/setup_keyboard.gif" alt="键盘形式选择" title="键盘形式选择" border="1"><br>
 		图 1.4.1 、键盘形式选择<br></center>
 
 		<p>其实这个文件就仅会修改 /etc/sysconfig/keyboard 啦！很简单的配置项目。</p>
@@ -298,7 +298,7 @@ Bringing up interface eth0:                 [  OK  ]
 		所以你可以将这部主机拿到任何地方且不需要修改系统时钟，因为系统会主动的依据你提供的时区来变化时间的。
 		当你将笔记本计算机带到美国纽约并且想要变更成为美国时间时，可以按下『 Timezone configuration 』的项目：</p>
 
-		<center><img src="0610hardware_files/setup_time.gif" alt="setup 的时区选择" title="setup 的时区选择" border="1"><br>
+		<center><img src="../Images/0610hardware_files/setup_time.gif" alt="setup 的时区选择" title="setup 的时区选择" border="1"><br>
 		图 1.6.1 、 setup 的时区选择<br></center>
 
 		<p>如上图所示，你在上半部画面中，可以使用键盘方向键来选择正确的位置，然后再用 [tab] 移动到 [OK] 即可！
@@ -316,14 +316,14 @@ Bringing up interface eth0:                 [  OK  ]
 		<p>在你点选了『 X configuration 』之后，就会出现如下的图样。其中以硬件及配置两个页面较常被变更。
 		先来瞧瞧图示吧：</p>
 
-		<center><img src="0610hardware_files/setup_x_01.gif" alt="setup 的 X 解析度配置" title="setup 的 X 解析度配置" border="1"><br>
+		<center><img src="../Images/0610hardware_files/setup_x_01.gif" alt="setup 的 X 解析度配置" title="setup 的 X 解析度配置" border="1"><br>
 		图 1.7.1 、 setup 的 X 解析度配置<br></center>
 
 		<p>如上所示，由於窗口解析度的范围与萤幕的支持有关，因此你必须要先处理萤幕的升级频率后才能够修改窗口解析度。
 		所以我们会先处理『硬件』部分，鸟哥的萤幕是旧式的 4:3 传统萤幕，所以选择 1024x768 ，如果你的萤幕是新型的宽萤幕，
 		那么请自行挑选适当的解析度吧。处理完毕后就能够开始配置窗口解析度了，如下所示：</p>
 
-		<center><img src="0610hardware_files/setup_x_02.gif" alt="setup 的 X 解析度配置" title="setup 的 X 解析度配置" border="1"><br>
+		<center><img src="../Images/0610hardware_files/setup_x_02.gif" alt="setup 的 X 解析度配置" title="setup 的 X 解析度配置" border="1"><br>
 		图 1.7.2 、 setup 的 X 解析度配置<br></center>
 
 		<p>如上图所示，此时会出现可调整的解析度啦！整理整理就能够显示出你想要的窗口解析度。
@@ -361,7 +361,7 @@ Bringing up interface eth0:                 [  OK  ]
 		要命啊！连续测试两天的时间却无法顺利的列印出正确的文件资讯！最后才想到可能是 BIOS 内部的问题。
 		进入 BIOS 将打印机支持启动成为 EPP/SPP 之后，俺的 Linux 就能够顺利的捉到打印机并进行列印～真想哭啊！
 		不是感动的想哭，是气的想哭！
-		</font></span></td><td><img src="0610hardware_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div>
+		</font></span></td><td><img src="../Images/0610hardware_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div>
 		<p>除了主机本身的支持之外，<span class="text_import2">你的打印机也必须要能够支持 Linux 才行</span>！其实并不是 
 		Linux 的问题啦！而是打印机制造商必须要能够提供给 Linux 用的驱动程序，这样你的 Linux 才能够使用该型号的打印机。
 		老实说，鸟哥是 HP 打印机的爱好者，因为 HP 打印机对 Linux 的支持非常好！但是另一牌的 L 开头的打印机总是很慢或者不推出给
@@ -371,7 +371,7 @@ Bringing up interface eth0:                 [  OK  ]
 		但是某天在家里使用鸟嫂购买的 L 牌的事务机时，连忙了三天却都无法连接到该打印机来顺利输出。
 		最终查询 Linux 打印机支持网站，才发现该型号的事务机根本没有推出给 Linux 用的驱动程序，
 		所以就无法顺利使用该打印机～最终...鸟哥就放弃该测试了～唉！真浪费时间！
-		</font></span></td><td><img src="0610hardware_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div>
+		</font></span></td><td><img src="../Images/0610hardware_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div>
 		<p>那到底你该如何确认你的打印机有支持 Linux 呢？或者是，如果你想要购买新的打印机时，
 		如何查询该打印机能否在 Linux 上面安装呢？很简单，直接到底下的网站去查询一下即可喔！</p>
 
@@ -380,18 +380,18 @@ Bringing up interface eth0:                 [  OK  ]
 		<p>举例来说，鸟哥现在的研究室有一部 HP 的 LaserJet P2015dn 打印机，我想要知道这部打印机对 Linux 的支持度好不好，
 		那就先进入上述的网站连结，出现如下的画面：</p>
 
-		<center><img src="0610hardware_files/printer_01.gif" alt="打印机支持网站的主画面" title="打印机支持网站的主画面" border="1"><br>
+		<center><img src="../Images/0610hardware_files/printer_01.gif" alt="打印机支持网站的主画面" title="打印机支持网站的主画面" border="1"><br>
 		图 2.1.1 、 打印机支持网站的主画面<br></center>
 
 		<p>在如上画面中请按下『 Printers 』来观察打印机的特色吧！会出现如下画面：</p>
 
-		<center><img src="0610hardware_files/printer_02.gif" alt="选择打印机示意图" title="选择打印机示意图" border="1"><br>
+		<center><img src="../Images/0610hardware_files/printer_02.gif" alt="选择打印机示意图" title="选择打印机示意图" border="1"><br>
 		图 2.1.2 、 选择打印机示意图<br></center>
 
 		<p>在上图中填入正确的厂牌 (HP) 以及正确的打印机型号 (LaserJet P2015dn) 后，请按下『 Show 』那个按钮，
 		该网站就会从数据库内捉出支持度的情况给你看，如下图所示：</p>
 
-		<center><img src="0610hardware_files/printer_03.gif" alt="鸟哥的打印机对 Linux 的支持度" title="鸟哥的打印机对 Linux 的支持度" border="1"><br>
+		<center><img src="../Images/0610hardware_files/printer_03.gif" alt="鸟哥的打印机对 Linux 的支持度" title="鸟哥的打印机对 Linux 的支持度" border="1"><br>
 		图 2.1.3 、 鸟哥的打印机对 Linux 的支持度<br></center>
 
 		<p>在显示的画面中，你最要注意的是那个企鹅数量啦！如果达到 3 只，那就代表支持度是非常完美的。
@@ -404,7 +404,7 @@ Bringing up interface eth0:                 [  OK  ]
 		只是该项工作就会被放入到等待的环境中 (伫列) 。为什么会这样呢？这是因为整个列印的行为被区分为许多部分，
 		每个部分都可以单独存在的啦！我们将整个部分绘制成下图来瞧瞧：</p>
 
-		<center><img src="0610hardware_files/print_comps.gif" alt="列印行为之各组件示意图" title="列印行为之各组件示意图" border="0"><br>
+		<center><img src="../Images/0610hardware_files/print_comps.gif" alt="列印行为之各组件示意图" title="列印行为之各组件示意图" border="0"><br>
 		图 2.1.4、 列印行为之各组件示意图<br></center>
 
 		<p>我们大概可以将上图区分为几个部分来说明：</p>
@@ -443,7 +443,7 @@ Bringing up interface eth0:                 [  OK  ]
 		<div style="padding: 10pt 0pt;" align="right"><table width="90%"><tbody><tr><td><b>Tips:</b><br><span style="color: rgb(0, 144, 0);"><font size="-1">		为什么需要列印伫列 (queue) 呢？因为打印机只能够给单一任务进行列印，没办法像 CPU 可以交错运行的！
 		所以列印工作就得要排队等待打印机的列印，而打印机得要将前一份工作列印完毕后才能够列印下一份工作！
 		否则如果是交错列印，那印出的东西不就混杂在一起了？这样说了解吗？ ^_^
-		</font></span></td><td><img src="0610hardware_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div>	</div>
+		</font></span></td><td><img src="../Images/0610hardware_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div>	</div>
 
 	<hr><a name="cups_connect"></a><img src="../images/logo.png" alt="小标题的图示" width="24" align="middle" height="23"><span class="text_h2">CUPS 支持的连线模式</span><br>
 	<div class="block2">
@@ -552,7 +552,7 @@ udp  0  0 0.0.0.0:<span class="term_write">631</span>       0.0.0.0:*           
 		然后在网址列输入『 http://localhost:631 』即可！因为浏览器要连接的并非正规的 WWW 服务端口，
 		因此就得要加上冒号 (:) 来指定端口连接！顺利的话，应该可以出现如下画面：</p>
 
-		<center><img src="0610hardware_files/cups_print_01.gif" alt="CUPS 进站画面" title="CUPS 进站画面" border="1"><br>
+		<center><img src="../Images/0610hardware_files/cups_print_01.gif" alt="CUPS 进站画面" title="CUPS 进站画面" border="1"><br>
 		图 2.3.1、 CUPS 进站画面<br></center>
 
 		<p>主画面主要可以分为上下两个按钮列来说明，其中又以下方的按钮列为常见的操作项目。我们会用到的按钮大概就是：</p>
@@ -564,32 +564,32 @@ udp  0  0 0.0.0.0:<span class="term_write">631</span>       0.0.0.0:*           
 
 		<p>不罗唆，赶紧来新增打印机看看！按下『 Add Printer 』项目吧：</p>
 
-		<center><img src="0610hardware_files/cups_print_02.gif" alt="CUPS 新增打印机的画面示意图" title="CUPS 新增打印机的画面示意图" border="1"><br>
+		<center><img src="../Images/0610hardware_files/cups_print_02.gif" alt="CUPS 新增打印机的画面示意图" title="CUPS 新增打印机的画面示意图" border="1"><br>
 		图 2.3.2、 CUPS 新增打印机的画面示意图<br></center>
 
 		<p>上面图示中，最重要的其实是那个『 Name 』的项目，那就是你打印机的伫列名称！未来所有列印的工作都是放在该名称底下排队的！
 		鸟哥的这个打印机名称比较复杂啦！你可以取个比较简单的名字，以后比较容易使用命令列软件来列印啦！
 		至於位置 (Location) 与描述 (Description) 都是这个打印机的说明，可写可不写！写完后按下『 continue 』吧！</p>
 
-		<center><img src="0610hardware_files/cups_print_03.gif" alt="选择打印机所提供的服务项目" title="选择打印机所提供的服务项目" border="1"><br>
+		<center><img src="../Images/0610hardware_files/cups_print_03.gif" alt="选择打印机所提供的服务项目" title="选择打印机所提供的服务项目" border="1"><br>
 		图 2.3.3、选择打印机所提供的服务项目<br></center>
 
 		<p>接下来则是选择这个打印机伫列所连线的打印机提供什么服务的列印功能？你可以看到前一小节我们使用 <a href="#nmap">nmap</a> 的时候就发现 port 9100 就是 HP JetDirect ，因此我们可以选择上图的第一个项目。
 		由於这部打印机也提供 port 515 的 LPD 服务，因此你也可以选择上图的『 LPD/LPR Host or Printer 』项目。
 		不过，在这里鸟哥选择的是第一项啦！选择完毕后再按下『 Continue 』进入打印机的实体位置项目，如下图：</p>
 
-		<center><img src="0610hardware_files/cups_print_04.gif" alt="填写打印机的实际连线方式，要填正确！" title="填写打印机的实际连线方式，要填正确！" border="1"><br>
+		<center><img src="../Images/0610hardware_files/cups_print_04.gif" alt="填写打印机的实际连线方式，要填正确！" title="填写打印机的实际连线方式，要填正确！" border="1"><br>
 		图 2.3.4、填写打印机的实际连线方式，要填正确！<br></center>
 
 		<p>上图有提供很多范例，我们由於使用到 port 9100 ，因此使用的就是 socket:// 那个范例使用的状态。
 		填写正确的位置后，接下来按下『 Continue 』来继续选择打印机的型号吧！</p>
 
-		<center><img src="0610hardware_files/cups_print_05.gif" alt="选择打印机的实际型号(驱动程序确认)" title="选择打印机的实际型号(驱动程序确认)" border="1"><br>
+		<center><img src="../Images/0610hardware_files/cups_print_05.gif" alt="选择打印机的实际型号(驱动程序确认)" title="选择打印机的实际型号(驱动程序确认)" border="1"><br>
 		图 2.3.5、选择打印机的实际型号(驱动程序确认)<br></center>
 
 		<p>如上图所示，我们选择的是 HP 的厂牌！厂牌选择完毕后会出现如下图的型号选择：</p>
 
-		<center><img src="0610hardware_files/cups_print_06.gif" alt="选择打印机的实际型号(驱动程序确认)" title="选择打印机的实际型号(驱动程序确认)" border="1"><br>
+		<center><img src="../Images/0610hardware_files/cups_print_06.gif" alt="选择打印机的实际型号(驱动程序确认)" title="选择打印机的实际型号(驱动程序确认)" border="1"><br>
 		图 2.3.6、选择打印机的实际型号(驱动程序确认)<br></center>
 
 		<p>但上图中我们并没有看到 P2015dn 这部打印机的型号！那怎办？没关系，可以连线到 <a href="http://www.linuxfoundation.org/en/OpenPrinting" target="_blank">http://www.linuxfoundation.org/en/OpenPrinting</a> 网站下载适当的驱动程序后，
@@ -597,17 +597,17 @@ udp  0  0 0.0.0.0:<span class="term_write">631</span>       0.0.0.0:*           
 		驱动程序即可，该网站也没有提供这部打印机的驱动程序啊！那怎办？没关系，在 /usr/share/cups/model/
 		目录下就有默认的驱动程序啦！所以请按下『浏览』来处理一下！</p>
 
-		<center><img src="0610hardware_files/cups_print_07.gif" alt="选择驱动程序文件" title="选择驱动程序文件" border="1"><br>
+		<center><img src="../Images/0610hardware_files/cups_print_07.gif" alt="选择驱动程序文件" title="选择驱动程序文件" border="1"><br>
 		图 2.3.7、选择驱动程序文件<br></center>
 
 		<p>如上图所示，选择正确的驱动程序，然后再按下『开启』按钮，最后按下『 Add Printer 』按钮就可以进入管理员口令输入画面：</p>
 
-		<center><img src="0610hardware_files/cups_print_08.gif" alt="输入管理员帐号口令(默认用 root)" title="输入管理员帐号口令(默认用 root)" border="1"><br>
+		<center><img src="../Images/0610hardware_files/cups_print_08.gif" alt="输入管理员帐号口令(默认用 root)" title="输入管理员帐号口令(默认用 root)" border="1"><br>
 		图 2.3.8、输入管理员帐号口令(默认用 root)<br></center>
 
 		<p>到此为止我们的打印机配置就 OK 了！如果你回到 CUPS 的进站画面，并且点选 Printers 之后，就会出现如下的打印机画面：</p>
 
-		<center><img src="0610hardware_files/cups_print_09.gif" alt="打印机的控制画面" title="打印机的控制画面" border="1"><br>
+		<center><img src="../Images/0610hardware_files/cups_print_09.gif" alt="打印机的控制画面" title="打印机的控制画面" border="1"><br>
 		图 2.3.9、打印机的控制画面<br></center>
 
 		<p>上面画面中的按钮都看的懂吧？其中比较重要的是那个『  Set As Default 』项目，
@@ -639,7 +639,7 @@ Bus 002 Device 002: ID 0d62:a100 Darfon Electronics Corp. Benq Mouse
 		<p>接下来，同样的我们使用 CUPS 的 Web 介面来配置一下这部打印机吧！在网址列输入 http://localhost:631 
 		之后再按下『Manage Printers』会出现如下画面：</p>
 
-		<center><img src="0610hardware_files/cups_usb_01.gif" alt="由 HAL 机制顺利取得的 U盘 打印机" title="由 HAL 机制顺利取得的 U盘 打印机" border="1"><br>
+		<center><img src="../Images/0610hardware_files/cups_usb_01.gif" alt="由 HAL 机制顺利取得的 U盘 打印机" title="由 HAL 机制顺利取得的 U盘 打印机" border="1"><br>
 		图 2.4.1 、由 HAL 机制顺利取得的 U盘 打印机<br></center>
 
 		<p>由上图我们可以发现 CUPS 已经捉到了打印机了！连驱动程序都安装妥当！这是怎么回事啊？
@@ -647,18 +647,18 @@ Bus 002 Device 002: ID 0d62:a100 Darfon Electronics Corp. Benq Mouse
 		不过由於这个装置使用的是 HAL 提供的装置档名，我们如果想要使用 /dev/usb/lp0 来作为打印机的输出档名的话，
 		那么就自己来创建一个打印机的伫列吧！同样的在 CUPS 画面中按下『 Add Printer 』来新增一个打印机：</p>
 
-		<center><img src="0610hardware_files/cups_usb_02.gif" alt=" 输入伫列名称" title=" 输入伫列名称" border="1"><br>
+		<center><img src="../Images/0610hardware_files/cups_usb_02.gif" alt=" 输入伫列名称" title=" 输入伫列名称" border="1"><br>
 		图 2.4.2 、 输入伫列名称<br></center><br>
 
-		<center><img src="0610hardware_files/cups_usb_03.gif" alt="指向第一个 U盘 装置处" title="指向第一个 U盘 装置处" border="1"><br>
+		<center><img src="../Images/0610hardware_files/cups_usb_03.gif" alt="指向第一个 U盘 装置处" title="指向第一个 U盘 装置处" border="1"><br>
 		图 2.4.3 、指向第一个 U盘 装置处<br></center>
 
 		<p>如上图所示，你要指定的是那个有 #1 的位置，那就是我们的第一个 U盘 插槽位置喔！</p>
 
-		<center><img src="0610hardware_files/cups_usb_04.gif" alt="选择打印机的驱动程序" title="选择打印机的驱动程序" border="1"><br>
+		<center><img src="../Images/0610hardware_files/cups_usb_04.gif" alt="选择打印机的驱动程序" title="选择打印机的驱动程序" border="1"><br>
 		图 2.4.4 、选择打印机的驱动程序<br></center><br>
 
-		<center><img src="0610hardware_files/cups_usb_05.gif" alt="最终结果" title="最终结果" border="1"><br>
+		<center><img src="../Images/0610hardware_files/cups_usb_05.gif" alt="最终结果" title="最终结果" border="1"><br>
 		图 2.4.5 、最终结果<br></center>
 
 		<p>如上图所示，最后就会多出一个名为 deskjet_f380 的打印机名称，接下来当然就是『 Print Test Page 』测试看看能否列印罗。
@@ -673,7 +673,7 @@ Bus 002 Device 002: ID 0d62:a100 Darfon Electronics Corp. Benq Mouse
 		有没有办法可以让你的本机打印机变成网络打印机呢？有的，那就是修改 CUPS 的配置即可。如何修改呢？
 		我们还是透过 CUSP 的浏览器介面来处理即可喔！选择『Administration』会出现如下画面(在画面的最右边)：</p>
 
-		<center><img src="0610hardware_files/cups_server_01.gif" alt="勾选可让 CUPS 成为列印服务器的功能" title="勾选可让 CUPS 成为列印服务器的功能" border="1"><br>
+		<center><img src="../Images/0610hardware_files/cups_server_01.gif" alt="勾选可让 CUPS 成为列印服务器的功能" title="勾选可让 CUPS 成为列印服务器的功能" border="1"><br>
 		图 2.5.1 、勾选可让 CUPS 成为列印服务器的功能<br></center>
 
 		<p>如上图所示，在箭头指定的地方进行勾选即可。勾选完毕后按下『 Change Settings 』就能够让你的 CUPS 变成列印服务器！
@@ -959,7 +959,7 @@ active  root    10      (stdin)               1024 bytes
 		<div style="padding: 10pt 0pt;" align="right"><table width="90%"><tbody><tr><td><b>Tips:</b><br><span style="color: rgb(0, 144, 0);"><font size="-1">		其实核心所侦测到的硬件可能并非完全正确喔！因为他仅是『使用最适当的模块来驱动这个硬件』而已，
 		所以有时候难免会误判啦 (虽然机率非常之低)！那你可能想要以最新最正确的模块来驱动你的硬件，
 		此时，重新编译核心是一条可以达成的道路。不过，现在的 Linux 系统并没有很建议你一定要重新编译核心就是了。
-		</font></span></td><td><img src="0610hardware_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div>
+		</font></span></td><td><img src="../Images/0610hardware_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div>
 		<p>那除了直接呼叫出 /proc 底下的文件内容之外，其实 Linux 有提供几个简单的命令来将核心所侦测到的硬件叫出来的～
 		常见的命令有底下这些：</p>
 

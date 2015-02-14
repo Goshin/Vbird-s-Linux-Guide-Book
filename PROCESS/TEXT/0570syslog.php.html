@@ -94,7 +94,7 @@
 	</ul>
 	<div style="padding: 10pt 0pt;" align="right"><table width="90%"><tbody><tr><td><b>Tips:</b><br><span style="color: rgb(0, 144, 0);"><font size="-1">		所以我们常说『天助自助者』是真的啦！你可以透过 (1)察看萤幕上面的错误信息与
 		(2)登录文件的错误资讯，几乎可以解决大部分的 Linux 问题！
-	</font></span></td><td><img src="0570syslog_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div>
+	</font></span></td><td><img src="../Images/0570syslog_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div>
 	<a name="whatis_syslog_file"></a>
 	<hr><span class="text_import1">Linux 常见的登录文件档名</span>
 
@@ -241,7 +241,7 @@ syslog    0:off  1:off  2:on   3:on   4:on   5:on   6:off
 		<div style="padding: 10pt 0pt;" align="right"><table width="90%"><tbody><tr><td><b>Tips:</b><br><span style="color: rgb(0, 144, 0);"><font size="-1">		提供一个鸟哥常做的检查方式。当我老是无法成功的启动某个服务时，我会在最后一次启动该服务后，立即检查登录文件，
 		先 (1)找到现在时间所登录的资讯『第一栏位』； (2)找到我想要查询的那个服务『第三栏位』，
 		(3)最后再仔细的查阅第四栏位的资讯，来藉以找到错误点。
-		</font></span></td><td><img src="0570syslog_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div>	</div>
+		</font></span></td><td><img src="../Images/0570syslog_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div>	</div>
 
 	<hr><a name="syslogd_conf"></a><img src="../images/logo.png" alt="小标题的图示" width="24" align="middle" height="23"><span class="text_h2">syslog 的配置档：/etc/syslog.conf</span><br>
 	<div class="block2">
@@ -288,7 +288,7 @@ mail.info			/var/log/maillog_info
 		内的 mail 服务名称 (LOG_MAIL)，所以上述三个软件 (sendmail, postfix, dovecot) 产生的信息在 syslog 
 		看起来，就会『是 mail 』类型的服务了。我们可以将这个概念绘制如底下的图示来理解：</p>
 
-		<center><img src="0570syslog_files/syslog_daemon.gif" alt="syslog 所制订的服务名称与软件呼叫的方式" title="syslog 所制订的服务名称与软件呼叫的方式" border="0"><br>
+		<center><img src="../Images/0570syslog_files/syslog_daemon.gif" alt="syslog 所制订的服务名称与软件呼叫的方式" title="syslog 所制订的服务名称与软件呼叫的方式" border="0"><br>
 		图 2.2.1、 syslog 所制订的服务名称与软件呼叫的方式<br></center>
 
 		<p>另外，每种服务所产生的数据量其实差异是很大的，举例来说， mail 的登录文件信息多的要命，
@@ -504,7 +504,7 @@ news.=warn;cron.=warn　/var/log/cronnews.warn</blockquote>
 		<div style="padding: 10pt 0pt;" align="right"><table width="90%"><tbody><tr><td><b>Tips:</b><br><span style="color: rgb(0, 144, 0);"><font size="-1">		哇！鸟哥教人家干坏事……喂！不要乱讲话～俺的意思是，如果改天你发现你的登录文件不翼而飞了，
 		或者是发现你的登录文件似乎不太对劲的时候，最常发现的就是网友常常会回报说，他的
 		/var/log 这个目录『不见了！』不要笑！这是真的事情！请记得，『赶快清查你的系统！』
-		</font></span></td><td><img src="0570syslog_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div>
+		</font></span></td><td><img src="../Images/0570syslog_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div>
 		<p>伤脑筋呢！有没有办法防止登录文件被删除？或者是被 root 自己不小心变更呢？有呀！拔掉网络线或电源线就好了……呵呵！
 		别担心，基本上，我们可以透过一个隐藏的属性来配置你的登录文件，成为『
 		<span class="text_import2">只可以添加数据，但是不能被删除</span>
@@ -518,7 +518,7 @@ news.=warn;cron.=warn　/var/log/cronnews.warn</blockquote>
 		怪怪！明明是计算机教室的主机，使用的是 Private IP 而且学校计中还有抵挡机制，不可能被攻击吧？
 		查询了才知道原来同学很喜欢使用『 :wq 』来离开 vim 的环境，但是 syslog 的登录文件只要『被编辑过』就无法继续记录！
 		所以才会导致不能记录的问题。此时你得要 (1)改变使用 vim 的习惯； (2)重新启动 syslog 让他再继续提供服务才行喔！
-		</font></span></td><td><img src="0570syslog_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div>
+		</font></span></td><td><img src="../Images/0570syslog_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div>
 		<p>既然如此，那么我们就来处理一下隐藏属性的东东吧！我们在<a href="0220filemanager.php.html">第七章</a>谈到过 <a href="http://vbird.dic.ksu.edu.tw/linux_basic/0220filemanager.php#lsattr">lsattr</a>
 		与 <a href="http://vbird.dic.ksu.edu.tw/linux_basic/0220filemanager.php#chattr">chattr</a>
 		这两个东西啦！如果将一个文件以 chattr 配置 i 这个属性时，那么该文件连 root
@@ -531,7 +531,7 @@ news.=warn;cron.=warn　/var/log/cronnews.warn</blockquote>
 		<div style="padding: 10pt 0pt;" align="right"><table width="90%"><tbody><tr><td><b>Tips:</b><br><span style="color: rgb(0, 144, 0);"><font size="-1">		请注意，底下的这个 chattr 的配置状态：『仅适合已经对 Linux 系统很有概念的朋友』来配置，
 		对於新手来说，建议你直接使用系统的默认值就好了，免得到最后登录文件无法写入～
 		那就比较糗一点！ @_@
-		</font></span></td><td><img src="0570syslog_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div>
+		</font></span></td><td><img src="../Images/0570syslog_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div>
 <table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">chattr +a /var/log/messages</span>
 [root@www ~]# <span class="term_command">lsattr /var/log/messages</span>
 -----a------- /var/log/messages
@@ -581,7 +581,7 @@ news.=warn;cron.=warn　/var/log/cronnews.warn</blockquote>
 		只是默认并没有启动该功能而已。你可以透过 man syslogd 去查询一下相关的选项就能够知道啦！
 		既然是登录文件服务器，那么我们的 Linux 主机当然会启动一个端口来监听了，那个默认的端口就是 UDP 的 514 喔！</p>
 
-		<center><img src="0570syslog_files/syslog_server.gif" alt="登录文件服务器的架构" title="登录文件服务器的架构" border="0"><br>
+		<center><img src="../Images/0570syslog_files/syslog_server.gif" alt="登录文件服务器的架构" title="登录文件服务器的架构" border="0"><br>
 		图 2.4.1、登录文件服务器的架构<br></center>
 
 		<p>如上图所示，服务器会启动监听的端口，用户端则将登录文件再转出一份送到服务器去。
@@ -647,7 +647,7 @@ udp        0      0 0.0.0.0:<span class="term_write">514</span>    0.0.0.0:*    
 		<p>好了，刚刚我们提到 logrotate 的主要功能就是将旧的登录文件移动成旧档，
 		并且重新创建一个新的空的文件来记录，他的运行结果有点类似底下的图示：</p>
 
-		<center><img src="0570syslog_files/logrotate.gif" alt="登录文件进行 logrotate 的结果" title="登录文件进行 logrotate 的结果" border="0"><br>
+		<center><img src="../Images/0570syslog_files/logrotate.gif" alt="登录文件进行 logrotate 的结果" title="登录文件进行 logrotate 的结果" border="0"><br>
 		图 3.1.1、 登录文件进行 logrotate 的结果<br></center>
 
 		<p>由上面的图示我们可以清楚的知道，当第一次运行完 rotate 之后，原本的 messages 会变成 messages.1

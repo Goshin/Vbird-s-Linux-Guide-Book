@@ -111,7 +111,7 @@
 		<div style="padding: 10pt 0pt;" align="right"><table width="90%"><tbody><tr><td><b>Tips:</b><br><span style="color: rgb(0, 144, 0);"><font size="-1">		如果你曾经在网络上下载过 <a href="http://vbird.dic.ksu.edu.tw/linux_basic/0240tarcompress.php#pack">tarball</a> 类型的文件，
 		那么应该不难发现，在解压缩之后的文件中，文件拥有者的字段竟然显示『不明的数字』？奇怪吧？这没什么好奇怪的，因为 Linux 
 		说实在话，他真的只认识代表你身份的号码而已！
-		</font></span></td><td><img src="0410accountmanager_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div>
+		</font></span></td><td><img src="../Images/0410accountmanager_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div>
 		<p>那么到底有几种 ID 呢？还记得我们在<a href="0210filepermission.php.html">第六章</a>内有提到过，
 		每一个文件都具有『拥有人与拥有群组』的属性吗？没错啦～每个登陆的使用者至少都会取得两个 ID ，一个是使用者 
 		ID (User ID ，简称 UID)、一个是群组 ID (Group ID ，简称 GID)。</p>
@@ -153,7 +153,7 @@ dmtsai:x:<span class="term_write">503</span>:504::/home/dmtsai:/bin/bash <span c
 		<div style="padding: 10pt 0pt;" align="right"><table width="90%"><tbody><tr><td><b>Tips:</b><br><span style="color: rgb(0, 144, 0);"><font size="-1">		举例来说，如果上面的测试最后一个步骤没有将 2000 改回原本的 UID，那么当 dmtsai 下次登陆时将没有办法进入自己的家目录！
 		因为他的 UID 已经改为 2000 ，但是他的家目录 (/home/dmtsai) 却记录的是 503 ，由于权限是 700 ，
 		因此他将无法进入原本的家目录！是否非常严重啊？
-		</font></span></td><td><img src="0410accountmanager_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div>	</div>
+		</font></span></td><td><img src="../Images/0410accountmanager_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div>	</div>
 
 	<hr><a name="account_user"></a><img src="../images/logo.png" alt="小标题的图示" width="24" align="middle" height="23"><span class="text_h2">使用者账号</span><br>
 	<div class="block2">
@@ -189,7 +189,7 @@ dmtsai:x:<span class="term_write">503</span>:504::/home/dmtsai:/bin/bash <span c
 		<div style="padding: 10pt 0pt;" align="right"><table width="90%"><tbody><tr><td><b>Tips:</b><br><span style="color: rgb(0, 144, 0);"><font size="-1">		鸟哥在接触 Linux 之前曾经碰过 Solaris 系统 (1999 年)，当时鸟哥啥也不清楚！由于『听说』Linux 
 		上面的账号越复杂会导致系统越危险！所以鸟哥就将 /etc/passwd 上面的账号全部删除到只剩下 root 
 		与鸟哥自己用的一般账号！结果你猜发生什么事？那就是....呼叫升阳的工程师来维护系统 @_@！糗到一个不行！大家不要学啊！
-		</font></span></td><td><img src="0410accountmanager_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div>
+		</font></span></td><td><img src="../Images/0410accountmanager_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div>
 <table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">head -n 4 /etc/passwd</span>
 <span class="term_write">root:x:0:0:root:/root:/bin/bash</span>  <span class="term_note">&lt;==等一下做为底下说明用</span>
 bin:x:1:1:bin:/bin:/sbin/nologin
@@ -409,7 +409,7 @@ Changing password for dmtsai
 		由于当初安装该计算机教室 Linux 操作系统的人员已经离职且找不到联络方式了，也就是说 root 口令已经没有人晓得了！
 		此时该老师就对学生说：『在 Linux 里面 root 口令不见了，我们只能重新安装』...感觉有点无力～
 		又是个被 Windows 制约的人才！
-		</font></span></td><td><img src="0410accountmanager_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div>	</div>
+		</font></span></td><td><img src="../Images/0410accountmanager_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div>	</div>
 
 	<hr><a name="account_group"></a><img src="../images/logo.png" alt="小标题的图示" width="24" align="middle" height="23"><span class="text_h2">关于群组：
 	有效与初始群组、groups, newgrp</span>
@@ -455,7 +455,7 @@ sys:x:3:root,bin,adm
 		下图中， root 的 UID 是 0 ，而 GID 也是 0 ，去找 /etc/group 可以知道 GID 为 0  时的组名就是 root 哩。
 		至于口令的寻找中，会找到 /etc/shadow 与 /etc/passwd 内同账号名称的那一行，就是口令相关数据啰。</p>
 
-		<center><img src="0410accountmanager_files/id_link.gif" alt="账号相关文件之间的 UID/GID 与口令相关性示意图" title="账号相关文件之间的 UID/GID 与口令相关性示意图" border="0"><br>
+		<center><img src="../Images/0410accountmanager_files/id_link.gif" alt="账号相关文件之间的 UID/GID 与口令相关性示意图" title="账号相关文件之间的 UID/GID 与口令相关性示意图" border="0"><br>
 		图 1.3.1 、账号相关文件之间的 UID/GID 与口令相关性示意图<br></center>
 
 		<p>至于在 /etc/group 比较重要的特色在于第四栏啦，因为每个使用者都可以拥有多个支持的群组，这就好比在学校念书的时候，
@@ -537,7 +537,7 @@ users dmtsai
 		dmtsai 这个使用者目前是以另一个 shell 登陆的，而且新的 shell 给予 dmtsai 有效 GID 为
 		users 就是了。如果以图示来看就是如下所示：</p>
 
-		<center><img src="0410accountmanager_files/newgrp.gif" alt="newgrp 的运行示意图" title="newgrp 的运行示意图" border="0"><br>
+		<center><img src="../Images/0410accountmanager_files/newgrp.gif" alt="newgrp 的运行示意图" title="newgrp 的运行示意图" border="0"><br>
 		图 1.3.2 、newgrp 的运行示意图<br></center>
 
 		<p>虽然用户的环境配置(例如环境变量等等其他数据)不会有影响，但是使用者的『群组权限』将会重新被计算。
@@ -880,7 +880,7 @@ passwd: all authentication tokens updated <u>successfully</u>. <span class="term
 		<div style="padding: 10pt 0pt;" align="right"><table width="90%"><tbody><tr><td><b>Tips:</b><br><span style="color: rgb(0, 144, 0);"><font size="-1">		与一般使用者不同的是， root 并不需要知道旧口令就能够帮用户或 root 自己创建新口令！
 		但如此一来有困扰～就是如果你的亲密爱人老是告诉你『我的口令真难记，帮我配置简单一点的！』时，
 		千万不要妥协啊！这是为了系统安全...
-		</font></span></td><td><img src="0410accountmanager_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div>
+		</font></span></td><td><img src="../Images/0410accountmanager_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div>
 		<p>为何用户要设订自己的口令会这么麻烦啊？这是因为口令的安全性啦！如果口令配置太简单，
 		一些有心人士就能够很简单的猜到你的口令，如此一来人家就可能使用你的一般账号登陆你的主机或使用其他主机资源，
 		对主机的维护会造成困扰的！所以新的 distributions 是使用较严格的 PAM 模块来管理口令，这个管理的机制写在 /etc/pam.d/passwd 
@@ -2194,7 +2194,7 @@ Please DO NOT use this account to login my Linux server.
 		PAM 来进行验证，如此一来，就能够让账号口令或者是其他方式的验证具有一致的结果！也让程序设计师方便处理验证的问题喔！
 		(<a href="#ps5">注5</a>)</p>
 
-		<center><img src="0410accountmanager_files/pam-1.gif" alt="PAM 模块与其他程序的相关性" title="PAM 模块与其他程序的相关性" border="0"><br>
+		<center><img src="../Images/0410accountmanager_files/pam-1.gif" alt="PAM 模块与其他程序的相关性" title="PAM 模块与其他程序的相关性" border="0"><br>
 		图 5.2.1、 PAM 模块与其他程序的相关性<br></center>
 
 		<p>如上述的图示， PAM 是一个独立的 API 存在，只要任何程序有需求时，可以向 PAM 发出验证要求的通知，
@@ -2242,7 +2242,7 @@ password   include      system-auth
 		<div style="padding: 10pt 0pt;" align="right"><table width="90%"><tbody><tr><td><b>Tips:</b><br><span style="color: rgb(0, 144, 0);"><font size="-1">		你会发现在我们上面的表格当中出现的是『 include 
 		(包括) 』这个关键词，他代表的是『请呼叫后面的文件来作为这个类别的验证』，
 		所以，上述的每一行都要重复呼叫 /etc/pam.d/system-auth 那个文件来进行验证的意思！
-		</font></span></td><td><img src="0410accountmanager_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div>
+		</font></span></td><td><img src="../Images/0410accountmanager_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div>
 		<hr><ul class="list1"><li class="text_import1">第一个字段：验证类别 (Type)</li></ul>
 
 		<p>验证类别主要分为四种，分别说明如下：</p>
@@ -2297,7 +2297,7 @@ password   include      system-auth
 
 		<p>如果将这些控制旗标以图示的方式配合成功与否的条件绘图，会有点像底下这样：</p>
 
-		<center><img src="0410accountmanager_files/pam-2.gif" alt="PAM 控制旗标所造成的回报流程" title="PAM 控制旗标所造成的回报流程" border="0"><br>
+		<center><img src="../Images/0410accountmanager_files/pam-2.gif" alt="PAM 控制旗标所造成的回报流程" title="PAM 控制旗标所造成的回报流程" border="0"><br>
 		图 5.3.1、 PAM 控制旗标所造成的回报流程<br></center>
 
 		<p>程序运行过程中遇到验证时才会去呼叫 PAM ，而 PAM 验证又分很多类型与控制，不同的控制旗标所回报的信息并不相同。
@@ -2535,7 +2535,7 @@ File size limit exceeded
 		<div style="padding: 10pt 0pt;" align="right"><table width="90%"><tbody><tr><td><b>Tips:</b><br><span style="color: rgb(0, 144, 0);"><font size="-1">		早期的 Red Hat 系统的版本中， last 仅会列出当月的登陆者信息，不过在我们的 CentOS 5.x 版以后，
 		last 可以列出从系统创建之后到目前为止的所有登陆者信息！这是因为登录档轮替的配置不同所致。
 		详细的说明可以参考后续的<a href="0570syslog.php.html">第十九章登录档简介</a>。
-		</font></span></td><td><img src="0410accountmanager_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div>
+		</font></span></td><td><img src="../Images/0410accountmanager_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div>
 		<p>那如果你想要知道目前已登陆在系统上面的用户呢？可以透过 w 或 who 来查询喔！如下范例所示：</p>
 
 <table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">w</span>
@@ -2797,7 +2797,7 @@ user gopher: directory /var/gopher does not exist
 		<div style="padding: 10pt 0pt;" align="right"><table width="90%"><tbody><tr><td><b>Tips:</b><br><span style="color: rgb(0, 144, 0);"><font size="-1">		在较新的 distribution 当中，纯数字的账号已经可以被 useradd 创建了。不过鸟哥还是非常不建议使用纯数字账号。
 		例如在 setfacl 的配置值中，若使用『 setfacl -m u:501:rwx filename 』那个 501 代表的是 UID 还是账号？
 		因为 setfacl 的配置是支持使用 UID 或账号的，纯数字账号很容易造成系统的误解！
-		</font></span></td><td><img src="0410accountmanager_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div>
+		</font></span></td><td><img src="../Images/0410accountmanager_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div>
 		<p>不过，有的时候，长官的命令难为啊 @_@ 有时还是得要创建这方面的账号的，那该如何是好？
 		呵呵！当然可以手动来创建这样的账号啦！不过，为了系统安全起见，鸟哥还是不建议使用纯数字的账号的啦！
 		因此，底下的范例当中，我们使用手动的方式来创建一个名为 normaluser 的账号，

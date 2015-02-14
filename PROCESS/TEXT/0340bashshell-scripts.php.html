@@ -465,7 +465,7 @@ Your full name is: <u>VBird Tsai</u>      <span class="term_note">&lt;==看吧�
 		当 sh02.sh 运行完毕后，子程序 bash 内的所有数据便被移除，因此上表的练习中，在父程序底下 echo $firstname 时，
 		就看不到任何东西了！这样可以理解吗？</p>
 
-		<center><img src="0340bashshell-scripts_files/non-source.gif" alt="sh02.sh 在子程序中运行" title="sh02.sh 在子程序中运行" border="0"><br>
+		<center><img src="../Images/0340bashshell-scripts_files/non-source.gif" alt="sh02.sh 在子程序中运行" title="sh02.sh 在子程序中运行" border="0"><br>
 		图 2.2.1、sh02.sh 在子程序中运行<br></center><br>
 
 		<hr><ul class="list1"><li class="text_import1">利用 source 来运行脚本：在父程序中运行</li></ul>
@@ -485,7 +485,7 @@ VBird Tsai  <span class="term_note">&lt;==嘿嘿！有数据产生喔！</span>
 		sh02.sh 会在父程序中运行的，因此各项动作都会在原本的 bash 内生效！这也是为啥你不注销系统而要让某些写入 ~/.bashrc 
 		的配置生效时，需要使用『 source ~/.bashrc 』而不能使用『 bash ~/.bashrc 』是一样的啊！</p>
 
-		<center><img src="0340bashshell-scripts_files/source.gif" alt="sh02.sh 在父程序中运行" title="sh02.sh 在父程序中运行" border="0"><br>
+		<center><img src="../Images/0340bashshell-scripts_files/source.gif" alt="sh02.sh 在父程序中运行" title="sh02.sh 在父程序中运行" border="0"><br>
 		图 2.2.2、sh02.sh 在父程序中运行<br></center>
 	</div>
 </div>
@@ -626,7 +626,7 @@ echo "And the permissions are : $perm"</span>
 		<div style="padding: 10pt 0pt;" align="right"><table width="90%"><tbody><tr><td><b>Tips:</b><br><span style="color: rgb(0, 144, 0);"><font size="-1">		你会发现鸟哥在上面的判断式当中使用了两个等号『 == 』。其实在 bash 当中使用一个等号与两个等号的结果是一样的！
 		不过在一般惯用程序的写法中，一个等号代表『变量的配置』，两个等号则是代表『逻辑判断 (是否之意)』。
 		由於我们在中括号内重点在於『判断』而非『配置变量』，因此鸟哥建议您还是使用两个等号较佳！
-		</font></span></td><td><img src="0340bashshell-scripts_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div>
+		</font></span></td><td><img src="../Images/0340bashshell-scripts_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div>
 		<p>上面的例子在说明，两个字串 $HOME 与 $MAIL 是否相同的意思，相当於 test $HOME = $MAIL 的意思啦！
 		而如果没有空白分隔，例如 [$HOME==$MAIL] 时，我们的 bash 就会显示错误信息了！这可要很注意啊！
 		所以说，你最好要注意：</p>
@@ -1251,7 +1251,7 @@ esac</span>
 
 		<div style="padding: 10pt 0pt;" align="right"><table width="90%"><tbody><tr><td><b>Tips:</b><br><span style="color: rgb(0, 144, 0);"><font size="-1">		建议读者可以使用类似 vim 的编辑器到 /etc/init.d/ 目录下去查阅一下你所看到的文件，
 		并且自行追踪一下每个文件的运行情况，相信会更有心得！
-		</font></span></td><td><img src="0340bashshell-scripts_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div>
+		</font></span></td><td><img src="../Images/0340bashshell-scripts_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div>
 		<p>另外， <span class="text_import2">function 也是拥有内建变量的～他的内建变量与 shell script 很类似，
 		函数名称代表示 $0 ，而后续接的变量也是以 $1, $2... 来取代的</span>～
 		这里很容易搞错喔～因为『 function fname() { 程序段 } 』内的 $0, $1... 等等与 shell script 

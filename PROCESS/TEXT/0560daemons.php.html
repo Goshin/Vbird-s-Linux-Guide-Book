@@ -74,7 +74,7 @@
 
 	<div style="padding: 10pt 0pt;" align="right"><table width="90%"><tbody><tr><td><b>Tips:</b><br><span style="color: rgb(0, 144, 0);"><font size="-1">	你不必去区分什么是 daemon 与 service ！事实上，你可以将这两者视为相同！因为达成某个服务是需要一支 daemon 在背景中运行，
 	没有这支 daemon 就不会有 service ！所以不需要分的太清楚啦！
-	</font></span></td><td><img src="0560daemons_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div>
+	</font></span></td><td><img src="../Images/0560daemons_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div>
 	<p>一般来说，当我们以文本模式或图形模式 (非单人维护模式) 完整启动进入 Linux 主机后，
 	系统已经提供我们很多的服务了！包括打印服务、工作排程服务、邮件管理服务等等；
 	那么这些服务是如何被启动的？他们的工作型态如何？底下我们就来谈一谈啰！<br><br></p>
@@ -107,7 +107,7 @@
 		常见的 super daemon 所管理的服务例如 telnet 这个玩意儿就是啦！<br><br></p>
 
 		<a name="fig_111"></a>
-		<center><img src="0560daemons_files/super_daemon.gif" alt="Super daemon 的运行示意图" title="Super daemon 的运行示意图" border="0"><br>
+		<center><img src="../Images/0560daemons_files/super_daemon.gif" alt="Super daemon 的运行示意图" title="Super daemon 的运行示意图" border="0"><br>
 		图 1.1.1、Super daemon 的运行示意图<br></center>
 
 		<p>如上所示，Super daemon 是常驻在内存中的， Program 1, 2, 3 则是启动某些服务的程序 (未被启动状态)。当有客户端的要求时，
@@ -143,7 +143,7 @@
 		</ul><br>
 
 		<a name="fig_112"></a>
-		<center><img src="0560daemons_files/threaded.gif" alt="单运行与多重运行的 super daemon 运行方式" title="单运行与多重运行的 super daemon 运行方式" border="0"><br>
+		<center><img src="../Images/0560daemons_files/threaded.gif" alt="单运行与多重运行的 super daemon 运行方式" title="单运行与多重运行的 super daemon 运行方式" border="0"><br>
 		图 1.1.2、单运行与多重运行的 super daemon 运行方式<br></center><br>
 
 		如上所示，左侧为多重运行的方式， daemon 会一直被触发多支程序来提供不同 client 的服务，所以不论你是第几个登陆者，
@@ -203,7 +203,7 @@
 		是啊！这是因为我们指向不同的服务嘛！一个是 http 这个 WWW 的服务，一个则是 ftp 
 		这个文件传输服务，当然显示的结果就不同了。</p>
 
-		<center><img src="0560daemons_files/port_daemon.gif" alt="port 与 daemon 的对应" title="port 与 daemon 的对应" border="0"><br>
+		<center><img src="../Images/0560daemons_files/port_daemon.gif" alt="port 与 daemon 的对应" title="port 与 daemon 的对应" border="0"><br>
 		图 1.2.1、 port 与 daemon 的对应，客户端连接协议不同，服务导向端口号亦不同<br></center>
 
 		<p>事实上，为了统一整个因特网的端口号对应服务的功能，好让所有的主机都能够使用相同的机制来提供服务与要求服务，
@@ -235,7 +235,7 @@ http            80/udp          www www-http    # HyperText Transfer Protocol
 		<div style="padding: 10pt 0pt;" align="right"><table width="90%"><tbody><tr><td><b>Tips:</b><br><span style="color: rgb(0, 144, 0);"><font size="-1">		请特别注意！虽然有的时候你可以藉由修改 /etc/services 来更改一个服务的埠号，不过并不建议如此做，
 		因为很有可能会造成一些协议的错误情况！这里特此说明一番呦！(除非你要架设一个地下网站，否则的话，使用 
 		/etc/services 原先的配置就好啦！)
-		</font></span></td><td><img src="0560daemons_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div>	</div>
+		</font></span></td><td><img src="../Images/0560daemons_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div>	</div>
 
 	<hr><a name="whereisdaemon"></a><img src="../images/logo.png" alt="小标题的图示" width="24" align="middle" height="23"><span class="text_h2">daemon 的启动脚本与启动方式</span>
 	<div class="block2">
@@ -348,7 +348,7 @@ atd (pid 4694) 正在运行...
 		<div style="padding: 10pt 0pt;" align="right"><table width="90%"><tbody><tr><td><b>Tips:</b><br><span style="color: rgb(0, 144, 0);"><font size="-1">		事实上，在 Linux 系统中，要『开或关某个 port 』，就是需要『
 		启动或关闭某个服务』啦！因此，你可以找出某个 port 对应的服务，程序对应的服务，
 		进而启动或关闭他，那么那个经由该服务而启动的 port ，自然就会关掉了！
-		</font></span></td><td><img src="0560daemons_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div>
+		</font></span></td><td><img src="../Images/0560daemons_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div>
 		<a name="superdaemon_start"></a>
 		<hr><ul class="list1"><li class="text_import1">Super daemon 的启动方式</li></ul>
 
@@ -670,7 +670,7 @@ service rsync  <span class="term_note">&lt;==服务名称为 rsync</span>
 
 		<div style="padding: 10pt 0pt;" align="right"><table width="90%"><tbody><tr><td><b>Tips:</b><br><span style="color: rgb(0, 144, 0);"><font size="-1">		有信息背景的朋友当然知道 127.0.0.1 是内部循环测试用的 IP ，用他来设计网络是没有意义的。
 		不过，我们这里仅是作一个设计的介绍，而且我们尚未谈到服务器篇的网络部分，所以大家先这样实际测试吧！ ^_^
-		</font></span></td><td><img src="0560daemons_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div>
+		</font></span></td><td><img src="../Images/0560daemons_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div>
 		<p>在这样的规划情况下，我们可以将刚刚上头的 /etc/xinetd.d/rsync 这个文件修改成为：</p>
 
 <a name="rsync"></a>
@@ -800,7 +800,7 @@ tcp    0 0 <span class="term_write">127.0.0.1:873</span>         0.0.0.0:*      
 
 		<div style="padding: 10pt 0pt;" align="right"><table width="90%"><tbody><tr><td><b>Tips:</b><br><span style="color: rgb(0, 144, 0);"><font size="-1">		关于 IP, 网域, 网段, 还有相关的网络知识，在这个基础篇当中我们不会谈到，你只要记得底下写的 140.116.0.0/255.255.0.0
 		代表一个网域就是了。详细的数据请先自行参考<a href="http://vbird.dic.ksu.edu.tw/linux_server/">服务器架设篇</a>的内容！ 
-		</font></span></td><td><img src="0560daemons_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div>
+		</font></span></td><td><img src="../Images/0560daemons_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div>
 <table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">vim /etc/hosts.deny</span>
 <span class="term_write">rsync : 127.0.0.100 127.0.0.200 : deny</span>
 </pre></td></tr></tbody></table>
@@ -1094,7 +1094,7 @@ rsync           off  <span class="term_note">&lt;==看吧！关闭了喔！现�
 
 		<p>一般我们都是直接输入 ntsysv 即可进入管理画面了，整个画面如下图所示：</p>
 
-		<center><img src="0560daemons_files/ntsysv_1.gif" alt="ntsysv 的运行示意图" title="ntsysv 的运行示意图" border="1"><br>
+		<center><img src="../Images/0560daemons_files/ntsysv_1.gif" alt="ntsysv 的运行示意图" title="ntsysv 的运行示意图" border="1"><br>
 		图 4.2.1、 ntsysv 的运行示意图<br></center>
 
 		<p>上图中的中间部分是每个服务默认启动是否会启动的配置值，若中括号内出现星号 (*) 代表默认启动会启动，否则就是不会在启动时启动啦。
@@ -1109,7 +1109,7 @@ rsync           off  <span class="term_note">&lt;==看吧！关闭了喔！现�
 		<li>[F1]键： 可以显示该服务的说明</li>
 		</ul>
 
-		<center><img src="0560daemons_files/ntsysv_2.gif" alt="ntsysv 的运行示意图" title="ntsysv 的运行示意图" border="1"><br>
+		<center><img src="../Images/0560daemons_files/ntsysv_2.gif" alt="ntsysv 的运行示意图" title="ntsysv 的运行示意图" border="1"><br>
 		图 4.2.2、 ntsysv 的运行示意图<br></center>
 
 		<p>上图是鸟哥将光标游动到 atd 这个服务上头后，再按下 [F1] 所出现的结果，所以啰，你可以透过 ntsysv 去观察默认启动启动的服务，

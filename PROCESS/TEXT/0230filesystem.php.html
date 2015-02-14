@@ -166,7 +166,7 @@
 		2, 7, 13, 15 这四个 block 号码，此时我们的操作系统就能够据此来排列磁盘的阅读顺序，可以一口气将四个 block 内容读出来！
 		那么数据的读取就如同下图中的箭头所指定的模样了。</p>
 
-		<center><img src="0230filesystem_files/filesystem-1.jpg" alt="inode/block 数据存取示意图" title="inode/block 数据存取示意图" border="0"><br>
+		<center><img src="../Images/0230filesystem_files/filesystem-1.jpg" alt="inode/block 数据存取示意图" title="inode/block 数据存取示意图" border="0"><br>
 		图1.2.1、inode/block 数据存取示意图<br></center>
 
 		<p>这种数据存取的方法我们称为<span class="text_import2">索引式文件系统(indexed 
@@ -175,7 +175,7 @@
 		存在，所以 FAT 没有办法将这个文件的所有 block 在一开始就读取出来。每个 block 号码都记录在前一个 block 当中，
 		他的读取方式有点像底下这样：</p>
 
-		<center><img src="0230filesystem_files/filesystem-2.jpg" alt="FAT文件系统数据存取示意图" title="FAT文件系统数据存取示意图" border="0"><br>
+		<center><img src="../Images/0230filesystem_files/filesystem-2.jpg" alt="FAT文件系统数据存取示意图" title="FAT文件系统数据存取示意图" border="0"><br>
 		图1.2.2、FAT文件系统数据存取示意图<br></center>
 
 		<p>上图中我们假设文件的数据依序写入1-&gt;7-&gt;4-&gt;15号这四个 block 号码中，
@@ -212,7 +212,7 @@
 		但最终都向营部回报连上最正确的信息一般！这样分成一群群的比较好管理啦！整个来说，Ext2 格式化后有点像底下这样：</p>
 
 		<a name="fig1.3.1"></a>
-		<center><img src="0230filesystem_files/ext2_filesystem.jpg" alt="ext2文件系统示意图" title="ext2文件系统示意图" border="0"><br>
+		<center><img src="../Images/0230filesystem_files/ext2_filesystem.jpg" alt="ext2文件系统示意图" title="ext2文件系统示意图" border="0"><br>
 		图1.3.1、ext2文件系统示意图(<a href="#ps1">注1</a>)<br></center>
 
 		<p>在整体的规划当中，<span class="text_import2">文件系统最前面有一个启动扇区(boot 
@@ -301,7 +301,7 @@
 		那么至少也要十万笔 block 号码的记录呢！inode 哪有这么多可记录的信息？为此我们的系统很聪明的将 inode 记录 block 
 		号码的区域定义为12个直接，一个间接, 一个双间接与一个三间接记录区。这是啥？我们将 inode 的结构画一下好了。</p>
 
-		<center><img src="0230filesystem_files/inode.jpg" alt="inode 结构示意图" title="inode 结构示意图" border="1"><br>
+		<center><img src="../Images/0230filesystem_files/inode.jpg" alt="inode 结构示意图" title="inode 结构示意图" border="1"><br>
 		图1.3.2、inode 结构示意图(<a href="#ps5">注5</a>)<br></center>
 
 		<p>上图最左边为 inode 本身 (128 bytes)，里面有 12 个直接指向 block 号码的对照，这 12 笔记录就能够直接取得 block 号码啦！
@@ -464,7 +464,7 @@ Group 1: (Blocks 32768-65535)
 		与至少一块 block 给该目录</span>。其中，inode 记录该目录的相关权限与属性，并可记录分配到的那块 block 号码；
 		而 block 则是记录在这个目录下的文件名与该文件名占用的 inode 号码数据。也就是说目录所占用的 block 内容在记录如下的信息：</p>
 
-		<center><img src="0230filesystem_files/dir_block.jpg" alt="目录占用的 block 记录的数据示意图" title="目录占用的 block 记录的数据示意图" border="0"><br>
+		<center><img src="../Images/0230filesystem_files/dir_block.jpg" alt="目录占用的 block 记录的数据示意图" title="目录占用的 block 记录的数据示意图" border="0"><br>
 		图1.4.1、目录占用的 block 记录的数据示意图<br></center>
 
 		<p>如果想要实际观察 root 家目录内的文件所占用的 inode 号码时，可以使用 ls -i 这个选项来处理：</p>
@@ -499,7 +499,7 @@ drwxr-xr-x  2 root root 12288 Sep  5 12:33 /sbin       <span class="term_note">&
 		<div style="padding: 10pt 0pt;" align="right"><table width="90%"><tbody><tr><td><b>Tips:</b><br><span style="color: rgb(0, 144, 0);"><font size="-1">		由上面的结果我们知道目录并不只会占用一个 block 而已，也就是说：
 		在目录底下的文件数如果太多而导致一个 block 无法容纳的下所有的档名与 inode 对照表时，Linux 
 		会给予该目录多一个 block 来继续记录相关的数据；
-		</font></span></td><td><img src="0230filesystem_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div>
+		</font></span></td><td><img src="../Images/0230filesystem_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div>
 		<hr><ul class="list1"><li class="text_import1">文件：</li></ul>
 
 		<p>当我们在 Linux 下的 ext2 创建一个一般文件时， ext2 会分配一个 inode 
@@ -738,7 +738,7 @@ ext3 的好处是不需要去做一种长时间的，冗长乏味的且易于产
 		应该是没有吧！这个就是 VFS 的功能啦！透过这个 VFS 的功能来管理所有的 filesystem，
 		省去我们需要自行配置读取文件系统的定义啊～方便很多！整个 VFS 可以约略用下图来说明：</p>
 
-		<center><img src="0230filesystem_files/vfs.gif" alt="VFS 文件系统的示意图" title="VFS 文件系统的示意图" border="0"><br>
+		<center><img src="../Images/0230filesystem_files/vfs.gif" alt="VFS 文件系统的示意图" title="VFS 文件系统的示意图" border="0"><br>
 		图 1.8.1、VFS 文件系统的示意图<br></center>
 
 		<p>老实说，文件系统真的不好懂！
@@ -855,7 +855,7 @@ tmpfs                    91K       1     91K    1% /dev/shm
 		后来，维护商发现原来硬盘的『总空间』还有很多，
 		只是某个分割槽填满了，偏偏该研究生就是要将数据 copy 去那个分割槽！呵呵！
 		后来那个研究生就被命令『再也不许碰 Sun 主机』了～～
-		</font></span></td><td><img src="0230filesystem_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div>
+		</font></span></td><td><img src="../Images/0230filesystem_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div>
 		<p>另外需要注意的是，如果使用 -a 这个参数时，系统会出现 /proc 这个挂载点，但是里面的东西都是 
 		0 ，不要紧张！ /proc 的东西都是 Linux 系统所需要加载的系统数据，而且是挂载在『内存当中』的，
 		所以当然没有占任何的硬盘空间啰！</p>
@@ -966,7 +966,7 @@ tmpfs                    91K       1     91K    1% /dev/shm
 		那个字段称为『连结』，这个字段的意义为：『<span class="text_import2">有多少个档名链接到这个 inode 号码</span>』的意思。
 		如果将读取到正确数据的方式画成示意图，就类似如下画面：</p>
 
-		<center><img src="0230filesystem_files/hard_link1.gif" alt="实体链接的文件读取示意图" title="实体链接的文件读取示意图" border="0"><br>
+		<center><img src="../Images/0230filesystem_files/hard_link1.gif" alt="实体链接的文件读取示意图" title="实体链接的文件读取示意图" border="0"><br>
 		图 2.2.1、实体链接的文件读取示意图<br></center>
 
 		<p>上图的意思是，你可以透过 1 或 2 的目录之 inode 指定的 block 
@@ -983,7 +983,7 @@ tmpfs                    91K       1     91K    1% /dev/shm
 		<div style="padding: 10pt 0pt;" align="right"><table width="90%"><tbody><tr><td><b>Tips:</b><br><span style="color: rgb(0, 144, 0);"><font size="-1">		hard link 的制作中，其实还是可能会改变系统的 block 的，那就是当你新增这笔数据却刚好将目录的 block 
 		填满时，就可能会新加一个 block 来记录文件名关连性，而导致磁盘空间的变化！不过，一般 hard link 
 		所用掉的关连数据量很小，所以通常不会改变 inode 与磁盘空间的大小喔！
-		</font></span></td><td><img src="0230filesystem_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div>
+		</font></span></td><td><img src="../Images/0230filesystem_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div>
 		<p>由图 2.2.1 其实我们也能够知道，事实上 hard link 应该仅能在单一文件系统中进行的，应该是不能够跨文件系统才对！
 		因为图 2.2.1 就是在同一个 filesystem 上嘛！所以 hard link 是有限制的：</p>
 
@@ -1023,7 +1023,7 @@ tmpfs                    91K       1     91K    1% /dev/shm
 
 		<p>关于上述的说明，我们以如下图示来解释：</p>
 
-		<center><img src="0230filesystem_files/symbolic_link1.gif" alt="符号链接的文件读取示意图" title="符号链接的文件读取示意图" border="0"><br>
+		<center><img src="../Images/0230filesystem_files/symbolic_link1.gif" alt="符号链接的文件读取示意图" title="符号链接的文件读取示意图" border="0"><br>
 		图 2.2.2、符号链接的文件读取示意图<br></center>
 
 		<p>由 1 号 inode 读取到连结档的内容仅有档名，根据档名链接到正确的目录去取得目标文件的 inode ，
@@ -1108,7 +1108,7 @@ lrwxrwxrwx 1 root root    6 Oct 22 14:18 <span class="term_white">passwd-so</spa
 		这个目录是干嘛用的吗？是给大家作为缓存盘用的啊！
 		所以，您会发现，过去我们在进行测试时，都会将数据移动到 /tmp 底下去练习～
 		嘿嘿！因此，有事没事，记得将 /tmp 底下的一些怪异的数据清一清先！
-		</font></span></td><td><img src="0230filesystem_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div>
+		</font></span></td><td><img src="../Images/0230filesystem_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div>
 		<p>要注意啰！<span class="text_import2">使用 ln 如果不加任何参数的话，那么就是 Hard Link</span>
 		啰！如同范例二的情况，添加了 hard link 之后，可以发现使用 ls -l 时，显示的 link 那一栏属性添加了！而如果这个时候砍掉 
 		passwd 会发生什么事情呢？passwd-hd 的内容还是会跟原来 passwd 相同，但是 passwd-so 
@@ -1310,7 +1310,7 @@ Units = cylinders of 3422 * 512 = 1752064 bytes
 
 		<div style="padding: 10pt 0pt;" align="right"><table width="90%"><tbody><tr><td><b>Tips:</b><br><span style="color: rgb(0, 144, 0);"><font size="-1">		再次强调，你可以使用 fdisk 在您的硬盘上面胡搞瞎搞的进行实际操作，都不打紧，
 		但是请『千万记住，不要按下 w 即可！』离开的时候按下 q 就万事无妨啰！
-		</font></span></td><td><img src="0230filesystem_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div>
+		</font></span></td><td><img src="../Images/0230filesystem_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div>
 		<hr>
 		<ul class="list1"><li class="text_import1">删除磁盘分区槽</li></ul>
 
@@ -1885,7 +1885,7 @@ Filesystem           1K-blocks      Used Available Use% Mounted on
 
 		<div style="padding: 10pt 0pt;" align="right"><table width="90%"><tbody><tr><td><b>Tips:</b><br><span style="color: rgb(0, 144, 0);"><font size="-1">		话说当时年纪小 (其实是刚接触 Linux 的那一年)，摸 Linux 到处碰壁！连将 CDROM 挂载后，
 		光驱竟然都不让我退片！那个时候难过的要死！解决的方法竟然是『重新启动！』囧的可以啊！
-		</font></span></td><td><img src="0230filesystem_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div>
+		</font></span></td><td><img src="../Images/0230filesystem_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div>
 		<hr>
 		<ul class="list1"><li class="text_import1">格式化与挂载软盘</li></ul>
 
@@ -2281,7 +2281,7 @@ LABEL=SWAP-hdc5   swap        swap       defaults        0 0
 		<div style="padding: 10pt 0pt;" align="right"><table width="90%"><tbody><tr><td><b>Tips:</b><br><span style="color: rgb(0, 144, 0);"><font size="-1">		鸟哥比较龟毛一点，因为某些 distributions 的 /etc/fstab 文件排列方式蛮丑的，
 		虽然每一栏之间只要以空格符分开即可，但就是觉得丑，所以通常鸟哥就会自己排列整齐，
 		并加上批注符号(就是 # )，来帮我记忆这些信息！
-		</font></span></td><td><img src="0230filesystem_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div>
+		</font></span></td><td><img src="../Images/0230filesystem_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div>
 		<ul class="list1"><li class="text_import1">第一栏：磁盘装置文件名或该装置的 Label：</li></ul>
 
 		<p>这个字段请填入文件系统的装置文件名。但是由上面表格的默认值我们知道系统默认使用的是 Label 名称！
@@ -2296,7 +2296,7 @@ LABEL=SWAP-hdc5   swap        swap       defaults        0 0
 		虽然是被固定死的，所以您的硬盘不可以随意插在任意的插槽，不过他还是有好处的。
 		而使用 Label name 来挂载，虽然就没有插槽方面的问题，不过，您就得要随时注意您的
 		Label name 喔！尤其是新增硬盘的时候！ ^_^
-		</font></span></td><td><img src="0230filesystem_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div>
+		</font></span></td><td><img src="../Images/0230filesystem_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div>
 		<ul class="list1"><li class="text_import1">第二栏：挂载点 (mount point)：：</li></ul>
 		<p>就是挂载点啊！挂载点是什么？一定是目录啊～要知道啊！<br><br></p>
 
@@ -2768,7 +2768,7 @@ Group 0: (Blocks 1-8192)
 		<p>由上表我们可以确实的发现 0 号 block 是保留下来的，那就是留给 boot sector 用的啰！
 		所以整个分割槽的文件系统分区有点像底下这样的图示：</p>
 
-		<center><img src="0230filesystem_files/bootsector_1.gif" alt="1K block 的 boot sector 示意图" title="1K block 的 boot sector 示意图" border="0"><br>
+		<center><img src="../Images/0230filesystem_files/bootsector_1.gif" alt="1K block 的 boot sector 示意图" title="1K block 的 boot sector 示意图" border="0"><br>
 		图 6.1.1、1K block 的 boot sector 示意图<br></center>
 
 		<hr>
@@ -2800,7 +2800,7 @@ Group 0: (Blocks 0-32767)
 		！举上头的表格来说，因为每个 block 占有 4K ，因此在第一个 block 内 superblock 仅占有 1024-2047
 		( 由 0 号起算的话)之间的咚咚，至于 2048bytes 以后的空间就真的是保留啦！而 0-1023 就保留给 boot sector 来使用。</p>
 
-		<center><img src="0230filesystem_files/bootsector_2.gif" alt="4K block 的 boot sector 示意图" title="4K block 的 boot sector 示意图" border="0"><br>
+		<center><img src="../Images/0230filesystem_files/bootsector_2.gif" alt="4K block 的 boot sector 示意图" title="4K block 的 boot sector 示意图" border="0"><br>
 		图 6.1.2、4K block 的 boot sector 示意图<br></center>
 
 		<p>因为上述的情况，如果在比较大的 block 尺寸(size)中，我们可能可以说你能够将启动管理程序安装到 superblock

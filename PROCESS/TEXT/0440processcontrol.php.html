@@ -106,7 +106,7 @@
 		命令时，他取得的是 UID/GID = 0/0 的权限，而当 dmtsai (UID/GID=501/501) 
 		运行这个 touch 时，他的权限就跟 root 不同啦！我们将这个概念绘制成图示来瞧瞧如下：</p>
 
-		<center><img src="0440processcontrol_files/process_1.gif" alt="程序被加载成为程序以及相关数据的示意图" title="程序被加载成为程序以及相关数据的示意图" border="0"><br>
+		<center><img src="../Images/0440processcontrol_files/process_1.gif" alt="程序被加载成为程序以及相关数据的示意图" title="程序被加载成为程序以及相关数据的示意图" border="0"><br>
 		图 1.1.1、程序被加载成为程序以及相关数据的示意图<br></center>
 
 		<p>如上图所示，程序一般是放置在实体磁碟中，然后透过使用者的运行来触发。触发后会加载到内存中成为一个个体，那就是程序。
@@ -117,7 +117,7 @@
 		shell 对吧！那么，我们的 shell  是 bash 对吧，这个 bash 在 /bin/bash 对吧，那么同时间的每个人登陆都是运行 
 		/bin/bash 对吧！不过，每个人取得的权限就是不同！也就是说，我们可以这样看：</p>
 
-		<center><img src="0440processcontrol_files/program_process.gif" alt="程序与程序之间的差异" title="程序与程序之间的差异" border="0"><br>
+		<center><img src="../Images/0440processcontrol_files/program_process.gif" alt="程序与程序之间的差异" title="程序与程序之间的差异" border="0"><br>
 		图 1.1.2、程序与程序之间的差异<br></center>
 
 		<p>也就是说，当我们登陆并运行 bash 时，系统已经给我们一个 PID 了，这个 PID 就是依据登陆者的 UID/GID 
@@ -143,7 +143,7 @@
 		环境下，就称为『父程序』了！借用我们在<a href="http://vbird.dic.ksu.edu.tw/linux_basic/0320bash.php#export"> 十一章 Bash 谈到的 export</a>
 		所用的图示好了：</p>
 
-		<center><img src="0440processcontrol_files/ppid.gif" alt="程序相关系之示意图" title="程序相关系之示意图" border="1"><br>
+		<center><img src="../Images/0440processcontrol_files/ppid.gif" alt="程序相关系之示意图" title="程序相关系之示意图" border="1"><br>
 		图 1.1.3、程序相关系之示意图<br></center>
 
 		<p>所以你必须要知道，程序彼此之间是有相关性的！以上面的图示来看，连续运行两个 bash 后，第二个 bash 
@@ -180,7 +180,7 @@
 		然后被复制出来的子程序再以 exec 的方式来运行实际要进行的程序，最终就成为一个子程序的存在</span>。
 		整个流程有点像底下这张图：</p>
 
-		<center><img src="0440processcontrol_files/fork-and-exec.gif" alt="程序使用 fork and exec 呼叫的情况示意图" title="程序使用 fork and exec 呼叫的情况示意图" border="0"><br>
+		<center><img src="../Images/0440processcontrol_files/fork-and-exec.gif" alt="程序使用 fork and exec 呼叫的情况示意图" title="程序使用 fork and exec 呼叫的情况示意图" border="0"><br>
 		图 1.1.4、程序使用 fork and exec 呼叫的情况示意图<br></center>
 
 		<p>(1)系统先以 fork 的方式复制一个与父程序相同的缓存程序，这个程序与父程序唯一的差别就是 PID 不同！
@@ -390,7 +390,7 @@
 
 		<div style="padding: 10pt 0pt;" align="right"><table width="90%"><tbody><tr><td><b>Tips:</b><br><span style="color: rgb(0, 144, 0);"><font size="-1">		工作号码 (job number) 只与你这个 bash 环境有关，但是他既然是个命令触发的咚咚，所以当然一定是一个程序，
 		因此你会观察到有 job number 也搭配一个 PID ！
-		</font></span></td><td><img src="0440processcontrol_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div>
+		</font></span></td><td><img src="../Images/0440processcontrol_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div>
 
 		<a name="ctrl_z"></a>
 		<hr><ul class="list1"><li class="text_import1">将『目前』的工作丢到背景中『暂停』：[ctrl]-z</li></ul>
@@ -1077,7 +1077,7 @@ Kill bash(17351) ? (y/N) <span class="term_command">y</span> <span class="term_n
 
 		<div style="padding: 10pt 0pt;" align="right"><table width="90%"><tbody><tr><td><b>Tips:</b><br><span style="color: rgb(0, 144, 0);"><font size="-1">		CPU 排程与前一章的例行性工作排程并不一样。 CPU 排程指的是每支程序被 CPU 运行的演算守则，
 		而例行性工作排程则是将某支程序安排在某个时间再交由系统运行。 CPU 排程与操作系统较具有相关性！
-		</font></span></td><td><img src="0440processcontrol_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div>
+		</font></span></td><td><img src="../Images/0440processcontrol_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div>
 		<a name="pri"></a>
 		<hr><ul class="list1"><li class="text_import1">Priority 与 Nice 值</li></ul>
 
@@ -1086,7 +1086,7 @@ Kill bash(17351) ? (y/N) <span class="term_command">y</span> <span class="term_n
 		而不具有优先顺序之分，也就是像我们去游乐场玩热门游戏需要排队一样，每个人都是照顺序来！
 		你玩过一遍后还想再玩 (没有运行完毕)，请到后面继续排队等待。情况有点像底下这样：</p>
 
-		<center><img src="0440processcontrol_files/pri_cpu_no.gif" alt="并没有优先顺序的程序伫列示意图" title="并没有优先顺序的程序伫列示意图" border="0"><br>
+		<center><img src="../Images/0440processcontrol_files/pri_cpu_no.gif" alt="并没有优先顺序的程序伫列示意图" title="并没有优先顺序的程序伫列示意图" border="0"><br>
 		图 3.3.1、并没有优先顺序的程序伫列示意图<br></center>
 
 		<p>上图中假设 pro1, pro2 是紧急的程序， pro3, pro4 是一般的程序，在这样的环境中，由於不具有优先顺序，
@@ -1094,7 +1094,7 @@ Kill bash(17351) ? (y/N) <span class="term_command">y</span> <span class="term_n
 		就得要等待个老半天才能够完成！真麻烦啊！所以罗，我们想要将程序分优先顺序啦！如果优先序较高则运行次数可以较多次，
 		而不需要与较慢优先的程序抢位置！我们可以将程序的优先顺序与 CPU 排程进行如下图的解释：</p>
 
-		<center><img src="0440processcontrol_files/pri_cpu_yes.gif" alt="具有优先顺序的程序伫列示意图" title="具有优先顺序的程序伫列示意图" border="0"><br>
+		<center><img src="../Images/0440processcontrol_files/pri_cpu_yes.gif" alt="具有优先顺序的程序伫列示意图" title="具有优先顺序的程序伫列示意图" border="0"><br>
 		图 3.3.2、具有优先顺序的程序伫列示意图<br></center>
 
 		<p>如上图所示，具高优先权的 pro1, pro2 可以被取用两次，而较不重要的 pro3, pro4 则运行次数较少。
@@ -1233,7 +1233,7 @@ Swap:       996          0     996
 		<div style="padding: 10pt 0pt;" align="right"><table width="90%"><tbody><tr><td><b>Tips:</b><br><span style="color: rgb(0, 144, 0);"><font size="-1">		Linux 系统为了要加速系统效能，所以会将最常使用到的或者是最近使用到的文件数据缓存 (cache) 下来，
 		这样未来系统要使用该文件时，就直接由内存中搜寻取出，而不需要重新读取硬盘，速度上面当然就加快了！
 		因此，实体内存被用光是正常的喔！
-		</font></span></td><td><img src="0440processcontrol_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div>
+		</font></span></td><td><img src="../Images/0440processcontrol_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div>
 		<a name="uname"></a>
 		<hr><ul class="list1"><li class="text_import1">uname：查阅系统与核心相关资讯</li></ul>
 
@@ -1844,7 +1844,7 @@ bash   20639 root  mem    REG    3,2   46680     64873 /lib/libnss_files-2.5.so
 		如果配置错误，你的某些服务(主体程序)就无法存取文件系统(目标资源)，当然就会一直出现『权限不符』的错误信息了！</li>
 		</ul>
 
-		<center><img src="0440processcontrol_files/selinux_1.gif" alt="SELinux 运行的各组件之相关性" title="SELinux 运行的各组件之相关性" border="0"><br>
+		<center><img src="../Images/0440processcontrol_files/selinux_1.gif" alt="SELinux 运行的各组件之相关性" title="SELinux 运行的各组件之相关性" border="0"><br>
 		图 5.2.1、SELinux 运行的各组件之相关性(<a href="#ps4">本图参考小州老师的上课讲义</a>)<br></center>
 
 		<p><span class="text_import2">上图的重点在『主体』如何取得『目标』的资源存取权限！</span>
@@ -1942,7 +1942,7 @@ drwxr-xr-x  root root system_u:object_r:<span class="term_write">httpd_sys_conte
 		<p>httpd 属於 httpd_exec_t 这个可以运行的类型，而 /var/www/html 则属於 httpd_sys_content_t 这个可以让
 		httpd 领域 (domain) 读取的类型。文字看起来不太容易了解吧！我们使用图示来说明这两者的关系！</p>
 
-		<center><img src="0440processcontrol_files/selinux_2.gif" alt="主体程序取得的 domain 与目标文件资源的 type 相互关系" title="主体程序取得的 domain 与目标文件资源的 type 相互关系" border="0"><br>
+		<center><img src="../Images/0440processcontrol_files/selinux_2.gif" alt="主体程序取得的 domain 与目标文件资源的 type 相互关系" title="主体程序取得的 domain 与目标文件资源的 type 相互关系" border="0"><br>
 		图 5.2.2、主体程序取得的 domain 与目标文件资源的 type 相互关系<br></center>
 
 		<p>上图的意义我们可以这样看的：</p>
@@ -2101,7 +2101,7 @@ root:system_r:<span class="term_write">httpd_t</span> apache 24093 0.0 0.6 22896
 
 		<p>接下来，如果你在浏览器上面输入『 http://127.0.0.1 』应该会看到如下的画面才对！</p>
 
-		<center><img src="0440processcontrol_files/httpd_1.gif" alt="httpd 顺利运行时，能够看到的首页画面" title="httpd 顺利运行时，能够看到的首页画面" border="1"><br>
+		<center><img src="../Images/0440processcontrol_files/httpd_1.gif" alt="httpd 顺利运行时，能够看到的首页画面" title="httpd 顺利运行时，能够看到的首页画面" border="1"><br>
 		图 5.4.1、httpd 顺利运行时，能够看到的首页画面<br></center>
 
 		<p>此时你的浏览器会透过 httpd 这个程序拥有的 httpd_t 这个 domain 去读取 /var/www/html/index.html 这个文件的！
@@ -2133,7 +2133,7 @@ root:system_r:<span class="term_write">httpd_t</span> apache 24093 0.0 0.6 22896
 		<p>等到上述的动作都做完后，如果在浏览器输入 http://127.0.0.1/index.html ，你应该会想到画面会出现我们想要的『 My 2nd web 
 		page...』才对，但是结果却变成：</p>
 
-		<center><img src="0440processcontrol_files/httpd_2.gif" alt="错误的安全性本文所造成的困扰" title="错误的安全性本文所造成的困扰" border="1"><br>
+		<center><img src="../Images/0440processcontrol_files/httpd_2.gif" alt="错误的安全性本文所造成的困扰" title="错误的安全性本文所造成的困扰" border="1"><br>
 		图 5.4.2、错误的安全性本文所造成的困扰<br></center>
 
 		<p>记得要在网址列指定 index.html 否则出现的会变成欢迎首页的画面。而萤幕上出现的错误信息是没有权限
