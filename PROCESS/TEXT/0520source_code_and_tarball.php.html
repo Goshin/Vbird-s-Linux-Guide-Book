@@ -93,7 +93,7 @@
 	如果你可以藉由安全资讯单位所提供的修订方式进行修改，
 	那么你将可以很快速的自行修补好该软件的漏洞，而不必一定要等到软件开发商提供修补的程序包哩！要知道，<span class="text_import2">提早补洞</span>是很重要的一件事。</p>
 
-	<div style="padding: 10pt 0pt;" align="right"><table width="90%"><tbody><tr><td><b>Tips:</b><br><span style="color: rgb(0, 144, 0);"><font size="-1">	并不是软件开发商故意要搞出一个有问题的软件，而是某些程序码当初设计时可能没有考量周全，
+	<div class="tips"><table><tbody><tr><td><b>Tips:</b><br><span><font>	并不是软件开发商故意要搞出一个有问题的软件，而是某些程序码当初设计时可能没有考量周全，
 	或者是程序码与操作系统的权限配置并不相同，所导致的一些漏洞。当然，也有可能是 cracker 透过某些攻击程序测试到程序的不周全所致。
 	无论如何，只要有网络存在的一天，可以想像的到，程序的漏洞永远补不完！但能补多少就补多少吧！
 	</font></span></td><td><img src="../Images/0520source_code_and_tarball_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div>
@@ -130,7 +130,7 @@ Linux 2.6.9, dynamically linked (uses shared libs), for GNU/Linux 2.6.9, strippe
 		同时会说明是否使用<span class="text_import2">动态函式库 (shared libs)</span>，而如果是一般的 
 		script ，那他就会显示出 text executables 之类的字样！</p>
 
-		<div style="padding: 10pt 0pt;" align="right"><table width="90%"><tbody><tr><td><b>Tips:</b><br><span style="color: rgb(0, 144, 0);"><font size="-1">		事实上，syslog 的数据显示出 Bourne-Again ... 那一行，是因为你的 scripts 上面第一行有宣告 #!/bin/bash
+		<div class="tips"><table><tbody><tr><td><b>Tips:</b><br><span><font>		事实上，syslog 的数据显示出 Bourne-Again ... 那一行，是因为你的 scripts 上面第一行有宣告 #!/bin/bash
 		的缘故，如果你将 script 的第一行拿掉，那么不管 /etc/init.d/syslog 
 		的权限为何，他其实显示的是 ASCII 文字档的资讯喔！
 		</font></span></td><td><img src="../Images/0520source_code_and_tarball_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div>
@@ -251,7 +251,7 @@ Linux 2.6.9, dynamically linked (uses shared libs), for GNU/Linux 2.6.9, strippe
 		不但让使用者容易下载，软件开发商的网站频宽也能够节省很多很多啊！这就是
 		Tarball 文件的由来罗！</p>
 
-		<div style="padding: 10pt 0pt;" align="right"><table width="90%"><tbody><tr><td><b>Tips:</b><br><span style="color: rgb(0, 144, 0);"><font size="-1">		想一想，一个核心的原始码文件大约要 300~500 MB 以上，如果每个人都去下载这样的一个核心文件，
+		<div class="tips"><table><tbody><tr><td><b>Tips:</b><br><span><font>		想一想，一个核心的原始码文件大约要 300~500 MB 以上，如果每个人都去下载这样的一个核心文件，
 		呵呵！那么网络频宽不被吃的死翘翘才怪呢！
 		</font></span></td><td><img src="../Images/0520source_code_and_tarball_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div>
 		<p>所谓的 Tarball 文件，其实就是将软件的所有原始码文件先以 <a href="http://vbird.dic.ksu.edu.tw/linux_basic/0240tarcompress.php#tar">tar</a>
@@ -334,7 +334,7 @@ Linux 2.6.9, dynamically linked (uses shared libs), for GNU/Linux 2.6.9, strippe
 		这里我们是以简单的 C 语言来撰写，如果你对於 C 有兴趣的话，那么请自行购买相关的书籍喔！
 		^_^ 好了，不罗唆，立刻编辑第一支程序吧！</p>
 
-		<div style="padding: 10pt 0pt;" align="right"><table width="90%"><tbody><tr><td><b>Tips:</b><br><span style="color: rgb(0, 144, 0);"><font size="-1">		请先确认你的 Linux 系统里面已经安装了 gcc 了喔！如果尚未安装 
+		<div class="tips"><table><tbody><tr><td><b>Tips:</b><br><span><font>		请先确认你的 Linux 系统里面已经安装了 gcc 了喔！如果尚未安装 
 		gcc 的话，请先参考下一节的 RPM 安装法，先安装好 gcc 之后，再回来阅读本章。
 		如果你已经有网络了，那么直接使用『 yum groupinstall "Development Tools" 』
 		预先安装好所需的所有软件即可。 rpm 与 yum 均会在下一章介绍。

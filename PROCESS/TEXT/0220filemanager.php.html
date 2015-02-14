@@ -178,7 +178,7 @@
 		亦即是会回到自己的家目录啦！而那个『 cd - 』比较难以理解，请自行多做几次练习，
 		就会比较明白了。</p>
 
-		<div style="padding: 10pt 0pt;" align="right"><table width="90%"><tbody><tr><td><b>Tips:</b><br><span style="color: rgb(0, 144, 0);"><font size="-1">		还是要一再地提醒，我们的 Linux 的默认命令列模式 (bash shell) 具有文件补齐功能，
+		<div class="tips"><table><tbody><tr><td><b>Tips:</b><br><span><font>		还是要一再地提醒，我们的 Linux 的默认命令列模式 (bash shell) 具有文件补齐功能，
 		你要常常利用 [tab] 按键来达成你的目录完整性啊！这可是个好习惯啊～
 		可以避免你按错键盘输入错字说～ ^_^
 		</font></span></td><td><img src="../Images/0220filemanager_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div>
@@ -1136,7 +1136,7 @@ head -n 20 /etc/man.config | tail -n 10 』，这样就可以得到第 11 到第
 		OK！那么万一我发现了一个文件来自未来，该如何让该文件的时间变成『现在』的时刻呢？
 		很简单啊！就用『touch』这个命令即可！</p>
 
-		<div style="padding: 10pt 0pt;" align="right"><table width="90%"><tbody><tr><td><b>Tips:</b><br><span style="color: rgb(0, 144, 0);"><font size="-1">		嘿嘿！不要怀疑系统时间会『来自未来』喔！很多时候会有这个问题的！举例来说在安装过后系统时间可能会被改变！
+		<div class="tips"><table><tbody><tr><td><b>Tips:</b><br><span><font>		嘿嘿！不要怀疑系统时间会『来自未来』喔！很多时候会有这个问题的！举例来说在安装过后系统时间可能会被改变！
 		因为台湾时区在国际标准时间『格林威治时间, GMT』的右边，所以会比较早看到阳光，也就是说，台湾时间比GMT时间快了八小时！
 		如果安装行为不当，我们的系统可能会有八小时快转，你的文件就有可能来自八小时后了。<br><br>
 		至於某些情况下，由於BIOS的配置错误，导致系统时间跑到未来时间，并且你又创建了某些文件。
@@ -1354,7 +1354,7 @@ umask 为 003 ，所以拿掉的权限为 --------wx，因此：<br>
 </div>
 </td></tr></tbody></table><br>
 
-		<div style="padding: 10pt 0pt;" align="right"><table width="90%"><tbody><tr><td><b>Tips:</b><br><span style="color: rgb(0, 144, 0);"><font size="-1">		关於 umask 与权限的计算方式中，教科书喜欢使用二进位的方式来进行 AND 与 NOT 的计算，
+		<div class="tips"><table><tbody><tr><td><b>Tips:</b><br><span><font>		关於 umask 与权限的计算方式中，教科书喜欢使用二进位的方式来进行 AND 与 NOT 的计算，
 		不过，鸟哥还是比较喜欢使用符号方式来计算～联想上面比较容易一点～<br><br>
 
 		但是，有的书籍或者是 BBS 上面的朋友，喜欢使用文件默认属性 666 与目录默认属性
@@ -1580,7 +1580,7 @@ drwxrwxrw<span class="term_write">t</span> 7 root root 4096 Sep 27 18:23 /tmp
 		<p>假设要将一个文件权限改为『-rwsr-xr-x』时，由於 s 在使用者权限中，所以是 SUID ，因此，
 		在原先的 755 之前还要加上 4 ，也就是：『 chmod 4755 filename 』来配置！此外，还有大 S 与大 
 		T 的产生喔！参考底下的范例啦！</p>
-		<div style="padding: 10pt 0pt;" align="right"><table width="90%"><tbody><tr><td><b>Tips:</b><br><span style="color: rgb(0, 144, 0);"><font size="-1">		注意：底下的范例只是练习而已，所以鸟哥使用同一个文件来配置，你必须了解
+		<div class="tips"><table><tbody><tr><td><b>Tips:</b><br><span><font>		注意：底下的范例只是练习而已，所以鸟哥使用同一个文件来配置，你必须了解
 		SUID 不是用在目录上，而 SBIT 不是用在文件上的喔！
 		</font></span></td><td><img src="../Images/0220filemanager_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div>
 <table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">cd /tmp</span>

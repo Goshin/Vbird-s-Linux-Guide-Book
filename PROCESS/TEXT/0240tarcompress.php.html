@@ -67,7 +67,7 @@
 
 	<blockquote>□□□□□□□□</blockquote>
 
-	<div style="padding: 10pt 0pt;" align="right"><table width="90%"><tbody><tr><td><b>Tips:</b><br><span style="color: rgb(0, 144, 0);"><font size="-1">		由於 1 byte = 8 bits ，所以每个 byte 当中会有
+	<div class="tips"><table><tbody><tr><td><b>Tips:</b><br><span><font>		由於 1 byte = 8 bits ，所以每个 byte 当中会有
 		8 个空格，而每个空格可以是 0, 1 ，这里仅是做为一个约略的介绍，
 		更多的详细数据请参考<a href="0105computers.php.html">第零章的计算机概论</a>吧！
 	</font></span></td><td><img src="../Images/0240tarcompress_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div>
@@ -97,7 +97,7 @@
 	好让网络频宽可以用来作更多的工作！而不是老是卡在一些大型的文件传输上面呢！目前很多的
 	WWW 网站也是利用文件压缩的技术来进行数据的传送，好让网站频宽的可利用率上升喔！</p>
 
-	<div style="padding: 10pt 0pt;" align="right"><table width="90%"><tbody><tr><td><b>Tips:</b><br><span style="color: rgb(0, 144, 0);"><font size="-1">		上述的WWW网站压缩技术蛮有趣的！他让你网站上面『看的到的数据』在经过网络传输时，使用的是『压缩过的数据』，
+	<div class="tips"><table><tbody><tr><td><b>Tips:</b><br><span><font>		上述的WWW网站压缩技术蛮有趣的！他让你网站上面『看的到的数据』在经过网络传输时，使用的是『压缩过的数据』，
 		等到这些压缩过的数据到达你的计算机主机时，再进行解压缩，由於目前的计算机运算速度相当的快速，
 		因此其实在网页浏览的时候，时间都是花在『数据的传输』上面，而不是
 		CPU 的运算啦！如此一来，由於压缩过的数据量降低了，自然传送的速度就会增快不少！
@@ -442,7 +442,7 @@ tar: Removing leading `/' from member names  <span class="term_note">&lt;==注�
 		亦即解压缩后的数据一定会被放置到 <u>/etc/xxx</u> 去！</span>』如此一来，你的原本的 /etc/ 底下的数据，
 		就会被备份数据所覆盖过去了！</p>
 
-		<div style="padding: 10pt 0pt;" align="right"><table width="90%"><tbody><tr><td><b>Tips:</b><br><span style="color: rgb(0, 144, 0);"><font size="-1">		你会说：『既然是备份数据，那么还原回来也没有什么问题吧？』想像一个状况，你备份的数据是一年前的旧版 CentOS 4.x，
+		<div class="tips"><table><tbody><tr><td><b>Tips:</b><br><span><font>		你会说：『既然是备份数据，那么还原回来也没有什么问题吧？』想像一个状况，你备份的数据是一年前的旧版 CentOS 4.x，
 		你只是想要了解一下过去的备份内容究竟有哪些数据而已，结果一解开该文件，却发现你目前新版的 CentOS 5.x  底下的 /etc
 		被旧版的备份数据覆盖了！此时你该如何是好？所以罗，当然是拿掉根目录比较安全一些的。
 		</font></span></td><td><img src="../Images/0240tarcompress_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div>
@@ -1191,7 +1191,7 @@ scsibus1:
 		对环境的冲击比较小啦！建议大家使用可重复读写的片子。由於 CD-RW 可能要先进行抹除的工作(将原本里面的数据删除)然后才能写入，
 		因此，底下我们先来看看如何抹除一片 CD/DVD 的方法，然后直接写入光盘吧！</p>
 
-		<div style="padding: 10pt 0pt;" align="right"><table width="90%"><tbody><tr><td><b>Tips:</b><br><span style="color: rgb(0, 144, 0);"><font size="-1">		由於 CD/DVD 都是使用 cdrecord 这个命令，因此不论是 CD 还是 DVD 片，下达命令的方法都差不多！不过，
+		<div class="tips"><table><tbody><tr><td><b>Tips:</b><br><span><font>		由於 CD/DVD 都是使用 cdrecord 这个命令，因此不论是 CD 还是 DVD 片，下达命令的方法都差不多！不过，
 		DVD 的写入需要额外的 driveropts=burnfree 或 -dao 等选项的辅助才行。
 		另外，CD 片有 CD-R(一次写入) 与 CD-RW(重复写入)，至於 DVD 则主要有两种格式，分别是 DVD-R 及 DVD+R 两种格式。
 		如果是可重复读写的则为： DVD-RW, DVD+RW 。除了 DVD+RW 的抹除方法可能不太一样之外，其他写入的方式则是一样的。

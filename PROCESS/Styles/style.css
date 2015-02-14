@@ -5,7 +5,15 @@ body {
 	margin-top: 0px;
 	margin-right: 0px;
 	margin-bottom: 0px;
+	/*
 	background-color:#FAFAFA;
+	*/
+}
+
+.tips span {
+	color: rgb(0, 144, 0);
+	font-size: small;
+	padding: 0.5em 1em;
 }
 
 		body,th,td,input,select,textarea,select,checkbox {

@@ -427,7 +427,7 @@ Disk quotas for user myquota1 (uid 710):
 		<p>当 soft/hard 为 0 时，表示没有限制的意思。好，依据我们的<a href="#quota_flow">范例说明</a>，我们需要配置的是 blocks 
 		的 soft/hard ，至於 inode 则不要去更动他！因此上述的画面我们将他改成如下的模样：</p>
 
-		<div style="padding: 10pt 0pt;" align="right"><table width="90%"><tbody><tr><td><b>Tips:</b><br><span style="color: rgb(0, 144, 0);"><font size="-1">		在 edquota 的画面中，每一行只要保持七个栏位就可以了，并不需要排列整齐的！
+		<div class="tips"><table><tbody><tr><td><b>Tips:</b><br><span><font>		在 edquota 的画面中，每一行只要保持七个栏位就可以了，并不需要排列整齐的！
 		</font></span></td><td><img src="../Images/0420quota_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div>
 <table class="term"><tbody><tr><td class="term"><pre>Disk quotas for user myquota1 (uid 710):
   Filesystem    blocks    soft    hard  inodes  soft  hard
@@ -739,7 +739,7 @@ Disk quotas for user myquota5 (uid 714):
 		quota 然后同样的以上面的方式来进行 link 的动作！嘿嘿嘿！就有不同的限额针对不同的使用者提出罗！很方便吧！
 		^_^</p>
 
-		<div style="padding: 10pt 0pt;" align="right"><table width="90%"><tbody><tr><td><b>Tips:</b><br><span style="color: rgb(0, 144, 0);"><font size="-1">		朋友们需要注意的是，由於目前新的 distributions 大多有使用 SELinux 的机制，
+		<div class="tips"><table><tbody><tr><td><b>Tips:</b><br><span><font>		朋友们需要注意的是，由於目前新的 distributions 大多有使用 SELinux 的机制，
 		因此你要进行如同上面的目录搬移时，在许多情况下可能会有使用上的限制喔！或许你得要先暂时关闭 SELinux 才能测试，
 		也或许你得要自行修改 SELinux 的守则才行喔！
 		</font></span></td><td><img src="../Images/0420quota_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div>	</div>
@@ -1303,7 +1303,7 @@ unused devices: &lt;none&gt;  <span class="term_note">&lt;==看吧！确实不�
 <span class="term_say"># 一样啦！删除他或是注解他！</span>
 </pre></td></tr></tbody></table>
 
-		<div style="padding: 10pt 0pt;" align="right"><table width="90%"><tbody><tr><td><b>Tips:</b><br><span style="color: rgb(0, 144, 0);"><font size="-1">		在这个练习中，鸟哥使用同一颗磁碟进行软件 RAID 的实验。不过朋友们要注意的是，如果真的要实作软件磁盘阵列，
+		<div class="tips"><table><tbody><tr><td><b>Tips:</b><br><span><font>		在这个练习中，鸟哥使用同一颗磁碟进行软件 RAID 的实验。不过朋友们要注意的是，如果真的要实作软件磁盘阵列，
 		最好是由多颗不同的磁碟来组成较佳！因为这样才能够使用到不同磁碟的读写，效能才会好！
 		而数据分配在不同的磁碟，当某颗磁碟损毁时数据才能够藉由其他磁碟挽救回来！这点得特别留意呢！
 		</font></span></td><td><img src="../Images/0420quota_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div>	</div>
@@ -2149,7 +2149,7 @@ drwx------   2 root root 16384 Mar 11 16:59 lost+found
 		而要复制一个 vbirdlv 的系统，再作另外一个快照区即可</span>！这样是否非常方便啊？
 		这对於教学环境中每年都要帮学生制作一个练习环境主机的测试，非常有帮助呢！</p>
 
-		<div style="padding: 10pt 0pt;" align="right"><table width="90%"><tbody><tr><td><b>Tips:</b><br><span style="color: rgb(0, 144, 0);"><font size="-1">		以前鸟哥老是觉得使用 LVM 的快照来进行备份不太合理，因为还要制作一个备份档！后来仔细研究并参考徐秉义老师的教材(<a href="#ps3">注3</a>)后，才发现 LVM 的快照实在是一个棒到不行的工具！尤其是在虚拟机器当中建置多份给同学使用的测试环境，
+		<div class="tips"><table><tbody><tr><td><b>Tips:</b><br><span><font>		以前鸟哥老是觉得使用 LVM 的快照来进行备份不太合理，因为还要制作一个备份档！后来仔细研究并参考徐秉义老师的教材(<a href="#ps3">注3</a>)后，才发现 LVM 的快照实在是一个棒到不行的工具！尤其是在虚拟机器当中建置多份给同学使用的测试环境，
 		你只要有一个基础的环境保持住，其他的环境使用快照来提供即可。即时同学将系统搞烂了，你只要将快照区删除，
 		再重建一个快照区！这样环境就恢复了！天呐！实在是太棒了！ ^_^
 		</font></span></td><td><img src="../Images/0420quota_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div>

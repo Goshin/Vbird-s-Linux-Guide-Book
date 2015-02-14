@@ -157,7 +157,7 @@
 		这条通道来读取该磁碟的第一个磁区内的 MBR 啦！(<a href="#ps2">注2</a>)
 		这样 boot loader 也就能够被运行罗！</p>
 
-		<div style="padding: 10pt 0pt;" align="right"><table width="90%"><tbody><tr><td><b>Tips:</b><br><span style="color: rgb(0, 144, 0);"><font size="-1">		我们知道每颗硬盘的第一个磁区内含有 446 bytes的 MBR 区域，那么如果我的主机上面有两颗硬盘的话，
+		<div class="tips"><table><tbody><tr><td><b>Tips:</b><br><span><font>		我们知道每颗硬盘的第一个磁区内含有 446 bytes的 MBR 区域，那么如果我的主机上面有两颗硬盘的话，
 		系统会去哪颗硬盘的 MBR 读取 boot loader 呢？这个就得要看 BIOS 的配置了。
 		基本上，我们常常讲的『系统的 MBR』其实指的是 <b>第一个启动装置的 MBR</b> 才对！
 		所以，改天如果你要将启动管理程序安装到某颗硬盘的 MBR 时，
@@ -467,7 +467,7 @@ x:5:respawn:/etc/X11/prefdm -nodaemon <span class="term_note">&lt;==X window 则
 		/etc/rc.d/rc.sysinit 这个 shell script 来配置好我的系统环境的。</span>』够清楚了吧？
 		所以，我想要知道到底 CentOS 启动的过程当中帮我进行了什么动作，就得要仔细的分析 /etc/rc.d/rc.sysinit 罗。</p>
 
-		<div style="padding: 10pt 0pt;" align="right"><table width="90%"><tbody><tr><td><b>Tips:</b><br><span style="color: rgb(0, 144, 0);"><font size="-1">		老实说，这个文件的档名在各不同的 distributions 当中都不相同，
+		<div class="tips"><table><tbody><tr><td><b>Tips:</b><br><span><font>		老实说，这个文件的档名在各不同的 distributions 当中都不相同，
 		例如 SuSE server 9 就使用 /etc/init.d/boot 与 /etc/init.d/rc 来进行的。
 		所以，你最好还是自行到 /etc/inittab 去察看一下系统的工作喔！ ^_^
 		</font></span></td><td><img src="../Images/0510osloader_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div>
@@ -1107,7 +1107,7 @@ lrwxrwxrwx  menu.lst -&gt; ./grub.conf <span class="term_note">&lt;==其实 menu
 		<p>所以说，第一颗『搜寻到的硬盘』代号为：『(hd0)』，而该颗硬盘的第一号分割槽为『(hd0,0)』，这样说了解了吧？
 		反正你要记得，在 grub 里面，他开始的数字是 0 而不是 1 就是了！</p>
 
-		<div style="padding: 10pt 0pt;" align="right"><table width="90%"><tbody><tr><td><b>Tips:</b><br><span style="color: rgb(0, 144, 0);"><font size="-1">		在较旧的主板上面，通常第一颗硬盘会插在 IDE 1 的 master 上，就会是 /dev/hda，所以常常我们可能会误会 
+		<div class="tips"><table><tbody><tr><td><b>Tips:</b><br><span><font>		在较旧的主板上面，通常第一颗硬盘会插在 IDE 1 的 master 上，就会是 /dev/hda，所以常常我们可能会误会 
 		/dev/hda 就是 (hd0)，其实不是喔！要看你的 BIOS 配置值才行！有的主板 BIOS 
 		可以调整启动的硬盘搜寻顺序，那么就要注意了，因为 grub 的硬盘代号可能会跟著改变呐！留意留意！
 		</font></span></td><td><img src="../Images/0510osloader_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div>
@@ -1317,7 +1317,7 @@ title Windows partition
 		<li>其他必须要在核心加载时提供的模块。</li>
 		</ul>
 
-		<div style="padding: 10pt 0pt;" align="right"><table width="90%"><tbody><tr><td><b>Tips:</b><br><span style="color: rgb(0, 144, 0);"><font size="-1">		之前鸟哥忽略 initrd 这个文件的重要性，是因为鸟哥很穷... ^_^。因为鸟哥的 Linux 主机都是较早期的硬件，
+		<div class="tips"><table><tbody><tr><td><b>Tips:</b><br><span><font>		之前鸟哥忽略 initrd 这个文件的重要性，是因为鸟哥很穷... ^_^。因为鸟哥的 Linux 主机都是较早期的硬件，
 		使用的是 IDE 介面的硬盘，而且并没有使用 LVM 等特殊格式的文件系统，而 Linux 核心本身就认识 IDE 介面的磁碟，
 		因此不需要 initrd 也可以顺利启动完成的。<u>自从 SATA 硬盘流行起来后，没有 initrd 就没办法启动了</u>！
 		因为 SATA 硬盘使用的是 SCSI 模块来驱动的，而 Linux 默认将 SCSI 功能编译成为模块....
@@ -1375,7 +1375,7 @@ Adding module 8139too  <span class="term_note">&lt;==看到没！这样就加入
 		那么就需要来安装啦！如何安装呢？首先，你必须要使用 grub-install 将一些必要的文件复制到
 		/boot/grub 里面去，你应该这样做的：</p>
 
-		<div style="padding: 10pt 0pt;" align="right"><table width="90%"><tbody><tr><td><b>Tips:</b><br><span style="color: rgb(0, 144, 0);"><font size="-1">		安装些什么呢？因为 boot loader 有两个 stage ，而配置档得要放置到适当的地方。
+		<div class="tips"><table><tbody><tr><td><b>Tips:</b><br><span><font>		安装些什么呢？因为 boot loader 有两个 stage ，而配置档得要放置到适当的地方。
 		这个 grub-install 就是在安装配置档 (包括文件系统定义档与 menu.lst 等等) 而已！
 		如果要将 grub 的 stage1 主程序安装起来，就得要使用 grub shell 的功能喔！本章稍后会介绍。
 		</font></span></td><td><img src="../Images/0510osloader_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div>

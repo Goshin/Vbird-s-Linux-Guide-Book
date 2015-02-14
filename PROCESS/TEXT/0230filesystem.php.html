@@ -496,7 +496,7 @@ drwxr-xr-x  2 root root 12288 Sep  5 12:33 /sbin       <span class="term_note">&
 		我们在<a href="http://vbird.dic.ksu.edu.tw/linux_basic/0210filepermission.php#dir">第六章</a>就讲过该目录不占硬盘容量，
 		所以当然耗用的 block 就是 0 啰！</p>
 
-		<div style="padding: 10pt 0pt;" align="right"><table width="90%"><tbody><tr><td><b>Tips:</b><br><span style="color: rgb(0, 144, 0);"><font size="-1">		由上面的结果我们知道目录并不只会占用一个 block 而已，也就是说：
+		<div class="tips"><table><tbody><tr><td><b>Tips:</b><br><span><font>		由上面的结果我们知道目录并不只会占用一个 block 而已，也就是说：
 		在目录底下的文件数如果太多而导致一个 block 无法容纳的下所有的档名与 inode 对照表时，Linux 
 		会给予该目录多一个 block 来继续记录相关的数据；
 		</font></span></td><td><img src="../Images/0230filesystem_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div>
@@ -847,7 +847,7 @@ tmpfs                    91K       1     91K    1% /dev/shm
 		所以这个命令显示结果的速度非常的快速！在显示的结果中你需要特别留意的是那个根目录的剩余容量！
 		因为我们所有的数据都是由根目录衍生出来的，因此当根目录的剩余容量剩下 0 时，那你的 Linux 可能就问题很大了。</p>
 
-		<div style="padding: 10pt 0pt;" align="right"><table width="90%"><tbody><tr><td><b>Tips:</b><br><span style="color: rgb(0, 144, 0);"><font size="-1">		说个陈年老笑话！鸟哥还在念书时，别的研究室有个管理 Sun 工作站的研究生发现，
+		<div class="tips"><table><tbody><tr><td><b>Tips:</b><br><span><font>		说个陈年老笑话！鸟哥还在念书时，别的研究室有个管理 Sun 工作站的研究生发现，
 		他的硬盘明明还有好几 GB ，但是就是没有办法将光盘内几 MB 的数据 copy 进去，
 		他就去跟老板讲说机器坏了！嘿！明明才来维护过几天而已为何会坏了！
 		结果他老板就将维护商叫来骂了 2 小时左右吧！<br><br>
@@ -980,7 +980,7 @@ tmpfs                    91K       1     91K    1% /dev/shm
 		我们还是由图 2.2.1 来看，由图中可以知道， hard link 只是在某个目录下的 block 
 		多写入一个关连数据而已，既不会添加 inode 也不会耗用 block 数量哩！</p>
 
-		<div style="padding: 10pt 0pt;" align="right"><table width="90%"><tbody><tr><td><b>Tips:</b><br><span style="color: rgb(0, 144, 0);"><font size="-1">		hard link 的制作中，其实还是可能会改变系统的 block 的，那就是当你新增这笔数据却刚好将目录的 block 
+		<div class="tips"><table><tbody><tr><td><b>Tips:</b><br><span><font>		hard link 的制作中，其实还是可能会改变系统的 block 的，那就是当你新增这笔数据却刚好将目录的 block 
 		填满时，就可能会新加一个 block 来记录文件名关连性，而导致磁盘空间的变化！不过，一般 hard link 
 		所用掉的关连数据量很小，所以通常不会改变 inode 与磁盘空间的大小喔！
 		</font></span></td><td><img src="../Images/0230filesystem_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div>
@@ -1104,7 +1104,7 @@ lrwxrwxrwx 1 root root    6 Oct 22 14:18 <span class="term_white">passwd-so</spa
 # 其实档名的部分就会有特殊的颜色显示喔！</span>
 </pre></td></tr></tbody></table>
 
-		<div style="padding: 10pt 0pt;" align="right"><table width="90%"><tbody><tr><td><b>Tips:</b><br><span style="color: rgb(0, 144, 0);"><font size="-1">		还记得<a href="http://vbird.dic.ksu.edu.tw/linux_basic/0210filepermission.php#dir">第六章</a>当中，我们提到的 /tmp 
+		<div class="tips"><table><tbody><tr><td><b>Tips:</b><br><span><font>		还记得<a href="http://vbird.dic.ksu.edu.tw/linux_basic/0210filepermission.php#dir">第六章</a>当中，我们提到的 /tmp 
 		这个目录是干嘛用的吗？是给大家作为缓存盘用的啊！
 		所以，您会发现，过去我们在进行测试时，都会将数据移动到 /tmp 底下去练习～
 		嘿嘿！因此，有事没事，记得将 /tmp 底下的一些怪异的数据清一清先！
@@ -1308,7 +1308,7 @@ Units = cylinders of 3422 * 512 = 1752064 bytes
 		就会发生错误啦！要使用 fdisk /dev/hdc 才对！那么我们知道可以利用 fdisk 
 		来查阅硬盘的 partition 信息外，底下再来说一说进入 fdisk 之后的几个常做的工作！</p>
 
-		<div style="padding: 10pt 0pt;" align="right"><table width="90%"><tbody><tr><td><b>Tips:</b><br><span style="color: rgb(0, 144, 0);"><font size="-1">		再次强调，你可以使用 fdisk 在您的硬盘上面胡搞瞎搞的进行实际操作，都不打紧，
+		<div class="tips"><table><tbody><tr><td><b>Tips:</b><br><span><font>		再次强调，你可以使用 fdisk 在您的硬盘上面胡搞瞎搞的进行实际操作，都不打紧，
 		但是请『千万记住，不要按下 w 即可！』离开的时候按下 q 就万事无妨啰！
 		</font></span></td><td><img src="../Images/0230filesystem_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div>
 		<hr>
@@ -1883,7 +1883,7 @@ Filesystem           1K-blocks      Used Available Use% Mounted on
 		另外，其实 /dev/cdrom 是个链接文件，正确的磁盘文件名得要看你的光驱是什么连接接口的环境。
 		以鸟哥为例，我的光驱接在 /dev/hdd，所以正确的挂载应该是『<span class="text_import2">mount /dev/hdd /media/cdrom</span>』比较正确喔！</p>
 
-		<div style="padding: 10pt 0pt;" align="right"><table width="90%"><tbody><tr><td><b>Tips:</b><br><span style="color: rgb(0, 144, 0);"><font size="-1">		话说当时年纪小 (其实是刚接触 Linux 的那一年)，摸 Linux 到处碰壁！连将 CDROM 挂载后，
+		<div class="tips"><table><tbody><tr><td><b>Tips:</b><br><span><font>		话说当时年纪小 (其实是刚接触 Linux 的那一年)，摸 Linux 到处碰壁！连将 CDROM 挂载后，
 		光驱竟然都不让我退片！那个时候难过的要死！解决的方法竟然是『重新启动！』囧的可以啊！
 		</font></span></td><td><img src="../Images/0230filesystem_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div>
 		<hr>
@@ -2278,7 +2278,7 @@ LABEL=SWAP-hdc5   swap        swap       defaults        0 0
 		<p>这个文件的内容共有六个字段，这六个字段非常的重要！你『一定要背起来』才好！
 		各个字段的详细数据如下：</p>
 
-		<div style="padding: 10pt 0pt;" align="right"><table width="90%"><tbody><tr><td><b>Tips:</b><br><span style="color: rgb(0, 144, 0);"><font size="-1">		鸟哥比较龟毛一点，因为某些 distributions 的 /etc/fstab 文件排列方式蛮丑的，
+		<div class="tips"><table><tbody><tr><td><b>Tips:</b><br><span><font>		鸟哥比较龟毛一点，因为某些 distributions 的 /etc/fstab 文件排列方式蛮丑的，
 		虽然每一栏之间只要以空格符分开即可，但就是觉得丑，所以通常鸟哥就会自己排列整齐，
 		并加上批注符号(就是 # )，来帮我记忆这些信息！
 		</font></span></td><td><img src="../Images/0230filesystem_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div>
@@ -2288,7 +2288,7 @@ LABEL=SWAP-hdc5   swap        swap       defaults        0 0
 		在鸟哥的这个测试系统中 /dev/hdc2 标头名称为 /1，所以上述表格中的『LABEL=/1』也可以被取代成为『/dev/hdc2』的意思。
 		至于Label可以使用 <a href="#dumpe2fs">dumpe2fs</a> 命令来查阅的。</p>
 
-		<div style="padding: 10pt 0pt;" align="right"><table width="90%"><tbody><tr><td><b>Tips:</b><br><span style="color: rgb(0, 144, 0);"><font size="-1">		记得有一次有个网友写信给鸟哥，他说，依照 <a href="#e2label">e2label</a>
+		<div class="tips"><table><tbody><tr><td><b>Tips:</b><br><span><font>		记得有一次有个网友写信给鸟哥，他说，依照 <a href="#e2label">e2label</a>
 		的配置去练习修改自己的 partition 的 Label name 之后，却发现，再也无法顺利启动成功！
 		后来才发现，原来他的 /etc/fstab 就是以 Label name 去挂载的。但是因为在练习的时候，
 		将 Label name 改名字过了，导致在启动的过程当中再也找不到相关的Label name了。<br><br>

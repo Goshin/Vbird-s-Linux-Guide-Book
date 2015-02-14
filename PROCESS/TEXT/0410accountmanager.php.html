@@ -108,7 +108,7 @@
 		由于计算机仅认识 0 与 1，所以主机对于数字比较有概念的；至于账号只是为了让人们容易记忆而已。
 		而你的 ID 与账号的对应就在 /etc/passwd 当中哩。</p>
 
-		<div style="padding: 10pt 0pt;" align="right"><table width="90%"><tbody><tr><td><b>Tips:</b><br><span style="color: rgb(0, 144, 0);"><font size="-1">		如果你曾经在网络上下载过 <a href="http://vbird.dic.ksu.edu.tw/linux_basic/0240tarcompress.php#pack">tarball</a> 类型的文件，
+		<div class="tips"><table><tbody><tr><td><b>Tips:</b><br><span><font>		如果你曾经在网络上下载过 <a href="http://vbird.dic.ksu.edu.tw/linux_basic/0240tarcompress.php#pack">tarball</a> 类型的文件，
 		那么应该不难发现，在解压缩之后的文件中，文件拥有者的字段竟然显示『不明的数字』？奇怪吧？这没什么好奇怪的，因为 Linux 
 		说实在话，他真的只认识代表你身份的号码而已！
 		</font></span></td><td><img src="../Images/0410accountmanager_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div>
@@ -150,7 +150,7 @@ dmtsai:x:<span class="term_write">503</span>:504::/home/dmtsai:/bin/bash <span c
 		很可能会导致某些程序无法进行，这将导致系统无法顺利运行的结果。
 		因为权限的问题啊！所以，了解了之后，请赶快回到 /etc/passwd 里面，将数字改回来喔！</p>
 
-		<div style="padding: 10pt 0pt;" align="right"><table width="90%"><tbody><tr><td><b>Tips:</b><br><span style="color: rgb(0, 144, 0);"><font size="-1">		举例来说，如果上面的测试最后一个步骤没有将 2000 改回原本的 UID，那么当 dmtsai 下次登陆时将没有办法进入自己的家目录！
+		<div class="tips"><table><tbody><tr><td><b>Tips:</b><br><span><font>		举例来说，如果上面的测试最后一个步骤没有将 2000 改回原本的 UID，那么当 dmtsai 下次登陆时将没有办法进入自己的家目录！
 		因为他的 UID 已经改为 2000 ，但是他的家目录 (/home/dmtsai) 却记录的是 503 ，由于权限是 700 ，
 		因此他将无法进入原本的家目录！是否非常严重啊？
 		</font></span></td><td><img src="../Images/0410accountmanager_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div>	</div>
@@ -186,7 +186,7 @@ dmtsai:x:<span class="term_write">503</span>:504::/home/dmtsai:/bin/bash <span c
 		例如 bin, daemon, adm, nobody 等等，这些账号请不要随意的杀掉他呢！</span>
 		这个文件的内容有点像这样：</p>
 
-		<div style="padding: 10pt 0pt;" align="right"><table width="90%"><tbody><tr><td><b>Tips:</b><br><span style="color: rgb(0, 144, 0);"><font size="-1">		鸟哥在接触 Linux 之前曾经碰过 Solaris 系统 (1999 年)，当时鸟哥啥也不清楚！由于『听说』Linux 
+		<div class="tips"><table><tbody><tr><td><b>Tips:</b><br><span><font>		鸟哥在接触 Linux 之前曾经碰过 Solaris 系统 (1999 年)，当时鸟哥啥也不清楚！由于『听说』Linux 
 		上面的账号越复杂会导致系统越危险！所以鸟哥就将 /etc/passwd 上面的账号全部删除到只剩下 root 
 		与鸟哥自己用的一般账号！结果你猜发生什么事？那就是....呼叫升阳的工程师来维护系统 @_@！糗到一个不行！大家不要学啊！
 		</font></span></td><td><img src="../Images/0410accountmanager_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div>
@@ -405,7 +405,7 @@ Changing password for dmtsai
 		再重新启动后 root 将不用口令即可登陆！登陆后再赶快以 passwd 命令去配置 root 口令即可。</li>
 		</ul>
 
-		<div style="padding: 10pt 0pt;" align="right"><table width="90%"><tbody><tr><td><b>Tips:</b><br><span style="color: rgb(0, 144, 0);"><font size="-1">		曾经听过一则笑话，某位老师主要是在教授 Linux 操作系统，但是他是兼任的老师，因此对于该系的计算机环境不熟。
+		<div class="tips"><table><tbody><tr><td><b>Tips:</b><br><span><font>		曾经听过一则笑话，某位老师主要是在教授 Linux 操作系统，但是他是兼任的老师，因此对于该系的计算机环境不熟。
 		由于当初安装该计算机教室 Linux 操作系统的人员已经离职且找不到联络方式了，也就是说 root 口令已经没有人晓得了！
 		此时该老师就对学生说：『在 Linux 里面 root 口令不见了，我们只能重新安装』...感觉有点无力～
 		又是个被 Windows 制约的人才！
@@ -877,7 +877,7 @@ passwd: all authentication tokens updated <u>successfully</u>. <span class="term
 		那时请再想个新口令！若出现『 Retype 』才是你的口令被接受了！重复输入新口令并且看到『 successfully
 		』这个关键词时才是修改口令成功喔！</p>
 
-		<div style="padding: 10pt 0pt;" align="right"><table width="90%"><tbody><tr><td><b>Tips:</b><br><span style="color: rgb(0, 144, 0);"><font size="-1">		与一般使用者不同的是， root 并不需要知道旧口令就能够帮用户或 root 自己创建新口令！
+		<div class="tips"><table><tbody><tr><td><b>Tips:</b><br><span><font>		与一般使用者不同的是， root 并不需要知道旧口令就能够帮用户或 root 自己创建新口令！
 		但如此一来有困扰～就是如果你的亲密爱人老是告诉你『我的口令真难记，帮我配置简单一点的！』时，
 		千万不要妥协啊！这是为了系统安全...
 		</font></span></td><td><img src="../Images/0410accountmanager_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div>
@@ -2239,7 +2239,7 @@ password   include      system-auth
 		每一行可以区分为三个字段，分别是验证类别(type)、控制标准(flag)、PAM的模块与该模块的参数。
 		底下我们先来谈谈验证类别与控制标准这两项数据吧！</p>
 
-		<div style="padding: 10pt 0pt;" align="right"><table width="90%"><tbody><tr><td><b>Tips:</b><br><span style="color: rgb(0, 144, 0);"><font size="-1">		你会发现在我们上面的表格当中出现的是『 include 
+		<div class="tips"><table><tbody><tr><td><b>Tips:</b><br><span><font>		你会发现在我们上面的表格当中出现的是『 include 
 		(包括) 』这个关键词，他代表的是『请呼叫后面的文件来作为这个类别的验证』，
 		所以，上述的每一行都要重复呼叫 /etc/pam.d/system-auth 那个文件来进行验证的意思！
 		</font></span></td><td><img src="../Images/0410accountmanager_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div>
@@ -2532,7 +2532,7 @@ File size limit exceeded
 		最简单可以使用 last 检查啊！这个玩意儿我们也在 <a href="http://vbird.dic.ksu.edu.tw/linux_basic/0320bash.php#last">第十一章 bash</a> 提过了，
 		您可以自行前往参考啊！简单的很。</p>
 
-		<div style="padding: 10pt 0pt;" align="right"><table width="90%"><tbody><tr><td><b>Tips:</b><br><span style="color: rgb(0, 144, 0);"><font size="-1">		早期的 Red Hat 系统的版本中， last 仅会列出当月的登陆者信息，不过在我们的 CentOS 5.x 版以后，
+		<div class="tips"><table><tbody><tr><td><b>Tips:</b><br><span><font>		早期的 Red Hat 系统的版本中， last 仅会列出当月的登陆者信息，不过在我们的 CentOS 5.x 版以后，
 		last 可以列出从系统创建之后到目前为止的所有登陆者信息！这是因为登录档轮替的配置不同所致。
 		详细的说明可以参考后续的<a href="0570syslog.php.html">第十九章登录档简介</a>。
 		</font></span></td><td><img src="../Images/0410accountmanager_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div>
@@ -2794,7 +2794,7 @@ user gopher: directory /var/gopher does not exist
 		』</span>，这不是很好啦～也因此，在早期某些版本底下，是没有办法使用数字来创建账号的。例如在 Red Hat 9 的环境中，
 		使用『 useradd 1234 』他会显示『 useradd: invalid user name '1234' 』了解了吗？</p>
 
-		<div style="padding: 10pt 0pt;" align="right"><table width="90%"><tbody><tr><td><b>Tips:</b><br><span style="color: rgb(0, 144, 0);"><font size="-1">		在较新的 distribution 当中，纯数字的账号已经可以被 useradd 创建了。不过鸟哥还是非常不建议使用纯数字账号。
+		<div class="tips"><table><tbody><tr><td><b>Tips:</b><br><span><font>		在较新的 distribution 当中，纯数字的账号已经可以被 useradd 创建了。不过鸟哥还是非常不建议使用纯数字账号。
 		例如在 setfacl 的配置值中，若使用『 setfacl -m u:501:rwx filename 』那个 501 代表的是 UID 还是账号？
 		因为 setfacl 的配置是支持使用 UID 或账号的，纯数字账号很容易造成系统的误解！
 		</font></span></td><td><img src="../Images/0410accountmanager_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div>

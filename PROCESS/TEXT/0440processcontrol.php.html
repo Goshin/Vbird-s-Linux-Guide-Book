@@ -388,7 +388,7 @@
 		<p>呵呵！如此一来，输出的资讯都给他传送到 /tmp/log.txt 当中，当然就不会影响到我们前景的作业了。
 		这样说，您应该可以更清楚数据流重导向的重要性了吧！^_^</p>
 
-		<div style="padding: 10pt 0pt;" align="right"><table width="90%"><tbody><tr><td><b>Tips:</b><br><span style="color: rgb(0, 144, 0);"><font size="-1">		工作号码 (job number) 只与你这个 bash 环境有关，但是他既然是个命令触发的咚咚，所以当然一定是一个程序，
+		<div class="tips"><table><tbody><tr><td><b>Tips:</b><br><span><font>		工作号码 (job number) 只与你这个 bash 环境有关，但是他既然是个命令触发的咚咚，所以当然一定是一个程序，
 		因此你会观察到有 job number 也搭配一个 PID ！
 		</font></span></td><td><img src="../Images/0440processcontrol_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div>
 
@@ -1075,7 +1075,7 @@ Kill bash(17351) ? (y/N) <span class="term_command">y</span> <span class="term_n
 		想一想，如果所有的程序同时被唤醒，那么 CPU 应该要先处理那个程序呢？也就是说，那个程序被运行的优先序比较高？
 		这就得要考虑到程序的优先运行序 (Priority) 与 CPU 排程罗！</p>
 
-		<div style="padding: 10pt 0pt;" align="right"><table width="90%"><tbody><tr><td><b>Tips:</b><br><span style="color: rgb(0, 144, 0);"><font size="-1">		CPU 排程与前一章的例行性工作排程并不一样。 CPU 排程指的是每支程序被 CPU 运行的演算守则，
+		<div class="tips"><table><tbody><tr><td><b>Tips:</b><br><span><font>		CPU 排程与前一章的例行性工作排程并不一样。 CPU 排程指的是每支程序被 CPU 运行的演算守则，
 		而例行性工作排程则是将某支程序安排在某个时间再交由系统运行。 CPU 排程与操作系统较具有相关性！
 		</font></span></td><td><img src="../Images/0440processcontrol_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div>
 		<a name="pri"></a>
@@ -1230,7 +1230,7 @@ Swap:       996          0     996
 		因为， Swap 的效能跟实体内存实在差很多，而系统会使用到 swap ，
 		绝对是因为实体内存不足了才会这样做的！如此，了解吧！</p>
 
-		<div style="padding: 10pt 0pt;" align="right"><table width="90%"><tbody><tr><td><b>Tips:</b><br><span style="color: rgb(0, 144, 0);"><font size="-1">		Linux 系统为了要加速系统效能，所以会将最常使用到的或者是最近使用到的文件数据缓存 (cache) 下来，
+		<div class="tips"><table><tbody><tr><td><b>Tips:</b><br><span><font>		Linux 系统为了要加速系统效能，所以会将最常使用到的或者是最近使用到的文件数据缓存 (cache) 下来，
 		这样未来系统要使用该文件时，就直接由内存中搜寻取出，而不需要重新读取硬盘，速度上面当然就加快了！
 		因此，实体内存被用光是正常的喔！
 		</font></span></td><td><img src="../Images/0440processcontrol_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div>

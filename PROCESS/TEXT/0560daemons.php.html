@@ -72,7 +72,7 @@
 	但是 service 的提供总是需要程序的运行吧！否则如何运行呢？所以达成这个 service 的程序我们就称呼他为 daemon 啰！
 	举例来说，达成循环型例行性工作排程服务 (service) 的程序为 crond 这个 daemon 啦！这样说比较容易理解了吧！</p>
 
-	<div style="padding: 10pt 0pt;" align="right"><table width="90%"><tbody><tr><td><b>Tips:</b><br><span style="color: rgb(0, 144, 0);"><font size="-1">	你不必去区分什么是 daemon 与 service ！事实上，你可以将这两者视为相同！因为达成某个服务是需要一支 daemon 在背景中运行，
+	<div class="tips"><table><tbody><tr><td><b>Tips:</b><br><span><font>	你不必去区分什么是 daemon 与 service ！事实上，你可以将这两者视为相同！因为达成某个服务是需要一支 daemon 在背景中运行，
 	没有这支 daemon 就不会有 service ！所以不需要分的太清楚啦！
 	</font></span></td><td><img src="../Images/0560daemons_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div>
 	<p>一般来说，当我们以文本模式或图形模式 (非单人维护模式) 完整启动进入 Linux 主机后，
@@ -232,7 +232,7 @@ http            80/udp          www www-http    # HyperText Transfer Protocol
 		封包协议主要为可靠联机的 TCP 封包以及较快速但为非面向连接的 UDP 封包。
 		举个例子说，那个远程联机机制使用的是 ssh 这个服务，而这个服务的使用的埠号为 22 ！就是这样啊！</p>
 
-		<div style="padding: 10pt 0pt;" align="right"><table width="90%"><tbody><tr><td><b>Tips:</b><br><span style="color: rgb(0, 144, 0);"><font size="-1">		请特别注意！虽然有的时候你可以藉由修改 /etc/services 来更改一个服务的埠号，不过并不建议如此做，
+		<div class="tips"><table><tbody><tr><td><b>Tips:</b><br><span><font>		请特别注意！虽然有的时候你可以藉由修改 /etc/services 来更改一个服务的埠号，不过并不建议如此做，
 		因为很有可能会造成一些协议的错误情况！这里特此说明一番呦！(除非你要架设一个地下网站，否则的话，使用 
 		/etc/services 原先的配置就好啦！)
 		</font></span></td><td><img src="../Images/0560daemons_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div>	</div>
@@ -345,7 +345,7 @@ atd (pid 4694) 正在运行...
 		其实，在上面的范例当中，启动方式以 service 这个程序，或者直接去到 /etc/init.d/ 底下启动，都一样啦！自行去解析 
 		/sbin/service 就知道为啥了！ ^_^</p>
 
-		<div style="padding: 10pt 0pt;" align="right"><table width="90%"><tbody><tr><td><b>Tips:</b><br><span style="color: rgb(0, 144, 0);"><font size="-1">		事实上，在 Linux 系统中，要『开或关某个 port 』，就是需要『
+		<div class="tips"><table><tbody><tr><td><b>Tips:</b><br><span><font>		事实上，在 Linux 系统中，要『开或关某个 port 』，就是需要『
 		启动或关闭某个服务』啦！因此，你可以找出某个 port 对应的服务，程序对应的服务，
 		进而启动或关闭他，那么那个经由该服务而启动的 port ，自然就会关掉了！
 		</font></span></td><td><img src="../Images/0560daemons_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div>
@@ -668,7 +668,7 @@ service rsync  <span class="term_note">&lt;==服务名称为 rsync</span>
 			</ul></li>
 		</ul>
 
-		<div style="padding: 10pt 0pt;" align="right"><table width="90%"><tbody><tr><td><b>Tips:</b><br><span style="color: rgb(0, 144, 0);"><font size="-1">		有信息背景的朋友当然知道 127.0.0.1 是内部循环测试用的 IP ，用他来设计网络是没有意义的。
+		<div class="tips"><table><tbody><tr><td><b>Tips:</b><br><span><font>		有信息背景的朋友当然知道 127.0.0.1 是内部循环测试用的 IP ，用他来设计网络是没有意义的。
 		不过，我们这里仅是作一个设计的介绍，而且我们尚未谈到服务器篇的网络部分，所以大家先这样实际测试吧！ ^_^
 		</font></span></td><td><img src="../Images/0560daemons_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div>
 		<p>在这样的规划情况下，我们可以将刚刚上头的 /etc/xinetd.d/rsync 这个文件修改成为：</p>
@@ -798,7 +798,7 @@ tcp    0 0 <span class="term_write">127.0.0.1:873</span>         0.0.0.0:*      
 		rsync 配置文件内 /usr/bin/rsync 为其参数值，那么在我们这里就得要写成 rsync 即可喔！依据 rsync 的配置文件数据，我们将抵挡的
 		127.0.0.100, 127.0.0.200, 及放行的 140.116.0.0/16 写在这里，内容有点像这样：</p>
 
-		<div style="padding: 10pt 0pt;" align="right"><table width="90%"><tbody><tr><td><b>Tips:</b><br><span style="color: rgb(0, 144, 0);"><font size="-1">		关于 IP, 网域, 网段, 还有相关的网络知识，在这个基础篇当中我们不会谈到，你只要记得底下写的 140.116.0.0/255.255.0.0
+		<div class="tips"><table><tbody><tr><td><b>Tips:</b><br><span><font>		关于 IP, 网域, 网段, 还有相关的网络知识，在这个基础篇当中我们不会谈到，你只要记得底下写的 140.116.0.0/255.255.0.0
 		代表一个网域就是了。详细的数据请先自行参考<a href="http://vbird.dic.ksu.edu.tw/linux_server/">服务器架设篇</a>的内容！ 
 		</font></span></td><td><img src="../Images/0560daemons_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div>
 <table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">vim /etc/hosts.deny</span>

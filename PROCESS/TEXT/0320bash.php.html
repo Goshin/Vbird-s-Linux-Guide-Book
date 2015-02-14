@@ -136,7 +136,7 @@
 		但是我们可以透过壳程序 (就是命令列模式) 来操作这些应用程序，让这些应用程序呼叫核心来运行所需的工作哩！
 		这样对于壳程序是否有了一定的概念了？</p>
 
-		<div style="padding: 10pt 0pt;" align="right"><table width="90%"><tbody><tr><td><b>Tips:</b><br><span style="color: rgb(0, 144, 0);"><font size="-1">		也就是说，只要能够操作应用程序的接口都能够称为壳程序。狭义的壳程序指的是命令列方面的软件，包括本章要介绍的 bash 等。
+		<div class="tips"><table><tbody><tr><td><b>Tips:</b><br><span><font>		也就是说，只要能够操作应用程序的接口都能够称为壳程序。狭义的壳程序指的是命令列方面的软件，包括本章要介绍的 bash 等。
 		广义的壳程序则包括图形接口的软件！因为图形接口其实也能够操作各种应用程序来呼叫核心工作啊！
 		不过在本章中，我们主要还是在使用 bash 啦！
 		</font></span></td><td><img src="../Images/0320bash_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div>	</div>
@@ -208,7 +208,7 @@
 		主机势力相当的庞大，而 Sun 主要是 BSD 的分支之一，所以 C shell 
 		也是另一个很重要而且流传很广的 shell 之一 。</p>
 
-		<div style="padding: 10pt 0pt;" align="right"><table width="90%"><tbody><tr><td><b>Tips:</b><br><span style="color: rgb(0, 144, 0);"><font size="-1">		由于 Linux 为 C 程序语言撰写的，很多程序设计师使用 C 来开发软件，因此 C shell 相对的就很热门了。
+		<div class="tips"><table><tbody><tr><td><b>Tips:</b><br><span><font>		由于 Linux 为 C 程序语言撰写的，很多程序设计师使用 C 来开发软件，因此 C shell 相对的就很热门了。
 		另外，还记得我们在<a href="0110whatislinux.php.html">第一章、Linux 是什么</a>提到的吧？
 		Sun 公司的创始人就是 Bill Joy，而 BSD 最早就是 Bill Joy 发展出来的啊。
 		</font></span></td><td><img src="../Images/0320bash_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div>
@@ -685,7 +685,7 @@ uname -r 找出核心版本，然后再以『 cd 目录』到该目录下，当�
 </div>
 </td></tr></tbody></table><br>
 
-		<div style="padding: 10pt 0pt;" align="right"><table width="90%"><tbody><tr><td><b>Tips:</b><br><span style="color: rgb(0, 144, 0);"><font size="-1">		老实说，使用『 version=$(uname -r) 』来取代『 version=`uname -r` 』比较好，因为反单引号大家老是容易打错或看错！
+		<div class="tips"><table><tbody><tr><td><b>Tips:</b><br><span><font>		老实说，使用『 version=$(uname -r) 』来取代『 version=`uname -r` 』比较好，因为反单引号大家老是容易打错或看错！
 		所以现在鸟哥都习惯使用 $( 命令 ) 来介绍这个功能！
 		</font></span></td><td><img src="../Images/0320bash_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div>
 
@@ -973,7 +973,7 @@ LC_ALL=                      <span class="term_note">&lt;==整体语系的环境
 		主机以远程联机服务器的软件联机到主机的话，那么，嘿嘿！其实文字接口确实是可以看到中文的。
 		此时反而你得要在 LANG 配置中文编码才好呢！</p>
 
-		<div style="padding: 10pt 0pt;" align="right"><table width="90%"><tbody><tr><td><b>Tips:</b><br><span style="color: rgb(0, 144, 0);"><font size="-1">		无论如何，如果发生一些乱码的问题，那么配置系统里面保有的语系编码，
+		<div class="tips"><table><tbody><tr><td><b>Tips:</b><br><span><font>		无论如何，如果发生一些乱码的问题，那么配置系统里面保有的语系编码，
 		例如： en_US 或 en_US.utf8 等等的配置，应该就 OK 的啦！好了，那么系统默认支持多少种语系呢？
 		当我们使用 locale 时，系统是列出目前 Linux 主机内保有的语系文件，
 		这些语系文件都放置在： <span class="text_import2">/usr/lib/locale/</span> 这个目录中。
@@ -989,7 +989,7 @@ LANG="zh_TW.UTF-8"
 		<p>因为鸟哥在<a href="0157installcentos5.php.html">第四章的安装时</a>选择的是中文语系安装画面，
 		所以这个文件默认就会使用中文编码啦！你也可以自行将他改成你想要的语系编码即可。</p>
 
-		<div style="padding: 10pt 0pt;" align="right"><table width="90%"><tbody><tr><td><b>Tips:</b><br><span style="color: rgb(0, 144, 0);"><font size="-1">		假设你有一个纯文本文件原本是在 Windows 底下创建的，那么这个文件默认应该是 big5 的编码格式。
+		<div class="tips"><table><tbody><tr><td><b>Tips:</b><br><span><font>		假设你有一个纯文本文件原本是在 Windows 底下创建的，那么这个文件默认应该是 big5 的编码格式。
 		在你将这个文件上传到 Linux 主机后，在 X window 底下打开时，咦！怎么中文字通通变成乱码了？
 		别担心！因为如上所示， i18n 默认是万国码系统嘛！你只要将开启该文件的软件编码由 utf8 
 		改成 big5 就能够看到正确的中文了！
@@ -1002,7 +1002,7 @@ LANG="zh_TW.UTF-8"
 		则『变量』可否被引用与 export 有关。被 export 后的变量，我们可以称他为『环境变量』！
 		环境变量可以被子程序所引用，但是其他的自定义变量内容就不会存在于子程序中。</p>
 
-		<div style="padding: 10pt 0pt;" align="right"><table width="90%"><tbody><tr><td><b>Tips:</b><br><span style="color: rgb(0, 144, 0);"><font size="-1">		在某些不同的书籍会谈到『全局变量, global variable』与『局部变量, local variable』。
+		<div class="tips"><table><tbody><tr><td><b>Tips:</b><br><span><font>		在某些不同的书籍会谈到『全局变量, global variable』与『局部变量, local variable』。
 		基本上你可以这样看待：<br>环境变量=全局变量<br>自定义变量=局部变量
 		</font></span></td><td><img src="../Images/0320bash_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div>
 		<p>在学理方面，为什么环境变量的数据可以被子程序所引用呢？这是因为内存配置的关系！理论上是这样的：</p>
@@ -1191,7 +1191,7 @@ File size limit exceeded <span class="term_note">&lt;==尝试创建 20MB 的文�
 		利用 ulimit -f 就可以来配置了！例如上面的范例二，要注意单位喔！单位是 Kbytes。
 		若改天你一直无法创建一个大容量的文件，记得瞧一瞧 ulimit 的信息喔！</p>
 
-		<div style="padding: 10pt 0pt;" align="right"><table width="90%"><tbody><tr><td><b>Tips:</b><br><span style="color: rgb(0, 144, 0);"><font size="-1">		想要复原 ulimit 的配置最简单的方法就是注销再登陆，否则就是得要重新以 ulimit 配置才行！
+		<div class="tips"><table><tbody><tr><td><b>Tips:</b><br><span><font>		想要复原 ulimit 的配置最简单的方法就是注销再登陆，否则就是得要重新以 ulimit 配置才行！
 		不过，要注意的是，一般身份使用者如果以 ulimit 配置了 -f 的文件大小，
 		那么他『只能继续减小文件容量，不能添加文件容量喔！』另外，若想要管控使用者的 ulimit 限值，
 		可以参考<a href="http://vbird.dic.ksu.edu.tw/linux_basic/0410accountmanager.php#limits">第十四章的 pam</a> 的介绍。
@@ -1386,7 +1386,7 @@ root  <span class="term_note">&lt;==加上『 : 』后若变量内容为空或�
 		都能够用后面的内容 (本例中是使用 root 为内容) 来替换与配置！这样可以了解了吗？除了这样的测试之外，
 		还有其他的测试方法喔！鸟哥将他整理如下：</p>
 
-		<div style="padding: 10pt 0pt;" align="right"><table width="90%"><tbody><tr><td><b>Tips:</b><br><span style="color: rgb(0, 144, 0);"><font size="-1">		底下的例子当中，那个 var 与 str 为变量，我们想要针对 str 是否有配置来决定 var 的值喔！
+		<div class="tips"><table><tbody><tr><td><b>Tips:</b><br><span><font>		底下的例子当中，那个 var 与 str 为变量，我们想要针对 str 是否有配置来决定 var 的值喔！
 		一般来说， str: 代表『str 没配置或为空的字符串时』；至于 str 则仅为『没有该变量』。
 		</font></span></td><td><img src="../Images/0320bash_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div>
 <a name="20070715"></a>

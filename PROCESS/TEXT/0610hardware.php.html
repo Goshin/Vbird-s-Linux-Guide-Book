@@ -140,7 +140,7 @@
 		那么 vbird 就能够使用同一组帐号口令来登陆每部主机了，这样管理是否很方便呢？因为只要管理一部服务器即可嘛！
 		我们在服务器篇谈到 <a href="http://vbird.dic.ksu.edu.tw/linux_server/0430nis.php">NIS</a> 时再来实作这个环境喔！</p>
 
-		<div style="padding: 10pt 0pt;" align="right"><table width="90%"><tbody><tr><td><b>Tips:</b><br><span style="color: rgb(0, 144, 0);"><font size="-1">		其实 NIS 与 LDAP 等等的，都是一种网络通讯协议，我们可以透过网络通讯协议来进行数据的传输。
+		<div class="tips"><table><tbody><tr><td><b>Tips:</b><br><span><font>		其实 NIS 与 LDAP 等等的，都是一种网络通讯协议，我们可以透过网络通讯协议来进行数据的传输。
 		使用者帐号资讯当然也能够透过这个机制来管理罗！有兴趣的朋友请继续阅读鸟哥写的<a href="http://vbird.dic.ksu.edu.tw/linux_server">服务器篇</a>罗～ ^_^
 		</font></span></td><td><img src="../Images/0610hardware_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div>	</div>
 
@@ -355,7 +355,7 @@ Bringing up interface eth0:                 [  OK  ]
 		不过，这大概都属於旧式打印机才需要的动作啦！为啥呢？因为现在打印机大部分都是 U盘 或者是网络打印机了，
 		根本不需要使用 25 针序列埠的支持！</p>
 
-		<div style="padding: 10pt 0pt;" align="right"><table width="90%"><tbody><tr><td><b>Tips:</b><br><span style="color: rgb(0, 144, 0);"><font size="-1">		为什么会谈到 25 针序列埠以及 BIOS 的支持呢？这是因为鸟哥曾经发生过一件糗事。
+		<div class="tips"><table><tbody><tr><td><b>Tips:</b><br><span><font>		为什么会谈到 25 针序列埠以及 BIOS 的支持呢？这是因为鸟哥曾经发生过一件糗事。
 		由於鸟哥常用旧型主机的关系，所以总喜欢先在 BIOS 里面将没用到的装置项目全部取消 (disable)，
 		所以没有接打印机的情况下，当然连打印机的序列埠 (Parallel) 也关闭了。没想到后来为了测试打印机的连线取得一台旧式打印机，
 		要命啊！连续测试两天的时间却无法顺利的列印出正确的文件资讯！最后才想到可能是 BIOS 内部的问题。
@@ -367,7 +367,7 @@ Bringing up interface eth0:                 [  OK  ]
 		老实说，鸟哥是 HP 打印机的爱好者，因为 HP 打印机对 Linux 的支持非常好！但是另一牌的 L 开头的打印机总是很慢或者不推出给
 		Linux 用的驱动程序，所以该牌的打印机很难安装在 Linux 主机上！真困扰。</p>
 
-		<div style="padding: 10pt 0pt;" align="right"><table width="90%"><tbody><tr><td><b>Tips:</b><br><span style="color: rgb(0, 144, 0);"><font size="-1">		因为鸟哥过去所待的研究室大多购买 HP 的打印机，所以测试打印机时完全没有出现任何问题。
+		<div class="tips"><table><tbody><tr><td><b>Tips:</b><br><span><font>		因为鸟哥过去所待的研究室大多购买 HP 的打印机，所以测试打印机时完全没有出现任何问题。
 		但是某天在家里使用鸟嫂购买的 L 牌的事务机时，连忙了三天却都无法连接到该打印机来顺利输出。
 		最终查询 Linux 打印机支持网站，才发现该型号的事务机根本没有推出给 Linux 用的驱动程序，
 		所以就无法顺利使用该打印机～最终...鸟哥就放弃该测试了～唉！真浪费时间！
@@ -440,7 +440,7 @@ Bringing up interface eth0:                 [  OK  ]
 		<a href="http://www.linuxprinting.org/download/PPD/" target="_blank">http://www.linuxprinting.org/download/PPD/</a></li>
 		</ul>
 
-		<div style="padding: 10pt 0pt;" align="right"><table width="90%"><tbody><tr><td><b>Tips:</b><br><span style="color: rgb(0, 144, 0);"><font size="-1">		为什么需要列印伫列 (queue) 呢？因为打印机只能够给单一任务进行列印，没办法像 CPU 可以交错运行的！
+		<div class="tips"><table><tbody><tr><td><b>Tips:</b><br><span><font>		为什么需要列印伫列 (queue) 呢？因为打印机只能够给单一任务进行列印，没办法像 CPU 可以交错运行的！
 		所以列印工作就得要排队等待打印机的列印，而打印机得要将前一份工作列印完毕后才能够列印下一份工作！
 		否则如果是交错列印，那印出的东西不就混杂在一起了？这样说了解吗？ ^_^
 		</font></span></td><td><img src="../Images/0610hardware_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div>	</div>
@@ -956,7 +956,7 @@ active  root    10      (stdin)               1024 bytes
 		包括 /proc/cpuinfo, /proc/partitions, /proc/interrupts 等等。
 		更多的 /proc 内容介绍，先回到<a href="http://vbird.dic.ksu.edu.tw/linux_basic/0440processcontrol.php#proc">第十七章的程序管理</a>瞧一瞧先！</p>
 
-		<div style="padding: 10pt 0pt;" align="right"><table width="90%"><tbody><tr><td><b>Tips:</b><br><span style="color: rgb(0, 144, 0);"><font size="-1">		其实核心所侦测到的硬件可能并非完全正确喔！因为他仅是『使用最适当的模块来驱动这个硬件』而已，
+		<div class="tips"><table><tbody><tr><td><b>Tips:</b><br><span><font>		其实核心所侦测到的硬件可能并非完全正确喔！因为他仅是『使用最适当的模块来驱动这个硬件』而已，
 		所以有时候难免会误判啦 (虽然机率非常之低)！那你可能想要以最新最正确的模块来驱动你的硬件，
 		此时，重新编译核心是一条可以达成的道路。不过，现在的 Linux 系统并没有很建议你一定要重新编译核心就是了。
 		</font></span></td><td><img src="../Images/0610hardware_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div>

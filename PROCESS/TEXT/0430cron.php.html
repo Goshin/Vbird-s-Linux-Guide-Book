@@ -277,7 +277,7 @@ job 5 at 2009-03-17 23:00
 		都会传送到运行者的 mailbox 去</span>啦！所以在终端机当然看不到任何资讯。那怎办？没关系，
 		可以透过终端机的装置来处理！假如你在 tty1 登陆，则可以使用『 echo "Hello" &gt; /dev/tty1 』来取代。</p>
 
-		<div style="padding: 10pt 0pt;" align="right"><table width="90%"><tbody><tr><td><b>Tips:</b><br><span style="color: rgb(0, 144, 0);"><font size="-1">		要注意的是，如果在 at shell 内的命令并没有任何的信息输出，那么 at 默认不会发 email 给运行者的。
+		<div class="tips"><table><tbody><tr><td><b>Tips:</b><br><span><font>		要注意的是，如果在 at shell 内的命令并没有任何的信息输出，那么 at 默认不会发 email 给运行者的。
 		如果你想要让 at 无论如何都发一封 email 告知你是否运行了命令，那么可以使用『 at -m 时间格式 』来下达命令喔！
 		at 就会传送一个信息给运行者，而不论该命令运行有无信息输出了！
 		</font></span></td><td><img src="../Images/0430cron_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div>
@@ -506,7 +506,7 @@ no crontab for dmtsai
 		』，因此，只要你编辑完 /etc/crontab 这个文件，并且将他储存之后，那么 
 		cron 的配置就自动的会来运行了！</p>
 
-		<div style="padding: 10pt 0pt;" align="right"><table width="90%"><tbody><tr><td><b>Tips:</b><br><span style="color: rgb(0, 144, 0);"><font size="-1">		在 Linux 底下的 crontab 会自动的帮我们每分钟重新读取一次 /etc/crontab 
+		<div class="tips"><table><tbody><tr><td><b>Tips:</b><br><span><font>		在 Linux 底下的 crontab 会自动的帮我们每分钟重新读取一次 /etc/crontab 
 		的例行工作事项，但是某些原因或者是其他的 Unix 系统中，由於 crontab 
 		是读到内存当中的，所以在你修改完 /etc/crontab 之后，可能并不会马上运行，
 		这个时候请重新启动 crond 这个服务吧！『/etc/init.d/crond restart』
