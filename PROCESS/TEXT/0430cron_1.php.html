@@ -1,1 +1,121 @@
-<html><head> 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"> 	<meta name="Author" content="2011/04/20,white"> 	<meta name="Description" content="包括了 crontab 与 at 这两支程序啦！"> 	<title>鸟哥的 Linux 私房菜 -- 例行性工作排程的创建</title>     <script src="../script/SpryMenuBar.js" type="text/javascript"></script> 	<script src="../script/index.js" type="text/javascript"></script> 	<link href="../css/SpryMenuBarHorizontal.css" rel="stylesheet" type="text/css" />     <link href="../css/main.css" rel="stylesheet" type="text/css" />     </head><body style="margin: 0pt; padding: 0pt;" class="table"onload="MM_preloadImages('image/title_19.png','image/title_26.png','image/title_27.png','image/title_28.png','image/title_06.png','image/title_08.png','image/title_10.png','image/title_12.png')">   <!-- Copyright � 2005. Spidersoft Ltd --> <style> A.applink:hover {border: 2px dotted #DCE6F4;padding:2px;background-color:#ffff00;color:green;text-decoration:none} A.applink       {border: 2px dotted #DCE6F4;padding:2px;color:#2F5BFF;background:transparent;text-decoration:none} A.info          {color:#2F5BFF;background:transparent;text-decoration:none} A.info:hover    {color:green;background:transparent;text-decoration:underline} </style> <div style='BORDER: 1px solid #DCE6F4; MARGIN-TOP: 20px; MARGIN-BOTTOM: 20px; MARGIN-LEFT: 5px; MARGIN-RIGHT: 5px; PADDING: 5px; BACKGROUND-COLOR: #eef8ff;line-height:180%; COLOR: #000000; font-family: Arial; font-size: 8pt; width=100%; FILTER: progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr="#FFFFFFFF", EndColorStr="#F2F5FAFF");'> This page was saved using <a class="applink" href="http://www.spidersoft.com"><b>WebZIP 7.0.3.1030</b></a> <a class="applink" href="http://www.spidersoft.com"><b>offline browser</b></a>  (Unregistered) on  02/12/15 12:14:49.<br> <b>Address:</b> <a class="info" href="http://vbird.dic.ksu.edu.tw/linux_basic/0430cron_1.php">http://vbird.dic.ksu.edu.tw/linux_basic/0430cron_1.php</a><br> <b>Title:</b> 鸟哥的 Linux 私房菜 -- 例行性工作排程的创建 &nbsp;&bull;&nbsp; <b>Size:</b> 19331<br></div> <!-- /Copyright � 2005. Spidersoft Ltd -->    <center> <div id="apDiv5"> <div> <LINK REL="SHORTCUT ICON" HREF="favicon.ico"> <!-- ImageReady Slices (title3.ai) --> <table id="___01" width="898" height="81" border="0" align="center" cellpadding="0" cellspacing="0";> 	<tr> 		<td colspan="15"> 			<img src="image/title/title_01.png" width="900" height="1" alt=""></td> 	</tr> 	<tr> 		<td rowspan="4" bgcolor="#182448"><p><img src="http://linux.vbird.org/cgi-bin/Count.cgi?dd=C&ft=5&sh=T&md=8&pad=Y&df=vbird.dic.ksu.edu.tw.dat" width="93" align="left" title="計數器" /></p> 	    <p><font color="#FFFFFF" size="-1">since2012/04/23</font></p></td> 		<td rowspan="4" align="left" valign="top"><a href="http://vbird.dic.ksu.edu.tw/"><img src="image/title/title_03.png" alt="" width="263" height="79" border="0"></a></td> 		<td colspan="13"> 			<img src="image/title/title_04.png" alt="" width="535" height="9" border="0"></td> 	</tr> 	<tr> 		<td rowspan="3"> 			<img src="image/title/title_05.png" alt="" width="53" height="70" border="0"></td> 		<td colspan="2" align="left" valign="top"><a href="0110whatislinux.php.html" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image51','','image/title/title_06.png',1)"><img src="image/title/title3_06.png" name="Image51" width="106" height="25" border="0" id="Image51" alt=""/></a></td> 		<td rowspan="2"> 			<img src="image/title/title_07.png" alt="" width="27" height="37" border="0"></td> 		<td colspan="3" align="left" valign="top"><a href="http://vbird.dic.ksu.edu.tw/linux_server/0110network_basic.php" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image52','','image/title/title_08.png',1)"><img src="image/title/title3_08.png" name="Image52" width="107" height="25" border="0" id="Image52" alt=""/></a></td> 		<td rowspan="2"> 			<img src="image/title/title_09.png" alt="" width="37" height="37" border="0"></td> 		<td colspan="2" align="left" valign="top"><a href="http://vbird.dic.ksu.edu.tw/about.php" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image53','','image/title/title_10.png',1)"><img src="image/title/title3_10.png" name="Image53" width="75" height="25" border="0" id="Image53" alt=""/></a></td> 		<td rowspan="3"> 			<img src="image/title/title_11.png" alt="" width="35" height="70" border="0"></td> 		<td align="left" valign="top"><a href="mailto:vbird@mail.vbird.idv.tw" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image54','','image/title/title_12.png',1)"><img src="image/title/title3_12.png" name="Image54" width="74" height="25" border="0" id="Image54" alt=""/></a></td> 		<td rowspan="3"> 			<img src="image/title/title_13.png" alt="" width="21" height="70" border="0"></td> 	</tr> 	<tr> 		<td colspan="2"> 			<img src="image/title/title_14.png" alt="" width="106" height="12" border="0"></td> 		<td colspan="3"> 			<img src="image/title/title_15.png" alt="" width="107" height="12" border="0"></td> 		<td colspan="2"> 			<img src="image/title/title_16.png" width="75" height="12" alt=""></td> 		<td rowspan="2"> 			<img src="image/title/title_17.png" alt="" width="74" height="45" border="0"></td> 	</tr> 	<tr> 		<td> 			<img src="image/title/title_18.png" alt="" width="15" height="33" border="0"></td> 		<td colspan="3" align="left" valign="top"><ul id="MenuBar1" class="MenuBarHorizontal"> 	  <li><a href="linux_basic.php.html" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image44','','image/title/title_19.png',1)"><img src="image/title/title3_19.png" name="Image44" width="123" height="33" border="0" id="Image44" /></a> 			    <ul> 			      <li><a href="Mandrake9.0/mandrake9.0.php.html" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image46','','image/title/title_26.png',1)"><img src="image/title/title_23.png" name="Image46" width="120" height="26" border="0" id="Image46" alt="" /></a></li>                   <li><a href="fedora_4/fc4.php.html" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image47','','image/title/title_27.png',1)"><img src="image/title/title_24.png" name="Image47" width="120" height="26" border="0" id="Image47" alt="" /></a></li>                   <li><a href="linux_basic.php.html" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image48','','image/title/title_28.png',1)"><img src="image/title/title_25.png" name="Image48" width="120" height="26" border="0" id="Image48" alt="" /></a></li>                 </ul> 		      </li> 		</ul></td> 		<td> 			<img src="image/title/title_20.png" alt="" width="42" height="33" border="0"></td> 		<td colspan="3" align="left" valign="top"><ul id="MenuBar2" class="MenuBarHorizontal"> 	  <li><a href="http://vbird.dic.ksu.edu.tw/linux_server/" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image45','','image/title/title_21.png',1)"><img src="image/title/title3_21.png" name="Image45" width="125" height="33" border="0" id="Image45" /></a> 			    <ul> 			      <li><a href="http://vbird.dic.ksu.edu.tw/linux_server/linux_redhat9/redhat9.php" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image43','','image/title/title_26.png',1)"><img src="image/title/title_23.png" name="Image43" width="120" height="26" border="0" id="Image43" alt=""/></a></li> 			      <li><a href="http://vbird.dic.ksu.edu.tw/linux_server/centos4.php" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image49','','image/title/title_27.png',1)"><img src="image/title/title_24.png" name="Image49" width="120" height="26" border="0" id="Image49" alt="" /></a></li> 			      <li><a href="http://vbird.dic.ksu.edu.tw/linux_server/" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image50','','image/title/title_28.png',1)"><img src="image/title/title_25.png" name="Image50" width="120" height="26" border="0" id="Image50" alt="" /></a></li> 		        </ul> 		      </li> 		</ul></td> 		<td> 			<img src="image/title/title_22.png" alt="" width="47" height="33" border="0"></td> 	</tr> 	<tr> 		<td> 			<img src="image/title/Spacer.gif" width="101" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="263" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="53" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="15" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="91" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="27" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="5" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="42" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="60" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="37" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="28" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="47" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="35" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="74" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="22" height="1" alt=""></td> 	</tr> </table> <!-- End ImageReady Slices --> <script type="text/javascript"> <!-- var MenuBar1 = new Spry.Widget.MenuBar("MenuBar1", {imgDown:"SpryAssets/SpryMenuBarDownHover.gif", imgRight:"SpryAssets/SpryMenuBarRightHover.gif"}); var MenuBar2 = new Spry.Widget.MenuBar("MenuBar2", {imgDown:"SpryAssets/SpryMenuBarDownHover.gif", imgRight:"SpryAssets/SpryMenuBarRightHover.gif"}); //--> </script></div> <table summary="本文内容的排版" style="width: 898px;" border="0" cellpadding="0" cellspacing="0"> <tbody><tr><td style="width: 16px; height: 16px;">　</td>     <td style="width: 866px; height: 16px;">　</td>     <td style="width: 16px; height: 16px;">　</td></tr> <tr><td style="width: 16px; font-size: 6px;">　</td>     <td width="866">  <!-- 本文的档头部分 --> <div style="text-align: center;">     <a href="0430cron.php.html">     <span class="text_head0">第十六章、例行性工作排程<span class="text_head_en"> (crontab)</span></span></a><br> </div>     <div style="text-align: right;">         <span class="text_history">最近升级日期：2009/09/11</span>     </div> <!-- 本文的连结区部分 --> <div class="block1"> <span class="text_h1"> 1. <a href="#whatiscron">什么是例行性工作排程</a><br> 	<span class="text_h2"> 	　　1.1 <a href="#whatiscron_type">Linux 工作排程的种类： at, crontab</a><br> 	　　1.2 <a href="#whatiscron_linux">Linux 上常见的例行性工作</a><br> 	</span> </span></div> <!-- 本文的正式部分 --> <hr><a name="whatiscron"></a><img src="../image/logo.png" alt="大标题的图示" width="35" align="middle" height="34"><span class="text_h1">什么是例行性工作排程</span><br> <div class="block1"> 	<p>每个人或多或少都有一些约会或者是工作，<span class="text_import2">有的工作是例行性的</span>， 	例如每年一次的加薪、每个月一次的工作报告、每周一次的午餐会报、每天需要的打卡等等； 	<span class="text_import2">有的工作则是临时发生的</span>，例如刚好总公司有高官来访，需要你准备演讲器材等等！ 	用在生活上面，例如每年的爱人的生日、每天的起床时间等等、还有突发性的计算机大降价 (啊！真希望天天都有！)  	等等罗。</p>  	<p>像上面这些例行性工作，通常你得要记录在行事历上面才能避免忘记！不过，由於我们常常在计算机前面的缘故， 	如果计算机系统能够主动的通知我们的话，那么不就轻松多了！嘿嘿！这个时候 Linux 的例行性工作排程就可以派上场了！ 	在不考虑硬件与我们服务器的连结状态下，我们的 Linux 可以帮你提醒很多任务，例如：每一天早上  	8:00 钟要服务器连接上音响，并启动音乐来唤你起床；而中午 	12:00 希望 Linux 可以发一封信到你的邮件信箱，提醒你可以去吃午餐了； 	另外，在每年的你爱人生日的前一天，先发封信提醒你，以免忘记这么重要的一天。</p>  	<p>那么 Linux 的例行性工作是如何进行排程的呢？所谓的排程就是将这些工作安排运行的流程之意！ 	咱们的 Linux 排程就是透过 crontab 与 at 这两个东西！这两个玩意儿有啥异同？就让我们来瞧瞧先！<br><br></p>  	<hr><a name="whatiscron_type"></a><img src="../image/logo.png" alt="小标题的图示" width="24" align="middle" height="23"><span class="text_h2">Linux 工作排程的种类：  	at, cron</span><br> 	<div class="block2"> 		<p>从上面的说明当中，我们可以很清楚的发现两种工作排程的方式：</p>  		<ul> 		<li>一种是例行性的，就是每隔一定的周期要来办的事项；</li> 		<li>一种是突发性的，就是这次做完以后就没有的那一种 (计算机大降价...)</li> 		</ul>  		<p>那么在 Linux 底下如何达到这两个功能呢？那就得使用 at 与 crontab 这两个好东西罗！</p>  		<ul> 		<li><span class="text_import1">at</span> ：at 是个可以处理仅运行一次就结束排程的命令，不过要运行 at 时， 		必须要有 atd 这个<a href="0560daemons.php.html">服务 (第十八章)</a> 的支持才行。在某些新版的 distributions  		中，atd 可能默认并没有启动，那么 at 这个命令就会失效呢！不过我们的 CentOS 默认是启动的！<br><br></li>  		<li><span class="text_import1">crontab</span> ：crontab 这个命令所配置的工作将会循环的一直进行下去！ 		可循环的时间为分钟、小时、每周、每月或每年等。crontab 除了可以使用命令运行外，亦可编辑 /etc/crontab 来支持。 		至於让 crontab 可以生效的服务则是 crond 这个服务喔！</li> 		</ul>  		<p>底下我们先来谈一谈 Linux 的系统到底在做什么事情，怎么有若干多的工作排程在进行呢？然后再回来谈一谈 		at 与 crontab 这两个好东西！</p> 	</div>  	<hr><a name="whatiscron_linux"></a><img src="../image/logo.png" alt="小标题的图示" width="24" align="middle" height="23"><span class="text_h2">Linux 上常见的例行性工作</span><br> 	<div class="block2"> 		<p>如果你曾经使用过 Linux 一阵子了，那么你大概会发现到 Linux 会主动的帮我们进行一些工作呢！ 		比方说自动的进行线上升级 (on-line update)、自动的进行 updatedb (<a href="http://vbird.dic.ksu.edu.tw/linux_basic/0220filemanager.php#locate">第七章谈到的 locate 命令</a>) 升级档名数据库、自动的作登录档分析 		(所以 root 常常会收到标题为 logwatch 的信件) 等等。这是由於系统要正常运行的话， 		某些在背景底下的工作必须要定时进行的缘故。基本上 Linux 系统常见的例行性任务有：</p>  		<ul style="padding-left: 25px;"> 		<li><span class="text_import2">进行登录档的轮替 (log rotate)</span>：<br> 		Linux 会主动的将系统所发生的各种资讯都记录下来，这就是<a href="0570syslog.php.html">登录档 (第十九章)</a>。 		由於系统会一直记录登录资讯，所以登录档将会越来越大！我们知道大型文件不但占容量还会造成读写效能的困扰， 		因此适时的将登录档数据挪一挪，让旧的数据与新的数据分别存放，则比较可以有效的记录登录资讯。这就是 log rotate  		的任务！这也是系统必要的例行任务；<br><br></li>  		<li><span class="text_import2">登录档分析 logwatch 的任务</span>：<br> 		如果系统发生了软件问题、硬件错误、资安问题等，绝大部分的错误资讯都会被记录到登录档中， 		因此系统管理员的重要任务之一就是分析登录档。但你不可能手动透过 vim 等软件去检视登录档，因为数据太复杂了！ 		我们的 CentOS 提供了一只程序『 logwatch 』来主动分析登录资讯，所以你会发现，你的 root 老是会收到标题为 logwatch 		的信件，那是正常的！你最好也能够看看该信件的内容喔！<br><br></li>  		<li><span class="text_import2">创建 locate 的数据库</span>：<br> 		在第七章我们谈到的 <a href="http://vbird.dic.ksu.edu.tw/linux_basic/0220filemanager.php#locate">locate</a> 命令时， 		我们知道该命令是透过已经存在的档名数据库来进行系统上档名的查询。我们的档名数据库是放置到 /var/lib/mlocate/ 中。 		问题是，这个数据库怎么会自动升级啊？嘿嘿！这就是系统的例行性工作所产生的效果啦！系统会主动的进行 		updatedb 喔！<br><br></li>  		<li><span class="text_import2">whatis 数据库的创建</span>：<br> 		与 locate 数据库类似的，whatis 也是个数据库，这个 whatis 是与 		<a href="http://vbird.dic.ksu.edu.tw/linux_basic/0160startlinux.php#manual_man">man page</a> 有关的一个查询命令，不过要使用 whatis 命令时， 		必须要拥有 whatis 数据库，而这个数据库也是透过系统的例行性工作排程来自动运行的哩！<br><br></li>  		<li><span class="text_import2">RPM 软件登录档的创建</span>：<br> 		RPM (<a href="0520rpm_and_srpm.php.html">第二十三章</a>) 是一种软件管理的机制。由於系统可能会常常变更软件， 		包括软件的新安装、非经常性升级等，都会造成软件档名的差异。为了方便未来追踪，系统也帮我们将档名作个排序的记录呢！ 		有时候系统也会透过排程来帮忙 RPM 数据库的重新建置喔！<br><br></li>  		<li><span class="text_import2">移除缓存档</span>：<br> 		某些软件在运行中会产生一些缓存档，但是当这个软件关闭时，这些缓存档可能并不会主动的被移除。 		有些缓存档则有时间性，如果超过一段时间后，这个缓存档就没有效用了，此时移除这些缓存档就是一件重要的工作！ 		否则磁碟容量会被耗光。系统透过例行性工作排程运行名为 tmpwatch 的命令来删除这些缓存档呢！<br><br></li>  		<li><span class="text_import2">与网络服务有关的分析行为</span>：<br> 		如果你有安装类似 WWW 服务器软件 (一个名为 apache 的软件)，那么你的 Linux 系统通常就会主动的分析该软件的登录档。 		同时某些凭证与认证的网络资讯是否过期的问题，我们的 Linux 系统也会很亲和的帮你进行自动检查！</li> 		</ul>  		<p>其实你的系统会进行的例行性工作与你安装的软件多寡有关，如果你安装过多的软件，某些服务功能的软件都会附上分析工具， 		那么你的系统就会多出一些例行性工作罗！像鸟哥的主机还多加了很多自己撰写的分析工具，以及其他第三方协力软件的分析软件， 		嘿嘿！俺的 Linux 工作量可是非常大的哩！因为有这么多的工作需要进行，所以我们当然得要了解例行性工作的处理方式罗！</p> 	</div> </div> <hr />     </td>     <td style="width: 16px; font-size: 6px;">　</td></tr> <tr><td style="width: 16px; height: 16px;">　</td>     <td style="width: 866px; height: 16px;">　</td>     <td style="width: 16px; height: 16px;">　</td></tr> </tbody></table>  <div style="padding-top: 0px; text-align: center;"> <span style="font-size: 80%;"> 	<a href="http://vbird.dic.ksu.edu.tw/" target="_top" title="前往鸟哥的首页">http://linux.vbird.org</a> 	is designed by <a href="mailto:vbird@mail.vbird.idv.tw" title="联络鸟哥(我不要广告信！)">VBird</a> 		during 2001-2011. <a href="http://www.ksu.edu.tw/" target="_blank">ksu.edu</a></span>          ﻿<div id="apDiv4">       <p>本网页主要以Firefox配合解析度 1024x768 作为设计依据&nbsp;&nbsp;&nbsp;&nbsp; 鸟哥自由软件整合应用研究室</p></div></div> </div> </center> </body></html> 
+<?xml version="1.0" encoding="utf-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"    "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><title>第十六章、例行性工作排程<span class="text_head_en"> (crontab)</title><link href="../Styles/style.css" rel="stylesheet" type="text/css" /></head><body>
+
+<!-- 本文的档头部分 -->
+<div style="text-align: center;">
+    <a href="0430cron.php.html">
+    <span class="text_head0">第十六章、例行性工作排程<span class="text_head_en"> (crontab)</span></span></a><br>
+</div>
+    <div style="text-align: right;">
+        <span class="text_history">最近升级日期：2009/09/11</span>
+    </div>
+<!-- 本文的连结区部分 -->
+<div class="block1">
+<span class="text_h1">
+1. <a href="#whatiscron">什么是例行性工作排程</a><br>
+	<span class="text_h2">
+	　　1.1 <a href="#whatiscron_type">Linux 工作排程的种类： at, crontab</a><br>
+	　　1.2 <a href="#whatiscron_linux">Linux 上常见的例行性工作</a><br>
+	</span>
+</span></div>
+<!-- 本文的正式部分 -->
+<hr><a name="whatiscron"></a><img src="../images/logo.png" alt="大标题的图示" width="35" align="middle" height="34"><span class="text_h1">什么是例行性工作排程</span><br>
+<div class="block1">
+	<p>每个人或多或少都有一些约会或者是工作，<span class="text_import2">有的工作是例行性的</span>，
+	例如每年一次的加薪、每个月一次的工作报告、每周一次的午餐会报、每天需要的打卡等等；
+	<span class="text_import2">有的工作则是临时发生的</span>，例如刚好总公司有高官来访，需要你准备演讲器材等等！
+	用在生活上面，例如每年的爱人的生日、每天的起床时间等等、还有突发性的计算机大降价 (啊！真希望天天都有！) 
+	等等罗。</p>
+
+	<p>像上面这些例行性工作，通常你得要记录在行事历上面才能避免忘记！不过，由於我们常常在计算机前面的缘故，
+	如果计算机系统能够主动的通知我们的话，那么不就轻松多了！嘿嘿！这个时候 Linux 的例行性工作排程就可以派上场了！
+	在不考虑硬件与我们服务器的连结状态下，我们的 Linux 可以帮你提醒很多任务，例如：每一天早上 
+	8:00 钟要服务器连接上音响，并启动音乐来唤你起床；而中午
+	12:00 希望 Linux 可以发一封信到你的邮件信箱，提醒你可以去吃午餐了；
+	另外，在每年的你爱人生日的前一天，先发封信提醒你，以免忘记这么重要的一天。</p>
+
+	<p>那么 Linux 的例行性工作是如何进行排程的呢？所谓的排程就是将这些工作安排运行的流程之意！
+	咱们的 Linux 排程就是透过 crontab 与 at 这两个东西！这两个玩意儿有啥异同？就让我们来瞧瞧先！<br><br></p>
+
+	<hr><a name="whatiscron_type"></a><img src="../images/logo.png" alt="小标题的图示" width="24" align="middle" height="23"><span class="text_h2">Linux 工作排程的种类： 
+	at, cron</span><br>
+	<div class="block2">
+		<p>从上面的说明当中，我们可以很清楚的发现两种工作排程的方式：</p>
+
+		<ul>
+		<li>一种是例行性的，就是每隔一定的周期要来办的事项；</li>
+		<li>一种是突发性的，就是这次做完以后就没有的那一种 (计算机大降价...)</li>
+		</ul>
+
+		<p>那么在 Linux 底下如何达到这两个功能呢？那就得使用 at 与 crontab 这两个好东西罗！</p>
+
+		<ul>
+		<li><span class="text_import1">at</span> ：at 是个可以处理仅运行一次就结束排程的命令，不过要运行 at 时，
+		必须要有 atd 这个<a href="0560daemons.php.html">服务 (第十八章)</a> 的支持才行。在某些新版的 distributions 
+		中，atd 可能默认并没有启动，那么 at 这个命令就会失效呢！不过我们的 CentOS 默认是启动的！<br><br></li>
+
+		<li><span class="text_import1">crontab</span> ：crontab 这个命令所配置的工作将会循环的一直进行下去！
+		可循环的时间为分钟、小时、每周、每月或每年等。crontab 除了可以使用命令运行外，亦可编辑 /etc/crontab 来支持。
+		至於让 crontab 可以生效的服务则是 crond 这个服务喔！</li>
+		</ul>
+
+		<p>底下我们先来谈一谈 Linux 的系统到底在做什么事情，怎么有若干多的工作排程在进行呢？然后再回来谈一谈
+		at 与 crontab 这两个好东西！</p>
+	</div>
+
+	<hr><a name="whatiscron_linux"></a><img src="../images/logo.png" alt="小标题的图示" width="24" align="middle" height="23"><span class="text_h2">Linux 上常见的例行性工作</span><br>
+	<div class="block2">
+		<p>如果你曾经使用过 Linux 一阵子了，那么你大概会发现到 Linux 会主动的帮我们进行一些工作呢！
+		比方说自动的进行线上升级 (on-line update)、自动的进行 updatedb (<a href="http://vbird.dic.ksu.edu.tw/linux_basic/0220filemanager.php#locate">第七章谈到的 locate 命令</a>) 升级档名数据库、自动的作登录档分析
+		(所以 root 常常会收到标题为 logwatch 的信件) 等等。这是由於系统要正常运行的话，
+		某些在背景底下的工作必须要定时进行的缘故。基本上 Linux 系统常见的例行性任务有：</p>
+
+		<ul style="padding-left: 25px;">
+		<li><span class="text_import2">进行登录档的轮替 (log rotate)</span>：<br>
+		Linux 会主动的将系统所发生的各种资讯都记录下来，这就是<a href="0570syslog.php.html">登录档 (第十九章)</a>。
+		由於系统会一直记录登录资讯，所以登录档将会越来越大！我们知道大型文件不但占容量还会造成读写效能的困扰，
+		因此适时的将登录档数据挪一挪，让旧的数据与新的数据分别存放，则比较可以有效的记录登录资讯。这就是 log rotate 
+		的任务！这也是系统必要的例行任务；<br><br></li>
+
+		<li><span class="text_import2">登录档分析 logwatch 的任务</span>：<br>
+		如果系统发生了软件问题、硬件错误、资安问题等，绝大部分的错误资讯都会被记录到登录档中，
+		因此系统管理员的重要任务之一就是分析登录档。但你不可能手动透过 vim 等软件去检视登录档，因为数据太复杂了！
+		我们的 CentOS 提供了一只程序『 logwatch 』来主动分析登录资讯，所以你会发现，你的 root 老是会收到标题为 logwatch
+		的信件，那是正常的！你最好也能够看看该信件的内容喔！<br><br></li>
+
+		<li><span class="text_import2">创建 locate 的数据库</span>：<br>
+		在第七章我们谈到的 <a href="http://vbird.dic.ksu.edu.tw/linux_basic/0220filemanager.php#locate">locate</a> 命令时，
+		我们知道该命令是透过已经存在的档名数据库来进行系统上档名的查询。我们的档名数据库是放置到 /var/lib/mlocate/ 中。
+		问题是，这个数据库怎么会自动升级啊？嘿嘿！这就是系统的例行性工作所产生的效果啦！系统会主动的进行
+		updatedb 喔！<br><br></li>
+
+		<li><span class="text_import2">whatis 数据库的创建</span>：<br>
+		与 locate 数据库类似的，whatis 也是个数据库，这个 whatis 是与
+		<a href="http://vbird.dic.ksu.edu.tw/linux_basic/0160startlinux.php#manual_man">man page</a> 有关的一个查询命令，不过要使用 whatis 命令时，
+		必须要拥有 whatis 数据库，而这个数据库也是透过系统的例行性工作排程来自动运行的哩！<br><br></li>
+
+		<li><span class="text_import2">RPM 软件登录档的创建</span>：<br>
+		RPM (<a href="0520rpm_and_srpm.php.html">第二十三章</a>) 是一种软件管理的机制。由於系统可能会常常变更软件，
+		包括软件的新安装、非经常性升级等，都会造成软件档名的差异。为了方便未来追踪，系统也帮我们将档名作个排序的记录呢！
+		有时候系统也会透过排程来帮忙 RPM 数据库的重新建置喔！<br><br></li>
+
+		<li><span class="text_import2">移除缓存档</span>：<br>
+		某些软件在运行中会产生一些缓存档，但是当这个软件关闭时，这些缓存档可能并不会主动的被移除。
+		有些缓存档则有时间性，如果超过一段时间后，这个缓存档就没有效用了，此时移除这些缓存档就是一件重要的工作！
+		否则磁碟容量会被耗光。系统透过例行性工作排程运行名为 tmpwatch 的命令来删除这些缓存档呢！<br><br></li>
+
+		<li><span class="text_import2">与网络服务有关的分析行为</span>：<br>
+		如果你有安装类似 WWW 服务器软件 (一个名为 apache 的软件)，那么你的 Linux 系统通常就会主动的分析该软件的登录档。
+		同时某些凭证与认证的网络资讯是否过期的问题，我们的 Linux 系统也会很亲和的帮你进行自动检查！</li>
+		</ul>
+
+		<p>其实你的系统会进行的例行性工作与你安装的软件多寡有关，如果你安装过多的软件，某些服务功能的软件都会附上分析工具，
+		那么你的系统就会多出一些例行性工作罗！像鸟哥的主机还多加了很多自己撰写的分析工具，以及其他第三方协力软件的分析软件，
+		嘿嘿！俺的 Linux 工作量可是非常大的哩！因为有这么多的工作需要进行，所以我们当然得要了解例行性工作的处理方式罗！</p>
+	</div>
+</div>
+<hr />
+    </td>
+    <td style="width: 16px; font-size: 6px;">　</td></tr>
+<tr><td style="width: 16px; height: 16px;">　</td>
+    <td style="width: 866px; height: 16px;">　</td>
+    <td style="width: 16px; height: 16px;">　</body></html>

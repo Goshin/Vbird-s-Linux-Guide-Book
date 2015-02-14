@@ -1,1 +1,477 @@
-<html><head> 	<meta http-equiv="Content-Type" content="text/html; charset=utf8"> 	<meta name="Author" content="2011/04/18,lee"> 	<meta name="Description" content="介绍正规表示法的应用与相关技巧"> 	<title>鸟哥的 Linux 私房菜 -- 正规表示法 (regular expression, RE) 与文件格式化处理</title>     <script src="../script/SpryMenuBar.js" type="text/javascript"></script> 	<script src="../script/index.js" type="text/javascript"></script> 	<link href="../css/SpryMenuBarHorizontal.css" rel="stylesheet" type="text/css" />     <link href="../css/main.css" rel="stylesheet" type="text/css" />     </head><body style="margin: 0pt; padding: 0pt;" class="table"onload="MM_preloadImages('image/title_19.png','image/title_26.png','image/title_27.png','image/title_28.png','image/title_06.png','image/title_08.png','image/title_10.png','image/title_12.png')">   <!-- Copyright � 2005. Spidersoft Ltd --> <style> A.applink:hover {border: 2px dotted #DCE6F4;padding:2px;background-color:#ffff00;color:green;text-decoration:none} A.applink       {border: 2px dotted #DCE6F4;padding:2px;color:#2F5BFF;background:transparent;text-decoration:none} A.info          {color:#2F5BFF;background:transparent;text-decoration:none} A.info:hover    {color:green;background:transparent;text-decoration:underline} </style> <div style='BORDER: 1px solid #DCE6F4; MARGIN-TOP: 20px; MARGIN-BOTTOM: 20px; MARGIN-LEFT: 5px; MARGIN-RIGHT: 5px; PADDING: 5px; BACKGROUND-COLOR: #eef8ff;line-height:180%; COLOR: #000000; font-family: Arial; font-size: 8pt; width=100%; FILTER: progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr="#FFFFFFFF", EndColorStr="#F2F5FAFF");'> This page was saved using <a class="applink" href="http://www.spidersoft.com"><b>WebZIP 7.0.3.1030</b></a> <a class="applink" href="http://www.spidersoft.com"><b>offline browser</b></a>  (Unregistered) on  02/12/15 12:14:49.<br> <b>Address:</b> <a class="info" href="http://vbird.dic.ksu.edu.tw/linux_basic/0330regularex_4.php">http://vbird.dic.ksu.edu.tw/linux_basic/0330regularex_4.php</a><br> <b>Title:</b> 鸟哥的 Linux 私房菜 -- 正规表示法 (regular expression, RE) 与文件格式化处理 &nbsp;&bull;&nbsp; <b>Size:</b> 42804<br></div> <!-- /Copyright � 2005. Spidersoft Ltd -->    <center> <div id="apDiv5"> <div> <LINK REL="SHORTCUT ICON" HREF="favicon.ico"> <!-- ImageReady Slices (title3.ai) --> <table id="___01" width="898" height="81" border="0" align="center" cellpadding="0" cellspacing="0";> 	<tr> 		<td colspan="15"> 			<img src="image/title/title_01.png" width="900" height="1" alt=""></td> 	</tr> 	<tr> 		<td rowspan="4" bgcolor="#182448"><p><img src="http://linux.vbird.org/cgi-bin/Count.cgi?dd=C&ft=5&sh=T&md=8&pad=Y&df=vbird.dic.ksu.edu.tw.dat" width="93" align="left" title="計數器" /></p> 	    <p><font color="#FFFFFF" size="-1">since2012/04/23</font></p></td> 		<td rowspan="4" align="left" valign="top"><a href="http://vbird.dic.ksu.edu.tw/"><img src="image/title/title_03.png" alt="" width="263" height="79" border="0"></a></td> 		<td colspan="13"> 			<img src="image/title/title_04.png" alt="" width="535" height="9" border="0"></td> 	</tr> 	<tr> 		<td rowspan="3"> 			<img src="image/title/title_05.png" alt="" width="53" height="70" border="0"></td> 		<td colspan="2" align="left" valign="top"><a href="0110whatislinux.php.html" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image51','','image/title/title_06.png',1)"><img src="image/title/title3_06.png" name="Image51" width="106" height="25" border="0" id="Image51" alt=""/></a></td> 		<td rowspan="2"> 			<img src="image/title/title_07.png" alt="" width="27" height="37" border="0"></td> 		<td colspan="3" align="left" valign="top"><a href="http://vbird.dic.ksu.edu.tw/linux_server/0110network_basic.php" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image52','','image/title/title_08.png',1)"><img src="image/title/title3_08.png" name="Image52" width="107" height="25" border="0" id="Image52" alt=""/></a></td> 		<td rowspan="2"> 			<img src="image/title/title_09.png" alt="" width="37" height="37" border="0"></td> 		<td colspan="2" align="left" valign="top"><a href="http://vbird.dic.ksu.edu.tw/about.php" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image53','','image/title/title_10.png',1)"><img src="image/title/title3_10.png" name="Image53" width="75" height="25" border="0" id="Image53" alt=""/></a></td> 		<td rowspan="3"> 			<img src="image/title/title_11.png" alt="" width="35" height="70" border="0"></td> 		<td align="left" valign="top"><a href="mailto:vbird@mail.vbird.idv.tw" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image54','','image/title/title_12.png',1)"><img src="image/title/title3_12.png" name="Image54" width="74" height="25" border="0" id="Image54" alt=""/></a></td> 		<td rowspan="3"> 			<img src="image/title/title_13.png" alt="" width="21" height="70" border="0"></td> 	</tr> 	<tr> 		<td colspan="2"> 			<img src="image/title/title_14.png" alt="" width="106" height="12" border="0"></td> 		<td colspan="3"> 			<img src="image/title/title_15.png" alt="" width="107" height="12" border="0"></td> 		<td colspan="2"> 			<img src="image/title/title_16.png" width="75" height="12" alt=""></td> 		<td rowspan="2"> 			<img src="image/title/title_17.png" alt="" width="74" height="45" border="0"></td> 	</tr> 	<tr> 		<td> 			<img src="image/title/title_18.png" alt="" width="15" height="33" border="0"></td> 		<td colspan="3" align="left" valign="top"><ul id="MenuBar1" class="MenuBarHorizontal"> 	  <li><a href="linux_basic.php.html" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image44','','image/title/title_19.png',1)"><img src="image/title/title3_19.png" name="Image44" width="123" height="33" border="0" id="Image44" /></a> 			    <ul> 			      <li><a href="Mandrake9.0/mandrake9.0.php.html" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image46','','image/title/title_26.png',1)"><img src="image/title/title_23.png" name="Image46" width="120" height="26" border="0" id="Image46" alt="" /></a></li>                   <li><a href="fedora_4/fc4.php.html" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image47','','image/title/title_27.png',1)"><img src="image/title/title_24.png" name="Image47" width="120" height="26" border="0" id="Image47" alt="" /></a></li>                   <li><a href="linux_basic.php.html" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image48','','image/title/title_28.png',1)"><img src="image/title/title_25.png" name="Image48" width="120" height="26" border="0" id="Image48" alt="" /></a></li>                 </ul> 		      </li> 		</ul></td> 		<td> 			<img src="image/title/title_20.png" alt="" width="42" height="33" border="0"></td> 		<td colspan="3" align="left" valign="top"><ul id="MenuBar2" class="MenuBarHorizontal"> 	  <li><a href="http://vbird.dic.ksu.edu.tw/linux_server/" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image45','','image/title/title_21.png',1)"><img src="image/title/title3_21.png" name="Image45" width="125" height="33" border="0" id="Image45" /></a> 			    <ul> 			      <li><a href="http://vbird.dic.ksu.edu.tw/linux_server/linux_redhat9/redhat9.php" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image43','','image/title/title_26.png',1)"><img src="image/title/title_23.png" name="Image43" width="120" height="26" border="0" id="Image43" alt=""/></a></li> 			      <li><a href="http://vbird.dic.ksu.edu.tw/linux_server/centos4.php" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image49','','image/title/title_27.png',1)"><img src="image/title/title_24.png" name="Image49" width="120" height="26" border="0" id="Image49" alt="" /></a></li> 			      <li><a href="http://vbird.dic.ksu.edu.tw/linux_server/" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image50','','image/title/title_28.png',1)"><img src="image/title/title_25.png" name="Image50" width="120" height="26" border="0" id="Image50" alt="" /></a></li> 		        </ul> 		      </li> 		</ul></td> 		<td> 			<img src="image/title/title_22.png" alt="" width="47" height="33" border="0"></td> 	</tr> 	<tr> 		<td> 			<img src="image/title/Spacer.gif" width="101" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="263" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="53" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="15" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="91" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="27" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="5" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="42" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="60" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="37" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="28" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="47" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="35" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="74" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="22" height="1" alt=""></td> 	</tr> </table> <!-- End ImageReady Slices --> <script type="text/javascript"> <!-- var MenuBar1 = new Spry.Widget.MenuBar("MenuBar1", {imgDown:"SpryAssets/SpryMenuBarDownHover.gif", imgRight:"SpryAssets/SpryMenuBarRightHover.gif"}); var MenuBar2 = new Spry.Widget.MenuBar("MenuBar2", {imgDown:"SpryAssets/SpryMenuBarDownHover.gif", imgRight:"SpryAssets/SpryMenuBarRightHover.gif"}); //--> </script></div> <table summary="本文内容的排版" style="width: 898px;" border="0" cellpadding="0" cellspacing="0"> <tbody><tr><td style="width: 16px; height: 16px;">　</td>     <td style="width: 866px; height: 16px;">　</td>     <td style="width: 16px; height: 16px;">　</td></tr> <tr><td style="width: 16px; font-size: 6px;">　</td>     <td width="866">  <!-- 本文的档头部分 --> <div style="text-align: center;">     <a href="0330regularex.php.html">     <span class="text_head0">第十二章、正规表示法与文件格式化处理</span></a><br> </div>     <div style="text-align: right;">         <span class="text_history">最近升级日期：2009/08/26</span>     </div> <!-- 本文的连结区部分 --> <div class="block1"> <span class="text_h1"> 4. <a href="#docs">文件的格式化与相关处理</a><br> 	<span class="text_h2"> 	　　4.1 <a href="#printf">printf： 格式化列印</a><br> 	　　4.2 <a href="#awk">awk：好用的数据处理工具</a><br> 	　　4.3 <a href="#doc_compare">文件比对工具：</a>, <a href="#diff">diff</a>, <a href="#cmp">cmp</a>,  		<a href="#patch">patch</a><br> 	　　4.4 <a href="#pr">文件列印准备工具： pr</a><br> 	</span> </span></div> <!-- 本文的正式部分 --> <hr><a name="docs"></a><img src="../image/logo.png" alt="大标题的图示" width="35" align="middle" height="34"><span class="text_h1">文件的格式化与相关处理</span><br> <div class="block1"> 	<p>接下来让我们来将文件进行一些简单的编排吧！底下这些动作可以将你的信息进行排版的动作， 	不需要重新以 vim 去编辑，透过数据流重导向配合底下介绍的 printf 功能，以及 awk 命令， 	就可以让你的信息以你想要的模样来输出了！试看看吧！<br><br></p>  	<hr><a name="printf"></a><img src="../image/logo.png" alt="小标题的图示" width="24" align="middle" height="23"><span class="text_h2">格式化列印： printf</span><br> 	<div class="block1"> 		<p>在很多时候，我们可能需要将自己的数据给他格式化输出的！ 		举例来说，考试卷分数的输出，姓名与科目及分数之间，总是可以稍微作个比较漂亮的版面配置吧？ 		例如我想要输出底下的样式：</p>  <table class="term"><tbody><tr><td class="term"><pre>Name     Chinese   English   Math    Average DmTsai        80        60     92      77.33 VBird         75        55     80      70.00 Ken           60        90     70      73.33 </pre></td></tr></tbody></table>  		<p>上表的数据主要分成五个栏位，各个栏位之间可使用 tab 或空白键进行分隔。 		请将上表的数据转存成为 printf.txt 档名，等一下我们会利用这个文件来进行几个小练习的。 		因为每个栏位的原始数据长度其实并非是如此固定的 (Chinese 长度就是比 Name 要多)， 		而我就是想要如此表示出这些数据，此时，就得需要列印格式管理员 printf 的帮忙了！ 		printf 可以帮我们将数据输出的结果格式化，而且而支持一些特殊的字符～底下我们就来看看！</p>  <table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">printf '列印格式' 实际内容</span> <span class="term_say">选项与参数： 关於格式方面的几个特殊样式：        \a    警告声音输出        \b    倒退键(backspace)        \f    清除萤幕 (form feed)        \n    输出新的一行        \r    亦即 Enter 按键        \t    水平的 [tab] 按键        \v    垂直的 [tab] 按键        \xNN  NN 为两位数的数字，可以转换数字成为字节。 关於 C 程序语言内，常见的变量格式        %ns   那个 n 是数字， s 代表 string ，亦即多少个字节；        %ni   那个 n 是数字， i 代表 integer ，亦即多少整数码数；        %N.nf 那个 n 与 N 都是数字， f 代表 floating (浮点)，如果有小数码数，              假设我共要十个位数，但小数点有两位，即为 %10.2f 罗！</span> </pre></td></tr></tbody></table>  		<p>接下来我们来进行几个常见的练习。假设所有的数据都是一般文字 (这也是最常见的状态)，因此最常用来分隔数据的符号就是  		[Tab] 啦！因为 [Tab] 按键可以将数据作个整齐的排列！那么如何利用 printf 呢？参考底下这个范例：</p>  <table class="term"><tbody><tr><td class="term"><pre><span class="term_hd">范例一：将刚刚上头数据的文件 (printf.txt) 内容仅列出姓名与成绩：(用 [tab] 分隔)</span> [root@www ~]# <span class="term_command">printf '%s\t %s\t %s\t %s\t %s\t \n' $(cat printf.txt)</span> Name     Chinese         English         Math    Average DmTsai   80      60      92      77.33 VBird    75      55      80      70.00 Ken      60      90      70      73.33 </pre></td></tr></tbody></table>  		<p>由於 printf 并不是管线命令，因此我们得要透过类似上面的功能，将文件内容先提出来给 printf 作为后续的数据才行。 		如上所示，我们将每个数据都以 [tab] 作为分隔，但是由於 Chinese 长度太长，导致 English 中间多了一个 [tab]  		来将数据排列整齐！啊～结果就看到数据对齐结果的差异了！</p>  		<p>另外，在 printf 后续的那一段格式中，%s 代表一个不固定长度的字串，而字串与字串中间就以 \t 这个 [tab] 		分隔符号来处理！你要记得的是，由於 \t 与 %s 中间还有空格，因此每个字串间会有一个 [tab] 与一个空白键的分隔喔！</p>  		<p>既然每个栏位的长度不固定会造成上述的困扰，那我将每个栏位固定就好啦！没错没错！这样想非常好！ 		所以我们就将数据给他进行固定栏位长度的设计吧！</p>  <table class="term"><tbody><tr><td class="term"><pre><span class="term_hd">范例二：将上述数据关於第二行以后，分别以字串、整数、小数点来显示：</span> [root@www ~]# <span class="term_command">printf '%10s %5i %5i %5i %8.2f \n' $(cat printf.txt |\</span> &gt; <span class="term_command">grep -v Name)</span>     DmTsai    80    60    92    77.33      VBird    75    55    80    70.00        Ken    60    90    70    73.33 </pre></td></tr></tbody></table>  		<p>上面这一串格式想必您看得很辛苦！没关系！一个一个来解释！上面的格式共分为五个栏位， %10s  		代表的是一个长度为 10 个字节的字串栏位，%5i 代表的是长度为 5 个字节的数字栏位，至於那个 %8.2f  		则代表长度为 8 个字节的具有小数点的栏位，其中小数点有两个字节宽度。我们可以使用底下的说明来介绍 %8.2f 的意义：</p>  		<blockquote class="fontwidth">字节宽度： 12345678<br>%8.2f意义：00000.00</blockquote>  		<p>如上所述，全部的宽度仅有 8 个字节，整数部分占有 5 个字节，小数点本身 (.) 占一位，小数点下的位数则有两位。 		这种格式经常使用於数值程序的设计中！这样了解乎？自己试看看如果要将小数点位数变成 1 位又该如何处理？</p>  		<p>printf 除了可以格式化处理之外，他还可以依据 ASCII 的数字与图形对应来显示数据喔(<a href="#ps3">注3</a>)！ 		举例来说 16 进位的 45 可以得到什么 ASCII 的显示图 (其实是字节啦)？</p>  <table class="term"><tbody><tr><td class="term"><pre><span class="term_hd">范例三：列出 16 进位数值 45 代表的字节为何？</span> [root@www ~]# <span class="term_command">printf '\x45\n'</span> E <span class="term_say"># 这东西也很好玩～他可以将数值转换成为字节，如果你会写 script 的话， # 可以自行测试一下，由 20~80 之间的数值代表的字节是啥喔！ ^_^</span> </pre></td></tr></tbody></table>  		<p>printf 的使用相当的广泛喔！包括等一下后面会提到的 awk 以及在 C 程序语言当中使用的萤幕输出， 		都是利用 printf 呢！鸟哥这里也只是列出一些可能会用到的格式而已，有兴趣的话，可以自行多作一些测试与练习喔！ ^_^</p>  		<div style="padding: 10pt 0pt;" align="right"><table width="90%"><tbody><tr><td><b>Tips:</b><br><span style="color: rgb(0, 144, 0);"><font size="-1">		列印格式化这个 printf 命令，乍看之下好像也没有什么很重要的～ 		不过，如果你需要自行撰写一些软件，需要将一些数据在萤幕上头漂漂亮亮的输出的话， 		那么 printf 可也是一个很棒的工具喔！ 		</font></span></td><td><img src="0330regularex_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div>	</div>  	<hr><a name="awk"></a><img src="../image/logo.png" alt="小标题的图示" width="24" align="middle" height="23"><span class="text_h2">awk：好用的数据处理工具</span><br> 	<div class="block1"> 		<p>awk 也是一个非常棒的数据处理工具！相较於 sed 常常作用於一整个行的处理， awk  		则比较倾向於一行当中分成数个『栏位』来处理。因此，awk 相当的适合处理小型的数据数据处理呢！awk 		通常运行的模式是这样的：</p>  <table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">awk '条件类型1{动作1} 条件类型2{动作2} ...' filename</span> </pre></td></tr></tbody></table>  		<p>awk 后面接两个单引号并加上大括号 {} 来配置想要对数据进行的处理动作。 		awk 可以处理后续接的文件，也可以读取来自前个命令的 standard output 。 		但如前面说的， <span class="text_import2">awk 主要是处理『每一行的栏位内的数据』，而默认的『栏位的分隔符号为 		"空白键" 或 "[tab]键" 』</span>！举例来说，我们用 last 可以将登陆者的数据取出来，结果如下所示：</p>  <table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">last -n 5</span> <span class="term_note">&lt;==仅取出前五行</span> root     pts/1   192.168.1.100  Tue Feb 10 11:21   still logged in root     pts/1   192.168.1.100  Tue Feb 10 00:46 - 02:28  (01:41) root     pts/1   192.168.1.100  Mon Feb  9 11:41 - 18:30  (06:48) dmtsai   pts/1   192.168.1.100  Mon Feb  9 11:41 - 11:41  (00:00) root     tty1                   Fri Sep  5 14:09 - 14:10  (00:01) </pre></td></tr></tbody></table>  		<p>若我想要取出帐号与登陆者的 IP ，且帐号与 IP 之间以 [tab] 隔开，则会变成这样：</p>  <table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">last -n 5 | awk '{print $1 "\t" $3}'</span> root    192.168.1.100 root    192.168.1.100 root    192.168.1.100 dmtsai  192.168.1.100 root    Fri </pre></td></tr></tbody></table>  		<p>上表是 awk 最常使用的动作！透过 print 的功能将栏位数据列出来！栏位的分隔则以空白键或 [tab] 按键来隔开。 		因为不论哪一行我都要处理，因此，就不需要有 "条件类型" 的限制！我所想要的是第一栏以及第三栏， 		但是，第五行的内容怪怪的～这是因为数据格式的问题啊！所以罗～使用 awk 		的时候，请先确认一下你的数据当中，如果是连续性的数据，请不要有空格或 [tab]  		在内，否则，就会像这个例子这样，会发生误判喔！</p>  		<p>另外，由上面这个例子你也会知道，在<span class="text_import2">每一行的每个栏位都是有变量名称的，那就是 $1, $2...  		等变量名称</span>。以上面的例子来说， root 是 $1 ，因为他是第一栏嘛！至於 192.168.1.100 是第三栏， 		所以他就是 $3 啦！后面以此类推～呵呵！还有个变量喔！那就是 $0 ，<span class="text_import2">$0  		代表『一整列数据』的意思～</span>以上面的例子来说，第一行的 $0 代表的就是『root .... 』那一行啊！ 		由此可知，刚刚上面五行当中，整个 awk 的处理流程是：</p>  		<ol class="text_import2"> 		<li>读入第一行，并将第一行的数据填入 $0, $1, $2.... 等变量当中；</li> 		<li>依据 "条件类型" 的限制，判断是否需要进行后面的 "动作"；</li> 		<li>做完所有的动作与条件类型；</li> 		<li>若还有后续的『行』的数据，则重复上面 1~3 的步骤，直到所有的数据都读完为止。</li> 		</ol>  		<p>经过这样的步骤，你会晓得， awk 是『<span class="text_import2">以行为一次处理的单位</span>』， 		而『<span class="text_import2">以栏位为最小的处理单位</span>』。好了，那么 awk  		怎么知道我到底这个数据有几行？有几栏呢？这就需要 awk 的内建变量的帮忙啦～</p>  <table bgcolor="lightyellow" border="1" cellpadding="3" cellspacing="0" width="75%"> <tbody><tr align="center" bgcolor="#182448"><td><font color="#FFFFFF">变量名称</font></td><td><font color="#FFFFFF">代表意义</font></td></tr> <tr><td align="center">NF</td><td>每一行 ($0) 拥有的栏位总数</td></tr> <tr><td align="center">NR</td><td>目前 awk 所处理的是『第几行』数据</td></tr> <tr><td align="center">FS</td><td>目前的分隔字节，默认是空白键</td></tr> </tbody></table><br>  		<p>我们继续以上面 last -n 5 的例子来做说明，如果我想要：</p>  		<ul> 		<li>列出每一行的帐号(就是 $1)；</li> 		<li>列出目前处理的行数(就是 awk 内的 NR 变量)</li> 		<li>并且说明，该行有多少栏位(就是 awk 内的 NF 变量)</li></ul>  		<p>则可以这样：</p>  		<div style="padding: 10pt 0pt;" align="right"><table width="90%"><tbody><tr><td><b>Tips:</b><br><span style="color: rgb(0, 144, 0);"><font size="-1">		要注意喔，awk 后续的所有动作是以单引号『 ' 』括住的，由於单引号与双引号都必须是成对的， 		所以， awk 的格式内容如果想要以 print 列印时，记得非变量的文字部分，包含上一小节  		<a href="#printf">printf</a> 提到的格式中，都需要使用双引号来定义出来喔！因为单引号已经是 awk 的命令固定用法了！ 		</font></span></td><td><img src="0330regularex_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div> <table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">last -n 5| awk '{print $1 "\t lines: " NR "\t columns: " NF}'</span> root     lines: 1        columns: 10 root     lines: 2        columns: 10 root     lines: 3        columns: 10 dmtsai   lines: 4        columns: 10 root     lines: 5        columns: 9 <span class="term_say"># 注意喔，在 awk 内的 NR, NF 等变量要用大写，且不需要有钱字号 $ 啦！</span> </pre></td></tr></tbody></table>  		<p>这样可以了解 NR 与 NF 的差别了吧？好了，底下来谈一谈所谓的 "条件类型" 了吧！<br><br></p>  		<hr><ul class="list1"><li class="text_import1">awk 的逻辑运算字节</li></ul>  		<p>既然有需要用到 "条件" 的类别，自然就需要一些逻辑运算罗～例如底下这些：</p>  <table bgcolor="lightyellow" border="1" cellpadding="3" cellspacing="0" width="75%"> <tbody><tr align="center" bgcolor="#182448"><td><font color="#FFFFFF">运算单元</font></td><td><font color="#FFFFFF">代表意义</font></td></tr> <tr align="center"><td><font face="'细明体'">&gt;</font></td><td>大於</td></tr> <tr align="center"><td><font face="'细明体'">&lt;</font></td><td>小於</td></tr> <tr align="center"><td><font face="'细明体'">&gt;=</font></td><td>大於或等於</td></tr> <tr align="center"><td><font face="'细明体'">&lt;=</font></td><td>小於或等於</td></tr> <tr align="center"><td><font face="'细明体'">==</font></td><td>等於</td></tr> <tr align="center"><td><font face="'细明体'">!=</font></td><td>不等於</td></tr> </tbody></table>  		<p>值得注意的是那个『 <font face="'细明体'">==</font> 』的符号，因为：</p>  		<ul> 		<li>逻辑运算上面亦即所谓的大於、小於、等於等判断式上面，习惯上是以『 <font face="'细明体'">==</font> 』来表示；</li> 		<li>如果是直接给予一个值，例如变量配置时，就直接使用 = 而已。</li> 		</ul>  		<p>好了，我们实际来运用一下逻辑判断吧！举例来说，在 /etc/passwd 当中是以冒号 ":" 来作为栏位的分隔， 		该文件中第一栏位为帐号，第三栏位则是 UID。那假设我要查阅，第三栏小於 10 以下的数据，并且仅列出帐号与第三栏， 		那么可以这样做：</p>  <table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">cat /etc/passwd | \</span> &gt; <span class="term_command">awk '{FS=":"} $3 &lt; 10 {print $1 "\t " $3}'</span> root:x:0:0:root:/root:/bin/bash bin      1 daemon   2 <span class="term_say">....(以下省略)....</span> </pre></td></tr></tbody></table>  		<p>有趣吧！不过，怎么第一行没有正确的显示出来呢？这是因为我们读入第一行的时候，那些变量 $1,  		$2... 默认还是以空白键为分隔的，所以虽然我们定义了 FS=":" 了， 		但是却仅能在第二行后才开始生效。那么怎么办呢？我们可以预先配置 awk 的变量啊！ 		利用 BEGIN 这个关键字喔！这样做：</p>  <table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">cat /etc/passwd | \</span> &gt; <span class="term_command">awk 'BEGIN {FS=":"} $3 &lt; 10 {print $1 "\t " $3}'</span> root     0 bin      1 daemon   2 <span class="term_say">......(以下省略)......</span> </pre></td></tr></tbody></table>  		<p>很有趣吧！而除了 BEGIN 之外，我们还有 END 呢！另外，如果要用 awk 来进行『计算功能』呢？以底下的例子来看， 		假设我有一个薪资数据表档名为 pay.txt ，内容是这样的：</p>  <table class="term"><tbody><tr><td class="term"><pre>Name    1st     2nd     3th VBird   23000   24000   25000 DMTsai  21000   20000   23000 Bird2   43000   42000   41000 </pre></td></tr></tbody></table>  		<p>如何帮我计算每个人的总额呢？而且我还想要格式化输出喔！我们可以这样考虑：</p>  		<ul> 		<li>第一行只是说明，所以第一行不要进行加总 (NR==1 时处理)；</li> 		<li>第二行以后就会有加总的情况出现 (NR&gt;=2 以后处理)</li> 		</ul>  <table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">cat pay.txt | \</span> &gt; <span class="term_command">awk 'NR==1{printf "%10s %10s %10s %10s %10s\n",$1,$2,$3,$4,"Total" } NR&gt;=2{total = $2 + $3 + $4 printf "%10s %10d %10d %10d %10.2f\n", $1, $2, $3, $4, total}'</span>       Name        1st        2nd        3th      Total      VBird      23000      24000      25000   72000.00     DMTsai      21000      20000      23000   64000.00      Bird2      43000      42000      41000  126000.00 </pre></td></tr></tbody></table>  		<p>上面的例子有几个重要事项应该要先说明的：</p>  		<ul class="text_import2"> 		<li>awk 的命令间隔：所有 awk 的动作，亦即在 {} 内的动作，如果有需要多个命令辅助时，可利用分号『;』间隔， 			或者直接以 [Enter] 按键来隔开每个命令，例如上面的范例中，鸟哥共按了三次 [enter] 喔！</li> 		<li>逻辑运算当中，如果是『等於』的情况，则务必使用两个等号『==』！</li> 		<li>格式化输出时，在 printf 的格式配置当中，务必加上 \n ，才能进行分行！</li> 		<li>与 bash shell 的变量不同，在 awk 当中，变量可以直接使用，不需加上 $ 符号。</li> 		</ul>  		<p>利用 awk 这个玩意儿，就可以帮我们处理很多日常工作了呢！真是好用的很～ 		此外， awk 的输出格式当中，常常会以 <a href="#printf">printf</a> 来辅助，所以， 		最好你对 printf 也稍微熟悉一下比较好啦！另外， awk 的动作内 {} 也是支持 if (条件) 的喔！ 		举例来说，上面的命令可以修订成为这样：</p>  <table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">cat pay.txt | \</span> &gt; <span class="term_command">awk '{if(NR==1) printf "%10s %10s %10s %10s %10s\n",$1,$2,$3,$4,"Total"} NR&gt;=2{total = $2 + $3 + $4 printf "%10s %10d %10d %10d %10.2f\n", $1, $2, $3, $4, total}'</span> </pre></td></tr></tbody></table>  		<p>你可以仔细的比对一下上面两个输入有啥不同～从中去了解两种语法吧！我个人是比较倾向於使用第一种语法， 		因为会比较有统一性啊！ ^_^</p>  		<p>除此之外， awk 还可以帮我们进行回圈计算喔！真是相当的好用！不过，那属於比较进阶的单独课程了， 		我们这里就不再多加介绍。如果你有兴趣的话，请务必参考延伸阅读中的相关连结喔 (<a href="#ps4">注4</a>)。</p> 	</div>  	<hr><a name="doc_compare"></a><img src="../image/logo.png" alt="小标题的图示" width="24" align="middle" height="23"><span class="text_h2">文件比对工具</span><br> 	<div class="block2"> 		<p>什么时候会用到文件的比对啊？通常是『<span class="text_import2">同一个套装软件的不同版本之间，比较配置档与原始档的差异</span>』。 		很多时候所谓的文件比对，通常是用在 ASCII 纯文字档的比对上的！那么比对文件的命令有哪些？最常见的就是 diff 罗！ 		另外，除了 diff 比对之外，我们还可以藉由 cmp 来比对非纯文字档！同时，也能够藉由 diff 创建的分析档， 		以处理补丁 (patch) 功能的文件呢！就来玩玩先！<br><br></p>  		<a name="diff"></a> 		<hr><ul class="list1"><li class="text_import1">diff</li></ul>  		<p>diff 就是用在比对两个文件之间的差异的，并且是以行为单位来比对的！一般是用在 ASCII 纯文字档的比对上。 		由於是以行为比对的单位，因此<span class="text_import2"> diff 通常是用在同一的文件(或软件)的新旧版本差异上！</span> 		举例来说，假如我们要将 /etc/passwd 处理成为一个新的版本，处理方式为： 		将第四行删除，第六行则取代成为『no six line』，新的文件放置到 /tmp/test 里面，那么应该怎么做？</p>  <table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">mkdir -p /tmp/test</span> <span class="term_note">&lt;==先创建测试用的目录</span> [root@www ~]# <span class="term_command">cd /tmp/test</span> [root@www test]# <span class="term_command">cp /etc/passwd passwd.old</span> [root@www test]# <span class="term_command">cat /etc/passwd | \</span> &gt; <span class="term_command">sed -e '4d' -e '6c no six line' &gt; passwd.new</span> <span class="term_say"># 注意一下， sed 后面如果要接超过两个以上的动作时，每个动作前面得加 -e 才行！ # 透过这个动作，在 /tmp/test  里面便有新旧的 passwd 文件存在了！</span> </pre></td></tr></tbody></table>  		<p>接下来讨论一下关於 diff 的用法吧！</p>  <table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">diff [-bBi] from-file to-file</span> <span class="term_say">选项与参数： from-file ：一个档名，作为原始比对文件的档名； to-file   ：一个档名，作为目的比对文件的档名； 注意，from-file 或 to-file 可以 - 取代，那个 - 代表『Standard input』之意。  -b  ：忽略一行当中，仅有多个空白的差异(例如 "about me" 与 "about     me" 视为相同 -B  ：忽略空白行的差异。 -i  ：忽略大小写的不同。</span>  <span class="term_hd">范例一：比对 passwd.old 与 passwd.new 的差异：</span> [root@www test]# <span class="term_command">diff passwd.old passwd.new</span> 4d3    <span class="term_note">&lt;==左边第四行被删除 (d) 掉了，基准是右边的第三行</span> &lt; adm:x:3:4:adm:/var/adm:/sbin/nologin  <span class="term_note">&lt;==这边列出左边(&lt;)文件被删除的那一行内容</span> 6c5    <span class="term_note">&lt;==左边文件的第六行被取代 (c) 成右边文件的第五行</span> &lt; sync:x:5:0:sync:/sbin:/bin/sync  <span class="term_note">&lt;==左边(&lt;)文件第六行内容</span> --- &gt; no six line                      <span class="term_note">&lt;==右边(&gt;)文件第五行内容</span> <span class="term_say"># 很聪明吧！用 diff 就把我们刚刚的处理给比对完毕了！</span> </pre></td></tr></tbody></table>  		<p>用 diff 比对文件真的是很简单喔！不过，你不要用 diff 去比对两个完全不相干的文件，因为比不出个啥咚咚！ 		另外， diff 也可以比对整个目录下的差异喔！举例来说，我们想要了解一下不同的启动运行等级 (runlevel)  		内容有啥不同？假设你已经知道运行等级 3 与 5 的启动脚本分别放置到 /etc/rc3.d 及 /etc/rc5.d ， 		则我们可以将两个目录比对一下：</p>  <table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">diff /etc/rc3.d/ /etc/rc5.d/</span> Only in /etc/rc3.d/: K99readahead_later Only in /etc/rc5.d/: S96readahead_later </pre></td></tr></tbody></table>  		<p>我们的 diff 很聪明吧！还可以比对不同目录下的相同档名的内容，这样真的很方便喔～<br><br></p>  		<a name="cmp"></a> 		<hr><ul class="list1"><li class="text_import1">cmp</li></ul>  		<p>相对於 diff 的广泛用途， cmp 似乎就用的没有这么多了～ cmp 主要也是在比对两个文件，他主要利用『位组』单位去比对， 		因此，当然也可以比对 binary file 罗～(还是要再提醒喔， diff 主要是以『行』为单位比对， 		cmp 则是以『位组』为单位去比对，这并不相同！)</p>  <table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">cmp [-s] file1 file2</span> <span class="term_say">选项与参数： -s  ：将所有的不同点的位组处都列出来。因为 cmp 默认仅会输出第一个发现的不同点。</span>  <span class="term_hd">范例一：用 cmp 比较一下 passwd.old 及 passwd.new</span> [root@www test]# <span class="term_command">cmp passwd.old passwd.new</span> passwd.old passwd.new differ: byte 106, line 4 </pre></td></tr></tbody></table>  		<p>看到了吗？第一个发现的不同点在第四行，而且位组数是在第 106 个位组处！这个 cmp 也可以用来比对 binary  		啦！ ^_^<br><br></p>  		<a name="patch"></a> 		<hr><ul class="list1"><li class="text_import1">patch</li></ul>  		<p>patch 这个命令与 diff 可是有密不可分的关系啊！我们前面提到，diff 可以用来分辨两个版本之间的差异， 		举例来说，刚刚我们所创建的 passwd.old 及 passwd.new 之间就是两个不同版本的文件。 		那么，如果要『升级』呢？就是『<span class="text_import2">将旧的文件升级成为新的文件</span>』时，应该要怎么做呢？ 		其实也不难啦！就是『先比较先旧版本的差异，并将差异档制作成为补丁档，再由补丁档升级旧文件』即可。 		举例来说，我们可以这样做测试：</p>  <table class="term"><tbody><tr><td class="term"><pre><span class="term_hd">范例一：以 /tmp/test 内的 passwd.old 与 passwd.new  制作补丁文件</span> [root@www test]# <span class="term_command">diff -Naur passwd.old passwd.new &gt; passwd.patch</span> [root@www test]# <span class="term_command">cat passwd.patch</span> --- passwd.old  2009-02-10 14:29:09.000000000 +0800 <span class="term_note">&lt;==新旧文件的资讯</span> +++ passwd.new  2009-02-10 14:29:18.000000000 +0800 @@ -1,9 +1,8 @@   <span class="term_note">&lt;==新旧文件要修改数据的界定范围，旧档在 1-9 行，新档在 1-8 行</span>  root:x:0:0:root:/root:/bin/bash  bin:x:1:1:bin:/bin:/sbin/nologin  daemon:x:2:2:daemon:/sbin:/sbin/nologin -adm:x:3:4:adm:/var/adm:/sbin/nologin      <span class="term_note">&lt;==左侧文件删除</span>  lp:x:4:7:lp:/var/spool/lpd:/sbin/nologin -sync:x:5:0:sync:/sbin:/bin/sync           <span class="term_note">&lt;==左侧文件删除</span> +no six line                               <span class="term_note">&lt;==右侧新档加入</span>  shutdown:x:6:0:shutdown:/sbin:/sbin/shutdown  halt:x:7:0:halt:/sbin:/sbin/halt  mail:x:8:12:mail:/var/spool/mail:/sbin/nologin </pre></td></tr></tbody></table>  		<p>一般来说，使用 diff 制作出来的比较文件通常使用扩展名为 .patch 罗。至於内容就如同上面介绍的样子。 		基本上就是以行为单位，看看哪边有一样与不一样的，找到一样的地方，然后将不一样的地方取代掉！ 		以上面表格为例，新文件看到 - 会删除，看到 + 会加入！好了，那么如何将旧的文件升级成为新的内容呢？ 		就是将 passwd.old 改成与 passwd.new 相同！可以这样做：</p>  <table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">patch -pN &lt; patch_file   </span> <span class="term_note">&lt;==升级</span> [root@www ~]# <span class="term_command">patch -R -pN &lt; patch_file</span> <span class="term_note">&lt;==还原</span> <span class="term_say">选项与参数： -p  ：后面可以接『取消几层目录』的意思。 -R  ：代表还原，将新的文件还原成原来旧的版本。</span>  <span class="term_hd">范例二：将刚刚制作出来的 patch file 用来升级旧版数据</span> [root@www test]# <span class="term_command">patch -p0 &lt; passwd.patch</span> patching file passwd.old [root@www test]# <span class="term_command">ll passwd*</span> -rw-r--r-- 1 root root <span class="term_write">1929</span> Feb 10 14:29 passwd.new -rw-r--r-- 1 root root <span class="term_write">1929</span> Feb 10 15:12 passwd.old <span class="term_note">&lt;==文件一模一样！</span>  <span class="term_hd">范例三：恢复旧文件的内容</span> [root@www test]# <span class="term_command">patch -R -p0 &lt; passwd.patch</span> [root@www test]# <span class="term_command">ll passwd*</span> -rw-r--r-- 1 root root 1929 Feb 10 14:29 passwd.new -rw-r--r-- 1 root root <span class="term_write">1986</span> Feb 10 15:18 passwd.old <span class="term_say"># 文件就这样恢复成为旧版本罗</span> </pre></td></tr></tbody></table>  		<p>为什么这里会使用 -p0 呢？因为我们在比对新旧版的数据时是在同一个目录下， 		因此不需要减去目录啦！如果是使用整体目录比对 (diff 旧目录 新目录) 时， 		就得要依据创建 patch 文件所在目录来进行目录的删减罗！</p>  		<p>更详细的 patch 用法我们会在后续的第五篇的<a href="http://vbird.dic.ksu.edu.tw/linux_basic/0520source_code_and_tarball.php#tarball_patch">原始码编译 (第二十二章)</a>再跟大家介绍， 		这里仅是介绍给你，我们可以利用 diff 来比对两个文件之间的差异， 		更可进一步利用这个功能来制作修补文件 (patch file) ，让大家更容易进行比对与升级呢！很不赖吧！ ^_^</p> 	</div>  	<hr><a name="pr"></a><img src="../image/logo.png" alt="小标题的图示" width="24" align="middle" height="23"><span class="text_h2">文件列印准备： pr</span><br> 	<div class="block2"> 		<p>如果你曾经使用过一些图形介面的文书处理软件的话，那么很容易发现，当我们在列印的时候， 		可以同时选择与配置每一页列印时的标头吧！也可以配置页码呢！那么，如果我是在 Linux 底下列印纯文字档呢 		可不可以具有标题啊？可不可以加入页码啊？呵呵！当然可以啊！使用 pr 就能够达到这个功能了。不过，  		pr 的参数实在太多了，鸟哥也说不完，一般来说，鸟哥都仅使用最简单的方式来处理而已。举例来说，如果想要列印  		/etc/man.config 呢？</p>  <table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">pr /etc/man.config</span>   <span class="term_write">2007-01-06 18:24                 /etc/man.config                  Page 1</span>   # # Generated automatically from man.conf.in by the # configure script. <span class="term_say">.....以下省略......</span> </pre></td></tr></tbody></table>  		<p>上面特殊字体那一行呢，其实就是使用 pr 处理后所造成的标题啦！标题中会有『文件时间』、『文件档名』及『页码』三大项目。 		更多的 pr 使用，请参考 pr 的说明啊！ ^_^</p> 	</div> </div> <hr />     </td>     <td style="width: 16px; font-size: 6px;">　</td></tr> <tr><td style="width: 16px; height: 16px;">　</td>     <td style="width: 866px; height: 16px;">　</td>     <td style="width: 16px; height: 16px;">　</td></tr> </tbody></table>  <div style="padding-top: 0px; text-align: center;"> <span style="font-size: 80%;"> 	<a href="http://vbird.dic.ksu.edu.tw/" target="_top" title="前往鸟哥的首页">http://linux.vbird.org</a> 	is designed by <a href="mailto:vbird@mail.vbird.idv.tw" title="联络鸟哥(我不要广告信！)">VBird</a> 		during 2001-2011. <a href="http://www.ksu.edu.tw/" target="_blank">ksu.edu</a></span>          ﻿<div id="apDiv4">       <p>本网页主要以Firefox配合解析度 1024x768 作为设计依据&nbsp;&nbsp;&nbsp;&nbsp; 鸟哥自由软件整合应用研究室</p></div></div> </div> </center> </body></html> 
+<?xml version="1.0" encoding="utf-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"    "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><title>第十二章、正规表示法与文件格式化处理</title><link href="../Styles/style.css" rel="stylesheet" type="text/css" /></head><body>
+
+<!-- 本文的档头部分 -->
+<div style="text-align: center;">
+    <a href="0330regularex.php.html">
+    <span class="text_head0">第十二章、正规表示法与文件格式化处理</span></a><br>
+</div>
+    <div style="text-align: right;">
+        <span class="text_history">最近升级日期：2009/08/26</span>
+    </div>
+<!-- 本文的连结区部分 -->
+<div class="block1">
+<span class="text_h1">
+4. <a href="#docs">文件的格式化与相关处理</a><br>
+	<span class="text_h2">
+	　　4.1 <a href="#printf">printf： 格式化列印</a><br>
+	　　4.2 <a href="#awk">awk：好用的数据处理工具</a><br>
+	　　4.3 <a href="#doc_compare">文件比对工具：</a>, <a href="#diff">diff</a>, <a href="#cmp">cmp</a>, 
+		<a href="#patch">patch</a><br>
+	　　4.4 <a href="#pr">文件列印准备工具： pr</a><br>
+	</span>
+</span></div>
+<!-- 本文的正式部分 -->
+<hr><a name="docs"></a><img src="../images/logo.png" alt="大标题的图示" width="35" align="middle" height="34"><span class="text_h1">文件的格式化与相关处理</span><br>
+<div class="block1">
+	<p>接下来让我们来将文件进行一些简单的编排吧！底下这些动作可以将你的信息进行排版的动作，
+	不需要重新以 vim 去编辑，透过数据流重导向配合底下介绍的 printf 功能，以及 awk 命令，
+	就可以让你的信息以你想要的模样来输出了！试看看吧！<br><br></p>
+
+	<hr><a name="printf"></a><img src="../images/logo.png" alt="小标题的图示" width="24" align="middle" height="23"><span class="text_h2">格式化列印： printf</span><br>
+	<div class="block1">
+		<p>在很多时候，我们可能需要将自己的数据给他格式化输出的！
+		举例来说，考试卷分数的输出，姓名与科目及分数之间，总是可以稍微作个比较漂亮的版面配置吧？
+		例如我想要输出底下的样式：</p>
+
+<table class="term"><tbody><tr><td class="term"><pre>Name     Chinese   English   Math    Average
+DmTsai        80        60     92      77.33
+VBird         75        55     80      70.00
+Ken           60        90     70      73.33
+</pre></td></tr></tbody></table>
+
+		<p>上表的数据主要分成五个栏位，各个栏位之间可使用 tab 或空白键进行分隔。
+		请将上表的数据转存成为 printf.txt 档名，等一下我们会利用这个文件来进行几个小练习的。
+		因为每个栏位的原始数据长度其实并非是如此固定的 (Chinese 长度就是比 Name 要多)，
+		而我就是想要如此表示出这些数据，此时，就得需要列印格式管理员 printf 的帮忙了！
+		printf 可以帮我们将数据输出的结果格式化，而且而支持一些特殊的字符～底下我们就来看看！</p>
+
+<table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">printf '列印格式' 实际内容</span>
+<span class="term_say">选项与参数：
+关於格式方面的几个特殊样式：
+       \a    警告声音输出
+       \b    倒退键(backspace)
+       \f    清除萤幕 (form feed)
+       \n    输出新的一行
+       \r    亦即 Enter 按键
+       \t    水平的 [tab] 按键
+       \v    垂直的 [tab] 按键
+       \xNN  NN 为两位数的数字，可以转换数字成为字节。
+关於 C 程序语言内，常见的变量格式
+       %ns   那个 n 是数字， s 代表 string ，亦即多少个字节；
+       %ni   那个 n 是数字， i 代表 integer ，亦即多少整数码数；
+       %N.nf 那个 n 与 N 都是数字， f 代表 floating (浮点)，如果有小数码数，
+             假设我共要十个位数，但小数点有两位，即为 %10.2f 罗！</span>
+</pre></td></tr></tbody></table>
+
+		<p>接下来我们来进行几个常见的练习。假设所有的数据都是一般文字 (这也是最常见的状态)，因此最常用来分隔数据的符号就是 
+		[Tab] 啦！因为 [Tab] 按键可以将数据作个整齐的排列！那么如何利用 printf 呢？参考底下这个范例：</p>
+
+<table class="term"><tbody><tr><td class="term"><pre><span class="term_hd">范例一：将刚刚上头数据的文件 (printf.txt) 内容仅列出姓名与成绩：(用 [tab] 分隔)</span>
+[root@www ~]# <span class="term_command">printf '%s\t %s\t %s\t %s\t %s\t \n' $(cat printf.txt)</span>
+Name     Chinese         English         Math    Average
+DmTsai   80      60      92      77.33
+VBird    75      55      80      70.00
+Ken      60      90      70      73.33
+</pre></td></tr></tbody></table>
+
+		<p>由於 printf 并不是管线命令，因此我们得要透过类似上面的功能，将文件内容先提出来给 printf 作为后续的数据才行。
+		如上所示，我们将每个数据都以 [tab] 作为分隔，但是由於 Chinese 长度太长，导致 English 中间多了一个 [tab] 
+		来将数据排列整齐！啊～结果就看到数据对齐结果的差异了！</p>
+
+		<p>另外，在 printf 后续的那一段格式中，%s 代表一个不固定长度的字串，而字串与字串中间就以 \t 这个 [tab]
+		分隔符号来处理！你要记得的是，由於 \t 与 %s 中间还有空格，因此每个字串间会有一个 [tab] 与一个空白键的分隔喔！</p>
+
+		<p>既然每个栏位的长度不固定会造成上述的困扰，那我将每个栏位固定就好啦！没错没错！这样想非常好！
+		所以我们就将数据给他进行固定栏位长度的设计吧！</p>
+
+<table class="term"><tbody><tr><td class="term"><pre><span class="term_hd">范例二：将上述数据关於第二行以后，分别以字串、整数、小数点来显示：</span>
+[root@www ~]# <span class="term_command">printf '%10s %5i %5i %5i %8.2f \n' $(cat printf.txt |\</span>
+&gt; <span class="term_command">grep -v Name)</span>
+    DmTsai    80    60    92    77.33
+     VBird    75    55    80    70.00
+       Ken    60    90    70    73.33
+</pre></td></tr></tbody></table>
+
+		<p>上面这一串格式想必您看得很辛苦！没关系！一个一个来解释！上面的格式共分为五个栏位， %10s 
+		代表的是一个长度为 10 个字节的字串栏位，%5i 代表的是长度为 5 个字节的数字栏位，至於那个 %8.2f 
+		则代表长度为 8 个字节的具有小数点的栏位，其中小数点有两个字节宽度。我们可以使用底下的说明来介绍 %8.2f 的意义：</p>
+
+		<blockquote class="fontwidth">字节宽度： 12345678<br>%8.2f意义：00000.00</blockquote>
+
+		<p>如上所述，全部的宽度仅有 8 个字节，整数部分占有 5 个字节，小数点本身 (.) 占一位，小数点下的位数则有两位。
+		这种格式经常使用於数值程序的设计中！这样了解乎？自己试看看如果要将小数点位数变成 1 位又该如何处理？</p>
+
+		<p>printf 除了可以格式化处理之外，他还可以依据 ASCII 的数字与图形对应来显示数据喔(<a href="#ps3">注3</a>)！
+		举例来说 16 进位的 45 可以得到什么 ASCII 的显示图 (其实是字节啦)？</p>
+
+<table class="term"><tbody><tr><td class="term"><pre><span class="term_hd">范例三：列出 16 进位数值 45 代表的字节为何？</span>
+[root@www ~]# <span class="term_command">printf '\x45\n'</span>
+E
+<span class="term_say"># 这东西也很好玩～他可以将数值转换成为字节，如果你会写 script 的话，
+# 可以自行测试一下，由 20~80 之间的数值代表的字节是啥喔！ ^_^</span>
+</pre></td></tr></tbody></table>
+
+		<p>printf 的使用相当的广泛喔！包括等一下后面会提到的 awk 以及在 C 程序语言当中使用的萤幕输出，
+		都是利用 printf 呢！鸟哥这里也只是列出一些可能会用到的格式而已，有兴趣的话，可以自行多作一些测试与练习喔！ ^_^</p>
+
+		<div style="padding: 10pt 0pt;" align="right"><table width="90%"><tbody><tr><td><b>Tips:</b><br><span style="color: rgb(0, 144, 0);"><font size="-1">		列印格式化这个 printf 命令，乍看之下好像也没有什么很重要的～
+		不过，如果你需要自行撰写一些软件，需要将一些数据在萤幕上头漂漂亮亮的输出的话，
+		那么 printf 可也是一个很棒的工具喔！
+		</font></span></td><td><img src="0330regularex_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div>	</div>
+
+	<hr><a name="awk"></a><img src="../images/logo.png" alt="小标题的图示" width="24" align="middle" height="23"><span class="text_h2">awk：好用的数据处理工具</span><br>
+	<div class="block1">
+		<p>awk 也是一个非常棒的数据处理工具！相较於 sed 常常作用於一整个行的处理， awk 
+		则比较倾向於一行当中分成数个『栏位』来处理。因此，awk 相当的适合处理小型的数据数据处理呢！awk
+		通常运行的模式是这样的：</p>
+
+<table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">awk '条件类型1{动作1} 条件类型2{动作2} ...' filename</span>
+</pre></td></tr></tbody></table>
+
+		<p>awk 后面接两个单引号并加上大括号 {} 来配置想要对数据进行的处理动作。
+		awk 可以处理后续接的文件，也可以读取来自前个命令的 standard output 。
+		但如前面说的， <span class="text_import2">awk 主要是处理『每一行的栏位内的数据』，而默认的『栏位的分隔符号为
+		"空白键" 或 "[tab]键" 』</span>！举例来说，我们用 last 可以将登陆者的数据取出来，结果如下所示：</p>
+
+<table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">last -n 5</span> <span class="term_note">&lt;==仅取出前五行</span>
+root     pts/1   192.168.1.100  Tue Feb 10 11:21   still logged in
+root     pts/1   192.168.1.100  Tue Feb 10 00:46 - 02:28  (01:41)
+root     pts/1   192.168.1.100  Mon Feb  9 11:41 - 18:30  (06:48)
+dmtsai   pts/1   192.168.1.100  Mon Feb  9 11:41 - 11:41  (00:00)
+root     tty1                   Fri Sep  5 14:09 - 14:10  (00:01)
+</pre></td></tr></tbody></table>
+
+		<p>若我想要取出帐号与登陆者的 IP ，且帐号与 IP 之间以 [tab] 隔开，则会变成这样：</p>
+
+<table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">last -n 5 | awk '{print $1 "\t" $3}'</span>
+root    192.168.1.100
+root    192.168.1.100
+root    192.168.1.100
+dmtsai  192.168.1.100
+root    Fri
+</pre></td></tr></tbody></table>
+
+		<p>上表是 awk 最常使用的动作！透过 print 的功能将栏位数据列出来！栏位的分隔则以空白键或 [tab] 按键来隔开。
+		因为不论哪一行我都要处理，因此，就不需要有 "条件类型" 的限制！我所想要的是第一栏以及第三栏，
+		但是，第五行的内容怪怪的～这是因为数据格式的问题啊！所以罗～使用 awk
+		的时候，请先确认一下你的数据当中，如果是连续性的数据，请不要有空格或 [tab] 
+		在内，否则，就会像这个例子这样，会发生误判喔！</p>
+
+		<p>另外，由上面这个例子你也会知道，在<span class="text_import2">每一行的每个栏位都是有变量名称的，那就是 $1, $2... 
+		等变量名称</span>。以上面的例子来说， root 是 $1 ，因为他是第一栏嘛！至於 192.168.1.100 是第三栏，
+		所以他就是 $3 啦！后面以此类推～呵呵！还有个变量喔！那就是 $0 ，<span class="text_import2">$0 
+		代表『一整列数据』的意思～</span>以上面的例子来说，第一行的 $0 代表的就是『root .... 』那一行啊！
+		由此可知，刚刚上面五行当中，整个 awk 的处理流程是：</p>
+
+		<ol class="text_import2">
+		<li>读入第一行，并将第一行的数据填入 $0, $1, $2.... 等变量当中；</li>
+		<li>依据 "条件类型" 的限制，判断是否需要进行后面的 "动作"；</li>
+		<li>做完所有的动作与条件类型；</li>
+		<li>若还有后续的『行』的数据，则重复上面 1~3 的步骤，直到所有的数据都读完为止。</li>
+		</ol>
+
+		<p>经过这样的步骤，你会晓得， awk 是『<span class="text_import2">以行为一次处理的单位</span>』，
+		而『<span class="text_import2">以栏位为最小的处理单位</span>』。好了，那么 awk 
+		怎么知道我到底这个数据有几行？有几栏呢？这就需要 awk 的内建变量的帮忙啦～</p>
+
+<table bgcolor="lightyellow" border="1" cellpadding="3" cellspacing="0" width="75%">
+<tbody><tr align="center" bgcolor="#182448"><td><font color="#FFFFFF">变量名称</font></td><td><font color="#FFFFFF">代表意义</font></td></tr>
+<tr><td align="center">NF</td><td>每一行 ($0) 拥有的栏位总数</td></tr>
+<tr><td align="center">NR</td><td>目前 awk 所处理的是『第几行』数据</td></tr>
+<tr><td align="center">FS</td><td>目前的分隔字节，默认是空白键</td></tr>
+</tbody></table><br>
+
+		<p>我们继续以上面 last -n 5 的例子来做说明，如果我想要：</p>
+
+		<ul>
+		<li>列出每一行的帐号(就是 $1)；</li>
+		<li>列出目前处理的行数(就是 awk 内的 NR 变量)</li>
+		<li>并且说明，该行有多少栏位(就是 awk 内的 NF 变量)</li></ul>
+
+		<p>则可以这样：</p>
+
+		<div style="padding: 10pt 0pt;" align="right"><table width="90%"><tbody><tr><td><b>Tips:</b><br><span style="color: rgb(0, 144, 0);"><font size="-1">		要注意喔，awk 后续的所有动作是以单引号『 ' 』括住的，由於单引号与双引号都必须是成对的，
+		所以， awk 的格式内容如果想要以 print 列印时，记得非变量的文字部分，包含上一小节 
+		<a href="#printf">printf</a> 提到的格式中，都需要使用双引号来定义出来喔！因为单引号已经是 awk 的命令固定用法了！
+		</font></span></td><td><img src="0330regularex_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div>
+<table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">last -n 5| awk '{print $1 "\t lines: " NR "\t columns: " NF}'</span>
+root     lines: 1        columns: 10
+root     lines: 2        columns: 10
+root     lines: 3        columns: 10
+dmtsai   lines: 4        columns: 10
+root     lines: 5        columns: 9
+<span class="term_say"># 注意喔，在 awk 内的 NR, NF 等变量要用大写，且不需要有钱字号 $ 啦！</span>
+</pre></td></tr></tbody></table>
+
+		<p>这样可以了解 NR 与 NF 的差别了吧？好了，底下来谈一谈所谓的 "条件类型" 了吧！<br><br></p>
+
+		<hr><ul class="list1"><li class="text_import1">awk 的逻辑运算字节</li></ul>
+
+		<p>既然有需要用到 "条件" 的类别，自然就需要一些逻辑运算罗～例如底下这些：</p>
+
+<table bgcolor="lightyellow" border="1" cellpadding="3" cellspacing="0" width="75%">
+<tbody><tr align="center" bgcolor="#182448"><td><font color="#FFFFFF">运算单元</font></td><td><font color="#FFFFFF">代表意义</font></td></tr>
+<tr align="center"><td><font face="'细明体'">&gt;</font></td><td>大於</td></tr>
+<tr align="center"><td><font face="'细明体'">&lt;</font></td><td>小於</td></tr>
+<tr align="center"><td><font face="'细明体'">&gt;=</font></td><td>大於或等於</td></tr>
+<tr align="center"><td><font face="'细明体'">&lt;=</font></td><td>小於或等於</td></tr>
+<tr align="center"><td><font face="'细明体'">==</font></td><td>等於</td></tr>
+<tr align="center"><td><font face="'细明体'">!=</font></td><td>不等於</td></tr>
+</tbody></table>
+
+		<p>值得注意的是那个『 <font face="'细明体'">==</font> 』的符号，因为：</p>
+
+		<ul>
+		<li>逻辑运算上面亦即所谓的大於、小於、等於等判断式上面，习惯上是以『 <font face="'细明体'">==</font> 』来表示；</li>
+		<li>如果是直接给予一个值，例如变量配置时，就直接使用 = 而已。</li>
+		</ul>
+
+		<p>好了，我们实际来运用一下逻辑判断吧！举例来说，在 /etc/passwd 当中是以冒号 ":" 来作为栏位的分隔，
+		该文件中第一栏位为帐号，第三栏位则是 UID。那假设我要查阅，第三栏小於 10 以下的数据，并且仅列出帐号与第三栏，
+		那么可以这样做：</p>
+
+<table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">cat /etc/passwd | \</span>
+&gt; <span class="term_command">awk '{FS=":"} $3 &lt; 10 {print $1 "\t " $3}'</span>
+root:x:0:0:root:/root:/bin/bash
+bin      1
+daemon   2
+<span class="term_say">....(以下省略)....</span>
+</pre></td></tr></tbody></table>
+
+		<p>有趣吧！不过，怎么第一行没有正确的显示出来呢？这是因为我们读入第一行的时候，那些变量 $1, 
+		$2... 默认还是以空白键为分隔的，所以虽然我们定义了 FS=":" 了，
+		但是却仅能在第二行后才开始生效。那么怎么办呢？我们可以预先配置 awk 的变量啊！
+		利用 BEGIN 这个关键字喔！这样做：</p>
+
+<table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">cat /etc/passwd | \</span>
+&gt; <span class="term_command">awk 'BEGIN {FS=":"} $3 &lt; 10 {print $1 "\t " $3}'</span>
+root     0
+bin      1
+daemon   2
+<span class="term_say">......(以下省略)......</span>
+</pre></td></tr></tbody></table>
+
+		<p>很有趣吧！而除了 BEGIN 之外，我们还有 END 呢！另外，如果要用 awk 来进行『计算功能』呢？以底下的例子来看，
+		假设我有一个薪资数据表档名为 pay.txt ，内容是这样的：</p>
+
+<table class="term"><tbody><tr><td class="term"><pre>Name    1st     2nd     3th
+VBird   23000   24000   25000
+DMTsai  21000   20000   23000
+Bird2   43000   42000   41000
+</pre></td></tr></tbody></table>
+
+		<p>如何帮我计算每个人的总额呢？而且我还想要格式化输出喔！我们可以这样考虑：</p>
+
+		<ul>
+		<li>第一行只是说明，所以第一行不要进行加总 (NR==1 时处理)；</li>
+		<li>第二行以后就会有加总的情况出现 (NR&gt;=2 以后处理)</li>
+		</ul>
+
+<table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">cat pay.txt | \</span>
+&gt; <span class="term_command">awk 'NR==1{printf "%10s %10s %10s %10s %10s\n",$1,$2,$3,$4,"Total" }
+NR&gt;=2{total = $2 + $3 + $4
+printf "%10s %10d %10d %10d %10.2f\n", $1, $2, $3, $4, total}'</span>
+      Name        1st        2nd        3th      Total
+     VBird      23000      24000      25000   72000.00
+    DMTsai      21000      20000      23000   64000.00
+     Bird2      43000      42000      41000  126000.00
+</pre></td></tr></tbody></table>
+
+		<p>上面的例子有几个重要事项应该要先说明的：</p>
+
+		<ul class="text_import2">
+		<li>awk 的命令间隔：所有 awk 的动作，亦即在 {} 内的动作，如果有需要多个命令辅助时，可利用分号『;』间隔，
+			或者直接以 [Enter] 按键来隔开每个命令，例如上面的范例中，鸟哥共按了三次 [enter] 喔！</li>
+		<li>逻辑运算当中，如果是『等於』的情况，则务必使用两个等号『==』！</li>
+		<li>格式化输出时，在 printf 的格式配置当中，务必加上 \n ，才能进行分行！</li>
+		<li>与 bash shell 的变量不同，在 awk 当中，变量可以直接使用，不需加上 $ 符号。</li>
+		</ul>
+
+		<p>利用 awk 这个玩意儿，就可以帮我们处理很多日常工作了呢！真是好用的很～
+		此外， awk 的输出格式当中，常常会以 <a href="#printf">printf</a> 来辅助，所以，
+		最好你对 printf 也稍微熟悉一下比较好啦！另外， awk 的动作内 {} 也是支持 if (条件) 的喔！
+		举例来说，上面的命令可以修订成为这样：</p>
+
+<table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">cat pay.txt | \</span>
+&gt; <span class="term_command">awk '{if(NR==1) printf "%10s %10s %10s %10s %10s\n",$1,$2,$3,$4,"Total"}
+NR&gt;=2{total = $2 + $3 + $4
+printf "%10s %10d %10d %10d %10.2f\n", $1, $2, $3, $4, total}'</span>
+</pre></td></tr></tbody></table>
+
+		<p>你可以仔细的比对一下上面两个输入有啥不同～从中去了解两种语法吧！我个人是比较倾向於使用第一种语法，
+		因为会比较有统一性啊！ ^_^</p>
+
+		<p>除此之外， awk 还可以帮我们进行回圈计算喔！真是相当的好用！不过，那属於比较进阶的单独课程了，
+		我们这里就不再多加介绍。如果你有兴趣的话，请务必参考延伸阅读中的相关连结喔 (<a href="#ps4">注4</a>)。</p>
+	</div>
+
+	<hr><a name="doc_compare"></a><img src="../images/logo.png" alt="小标题的图示" width="24" align="middle" height="23"><span class="text_h2">文件比对工具</span><br>
+	<div class="block2">
+		<p>什么时候会用到文件的比对啊？通常是『<span class="text_import2">同一个套装软件的不同版本之间，比较配置档与原始档的差异</span>』。
+		很多时候所谓的文件比对，通常是用在 ASCII 纯文字档的比对上的！那么比对文件的命令有哪些？最常见的就是 diff 罗！
+		另外，除了 diff 比对之外，我们还可以藉由 cmp 来比对非纯文字档！同时，也能够藉由 diff 创建的分析档，
+		以处理补丁 (patch) 功能的文件呢！就来玩玩先！<br><br></p>
+
+		<a name="diff"></a>
+		<hr><ul class="list1"><li class="text_import1">diff</li></ul>
+
+		<p>diff 就是用在比对两个文件之间的差异的，并且是以行为单位来比对的！一般是用在 ASCII 纯文字档的比对上。
+		由於是以行为比对的单位，因此<span class="text_import2"> diff 通常是用在同一的文件(或软件)的新旧版本差异上！</span>
+		举例来说，假如我们要将 /etc/passwd 处理成为一个新的版本，处理方式为：
+		将第四行删除，第六行则取代成为『no six line』，新的文件放置到 /tmp/test 里面，那么应该怎么做？</p>
+
+<table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">mkdir -p /tmp/test</span> <span class="term_note">&lt;==先创建测试用的目录</span>
+[root@www ~]# <span class="term_command">cd /tmp/test</span>
+[root@www test]# <span class="term_command">cp /etc/passwd passwd.old</span>
+[root@www test]# <span class="term_command">cat /etc/passwd | \</span>
+&gt; <span class="term_command">sed -e '4d' -e '6c no six line' &gt; passwd.new</span>
+<span class="term_say"># 注意一下， sed 后面如果要接超过两个以上的动作时，每个动作前面得加 -e 才行！
+# 透过这个动作，在 /tmp/test  里面便有新旧的 passwd 文件存在了！</span>
+</pre></td></tr></tbody></table>
+
+		<p>接下来讨论一下关於 diff 的用法吧！</p>
+
+<table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">diff [-bBi] from-file to-file</span>
+<span class="term_say">选项与参数：
+from-file ：一个档名，作为原始比对文件的档名；
+to-file   ：一个档名，作为目的比对文件的档名；
+注意，from-file 或 to-file 可以 - 取代，那个 - 代表『Standard input』之意。
+
+-b  ：忽略一行当中，仅有多个空白的差异(例如 "about me" 与 "about     me" 视为相同
+-B  ：忽略空白行的差异。
+-i  ：忽略大小写的不同。</span>
+
+<span class="term_hd">范例一：比对 passwd.old 与 passwd.new 的差异：</span>
+[root@www test]# <span class="term_command">diff passwd.old passwd.new</span>
+4d3    <span class="term_note">&lt;==左边第四行被删除 (d) 掉了，基准是右边的第三行</span>
+&lt; adm:x:3:4:adm:/var/adm:/sbin/nologin  <span class="term_note">&lt;==这边列出左边(&lt;)文件被删除的那一行内容</span>
+6c5    <span class="term_note">&lt;==左边文件的第六行被取代 (c) 成右边文件的第五行</span>
+&lt; sync:x:5:0:sync:/sbin:/bin/sync  <span class="term_note">&lt;==左边(&lt;)文件第六行内容</span>
+---
+&gt; no six line                      <span class="term_note">&lt;==右边(&gt;)文件第五行内容</span>
+<span class="term_say"># 很聪明吧！用 diff 就把我们刚刚的处理给比对完毕了！</span>
+</pre></td></tr></tbody></table>
+
+		<p>用 diff 比对文件真的是很简单喔！不过，你不要用 diff 去比对两个完全不相干的文件，因为比不出个啥咚咚！
+		另外， diff 也可以比对整个目录下的差异喔！举例来说，我们想要了解一下不同的启动运行等级 (runlevel) 
+		内容有啥不同？假设你已经知道运行等级 3 与 5 的启动脚本分别放置到 /etc/rc3.d 及 /etc/rc5.d ，
+		则我们可以将两个目录比对一下：</p>
+
+<table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">diff /etc/rc3.d/ /etc/rc5.d/</span>
+Only in /etc/rc3.d/: K99readahead_later
+Only in /etc/rc5.d/: S96readahead_later
+</pre></td></tr></tbody></table>
+
+		<p>我们的 diff 很聪明吧！还可以比对不同目录下的相同档名的内容，这样真的很方便喔～<br><br></p>
+
+		<a name="cmp"></a>
+		<hr><ul class="list1"><li class="text_import1">cmp</li></ul>
+
+		<p>相对於 diff 的广泛用途， cmp 似乎就用的没有这么多了～ cmp 主要也是在比对两个文件，他主要利用『位组』单位去比对，
+		因此，当然也可以比对 binary file 罗～(还是要再提醒喔， diff 主要是以『行』为单位比对，
+		cmp 则是以『位组』为单位去比对，这并不相同！)</p>
+
+<table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">cmp [-s] file1 file2</span>
+<span class="term_say">选项与参数：
+-s  ：将所有的不同点的位组处都列出来。因为 cmp 默认仅会输出第一个发现的不同点。</span>
+
+<span class="term_hd">范例一：用 cmp 比较一下 passwd.old 及 passwd.new</span>
+[root@www test]# <span class="term_command">cmp passwd.old passwd.new</span>
+passwd.old passwd.new differ: byte 106, line 4
+</pre></td></tr></tbody></table>
+
+		<p>看到了吗？第一个发现的不同点在第四行，而且位组数是在第 106 个位组处！这个 cmp 也可以用来比对 binary 
+		啦！ ^_^<br><br></p>
+
+		<a name="patch"></a>
+		<hr><ul class="list1"><li class="text_import1">patch</li></ul>
+
+		<p>patch 这个命令与 diff 可是有密不可分的关系啊！我们前面提到，diff 可以用来分辨两个版本之间的差异，
+		举例来说，刚刚我们所创建的 passwd.old 及 passwd.new 之间就是两个不同版本的文件。
+		那么，如果要『升级』呢？就是『<span class="text_import2">将旧的文件升级成为新的文件</span>』时，应该要怎么做呢？
+		其实也不难啦！就是『先比较先旧版本的差异，并将差异档制作成为补丁档，再由补丁档升级旧文件』即可。
+		举例来说，我们可以这样做测试：</p>
+
+<table class="term"><tbody><tr><td class="term"><pre><span class="term_hd">范例一：以 /tmp/test 内的 passwd.old 与 passwd.new  制作补丁文件</span>
+[root@www test]# <span class="term_command">diff -Naur passwd.old passwd.new &gt; passwd.patch</span>
+[root@www test]# <span class="term_command">cat passwd.patch</span>
+--- passwd.old  2009-02-10 14:29:09.000000000 +0800 <span class="term_note">&lt;==新旧文件的资讯</span>
++++ passwd.new  2009-02-10 14:29:18.000000000 +0800
+@@ -1,9 +1,8 @@   <span class="term_note">&lt;==新旧文件要修改数据的界定范围，旧档在 1-9 行，新档在 1-8 行</span>
+ root:x:0:0:root:/root:/bin/bash
+ bin:x:1:1:bin:/bin:/sbin/nologin
+ daemon:x:2:2:daemon:/sbin:/sbin/nologin
+-adm:x:3:4:adm:/var/adm:/sbin/nologin      <span class="term_note">&lt;==左侧文件删除</span>
+ lp:x:4:7:lp:/var/spool/lpd:/sbin/nologin
+-sync:x:5:0:sync:/sbin:/bin/sync           <span class="term_note">&lt;==左侧文件删除</span>
++no six line                               <span class="term_note">&lt;==右侧新档加入</span>
+ shutdown:x:6:0:shutdown:/sbin:/sbin/shutdown
+ halt:x:7:0:halt:/sbin:/sbin/halt
+ mail:x:8:12:mail:/var/spool/mail:/sbin/nologin
+</pre></td></tr></tbody></table>
+
+		<p>一般来说，使用 diff 制作出来的比较文件通常使用扩展名为 .patch 罗。至於内容就如同上面介绍的样子。
+		基本上就是以行为单位，看看哪边有一样与不一样的，找到一样的地方，然后将不一样的地方取代掉！
+		以上面表格为例，新文件看到 - 会删除，看到 + 会加入！好了，那么如何将旧的文件升级成为新的内容呢？
+		就是将 passwd.old 改成与 passwd.new 相同！可以这样做：</p>
+
+<table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">patch -pN &lt; patch_file   </span> <span class="term_note">&lt;==升级</span>
+[root@www ~]# <span class="term_command">patch -R -pN &lt; patch_file</span> <span class="term_note">&lt;==还原</span>
+<span class="term_say">选项与参数：
+-p  ：后面可以接『取消几层目录』的意思。
+-R  ：代表还原，将新的文件还原成原来旧的版本。</span>
+
+<span class="term_hd">范例二：将刚刚制作出来的 patch file 用来升级旧版数据</span>
+[root@www test]# <span class="term_command">patch -p0 &lt; passwd.patch</span>
+patching file passwd.old
+[root@www test]# <span class="term_command">ll passwd*</span>
+-rw-r--r-- 1 root root <span class="term_write">1929</span> Feb 10 14:29 passwd.new
+-rw-r--r-- 1 root root <span class="term_write">1929</span> Feb 10 15:12 passwd.old <span class="term_note">&lt;==文件一模一样！</span>
+
+<span class="term_hd">范例三：恢复旧文件的内容</span>
+[root@www test]# <span class="term_command">patch -R -p0 &lt; passwd.patch</span>
+[root@www test]# <span class="term_command">ll passwd*</span>
+-rw-r--r-- 1 root root 1929 Feb 10 14:29 passwd.new
+-rw-r--r-- 1 root root <span class="term_write">1986</span> Feb 10 15:18 passwd.old
+<span class="term_say"># 文件就这样恢复成为旧版本罗</span>
+</pre></td></tr></tbody></table>
+
+		<p>为什么这里会使用 -p0 呢？因为我们在比对新旧版的数据时是在同一个目录下，
+		因此不需要减去目录啦！如果是使用整体目录比对 (diff 旧目录 新目录) 时，
+		就得要依据创建 patch 文件所在目录来进行目录的删减罗！</p>
+
+		<p>更详细的 patch 用法我们会在后续的第五篇的<a href="http://vbird.dic.ksu.edu.tw/linux_basic/0520source_code_and_tarball.php#tarball_patch">原始码编译 (第二十二章)</a>再跟大家介绍，
+		这里仅是介绍给你，我们可以利用 diff 来比对两个文件之间的差异，
+		更可进一步利用这个功能来制作修补文件 (patch file) ，让大家更容易进行比对与升级呢！很不赖吧！ ^_^</p>
+	</div>
+
+	<hr><a name="pr"></a><img src="../images/logo.png" alt="小标题的图示" width="24" align="middle" height="23"><span class="text_h2">文件列印准备： pr</span><br>
+	<div class="block2">
+		<p>如果你曾经使用过一些图形介面的文书处理软件的话，那么很容易发现，当我们在列印的时候，
+		可以同时选择与配置每一页列印时的标头吧！也可以配置页码呢！那么，如果我是在 Linux 底下列印纯文字档呢
+		可不可以具有标题啊？可不可以加入页码啊？呵呵！当然可以啊！使用 pr 就能够达到这个功能了。不过， 
+		pr 的参数实在太多了，鸟哥也说不完，一般来说，鸟哥都仅使用最简单的方式来处理而已。举例来说，如果想要列印 
+		/etc/man.config 呢？</p>
+
+<table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">pr /etc/man.config</span>
+
+
+<span class="term_write">2007-01-06 18:24                 /etc/man.config                  Page 1</span>
+
+
+#
+# Generated automatically from man.conf.in by the
+# configure script.
+<span class="term_say">.....以下省略......</span>
+</pre></td></tr></tbody></table>
+
+		<p>上面特殊字体那一行呢，其实就是使用 pr 处理后所造成的标题啦！标题中会有『文件时间』、『文件档名』及『页码』三大项目。
+		更多的 pr 使用，请参考 pr 的说明啊！ ^_^</p>
+	</div>
+</div>
+<hr />
+    </td>
+    <td style="width: 16px; font-size: 6px;">　</td></tr>
+<tr><td style="width: 16px; height: 16px;">　</td>
+    <td style="width: 866px; height: 16px;">　</td>
+    <td style="width: 16px; height: 16px;">　</body></html>

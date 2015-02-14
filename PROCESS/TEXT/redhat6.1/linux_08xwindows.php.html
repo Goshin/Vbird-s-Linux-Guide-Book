@@ -1,1 +1,1152 @@
-﻿<!DOCTYPE HTML PUBLIC "-//w3c//dtd html 4.0 transitional//en"> <html><head>      <meta http-equiv="Content-Type" content="text/html; charset=utf8">    <meta name="Author" content="VBird">    <title>鸟哥的 Linux 私房菜 -- X-Window 的使用</title> <style>    <!--    body{background-image:url(http://linux.vbird.org/images/VBirdLinux.jpg); 	background-ATTACHMENT:FIXED}    --> </style> </head><body>   <!-- Copyright � 2005. Spidersoft Ltd --> <style> A.applink:hover {border: 2px dotted #DCE6F4;padding:2px;background-color:#ffff00;color:green;text-decoration:none} A.applink       {border: 2px dotted #DCE6F4;padding:2px;color:#2F5BFF;background:transparent;text-decoration:none} A.info          {color:#2F5BFF;background:transparent;text-decoration:none} A.info:hover    {color:green;background:transparent;text-decoration:underline} </style> <div style='BORDER: 1px solid #DCE6F4; MARGIN-TOP: 20px; MARGIN-BOTTOM: 20px; MARGIN-LEFT: 5px; MARGIN-RIGHT: 5px; PADDING: 5px; BACKGROUND-COLOR: #eef8ff;line-height:180%; COLOR: #000000; font-family: Arial; font-size: 8pt; width=100%; FILTER: progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr="#FFFFFFFF", EndColorStr="#F2F5FAFF");'> This page was saved using <a class="applink" href="http://www.spidersoft.com"><b>WebZIP 7.0.3.1030</b></a> <a class="applink" href="http://www.spidersoft.com"><b>offline browser</b></a>  (Unregistered) on  02/12/15 12:14:49.<br> <b>Address:</b> <a class="info" href="http://vbird.dic.ksu.edu.tw/linux_basic/redhat6.1/linux_08xwindows.php">http://vbird.dic.ksu.edu.tw/linux_basic/redhat6.1/linux_08xwindows.php</a><br> <b>Title:</b> 鸟哥的 Linux 私房菜 -- X-Window 的使用 &nbsp;&bull;&nbsp; <b>Size:</b> 71548<br></div> <!-- /Copyright � 2005. Spidersoft Ltd -->   <center><b><font color="#3333ff"><font size="+2"><font face="标楷体">鸟哥的</font><font face="Times New Roman,Times"> Linux </font><font face="标楷体">与</font><font face="Times New Roman,Times"> ADSL </font><font face="标楷体">私房菜</font></font></font></b> <br> <a href="http://linux.vbird.org/" target="_top"><img src="linux_08xwindows_files/VBirdTitle2.jpg" nosave="" width="90" border="0" height="25"></a> <a href="http://linux.vbird.org/linux_basic"><img src="linux_08xwindows_files/icon_system.gif" nosave="" width="90" border="0" height="25"></a> <a href="http://linux.vbird.org/linux_server"><img src="linux_08xwindows_files/icon_server.gif" nosave="" width="90" border="0" height="25"></a> <a href="http://linux.vbird.org/linux_security"><img src="linux_08xwindows_files/icon_security.jpg" nosave="" width="90" border="0" height="25"></a> <a href="http://phorum.vbird.org/" target="_blank"><img src="linux_08xwindows_files/icon_forums.gif" nosave="" width="90" border="0" height="25"></a> <a href="http://linux.vbird.org/adsl"><img src="linux_08xwindows_files/icon_adsl.gif" nosave="" width="90" border="0" height="25"></a> <br> <hr width="100%"> </center> <center><font color="#3333ff"><font size="+2"><font face="Times New Roman Baltic">X-Window</font><font face="标楷体"> 的安装与升级</font></font></font></center>  <div align="right"><font face="新细明体"><font color="#3333ff"><font size="-1">最近更新日期：2001/08/15</font></font></font></div> <font color="#000099"><font size="+1"><a href="#whatxwindows"><font face="标楷体">何谓 </font><font face="Times New Roman Baltic">X-Window</font></a></font></font> <br><font color="#000099"><font size="+1"><a href="#setupxfree86"><font face="标楷体">开始设定 </font><font face="Times New Roman Baltic">XFree86</font><font face="标楷体"> 的参数</font></a></font></font> <br><font color="#000099"><font size="+1"><a href="#chosexwindows"><font face="标楷体">选择 </font><font face="Times New Roman Baltic">X-Window</font><font face="标楷体"> 的升级套件</font></a></font></font> <br><font color="#000099"><font size="+1"><a href="#installxfree86"><font face="标楷体">安装 </font><font face="Times New Roman Baltic">XFree86</font><font face="标楷体"> 升级套件</font></a></font></font> <br><font color="#000099"><font size="+1"><a href="#src.rpm"><font face="标楷体">使用 </font><font face="Times New Roman Baltic">src.rpm</font><font face="标楷体"> 进行 </font><font face="Times New Roman Baltic">XFree86</font><font face="标楷体"> 的升级安装</font></a></font></font> <br><font color="#000099"><font size="+1"><a href="#nvidiasetup"><font face="标楷体">更新 </font><font face="Times New Roman Baltic">NVidia</font><font face="标楷体"> 的显示适配器核心程序</font></a></font></font> <br><font color="#000099"><font size="+1"><a href="#xwindowsdownload"><font face="标楷体">关于 </font><font face="Times New Roman Baltic">X-Window</font><font face="标楷体"> 的相关下载文件与网址</font></a></font></font> <br><font face="标楷体"><font color="#000099"><font size="+1"><a href="#QA">问题与讨论</a></font></font></font> <br> <hr width="100%"> <br><a name="whatxwindows"></a><font color="#000099"><font size="+1"><font face="标楷体">何谓 </font><font face="Times New Roman Baltic">X-Window</font></font></font> <blockquote>X window system 最早是由 1984 年的麻省理工学院（MIT）在发展一个可以让窗口接口适应多平台环境的一个计划（Project Athena），所发展的一套窗口系统。到今日我们所常听到的 X-Window 通常是指 X11R6 这一版的 X 系统。X windows 有下列几种别称： <ul> <li> X</li>  <li> X window system</li>  <li> X Version 11</li>  <li> X Window System, Version 11</li>  <li> X11</li> </ul> 而 X-Window 在运作的时候，必须要下面几种档案： <ul> <li> <font color="#000099">X Server</font>：这是 X-Window 最重要的一个程序了，主要在负责所有与 X-Windows 有关的接口显示功能；</li>  <li> <font color="#000099">X Client</font>：客户端程序；</li>  <li> <font color="#000099">X protocol</font>：主要负责 X 的一些协议咚咚；</li>  <li> <font color="#000099">X Lib</font>：一些 X 的数据库！</li> </ul> 而通常我们所使用的 X ，由于是由 XFree86 Project Inc. 公司为支持 Intel x86 平台的原始码系统，所以就被通称为 XFree86 系统啦！目前最常被使用的是 XFree86-3.3.6 版，这一版是比较稳定的版本，另外，如果你的显示适配器太新的话，你就必须要下载更新的 XFree86 啦，目前最新的出到了 4.1.0 版了！一些常去的 FTP 下载网站你可以在<a href="#xwindowsdownload">底下</a>找到：另外，你以可以上 <a href="http://www.xfree86.org/" target="_blank">XFree86</a> 的网站去逛逛！ <p>除此之外，X-Window 相关的设定与档案都在： </p><ul> <li> /usr/X11R6</li>  <li> /etc/X11</li> </ul> 这两个目录中，其中，关于 X 的配置文件就在 <font color="#000066">/etc/X11/XF86config</font> 这个档案中！</blockquote>  <hr width="100%"> <br><a name="setupxfree86"></a><font color="#000099"><font size="+1"><font face="标楷体">开始设定 </font><font face="Times New Roman Baltic">XFree86</font><font face="标楷体"> 的参数</font></font></font> <blockquote>如果你是使用这个网页所提供的光盘来安装你的 Linux ，并依鸟哥建议的安装方法来安装 Linux 时，那在你安装完毕之后应该就已经有 XFree86-3.3.5-3 版的 X-Window 系统了！如果你是使用一些早期比较常用的显示适配器，例如 S3 Virge 系列的卡，那应该在安装的时候就已经设定好 X-Window 了，果真如此的话，只要打 startx 就可以开始你的窗口接口的 Linux 啰！ <p>如果你的卡是比较新款的显示适配器，故而 Linux 无法直接帮你装好，那么你只好自己来作设定了！设定的方法有很多种，包括有以下的几种程序（请注意大小写喔！）： </p><ul> <li> Xconfigurator</li>  <li> xf86config</li>  <li> XF86Setup</li> </ul> 比较要注意的是 XF86Setup 为图形接口的设定 X-Window 的设定程序，如果你的 X-Window 没有办法跑的话， XF86Setup 应该就没有办法执行了！基本上，由于 Xconfigurator 比较容易设定，所以我会建议你先以 Xconfigurator 这一支程序来测试一下你的 X-Window，如果可以跑的话就OK了！如果以 Xconfigurator 没有办法设定好的话，就必须以 xf86config 来设定你的 X 了！而设定完了 X 之后，你可能会想要改变显示器的色度，那你就可以用手动的方式来修改啰！通常我会建议你以以下的步骤来设定你的 X-window： <ol> <li> 先以 Xconfigurator 来设定；</li>  <li> 若不行，再以 xf86config 来设定；</li>  <li> 还不行，则只好手动 /etc/X11/XF86config 档案！</li> </ol> <b><i><font color="#000099"><font size="+1">方法一：使用 Xconfigurator 设定 X-Window</font></font></i></b> <ol> <li> 执行 Xconfigurator ：</li>  <br>这个时候会出现一个欢迎画面，按下 OK 之后，系统会自动去捉显示适配器的芯片组。 <br>&nbsp; <li> 如果显示适配器是这一版的 XFree86 有支持的话，那系统就会显示出你的显示适配器型号，如下图所示为 S3 的 Trio64v2 芯片：</li>  <br><img src="linux_08xwindows_files/linux_08xwindows_01.jpg" width="310" border="0" height="256"> <br>&nbsp; <li> 上图按下 OK 之后会开始去设定显示器（屏幕），一般我们都用自定义的方法去捉屏幕，所以选择 Custom 手动设定（第一项），如下图所示：</li>  <br><img src="linux_08xwindows_files/linux_08xwindows_02.jpg" width="628" border="0" height="313"> <br>&nbsp; <li> 按下 OK 之后，系统会告诉你一些讯息，再按下 OK 后，就会出现如下的画面，告诉你应该要选择哪一个屏幕的分辨率，通常我们都会选择『<font color="#000099">High Frequency SVGA, 1024x768 @ 70Hz </font>』那一个选项。</li>  <br><img src="linux_08xwindows_files/linux_08xwindows_03.jpg" width="669" border="0" height="339"> <br>&nbsp; <li> 上图按下 OK 之后，就会要求你选择垂直分辨率，通常我们都是选择第二项，也就是 <font color="#000099">50-90 </font>那一项即可；</li>  <br>&nbsp; <li> 再来系统会问你是否要让 XFree86 自己捉显示适配器相关的信息？这里可以按 Probe 也可以按 Don't Probe ，只是，如果你确切的知道你的显示适配器内存的大小的话，这里建议选择 Don't Probe；</li>  <br>&nbsp; <li> 上一步骤选择 Don't Probe 之后，系统会要你选择你的内存，请依你的显示适配器内存实际大小输入，如果是 S3 Vrige 的话，通常是 1M 或者是 2M 左右吧！</li>  <br>&nbsp; <li> 选完了内存大小之后，过来是选择你的记忆频率芯片，由于我们通常不是很清楚我们的芯片是哪一个，所以这里只好让系统自己捉，如下图，直接选择 No Clockchip Setting 即可！</li>  <br><img src="linux_08xwindows_files/linux_08xwindows_04.jpg" width="561" border="0" height="329"> <br>&nbsp; <li> 再来则是选择画面分辨率与色彩量，如下图所示，一般而言，如果你的 X-Window 一直有问题，这里可以选择 8 bit，及 640x480 的最原始设定就好！如果你的 X-Window 没有问题，可以正常的使用了，而你觉得你想要让你的色彩最大化，则可以仅选择 24 bit 及 1024x768 这一项即可！如此一来，你就可以以你最喜欢的分辨率与色度进入 X-Window 啦！（注意喔，在 bit 之间以 tab 键移动，而以 空格键 确定！）</li>  <br><img src="linux_08xwindows_files/linux_08xwindows_05.jpg" width="660" height="366"> <br>&nbsp; <li> 接着下来系统告诉你要开始测试 X-Windows 啦，按下 OK 之后系统就开始测试 X-Window！在这个地方要注意一下，如果你的设定不完全，则系统将会回到第三步骤重新再设定，如果你在这一个步骤重复了三次以上仍无法设定成功，那就必须以 xf86config 这支程序设定了！</li>  <br>&nbsp; <li> 如果你可以正常的看到一个光标及一个框框告诉你还有10秒钟的时间可以按确定，那就表示你的 X-Window 可以用啦！这个时候请选择 OK，然后出现的另一个框框告诉你：『是否要在下次开机的时候以图形接口登入』，这一步千万选择『NO』，因为以 X-Window 为默认的开机接口，个人觉得并不好，因为不但占用了较多的系统资源，而且，并不会比较好使用！</li>  <br>&nbsp; <li> 完成设定了，跳出 Xconfigurator 后，以 startx 进入 X-Window ！</li> </ol> </blockquote>  <blockquote><b><i><font color="#000099"><font size="+1">方法二：使用 xf86config 设定 X-Window</font></font></i></b> <ol>如果你的 X-Window 并无法以 Xconfigurator 这个比较容易设定的程序设定的话，你只好选择 xf86config 这个文本模式的程序来设定了！整个流程我们将他写在底下，因为很长，所以有些部分被我舍弃掉了！（注意，如果有一个步骤作错的话，请按 ctrl+c 退出后，在从头开始作吧！） <br>&nbsp; <table width="90%" bgcolor="#000000" cols="1"> <tbody><tr> <td><font face="细明体"><font size="-1"><font color="#ffffff">[root@tsai /root]# xf86config&nbsp; </font><font color="#ffff00">&lt;== 这里输入 xf86config</font></font></font> <br><font color="#ffff00"><font size="-1">step 1：</font></font> <br><font color="#ffff00"><font size="-1">底下会出现一大串字，不用理他</font></font> <br><font face="细明体"><font size="-1"><font color="#ffffff">Press enter to continue, or ctrl-c to abort. </font><font color="#ffff00">&lt;== 这里按 enter</font></font></font> <p><font color="#ffff00"><font size="-1">step 2：</font></font> <br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp;1.&nbsp; Microsoft compatible (2-button protocol)</font></font></font> <br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp;2.&nbsp; Mouse Systems (3-button protocol)</font></font></font> <br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp;3.&nbsp; Bus Mouse</font></font></font> <br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp;4.&nbsp; PS/2 Mouse</font></font></font> <br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp;5.&nbsp; Logitech Mouse (serial, old type, Logitech protocol)</font></font></font> <br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp;6.&nbsp; Logitech MouseMan (Microsoft compatible)</font></font></font> <br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp;7.&nbsp; MM Series</font></font></font> <br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp;8.&nbsp; MM HitTablet</font></font></font> <br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp;9.&nbsp; Microsoft IntelliMouse</font></font></font> <br><font face="细明体"><font color="#ffffff"><font size="-1">10.&nbsp; Acecad tablet</font></font></font> <br><font face="细明体"><font size="-1"><font color="#ffffff">Enter a protocol number: </font><font color="#ffff00">&lt;==这里按 2 或 4（依你的鼠标而定）</font></font></font> </p><p><font face="细明体"><font color="#ffff00"><font size="-1">step 3：</font></font></font> <br><font face="细明体"><font size="-1"><font color="#ffffff">Do you want to enable Emulate3Buttons? </font><font color="#ffff00">&lt;==问你要模拟成三钮吗</font></font></font> <br><font face="细明体"><font color="#ffff00"><font size="-1">因为没必要模拟成三钮，所以选 n 即可</font></font></font> </p><p><font face="细明体"><font color="#ffff00"><font size="-1">step 4：</font></font></font> <br><font face="细明体"><font size="-1"><font color="#ffffff">Mouse device: </font><font color="#ffff00">&lt;==这里也按 enter 用默认值就好了</font></font></font> </p><p><font face="细明体"><font color="#ffff00"><font size="-1">step 5：</font></font></font> <br><font face="细明体"><font size="-1"><font color="#ffffff">Do you want to use XKB?&nbsp; </font><font color="#ffff00">&lt;==按 enter&nbsp;</font></font></font> <br><font face="细明体"><font size="-1"><font color="#ffffff">Press enter to continue, or ctrl-c to abort.&nbsp; </font><font color="#ffff00">&lt;==按 enter&nbsp;</font></font></font> </p><p><font face="细明体"><font color="#ffff00"><font size="-1">step 6：</font></font></font> <br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp; 1&nbsp; Standard 101-key, US encoding</font></font></font> <br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp; 2&nbsp; Microsoft Natural, US encoding</font></font></font> <br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp; 3&nbsp; KeyTronic FlexPro, US encoding</font></font></font> <br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp; 4&nbsp; Standard 101-key, US encoding with ISO9995-3 extensions</font></font></font> <br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp; 5&nbsp; Standard 101-key, German encoding</font></font></font> <br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp; 6&nbsp; Standard 101-key, French encoding</font></font></font> <br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp; 7&nbsp; Standard 101-key, Thai encoding</font></font></font> <br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp; 8&nbsp; Standard 101-key, Swiss/German encoding</font></font></font> <br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp; 9&nbsp; Standard 101-key, Swiss/French encoding</font></font></font> <br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp;10&nbsp; Standard 101-key, US international</font></font></font> <br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp;11&nbsp; Brazilian ABNT2</font></font></font> <br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp;12&nbsp; None of the above</font></font></font> </p><p><font face="细明体"><font color="#ffffff"><font size="-1">Enter a number to choose the keymap.</font></font></font> <br><font face="细明体"><font color="#ffff00"><font size="-1">&lt;==共有 12 种键盘选择，这里选择 1 即可</font></font></font> <br><font face="细明体"><font size="-1"><font color="#ffffff">Press enter to continue, or ctrl-c to abort.</font><font color="#ffff00">&lt;==按 enter&nbsp;</font></font></font> </p><p><font face="细明体"><font color="#ffff00"><font size="-1">step 7：</font></font></font> <br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp;1&nbsp; 31.5; Standard VGA, 640x480 @ 60 Hz</font></font></font> <br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp;2&nbsp; 31.5 - 35.1; Super VGA, 800x600 @ 56 Hz</font></font></font> <br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp;3&nbsp; 31.5, 35.5; 8514 Compatible, 1024x768 @ 87 Hz interlaced (no 800x600)</font></font></font> <br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp;4&nbsp; 31.5, 35.15, 35.5; Super VGA, 1024x768 @ 87 Hz interlaced, 800x600 @ 56 Hz</font></font></font> <br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp;5&nbsp; 31.5 - 37.9; Extended Super VGA, 800x600 @ 60 Hz, 640x480 @ 72 Hz</font></font></font> <br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp;6&nbsp; 31.5 - 48.5; Non-Interlaced SVGA, 1024x768 @ 60 Hz, 800x600 @ 72 Hz</font></font></font> <br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp;7&nbsp; 31.5 - 57.0; High Frequency SVGA, 1024x768 @ 70 Hz</font></font></font> <br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp;8&nbsp; 31.5 - 64.3; Monitor that can do 1280x1024 @ 60 Hz</font></font></font> <br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp;9&nbsp; 31.5 - 82.0; Monitor that can do 1280x1024 @ 76 Hz</font></font></font> <br><font face="细明体"><font color="#ffffff"><font size="-1">10&nbsp; 31.5 - 95.0; Monitor that can do 1280x1024 @ 85 Hz</font></font></font> <br><font face="细明体"><font color="#ffffff"><font size="-1">11&nbsp; Enter your own horizontal sync range</font></font></font> </p><p><font face="细明体"><font size="-1"><font color="#ffffff">Enter your choice (1-11): </font><font color="#ffff00">&lt;==选择分辨率，同样选 7 即可！</font></font></font> </p><p><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp;1&nbsp; 50-70</font></font></font> <br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp;2&nbsp; 50-90</font></font></font> <br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp;3&nbsp; 50-100</font></font></font> <br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp;4&nbsp; 40-150</font></font></font> <br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp;5&nbsp; Enter your own vertical sync range</font></font></font> </p><p><font face="细明体"><font size="-1"><font color="#ffffff">Enter your choice: </font><font color="#ffff00">&lt;==选择分辨率，选 2 即可！</font></font></font> </p><p><font face="细明体"><font size="-1"><font color="#ffffff">Enter an identifier for your monitor definition:</font><font color="#ffff00">&lt;==按 enter&nbsp;</font></font></font> <br><font face="细明体"><font size="-1"><font color="#ffffff">Enter the vendor name of your monitor:</font><font color="#ffff00">&lt;==按 enter&nbsp;</font></font></font> <br><font face="细明体"><font size="-1"><font color="#ffffff">Enter the model name of your monitor:</font><font color="#ffff00">&lt;==按 enter&nbsp;</font></font></font> </p><p><font face="细明体"><font color="#ffff00"><font size="-1">step 8：</font></font></font> <br><font face="细明体"><font size="-1"><font color="#ffffff">Do you want to look at the card database? </font><font color="#ffff00">&lt;==这里选 y 开始看你的显示适配器型号</font></font></font> </p><p><font face="细明体"><font color="#ffffff"><font size="-1">506&nbsp;  S3 86C391  (Savage3D)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Generic  VGA</font></font></font> <br><font face="细明体"><font color="#ffffff"><font size="-1">507&nbsp; S3 86C764  (generic)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; S3  Trio64</font></font></font> <br><font face="细明体"><font color="#ffffff"><font size="-1">508&nbsp; S3 86C765  (generic)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; S3  Trio64V+</font></font></font> <br><font face="细明体"><font color="#ffffff"><font size="-1">509&nbsp; S3 86C775  (generic)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; S3  Trio64V2</font></font></font> <br><font face="细明体"><font color="#ffffff"><font size="-1">510&nbsp; S3 86C785  (generic)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; S3  Trio64V2</font></font></font> <br><font face="细明体"><font color="#ffffff"><font size="-1">511&nbsp; S3 86C801  (generic)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; S3  801/805</font></font></font> <br><font face="细明体"><font color="#ffffff"><font size="-1">512&nbsp; S3 86C805  (generic)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; S3  801/805</font></font></font> </p><p><font face="细明体"><font color="#ffff00"><font size="-1">由于我们使用的卡是 S3 Trio64V2 的卡，所以一直按 Enter 到大概 509 的</font></font></font> <br><font face="细明体"><font color="#ffff00"><font size="-1">地方就会出现 S3 Trio64V2 这个卡！选 509 后按 enter</font></font></font> </p><p><font face="细明体"><font size="-1"><font color="#ffffff">Press enter to continue, or ctrl-c to abort.</font><font color="#ffff00">&lt;==按 enter&nbsp;</font></font></font> </p><p><font face="细明体"><font color="#ffff00"><font size="-1">step 9：</font></font></font> <br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp;1&nbsp; The XF86_Mono server. This a monochrome server that should work on any</font></font></font> <br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp;&nbsp;&nbsp; VGA-compatible card, in 640x480 (more on some SVGA chipsets).</font></font></font> <br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp;2&nbsp; The XF86_VGA16 server. This is a 16-color VGA server that should work on</font></font></font> <br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp;&nbsp;&nbsp; any VGA-compatible card.</font></font></font> <br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp;3&nbsp; The XF86_SVGA server. This is a 256 color SVGA server that supports</font></font></font> <br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp;&nbsp;&nbsp; a number of SVGA chipsets. On some chipsets it is accelerated or</font></font></font> <br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp;&nbsp;&nbsp; supports higher color depths.</font></font></font> <br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp;4&nbsp; The accelerated servers. These include XF86_S3, XF86_Mach32, XF86_Mach8,</font></font></font> <br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp;&nbsp;&nbsp; XF86_8514, XF86_P9000, XF86_AGX, XF86_W32, XF86_Mach64, XF86_I128 and</font></font></font> <br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp;&nbsp;&nbsp; XF86_S3V.</font></font></font> </p><p><font face="细明体"><font color="#ffffff"><font size="-1">These four server types correspond to the four different "Screen" sections in</font></font></font> <br><font face="细明体"><font color="#ffffff"><font size="-1">XF86Config (vga2, vga16, svga, accel).</font></font></font> </p><p><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp;5&nbsp; Choose the server from the card definition, XF86_S3.</font></font></font> </p><p><font face="细明体"><font color="#ffffff"><font size="-1">Which one of these screen types do you intend to run by default (1-5)?</font></font></font> <br><font face="细明体"><font color="#ffff00"><font size="-1">上面告诉你共有五种型式的卡供你选择，第五项 XF86_S3 是你选择的！所以这里</font></font></font> <br><font face="细明体"><font color="#ffff00"><font size="-1">选 5 就好了，如果你不知道你的卡是哪一个，那就选 4 试试看吧！</font></font></font> </p><p><font face="细明体"><font color="#ffff00"><font size="-1">step 10：</font></font></font> <br><font face="细明体"><font size="-1"><font color="#ffffff">Do you want me to set the symbolic link? </font><font color="#ffff00">&lt;==这里按 y&nbsp;</font></font></font> </p><p><font face="细明体"><font color="#ffff00"><font size="-1">step 11：</font></font></font> <br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp;1&nbsp; 256K</font></font></font> <br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp;2&nbsp; 512K</font></font></font> <br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp;3&nbsp; 1024K</font></font></font> <br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp;4&nbsp; 2048K</font></font></font> <br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp;5&nbsp; 4096K</font></font></font> <br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp;6&nbsp; Other</font></font></font> <br><font face="细明体"><font size="-1"><font color="#ffffff">Enter your choice: &lt;==按你的显示适配器而定，</font><font color="#ffff00">不知道的话可以选 3 试看看</font></font></font> </p><p><font face="细明体"><font color="#ffff00"><font size="-1">step 12：</font></font></font> <br><font face="细明体"><font size="-1"><font color="#ffffff">Enter an identifier for your video card definition:</font><font color="#ffff00">&lt;==按 enter&nbsp;</font></font></font> <br><font face="细明体"><font size="-1"><font color="#ffffff">Enter the vendor name of your video card:</font><font color="#ffff00">&lt;==按 enter&nbsp;</font></font></font> <br><font face="细明体"><font size="-1"><font color="#ffffff">Enter the model (board) name of your video card:</font><font color="#ffff00">&lt;==按 enter&nbsp;</font></font></font> </p><p><font face="细明体"><font color="#ffff00"><font size="-1">step 13：</font></font></font> <br><font face="细明体"><font color="#ffffff"><font size="-1">Press enter for the next page, q to quit without selection of a RAMDAC.</font></font></font> <br><font face="细明体"><font color="#ffff00"><font size="-1">不知道我们的 RAMDAC 所以选 q 离开即可</font></font></font> </p><p><font face="细明体"><font color="#ffff00"><font size="-1">step 14：</font></font></font> <br><font face="细明体"><font size="-1"><font color="#ffffff">What Clockchip setting do you want (1-12)?</font><font color="#ffff00"> &lt;==按 q 即可</font></font></font> <br><font face="细明体"><font size="-1"><font color="#ffffff">Press enter to continue, or ctrl-c to abort. </font><font color="#ffff00">&lt;==按 enter</font></font></font> </p><p><font face="细明体"><font color="#ffff00"><font size="-1">step 15：</font></font></font> <br><font face="细明体"><font color="#ffffff"><font size="-1">"640x480" "800x600" "1024x768" for 8bpp</font></font></font> <br><font face="细明体"><font color="#ffffff"><font size="-1">"640x480" "800x600" for 16bpp</font></font></font> <br><font face="细明体"><font color="#ffffff"><font size="-1">"640x480" for 24bpp</font></font></font> <br><font face="细明体"><font color="#ffffff"><font size="-1">"640x400" for 32bpp</font></font></font> </p><p><font face="细明体"><font color="#ffffff"><font size="-1">Note that 16, 24 and 32bpp are only supported on a few configurations.</font></font></font> <br><font face="细明体"><font color="#ffffff"><font size="-1">Modes that cannot be supported due to monitor or clock constraints will</font></font></font> <br><font face="细明体"><font color="#ffffff"><font size="-1">be automatically skipped by the server.</font></font></font> </p><p><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp;1&nbsp; Change the modes for 8pp (256 colors)</font></font></font> <br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp;2&nbsp; Change the modes for 16bpp (32K/64K colors)</font></font></font> <br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp;3&nbsp; Change the modes for 24bpp (24-bit color, packed pixel)</font></font></font> <br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp;4&nbsp; Change the modes for 32bpp (24-bit color)</font></font></font> <br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp;5&nbsp; The modes are OK, continue.</font></font></font> <br><font face="细明体"><font color="#ffffff"><font size="-1">Enter your choice:</font></font></font> <br><font face="细明体"><font color="#ffff00"><font size="-1">如果要避免麻烦，直接按 5 使用默认值就可以了！</font></font></font> </p><p><font face="细明体"><font color="#ffff00"><font size="-1">step 16：</font></font></font> <br><font face="细明体"><font size="-1"><font color="#ffffff">Shall I write it to /etc/X11/XF86Config? </font><font color="#ffff00">&lt;== 按下 y&nbsp;</font></font></font> </p><p><font face="细明体"><font color="#ffff00"><font size="-1">在上面上下 y 之后，就完成了设定啦！</font></font></font></p></td> </tr> </tbody></table>  <p>完成上面的设定之后，你就可以尝试着打 <b>startx</b> 看看是否可以启动 X-Window 啦，如果还是不行的话，就在从头设定一次吧！</p></ol> <b><font color="#000099">方法三：手动修正一些错误</font></b> <blockquote>其实，不论你使用哪一种程序修改 X-Window 的设定，都是在修改 /etc/X11/XF86Config 这个配置文件，在进行这个档案的修改工作之前，请先将你的文件备份吧！免得改错了就不得了了！ <p>在这个档案中，最需要注意的大概只有几个部分（其他的我也不是很懂呀！）：monitor、device 跟&nbsp; screen ，主要的部分有点像这样： </p><p><font color="#3333ff">monitor</font>: </p><blockquote>&nbsp; <table width="80%" bgcolor="#000000" cols="1"> <tbody><tr> <td><font face="细明体"><font color="#ffffff"><font size="-1">Section "Monitor"</font></font></font> <p><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp;Identifier&nbsp; "My Monitor"</font></font></font> <br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp;VendorName&nbsp; "Unknown"</font></font></font> <br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp;ModelName&nbsp;&nbsp; "Unknown"</font></font></font> </p><p><font face="细明体"><font size="-1"><font color="#ffffff">&nbsp; </font><font color="#ffff00">HorizSync&nbsp;&nbsp; 31.5 - 57.0</font></font></font> </p><p><font face="细明体"><font size="-1"><font color="#ffffff">&nbsp;&nbsp;&nbsp;</font><font color="#ffff00"> VertRefresh 50-90</font></font></font> </p><p><font face="细明体"><font color="#ffffff"><font size="-1"># 800x600 @ 72 Hz, 48.0 kHz hsync</font></font></font> <br><font face="细明体"><font color="#ffffff"><font size="-1">Modeline "800x600"&nbsp;&nbsp;&nbsp;&nbsp; 50&nbsp;&nbsp;&nbsp;&nbsp; 800&nbsp; 856&nbsp; 976 1040&nbsp;&nbsp; 600&nbsp; 637&nbsp; 643&nbsp; 666 +hsync +vsync</font></font></font> </p><p><font face="细明体"><font color="#ffffff"><font size="-1"># 1024x768 @ 60 Hz, 48.4 kHz hsync</font></font></font> <br><font face="细明体"><font color="#ffffff"><font size="-1">Modeline "1024x768"&nbsp;&nbsp;&nbsp; 65&nbsp;&nbsp;&nbsp; 1024 1032 1176 1344&nbsp;&nbsp; 768&nbsp; 771&nbsp; 777&nbsp; 806 -hsync -vsync</font></font></font> </p><p><font face="细明体"><font color="#ffffff"><font size="-1"># 640x480 @ 100 Hz, 53.01 kHz hsync</font></font></font> <br><font face="细明体"><font color="#ffffff"><font size="-1">Modeline "640x480"&nbsp;&nbsp;&nbsp;&nbsp; 45.8&nbsp;&nbsp; 640&nbsp; 672&nbsp; 768&nbsp; 864&nbsp;&nbsp; 480&nbsp; 488&nbsp; 494&nbsp; 530 -HSync -VSync</font></font></font> <br>&nbsp;</p></td> </tr> </tbody></table> 要注意的是上面显示黄色的部分，而底下的部分比较麻烦，最好是由 Xconfigurator 设定就好，不要随意改变。</blockquote> <font color="#3333ff">device</font>: <blockquote>&nbsp; <table width="80%" bgcolor="#000000" cols="1"> <tbody><tr> <td><font face="细明体"><font color="#ffffff"><font size="-1"># Device configured by Xconfigurator:</font></font></font> <p><font face="细明体"><font color="#ffffff"><font size="-1">Section "Device"</font></font></font> <br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp;Identifier&nbsp; "Silicon Integrated Systems [SiS]|86C326"</font></font></font> <br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp;VendorName&nbsp; "Unknown"</font></font></font> <br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp;BoardName&nbsp;&nbsp; "Unknown"</font></font></font> <br><font face="细明体"><font color="#ffff00"><font size="-1">&nbsp;#VideoRam&nbsp;&nbsp;&nbsp; 8192</font></font></font> <br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp;Option "no_accel" # Use this if acceleration is causing problems</font></font></font> <br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp;# Option "fifo_moderate"</font></font></font> <br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp;# Option "fifo_conserv"</font></font></font> <br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp;# Option "fifo_aggresive"</font></font></font> <br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp;# Option "fast_vram"</font></font></font> <br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp;# Option "pci_burst_on"</font></font></font> <br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp;# Option "xaa_benchmark" # DON'T use with "ext_eng_queue" !!!</font></font></font> <br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp;# Option "ext_eng_queue" # Turbo-queue. This can cause drawing</font></font></font> <br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp;# errors, but gives some accel</font></font></font> <br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp;# Insert Clocks lines here if appropriate</font></font></font> <br><font face="细明体"><font color="#ffffff"><font size="-1">EndSection</font></font></font></p></td> </tr> </tbody></table> 上面的设定是我另一台机器的 Linux 设定，使用的是 SIS 6326 芯片，而有 8M 的内存，不过不知为何，上面的内存项目（黄色）备批注掉了（#符号为批注，不会被执行）。如果你知道如何变换的话，可以从这里去修改你的显示适配器！</blockquote> <font color="#3333ff">screen</font>: <blockquote>&nbsp; <table width="80%" bgcolor="#000000" cols="1"> <tbody><tr> <td><font face="细明体"><font color="#ffffff"><font size="-1"># The Colour SVGA server</font></font></font> <p><font face="细明体"><font color="#ffffff"><font size="-1">Section "Screen"</font></font></font> <br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp;&nbsp;&nbsp; Driver&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "svga"</font></font></font> <br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp;&nbsp;&nbsp; # Use Device "Generic VGA" for Standard VGA 320x200x256</font></font></font> <br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp;&nbsp;&nbsp; #Device&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "Generic VGA"</font></font></font> <br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp;&nbsp;&nbsp; Device&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "Silicon Integrated Systems [SiS]|86C326"</font></font></font> <br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp;&nbsp;&nbsp; Monitor&nbsp;&nbsp;&nbsp;&nbsp; "My Monitor"</font></font></font> <br><font face="细明体"><font size="-1"><font color="#ffffff">&nbsp;&nbsp;&nbsp;</font><font color="#ffff00"> Subsection "Display"</font></font></font> <br><font face="细明体"><font size="-1"><font color="#ffffff">&nbsp;&nbsp;&nbsp;</font><font color="#ffff00">&nbsp;&nbsp;&nbsp;&nbsp; Depth&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 32</font></font></font> <br><font face="细明体"><font color="#ffff00"><font size="-1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Modes&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "800x600"</font></font></font> <br><font face="细明体"><font color="#ffff00"><font size="-1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ViewPort&nbsp;&nbsp;&nbsp; 0 0</font></font></font> <br><font face="细明体"><font size="-1"><font color="#ffffff">&nbsp;&nbsp;&nbsp;</font><font color="#ffff00"> EndSubsection</font></font></font> <br><font face="细明体"><font color="#ffffff"><font size="-1">EndSection</font></font></font></p></td> </tr> </tbody></table> 上面的设定跟你最终在屏幕上输出的分辨率有关，主要是黄色的部分，Depth是指你的色彩度，而 Modes 是分辨率，你可以依照自己的喜好来设定。</blockquote> <i><font color="#000099"><font size="+1">其他疑难解答：</font></font></i> <ul> <li> <font color="#000000">基本上，如果你出现了没有办法解决的问题时，你可以先以 </font><font color="#3333ff">xf86config</font><font color="#000000"> 设定，设定完成了之后再以手动的方式去修改你的 screen 项目，基本上可能会出现的问题应该是出自于 Display 这一项，尽量将你的 </font><font color="#3333ff">Subsection</font><font color="#000000"> 的情况订定的简单一点，最好是只有一个 Models 的情况！那样可能可以让你成功的达成开启 X-Window 的任务喔！</font></li> </ul>  <ul> <li> <font color="#000000">另外，如果你的画面大到整个屏幕之外，要用鼠标才能移动到周围的话，你可以将 Modes 那一项调成只有 "1024x768" 这一个，就可以将整个画面融入了！</font></li> </ul> </blockquote> </blockquote>  <hr width="100%"> <br><a name="chosexwindows"></a><font color="#000099"><font size="+1"><font face="标楷体">选择 </font><font face="Times New Roman Baltic">X-Window</font><font face="标楷体"> 的升级套件</font></font></font> <blockquote>好啦，我们知道 X-Window 主要是以 XFree86 这个 server 所提供的咚咚，另外也已经知道如何设定 X-Window 了，那要如何升级 X-Window 呢？再者，如果我们不使用原有的 X-server 的话，那要如何更新到新版的 x-window 呢？ <p>如果你是使用这个网页所提供的 RedHat 6.1 作为你 Linux 的操作系统，而且你的安装方法是使用所有的东西都安装的方法，另外，你使用的显示适配器是比较旧的 S3 系列的卡，那很好，你已经有 X-Window 3.3.5-3 的套件了！接下来你只要去<a href="#setupxfree86">设定 XFree86</a> 就可以正常启动 x-window 啦！（其实，如果你使用较旧的机器，而且安装的方法使用这个网页的话，其实在安装的时候应该就已经可以看到 X-Window 的画面了！） </p><p>如果你虽然使用 RedHat 6.1 ，但是你的显示适配器是比较新的卡，以目前的显示适配器接口来说，可能是 <font color="#3333ff">GeForce2 MX </font>这块卡，由于 NVIDIA 的产品是比较新的显示适配器，所以除了以新版的 XFree86 Server 来增加你的显示适配器支持度外，也可以先更新 XFree86 到 4.0.1 以后的版本，才来安装这张显示适配器！升级完了 XFree86 后再到底下的『<a href="#nvidiasetup">安装 NVidia 的显示适配器核心程序</a>』去更新这个新的显示适配器核心程序！</p></blockquote>  <blockquote>那如果你要升级你的 X-Window 系统呢？例如你要将你的 XFree86 升级到最新的 4.1.0 版的话，那要如何升级呢？你可以依底下的步骤来做做看： <ol> <li> <font color="#000099">确认你的 X-Window 版本</font>：你要做的是，先确认你的 X-Window 的版本，先以 rpm 确认一下你的 XFree86 这个软件，并将 Xinstall.sh 这个档案捉到你的 Linux 系统中，更改 Xinstall.sh 成为可执行的档案，然后以 root 的身份执行：</li>  <table width="90%" bgcolor="#000000" cols="1"> <tbody><tr> <td><font face="细明体"><font color="#ffffff"><font size="-1">[root @tsai /tmp]# rpm -q XFree86</font></font></font> <br><font face="细明体"><font color="#ffffff"><font size="-1">XFree86-3.3.5-3</font></font></font> <br><font face="细明体"><font color="#ffffff"><font size="-1">[root @tsai /tmp]# chmod 744 Xinstall.sh</font></font></font> <br><font face="细明体"><font size="-1"><font color="#ffffff">[root @tsai /tmp]# </font><font color="#ffff00">./Xinstall.sh&nbsp; -check</font></font></font> <br><font face="细明体"><font color="#ffffff"><font size="-1">Checking which OS you're running...</font></font></font> <br><font face="细明体"><font color="#ffffff"><font size="-1">uname reports 'Linux' version '2.2.12-20', architecture 'i586'.</font></font></font> <br><font face="细明体"><font color="#ffffff"><font size="-1">Object format is 'ELF'.&nbsp; libc version is '6.1.2' (6.1).</font></font></font> <p><font face="细明体"><font color="#ffffff"><font size="-1">Binary distribution name is 'Linux-ix86-glibc21'</font></font></font></p></td> </tr> </tbody></table> 如果你是以这个网页提供的 RedHat 6.1 来安装的话，你的屏幕应该会显示如上面这一个咚咚，上面显示了 XFree86 的版本为 3.3.5-3 ，而我们的 Linux 版本为 2.2.12-20，而 X-Window 的版本为 <font color="#3333ff">Linux-ix86-glibc21</font> 这一个东西。（另外要注意的是，如果你是使用 RedHat 7.0 的话，你的 X-Window 版本已经变成了 Linux-ix86-glibc22 了！） <br>&nbsp; <li> <font color="#000099">下载你的 X-Window 版本的核心程序</font>：你可以到几个比较有名的 FTP 站去下载最新的 X-Window 版本，或者由鸟哥这个网页下载你所需要的咚咚：</li>  <ul> <li> 教育部：<a href="ftp://nctuccca.edu.tw/UNIX/XFree86/" target="_blank">ftp://nctuccca.edu.tw/UNIX/XFree86/</a></li>  <li> XFree86 组织：<a href="ftp://ftp.xfree86.org/pub/XFree86" target="_blank">ftp://ftp.xfree86.org/pub/XFree86</a></li>  <li> 这个网页提供的是 XFree86 4.1.0 版的东西：</li>  <ul> <li> Linux-ix86-glibc21.tar.gz：主要是 RedHat 6.1 以前版本所使用的 X-window 核心；</li>  <li> Linux-ix86-glibc22.tar.gz：主要是 RedHat 7.0 以后版本使用的 X-window 核心。</li> </ul> </ul> 基本上，在各大 FTP 站中，你所要下载的东西，除了在各版本底下的主要执行档与说明档之外（就是 Xinstall.sh 等档案），其他要下载的只是在 binaries 底下的核心程序文件，只要选择适合你的档案就可以了！</ol> 注意了，如果你是由鸟哥的这个网页所下载的档案（Linux-ix86-glibc21.tar.gz），则你必须先解压缩，假设你的档案放置在 /test 底下，则： <br>&nbsp; <table width="90%" bgcolor="#000000" cols="1"> <tbody><tr> <td><font face="细明体"><font color="#ffffff"><font size="-1">[root @tsai XFree86]# tar -zxvf Linux-ix86-glibc21.tar.gz</font></font></font></td> </tr> </tbody></table> 上面步骤会产生 Linux-ix86-glibc21 这个目录，里面就是我们所需要的 X-window 的核心啦！</blockquote>  <hr width="100%"> <br><a name="installxfree86"></a><font color="#000099"><font size="+1"><font face="标楷体">安装 </font><font face="Times New Roman Baltic">XFree86</font><font face="标楷体"> 的升级套件</font></font></font> <blockquote>在选择完了你的 X-Window 套件之后，再来就是要安装了！以下的安装是针对 <font color="#3333ff">4.1.0</font> 的 X-Window 版本，而且是在 <font color="#3333ff">RedHat 6.1</font> 中，以 <font color="#3333ff">Linux-ix86-glibc21</font> 核心进行安装的步骤！ <ol> <li> <font color="#000099">备份你的 X-Window 系统</font>：做事情总是有备而无患的！由于安装新的 X-Window 核心时，会将旧的版本覆盖掉，所以如果新的版本无法安装完成，或者是新的版本你使用的不愉快时，要换回旧版的 X-window 就要重新安装一次！很麻烦，所以最好是将你的旧版 X-window 备份。假设你要将备份的东西存在 /backup 中，则：</li>  <br>&nbsp; <table width="90%" bgcolor="#000000" cols="1"> <tbody><tr> <td><font face="细明体"><font color="#ffffff"><font size="-1">[root @tsai /test]# mkdir /backup</font></font></font> <br><font face="细明体"><font color="#ffffff"><font size="-1">[root @tsai /test]# cd /backup</font></font></font> <br><font face="细明体"><font color="#ffffff"><font size="-1">[root @tsai /backup]# mkdir x-window</font></font></font> <br><font face="细明体"><font color="#ffffff"><font size="-1">[root @tsai /backup]# cd x-window</font></font></font> <br><font face="细明体"><font color="#ffffff"><font size="-1">[root @tsai x-window]# tar -zcvf X11R6.tar.gz /usr/X11R6</font></font></font> <br><font face="细明体"><font color="#ffffff"><font size="-1">[root @tsai x-window]# tar -zcvf X11.tar.gz /etc/X11</font></font></font></td> </tr> </tbody></table> 则在你的 /backup/x-window 下会有两个文件名为：X11R6.tar.gz 及 X11.tar.gz 的档案！ <br>&nbsp; <li> <font color="#000099">离开 X-window 系统</font><font color="#000000">：如果你是以 X-window 为预设的开机登入情况，则你必须修改成 init 3 的等级登入，总之，就是要进入成文本模式，并且 X-window 不能在使用的状态下才能升级！</font></li>  <br>&nbsp; <li> <font color="#000099">开始安装</font>：</li>  <ul> <li> 在刚刚我们捉下来的 Linux-ix86-glibc21 的目录中执行 Xinstall.sh 这个档案：</li>  <br>&nbsp; <table width="80%" bgcolor="#000000" cols="1"> <tbody><tr> <td><font face="细明体"><font color="#ffffff"><font size="-1">[root @tsai /test]# cd /test/XFree86/Linux-ix86-glibc21</font></font></font> <br><font face="细明体"><font color="#ffffff"><font size="-1">[root @tsai Linux-ix86-glibc21]# chmod 744 Xinstall.sh&nbsp;</font></font></font> <br><font face="细明体"><font color="#ffffff"><font size="-1">[root @tsai Linux-ix86-glibc21]# ./Xinstall.sh&nbsp;</font></font></font></td> </tr> </tbody></table>  <li> 开始整个流程可以如下的几个步骤表示：（注意：由于新版的 XFree86 我动手装了好几次，都没有办法成功，所以基本上，用这个程序的默认值就可以了，也就是一直按 <font color="#3333ff">enter</font> 即可，这样就不会造成你的 X-Window 被改乱掉的困扰喔！）</li>  <br>&nbsp; <table width="80%" bgcolor="#000000" cols="1"> <tbody><tr> <td><font face="细明体"><font color="#ffff00"><font size="-1">step 1:</font></font></font> <br><font face="细明体"><font color="#ffffff"><font size="-1">If you are installing a version different from 4.1.0, you</font></font></font> <br><font face="细明体"><font color="#ffffff"><font size="-1">may need an updated version of this installer script.</font></font></font> <br><font face="细明体"><font size="-1"><font color="#ffffff">Do you wish to continue? (y/n) [n] y </font><font color="#ffff00">&lt;== 这里输入 y</font></font></font> <p><font face="细明体"><font color="#ffff00"><font size="-1">step 2:</font></font></font> <br><font face="细明体"><font color="#ffffff"><font size="-1">You appear to have an existing installation of X.&nbsp; Continuing will</font></font></font> <br><font face="细明体"><font color="#ffffff"><font size="-1">overwrite it.&nbsp; You will, however, have the option of being prompted</font></font></font> <br><font face="细明体"><font color="#ffffff"><font size="-1">before most configuration files are overwritten.</font></font></font> <br><font face="细明体"><font size="-1"><font color="#ffffff">Do you wish to continue? (y/n) [y] y </font><font color="#ffff00">&lt;== 这里输入 y</font></font></font> </p><p><font face="细明体"><font color="#ffff00"><font size="-1">step 3:</font></font></font> <br><font face="细明体"><font color="#ffffff"><font size="-1">Do you want to move them to /etc/X11 and create the necessary</font></font></font> <br><font face="细明体"><font size="-1"><font color="#ffffff">links? (y/n) [y] </font><font color="#ffff00">&lt;== 这里输入 y</font></font></font> </p><p><font face="细明体"><font color="#ffff00"><font size="-1">step 4:</font></font></font> <br><font face="细明体"><font color="#ffffff"><font size="-1">== Extracting /test/XFree86/Linux-ix86-glibc21/Xetc.tgz ==</font></font></font> <br><font face="细明体"><font color="#ffffff"><font size="-1">Do you want to overwrite the app-defaults config files? (y/n) [n]</font></font></font> <br><font face="细明体"><font color="#ffff00"><font size="-1">上面在问你，你是否要将前一版的 X-window 设定留下？</font></font></font> <br><font face="细明体"><font color="#ffff00"><font size="-1">如果你只是升级，那就按 n 即可，如果你想要重头安装，</font></font></font> <br><font face="细明体"><font color="#ffff00"><font size="-1">这里可以按 y ，只要后面就要重新设定 x-window 了！</font></font></font> <br><font face="细明体"><font color="#ffff00"><font size="-1">后面的步骤（到步骤 13 都是这种情况！）</font></font></font> </p><p><font face="细明体"><font color="#ffff00"><font size="-1">step 5:</font></font></font> <br><font face="细明体"><font color="#ffffff"><font size="-1">Do you want to overwrite the fs config files? (y/n) [n]</font></font></font> </p><p><font face="细明体"><font color="#ffff00"><font size="-1">step 6:</font></font></font> <br><font face="细明体"><font color="#ffffff"><font size="-1">Do you want to overwrite the lbxproxy config files? (y/n) [n]</font></font></font> </p><p><font face="细明体"><font color="#ffff00"><font size="-1">step 7:</font></font></font> <br><font face="细明体"><font color="#ffffff"><font size="-1">Do you want to overwrite the proxymngr config files? (y/n) [n]</font></font></font> </p><p><font face="细明体"><font color="#ffff00"><font size="-1">step 8:</font></font></font> <br><font face="细明体"><font color="#ffffff"><font size="-1">Do you want to overwrite the rstart config files? (y/n) [n]</font></font></font> </p><p><font face="细明体"><font color="#ffff00"><font size="-1">step 9:</font></font></font> <br><font face="细明体"><font color="#ffffff"><font size="-1">Do you want to overwrite the twm config files? (y/n) [n]</font></font></font> </p><p><font face="细明体"><font color="#ffff00"><font size="-1">step 10:</font></font></font> <br><font face="细明体"><font color="#ffffff"><font size="-1">Do you want to overwrite the xdm config files? (y/n) [n]</font></font></font> </p><p><font face="细明体"><font color="#ffff00"><font size="-1">step 11:</font></font></font> <br><font face="细明体"><font color="#ffffff"><font size="-1">Do you want to overwrite the xinit config files? (y/n) [n]</font></font></font> </p><p><font face="细明体"><font color="#ffff00"><font size="-1">step 12:</font></font></font> <br><font face="细明体"><font color="#ffffff"><font size="-1">Do you want to overwrite the xsm config files? (y/n) [n]</font></font></font> </p><p><font face="细明体"><font color="#ffff00"><font size="-1">step 13:</font></font></font> <br><font face="细明体"><font color="#ffffff"><font size="-1">Do you want to overwrite the xserver config files? (y/n) [n]</font></font></font> </p><p><font face="细明体"><font color="#ffff00"><font size="-1">step 14:</font></font></font> <br><font face="细明体"><font color="#ffffff"><font size="-1">Do you want to install Xfsrv.tgz (font server)? (y/n) [y]</font></font></font> <br><font face="细明体"><font color="#ffff00"><font size="-1">这个是跟 X server 有关的档案，没有其他要求的话，直接都按 y 吧！</font></font></font> <br><font face="细明体"><font color="#ffff00"><font size="-1">以下的都是与 X server 有关的咚咚！</font></font></font> <br><font face="细明体"><font color="#ffffff"><font size="-1">Do you want to install Xnest.tgz (Nested X server)? (y/n) [y]</font></font></font> <br><font face="细明体"><font color="#ffffff"><font size="-1">Do you want to install Xprog.tgz (programmer support)? (y/n) [y]</font></font></font> <br><font face="细明体"><font color="#ffffff"><font size="-1">Do you want to install Xprt.tgz (X print server)? (y/n) [y]</font></font></font> <br><font face="细明体"><font color="#ffffff"><font size="-1">Do you want to install Xvfb.tgz (Virtual framebuffer X server)? (y/n) [y]</font></font></font> </p><p><font face="细明体"><font color="#ffff00"><font size="-1">step 15:</font></font></font> <br><font face="细明体"><font color="#ffffff"><font size="-1">Do you want to install Xf100.tgz (100dpi fonts)? (y/n) [y]</font></font></font> <br><font face="细明体"><font color="#ffff00"><font size="-1">这个是 X windows 的字型，以下都是属于字形的部分，请选 y 吧！</font></font></font> <br><font face="细明体"><font color="#ffffff"><font size="-1">Do you want to install Xfcyr.tgz (Cyrillic fonts)? (y/n) [y]</font></font></font> <br><font face="细明体"><font color="#ffffff"><font size="-1">Do you want to install Xfscl.tgz (Scaled fonts (Speedo and Type1))? (y/n) [y]</font></font></font> <br><font face="细明体"><font color="#ffffff"><font size="-1">Do you want to install Xhtml.tgz (Docs in HTML)? (y/n) [y]</font></font></font> <br><font face="细明体"><font color="#ffffff"><font size="-1">Do you want to install Xjdoc.tgz (Docs in Japanese)? (y/n) [y]</font></font></font> <br><font face="细明体"><font color="#ffffff"><font size="-1">Do you want to install Xps.tgz (Docs in PostScript)? (y/n) [y]</font></font></font> </p><p><font face="细明体"><font color="#ffff00"><font size="-1">step 16:</font></font></font> <br><font face="细明体"><font color="#ffffff"><font size="-1">Do you wish to have the (new) links installed (y/n)? [n]&nbsp;</font></font></font> <br><font face="细明体"><font color="#ffff00"><font size="-1">这个地方在告诉你，是否需要将一些档案连结到 /usr/lib 或</font></font></font> <br><font face="细明体"><font color="#ffff00"><font size="-1">/usr/include，注意，一旦选择y就会有档案被覆盖掉。</font></font></font> </p><p><font face="细明体"><font color="#ffff00"><font size="-1">step 17:</font></font></font> <br><font face="细明体"><font color="#ffffff"><font size="-1">Do you wish to have this link installed (y/n)? [n]&nbsp;</font></font></font> </p><p><font face="细明体"><font color="#ffff00"><font size="-1">step 18:</font></font></font> <br><font face="细明体"><font color="#ffffff"><font size="-1">Do you want them moved to /usr/X11R6/lib/modules/old?</font></font></font> <br><font face="细明体"><font color="#ffffff"><font size="-1">Note: that if you want to use them with 3.3.x again, you'll</font></font></font> <br><font face="细明体"><font color="#ffffff"><font size="-1">need to move them back manually. (y/n) [n]&nbsp;</font></font></font> </p><p><font face="细明体"><font color="#ffff00"><font size="-1">step 19:</font></font></font> <br><font face="细明体"><font color="#ffffff"><font size="-1">Installation complete.</font></font></font></p></td> </tr> </tbody></table>  <li> OK啦！这样就安装完毕了！</li> </ul>  <li> <font color="#000099">重新设定 XFree86：</font><font color="#000000">接着下来，由于我们升级了 XFree86 ，所以接下来要开始重新的设定 XFree86 了，设定的方法虽然有点不太一样，但是同样是使用 <a href="#setupxfree86">xf86config</a> 这一个咚咚来设定！如果你的显示适配器是 </font><font color="#3333ff">NVidia GeForce2 MX</font><font color="#000000"> 的话，请在看到：</font></li>  <table width="80%" bgcolor="#000000" cols="1"> <tbody><tr> <td><font face="细明体"><font color="#ffffff"><font size="-1">Do you want to look at the card database?&nbsp;</font></font></font></td> </tr> </tbody></table> <font color="#000000">这一行的时候，请持续按 enter 到大概是 320 的时候，会显示 GeForce 的字样，选这个就对了！不过在选择显示分辨率的时候，最好调成 1024*768 那一个，画面就不会移来移去了！</font> <br>&nbsp; <li> <font color="#000099">开始进行 Check 的工作</font>：基本上，安装完毕之后，需要执行 『XFree86 -configure』 来确认你有没有安装好，但是，奇怪的是，我每次执行都会出现有问题？不过 X-Windows 倒是可以执行。</li> </ol> </blockquote>  <hr width="100%"> <br><a name="src.rpm"></a><font color="#000099"><font size="+1"><font face="标楷体">使用 </font><font face="Times New Roman Baltic">src.rpm</font><font face="标楷体"> 进行 </font><font face="Times New Roman Baltic">XFree86</font><font face="标楷体"> 的升级安装</font></font></font> <blockquote>使用手动的升级虽然可以避免一些编译上面的问题，不过，毕竟如果有 i386.rpm 或 src.rpm 等等的档案的话，就会更简单的升级了！你可以上各大 FTP 站去下载最新的 XFree86 的咚咚！然后执行编译各 *.src.rpm 程序，等到编译没有问题之后，直接在 /usr/src/redhat/RPMS/i386 中安装你的 rpm 档案吧！</blockquote>  <hr width="100%"> <br><a name="nvidiasetup"></a><font color="#000099"><font size="+1"><font face="标楷体">更新 </font><font face="Times New Roman Baltic">NVidia</font><font face="标楷体"> 的显示适配器核心程序</font></font></font> <blockquote>基本上经过了 Xconfigurator 及 xf86config 的设定工作之后，你的 X-Window 应该可以正常工作了，但是如果你使用的是 <font color="#3333ff">NVidia GeForce2 MX</font> 这一张目前市面上最常见到的卡呢？由于旧的 X-Window 的 Server 并不支持 GeForce 的核心，所以你是一定没有办法进入 X-Window 的！那要怎样让这张卡可以支持 X-Window 呢？有几个工作你要先注意： <ol> <li> <font color="#3333ff">升级你的 rpm 程序</font>：由于 NVIDIA 的驱动程序太新了，所以需要 rpm 4.0.2 以后版本的 rpm 程序，但是我们 RedHat 6.1 里面附的&nbsp; rpm 是 3.0.3-2 ，所以你要先升级 rpm 才行，升级的办法请看<a href="http://linux.vbird.org/linux_basic/redhat6.1/linux_09updates.php#ex">这里</a>：</li>  <br>&nbsp; <li> <font color="#3333ff">升级你的 XFree86</font> ：基本上，以<a href="#installxfree86">上面</a>的方法来升级就好了，更要注意的是，由于使用 Xinstall.sh 来手动升级的时候，如果你不用这个程序默认的选项（除了第一项选择 y 之外），是会有一点小麻烦的，所以建议你最好是直接按 enter 就好了！</li>  <br>&nbsp; <li> <font color="#3333ff">下载 NVidia 核心</font>：鸟哥这里有已经下载的两个档案，是 src.rpm 的档案，你可以点选底下的线条下载：</li>  <ol>NVIDIA_kernel-1.0-1251.src.rpm <br>NVIDIA_GLX-1.0-1251.i386.rpm</ol>  <li> <font color="#3333ff">开始编辑核心程序</font>：好了，下载完了 NVIDIA_kernel 之后，请先以 rpm 编译吧！</li>  <table width="80%" bgcolor="#000000" cols="1"> <tbody><tr> <td><font face="细明体"><font color="#ffffff"><font size="-1">rpm --rebuild NVIDIA_kernel-1.0-1251.src.rpm</font></font></font></td> </tr> </tbody></table> 上面的程序编译完之后会在 /usr/src/redhat/RPMS/i386 产生一个名为 NVIDIA_kernel-1.0-1251.i386.rpm 的档案，这时请以： <table width="80%" bgcolor="#000000" cols="1"> <tbody><tr> <td><font face="细明体"><font color="#ffffff"><font size="-1">rpm -ivh NVIDIA_kernel-1.0-1251.i386.rpm</font></font></font></td> </tr> </tbody></table> 安装完了之后，回到你刚刚下载核心的目录，开始安装 GLX 这个档案，注意喔，由于 GLX 需要一些特别的档案来升级，不要理他！用强制安装的方法： <table width="80%" bgcolor="#000000" cols="1"> <tbody><tr> <td><font face="细明体"><font color="#ffffff"><font size="-1">rpm -ivh --nodeps NVIDIA_GLX-1.0-1251.i386.rpm</font></font></font></td> </tr> </tbody></table> 这个时候就可以完成显示适配器核心的更新了！更新完成之后，就会在你的 /usr/X11R6/lib/modules/drivers 内多了一个名为 nvidia_drv.o 的档案，这就是我们要的显示适配器驱动程序啦！ <br>&nbsp; <li> <font color="#3333ff">再重新设定一次 xf86config </font>：由于我们重新安装了 XFree86 ，所以你必须要使用 xf86config 再重新设定一次，然后在选择显示适配器的地方选择地 320 款那一项（Geforce），就 OK 啦！</li>  <br>&nbsp; <li> <font color="#3333ff">手动更改 /etc/X11/XF86Config 档案</font>：这一个步骤比较讨厌，因为必须要使用 vi 去修改你的 X-Window 配置文件，以 <font face="细明体">vi /etc/X11/XF86Config </font>进入编辑画面，然后找到类似下面的片段：</li>  <table width="80%" bgcolor="#000000" cols="1"> <tbody><tr> <td><font face="细明体"><font color="#ffff00"><font size="-1">--------------------第一部份---------------------------------------------</font></font></font> <br><font face="细明体"><font color="#ffffff"><font size="-1">Section "Module"</font></font></font> <p><font face="细明体"><font color="#ffffff"><font size="-1"># This loads the DBE extension module.</font></font></font> </p><p><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp;&nbsp;&nbsp; Load"dbe"&nbsp;&nbsp; # Double buffer extension</font></font></font> </p><p><font face="细明体"><font color="#ffffff"><font size="-1"># This loads the miscellaneous extensions module, and disables</font></font></font> <br><font face="细明体"><font color="#ffffff"><font size="-1"># initialisation of the XFree86-DGA extension within that module.</font></font></font> <br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp;&nbsp;&nbsp; SubSection&nbsp; "extmod"</font></font></font> <br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp;&nbsp;&nbsp; Option&nbsp;&nbsp;&nbsp; "omit xfree86-dga"&nbsp;&nbsp; # don't initialise the DGA extension</font></font></font> <br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp;&nbsp;&nbsp; EndSubSection</font></font></font> </p><p><font face="细明体"><font color="#ffffff"><font size="-1"># This loads the Type1 and FreeType font modules</font></font></font> <br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp;&nbsp;&nbsp; Load"type1"</font></font></font> <br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp;&nbsp;&nbsp; Load"freetype"</font></font></font> </p><p><font face="细明体"><font color="#ffffff"><font size="-1"># This loads the GLX module</font></font></font> <br><font face="细明体"><font color="#ffcc00"><font size="-1">&nbsp;&nbsp;&nbsp; Load"glx"</font></font></font> </p><p><font face="细明体"><font color="#ffffff"><font size="-1">EndSection</font></font></font> <br><font face="细明体"><font color="#ffff00"><font size="-1">--------------------第二部份---------------------------------------------</font></font></font> <br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp;&nbsp;&nbsp; ModulePath "/usr/X11R6/lib/modules"</font></font></font> </p><p><font face="细明体"><font color="#ffff00"><font size="-1">--------------------第三部份---------------------------------------------</font></font></font> <br><font face="细明体"><font color="#ffffff"><font size="-1">Section "Device"</font></font></font> <br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp;&nbsp;&nbsp; Identifier&nbsp; "NVIDIA GeForce"</font></font></font> <br><font face="细明体"><font size="-1"><font color="#ffffff">&nbsp;</font><font color="#ffff00">&nbsp;&nbsp; Driver&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "nv"&nbsp;&nbsp;&nbsp; &lt;== 这里改成 nvidia</font></font></font> <br><font face="细明体"><font color="#ffff00"><font size="-1">&nbsp;&nbsp;&nbsp; #VideoRam&nbsp;&nbsp; 4096&nbsp;&nbsp;&nbsp; &lt;== 这里改成你的内存量(32768)，并且将 # 取消</font></font></font> <br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp;&nbsp;&nbsp; # Insert Clocks lines here if appropriate</font></font></font> <br><font face="细明体"><font color="#ffffff"><font size="-1">EndSection</font></font></font> <br><font face="细明体"><font color="#ffff00"><font size="-1">--------------------第四部份---------------------------------------------</font></font></font> <br><font face="细明体"><font color="#ffffff"><font size="-1">Section "Screen"</font></font></font> <br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp;&nbsp;&nbsp; Identifier&nbsp; "Screen 1"</font></font></font> <br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp;&nbsp;&nbsp; Device&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "NVIDIA GeForce"</font></font></font> <br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp;&nbsp;&nbsp; Monitor&nbsp;&nbsp;&nbsp;&nbsp; "My Monitor"</font></font></font> <br><font face="细明体"><font size="-1"><font color="#ffffff">&nbsp;</font><font color="#ffff00">&nbsp;&nbsp; DefaultDepth 24</font></font></font> </p><p><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp;&nbsp;&nbsp; Subsection "Display"</font></font></font> <br><font face="细明体"><font size="-1"><font color="#ffffff">&nbsp;</font><font color="#ffff00">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Depth&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 24</font></font></font> <br><font face="细明体"><font color="#ffff00"><font size="-1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Modes&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "1024x768"</font></font></font> <br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ViewPort&nbsp;&nbsp;&nbsp; 0 0</font></font></font> <br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp;&nbsp;&nbsp; EndSubsection</font></font></font> <br><font face="细明体"><font color="#ffffff"><font size="-1">EndSection</font></font></font></p></td> </tr> </tbody></table> 将上面『<font color="#3333ff">Load"glx"</font>』这一行之前的批注符号『#』拿掉！亦将 <font color="#3333ff">ModulePath "/usr/X11R6/lib/modules"</font> 的批注拿掉，然后，最重要的是在第三部分，将原先的 nv 改成 nvidia ，而将 VideoRam 的内存改成你的内存大小（一般来说应该是 32768 =&gt; 32MB），然后将批注拿掉。最后在第四部分的地方，你可以将 DefaultDepth 改成 24 （bit）而将底下的 Modes 改成 "1024x768" ，这样每次启动 X-Window 就可以看到最大的画面啦！ <br>&nbsp; <li> 完成设定，以 <b>startx</b> 启动 X-Window ！</li> </ol> </blockquote>  <hr width="100%"> <br><a name="xwindowsdownload"></a><font color="#000099"><font size="+1"><font face="标楷体">关于 </font><font face="Times New Roman Baltic">X-Window</font><font face="标楷体"> 的相关下载文件与网址</font></font></font> <p><font color="#000099">一些 FTP 站：</font> </p><ul> <li> 交大资科：<a href="ftp://linux.cis.nctu.edu.tw/X/Xserver/XFree86/" target="_blank">ftp://linux.cis.nctu.edu.tw/X/Xserver/XFree86/</a></li>  <li> 教育部：<a href="ftp://nctuccca.edu.tw/UNIX/XFree86/" target="_blank">ftp://nctuccca.edu.tw/UNIX/XFree86/</a></li>  <li> XFree86 组织：<a href="ftp://ftp.xfree86.org/pub/XFree86" target="_blank">ftp://ftp.xfree86.org/pub/XFree86</a></li>  <li> NVidia 网站：<a href="http://www.nvidia.com/" target="_blank">http://www.nvidia.com/</a></li> </ul>  <hr width="100%"> <br><a name="QA"></a><font face="标楷体"><font color="#000099"><font size="+1">本章问题讨论：</font></font></font> <blockquote> <ol> <li> <font size="+2">Q</font>：？</li>  <br><font color="#000066"><font size="+2">A</font>：</font> <br>&nbsp; <li> 等待加入新讨论：</li> </ol> </blockquote> <font face="新细明体"><font color="#3333ff"><font size="-1">2002/ 01/01以来统计人数</font></font></font> <br><img src="linux_08xwindows_files/Count.gif" nosave="" width="60" align="ABSCENTER" height="15"><hr width="100%"> <center> <a href="http://linux.vbird.org/" target="_top"><img src="linux_08xwindows_files/VBirdTitle2.jpg" nosave="" width="90" border="0" height="25"></a> <a href="http://linux.vbird.org/linux_basic"><img src="linux_08xwindows_files/icon_system.gif" nosave="" width="90" border="0" height="25"></a> <a href="http://linux.vbird.org/linux_server"><img src="linux_08xwindows_files/icon_server.gif" nosave="" width="90" border="0" height="25"></a> <a href="http://linux.vbird.org/linux_security"><img src="linux_08xwindows_files/icon_security.jpg" nosave="" width="90" border="0" height="25"></a> <a href="http://phorum.vbird.org/" target="_blank"><img src="linux_08xwindows_files/icon_forums.gif" nosave="" width="90" border="0" height="25"></a> <a href="http://linux.vbird.org/adsl"><img src="linux_08xwindows_files/icon_adsl.gif" nosave="" width="90" border="0" height="25"></a> <br><font color="#000066"><font size="-1">Designed by <a href="mailto:vbird@mail.vbird.idv.tw">VBird</a> during 2001-2004.&nbsp; Aerosol Lab.</font></font></center> </body></html> 
+﻿<!DOCTYPE HTML PUBLIC "-//w3c//dtd html 4.0 transitional//en">
+<html><head>
+
+
+   <meta http-equiv="Content-Type" content="text/html; charset=utf8">
+   <meta name="Author" content="VBird">
+   <title>鸟哥的 Linux 私房菜 -- X-Window 的使用</title>
+<style>
+   <!--
+   body{background-image:url(http://linux.vbird.org/images/VBirdLinux.jpg);
+	background-ATTACHMENT:FIXED}
+   -->
+</style>
+</head><body>
+
+
+<!-- Copyright � 2005. Spidersoft Ltd -->
+<style>
+A.applink:hover {border: 2px dotted #DCE6F4;padding:2px;background-color:#ffff00;color:green;text-decoration:none}
+A.applink       {border: 2px dotted #DCE6F4;padding:2px;color:#2F5BFF;background:transparent;text-decoration:none}
+A.info          {color:#2F5BFF;background:transparent;text-decoration:none}
+A.info:hover    {color:green;background:transparent;text-decoration:underline}
+</style>
+<div style='BORDER: 1px solid #DCE6F4; MARGIN-TOP: 20px; MARGIN-BOTTOM: 20px; MARGIN-LEFT: 5px; MARGIN-RIGHT: 5px; PADDING: 5px; BACKGROUND-COLOR: #eef8ff;line-height:180%; COLOR: #000000; font-family: Arial; font-size: 8pt; width=100%; FILTER: progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr="#FFFFFFFF", EndColorStr="#F2F5FAFF");'>
+This page was saved using <a class="applink" href="http://www.spidersoft.com"><b>WebZIP 7.0.3.1030</b></a> <a class="applink" href="http://www.spidersoft.com"><b>offline browser</b></a>  (Unregistered) on  02/12/15 12:14:49.<br>
+<b>Address:</b> <a class="info" href="http://vbird.dic.ksu.edu.tw/linux_basic/redhat6.1/linux_08xwindows.php">http://vbird.dic.ksu.edu.tw/linux_basic/redhat6.1/linux_08xwindows.php</a><br>
+<b>Title:</b> 鸟哥的 Linux 私房菜 -- X-Window 的使用 &nbsp;&bull;&nbsp; <b>Size:</b> 71548<br></div>
+<!-- /Copyright � 2005. Spidersoft Ltd -->
+
+
+<center><b><font color="#3333ff"><font size="+2"><font face="标楷体">鸟哥的</font><font face="Times New Roman,Times"> Linux </font><font face="标楷体">与</font><font face="Times New Roman,Times"> ADSL </font><font face="标楷体">私房菜</font></font></font></b>
+<br>
+<a href="http://linux.vbird.org/" target="_top"><img src="linux_08xwindows_files/VBirdTitle2.jpg" nosave="" width="90" border="0" height="25"></a>
+<a href="http://linux.vbird.org/linux_basic"><img src="linux_08xwindows_files/icon_system.gif" nosave="" width="90" border="0" height="25"></a>
+<a href="http://linux.vbird.org/linux_server"><img src="linux_08xwindows_files/icon_server.gif" nosave="" width="90" border="0" height="25"></a>
+<a href="http://linux.vbird.org/linux_security"><img src="linux_08xwindows_files/icon_security.jpg" nosave="" width="90" border="0" height="25"></a>
+<a href="http://phorum.vbird.org/" target="_blank"><img src="linux_08xwindows_files/icon_forums.gif" nosave="" width="90" border="0" height="25"></a>
+<a href="http://linux.vbird.org/adsl"><img src="linux_08xwindows_files/icon_adsl.gif" nosave="" width="90" border="0" height="25"></a>
+<br>
+<hr width="100%">
+</center>
+<center><font color="#3333ff"><font size="+2"><font face="Times New Roman Baltic">X-Window</font><font face="标楷体">
+的安装与升级</font></font></font></center>
+
+<div align="right"><font face="新细明体"><font color="#3333ff"><font size="-1">最近更新日期：2001/08/15</font></font></font></div>
+<font color="#000099"><font size="+1"><a href="#whatxwindows"><font face="标楷体">何谓
+</font><font face="Times New Roman Baltic">X-Window</font></a></font></font>
+<br><font color="#000099"><font size="+1"><a href="#setupxfree86"><font face="标楷体">开始设定
+</font><font face="Times New Roman Baltic">XFree86</font><font face="标楷体">
+的参数</font></a></font></font>
+<br><font color="#000099"><font size="+1"><a href="#chosexwindows"><font face="标楷体">选择
+</font><font face="Times New Roman Baltic">X-Window</font><font face="标楷体">
+的升级套件</font></a></font></font>
+<br><font color="#000099"><font size="+1"><a href="#installxfree86"><font face="标楷体">安装
+</font><font face="Times New Roman Baltic">XFree86</font><font face="标楷体">
+升级套件</font></a></font></font>
+<br><font color="#000099"><font size="+1"><a href="#src.rpm"><font face="标楷体">使用
+</font><font face="Times New Roman Baltic">src.rpm</font><font face="标楷体">
+进行 </font><font face="Times New Roman Baltic">XFree86</font><font face="标楷体">
+的升级安装</font></a></font></font>
+<br><font color="#000099"><font size="+1"><a href="#nvidiasetup"><font face="标楷体">更新
+</font><font face="Times New Roman Baltic">NVidia</font><font face="标楷体">
+的显示适配器核心程序</font></a></font></font>
+<br><font color="#000099"><font size="+1"><a href="#xwindowsdownload"><font face="标楷体">关于
+</font><font face="Times New Roman Baltic">X-Window</font><font face="标楷体">
+的相关下载文件与网址</font></a></font></font>
+<br><font face="标楷体"><font color="#000099"><font size="+1"><a href="#QA">问题与讨论</a></font></font></font>
+<br>
+<hr width="100%">
+<br><a name="whatxwindows"></a><font color="#000099"><font size="+1"><font face="标楷体">何谓
+</font><font face="Times New Roman Baltic">X-Window</font></font></font>
+<blockquote>X window system 最早是由 1984 年的麻省理工学院（MIT）在发展一个可以让窗口接口适应多平台环境的一个计划（Project
+Athena），所发展的一套窗口系统。到今日我们所常听到的 X-Window 通常是指
+X11R6 这一版的 X 系统。X windows 有下列几种别称：
+<ul>
+<li>
+X</li>
+
+<li>
+X window system</li>
+
+<li>
+X Version 11</li>
+
+<li>
+X Window System, Version 11</li>
+
+<li>
+X11</li>
+</ul>
+而 X-Window 在运作的时候，必须要下面几种档案：
+<ul>
+<li>
+<font color="#000099">X Server</font>：这是 X-Window 最重要的一个程序了，主要在负责所有与
+X-Windows 有关的接口显示功能；</li>
+
+<li>
+<font color="#000099">X Client</font>：客户端程序；</li>
+
+<li>
+<font color="#000099">X protocol</font>：主要负责 X 的一些协议咚咚；</li>
+
+<li>
+<font color="#000099">X Lib</font>：一些 X 的数据库！</li>
+</ul>
+而通常我们所使用的 X ，由于是由 XFree86 Project Inc. 公司为支持 Intel x86
+平台的原始码系统，所以就被通称为 XFree86 系统啦！目前最常被使用的是 XFree86-3.3.6
+版，这一版是比较稳定的版本，另外，如果你的显示适配器太新的话，你就必须要下载更新的
+XFree86 啦，目前最新的出到了 4.1.0 版了！一些常去的 FTP 下载网站你可以在<a href="#xwindowsdownload">底下</a>找到：另外，你以可以上
+<a href="http://www.xfree86.org/" target="_blank">XFree86</a>
+的网站去逛逛！
+<p>除此之外，X-Window 相关的设定与档案都在：
+</p><ul>
+<li>
+/usr/X11R6</li>
+
+<li>
+/etc/X11</li>
+</ul>
+这两个目录中，其中，关于 X 的配置文件就在 <font color="#000066">/etc/X11/XF86config</font>
+这个档案中！</blockquote>
+
+<hr width="100%">
+<br><a name="setupxfree86"></a><font color="#000099"><font size="+1"><font face="标楷体">开始设定
+</font><font face="Times New Roman Baltic">XFree86</font><font face="标楷体">
+的参数</font></font></font>
+<blockquote>如果你是使用这个网页所提供的光盘来安装你的 Linux ，并依鸟哥建议的安装方法来安装
+Linux 时，那在你安装完毕之后应该就已经有 XFree86-3.3.5-3 版的 X-Window
+系统了！如果你是使用一些早期比较常用的显示适配器，例如 S3 Virge 系列的卡，那应该在安装的时候就已经设定好
+X-Window 了，果真如此的话，只要打 startx 就可以开始你的窗口接口的 Linux
+啰！
+<p>如果你的卡是比较新款的显示适配器，故而 Linux 无法直接帮你装好，那么你只好自己来作设定了！设定的方法有很多种，包括有以下的几种程序（请注意大小写喔！）：
+</p><ul>
+<li>
+Xconfigurator</li>
+
+<li>
+xf86config</li>
+
+<li>
+XF86Setup</li>
+</ul>
+比较要注意的是 XF86Setup 为图形接口的设定 X-Window 的设定程序，如果你的
+X-Window 没有办法跑的话， XF86Setup 应该就没有办法执行了！基本上，由于
+Xconfigurator 比较容易设定，所以我会建议你先以 Xconfigurator 这一支程序来测试一下你的
+X-Window，如果可以跑的话就OK了！如果以 Xconfigurator 没有办法设定好的话，就必须以
+xf86config 来设定你的 X 了！而设定完了 X 之后，你可能会想要改变显示器的色度，那你就可以用手动的方式来修改啰！通常我会建议你以以下的步骤来设定你的
+X-window：
+<ol>
+<li>
+先以 Xconfigurator 来设定；</li>
+
+<li>
+若不行，再以 xf86config 来设定；</li>
+
+<li>
+还不行，则只好手动 /etc/X11/XF86config 档案！</li>
+</ol>
+<b><i><font color="#000099"><font size="+1">方法一：使用 Xconfigurator 设定
+X-Window</font></font></i></b>
+<ol>
+<li>
+执行 Xconfigurator ：</li>
+
+<br>这个时候会出现一个欢迎画面，按下 OK 之后，系统会自动去捉显示适配器的芯片组。
+<br>&nbsp;
+<li>
+如果显示适配器是这一版的 XFree86 有支持的话，那系统就会显示出你的显示适配器型号，如下图所示为
+S3 的 Trio64v2 芯片：</li>
+
+<br><img src="linux_08xwindows_files/linux_08xwindows_01.jpg" width="310" border="0" height="256">
+<br>&nbsp;
+<li>
+上图按下 OK 之后会开始去设定显示器（屏幕），一般我们都用自定义的方法去捉屏幕，所以选择
+Custom 手动设定（第一项），如下图所示：</li>
+
+<br><img src="linux_08xwindows_files/linux_08xwindows_02.jpg" width="628" border="0" height="313">
+<br>&nbsp;
+<li>
+按下 OK 之后，系统会告诉你一些讯息，再按下 OK 后，就会出现如下的画面，告诉你应该要选择哪一个屏幕的分辨率，通常我们都会选择『<font color="#000099">High
+Frequency SVGA, 1024x768 @ 70Hz </font>』那一个选项。</li>
+
+<br><img src="linux_08xwindows_files/linux_08xwindows_03.jpg" width="669" border="0" height="339">
+<br>&nbsp;
+<li>
+上图按下 OK 之后，就会要求你选择垂直分辨率，通常我们都是选择第二项，也就是
+<font color="#000099">50-90
+</font>那一项即可；</li>
+
+<br>&nbsp;
+<li>
+再来系统会问你是否要让 XFree86 自己捉显示适配器相关的信息？这里可以按 Probe
+也可以按 Don't Probe ，只是，如果你确切的知道你的显示适配器内存的大小的话，这里建议选择
+Don't Probe；</li>
+
+<br>&nbsp;
+<li>
+上一步骤选择 Don't Probe 之后，系统会要你选择你的内存，请依你的显示适配器内存实际大小输入，如果是
+S3 Vrige 的话，通常是 1M 或者是 2M 左右吧！</li>
+
+<br>&nbsp;
+<li>
+选完了内存大小之后，过来是选择你的记忆频率芯片，由于我们通常不是很清楚我们的芯片是哪一个，所以这里只好让系统自己捉，如下图，直接选择
+No Clockchip Setting 即可！</li>
+
+<br><img src="linux_08xwindows_files/linux_08xwindows_04.jpg" width="561" border="0" height="329">
+<br>&nbsp;
+<li>
+再来则是选择画面分辨率与色彩量，如下图所示，一般而言，如果你的 X-Window
+一直有问题，这里可以选择 8 bit，及 640x480 的最原始设定就好！如果你的 X-Window
+没有问题，可以正常的使用了，而你觉得你想要让你的色彩最大化，则可以仅选择
+24 bit 及 1024x768 这一项即可！如此一来，你就可以以你最喜欢的分辨率与色度进入
+X-Window 啦！（注意喔，在 bit 之间以 tab 键移动，而以 空格键 确定！）</li>
+
+<br><img src="linux_08xwindows_files/linux_08xwindows_05.jpg" width="660" height="366">
+<br>&nbsp;
+<li>
+接着下来系统告诉你要开始测试 X-Windows 啦，按下 OK 之后系统就开始测试 X-Window！在这个地方要注意一下，如果你的设定不完全，则系统将会回到第三步骤重新再设定，如果你在这一个步骤重复了三次以上仍无法设定成功，那就必须以
+xf86config 这支程序设定了！</li>
+
+<br>&nbsp;
+<li>
+如果你可以正常的看到一个光标及一个框框告诉你还有10秒钟的时间可以按确定，那就表示你的
+X-Window 可以用啦！这个时候请选择 OK，然后出现的另一个框框告诉你：『是否要在下次开机的时候以图形接口登入』，这一步千万选择『NO』，因为以
+X-Window 为默认的开机接口，个人觉得并不好，因为不但占用了较多的系统资源，而且，并不会比较好使用！</li>
+
+<br>&nbsp;
+<li>
+完成设定了，跳出 Xconfigurator 后，以 startx 进入 X-Window ！</li>
+</ol>
+</blockquote>
+
+<blockquote><b><i><font color="#000099"><font size="+1">方法二：使用 xf86config
+设定 X-Window</font></font></i></b>
+<ol>如果你的 X-Window 并无法以 Xconfigurator 这个比较容易设定的程序设定的话，你只好选择
+xf86config 这个文本模式的程序来设定了！整个流程我们将他写在底下，因为很长，所以有些部分被我舍弃掉了！（注意，如果有一个步骤作错的话，请按
+ctrl+c 退出后，在从头开始作吧！）
+<br>&nbsp;
+<table width="90%" bgcolor="#000000" cols="1">
+<tbody><tr>
+<td><font face="细明体"><font size="-1"><font color="#ffffff">[root@tsai
+/root]# xf86config&nbsp; </font><font color="#ffff00">&lt;== 这里输入 xf86config</font></font></font>
+<br><font color="#ffff00"><font size="-1">step 1：</font></font>
+<br><font color="#ffff00"><font size="-1">底下会出现一大串字，不用理他</font></font>
+<br><font face="细明体"><font size="-1"><font color="#ffffff">Press enter
+to continue, or ctrl-c to abort. </font><font color="#ffff00">&lt;== 这里按
+enter</font></font></font>
+<p><font color="#ffff00"><font size="-1">step 2：</font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp;1.&nbsp;
+Microsoft compatible (2-button protocol)</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp;2.&nbsp;
+Mouse Systems (3-button protocol)</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp;3.&nbsp;
+Bus Mouse</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp;4.&nbsp;
+PS/2 Mouse</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp;5.&nbsp;
+Logitech Mouse (serial, old type, Logitech protocol)</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp;6.&nbsp;
+Logitech MouseMan (Microsoft compatible)</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp;7.&nbsp;
+MM Series</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp;8.&nbsp;
+MM HitTablet</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp;9.&nbsp;
+Microsoft IntelliMouse</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">10.&nbsp; Acecad
+tablet</font></font></font>
+<br><font face="细明体"><font size="-1"><font color="#ffffff">Enter a protocol
+number: </font><font color="#ffff00">&lt;==这里按 2 或 4（依你的鼠标而定）</font></font></font>
+</p><p><font face="细明体"><font color="#ffff00"><font size="-1">step 3：</font></font></font>
+<br><font face="细明体"><font size="-1"><font color="#ffffff">Do you want
+to enable Emulate3Buttons? </font><font color="#ffff00">&lt;==问你要模拟成三钮吗</font></font></font>
+<br><font face="细明体"><font color="#ffff00"><font size="-1">因为没必要模拟成三钮，所以选
+n 即可</font></font></font>
+</p><p><font face="细明体"><font color="#ffff00"><font size="-1">step 4：</font></font></font>
+<br><font face="细明体"><font size="-1"><font color="#ffffff">Mouse device:
+</font><font color="#ffff00">&lt;==这里也按
+enter 用默认值就好了</font></font></font>
+</p><p><font face="细明体"><font color="#ffff00"><font size="-1">step 5：</font></font></font>
+<br><font face="细明体"><font size="-1"><font color="#ffffff">Do you want
+to use XKB?&nbsp; </font><font color="#ffff00">&lt;==按 enter&nbsp;</font></font></font>
+<br><font face="细明体"><font size="-1"><font color="#ffffff">Press enter
+to continue, or ctrl-c to abort.&nbsp; </font><font color="#ffff00">&lt;==按
+enter&nbsp;</font></font></font>
+</p><p><font face="细明体"><font color="#ffff00"><font size="-1">step 6：</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp; 1&nbsp;
+Standard 101-key, US encoding</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp; 2&nbsp;
+Microsoft Natural, US encoding</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp; 3&nbsp;
+KeyTronic FlexPro, US encoding</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp; 4&nbsp;
+Standard 101-key, US encoding with ISO9995-3 extensions</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp; 5&nbsp;
+Standard 101-key, German encoding</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp; 6&nbsp;
+Standard 101-key, French encoding</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp; 7&nbsp;
+Standard 101-key, Thai encoding</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp; 8&nbsp;
+Standard 101-key, Swiss/German encoding</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp; 9&nbsp;
+Standard 101-key, Swiss/French encoding</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp;10&nbsp;
+Standard 101-key, US international</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp;11&nbsp;
+Brazilian ABNT2</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp;12&nbsp;
+None of the above</font></font></font>
+</p><p><font face="细明体"><font color="#ffffff"><font size="-1">Enter a number
+to choose the keymap.</font></font></font>
+<br><font face="细明体"><font color="#ffff00"><font size="-1">&lt;==共有
+12 种键盘选择，这里选择 1 即可</font></font></font>
+<br><font face="细明体"><font size="-1"><font color="#ffffff">Press enter
+to continue, or ctrl-c to abort.</font><font color="#ffff00">&lt;==按 enter&nbsp;</font></font></font>
+</p><p><font face="细明体"><font color="#ffff00"><font size="-1">step 7：</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp;1&nbsp;
+31.5; Standard VGA, 640x480 @ 60 Hz</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp;2&nbsp;
+31.5 - 35.1; Super VGA, 800x600 @ 56 Hz</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp;3&nbsp;
+31.5, 35.5; 8514 Compatible, 1024x768 @ 87 Hz interlaced (no 800x600)</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp;4&nbsp;
+31.5, 35.15, 35.5; Super VGA, 1024x768 @ 87 Hz interlaced, 800x600 @ 56
+Hz</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp;5&nbsp;
+31.5 - 37.9; Extended Super VGA, 800x600 @ 60 Hz, 640x480 @ 72 Hz</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp;6&nbsp;
+31.5 - 48.5; Non-Interlaced SVGA, 1024x768 @ 60 Hz, 800x600 @ 72 Hz</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp;7&nbsp;
+31.5 - 57.0; High Frequency SVGA, 1024x768 @ 70 Hz</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp;8&nbsp;
+31.5 - 64.3; Monitor that can do 1280x1024 @ 60 Hz</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp;9&nbsp;
+31.5 - 82.0; Monitor that can do 1280x1024 @ 76 Hz</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">10&nbsp; 31.5
+- 95.0; Monitor that can do 1280x1024 @ 85 Hz</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">11&nbsp; Enter
+your own horizontal sync range</font></font></font>
+</p><p><font face="细明体"><font size="-1"><font color="#ffffff">Enter your choice
+(1-11): </font><font color="#ffff00">&lt;==选择分辨率，同样选 7 即可！</font></font></font>
+</p><p><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp;1&nbsp;
+50-70</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp;2&nbsp;
+50-90</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp;3&nbsp;
+50-100</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp;4&nbsp;
+40-150</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp;5&nbsp;
+Enter your own vertical sync range</font></font></font>
+</p><p><font face="细明体"><font size="-1"><font color="#ffffff">Enter your choice:
+</font><font color="#ffff00">&lt;==选择分辨率，选
+2 即可！</font></font></font>
+</p><p><font face="细明体"><font size="-1"><font color="#ffffff">Enter an identifier
+for your monitor definition:</font><font color="#ffff00">&lt;==按 enter&nbsp;</font></font></font>
+<br><font face="细明体"><font size="-1"><font color="#ffffff">Enter the vendor
+name of your monitor:</font><font color="#ffff00">&lt;==按 enter&nbsp;</font></font></font>
+<br><font face="细明体"><font size="-1"><font color="#ffffff">Enter the model
+name of your monitor:</font><font color="#ffff00">&lt;==按 enter&nbsp;</font></font></font>
+</p><p><font face="细明体"><font color="#ffff00"><font size="-1">step 8：</font></font></font>
+<br><font face="细明体"><font size="-1"><font color="#ffffff">Do you want
+to look at the card database? </font><font color="#ffff00">&lt;==这里选
+y 开始看你的显示适配器型号</font></font></font>
+</p><p><font face="细明体"><font color="#ffffff"><font size="-1">506&nbsp; 
+S3
+86C391 
+(Savage3D)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Generic
+ VGA</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">507&nbsp; S3
+86C764 
+(generic)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+S3
+ Trio64</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">508&nbsp; S3
+86C765 
+(generic)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+S3
+ Trio64V+</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">509&nbsp; S3
+86C775 
+(generic)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+S3
+ Trio64V2</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">510&nbsp; S3
+86C785 
+(generic)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+S3
+ Trio64V2</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">511&nbsp; S3
+86C801 
+(generic)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+S3
+ 801/805</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">512&nbsp; S3
+86C805 
+(generic)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+S3
+ 801/805</font></font></font>
+</p><p><font face="细明体"><font color="#ffff00"><font size="-1">由于我们使用的卡是
+S3 Trio64V2 的卡，所以一直按 Enter 到大概 509 的</font></font></font>
+<br><font face="细明体"><font color="#ffff00"><font size="-1">地方就会出现
+S3 Trio64V2 这个卡！选 509 后按 enter</font></font></font>
+</p><p><font face="细明体"><font size="-1"><font color="#ffffff">Press enter
+to continue, or ctrl-c to abort.</font><font color="#ffff00">&lt;==按 enter&nbsp;</font></font></font>
+</p><p><font face="细明体"><font color="#ffff00"><font size="-1">step 9：</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp;1&nbsp;
+The XF86_Mono server. This a monochrome server that should work on any</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp;&nbsp;&nbsp;
+VGA-compatible card, in 640x480 (more on some SVGA chipsets).</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp;2&nbsp;
+The XF86_VGA16 server. This is a 16-color VGA server that should work on</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp;&nbsp;&nbsp;
+any VGA-compatible card.</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp;3&nbsp;
+The XF86_SVGA server. This is a 256 color SVGA server that supports</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp;&nbsp;&nbsp;
+a number of SVGA chipsets. On some chipsets it is accelerated or</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp;&nbsp;&nbsp;
+supports higher color depths.</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp;4&nbsp;
+The accelerated servers. These include XF86_S3, XF86_Mach32, XF86_Mach8,</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp;&nbsp;&nbsp;
+XF86_8514, XF86_P9000, XF86_AGX, XF86_W32, XF86_Mach64, XF86_I128 and</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp;&nbsp;&nbsp;
+XF86_S3V.</font></font></font>
+</p><p><font face="细明体"><font color="#ffffff"><font size="-1">These four server
+types correspond to the four different "Screen" sections in</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">XF86Config
+(vga2, vga16, svga, accel).</font></font></font>
+</p><p><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp;5&nbsp;
+Choose the server from the card definition, XF86_S3.</font></font></font>
+</p><p><font face="细明体"><font color="#ffffff"><font size="-1">Which one of
+these screen types do you intend to run by default (1-5)?</font></font></font>
+<br><font face="细明体"><font color="#ffff00"><font size="-1">上面告诉你共有五种型式的卡供你选择，第五项
+XF86_S3 是你选择的！所以这里</font></font></font>
+<br><font face="细明体"><font color="#ffff00"><font size="-1">选 5 就好了，如果你不知道你的卡是哪一个，那就选
+4 试试看吧！</font></font></font>
+</p><p><font face="细明体"><font color="#ffff00"><font size="-1">step 10：</font></font></font>
+<br><font face="细明体"><font size="-1"><font color="#ffffff">Do you want
+me to set the symbolic link? </font><font color="#ffff00">&lt;==这里按
+y&nbsp;</font></font></font>
+</p><p><font face="细明体"><font color="#ffff00"><font size="-1">step 11：</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp;1&nbsp;
+256K</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp;2&nbsp;
+512K</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp;3&nbsp;
+1024K</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp;4&nbsp;
+2048K</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp;5&nbsp;
+4096K</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp;6&nbsp;
+Other</font></font></font>
+<br><font face="细明体"><font size="-1"><font color="#ffffff">Enter your
+choice: &lt;==按你的显示适配器而定，</font><font color="#ffff00">不知道的话可以选
+3 试看看</font></font></font>
+</p><p><font face="细明体"><font color="#ffff00"><font size="-1">step 12：</font></font></font>
+<br><font face="细明体"><font size="-1"><font color="#ffffff">Enter an identifier
+for your video card definition:</font><font color="#ffff00">&lt;==按 enter&nbsp;</font></font></font>
+<br><font face="细明体"><font size="-1"><font color="#ffffff">Enter the vendor
+name of your video card:</font><font color="#ffff00">&lt;==按 enter&nbsp;</font></font></font>
+<br><font face="细明体"><font size="-1"><font color="#ffffff">Enter the model
+(board) name of your video card:</font><font color="#ffff00">&lt;==按 enter&nbsp;</font></font></font>
+</p><p><font face="细明体"><font color="#ffff00"><font size="-1">step 13：</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">Press enter
+for the next page, q to quit without selection of a RAMDAC.</font></font></font>
+<br><font face="细明体"><font color="#ffff00"><font size="-1">不知道我们的
+RAMDAC 所以选 q 离开即可</font></font></font>
+</p><p><font face="细明体"><font color="#ffff00"><font size="-1">step 14：</font></font></font>
+<br><font face="细明体"><font size="-1"><font color="#ffffff">What Clockchip
+setting do you want (1-12)?</font><font color="#ffff00"> &lt;==按 q 即可</font></font></font>
+<br><font face="细明体"><font size="-1"><font color="#ffffff">Press enter
+to continue, or ctrl-c to abort. </font><font color="#ffff00">&lt;==按
+enter</font></font></font>
+</p><p><font face="细明体"><font color="#ffff00"><font size="-1">step 15：</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">"640x480" "800x600"
+"1024x768" for 8bpp</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">"640x480" "800x600"
+for 16bpp</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">"640x480" for
+24bpp</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">"640x400" for
+32bpp</font></font></font>
+</p><p><font face="细明体"><font color="#ffffff"><font size="-1">Note that 16,
+24 and 32bpp are only supported on a few configurations.</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">Modes that
+cannot be supported due to monitor or clock constraints will</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">be automatically
+skipped by the server.</font></font></font>
+</p><p><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp;1&nbsp;
+Change the modes for 8pp (256 colors)</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp;2&nbsp;
+Change the modes for 16bpp (32K/64K colors)</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp;3&nbsp;
+Change the modes for 24bpp (24-bit color, packed pixel)</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp;4&nbsp;
+Change the modes for 32bpp (24-bit color)</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp;5&nbsp;
+The modes are OK, continue.</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">Enter your
+choice:</font></font></font>
+<br><font face="细明体"><font color="#ffff00"><font size="-1">如果要避免麻烦，直接按
+5 使用默认值就可以了！</font></font></font>
+</p><p><font face="细明体"><font color="#ffff00"><font size="-1">step 16：</font></font></font>
+<br><font face="细明体"><font size="-1"><font color="#ffffff">Shall I write
+it to /etc/X11/XF86Config? </font><font color="#ffff00">&lt;== 按下 y&nbsp;</font></font></font>
+</p><p><font face="细明体"><font color="#ffff00"><font size="-1">在上面上下 y
+之后，就完成了设定啦！</font></font></font></p></td>
+</tr>
+</tbody></table>
+
+<p>完成上面的设定之后，你就可以尝试着打 <b>startx</b> 看看是否可以启动
+X-Window 啦，如果还是不行的话，就在从头设定一次吧！</p></ol>
+<b><font color="#000099">方法三：手动修正一些错误</font></b>
+<blockquote>其实，不论你使用哪一种程序修改 X-Window 的设定，都是在修改
+/etc/X11/XF86Config 这个配置文件，在进行这个档案的修改工作之前，请先将你的文件备份吧！免得改错了就不得了了！
+<p>在这个档案中，最需要注意的大概只有几个部分（其他的我也不是很懂呀！）：monitor、device
+跟&nbsp; screen ，主要的部分有点像这样：
+</p><p><font color="#3333ff">monitor</font>:
+</p><blockquote>&nbsp;
+<table width="80%" bgcolor="#000000" cols="1">
+<tbody><tr>
+<td><font face="细明体"><font color="#ffffff"><font size="-1">Section "Monitor"</font></font></font>
+<p><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp;Identifier&nbsp;
+"My Monitor"</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp;VendorName&nbsp;
+"Unknown"</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp;ModelName&nbsp;&nbsp;
+"Unknown"</font></font></font>
+</p><p><font face="细明体"><font size="-1"><font color="#ffffff">&nbsp; </font><font color="#ffff00">HorizSync&nbsp;&nbsp;
+31.5 - 57.0</font></font></font>
+</p><p><font face="细明体"><font size="-1"><font color="#ffffff">&nbsp;&nbsp;&nbsp;</font><font color="#ffff00">
+VertRefresh 50-90</font></font></font>
+</p><p><font face="细明体"><font color="#ffffff"><font size="-1"># 800x600 @
+72 Hz, 48.0 kHz hsync</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">Modeline "800x600"&nbsp;&nbsp;&nbsp;&nbsp;
+50&nbsp;&nbsp;&nbsp;&nbsp; 800&nbsp; 856&nbsp; 976 1040&nbsp;&nbsp; 600&nbsp;
+637&nbsp; 643&nbsp; 666 +hsync +vsync</font></font></font>
+</p><p><font face="细明体"><font color="#ffffff"><font size="-1"># 1024x768 @
+60 Hz, 48.4 kHz hsync</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">Modeline "1024x768"&nbsp;&nbsp;&nbsp;
+65&nbsp;&nbsp;&nbsp; 1024 1032 1176 1344&nbsp;&nbsp; 768&nbsp; 771&nbsp;
+777&nbsp; 806 -hsync -vsync</font></font></font>
+</p><p><font face="细明体"><font color="#ffffff"><font size="-1"># 640x480 @
+100 Hz, 53.01 kHz hsync</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">Modeline "640x480"&nbsp;&nbsp;&nbsp;&nbsp;
+45.8&nbsp;&nbsp; 640&nbsp; 672&nbsp; 768&nbsp; 864&nbsp;&nbsp; 480&nbsp;
+488&nbsp; 494&nbsp; 530 -HSync -VSync</font></font></font>
+<br>&nbsp;</p></td>
+</tr>
+</tbody></table>
+要注意的是上面显示黄色的部分，而底下的部分比较麻烦，最好是由 Xconfigurator
+设定就好，不要随意改变。</blockquote>
+<font color="#3333ff">device</font>:
+<blockquote>&nbsp;
+<table width="80%" bgcolor="#000000" cols="1">
+<tbody><tr>
+<td><font face="细明体"><font color="#ffffff"><font size="-1"># Device configured
+by Xconfigurator:</font></font></font>
+<p><font face="细明体"><font color="#ffffff"><font size="-1">Section "Device"</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp;Identifier&nbsp;
+"Silicon Integrated Systems [SiS]|86C326"</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp;VendorName&nbsp;
+"Unknown"</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp;BoardName&nbsp;&nbsp;
+"Unknown"</font></font></font>
+<br><font face="细明体"><font color="#ffff00"><font size="-1">&nbsp;#VideoRam&nbsp;&nbsp;&nbsp;
+8192</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp;Option
+"no_accel" # Use this if acceleration is causing problems</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp;# Option
+"fifo_moderate"</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp;# Option
+"fifo_conserv"</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp;# Option
+"fifo_aggresive"</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp;# Option
+"fast_vram"</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp;# Option
+"pci_burst_on"</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp;# Option
+"xaa_benchmark" # DON'T use with "ext_eng_queue" !!!</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp;# Option
+"ext_eng_queue" # Turbo-queue. This can cause drawing</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp;# errors,
+but gives some accel</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp;# Insert
+Clocks lines here if appropriate</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">EndSection</font></font></font></p></td>
+</tr>
+</tbody></table>
+上面的设定是我另一台机器的 Linux 设定，使用的是 SIS 6326 芯片，而有 8M
+的内存，不过不知为何，上面的内存项目（黄色）备批注掉了（#符号为批注，不会被执行）。如果你知道如何变换的话，可以从这里去修改你的显示适配器！</blockquote>
+<font color="#3333ff">screen</font>:
+<blockquote>&nbsp;
+<table width="80%" bgcolor="#000000" cols="1">
+<tbody><tr>
+<td><font face="细明体"><font color="#ffffff"><font size="-1"># The Colour
+SVGA server</font></font></font>
+<p><font face="细明体"><font color="#ffffff"><font size="-1">Section "Screen"</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp;&nbsp;&nbsp;
+Driver&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "svga"</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp;&nbsp;&nbsp;
+# Use Device "Generic VGA" for Standard VGA 320x200x256</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp;&nbsp;&nbsp;
+#Device&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "Generic VGA"</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp;&nbsp;&nbsp;
+Device&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "Silicon Integrated Systems [SiS]|86C326"</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp;&nbsp;&nbsp;
+Monitor&nbsp;&nbsp;&nbsp;&nbsp; "My Monitor"</font></font></font>
+<br><font face="细明体"><font size="-1"><font color="#ffffff">&nbsp;&nbsp;&nbsp;</font><font color="#ffff00">
+Subsection "Display"</font></font></font>
+<br><font face="细明体"><font size="-1"><font color="#ffffff">&nbsp;&nbsp;&nbsp;</font><font color="#ffff00">&nbsp;&nbsp;&nbsp;&nbsp;
+Depth&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 32</font></font></font>
+<br><font face="细明体"><font color="#ffff00"><font size="-1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Modes&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "800x600"</font></font></font>
+<br><font face="细明体"><font color="#ffff00"><font size="-1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ViewPort&nbsp;&nbsp;&nbsp; 0 0</font></font></font>
+<br><font face="细明体"><font size="-1"><font color="#ffffff">&nbsp;&nbsp;&nbsp;</font><font color="#ffff00">
+EndSubsection</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">EndSection</font></font></font></p></td>
+</tr>
+</tbody></table>
+上面的设定跟你最终在屏幕上输出的分辨率有关，主要是黄色的部分，Depth是指你的色彩度，而
+Modes 是分辨率，你可以依照自己的喜好来设定。</blockquote>
+<i><font color="#000099"><font size="+1">其他疑难解答：</font></font></i>
+<ul>
+<li>
+<font color="#000000">基本上，如果你出现了没有办法解决的问题时，你可以先以
+</font><font color="#3333ff">xf86config</font><font color="#000000">
+设定，设定完成了之后再以手动的方式去修改你的 screen 项目，基本上可能会出现的问题应该是出自于
+Display 这一项，尽量将你的
+</font><font color="#3333ff">Subsection</font><font color="#000000">
+的情况订定的简单一点，最好是只有一个 Models 的情况！那样可能可以让你成功的达成开启
+X-Window 的任务喔！</font></li>
+</ul>
+
+<ul>
+<li>
+<font color="#000000">另外，如果你的画面大到整个屏幕之外，要用鼠标才能移动到周围的话，你可以将
+Modes 那一项调成只有 "1024x768" 这一个，就可以将整个画面融入了！</font></li>
+</ul>
+</blockquote>
+</blockquote>
+
+<hr width="100%">
+<br><a name="chosexwindows"></a><font color="#000099"><font size="+1"><font face="标楷体">选择
+</font><font face="Times New Roman Baltic">X-Window</font><font face="标楷体">
+的升级套件</font></font></font>
+<blockquote>好啦，我们知道 X-Window 主要是以 XFree86 这个 server 所提供的咚咚，另外也已经知道如何设定
+X-Window 了，那要如何升级 X-Window 呢？再者，如果我们不使用原有的 X-server
+的话，那要如何更新到新版的 x-window 呢？
+<p>如果你是使用这个网页所提供的 RedHat 6.1 作为你 Linux 的操作系统，而且你的安装方法是使用所有的东西都安装的方法，另外，你使用的显示适配器是比较旧的
+S3 系列的卡，那很好，你已经有 X-Window 3.3.5-3 的套件了！接下来你只要去<a href="#setupxfree86">设定
+XFree86</a> 就可以正常启动 x-window 啦！（其实，如果你使用较旧的机器，而且安装的方法使用这个网页的话，其实在安装的时候应该就已经可以看到
+X-Window 的画面了！）
+</p><p>如果你虽然使用 RedHat 6.1 ，但是你的显示适配器是比较新的卡，以目前的显示适配器接口来说，可能是
+<font color="#3333ff">GeForce2
+MX </font>这块卡，由于 NVIDIA 的产品是比较新的显示适配器，所以除了以新版的
+XFree86 Server 来增加你的显示适配器支持度外，也可以先更新 XFree86 到 4.0.1
+以后的版本，才来安装这张显示适配器！升级完了 XFree86 后再到底下的『<a href="#nvidiasetup">安装
+NVidia 的显示适配器核心程序</a>』去更新这个新的显示适配器核心程序！</p></blockquote>
+
+<blockquote>那如果你要升级你的 X-Window 系统呢？例如你要将你的 XFree86
+升级到最新的 4.1.0 版的话，那要如何升级呢？你可以依底下的步骤来做做看：
+<ol>
+<li>
+<font color="#000099">确认你的 X-Window 版本</font>：你要做的是，先确认你的
+X-Window 的版本，先以 rpm 确认一下你的 XFree86 这个软件，并将 Xinstall.sh
+这个档案捉到你的 Linux 系统中，更改 Xinstall.sh 成为可执行的档案，然后以
+root 的身份执行：</li>
+
+<table width="90%" bgcolor="#000000" cols="1">
+<tbody><tr>
+<td><font face="细明体"><font color="#ffffff"><font size="-1">[root @tsai
+/tmp]# rpm -q XFree86</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">XFree86-3.3.5-3</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">[root @tsai
+/tmp]# chmod 744 Xinstall.sh</font></font></font>
+<br><font face="细明体"><font size="-1"><font color="#ffffff">[root @tsai
+/tmp]# </font><font color="#ffff00">./Xinstall.sh&nbsp; -check</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">Checking which
+OS you're running...</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">uname reports
+'Linux' version '2.2.12-20', architecture 'i586'.</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">Object format
+is 'ELF'.&nbsp; libc version is '6.1.2' (6.1).</font></font></font>
+<p><font face="细明体"><font color="#ffffff"><font size="-1">Binary distribution
+name is 'Linux-ix86-glibc21'</font></font></font></p></td>
+</tr>
+</tbody></table>
+如果你是以这个网页提供的 RedHat 6.1 来安装的话，你的屏幕应该会显示如上面这一个咚咚，上面显示了
+XFree86 的版本为 3.3.5-3 ，而我们的 Linux 版本为 2.2.12-20，而 X-Window
+的版本为 <font color="#3333ff">Linux-ix86-glibc21</font> 这一个东西。（另外要注意的是，如果你是使用
+RedHat 7.0 的话，你的 X-Window 版本已经变成了 Linux-ix86-glibc22 了！）
+<br>&nbsp;
+<li>
+<font color="#000099">下载你的 X-Window 版本的核心程序</font>：你可以到几个比较有名的
+FTP 站去下载最新的 X-Window 版本，或者由鸟哥这个网页下载你所需要的咚咚：</li>
+
+<ul>
+<li>
+教育部：<a href="ftp://nctuccca.edu.tw/UNIX/XFree86/" target="_blank">ftp://nctuccca.edu.tw/UNIX/XFree86/</a></li>
+
+<li>
+XFree86 组织：<a href="ftp://ftp.xfree86.org/pub/XFree86" target="_blank">ftp://ftp.xfree86.org/pub/XFree86</a></li>
+
+<li>
+这个网页提供的是 XFree86 4.1.0 版的东西：</li>
+
+<ul>
+<li>
+Linux-ix86-glibc21.tar.gz：主要是 RedHat 6.1 以前版本所使用的 X-window
+核心；</li>
+
+<li>
+Linux-ix86-glibc22.tar.gz：主要是 RedHat 7.0 以后版本使用的 X-window 核心。</li>
+</ul>
+</ul>
+基本上，在各大 FTP 站中，你所要下载的东西，除了在各版本底下的主要执行档与说明档之外（就是
+Xinstall.sh 等档案），其他要下载的只是在 binaries 底下的核心程序文件，只要选择适合你的档案就可以了！</ol>
+注意了，如果你是由鸟哥的这个网页所下载的档案（Linux-ix86-glibc21.tar.gz），则你必须先解压缩，假设你的档案放置在
+/test 底下，则：
+<br>&nbsp;
+<table width="90%" bgcolor="#000000" cols="1">
+<tbody><tr>
+<td><font face="细明体"><font color="#ffffff"><font size="-1">[root @tsai
+XFree86]# tar -zxvf Linux-ix86-glibc21.tar.gz</font></font></font></td>
+</tr>
+</tbody></table>
+上面步骤会产生 Linux-ix86-glibc21 这个目录，里面就是我们所需要的 X-window
+的核心啦！</blockquote>
+
+<hr width="100%">
+<br><a name="installxfree86"></a><font color="#000099"><font size="+1"><font face="标楷体">安装
+</font><font face="Times New Roman Baltic">XFree86</font><font face="标楷体">
+的升级套件</font></font></font>
+<blockquote>在选择完了你的 X-Window 套件之后，再来就是要安装了！以下的安装是针对
+<font color="#3333ff">4.1.0</font>
+的 X-Window 版本，而且是在 <font color="#3333ff">RedHat 6.1</font> 中，以
+<font color="#3333ff">Linux-ix86-glibc21</font>
+核心进行安装的步骤！
+<ol>
+<li>
+<font color="#000099">备份你的 X-Window 系统</font>：做事情总是有备而无患的！由于安装新的
+X-Window 核心时，会将旧的版本覆盖掉，所以如果新的版本无法安装完成，或者是新的版本你使用的不愉快时，要换回旧版的
+X-window 就要重新安装一次！很麻烦，所以最好是将你的旧版 X-window 备份。假设你要将备份的东西存在
+/backup 中，则：</li>
+
+<br>&nbsp;
+<table width="90%" bgcolor="#000000" cols="1">
+<tbody><tr>
+<td><font face="细明体"><font color="#ffffff"><font size="-1">[root @tsai
+/test]# mkdir /backup</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">[root @tsai
+/test]# cd /backup</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">[root @tsai
+/backup]# mkdir x-window</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">[root @tsai
+/backup]# cd x-window</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">[root @tsai
+x-window]# tar -zcvf X11R6.tar.gz /usr/X11R6</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">[root @tsai
+x-window]# tar -zcvf X11.tar.gz /etc/X11</font></font></font></td>
+</tr>
+</tbody></table>
+则在你的 /backup/x-window 下会有两个文件名为：X11R6.tar.gz 及 X11.tar.gz
+的档案！
+<br>&nbsp;
+<li>
+<font color="#000099">离开 X-window 系统</font><font color="#000000">：如果你是以
+X-window 为预设的开机登入情况，则你必须修改成 init 3 的等级登入，总之，就是要进入成文本模式，并且
+X-window 不能在使用的状态下才能升级！</font></li>
+
+<br>&nbsp;
+<li>
+<font color="#000099">开始安装</font>：</li>
+
+<ul>
+<li>
+在刚刚我们捉下来的 Linux-ix86-glibc21 的目录中执行 Xinstall.sh 这个档案：</li>
+
+<br>&nbsp;
+<table width="80%" bgcolor="#000000" cols="1">
+<tbody><tr>
+<td><font face="细明体"><font color="#ffffff"><font size="-1">[root @tsai
+/test]# cd /test/XFree86/Linux-ix86-glibc21</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">[root @tsai
+Linux-ix86-glibc21]# chmod 744 Xinstall.sh&nbsp;</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">[root @tsai
+Linux-ix86-glibc21]# ./Xinstall.sh&nbsp;</font></font></font></td>
+</tr>
+</tbody></table>
+
+<li>
+开始整个流程可以如下的几个步骤表示：（注意：由于新版的 XFree86 我动手装了好几次，都没有办法成功，所以基本上，用这个程序的默认值就可以了，也就是一直按
+<font color="#3333ff">enter</font>
+即可，这样就不会造成你的 X-Window 被改乱掉的困扰喔！）</li>
+
+<br>&nbsp;
+<table width="80%" bgcolor="#000000" cols="1">
+<tbody><tr>
+<td><font face="细明体"><font color="#ffff00"><font size="-1">step 1:</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">If you are
+installing a version different from 4.1.0, you</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">may need an
+updated version of this installer script.</font></font></font>
+<br><font face="细明体"><font size="-1"><font color="#ffffff">Do you wish
+to continue? (y/n) [n] y </font><font color="#ffff00">&lt;== 这里输入 y</font></font></font>
+<p><font face="细明体"><font color="#ffff00"><font size="-1">step 2:</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">You appear
+to have an existing installation of X.&nbsp; Continuing will</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">overwrite it.&nbsp;
+You will, however, have the option of being prompted</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">before most
+configuration files are overwritten.</font></font></font>
+<br><font face="细明体"><font size="-1"><font color="#ffffff">Do you wish
+to continue? (y/n) [y] y </font><font color="#ffff00">&lt;== 这里输入 y</font></font></font>
+</p><p><font face="细明体"><font color="#ffff00"><font size="-1">step 3:</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">Do you want
+to move them to /etc/X11 and create the necessary</font></font></font>
+<br><font face="细明体"><font size="-1"><font color="#ffffff">links? (y/n)
+[y] </font><font color="#ffff00">&lt;== 这里输入 y</font></font></font>
+</p><p><font face="细明体"><font color="#ffff00"><font size="-1">step 4:</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">== Extracting
+/test/XFree86/Linux-ix86-glibc21/Xetc.tgz ==</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">Do you want
+to overwrite the app-defaults config files? (y/n) [n]</font></font></font>
+<br><font face="细明体"><font color="#ffff00"><font size="-1">上面在问你，你是否要将前一版的
+X-window 设定留下？</font></font></font>
+<br><font face="细明体"><font color="#ffff00"><font size="-1">如果你只是升级，那就按
+n 即可，如果你想要重头安装，</font></font></font>
+<br><font face="细明体"><font color="#ffff00"><font size="-1">这里可以按
+y ，只要后面就要重新设定 x-window 了！</font></font></font>
+<br><font face="细明体"><font color="#ffff00"><font size="-1">后面的步骤（到步骤
+13 都是这种情况！）</font></font></font>
+</p><p><font face="细明体"><font color="#ffff00"><font size="-1">step 5:</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">Do you want
+to overwrite the fs config files? (y/n) [n]</font></font></font>
+</p><p><font face="细明体"><font color="#ffff00"><font size="-1">step 6:</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">Do you want
+to overwrite the lbxproxy config files? (y/n) [n]</font></font></font>
+</p><p><font face="细明体"><font color="#ffff00"><font size="-1">step 7:</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">Do you want
+to overwrite the proxymngr config files? (y/n) [n]</font></font></font>
+</p><p><font face="细明体"><font color="#ffff00"><font size="-1">step 8:</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">Do you want
+to overwrite the rstart config files? (y/n) [n]</font></font></font>
+</p><p><font face="细明体"><font color="#ffff00"><font size="-1">step 9:</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">Do you want
+to overwrite the twm config files? (y/n) [n]</font></font></font>
+</p><p><font face="细明体"><font color="#ffff00"><font size="-1">step 10:</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">Do you want
+to overwrite the xdm config files? (y/n) [n]</font></font></font>
+</p><p><font face="细明体"><font color="#ffff00"><font size="-1">step 11:</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">Do you want
+to overwrite the xinit config files? (y/n) [n]</font></font></font>
+</p><p><font face="细明体"><font color="#ffff00"><font size="-1">step 12:</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">Do you want
+to overwrite the xsm config files? (y/n) [n]</font></font></font>
+</p><p><font face="细明体"><font color="#ffff00"><font size="-1">step 13:</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">Do you want
+to overwrite the xserver config files? (y/n) [n]</font></font></font>
+</p><p><font face="细明体"><font color="#ffff00"><font size="-1">step 14:</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">Do you want
+to install Xfsrv.tgz (font server)? (y/n) [y]</font></font></font>
+<br><font face="细明体"><font color="#ffff00"><font size="-1">这个是跟 X
+server 有关的档案，没有其他要求的话，直接都按 y 吧！</font></font></font>
+<br><font face="细明体"><font color="#ffff00"><font size="-1">以下的都是与
+X server 有关的咚咚！</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">Do you want
+to install Xnest.tgz (Nested X server)? (y/n) [y]</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">Do you want
+to install Xprog.tgz (programmer support)? (y/n) [y]</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">Do you want
+to install Xprt.tgz (X print server)? (y/n) [y]</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">Do you want
+to install Xvfb.tgz (Virtual framebuffer X server)? (y/n) [y]</font></font></font>
+</p><p><font face="细明体"><font color="#ffff00"><font size="-1">step 15:</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">Do you want
+to install Xf100.tgz (100dpi fonts)? (y/n) [y]</font></font></font>
+<br><font face="细明体"><font color="#ffff00"><font size="-1">这个是 X windows
+的字型，以下都是属于字形的部分，请选 y 吧！</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">Do you want
+to install Xfcyr.tgz (Cyrillic fonts)? (y/n) [y]</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">Do you want
+to install Xfscl.tgz (Scaled fonts (Speedo and Type1))? (y/n) [y]</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">Do you want
+to install Xhtml.tgz (Docs in HTML)? (y/n) [y]</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">Do you want
+to install Xjdoc.tgz (Docs in Japanese)? (y/n) [y]</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">Do you want
+to install Xps.tgz (Docs in PostScript)? (y/n) [y]</font></font></font>
+</p><p><font face="细明体"><font color="#ffff00"><font size="-1">step 16:</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">Do you wish
+to have the (new) links installed (y/n)? [n]&nbsp;</font></font></font>
+<br><font face="细明体"><font color="#ffff00"><font size="-1">这个地方在告诉你，是否需要将一些档案连结到
+/usr/lib 或</font></font></font>
+<br><font face="细明体"><font color="#ffff00"><font size="-1">/usr/include，注意，一旦选择y就会有档案被覆盖掉。</font></font></font>
+</p><p><font face="细明体"><font color="#ffff00"><font size="-1">step 17:</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">Do you wish
+to have this link installed (y/n)? [n]&nbsp;</font></font></font>
+</p><p><font face="细明体"><font color="#ffff00"><font size="-1">step 18:</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">Do you want
+them moved to /usr/X11R6/lib/modules/old?</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">Note: that
+if you want to use them with 3.3.x again, you'll</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">need to move
+them back manually. (y/n) [n]&nbsp;</font></font></font>
+</p><p><font face="细明体"><font color="#ffff00"><font size="-1">step 19:</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">Installation
+complete.</font></font></font></p></td>
+</tr>
+</tbody></table>
+
+<li>
+OK啦！这样就安装完毕了！</li>
+</ul>
+
+<li>
+<font color="#000099">重新设定 XFree86：</font><font color="#000000">接着下来，由于我们升级了
+XFree86 ，所以接下来要开始重新的设定 XFree86 了，设定的方法虽然有点不太一样，但是同样是使用
+<a href="#setupxfree86">xf86config</a>
+这一个咚咚来设定！如果你的显示适配器是 </font><font color="#3333ff">NVidia
+GeForce2 MX</font><font color="#000000"> 的话，请在看到：</font></li>
+
+<table width="80%" bgcolor="#000000" cols="1">
+<tbody><tr>
+<td><font face="细明体"><font color="#ffffff"><font size="-1">Do you want
+to look at the card database?&nbsp;</font></font></font></td>
+</tr>
+</tbody></table>
+<font color="#000000">这一行的时候，请持续按 enter 到大概是 320 的时候，会显示
+GeForce 的字样，选这个就对了！不过在选择显示分辨率的时候，最好调成 1024*768
+那一个，画面就不会移来移去了！</font>
+<br>&nbsp;
+<li>
+<font color="#000099">开始进行 Check 的工作</font>：基本上，安装完毕之后，需要执行
+『XFree86 -configure』 来确认你有没有安装好，但是，奇怪的是，我每次执行都会出现有问题？不过
+X-Windows 倒是可以执行。</li>
+</ol>
+</blockquote>
+
+<hr width="100%">
+<br><a name="src.rpm"></a><font color="#000099"><font size="+1"><font face="标楷体">使用
+</font><font face="Times New Roman Baltic">src.rpm</font><font face="标楷体">
+进行 </font><font face="Times New Roman Baltic">XFree86</font><font face="标楷体">
+的升级安装</font></font></font>
+<blockquote>使用手动的升级虽然可以避免一些编译上面的问题，不过，毕竟如果有
+i386.rpm 或 src.rpm 等等的档案的话，就会更简单的升级了！你可以上各大 FTP
+站去下载最新的 XFree86 的咚咚！然后执行编译各 *.src.rpm 程序，等到编译没有问题之后，直接在
+/usr/src/redhat/RPMS/i386 中安装你的 rpm 档案吧！</blockquote>
+
+<hr width="100%">
+<br><a name="nvidiasetup"></a><font color="#000099"><font size="+1"><font face="标楷体">更新
+</font><font face="Times New Roman Baltic">NVidia</font><font face="标楷体">
+的显示适配器核心程序</font></font></font>
+<blockquote>基本上经过了 Xconfigurator 及 xf86config 的设定工作之后，你的
+X-Window 应该可以正常工作了，但是如果你使用的是
+<font color="#3333ff">NVidia
+GeForce2 MX</font> 这一张目前市面上最常见到的卡呢？由于旧的 X-Window 的
+Server 并不支持 GeForce 的核心，所以你是一定没有办法进入 X-Window 的！那要怎样让这张卡可以支持
+X-Window 呢？有几个工作你要先注意：
+<ol>
+<li>
+<font color="#3333ff">升级你的 rpm 程序</font>：由于 NVIDIA 的驱动程序太新了，所以需要
+rpm 4.0.2 以后版本的 rpm 程序，但是我们 RedHat 6.1 里面附的&nbsp; rpm 是
+3.0.3-2 ，所以你要先升级 rpm 才行，升级的办法请看<a href="http://linux.vbird.org/linux_basic/redhat6.1/linux_09updates.php#ex">这里</a>：</li>
+
+<br>&nbsp;
+<li>
+<font color="#3333ff">升级你的 XFree86</font> ：基本上，以<a href="#installxfree86">上面</a>的方法来升级就好了，更要注意的是，由于使用
+Xinstall.sh 来手动升级的时候，如果你不用这个程序默认的选项（除了第一项选择
+y 之外），是会有一点小麻烦的，所以建议你最好是直接按 enter 就好了！</li>
+
+<br>&nbsp;
+<li>
+<font color="#3333ff">下载 NVidia 核心</font>：鸟哥这里有已经下载的两个档案，是
+src.rpm 的档案，你可以点选底下的线条下载：</li>
+
+<ol>NVIDIA_kernel-1.0-1251.src.rpm
+<br>NVIDIA_GLX-1.0-1251.i386.rpm</ol>
+
+<li>
+<font color="#3333ff">开始编辑核心程序</font>：好了，下载完了 NVIDIA_kernel
+之后，请先以 rpm 编译吧！</li>
+
+<table width="80%" bgcolor="#000000" cols="1">
+<tbody><tr>
+<td><font face="细明体"><font color="#ffffff"><font size="-1">rpm --rebuild
+NVIDIA_kernel-1.0-1251.src.rpm</font></font></font></td>
+</tr>
+</tbody></table>
+上面的程序编译完之后会在 /usr/src/redhat/RPMS/i386 产生一个名为 NVIDIA_kernel-1.0-1251.i386.rpm
+的档案，这时请以：
+<table width="80%" bgcolor="#000000" cols="1">
+<tbody><tr>
+<td><font face="细明体"><font color="#ffffff"><font size="-1">rpm -ivh NVIDIA_kernel-1.0-1251.i386.rpm</font></font></font></td>
+</tr>
+</tbody></table>
+安装完了之后，回到你刚刚下载核心的目录，开始安装 GLX 这个档案，注意喔，由于
+GLX 需要一些特别的档案来升级，不要理他！用强制安装的方法：
+<table width="80%" bgcolor="#000000" cols="1">
+<tbody><tr>
+<td><font face="细明体"><font color="#ffffff"><font size="-1">rpm -ivh --nodeps
+NVIDIA_GLX-1.0-1251.i386.rpm</font></font></font></td>
+</tr>
+</tbody></table>
+这个时候就可以完成显示适配器核心的更新了！更新完成之后，就会在你的 /usr/X11R6/lib/modules/drivers
+内多了一个名为 nvidia_drv.o 的档案，这就是我们要的显示适配器驱动程序啦！
+<br>&nbsp;
+<li>
+<font color="#3333ff">再重新设定一次 xf86config </font>：由于我们重新安装了
+XFree86 ，所以你必须要使用 xf86config 再重新设定一次，然后在选择显示适配器的地方选择地
+320 款那一项（Geforce），就 OK 啦！</li>
+
+<br>&nbsp;
+<li>
+<font color="#3333ff">手动更改 /etc/X11/XF86Config 档案</font>：这一个步骤比较讨厌，因为必须要使用
+vi 去修改你的 X-Window 配置文件，以 <font face="细明体">vi /etc/X11/XF86Config
+</font>进入编辑画面，然后找到类似下面的片段：</li>
+
+<table width="80%" bgcolor="#000000" cols="1">
+<tbody><tr>
+<td><font face="细明体"><font color="#ffff00"><font size="-1">--------------------第一部份---------------------------------------------</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">Section "Module"</font></font></font>
+<p><font face="细明体"><font color="#ffffff"><font size="-1"># This loads
+the DBE extension module.</font></font></font>
+</p><p><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp;&nbsp;&nbsp;
+Load"dbe"&nbsp;&nbsp; # Double buffer extension</font></font></font>
+</p><p><font face="细明体"><font color="#ffffff"><font size="-1"># This loads
+the miscellaneous extensions module, and disables</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1"># initialisation
+of the XFree86-DGA extension within that module.</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp;&nbsp;&nbsp;
+SubSection&nbsp; "extmod"</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp;&nbsp;&nbsp;
+Option&nbsp;&nbsp;&nbsp; "omit xfree86-dga"&nbsp;&nbsp; # don't initialise
+the DGA extension</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp;&nbsp;&nbsp;
+EndSubSection</font></font></font>
+</p><p><font face="细明体"><font color="#ffffff"><font size="-1"># This loads
+the Type1 and FreeType font modules</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp;&nbsp;&nbsp;
+Load"type1"</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp;&nbsp;&nbsp;
+Load"freetype"</font></font></font>
+</p><p><font face="细明体"><font color="#ffffff"><font size="-1"># This loads
+the GLX module</font></font></font>
+<br><font face="细明体"><font color="#ffcc00"><font size="-1">&nbsp;&nbsp;&nbsp;
+Load"glx"</font></font></font>
+</p><p><font face="细明体"><font color="#ffffff"><font size="-1">EndSection</font></font></font>
+<br><font face="细明体"><font color="#ffff00"><font size="-1">--------------------第二部份---------------------------------------------</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp;&nbsp;&nbsp;
+ModulePath "/usr/X11R6/lib/modules"</font></font></font>
+</p><p><font face="细明体"><font color="#ffff00"><font size="-1">--------------------第三部份---------------------------------------------</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">Section "Device"</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp;&nbsp;&nbsp;
+Identifier&nbsp; "NVIDIA GeForce"</font></font></font>
+<br><font face="细明体"><font size="-1"><font color="#ffffff">&nbsp;</font><font color="#ffff00">&nbsp;&nbsp;
+Driver&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "nv"&nbsp;&nbsp;&nbsp; &lt;== 这里改成
+nvidia</font></font></font>
+<br><font face="细明体"><font color="#ffff00"><font size="-1">&nbsp;&nbsp;&nbsp;
+#VideoRam&nbsp;&nbsp; 4096&nbsp;&nbsp;&nbsp; &lt;== 这里改成你的内存量(32768)，并且将
+# 取消</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp;&nbsp;&nbsp;
+# Insert Clocks lines here if appropriate</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">EndSection</font></font></font>
+<br><font face="细明体"><font color="#ffff00"><font size="-1">--------------------第四部份---------------------------------------------</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">Section "Screen"</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp;&nbsp;&nbsp;
+Identifier&nbsp; "Screen 1"</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp;&nbsp;&nbsp;
+Device&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "NVIDIA GeForce"</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp;&nbsp;&nbsp;
+Monitor&nbsp;&nbsp;&nbsp;&nbsp; "My Monitor"</font></font></font>
+<br><font face="细明体"><font size="-1"><font color="#ffffff">&nbsp;</font><font color="#ffff00">&nbsp;&nbsp;
+DefaultDepth 24</font></font></font>
+</p><p><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp;&nbsp;&nbsp;
+Subsection "Display"</font></font></font>
+<br><font face="细明体"><font size="-1"><font color="#ffffff">&nbsp;</font><font color="#ffff00">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Depth&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 24</font></font></font>
+<br><font face="细明体"><font color="#ffff00"><font size="-1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Modes&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "1024x768"</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ViewPort&nbsp;&nbsp;&nbsp; 0 0</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp;&nbsp;&nbsp;
+EndSubsection</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">EndSection</font></font></font></p></td>
+</tr>
+</tbody></table>
+将上面『<font color="#3333ff">Load"glx"</font>』这一行之前的批注符号『#』拿掉！亦将
+<font color="#3333ff">ModulePath
+"/usr/X11R6/lib/modules"</font> 的批注拿掉，然后，最重要的是在第三部分，将原先的
+nv 改成 nvidia ，而将 VideoRam 的内存改成你的内存大小（一般来说应该是
+32768 =&gt; 32MB），然后将批注拿掉。最后在第四部分的地方，你可以将 DefaultDepth
+改成 24 （bit）而将底下的 Modes 改成 "1024x768" ，这样每次启动 X-Window
+就可以看到最大的画面啦！
+<br>&nbsp;
+<li>
+完成设定，以 <b>startx</b> 启动 X-Window ！</li>
+</ol>
+</blockquote>
+
+<hr width="100%">
+<br><a name="xwindowsdownload"></a><font color="#000099"><font size="+1"><font face="标楷体">关于
+</font><font face="Times New Roman Baltic">X-Window</font><font face="标楷体">
+的相关下载文件与网址</font></font></font>
+<p><font color="#000099">一些 FTP 站：</font>
+</p><ul>
+<li>
+交大资科：<a href="ftp://linux.cis.nctu.edu.tw/X/Xserver/XFree86/" target="_blank">ftp://linux.cis.nctu.edu.tw/X/Xserver/XFree86/</a></li>
+
+<li>
+教育部：<a href="ftp://nctuccca.edu.tw/UNIX/XFree86/" target="_blank">ftp://nctuccca.edu.tw/UNIX/XFree86/</a></li>
+
+<li>
+XFree86 组织：<a href="ftp://ftp.xfree86.org/pub/XFree86" target="_blank">ftp://ftp.xfree86.org/pub/XFree86</a></li>
+
+<li>
+NVidia 网站：<a href="http://www.nvidia.com/" target="_blank">http://www.nvidia.com/</a></li>
+</ul>
+
+<hr width="100%">
+<br><a name="QA"></a><font face="标楷体"><font color="#000099"><font size="+1">本章问题讨论：</font></font></font>
+<blockquote>
+<ol>
+<li>
+<font size="+2">Q</font>：？</li>
+
+<br><font color="#000066"><font size="+2">A</font>：</font>
+<br>&nbsp;
+<li>
+等待加入新讨论：</li>
+</ol>
+</blockquote>
+<font face="新细明体"><font color="#3333ff"><font size="-1">2002/ 01/01以来统计人数</font></font></font>
+<br><img src="linux_08xwindows_files/Count.gif" nosave="" width="60" align="ABSCENTER" height="15"><hr width="100%">
+<center>
+<a href="http://linux.vbird.org/" target="_top"><img src="linux_08xwindows_files/VBirdTitle2.jpg" nosave="" width="90" border="0" height="25"></a>
+<a href="http://linux.vbird.org/linux_basic"><img src="linux_08xwindows_files/icon_system.gif" nosave="" width="90" border="0" height="25"></a>
+<a href="http://linux.vbird.org/linux_server"><img src="linux_08xwindows_files/icon_server.gif" nosave="" width="90" border="0" height="25"></a>
+<a href="http://linux.vbird.org/linux_security"><img src="linux_08xwindows_files/icon_security.jpg" nosave="" width="90" border="0" height="25"></a>
+<a href="http://phorum.vbird.org/" target="_blank"><img src="linux_08xwindows_files/icon_forums.gif" nosave="" width="90" border="0" height="25"></a>
+<a href="http://linux.vbird.org/adsl"><img src="linux_08xwindows_files/icon_adsl.gif" nosave="" width="90" border="0" height="25"></a>
+<br><font color="#000066"><font size="-1">Designed by <a href="mailto:vbird@mail.vbird.idv.tw">VBird</a>
+during 2001-2004.&nbsp; Aerosol Lab.</font></font></center>
+</body></html>

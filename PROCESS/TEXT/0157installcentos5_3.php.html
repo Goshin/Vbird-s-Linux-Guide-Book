@@ -1,1 +1,246 @@
-<html><head> 	<meta http-equiv="Content-Type" content="text/html; charset=utf8"> 	<meta name="Author" content="lee"> 	<meta name="Description" content="使用 CentOS 5.x 来安装您的 Linux 练习机"> 	<title>鸟哥的 Linux 私房菜 -- 安装 CentOS 5.x 的 Linux 练习机</title>     <script src="../script/SpryMenuBar.js" type="text/javascript"></script> 	<script src="../script/index.js" type="text/javascript"></script> 	<link href="../css/SpryMenuBarHorizontal.css" rel="stylesheet" type="text/css" />     <link href="../css/main.css" rel="stylesheet" type="text/css" />     </head><body style="margin: 0pt; padding: 0pt;" class="table"onload="MM_preloadImages('image/title_19.png','image/title_26.png','image/title_27.png','image/title_28.png','image/title_06.png','image/title_08.png','image/title_10.png','image/title_12.png')">   <!-- Copyright � 2005. Spidersoft Ltd --> <style> A.applink:hover {border: 2px dotted #DCE6F4;padding:2px;background-color:#ffff00;color:green;text-decoration:none} A.applink       {border: 2px dotted #DCE6F4;padding:2px;color:#2F5BFF;background:transparent;text-decoration:none} A.info          {color:#2F5BFF;background:transparent;text-decoration:none} A.info:hover    {color:green;background:transparent;text-decoration:underline} </style> <div style='BORDER: 1px solid #DCE6F4; MARGIN-TOP: 20px; MARGIN-BOTTOM: 20px; MARGIN-LEFT: 5px; MARGIN-RIGHT: 5px; PADDING: 5px; BACKGROUND-COLOR: #eef8ff;line-height:180%; COLOR: #000000; font-family: Arial; font-size: 8pt; width=100%; FILTER: progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr="#FFFFFFFF", EndColorStr="#F2F5FAFF");'> This page was saved using <a class="applink" href="http://www.spidersoft.com"><b>WebZIP 7.0.3.1030</b></a> <a class="applink" href="http://www.spidersoft.com"><b>offline browser</b></a>  (Unregistered) on  02/12/15 12:14:48.<br> <b>Address:</b> <a class="info" href="http://vbird.dic.ksu.edu.tw/linux_basic/0157installcentos5_3.php">http://vbird.dic.ksu.edu.tw/linux_basic/0157installcentos5_3.php</a><br> <b>Title:</b> 鸟哥的 Linux 私房菜 -- 安装 CentOS 5.x 的 Linux 练习机 &nbsp;&bull;&nbsp; <b>Size:</b> 30298<br></div> <!-- /Copyright � 2005. Spidersoft Ltd -->    <center> <div id="apDiv5"> <div> <LINK REL="SHORTCUT ICON" HREF="favicon.ico"> <!-- ImageReady Slices (title3.ai) --> <table id="___01" width="898" height="81" border="0" align="center" cellpadding="0" cellspacing="0";> 	<tr> 		<td colspan="15"> 			<img src="image/title/title_01.png" width="900" height="1" alt=""></td> 	</tr> 	<tr> 		<td rowspan="4" bgcolor="#182448"><p><img src="http://linux.vbird.org/cgi-bin/Count.cgi?dd=C&ft=5&sh=T&md=8&pad=Y&df=vbird.dic.ksu.edu.tw.dat" width="93" align="left" title="計數器" /></p> 	    <p><font color="#FFFFFF" size="-1">since2012/04/23</font></p></td> 		<td rowspan="4" align="left" valign="top"><a href="http://vbird.dic.ksu.edu.tw/"><img src="image/title/title_03.png" alt="" width="263" height="79" border="0"></a></td> 		<td colspan="13"> 			<img src="image/title/title_04.png" alt="" width="535" height="9" border="0"></td> 	</tr> 	<tr> 		<td rowspan="3"> 			<img src="image/title/title_05.png" alt="" width="53" height="70" border="0"></td> 		<td colspan="2" align="left" valign="top"><a href="0110whatislinux.php.html" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image51','','image/title/title_06.png',1)"><img src="image/title/title3_06.png" name="Image51" width="106" height="25" border="0" id="Image51" alt=""/></a></td> 		<td rowspan="2"> 			<img src="image/title/title_07.png" alt="" width="27" height="37" border="0"></td> 		<td colspan="3" align="left" valign="top"><a href="http://vbird.dic.ksu.edu.tw/linux_server/0110network_basic.php" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image52','','image/title/title_08.png',1)"><img src="image/title/title3_08.png" name="Image52" width="107" height="25" border="0" id="Image52" alt=""/></a></td> 		<td rowspan="2"> 			<img src="image/title/title_09.png" alt="" width="37" height="37" border="0"></td> 		<td colspan="2" align="left" valign="top"><a href="http://vbird.dic.ksu.edu.tw/about.php" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image53','','image/title/title_10.png',1)"><img src="image/title/title3_10.png" name="Image53" width="75" height="25" border="0" id="Image53" alt=""/></a></td> 		<td rowspan="3"> 			<img src="image/title/title_11.png" alt="" width="35" height="70" border="0"></td> 		<td align="left" valign="top"><a href="mailto:vbird@mail.vbird.idv.tw" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image54','','image/title/title_12.png',1)"><img src="image/title/title3_12.png" name="Image54" width="74" height="25" border="0" id="Image54" alt=""/></a></td> 		<td rowspan="3"> 			<img src="image/title/title_13.png" alt="" width="21" height="70" border="0"></td> 	</tr> 	<tr> 		<td colspan="2"> 			<img src="image/title/title_14.png" alt="" width="106" height="12" border="0"></td> 		<td colspan="3"> 			<img src="image/title/title_15.png" alt="" width="107" height="12" border="0"></td> 		<td colspan="2"> 			<img src="image/title/title_16.png" width="75" height="12" alt=""></td> 		<td rowspan="2"> 			<img src="image/title/title_17.png" alt="" width="74" height="45" border="0"></td> 	</tr> 	<tr> 		<td> 			<img src="image/title/title_18.png" alt="" width="15" height="33" border="0"></td> 		<td colspan="3" align="left" valign="top"><ul id="MenuBar1" class="MenuBarHorizontal"> 	  <li><a href="linux_basic.php.html" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image44','','image/title/title_19.png',1)"><img src="image/title/title3_19.png" name="Image44" width="123" height="33" border="0" id="Image44" /></a> 			    <ul> 			      <li><a href="Mandrake9.0/mandrake9.0.php.html" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image46','','image/title/title_26.png',1)"><img src="image/title/title_23.png" name="Image46" width="120" height="26" border="0" id="Image46" alt="" /></a></li>                   <li><a href="fedora_4/fc4.php.html" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image47','','image/title/title_27.png',1)"><img src="image/title/title_24.png" name="Image47" width="120" height="26" border="0" id="Image47" alt="" /></a></li>                   <li><a href="linux_basic.php.html" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image48','','image/title/title_28.png',1)"><img src="image/title/title_25.png" name="Image48" width="120" height="26" border="0" id="Image48" alt="" /></a></li>                 </ul> 		      </li> 		</ul></td> 		<td> 			<img src="image/title/title_20.png" alt="" width="42" height="33" border="0"></td> 		<td colspan="3" align="left" valign="top"><ul id="MenuBar2" class="MenuBarHorizontal"> 	  <li><a href="http://vbird.dic.ksu.edu.tw/linux_server/" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image45','','image/title/title_21.png',1)"><img src="image/title/title3_21.png" name="Image45" width="125" height="33" border="0" id="Image45" /></a> 			    <ul> 			      <li><a href="http://vbird.dic.ksu.edu.tw/linux_server/linux_redhat9/redhat9.php" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image43','','image/title/title_26.png',1)"><img src="image/title/title_23.png" name="Image43" width="120" height="26" border="0" id="Image43" alt=""/></a></li> 			      <li><a href="http://vbird.dic.ksu.edu.tw/linux_server/centos4.php" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image49','','image/title/title_27.png',1)"><img src="image/title/title_24.png" name="Image49" width="120" height="26" border="0" id="Image49" alt="" /></a></li> 			      <li><a href="http://vbird.dic.ksu.edu.tw/linux_server/" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image50','','image/title/title_28.png',1)"><img src="image/title/title_25.png" name="Image50" width="120" height="26" border="0" id="Image50" alt="" /></a></li> 		        </ul> 		      </li> 		</ul></td> 		<td> 			<img src="image/title/title_22.png" alt="" width="47" height="33" border="0"></td> 	</tr> 	<tr> 		<td> 			<img src="image/title/Spacer.gif" width="101" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="263" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="53" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="15" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="91" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="27" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="5" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="42" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="60" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="37" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="28" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="47" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="35" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="74" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="22" height="1" alt=""></td> 	</tr> </table> <!-- End ImageReady Slices --> <script type="text/javascript"> <!-- var MenuBar1 = new Spry.Widget.MenuBar("MenuBar1", {imgDown:"SpryAssets/SpryMenuBarDownHover.gif", imgRight:"SpryAssets/SpryMenuBarRightHover.gif"}); var MenuBar2 = new Spry.Widget.MenuBar("MenuBar2", {imgDown:"SpryAssets/SpryMenuBarDownHover.gif", imgRight:"SpryAssets/SpryMenuBarRightHover.gif"}); //--> </script></div> <table summary="本文内容的排版" style="width: 898px;" border="0" cellpadding="0" cellspacing="0"> <tbody><tr><td style="width: 16px; height: 16px;">　</td>     <td style="width: 866px; height: 16px;">　</td>     <td style="width: 16px; height: 16px;">　</td></tr> <tr><td style="width: 16px; font-size: 6px;">　</td>     <td width="866">  <!-- 本文的档头部分 --> <div style="text-align: center;">     <a href="0157installcentos5.php.html">     <span class="text_head0">第四章、安装<span class="text_head_en"> CentOS 5.x </span>与多重开机小技巧</span></a><br> </div>     <div style="text-align: right;">         <span class="text_history">最近更新日期：2009/08/11</span>     </div> <!-- 本文的连结区部分 --> <div class="block1"> <span class="text_h1"> 3. <a href="#post_install">安装后的首次设定</a><br> </span> </div> <!-- 本文的正式部分 --> <hr><a name="post_install"></a><img src="../image/logo.png" alt="大标题的图示" width="35" align="middle" height="34"><span class="text_h1">安装后的首次设定</span><br> <div class="block1"> 	<p>安装完毕并且重新开机后，系统就会开始以Linux开机罗！但事实上我们的安装尚未完成喔！ 	因为还没有进行诸如防火墙、SELinux、惯用登入帐号的设定等等。在X Window里面还有重要的音效装置也还没有设定哩！ 	所以，底下我们就来处理首次进入X Window的设定吧！</p>  	<p>重新开机后，一开始萤幕会出现如下的讯息，这个讯息是说，你如果没有在数秒钟之内按下任意按键， 	那么系统就会以CentOS (2.6.18-128.el5)那个开机选项进入开机的流程喔。</p>  	<center><img src="0157installcentos5_files/centos5_07_01.jpg" alt="开机过程的读秒画面" title="开机过程的读秒画面" border="1"><br> 	图3.1、开机过程的读秒画面<br></center>  	<p>那如果你真的按下了任意按键，萤幕就会出现如下的讯息，该讯息是由grub开机管理程序所控管的， 	目前鸟哥的系统里面也只有一个选项，那就是刚刚你在读秒画面中看到的那个项目。 	如果你还有想要加入什么特殊的参数在开机的过程当中，可以使用下图中箭头所指的地方，利用几个简单的项目来处理喔！ 	这部份我们会在<a href="0510osloader.php.html">第二十章、开机管理程序</a>中谈到的！如果你有设定多重开机， 	那么在下图的画面中就会看到多个选单罗！</p>  	<a name="fig3.2"></a> 	<center><img src="0157installcentos5_files/centos5_07_02.jpg" alt="grub管理程序的选单画面" title="grub管理程序的选单画面" border="1"><br> 	图3.2、grub管理程序的选单画面<br></center>  	<p>一切都没有问题就按下[Enter]吧！此时grub就会去读取核心档案来进行硬件侦测，并载入适当的硬件驱动程序后， 	就开始进行CentOS各项服务的启动了。下图中箭头有指到/vmlinuz-2.6.18-128.el5吧？那就是我们的Linux核心档案啦！ 	至於出现Welcome字样后，就是开始执行各项服务的流程了。</p>  	<center><img src="0157installcentos5_files/centos5_07_03.jpg" alt="开机过程的核心侦测与服务启动" title="开机过程的核心侦测与服务启动" border="1"><br> 	图3.3、开机过程的核心侦测与服务启动<br></center>  	<p>接下来系统会开始出现图形介面，如下图所示。如果你想要知道系统目前实际在进行什么服务的启动时， 	可以按下箭头所指的『详细数据』。</p>  	<center><img src="0157installcentos5_files/centos5_07_04.jpg" alt="开机进入图形介面的示意图" title="开机进入图形介面的示意图" border="1"><br> 	图3.4、开机进入图形介面的示意图<br></center>  	<p>按下『详细数据』就会出现下图，因为安装的时候我们选择的是中文，此时启动各项服务就会以中文来显示罗！很不错吧！ ^_^</p>  	<center><img src="0157installcentos5_files/centos5_07_05.jpg" alt="查阅详细开机资讯的示意图" title="查阅详细开机资讯的示意图" border="1"><br> 	图3.5、查阅详细开机资讯的示意图<br></center>  	<p>怕了吧？有这么多不知名的程序已经在你的Linux里面启动了呢！里面其实有很多是我们不需要的， 	在未来你了解了Linux相关的知识之后，就可以将那些不需要的程序(或称为服务)给他关掉了。目前还不需要紧张， 	因为我们还没有连上Internet呐！还不需要太紧张啦！ ^_^</p>  	<p>好了，接下来让我们开始来设定X Window的相关功能吧！设定很简单，用鼠標点一点就可以完成了！别担心！</p>  	<ol> 	<li><span class="text_import1">防火墙与SELinux</span><br><br> 	首先，系统会进入欢迎画面，如下图所示。下图的左手边则是等一下需要设定的项目有哪些。如果没有问题的话，按『下一页』继续设定。 	<br><br> 	<center><img src="0157installcentos5_files/centos5_10_01.jpg" alt="首次设定的欢迎画面" title="首次设定的欢迎画面" border="1"><br> 	图3.6、首次设定的欢迎画面<br></center><br> 	因为我们目前是Linux练习机而已，因此，建议你将防火墙的功能先取消，反正我们也还没有连上Intenet嘛！ 	所以请在下图的箭头处将他点选成为『停用』的状态。<br><br> 	<center><img src="0157installcentos5_files/centos5_10_02.jpg" alt="关闭防火墙的设定项目" title="关闭防火墙的设定项目" border="1"><br> 	图3.7、关闭防火墙的设定项目<br></center><br> 	因为我们停用防火墙，安装程序很好心的会提示我们：『你没有启用防火墙喔！』 没关系！继续吧！ 	因为我们在服务器篇里面会提到自己设定的防火墙功能啊！所以如下图箭头所指，点选『是』即可继续。<br><br> 	<center><img src="0157installcentos5_files/centos5_10_03.jpg" alt="关闭防火墙的警告讯息" title="关闭防火墙的警告讯息" border="1"><br> 	图3.8、关闭防火墙的警告讯息<br></center><br> 	接下来如下图所示出现一个『SELinux』的东西，<span class="text_import2">这个SELinux可就重要了！ 	他是Security Enhanced Linux的缩写</span>，这个软件是由美国国家安全局(National Security Agency, NSA,<a href="#ps3">注3</a>)所开发的，这东西并不是防火墙喔！SELinux是一个Linux系统存取控制(Access control)的细部设定， 	重点在於控制程序对於系统档案的存取权限限制。由於CentOS 5.x以后的Linux版本对於SELinux的设定已经非常的妥当了， 	因此建议您务必要打开这个功能！这部份我们会在<a href="0440processcontrol.php.html">第十七章</a>继续说明的。<br><br> 	<center><img src="0157installcentos5_files/centos5_10_04.jpg" alt="启动SELinux的示意图" title="启动SELinux的示意图" border="1"><br> 	图3.9、启动SELinux的示意图<br></center><br></li>  	<li><span class="text_import1">Kdump与时区的校正</span><br><br> 	完成了防火墙与SELinux的选择后，接下来会出现如下的Kdump视窗。什么是Kdump呢？这个Kdump就是，当核心出现错误的时候， 	是否要将当时的内存内的讯息写到档案中，而这个档案就能够给核心开发者研究为啥会当机之用。 	我们并不是核心开发者，而且内存内的数据实在太大了，因此常常进行Kdump会造成硬盘空间的浪费。 	所以，<span class="text_import2">这里建议不要启动Kdump的功能</span>喔！<br><br>  	<center><img src="0157installcentos5_files/centos5_10_05.jpg" alt="关闭Kdump示意图" title="关闭Kdump示意图" border="1"><br> 	图3.10、关闭Kdump示意图<br></center><br>  	再来就是时间的确认啦！先看一下系统的日期与你的手表一致否？若不一致请自行调整他。<br><br>  	<center><img src="0157installcentos5_files/centos5_10_06.jpg" alt="时区与时间的校正" title="时区与时间的校正" border="1"><br> 	图3.11、时区与时间的校正<br></center><br>  	常常手动调整时间很讨厌吧！尤其是如果你的系统是老计算机，一关机BIOS电力不足就会造成系统时间的错乱时！真讨厌～ 	此时我们可以使用网络来进行时间的校正喔！如下图所示，先按下1号箭头所指处，然后勾选2号箭头指的『启用网络时间通讯协定』， 	接下来按下3号箭头处所指的『新增』来增加时间服务器喔！<br><br> 	<center><img src="0157installcentos5_files/centos5_10_07.jpg" alt="网络校时设定" title="网络校时设定" border="1"><br> 	图3.12、网络校时设定<br></center><br>  	按下『新增』后就会出现如下画面，由於系统预设给予的三部网络上面可以提供人家进行时间校正的主机都不在台湾， 	为了快速的校正时间，建议你可以将下图中前三个主机都删除，只保留后来我们自己加上的台湾的时间服务器， 	就是：tock.stdtime.gov.tw这一部即可。输入完毕后请按下[Enter]吧！<br><br>  	<center><img src="0157installcentos5_files/centos5_10_08.jpg" alt="加入网络时间服务器的方式" title="加入网络时间服务器的方式" border="1"><br> 	图3.13、加入网络时间服务器的方式<br></center><br>  	由於我们的Linux练习机还没有连上Internet，所以当你加上上图所指向的那部主机时，就会出现如下图的错误啦！ 	没关系，不要理他！那是正常的！请按下『是』来继续吧！<br><br>  	<center><img src="0157installcentos5_files/centos5_10_09.jpg" alt="未连上Interenet的警告讯息" title="未连上Interenet的警告讯息" border="1"><br> 	图3.14、未连上Interenet的警告讯息<br></center><br></li>  	<li><span class="text_import1">建立一般使用者</span><br><br> 	一般来说，我们在操作Linux系统时，除非必要，否则不要使用root的权限，这是因为管理员(root)的权限太大了！ 	我们可能会随时不小心搞错了一个小咚咚，结果却造成整个系统的挂点去.....所以，建立一个一般身份使用者来操作才是好习惯。 	举例来说，鸟哥都会建立一个一般身份使用者的帐号(例如底下的vbird)，用这个帐号来操作Linux， 	而当我的主机需要额外的root权限来管理时，才使用身份转换指令来切换身份成为root来管理维护呢！^_^<br><br>  	如下图所示，鸟哥建立的登入帐号名称为vbird，而全名仅是一个简易的说明而已，那个地方随便填没关系(不填也无所谓！)。 	但是两个密码栏均需填写，萤幕并不会显示出你输入的字元，而是以黑点来取代。两个栏位必须输入相同的密码喔！<br><br>  	<center><img src="0157installcentos5_files/centos5_10_10.jpg" alt="一般帐号的建立" title="一般帐号的建立" border="1"><br> 	图3.15、一般帐号的建立<br></center><br></li>  	<li><span class="text_import1">音效卡与其他软件的安装</span><br><br>  	如果你的主机有音效卡，而且Linux也能够正确的捉到该音效卡时，就会出现如下画面。如果你想要知道到底这个音效卡能否顺利运作， 	如下图箭头所指处，按下测试就能够听听有没有声音的输出啦！<br><br>  	<center><img src="0157installcentos5_files/centos5_10_11.jpg" alt="音效卡的测试" title="音效卡的测试" border="1"><br> 	图3.16、音效卡的测试<br></center><br>  	最后，如果你还有自己的第三方软件需要安装，才放入光盘继续安装。我们当然没有额外的光盘，所以下图不用理他！<br><br> 	<center><img src="0157installcentos5_files/centos5_10_12.jpg" alt="额外的软件光盘安装" title="额外的软件光盘安装" border="1"><br> 	图3.17、额外的软件光盘安装<br></center></li> 	</ol>  	<p>到此为止，我们的Linux就安装与设定好了，接下来就能够登入Linux啦！如果没有特殊需求的话， 	请开始阅读下一章<a href="0160startlinux.php.html">首次开关机与线上求助(man page)</a>吧！</p> </div>   <hr><a name="moreOS"></a><img src="../image/logo.png" alt="大标题的图示" width="35" align="middle" height="34"><span class="text_h1">多重开机安装流程与技巧</span><br> <div class="block1"> 	<p>有鉴於自由软件的蓬勃发展以及专利软件越来越贵，所以政府单位也慢慢的希望各部门在选购计算机时， 	能够考量同时含有两种以上操作系统的机器了。加上很多朋友其实也常常有需要两种不同操作系统来处理日常生活与工作的事情。 	那我是否需要两部主机来操作不同的操作系统？不需要的，我们可以透过多重开机来选择登入不同的操作系统喔！ 	一部机器搞定不同操作系统哩。</p>  	<p>不过，就如同鸟哥之前提过的，多重开机系统是有很多风险存在的，而且你也不能随时变动这个多重操作系统的开机磁区， 	这对於初学者想要『很猛烈的』玩Linux是有点妨碍～所以，鸟哥不是很建议新手使用多重开机啦！ 	所以，底下仅是提出一个大概，你可以看一看，未来我们谈到后面的章节时，你自然就会有『豁然开朗』的笑容出现了！ ^_^<br><br></p>  	<hr><a name="moreOS_new_1"></a><img src="../image/logo.png" alt="小标题的图示" width="24" align="middle" height="23"><span class="text_h2">新主机仅有一颗硬盘</span><br> 	<div class="block2"> 		<p>如果你的系统是新的，并且想要安装多重操作系统时，那么这个多重操作系统的安装将显的很简单啊！ 		假设以目前主流的160GB硬盘作为规划好了，而你想要有WindowsXP, WindowsXP的数据碟, Linux, Swap及一个共用分割槽， 		那我们首先来规划一下硬盘分割吧！如果是这样的需求，那你可以这样规划：</p>  <table width="95%" bgcolor="lightyellow" border="1" cellpadding="3" cellspacing="0"> <tbody><tr align="center" bgcolor="#182448"><td><font color="#FFFFFF">Linux装置档名</font></td><td><font color="#FFFFFF">Windows装置</font></td><td><font color="#FFFFFF">实际内容</font></td><td><font color="#FFFFFF">档案系统</font></td> 	<td><font color="#FFFFFF">容量(GB)</font></td></tr> <tr><td>/dev/sda1</td><td>C</td><td>Windows系统</td><td>NTFS</td><td>30</td></tr> <tr><td>/dev/sda2</td><td>D</td><td>Windows数据碟</td><td>NTFS</td><td>60</td></tr> <tr><td>/dev/sda3</td><td>不要挂载</td><td>Linux根目录(/)</td><td>Ext3</td><td>50</td></tr> <tr><td>/dev/sda5</td><td>不要挂载</td><td>内存置换空间swap</td><td>swap</td><td>1</td></tr> <tr><td>/dev/sda6</td><td>E</td><td>Windows/Linux共用</td><td>vfat</td><td>其他所有</td></tr> </tbody></table>  		<p>接下来就是系统的安装了！安装一定要先装WindowsXP再装Linux才好！顺序搞错了会很麻烦喔！ 		基本上，你可以这样安装：</p> 		<ol> 		<li><span class="text_import1">先装Windows XP</span><br> 		在这个阶段依旧使用Windows XP光盘开机来安装，安装到了分割时，记得依照上述表格的规划制作出两个主要分割槽， 		并且将档案系统格式化为NTFS，然后再将Windows XP装到C槽当中。理论上，此时仅有/dev/sda1,  		/dev/sda2而已喔！<br><br></li>  		<li><span class="text_import1">安装CentOS 5.x</span><br> 		再来则是安装Linux罗，安装时要注意的地方也是在分割的地方，请回到前一小节的<a href="#centos5_4">磁碟分割</a>部分来进行分割设定。另外一个要注意的地方则是在开机管理程序的地方， 		同样回到前一小节看一下<a href="#centos5_5">开机管理程序</a>是如何指定开机选单的！ 		尤其是『预设开机』项目，是预设要Windows还是Linux开机呢？这需要你的选择喔！而且grub务必要安装到MBR上头。 		<br><br></li>  		<li><span class="text_import1">后续维护的注意事项</span><br> 		多重开机设定完毕后请特别注意， (1)Windows的环境中最好将Linux的根目录与swap取消挂载，否则未来你打开档案总管时， 		该软件会要求你『格式化！』如果一个不留神，你的Linux系统就毁了。 (2)你的Linux不可以随便的删除！ 		因为grub会去读取Linux根目录下的/boot/目录内容，如果你将Linux移除了，你的Windows也就无法开机了！ 		因为整个开机选单都会不见喔！<br></li> 		</ol> 	</div>  	<hr><a name="moreOS_old_1"></a><img src="../image/logo.png" alt="小标题的图示" width="24" align="middle" height="23"><span class="text_h2">旧主机有两颗以上硬盘</span><br> 	<div class="block2"> 		<p>如果你的主机上面已经有Windows了，为了担心与Linux冲突，所以你想要加装一颗新的硬盘来安装Linux，这样好吗？ 		也是不错的想法啦！不过你得要注意的是，整部个人计算机仅会有一个MBR而已！虽然你有两颗硬盘。</p>  		<p>为什么有两颗硬盘却只有一个MBR呢？因为你得在BIOS里面调整开机的装置，<span class="text_import2">只有第一个可开机装置内的MBR会被系统主动读取</span>。 		所以罗，理论上，你不会将Windows的开机管理程序安装到/dev/sda而将Linux安装到/dev/sdb上头， 		而是得要将grub安装到/dev/sda上，透过他来管理Windows/Linux才行，即使你的Linux是放到/dev/sdb这颗硬盘上面的。</p>  		<p>比较聪明的朋友会想到『我可以调整BIOS内的开机装置，使得要进入不同的操作系统时，就用不同的开机装置来开机， 		如此一来应该就能够避免将grub安装到/dev/sda了吧？』这个想法本身是OK的，只不过， 		因为SATA的装置档名是利用侦测的顺序来决定的，所以你如果这样调整来调整去的话， 		你的SATA装置档名可能会产生不同，这对於linux的运作会有问题，因此如果这样随时调整BIOS时， 		可能还是会造成无法开机成功的问题！</p>  		<p>所以鸟哥还是建议BIOS内的开机顺序不要改变，然后以grub来控制全部的开机选单较佳！ 		不过，如果你觉得grub不是这么好用，那怎办？没关系，你可以使用spfdisk这个国人写的开机管理程序来管理喔！ 		如果你真的想要使用spfdisk来管理开机选单的话，那你在安装Linux的时候，记得将grub安装到开机磁区(boot sector)， 		然后重新开机进入Windows后，以spfdisk来设定正确的开机选单即可。spfdisk的官网与鸟哥之前写的教学文章可以参考：</p> 		<ul> 		<li>spfdisk官网：<a href="http://spfdisk.sourceforge.net/" target="_blank">http://spfdisk.sourceforge.net/</a></li> 		<li>鸟哥的spfdisk教学：<a href="0140spfdisk.php">http://vbird.dic.ksu.edu.tw/linux_basic/0140spfdisk.php</a></li> 		</ul> 	</div>  	<hr><a name="moreOS_old_2"></a><img src="../image/logo.png" alt="小标题的图示" width="24" align="middle" height="23"><span class="text_h2">旧主机只有一颗硬盘</span><br> 	<div class="block2"> 		<p>如果你想要在你的Windows主机上面多加一个Linux操作系统呢？那就得要注意啦！ 		因为Windows/Linux不能共存在同一个partition上！而Linux的根目录最好使用Ext3这种Linux支援的档案系统。 		所以，你就得要清出来一个空的分割槽给Linux使用才行喔。</p>  		<p>举例来说，如果你的系统只有C槽，那能不能安装Linux呢？很抱歉！没办法！如果你的系统有C与D槽， 		但是你又想要保留一个数据槽给Windows使用，那你就得要这样做：</p> 		<ol> 		<li>先将D槽的数据搬移出来，不论是搬到随身碟还是C槽中暂存；</li> 		<li>在Windows的逻辑分割管理员中，将D槽删除并重建成两个分割槽，一个是D一个是E；</li> 		<li>将D槽格式化为NTFS(或FAT32)，然后将刚刚的备份数据搬回D槽去；</li> 		<li>E槽不要挂载，这是Linux预计要安装的系统槽。</li> 		</ol>  		<p>这种情况是比较麻烦啦，因为数据需要搬来搬去的，需要很注意移动的过程喔！ 		否则，很容易将自己好几年辛苦工作的数据一不小心的全部删除！那就欲哭无泪了！</p> 	</div> </div> <hr />     </td>     <td style="width: 16px; font-size: 6px;">　</td></tr> <tr><td style="width: 16px; height: 16px;">　</td>     <td style="width: 866px; height: 16px;">　</td>     <td style="width: 16px; height: 16px;">　</td></tr> </tbody></table>  <div style="padding-top: 0px; text-align: center;"> <span style="font-size: 80%;"> 	<a href="http://vbird.dic.ksu.edu.tw/" target="_top" title="前往鸟哥的首页">http://linux.vbird.org</a> 	is designed by <a href="mailto:vbird@mail.vbird.idv.tw" title="联络鸟哥(我不要广告信！)">VBird</a> 		during 2001-2011. <a href="http://www.ksu.edu.tw/" target="_blank">ksu.edu</a></span>          ﻿<div id="apDiv4">       <p>本网页主要以Firefox配合解析度 1024x768 作为设计依据&nbsp;&nbsp;&nbsp;&nbsp; 鸟哥自由软件整合应用研究室</p></div></div> </div> </center> </body></html> 
+<?xml version="1.0" encoding="utf-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"    "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><title>第四章、安装<span class="text_head_en"> CentOS 5.x </title><link href="../Styles/style.css" rel="stylesheet" type="text/css" /></head><body>
+
+<!-- 本文的档头部分 -->
+<div style="text-align: center;">
+    <a href="0157installcentos5.php.html">
+    <span class="text_head0">第四章、安装<span class="text_head_en"> CentOS 5.x </span>与多重开机小技巧</span></a><br>
+</div>
+    <div style="text-align: right;">
+        <span class="text_history">最近更新日期：2009/08/11</span>
+    </div>
+<!-- 本文的连结区部分 -->
+<div class="block1">
+<span class="text_h1">
+3. <a href="#post_install">安装后的首次设定</a><br>
+</span>
+</div>
+<!-- 本文的正式部分 -->
+<hr><a name="post_install"></a><img src="../images/logo.png" alt="大标题的图示" width="35" align="middle" height="34"><span class="text_h1">安装后的首次设定</span><br>
+<div class="block1">
+	<p>安装完毕并且重新开机后，系统就会开始以Linux开机罗！但事实上我们的安装尚未完成喔！
+	因为还没有进行诸如防火墙、SELinux、惯用登入帐号的设定等等。在X Window里面还有重要的音效装置也还没有设定哩！
+	所以，底下我们就来处理首次进入X Window的设定吧！</p>
+
+	<p>重新开机后，一开始萤幕会出现如下的讯息，这个讯息是说，你如果没有在数秒钟之内按下任意按键，
+	那么系统就会以CentOS (2.6.18-128.el5)那个开机选项进入开机的流程喔。</p>
+
+	<center><img src="0157installcentos5_files/centos5_07_01.jpg" alt="开机过程的读秒画面" title="开机过程的读秒画面" border="1"><br>
+	图3.1、开机过程的读秒画面<br></center>
+
+	<p>那如果你真的按下了任意按键，萤幕就会出现如下的讯息，该讯息是由grub开机管理程序所控管的，
+	目前鸟哥的系统里面也只有一个选项，那就是刚刚你在读秒画面中看到的那个项目。
+	如果你还有想要加入什么特殊的参数在开机的过程当中，可以使用下图中箭头所指的地方，利用几个简单的项目来处理喔！
+	这部份我们会在<a href="0510osloader.php.html">第二十章、开机管理程序</a>中谈到的！如果你有设定多重开机，
+	那么在下图的画面中就会看到多个选单罗！</p>
+
+	<a name="fig3.2"></a>
+	<center><img src="0157installcentos5_files/centos5_07_02.jpg" alt="grub管理程序的选单画面" title="grub管理程序的选单画面" border="1"><br>
+	图3.2、grub管理程序的选单画面<br></center>
+
+	<p>一切都没有问题就按下[Enter]吧！此时grub就会去读取核心档案来进行硬件侦测，并载入适当的硬件驱动程序后，
+	就开始进行CentOS各项服务的启动了。下图中箭头有指到/vmlinuz-2.6.18-128.el5吧？那就是我们的Linux核心档案啦！
+	至於出现Welcome字样后，就是开始执行各项服务的流程了。</p>
+
+	<center><img src="0157installcentos5_files/centos5_07_03.jpg" alt="开机过程的核心侦测与服务启动" title="开机过程的核心侦测与服务启动" border="1"><br>
+	图3.3、开机过程的核心侦测与服务启动<br></center>
+
+	<p>接下来系统会开始出现图形介面，如下图所示。如果你想要知道系统目前实际在进行什么服务的启动时，
+	可以按下箭头所指的『详细数据』。</p>
+
+	<center><img src="0157installcentos5_files/centos5_07_04.jpg" alt="开机进入图形介面的示意图" title="开机进入图形介面的示意图" border="1"><br>
+	图3.4、开机进入图形介面的示意图<br></center>
+
+	<p>按下『详细数据』就会出现下图，因为安装的时候我们选择的是中文，此时启动各项服务就会以中文来显示罗！很不错吧！ ^_^</p>
+
+	<center><img src="0157installcentos5_files/centos5_07_05.jpg" alt="查阅详细开机资讯的示意图" title="查阅详细开机资讯的示意图" border="1"><br>
+	图3.5、查阅详细开机资讯的示意图<br></center>
+
+	<p>怕了吧？有这么多不知名的程序已经在你的Linux里面启动了呢！里面其实有很多是我们不需要的，
+	在未来你了解了Linux相关的知识之后，就可以将那些不需要的程序(或称为服务)给他关掉了。目前还不需要紧张，
+	因为我们还没有连上Internet呐！还不需要太紧张啦！ ^_^</p>
+
+	<p>好了，接下来让我们开始来设定X Window的相关功能吧！设定很简单，用鼠標点一点就可以完成了！别担心！</p>
+
+	<ol>
+	<li><span class="text_import1">防火墙与SELinux</span><br><br>
+	首先，系统会进入欢迎画面，如下图所示。下图的左手边则是等一下需要设定的项目有哪些。如果没有问题的话，按『下一页』继续设定。
+	<br><br>
+	<center><img src="0157installcentos5_files/centos5_10_01.jpg" alt="首次设定的欢迎画面" title="首次设定的欢迎画面" border="1"><br>
+	图3.6、首次设定的欢迎画面<br></center><br>
+	因为我们目前是Linux练习机而已，因此，建议你将防火墙的功能先取消，反正我们也还没有连上Intenet嘛！
+	所以请在下图的箭头处将他点选成为『停用』的状态。<br><br>
+	<center><img src="0157installcentos5_files/centos5_10_02.jpg" alt="关闭防火墙的设定项目" title="关闭防火墙的设定项目" border="1"><br>
+	图3.7、关闭防火墙的设定项目<br></center><br>
+	因为我们停用防火墙，安装程序很好心的会提示我们：『你没有启用防火墙喔！』 没关系！继续吧！
+	因为我们在服务器篇里面会提到自己设定的防火墙功能啊！所以如下图箭头所指，点选『是』即可继续。<br><br>
+	<center><img src="0157installcentos5_files/centos5_10_03.jpg" alt="关闭防火墙的警告讯息" title="关闭防火墙的警告讯息" border="1"><br>
+	图3.8、关闭防火墙的警告讯息<br></center><br>
+	接下来如下图所示出现一个『SELinux』的东西，<span class="text_import2">这个SELinux可就重要了！
+	他是Security Enhanced Linux的缩写</span>，这个软件是由美国国家安全局(National Security Agency, NSA,<a href="#ps3">注3</a>)所开发的，这东西并不是防火墙喔！SELinux是一个Linux系统存取控制(Access control)的细部设定，
+	重点在於控制程序对於系统档案的存取权限限制。由於CentOS 5.x以后的Linux版本对於SELinux的设定已经非常的妥当了，
+	因此建议您务必要打开这个功能！这部份我们会在<a href="0440processcontrol.php.html">第十七章</a>继续说明的。<br><br>
+	<center><img src="0157installcentos5_files/centos5_10_04.jpg" alt="启动SELinux的示意图" title="启动SELinux的示意图" border="1"><br>
+	图3.9、启动SELinux的示意图<br></center><br></li>
+
+	<li><span class="text_import1">Kdump与时区的校正</span><br><br>
+	完成了防火墙与SELinux的选择后，接下来会出现如下的Kdump视窗。什么是Kdump呢？这个Kdump就是，当核心出现错误的时候，
+	是否要将当时的内存内的讯息写到档案中，而这个档案就能够给核心开发者研究为啥会当机之用。
+	我们并不是核心开发者，而且内存内的数据实在太大了，因此常常进行Kdump会造成硬盘空间的浪费。
+	所以，<span class="text_import2">这里建议不要启动Kdump的功能</span>喔！<br><br>
+
+	<center><img src="0157installcentos5_files/centos5_10_05.jpg" alt="关闭Kdump示意图" title="关闭Kdump示意图" border="1"><br>
+	图3.10、关闭Kdump示意图<br></center><br>
+
+	再来就是时间的确认啦！先看一下系统的日期与你的手表一致否？若不一致请自行调整他。<br><br>
+
+	<center><img src="0157installcentos5_files/centos5_10_06.jpg" alt="时区与时间的校正" title="时区与时间的校正" border="1"><br>
+	图3.11、时区与时间的校正<br></center><br>
+
+	常常手动调整时间很讨厌吧！尤其是如果你的系统是老计算机，一关机BIOS电力不足就会造成系统时间的错乱时！真讨厌～
+	此时我们可以使用网络来进行时间的校正喔！如下图所示，先按下1号箭头所指处，然后勾选2号箭头指的『启用网络时间通讯协定』，
+	接下来按下3号箭头处所指的『新增』来增加时间服务器喔！<br><br>
+	<center><img src="0157installcentos5_files/centos5_10_07.jpg" alt="网络校时设定" title="网络校时设定" border="1"><br>
+	图3.12、网络校时设定<br></center><br>
+
+	按下『新增』后就会出现如下画面，由於系统预设给予的三部网络上面可以提供人家进行时间校正的主机都不在台湾，
+	为了快速的校正时间，建议你可以将下图中前三个主机都删除，只保留后来我们自己加上的台湾的时间服务器，
+	就是：tock.stdtime.gov.tw这一部即可。输入完毕后请按下[Enter]吧！<br><br>
+
+	<center><img src="0157installcentos5_files/centos5_10_08.jpg" alt="加入网络时间服务器的方式" title="加入网络时间服务器的方式" border="1"><br>
+	图3.13、加入网络时间服务器的方式<br></center><br>
+
+	由於我们的Linux练习机还没有连上Internet，所以当你加上上图所指向的那部主机时，就会出现如下图的错误啦！
+	没关系，不要理他！那是正常的！请按下『是』来继续吧！<br><br>
+
+	<center><img src="0157installcentos5_files/centos5_10_09.jpg" alt="未连上Interenet的警告讯息" title="未连上Interenet的警告讯息" border="1"><br>
+	图3.14、未连上Interenet的警告讯息<br></center><br></li>
+
+	<li><span class="text_import1">建立一般使用者</span><br><br>
+	一般来说，我们在操作Linux系统时，除非必要，否则不要使用root的权限，这是因为管理员(root)的权限太大了！
+	我们可能会随时不小心搞错了一个小咚咚，结果却造成整个系统的挂点去.....所以，建立一个一般身份使用者来操作才是好习惯。
+	举例来说，鸟哥都会建立一个一般身份使用者的帐号(例如底下的vbird)，用这个帐号来操作Linux，
+	而当我的主机需要额外的root权限来管理时，才使用身份转换指令来切换身份成为root来管理维护呢！^_^<br><br>
+
+	如下图所示，鸟哥建立的登入帐号名称为vbird，而全名仅是一个简易的说明而已，那个地方随便填没关系(不填也无所谓！)。
+	但是两个密码栏均需填写，萤幕并不会显示出你输入的字元，而是以黑点来取代。两个栏位必须输入相同的密码喔！<br><br>
+
+	<center><img src="0157installcentos5_files/centos5_10_10.jpg" alt="一般帐号的建立" title="一般帐号的建立" border="1"><br>
+	图3.15、一般帐号的建立<br></center><br></li>
+
+	<li><span class="text_import1">音效卡与其他软件的安装</span><br><br>
+
+	如果你的主机有音效卡，而且Linux也能够正确的捉到该音效卡时，就会出现如下画面。如果你想要知道到底这个音效卡能否顺利运作，
+	如下图箭头所指处，按下测试就能够听听有没有声音的输出啦！<br><br>
+
+	<center><img src="0157installcentos5_files/centos5_10_11.jpg" alt="音效卡的测试" title="音效卡的测试" border="1"><br>
+	图3.16、音效卡的测试<br></center><br>
+
+	最后，如果你还有自己的第三方软件需要安装，才放入光盘继续安装。我们当然没有额外的光盘，所以下图不用理他！<br><br>
+	<center><img src="0157installcentos5_files/centos5_10_12.jpg" alt="额外的软件光盘安装" title="额外的软件光盘安装" border="1"><br>
+	图3.17、额外的软件光盘安装<br></center></li>
+	</ol>
+
+	<p>到此为止，我们的Linux就安装与设定好了，接下来就能够登入Linux啦！如果没有特殊需求的话，
+	请开始阅读下一章<a href="0160startlinux.php.html">首次开关机与线上求助(man page)</a>吧！</p>
+</div>
+
+
+<hr><a name="moreOS"></a><img src="../images/logo.png" alt="大标题的图示" width="35" align="middle" height="34"><span class="text_h1">多重开机安装流程与技巧</span><br>
+<div class="block1">
+	<p>有鉴於自由软件的蓬勃发展以及专利软件越来越贵，所以政府单位也慢慢的希望各部门在选购计算机时，
+	能够考量同时含有两种以上操作系统的机器了。加上很多朋友其实也常常有需要两种不同操作系统来处理日常生活与工作的事情。
+	那我是否需要两部主机来操作不同的操作系统？不需要的，我们可以透过多重开机来选择登入不同的操作系统喔！
+	一部机器搞定不同操作系统哩。</p>
+
+	<p>不过，就如同鸟哥之前提过的，多重开机系统是有很多风险存在的，而且你也不能随时变动这个多重操作系统的开机磁区，
+	这对於初学者想要『很猛烈的』玩Linux是有点妨碍～所以，鸟哥不是很建议新手使用多重开机啦！
+	所以，底下仅是提出一个大概，你可以看一看，未来我们谈到后面的章节时，你自然就会有『豁然开朗』的笑容出现了！ ^_^<br><br></p>
+
+	<hr><a name="moreOS_new_1"></a><img src="../images/logo.png" alt="小标题的图示" width="24" align="middle" height="23"><span class="text_h2">新主机仅有一颗硬盘</span><br>
+	<div class="block2">
+		<p>如果你的系统是新的，并且想要安装多重操作系统时，那么这个多重操作系统的安装将显的很简单啊！
+		假设以目前主流的160GB硬盘作为规划好了，而你想要有WindowsXP, WindowsXP的数据碟, Linux, Swap及一个共用分割槽，
+		那我们首先来规划一下硬盘分割吧！如果是这样的需求，那你可以这样规划：</p>
+
+<table width="95%" bgcolor="lightyellow" border="1" cellpadding="3" cellspacing="0">
+<tbody><tr align="center" bgcolor="#182448"><td><font color="#FFFFFF">Linux装置档名</font></td><td><font color="#FFFFFF">Windows装置</font></td><td><font color="#FFFFFF">实际内容</font></td><td><font color="#FFFFFF">档案系统</font></td>
+	<td><font color="#FFFFFF">容量(GB)</font></td></tr>
+<tr><td>/dev/sda1</td><td>C</td><td>Windows系统</td><td>NTFS</td><td>30</td></tr>
+<tr><td>/dev/sda2</td><td>D</td><td>Windows数据碟</td><td>NTFS</td><td>60</td></tr>
+<tr><td>/dev/sda3</td><td>不要挂载</td><td>Linux根目录(/)</td><td>Ext3</td><td>50</td></tr>
+<tr><td>/dev/sda5</td><td>不要挂载</td><td>内存置换空间swap</td><td>swap</td><td>1</td></tr>
+<tr><td>/dev/sda6</td><td>E</td><td>Windows/Linux共用</td><td>vfat</td><td>其他所有</td></tr>
+</tbody></table>
+
+		<p>接下来就是系统的安装了！安装一定要先装WindowsXP再装Linux才好！顺序搞错了会很麻烦喔！
+		基本上，你可以这样安装：</p>
+		<ol>
+		<li><span class="text_import1">先装Windows XP</span><br>
+		在这个阶段依旧使用Windows XP光盘开机来安装，安装到了分割时，记得依照上述表格的规划制作出两个主要分割槽，
+		并且将档案系统格式化为NTFS，然后再将Windows XP装到C槽当中。理论上，此时仅有/dev/sda1, 
+		/dev/sda2而已喔！<br><br></li>
+
+		<li><span class="text_import1">安装CentOS 5.x</span><br>
+		再来则是安装Linux罗，安装时要注意的地方也是在分割的地方，请回到前一小节的<a href="#centos5_4">磁碟分割</a>部分来进行分割设定。另外一个要注意的地方则是在开机管理程序的地方，
+		同样回到前一小节看一下<a href="#centos5_5">开机管理程序</a>是如何指定开机选单的！
+		尤其是『预设开机』项目，是预设要Windows还是Linux开机呢？这需要你的选择喔！而且grub务必要安装到MBR上头。
+		<br><br></li>
+
+		<li><span class="text_import1">后续维护的注意事项</span><br>
+		多重开机设定完毕后请特别注意， (1)Windows的环境中最好将Linux的根目录与swap取消挂载，否则未来你打开档案总管时，
+		该软件会要求你『格式化！』如果一个不留神，你的Linux系统就毁了。 (2)你的Linux不可以随便的删除！
+		因为grub会去读取Linux根目录下的/boot/目录内容，如果你将Linux移除了，你的Windows也就无法开机了！
+		因为整个开机选单都会不见喔！<br></li>
+		</ol>
+	</div>
+
+	<hr><a name="moreOS_old_1"></a><img src="../images/logo.png" alt="小标题的图示" width="24" align="middle" height="23"><span class="text_h2">旧主机有两颗以上硬盘</span><br>
+	<div class="block2">
+		<p>如果你的主机上面已经有Windows了，为了担心与Linux冲突，所以你想要加装一颗新的硬盘来安装Linux，这样好吗？
+		也是不错的想法啦！不过你得要注意的是，整部个人计算机仅会有一个MBR而已！虽然你有两颗硬盘。</p>
+
+		<p>为什么有两颗硬盘却只有一个MBR呢？因为你得在BIOS里面调整开机的装置，<span class="text_import2">只有第一个可开机装置内的MBR会被系统主动读取</span>。
+		所以罗，理论上，你不会将Windows的开机管理程序安装到/dev/sda而将Linux安装到/dev/sdb上头，
+		而是得要将grub安装到/dev/sda上，透过他来管理Windows/Linux才行，即使你的Linux是放到/dev/sdb这颗硬盘上面的。</p>
+
+		<p>比较聪明的朋友会想到『我可以调整BIOS内的开机装置，使得要进入不同的操作系统时，就用不同的开机装置来开机，
+		如此一来应该就能够避免将grub安装到/dev/sda了吧？』这个想法本身是OK的，只不过，
+		因为SATA的装置档名是利用侦测的顺序来决定的，所以你如果这样调整来调整去的话，
+		你的SATA装置档名可能会产生不同，这对於linux的运作会有问题，因此如果这样随时调整BIOS时，
+		可能还是会造成无法开机成功的问题！</p>
+
+		<p>所以鸟哥还是建议BIOS内的开机顺序不要改变，然后以grub来控制全部的开机选单较佳！
+		不过，如果你觉得grub不是这么好用，那怎办？没关系，你可以使用spfdisk这个国人写的开机管理程序来管理喔！
+		如果你真的想要使用spfdisk来管理开机选单的话，那你在安装Linux的时候，记得将grub安装到开机磁区(boot sector)，
+		然后重新开机进入Windows后，以spfdisk来设定正确的开机选单即可。spfdisk的官网与鸟哥之前写的教学文章可以参考：</p>
+		<ul>
+		<li>spfdisk官网：<a href="http://spfdisk.sourceforge.net/" target="_blank">http://spfdisk.sourceforge.net/</a></li>
+		<li>鸟哥的spfdisk教学：<a href="0140spfdisk.php">http://vbird.dic.ksu.edu.tw/linux_basic/0140spfdisk.php</a></li>
+		</ul>
+	</div>
+
+	<hr><a name="moreOS_old_2"></a><img src="../images/logo.png" alt="小标题的图示" width="24" align="middle" height="23"><span class="text_h2">旧主机只有一颗硬盘</span><br>
+	<div class="block2">
+		<p>如果你想要在你的Windows主机上面多加一个Linux操作系统呢？那就得要注意啦！
+		因为Windows/Linux不能共存在同一个partition上！而Linux的根目录最好使用Ext3这种Linux支援的档案系统。
+		所以，你就得要清出来一个空的分割槽给Linux使用才行喔。</p>
+
+		<p>举例来说，如果你的系统只有C槽，那能不能安装Linux呢？很抱歉！没办法！如果你的系统有C与D槽，
+		但是你又想要保留一个数据槽给Windows使用，那你就得要这样做：</p>
+		<ol>
+		<li>先将D槽的数据搬移出来，不论是搬到随身碟还是C槽中暂存；</li>
+		<li>在Windows的逻辑分割管理员中，将D槽删除并重建成两个分割槽，一个是D一个是E；</li>
+		<li>将D槽格式化为NTFS(或FAT32)，然后将刚刚的备份数据搬回D槽去；</li>
+		<li>E槽不要挂载，这是Linux预计要安装的系统槽。</li>
+		</ol>
+
+		<p>这种情况是比较麻烦啦，因为数据需要搬来搬去的，需要很注意移动的过程喔！
+		否则，很容易将自己好几年辛苦工作的数据一不小心的全部删除！那就欲哭无泪了！</p>
+	</div>
+</div>
+<hr />
+    </td>
+    <td style="width: 16px; font-size: 6px;">　</td></tr>
+<tr><td style="width: 16px; height: 16px;">　</td>
+    <td style="width: 866px; height: 16px;">　</td>
+    <td style="width: 16px; height: 16px;">　</body></html>

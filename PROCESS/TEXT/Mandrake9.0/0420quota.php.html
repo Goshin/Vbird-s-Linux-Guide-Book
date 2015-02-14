@@ -1,1 +1,1040 @@
-﻿<!DOCTYPE HTML PUBLIC "-//w3c//dtd html 4.0 transitional//en"> <html><head>      <meta http-equiv="Content-Type" content="text/html; charset=utf8">    <meta name="Author" content="VBird">    <title>鸟哥的 Linux 私房菜 -- 磁盘配额 (quota)</title>    	<script src="../../script/SpryMenuBar.js" type="text/javascript"></script> 	<script src="../../script/index.js" type="text/javascript"></script> 	<link href="../../css/SpryMenuBarHorizontal.css" rel="stylesheet" type="text/css" />     <link href="../../css/main.css" rel="stylesheet" type="text/css" />  </head><body style="margin: 0pt; padding: 0pt;" class="table"onload="MM_preloadImages('image/title_19.png','image/title_26.png','image/title_27.png','image/title_28.png','image/title_06.png','image/title_08.png','image/title_10.png','image/title_12.png')">   <!-- Copyright � 2005. Spidersoft Ltd --> <style> A.applink:hover {border: 2px dotted #DCE6F4;padding:2px;background-color:#ffff00;color:green;text-decoration:none} A.applink       {border: 2px dotted #DCE6F4;padding:2px;color:#2F5BFF;background:transparent;text-decoration:none} A.info          {color:#2F5BFF;background:transparent;text-decoration:none} A.info:hover    {color:green;background:transparent;text-decoration:underline} </style> <div style='BORDER: 1px solid #DCE6F4; MARGIN-TOP: 20px; MARGIN-BOTTOM: 20px; MARGIN-LEFT: 5px; MARGIN-RIGHT: 5px; PADDING: 5px; BACKGROUND-COLOR: #eef8ff;line-height:180%; COLOR: #000000; font-family: Arial; font-size: 8pt; width=100%; FILTER: progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr="#FFFFFFFF", EndColorStr="#F2F5FAFF");'> This page was saved using <a class="applink" href="http://www.spidersoft.com"><b>WebZIP 7.0.3.1030</b></a> <a class="applink" href="http://www.spidersoft.com"><b>offline browser</b></a>  (Unregistered) on  02/12/15 12:14:49.<br> <b>Address:</b> <a class="info" href="http://vbird.dic.ksu.edu.tw/linux_basic/Mandrake9.0/0420quota.php">http://vbird.dic.ksu.edu.tw/linux_basic/Mandrake9.0/0420quota.php</a><br> <b>Title:</b> 鸟哥的 Linux 私房菜 -- 磁盘配额 (quota) &nbsp;&bull;&nbsp; <b>Size:</b> 67427<br></div> <!-- /Copyright � 2005. Spidersoft Ltd -->    <center> <div id="apDiv5" align="left"> <div> <LINK REL="SHORTCUT ICON" HREF="favicon.ico"> <!-- ImageReady Slices (title3.ai) --> <table id="___01" width="898" height="81" border="0" align="center" cellpadding="0" cellspacing="0";> 	<tr> 		<td colspan="15"> 			<img src="image/title/title_01.png" width="900" height="1" alt=""></td> 	</tr> 	<tr> 		<td rowspan="4" bgcolor="#182448"><p><img src="http://linux.vbird.org/cgi-bin/Count.cgi?dd=C&ft=5&sh=T&md=8&pad=Y&df=vbird.dic.ksu.edu.tw.dat" width="93" align="left" title="計數器" /></p> 	    <p><font color="#FFFFFF" size="-1">since2012/04/23</font></p></td> 		<td rowspan="4" align="left" valign="top"><a href="http://vbird.dic.ksu.edu.tw/"><img src="image/title/title_03.png" alt="" width="263" height="79" border="0"></a></td> 		<td colspan="13"> 			<img src="image/title/title_04.png" alt="" width="535" height="9" border="0"></td> 	</tr> 	<tr> 		<td rowspan="3"> 			<img src="image/title/title_05.png" alt="" width="53" height="70" border="0"></td> 		<td colspan="2" align="left" valign="top"><a href="../0110whatislinux.php.html" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image51','','image/title/title_06.png',1)"><img src="image/title/title3_06.png" name="Image51" width="106" height="25" border="0" id="Image51" alt=""/></a></td> 		<td rowspan="2"> 			<img src="image/title/title_07.png" alt="" width="27" height="37" border="0"></td> 		<td colspan="3" align="left" valign="top"><a href="http://vbird.dic.ksu.edu.tw/linux_server/0110network_basic.php" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image52','','image/title/title_08.png',1)"><img src="image/title/title3_08.png" name="Image52" width="107" height="25" border="0" id="Image52" alt=""/></a></td> 		<td rowspan="2"> 			<img src="image/title/title_09.png" alt="" width="37" height="37" border="0"></td> 		<td colspan="2" align="left" valign="top"><a href="http://vbird.dic.ksu.edu.tw/about.php" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image53','','image/title/title_10.png',1)"><img src="image/title/title3_10.png" name="Image53" width="75" height="25" border="0" id="Image53" alt=""/></a></td> 		<td rowspan="3"> 			<img src="image/title/title_11.png" alt="" width="35" height="70" border="0"></td> 		<td align="left" valign="top"><a href="mailto:vbird@mail.vbird.idv.tw" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image54','','image/title/title_12.png',1)"><img src="image/title/title3_12.png" name="Image54" width="74" height="25" border="0" id="Image54" alt=""/></a></td> 		<td rowspan="3"> 			<img src="image/title/title_13.png" alt="" width="21" height="70" border="0"></td> 	</tr> 	<tr> 		<td colspan="2"> 			<img src="image/title/title_14.png" alt="" width="106" height="12" border="0"></td> 		<td colspan="3"> 			<img src="image/title/title_15.png" alt="" width="107" height="12" border="0"></td> 		<td colspan="2"> 			<img src="image/title/title_16.png" width="75" height="12" alt=""></td> 		<td rowspan="2"> 			<img src="image/title/title_17.png" alt="" width="74" height="45" border="0"></td> 	</tr> 	<tr> 		<td> 			<img src="image/title/title_18.png" alt="" width="15" height="33" border="0"></td> 		<td colspan="3" align="left" valign="top"><ul id="MenuBar1" class="MenuBarHorizontal"> 	  <li><a href="../linux_basic.php.html" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image44','','image/title/title_19.png',1)"><img src="image/title/title3_19.png" name="Image44" width="123" height="33" border="0" id="Image44" /></a> 			    <ul> 			      <li><a href="mandrake9.0.php.html" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image46','','image/title/title_26.png',1)"><img src="image/title/title_23.png" name="Image46" width="120" height="26" border="0" id="Image46" alt="" /></a></li>                   <li><a href="../fedora_4/fc4.php.html" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image47','','image/title/title_27.png',1)"><img src="image/title/title_24.png" name="Image47" width="120" height="26" border="0" id="Image47" alt="" /></a></li>                   <li><a href="../linux_basic.php.html" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image48','','image/title/title_28.png',1)"><img src="image/title/title_25.png" name="Image48" width="120" height="26" border="0" id="Image48" alt="" /></a></li>                 </ul> 		      </li> 		</ul></td> 		<td> 			<img src="image/title/title_20.png" alt="" width="42" height="33" border="0"></td> 		<td colspan="3" align="left" valign="top"><ul id="MenuBar2" class="MenuBarHorizontal"> 	  <li><a href="http://vbird.dic.ksu.edu.tw/linux_server/" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image45','','image/title/title_21.png',1)"><img src="image/title/title3_21.png" name="Image45" width="125" height="33" border="0" id="Image45" /></a> 			    <ul> 			      <li><a href="http://vbird.dic.ksu.edu.tw/linux_server/linux_redhat9/redhat9.php" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image43','','image/title/title_26.png',1)"><img src="image/title/title_23.png" name="Image43" width="120" height="26" border="0" id="Image43" alt=""/></a></li> 			      <li><a href="http://vbird.dic.ksu.edu.tw/linux_server/centos4.php" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image49','','image/title/title_27.png',1)"><img src="image/title/title_24.png" name="Image49" width="120" height="26" border="0" id="Image49" alt="" /></a></li> 			      <li><a href="http://vbird.dic.ksu.edu.tw/linux_server/" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image50','','image/title/title_28.png',1)"><img src="image/title/title_25.png" name="Image50" width="120" height="26" border="0" id="Image50" alt="" /></a></li> 		        </ul> 		      </li> 		</ul></td> 		<td> 			<img src="image/title/title_22.png" alt="" width="47" height="33" border="0"></td> 	</tr> 	<tr> 		<td> 			<img src="image/title/Spacer.gif" width="101" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="263" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="53" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="15" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="91" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="27" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="5" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="42" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="60" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="37" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="28" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="47" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="35" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="74" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="22" height="1" alt=""></td> 	</tr> </table> <!-- End ImageReady Slices --> <script type="text/javascript"> <!-- var MenuBar1 = new Spry.Widget.MenuBar("MenuBar1", {imgDown:"SpryAssets/SpryMenuBarDownHover.gif", imgRight:"SpryAssets/SpryMenuBarRightHover.gif"}); var MenuBar2 = new Spry.Widget.MenuBar("MenuBar2", {imgDown:"SpryAssets/SpryMenuBarDownHover.gif", imgRight:"SpryAssets/SpryMenuBarRightHover.gif"}); //--> </script></div> <div align="center"><font color="#3333ff"><font size="+2"><a href="http://linux.vbird.org/linux_basic/0420quota/0420quota.php" target="_self"><font face="Times New Roman,Times">Linux </font><font face="标楷体">磁盘配额（ </font><font face="Times New Roman,Times">Quota</font><font face="标楷体"> ）</font></a></font></font><br> 本文已不再维护，更新文章请参考 <a href="http://linux.vbird.org/linux_basic/0420quota.php">这里</a> 。 </div>  <div align="right"><font face="新细明体"><font color="#3333ff"><font size="-1">最近更新日期：2003/02/10</font></font></font></div> <font color="#000099"><font size="+1"><a href="#whatis">什么是 quota</a></font></font> <br><font color="#000099"><font size="+1"><a href="#quota_command">基本的 quota 指令</a>：</font> <a href="#quota">quota</a>, <a href="#quotacheck">quotacheck</a>, <a href="#edquota">edquota</a>, <a href="#quotaon">quotaon</a>, <a href="#quotaoff">quotaoff</a>,</font> <br><font color="#000099"><font size="+1"><a href="#manual">动手作 quota</a></font></font> <br><font color="#000099"><font size="+1"><a href="#pop3">使用邮件主机进行 quota 的实例</a></font></font> <br><font color="#000099"><font size="+1"><a href="#FAQ">本章习题练习</a></font></font> <br> <hr width="100%"><a name="whatis"></a><font color="#000099"><font size="+1">什么是 quota？</font></font> <blockquote>quota 就字面上的意思来看，呵呵！就是有多少『限额』的意思啦！如果是用在零用钱上面，就是『有多少零用钱一个月』的意思之类的。如果是在容量空间上面呢？以 Linux 来说，呵呵！就是有多少容量限制的意思。 <br>　 <br>在 Linux  系统中，由于是多人多任务的环境，所以会有多人共同使用一个硬盘空间的情况发生，如果其中有少数几个使用者大量的占掉了硬盘空间的话，那势必压缩其他使用者 的使用权力！因此管理员应该适当的开放硬盘的权限给用户，以妥善的分配系统资源！避免有人抗议呀！比较常使用的几个情况是： <ul> <li> (1) 例如每个人的网页空间的容量限制！</li>  <li> (2) 每个人的邮件空间限制。</li> </ul> 在 Linux 当中，使用来作为硬盘空间管理的就是所谓的 quota 这个咚咚啦！使用这个模块要有几个步骤，底下就分别说说吧！另外要特别注意的是，使用 quota 时有几个基本的限制需要谈一谈： <ul> <li> quota 实际在运作的时候，是针对『<b><font color="#000066">整个 partition</font></b>』进行限制的，例如：如果你的 /dev/hda5 是挂载在 /home 底下，那么在 /home 底下的所有目录都会受到限制！</li> </ul>  <ul> <li> Linux 系统核心必须有支持 quota 这个模块才行：如果您是使用 Mandrake 的预设核心，嘿嘿！那恭喜你了，你的系统已经默认有开放 quota 这个模块啰！如果您是自行编译核心的，那么请特别留意您是否已经『真的』开启了 quota 这个模块？否则底下的功夫将全部都视为『白工』。至于核心编译的过程我们会在未来进行说明呦！</li> </ul>  <ul> <li> 目前新版的 Linux distributions 如： Mandrake 9.0 与 Red Hat 8.0 等使用的是 Kernel 2.4.xx 的核心版本，这个核心版本支持新的 quota 模块，使用的默认档案（ aquota.user, aquota.group ）将不同于旧版本的 quota.user, quota.group ！（多了一个 a 呦！）而由旧版本的 quota 可以藉由 convertquota 这个程序来转换呢！</li> </ul> &nbsp;quota 这支程序的限制内容主要分为底下几个部分： <ul> <li> <font color="#000099">soft </font>：这是最低限制容量的意思，用户在宽限期间之内，他的容量可以超过 soft ，但必需要宽限时间之内将磁盘容量降低到 soft 的容量限制之下！</li> </ul>  <ul> <li> <font color="#000099">hard </font>：这是『绝对不能超过』的容量！跟 soft 相比的意思为何呢？通常 hard limit 会比 soft limit 为高，例如网络驱动器空间为 30 MB ，那么 hard limit 就设定为 30MB ，但是为了让使用者有一定的警戒心，所以当使用空间超过 25 MB 时，例如使用者使用了 27 MB 的空间时，那么系统就会警告用户，让使用者可以在『宽限时间内』将他的档案量降低至 25 MB ( 亦即是 soft limit )之内！也就是说， soft 到 hard 之间的容量其实就是宽限的容量啦！可以达到针对使用者的『警示』作用！</li> </ul>  <ul> <li> <font color="#000099">宽限时间</font>：那么宽限时间就可以很清楚的知道含意是什么了！也就是当您的使用者使用的空间超过了 soft limit ，却还没有到达 hard limit 时，那么在这个『宽限时间』之内，就必需要请用户将使用的磁盘容量降低到 soft limit 之下！而当用户将磁盘容量使用情况超过 soft limit 时，『宽限时间』就会自动被启动，而在用户将容量降低到 soft limit 之下，那么宽限时间就会自动的取消啰！</li> </ul> </blockquote>  <hr width="100%"><a name="quota_command"></a><font color="#000099"><font size="+1">基本的 quota 指令：</font></font> <blockquote>在开始进行 quota 的实作之前，我们得来了解一下 quota 要使用的指令啰！基本上分为两种，一种是查询功能（quota, quotacheck, quotastats, warnquota, repquota），另一种则是编辑 quota 的内容（ edquota, setquota ）。底下我们来谈一谈这些基本的指令吧！ <blockquote> <hr width="100%"> <li> <a name="quota"></a><b><font face="细明体"><font color="#000099">quota</font></font></b></li>  <br><font color="#ff0000">语法</font>： <table width="600" bgcolor="#000000" border="1" cols="1"> <tbody><tr> <td><font face="细明体"><font size="-1"><font color="#ffffff">[root @test /root ]# </font><font color="#ffff00">quota [-guvs] [user,group]</font></font></font> <br><font face="细明体"><font color="#ffffcc"><font size="-1">参数说明：</font></font></font> <br><font face="细明体"><font color="#ff9900"><font size="-1">-g&nbsp; ：显示 group 群组</font></font></font> <br><font face="细明体"><font color="#ff9900"><font size="-1">-u&nbsp; ：显示 user</font></font></font> <br><font face="细明体"><font color="#ff9900"><font size="-1">-v&nbsp; ：显示 quota 的值</font></font></font> <br><font face="细明体"><font color="#ff9900"><font size="-1">-s&nbsp; ：选择 inod 或 硬盘空间来显示</font></font></font> <br><font face="细明体"><font color="#ffffcc"><font size="-1">范例：</font></font></font> <br><font face="细明体"><font size="-1"><font color="#ffffff">[root @test /root ]# </font><font color="#ffff00">quota -guvs&nbsp;</font><font color="#ffffff">&nbsp;&nbsp;  </font><font color="#ff9900">&lt;==显示目前执行者（就是 root ）的 quota 值</font></font></font> <br><font face="细明体"><font size="-1"><font color="#ffffff">[root @test /root ]# </font><font color="#ffff00">quota -uvs test &lt;</font><font color="#ff9900">==显示 test 这个使用者的 quota 值</font></font></font></td> </tr> </tbody></table> <font color="#ff0000">说明</font><font color="#000000">：</font> <br><font color="#000000">这个指令仅是使用来『显示(display)』目前某个群组或者某个使用者的 quota 限值！您可以使用来观察一下呦！</font></blockquote>  <blockquote> <hr width="100%"> <li> <a name="quotacheck"></a><b><font face="细明体"><font color="#000099">quotacheck</font></font></b></li>  <br><font color="#ff0000">语法</font>： <table width="700" bgcolor="#000000" border="1" cols="1"> <tbody><tr> <td><font face="细明体"><font size="-1"><font color="#ffffff">[root @test /root ]# </font><font color="#ffff00">quotacheck [-auvg] /yourpath</font></font></font> <br><font face="细明体"><font color="#ffffcc"><font size="-1">参数说明：</font></font></font> <br><font face="细明体"><font color="#ff9900"><font size="-1">-a&nbsp; ：扫瞄所有在 /etc/mtab 里头已经 mount 的具有 quota 支持的磁盘</font></font></font> <br><font face="细明体"><font color="#ff9900"><font size="-1">-u&nbsp; ：扫瞄用户的档案与目录</font></font></font> <br><font face="细明体"><font color="#ff9900"><font size="-1">-v&nbsp; ：显示扫瞄过程</font></font></font> <br><font face="细明体"><font color="#ff9900"><font size="-1">-g&nbsp; ：扫瞄群组使用的档案与目录</font></font></font> <br><font face="细明体"><font color="#ff9900"><font size="-1">-m　：强制进行 quotacheck&nbsp;</font></font></font> <br><font face="细明体"><font color="#ffffcc"><font size="-1">范例：</font></font></font> <br><font face="细明体"><font color="#ffffcc"><font size="-1">范例一、要针对 /home 这个 partition 进行 quota 的规划：</font></font></font> <br><font face="细明体"><font size="-1"><font color="#ffffff">[root@test root ]# </font><font color="#ffff00">quotacheck -uvg /home</font><font color="#ffffff">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#ff9900"> &lt;==开始扫瞄 /home 这一个独立扇区的目录</font></font></font> <br><font face="细明体"><font size="-1"><font color="#ffffff">quotacheck: Scanning /dev/hda3 [/home] done&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#ff9900">&nbsp; &lt;==显示 /home 扇区为 /dev/hda3 ！</font></font></font> <br><font face="细明体"><font size="-1"><font color="#ffffff">quotacheck: Checked 35 directories and 342 files </font><font color="#ff9900">&lt;==扫瞄完毕，有 35 目录与 342 档案。</font></font></font> <br><font face="细明体"><font size="-1"><font color="#ffffff">[root@test root ]# </font><font color="#ffff00">ls -l /home&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#ffffff">&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#ff9900"> &lt;==查看一下 /home 这个目录底下，两个档案产生了！</font></font></font> <br><font face="细明体"><font color="#ffffff"><font size="-1">-rw-------&nbsp;&nbsp;&nbsp; 1 root&nbsp;&nbsp;&nbsp;&nbsp; root&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 7168 May&nbsp; 6 18:37 aquota.group</font></font></font> <br><font face="细明体"><font color="#ffffff"><font size="-1">-rw-------&nbsp;&nbsp;&nbsp; 1 root&nbsp;&nbsp;&nbsp;&nbsp; root&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 7168 May&nbsp; 6 18:37 aquota.user</font></font></font> <br><font face="细明体"><font color="#ffffff"><font size="-1">　</font></font></font> <br><font face="细明体"><font color="#ffffcc"><font size="-1">关于 quotacheck 发生错误的解决方法：</font></font></font> <br><font face="细明体"><font color="#ff6666"><font size="-1"># 有些时候，在新版的 Linux distribution 当中，进行 quotacheck 时，可能会出现</font></font></font> <br><font face="细明体"><font color="#ff6666"><font size="-1"># quotacheck: Cannot get quotafile name for /dev/hda3</font></font></font> <br><font face="细明体"><font color="#ff6666"><font size="-1"># quotacheck: Cannot get quotafile name for /dev/hda3</font></font></font> <br><font face="细明体"><font color="#ff6666"><font size="-1"># 这可能是新版的 quota 在设计时的小问题，解决的方法有两个：</font></font></font> <br><font face="细明体"><font size="-1"><font color="#ffffff">[root@test root]# </font><font color="#ffff00">quotacheck -uvgm&nbsp;</font></font></font> <br><font face="细明体"><font color="#ff6666"><font size="-1"># 加上 -m 的参数来强制进行，或者是：</font></font></font> <br><font face="细明体"><font size="-1"><font color="#ffffff">[root@test root]# </font><font color="#ffff00">touch /home/aquota.user; touch /home/aquota.group</font></font></font> <br><font face="细明体"><font size="-1"><font color="#ffffff">[root@test root]#</font><font color="#ffff00"> quotacheck -uvg</font></font></font> <br><font face="细明体"><font color="#ff6666"><font size="-1"># 既然 quotacheck 找不到 quotafile ，那么我就手动将 quotafile 建立起来即可！</font></font></font> <br><font face="细明体"><font color="#ff6666"><font size="-1"># 然后再重新进行 quotacheck 一次即可！</font></font></font> <br><font face="细明体"><font color="#ff6666"><font size="-1"># 注意喔！因为我的 /dev/hda3 对应到 /home ，所以当然就是在 /home 底下建立起 qoutafile 了！</font></font></font></td> </tr> </tbody></table> <font color="#ff0000">说明</font><font color="#000000">：</font> <br><font color="#000000">这这个指令主要的目的在扫瞄某一个磁盘的 quota 空间，他会针对该磁盘进行扫瞄，并且，由于该磁盘若持续运作时，可能扫瞄的过程中，档案可能会增减，造成 quota 扫瞄的错误发生，因此，当使用 quotacheck 时，该磁盘将『自动被设定成为唯独扇区（read-only）；至于扫瞄完毕之后，扫瞄所得的磁盘空间结果会写入该扇区最顶端（例如：在我的例子中，扫瞄 /home 这个 /dev/hda3 的扇区，如果是初次扫瞄，那么扫瞄完毕之后会产生 aquota.user 与 aquota.group ，会放置在 /home/aquota.xxx 底下！而如果是建立 quota 后的扫瞄，那么就会更新这两个档案！）另外， Linux 也特别强调 quota 在使用的时候，需要特别注意在 reboot 时，得先将 quota 关闭才好！</font> <br><font color="#000000">此外，由于新版的 Linux distribution 在 quota 的设计上似乎有点小问题，有时候无法完整的进行 quotacheck ，发生如同上表的情况，解决的方法就是主动手动的建立 quotafile 即可喔！</font></blockquote>  <blockquote> <hr width="100%"> <li> <a name="edquota"></a><b><font face="细明体"><font color="#000099">edquota</font></font></b></li>  <br><font color="#ff0000">语法</font>： <table width="750" bgcolor="#000000" border="1" cols="1"> <tbody><tr> <td><font face="细明体"><font size="-1"><font color="#ffffff">[root @test /root ]# </font><font color="#ffff00">edquota [-u user] [-g group] [-t]</font></font></font> <br><font face="细明体"><font size="-1"><font color="#ffffff">[root @test /root ]# </font><font color="#ffff00">edquota -p user_demo -u user</font></font></font> <br><font face="细明体"><font color="#ffffcc"><font size="-1">参数说明：</font></font></font> <br><font face="细明体"><font color="#ff9900"><font size="-1">-u&nbsp; ：编辑 user 的 quota</font></font></font> <br><font face="细明体"><font color="#ff9900"><font size="-1">-g&nbsp; ：编辑 group 的 quota</font></font></font> <br><font face="细明体"><font color="#ff9900"><font size="-1">-t&nbsp; ：编辑宽限时间（就是超过 quota 值后，还能使用硬盘的宽限期限）</font></font></font> <br><font face="细明体"><font color="#ff9900"><font size="-1">-p&nbsp; ：copy 模板（以建立好的使用者或群组）到另一个使用者（或群组）</font></font></font> <br><font face="细明体"><font color="#ffffcc"><font size="-1">范例：</font></font></font> <br><font face="细明体"><font size="-1"><font color="#ffffff">[root @test /root ]# </font><font color="#ffff00">edquota -u test&nbsp;&nbsp;</font><font color="#ffffff">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#ff9900"> &lt;==设定 test 这个使用者的 quota 数值，会直接进入 vi 画面</font></font></font> <br><font face="细明体"><font color="#ffffff"><font size="-1">Disk quotas for user test (uid 501):</font></font></font> <br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp; Filesystem&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; blocks&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; soft&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; hard&nbsp;&nbsp;&nbsp;&nbsp; inodes&nbsp;&nbsp;&nbsp;&nbsp; soft&nbsp;&nbsp;&nbsp;&nbsp; hard</font></font></font> <br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp;  /dev/hda3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 8&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  5&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0</font></font></font> <br><font face="细明体"><font color="#ff9900"><font size="-1">修改一下成为：</font></font></font> <br><font face="细明体"><font color="#ffffff"><font size="-1">Disk quotas for user test (uid 501):</font></font></font> <br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp; Filesystem&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; blocks&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; soft&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; hard&nbsp;&nbsp;&nbsp;&nbsp; inodes&nbsp;&nbsp;&nbsp;&nbsp; soft&nbsp;&nbsp;&nbsp;&nbsp; hard</font></font></font> <br><font face="细明体"><font size="-1"><font color="#ffffff">&nbsp;  /dev/hda3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 8&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  </font><font color="#ffff00">50005000</font><font color="#ffffff">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 5&nbsp;&nbsp;&nbsp;&nbsp; </font><font color="#ffff00">50005000</font></font></font> <p><font face="细明体"><font size="-1"><font color="#ffffff">[root @test /root ]# </font><font color="#ffff00">edquota -p test -u test2&nbsp;</font><font color="#ff9900"> &lt;==将 test 这个人的 quota 资料复制给 test2 这个人！</font></font></font> </p><p><font face="细明体"><font size="-1"><font color="#ffffff">[root @test /root ]# </font><font color="#ffff00">edquota -t&nbsp;&nbsp;&nbsp;</font><font color="#ffffff">&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#ff9900">&nbsp; &lt;==设定宽限时间，也就是超过 quota 值之后的修正时间啦！</font></font></font> <br><font face="细明体"><font color="#ffffff"><font size="-1">Grace period before enforcing soft limits for users:</font></font></font> <br><font face="细明体"><font color="#ffffff"><font size="-1">Time units may be: days, hours, minutes, or seconds</font></font></font> <br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp; Filesystem&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Block grace period&nbsp;&nbsp;&nbsp;&nbsp; Inode grace period</font></font></font> <br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp; /dev/hda3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0minutes&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0minutes</font></font></font> <br><font face="细明体"><font color="#ff9900"><font size="-1">上面的 0minutes 可以改成 60minutes 即可！也就是 60 分钟之内必须要赶快整理硬盘的意思！</font></font></font></p></td> </tr> </tbody></table> <font color="#ff0000">说明</font><font color="#000000">：</font> <br><font color="#000000">这个指令就是在编辑每一个『个人』或者是『群组』的 quota 数值！通常我们以 edquota -u username 或者是 edquota -g groupname 来编辑个人与群组的 quota 设定值。不过，或许您会觉得一个一个分配似乎很慢的样子！那么您也可以直接 copy 一个人的设定值给其他人，就如同上面第二个例子，利用已经建立好的 test 来建立 test2 这个人的 quota 限额！这个指令可是很重要的呦！另外，上面有几个重要的信息，我们来谈一谈吧：</font> <ol> <li> <font color="#000066">filesystem</font><font color="#000000">：这个是那个 partition 的意思！以上面来说，就是 /dev/hda3 啰！</font></li>  <li> <font color="#000066">blocks</font><font color="#000000">：这个是目前使用者 test ( uid 501 )在 /dev/hda3 这个 filesystem (参考上面一个信息)，所耗掉的磁盘容量，也就是目前的使用掉的空间啦！单位是 Kbytes 喔！这个信息是 quota 程序自己计算出来的，所以请不要修改他！</font></li>  <li> <font color="#000066">soft 与 hard </font><font color="#000000">：这个是目前的 test 在这个 filesystem 之内的 quota 限制值！至于 soft 与 hard 的意思就如同 14-1 节最后面提的那个意思啦！当 soft 与 hard 数值为 0 的时候，表示『没有限制』的意思！而数值的单位仍是 Kbytes 喔！</font></li>  <li> <font color="#000066">inodes</font><font color="#000000"> ：是目前使用掉 inode 的状态，也是 quota 自己计算出来而得到的，所以不要去变更他。一般而言， inode 不容易控制，所以您可以不必去限制 inode 呢！</font></li> </ol> </blockquote>  <blockquote> <hr width="100%"> <li> <a name="quotaon"></a><b><font face="细明体"><font color="#000099">quotaon</font></font></b></li>  <br><font color="#ff0000">语法</font>： <table width="700" bgcolor="#000000" border="1" cols="1"> <tbody><tr> <td><font face="细明体"><font size="-1"><font color="#ffffff">[root @test /root ]# </font><font color="#ffcc00">quotaon [-a] [-uvg directory]</font></font></font> <br><font face="细明体"><font color="#ffffcc"><font size="-1">参数说明：</font></font></font> <br><font face="细明体"><font color="#ff9900"><font size="-1">-a&nbsp; ：全部的 quota 设定都启动（会自动去寻找 /etc/mtab 的设定）</font></font></font> <br><font face="细明体"><font color="#ff9900"><font size="-1">-u&nbsp; ：使用者的 quota 启动</font></font></font> <br><font face="细明体"><font color="#ff9900"><font size="-1">-g&nbsp; ：群组的 quota 设定启动</font></font></font> <br><font face="细明体"><font color="#ff9900"><font size="-1">-v&nbsp; ：显示讯息</font></font></font> <br><font face="细明体"><font color="#ffffcc"><font size="-1">范例：</font></font></font> <br><font face="细明体"><font size="-1"><font color="#ffffff">[root @test /root ]# </font><font color="#ffff00">quotaon -a&nbsp;</font><font color="#ffffff">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#ff9900"> &lt;==全部的 quota 限制都启动</font></font></font> <br><font face="细明体"><font size="-1"><font color="#ffffff">[root @test /root ]# </font><font color="#ffff00">quotaon -uv /home</font><font color="#ffffff">&nbsp;</font><font color="#ff9900"> &lt;==只有激活 /home 底下的使用者 quota 限额，group 不激活！</font></font></font></td> </tr> </tbody></table> <font color="#ff0000">说明</font><font color="#000000">：</font> <br><font color="#000000">这个指令是在启动 quota 的！不过，由于这个指令是启动 aquota.group 与 aquota.user 的，所以您就必须要先完成 <a href="#quotacheck">qutoacheck</a> 的工作了！然后简单的下达 quotaon -a 即可启动！</font></blockquote>  <blockquote> <hr width="100%"> <li> <a name="quotaoff"></a><b><font face="细明体"><font color="#000099">quotaoff</font></font></b></li>  <br><font color="#ff0000">语法</font>： <table width="700" bgcolor="#000000" border="1" cols="1"> <tbody><tr> <td><font face="细明体"><font size="-1"><font color="#ffffff">[root @test /root ]# </font><font color="#ffff00">quotaoff -a</font></font></font> <br><font face="细明体"><font color="#ffffcc"><font size="-1">参数说明：</font></font></font> <br><font face="细明体"><font color="#ff9900"><font size="-1">-a&nbsp; ：全部的 quota 设定都关闭（会自动去寻找 /etc/mtab 的设定）</font></font></font> <br><font face="细明体"><font color="#ffffcc"><font size="-1">范例：</font></font></font> <br><font face="细明体"><font size="-1"><font color="#ffffff">[root @test /root ]#</font><font color="#ffff00"> quotaoff -a&nbsp;&nbsp;&nbsp;</font><font color="#ffffff">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#ff9900"> &lt;==全部的 quota 限制都关闭了！</font></font></font></td> </tr> </tbody></table> <font color="#ff0000">说明</font><font color="#000000">：</font> <br><font color="#000000">这个指令就是关闭了 quota 的限制啦！</font></blockquote> </blockquote>  <hr width="100%"><a name="manual"></a><font color="#000099"><font size="+1">动手作 quota：</font></font> <ul>quota 可以作用的功能有很多，包括了： <br>　 <ul> <li> 限制某一群组所能使用的最大磁盘配额（使用 群组 限制）：你可以将你的主机上的用户分门别类，有点像是目前很流行的付费与免付费会员制的情况，你比较喜好的那一群的使用配额就可以给高一些！呵呵！ ^_^...</li> </ul> 　 <ul> <li> 限制某一用户的最大磁盘配额（使用 用户 限制）：在限制了群组之后，您也可以再继续针对个人来进行限制，使得同一群组之下还可以有更公平的分配！</li> </ul> 　 <ul> <li> 以 Link 的方式，来使邮件可以作为限制的配额（更改 /var/spool/mail 这个路径）：如果是分为付费与免付费会员的『邮件主机系统』，是否需要重新再规划一个硬盘呢？也不需要啦！直接使用 Link 的方式指向 /home （或者其他已经做好的 quota 磁盘）就可以啦！</li> </ul> 　 <br>底下先列出几个主要的步骤来说明： <br>　 <ol> <li> <font color="#000066">开启磁盘的 quota 功能：编辑 /etc/fstab ，使得准备要开放的 quota 磁盘可以支持 quota 啰；</font></li>  <li> <font color="#000066">预扫瞄磁盘的使用情况：使用 quotacheck 来扫瞄一下我们要使用的磁盘啰；</font></li>  <li> <font color="#000066">建立使用者的 quota ：使用 edquota 来编辑每个使用者或群组的可使用空间啰；</font></li>  <li> <font color="#000066">启动 quota ：使用 quotaon 吧！</font></li> </ol> 　 <br>整个步骤大致上就只有这几步，我们来瞧一瞧如何使用吧！！底下我们以一个简单的范例来进行 quota 的说明啰！整个范例的说明如下： <br>　 <ol> <li> <font color="#000066">我们假设 test 这部主机里头有 test 与 test2 这两个使用者，且他们两个都挂在 test 这个群组下；</font></li>  <li> <font color="#000066">每个使用者总共有 50MB 的磁盘空间（不考虑 inode ）限制！并且 soft limit 为 45 MB；</font></li>  <li> <font color="#000066">而宽限时间设定为 1 天，也就是说，这四个人可以突破 40MB 的限制，但是在一天之内必须要将多余的档案砍掉，否则将无法使用剩下的空间（也就是说，这个账号大概就不能使用了?）；</font></li>  <li> <font color="#000066">test 这个群组考虑最大限额，所以设定为 90 MB 好了！</font></li> </ol> 　 <br>整个执行步骤可以照下面来执行看看：</ul>  <ul> <ol> <li> <b><font color="#000099">建立 test2 这个使用者：</font></b></li>  <br>由于我们之前只有 test 这个使用者挂在 test 群组之中，所以必需要先设定一下 test2 这个使用者！因为他的群组必需是 test 这个，而我们去查了一下 /etc/group 发现 test 的 uid 为 501 ，因此，我们可以这样来设定 test2 呢！ <br>　 <table width="700" bgcolor="#000000" border="1" cols="1"> <tbody><tr> <td><font face="细明体"><font size="-1"><font color="#ffffff">[root @test root]#</font><font color="#ffff00"> useradd –m –g 501 test2</font></font></font> <br><font face="细明体"><font size="-1"><font color="#ffffff">[root @test root]#</font><font color="#ffff00"> passwd test2</font></font></font> <br><font face="细明体"><font color="#ffffff"><font size="-1">Changing password for user test2.</font></font></font> <br><font face="细明体"><font color="#ffffff"><font size="-1">New UNIX password:</font></font></font> <br><font face="细明体"><font color="#ffffff"><font size="-1">Retype new UNIX password:</font></font></font> <br><font face="细明体"><font color="#ffffff"><font size="-1">passwd: all authentication tokens updated successfully.</font></font></font></td> </tr> </tbody></table> 　 <li> <b><font color="#000099">开启磁盘的 quota 功能：</font></b></li>  <br>由于 quota 需要在 ext 的 Linux 延伸格式档案才可以启动，所以你就必须要将准备开启 quota 的磁盘启动参数，写进入 quota 的磁盘设定才行 ( /etc/fstab )！以我的例子而言，我想要在 /home 底下进行 quota 的限制test, test2 这两个人！正巧 /home 是一个独立的扇区，这可以使用 df 来查询：此外，必需要特别留意的是，最好不要以根目录亦即是 / 进行 quota 啦！否则容易有些问题呢！另外，不要针对 root 做 quota 喔！ <br>　 <table width="700" bgcolor="#000000" border="1" cols="1"> <tbody><tr> <td><font face="细明体"><font size="-1"><font color="#ffffff">[root @test root]# </font><font color="#ffff00">df</font></font></font> <br><font face="细明体"><font color="#ffffff"><font size="-1">Filesystem&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1K-blocks&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Used Available Use% Mounted on</font></font></font> <br><font face="细明体"><font color="#ffffff"><font size="-1">/dev/hda1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1904920&nbsp;&nbsp; 1088136&nbsp;&nbsp;&nbsp; 720020&nbsp; 61% /</font></font></font> <br><font face="细明体"><font color="#ffffff"><font size="-1">/dev/hdb1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 976344&nbsp;&nbsp;&nbsp;&nbsp; 71504&nbsp;&nbsp;&nbsp; 854444&nbsp;&nbsp; 8% /backup</font></font></font> <br><font face="细明体"><font color="#ffffff"><font size="-1">/dev/hdb2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 101540&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 4252&nbsp;&nbsp;&nbsp;&nbsp; 92048&nbsp;&nbsp; 5% /home</font></font></font></td> </tr> </tbody></table> 　 <br>嗯！我的 home 是独立的 partition ，并且他的装置名为 /dev/hdb2 ，好了！那么我就必须要启动 /home 这个 /dev/hdb2 的 quota 文件格式，好了！那么由于文件格式的设定是写在<a href="http://linux.vbird.org/linux_basic/0420quota/0230filesystem.php#mount-fstab"> /etc/fstab </a>里头，所以我们以 vi 来编辑他吧！只要在 /etc/fstab 里头增加了 usrquota, grpquota 就可以啦！『注：请特别留意，这两个项目请『务必』不要写错了！请再写入 /etc/fstab 之前好好的再次检查，因为写错之后，很有可能造成系统无法开机（虽然机率不高，但是有可能！?）』 <br>　 <table width="700" bgcolor="#000000" border="1" cols="1"> <tbody><tr> <td><font face="细明体"><font size="-1"><font color="#ffffff">[root @test root]# </font><font color="#ffff00">vi /etc/fstab</font></font></font> <br><font face="细明体"><font color="#ffffff"><font size="-1"># device&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; MountPoint&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; filesystem&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; parameters&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; dump&nbsp;&nbsp;&nbsp; fsck</font></font></font> <br><font face="细明体"><font color="#ffffff"><font size="-1">/dev/hda1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; /&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ext3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; defaults&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1</font></font></font> <br><font face="细明体"><font color="#ffffff"><font size="-1">/dev/hda2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; swap&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; swap&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; defaults&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0</font></font></font> <br><font face="细明体"><font color="#ffffff"><font size="-1">/dev/hdb1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; /backup&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ext3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; defaults&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1</font></font></font> <br><font face="细明体"><font color="#ffff00"><font size="-1">/dev/hdb2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; /home&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  ext3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; defaults&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1</font></font></font> <br><font face="细明体"><font color="#ffffff"><font size="-1">none&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; /dev/pts&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; devpts&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; mode=0620&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0</font></font></font> <br><font face="细明体"><font color="#ffffff"><font size="-1">none&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; /proc&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  proc&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; defaults&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0</font></font></font> <p><font face="细明体"><font color="#ffffcc"><font size="-1">上面的黄色字体改成底下的样子！</font></font></font> <br><font face="细明体"><font color="#ffff00"><font size="-1">/dev/hdb2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; /home&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  ext3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; defaults,usrquota,grpquota 1 1</font></font></font></p></td> </tr> </tbody></table> 　 <br>多了 usrquota,grpquota 注意，由 defaults,usrquota,grpquota 之间都没有空格！ <br>　 <br>这样就算加入了 quota 的磁盘格式了！不过，由于真正的 quota 在读取的时候是读取 /etc/mtab 这个档案的，偏偏这一个档案需要重新启动之后才能够以 /etc/fstab 的新数据进行改写！所以这个时候你可以选择： <br>　 <ol><font color="#000066">(1)重新启动==&gt;reboot；也可以选择</font> <br><font color="#000066">(2)重新 remount filesystem 来驱动设定值！</font></ol> 　 <br>我是不太喜欢重新启动的人啦！所以我就这么做： <br>　 <table width="700" bgcolor="#000000" border="1" cols="1"> <tbody><tr> <td><font face="细明体"><font size="-1"><font color="#ffffff">[root@test /]# </font><font color="#ffff00">umount /dev/hdb2</font></font></font> <br><font face="细明体"><font size="-1"><font color="#ffffff">[root@test /]#</font><font color="#ffff00"> mount -a</font></font></font> <br><font face="细明体"><font size="-1"><font color="#ffffff">[root@test /]# </font><font color="#ffff00">more /etc/mtab</font></font></font> <br><font face="细明体"><font color="#ffffff"><font size="-1">/dev/hda1 / ext3 rw 0 0</font></font></font> <br><font face="细明体"><font color="#ffffff"><font size="-1">none /proc proc rw 0 0</font></font></font> <br><font face="细明体"><font color="#ffffff"><font size="-1">none /proc/bus/usb usbdevfs rw 0 0</font></font></font> <br><font face="细明体"><font color="#ffffff"><font size="-1">none /dev devfs rw 0 0</font></font></font> <br><font face="细明体"><font color="#ffffff"><font size="-1">none /dev/pts devpts rw,mode=0620 0 0</font></font></font> <br><font face="细明体"><font color="#ffffff"><font size="-1">/dev/hdb1 /backup ext3 rw 0 0</font></font></font> <br><font face="细明体"><font color="#ffff00"><font size="-1">/dev/hdb2 /home ext3 rw,usrquota,grpquota 0 0</font></font></font> <p><font face="细明体"><font color="#ffffcc"><font size="-1">或者以下列的方式重新 mount 所有的磁盘：</font></font></font> <br><font face="细明体"><font size="-1"><font color="#ffffff">[root @test /root ]# </font><font color="#ffff00">mount -a -o remount&nbsp;</font><font color="#ff9900"> &lt;==这个指令可以重新将 /etc/fstab 的咚咚 mount 下来！</font></font></font></p></td> </tr> </tbody></table> 　 <br>嘿嘿嘿嘿！这样我们就已经成功的将 quota 的功能写入 partition 当中啰！另外，我们这里是以 ext3 这个磁盘格式来测试 quota 的呦！ <br>&nbsp; <li> <b><font color="#000099">扫瞄磁盘的用户使用状况，并产生重要的 aquota.group 与 aquota.user：</font></b></li>  <br>接着下来就是要来扫瞄一下我们所需要的磁盘到底有没有多余的空间可以让我们来设定 quota 呢？并且将扫瞄的结果输出到这个磁盘的最顶层去（也就是 /home 底下）这个时候就需要 quotacheck 这个指令的帮忙了！使用 quotacheck 就可以轻易的将所需要的数据给他输出了！现在就 OK 啦！并且在 /home 底下会产生 aquota.group 与 aquota.user 这两个档案！ <br>　 <table width="700" bgcolor="#000000" border="1" cols="1"> <tbody><tr> <td><font face="细明体"><font size="-1"><font color="#ffffff">[root@test /]# </font><font color="#ffff00">quotacheck -avug</font></font></font> <br><font face="细明体"><font color="#ffffff"><font size="-1">quotacheck: Scanning /dev/hdb2 [/home] done</font></font></font> <br><font face="细明体"><font color="#ffffff"><font size="-1">quotacheck: Checked 10 directories and 22 files</font></font></font> <br><font face="细明体"><font size="-1"><font color="#ffffff">[root@test /]# </font><font color="#ffff00">ll /home</font></font></font> <br><font face="细明体"><font color="#ffffff"><font size="-1">total 44</font></font></font> <br><font face="细明体"><font color="#ffffff"><font size="-1">-rw-------&nbsp;&nbsp;&nbsp; 1 root&nbsp;&nbsp;&nbsp;&nbsp; root&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 7168 Oct 28 14:05 aquota.group</font></font></font> <br><font face="细明体"><font color="#ffffff"><font size="-1">-rw-------&nbsp;&nbsp;&nbsp; 1 root&nbsp;&nbsp;&nbsp;&nbsp; root&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 7168 Oct 28 14:05 aquota.user</font></font></font> <br><font face="细明体"><font color="#ffffff"><font size="-1">drwx------&nbsp;&nbsp;&nbsp; 2 root&nbsp;&nbsp;&nbsp;&nbsp; root&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 16384 Oct 22 16:54 lost+found/</font></font></font> <br><font face="细明体"><font color="#ffffff"><font size="-1">drwxr-xr-x&nbsp;&nbsp;&nbsp; 3 test&nbsp;&nbsp;&nbsp;&nbsp; test&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 4096 Oct 28 01:45 test/</font></font></font> <br><font face="细明体"><font color="#ffffff"><font size="-1">drwxr-xr-x&nbsp;&nbsp;&nbsp; 3 test2&nbsp;&nbsp;&nbsp; test&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 4096 Oct 28 13:37 test2/</font></font></font></td> </tr> </tbody></table> 　 <br>使用 quotacheck 就可以轻易的将所需要的数据给他输出了！现在就 OK 啦！并且在 /home 底下会产生 aquota.group 与 aquota.user 这两个档案！注：但是很奇怪的是，在某些 Linux 版本中，我不能够以 aquota.user(group) 来启动我的 quota ，真的是很奇怪呢！所以我就另外做了一个 link 档案来欺骗 quota 啰： <br>　 <table width="700" bgcolor="#000000" border="1" cols="1"> <tbody><tr> <td><font face="细明体"><font size="-1"><font color="#ffffff">[root @test /root ]# </font><font color="#ffff00">cd /home&nbsp;</font></font></font> <br><font face="细明体"><font size="-1"><font color="#ffffff">[root @test /root ]# </font><font color="#ffff00">ls -l aquota*&nbsp;</font></font></font> <br><font face="细明体"><font color="#ffffff"><font size="-1">-rw-------&nbsp;&nbsp;&nbsp; 1 root&nbsp;&nbsp;&nbsp;&nbsp; root&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 7168 May&nbsp; 6 22:16 aquota.group&nbsp;</font></font></font> <br><font face="细明体"><font color="#ffffff"><font size="-1">-rw-------&nbsp;&nbsp;&nbsp; 1 root&nbsp;&nbsp;&nbsp;&nbsp; root&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 7168 May&nbsp; 6 22:16 aquota.user&nbsp;</font></font></font> <br><font face="细明体"><font size="-1"><font color="#ffffff">[root @test /root ]# </font><font color="#ffff00">ln -s aquota.group quota.group&nbsp;</font></font></font> <br><font face="细明体"><font size="-1"><font color="#ffffff">[root @test /root ]# </font><font color="#ffff00">ln -s aquota.user quota.user</font></font></font></td> </tr> </tbody></table> 　 <li> <b><font color="#000099">启动 quota 的限额！</font></b></li>  <br>再来就是要启动 quota 啦！启动的方式也是很简单的！就是使用 quotaon -av 即可： <br>　 <table width="700" bgcolor="#000000" border="1" cols="1"> <tbody><tr> <td><font face="细明体"><font size="-1"><font color="#ffffff">[root@test /]#</font><font color="#ffff00"> quotaon -av</font></font></font> <br><font face="细明体"><font color="#ffffff"><font size="-1">/dev/hdb2 [/home]: group quotas turned on</font></font></font> <br><font face="细明体"><font color="#ffffff"><font size="-1">/dev/hdb2 [/home]: user quotas turned on</font></font></font></td> </tr> </tbody></table> 　 <br>注意：要看到上面有个 turned on 的出现，才是真的成功了！ <br>　 <li> <b><font color="#000099">编辑使用者的可使用空间：</font></b></li>  <br>由于我们有两个使用者要设定，先来设定 test 好了，使用 edquota 就对了 <br>　 <table width="700" bgcolor="#000000" border="1" cols="1"> <tbody><tr> <td><font face="细明体"><font size="-1"><font color="#ffffff">[root @test /]# </font><font color="#ffff00">edquota –u test</font></font></font> <br><font face="细明体"><font color="#ffffff"><font size="-1">Disk quotas for user test (uid 501):</font></font></font> <br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp; Filesystem&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; blocks&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; soft&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; hard&nbsp;&nbsp;&nbsp;&nbsp; inodes&nbsp;&nbsp;&nbsp;&nbsp; soft&nbsp;&nbsp;&nbsp;&nbsp; hard</font></font></font> <br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp; /dev/hdb2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 32&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 8&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0</font></font></font> <p><font face="细明体"><font color="#ffffcc"><font size="-1">将上面的原本设定改为底下的模样：</font></font></font> <br><font face="细明体"><font color="#ffffff"><font size="-1">Disk quotas for user test (uid 501):</font></font></font> <br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp; Filesystem&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; blocks&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; soft&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; hard&nbsp;&nbsp;&nbsp;&nbsp; inodes&nbsp;&nbsp;&nbsp;&nbsp; soft&nbsp;&nbsp;&nbsp;&nbsp; hard</font></font></font> <br><font face="细明体"><font size="-1"><font color="#ffffff">&nbsp; /dev/hdb2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 32&nbsp;&nbsp;&nbsp;&nbsp; </font><font color="#ffff00">40000&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 50000&nbsp;</font><font color="#ffffff">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 8&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0</font></font></font></p></td> </tr> </tbody></table> 　 <br>要特别留意的是，上面的黑体数值代表的是 KB 呦！转成 MB 是需要乘上 1024 倍，这里简单的计算一下就好了！这样就算编辑完毕了！接下来我们就需要将这个设定同时复制给 test2 这个家伙！ <br>　 <table width="700" bgcolor="#000000" border="1" cols="1"> <tbody><tr> <td><font face="细明体"><font size="-1"><font color="#ffffff">[root@test /]#</font><font color="#ffff00"> edquota -p test test2</font></font></font></td> </tr> </tbody></table> 　 <br>接下来要来设定宽限时间，还是使用 edquota ！ <br>　 <table width="700" bgcolor="#000000" border="1" cols="1"> <tbody><tr> <td><font face="细明体"><font size="-1"><font color="#ffffff">[root@test /]# </font><font color="#ffff00">edquota -t</font></font></font> <br><font face="细明体"><font color="#ffffff"><font size="-1">Grace period before enforcing soft limits for users:</font></font></font> <br><font face="细明体"><font color="#ffffff"><font size="-1">Time units may be: days, hours, minutes, or seconds</font></font></font> <br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp; Filesystem&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Block grace period&nbsp;&nbsp;&nbsp;&nbsp; Inode grace period</font></font></font> <br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp;  /dev/hdb2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1days&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1days</font></font></font></td> </tr> </tbody></table> 　 <br>将时间改为 1 天（原本是 7days 改成 1days ），好了！查询一下是否真的有设定进去呢？使用 quota -v 来查询 <br>　 <table width="700" bgcolor="#000000" border="1" cols="1"> <tbody><tr> <td><font face="细明体"><font size="-1"><font color="#ffffff">[root@test /]# </font><font color="#ffff00">quota –vu test test2</font></font></font> <br><font face="细明体"><font color="#ffffff"><font size="-1">Disk quotas for user test (uid 501):</font></font></font> <br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp;&nbsp;&nbsp;&nbsp; Filesystem&nbsp; blocks&nbsp;&nbsp; quota&nbsp;&nbsp; limit&nbsp;&nbsp; grace&nbsp;&nbsp; files&nbsp;&nbsp; quota&nbsp;&nbsp; limit&nbsp;&nbsp; grace</font></font></font> <br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; /dev/hdb2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 32&nbsp;&nbsp; 40000&nbsp;&nbsp; 50000&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 8&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0</font></font></font> <br><font face="细明体"><font color="#ffffff"><font size="-1">Disk quotas for user test2 (uid 502):</font></font></font> <br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp;&nbsp;&nbsp;&nbsp; Filesystem&nbsp; blocks&nbsp;&nbsp; quota&nbsp;&nbsp; limit&nbsp;&nbsp; grace&nbsp;&nbsp; files&nbsp;&nbsp; quota&nbsp;&nbsp; limit&nbsp;&nbsp; grace</font></font></font> <br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; /dev/hdb2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 28&nbsp;&nbsp; 40000&nbsp;&nbsp; 50000&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 7&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0</font></font></font></td> </tr> </tbody></table> 　 <br>特别注意到，由于我们的使用者尚未超过 40 MB，所以 grace ( 宽限时间 )就不会出现啦！这样很够清楚了吧？！ <br>　 <li> <b><font color="#000099">编辑群组使用空间：</font></b></li>  <br>其实也差不多，还是使用 edquota： <br>　 <table width="700" bgcolor="#000000" border="1" cols="1"> <tbody><tr> <td><font face="细明体"><font size="-1"><font color="#ffffff">[root@test /]# </font><font color="#ffff00">edquota -g test&nbsp;</font></font></font> <br><font face="细明体"><font color="#ffffff"><font size="-1">Disk quotas for group test (gid 501):</font></font></font> <br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp; Filesystem&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; blocks&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; soft&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; hard&nbsp;&nbsp;&nbsp;&nbsp; inodes&nbsp;&nbsp;&nbsp;&nbsp; soft&nbsp;&nbsp;&nbsp;&nbsp; hard</font></font></font> <br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp; /dev/hdb2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 60&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 15&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0</font></font></font> <p><font face="细明体"><font color="#ffffcc"><font size="-1">修改成底下这样：</font></font></font> <br><font face="细明体"><font color="#ffffff"><font size="-1">Disk quotas for group test (gid 501):</font></font></font> <br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp; Filesystem&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; blocks&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; soft&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; hard&nbsp;&nbsp;&nbsp;&nbsp; inodes&nbsp;&nbsp;&nbsp;&nbsp; soft&nbsp;&nbsp;&nbsp;&nbsp; hard</font></font></font> <br><font face="细明体"><font size="-1"><font color="#ffffff">&nbsp; /dev/hdb2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 60&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </font><font color="#ffff00">80000&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 90000&nbsp;</font><font color="#ffffff">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 15&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0</font></font></font> </p><p><font face="细明体"><font size="-1"><font color="#ffffff">[root@test /]# </font><font color="#ffff00">quota -vg test</font></font></font> <br><font face="细明体"><font color="#ffffff"><font size="-1">Disk quotas for group test (gid 501):</font></font></font> <br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp;&nbsp;&nbsp;&nbsp; Filesystem&nbsp; blocks&nbsp;&nbsp; quota&nbsp;&nbsp; limit&nbsp;&nbsp; grace&nbsp;&nbsp; files&nbsp;&nbsp; quota&nbsp;&nbsp; limit&nbsp;&nbsp; grace</font></font></font> <br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; /dev/hdb2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 60&nbsp;&nbsp; 80000&nbsp;&nbsp; 90000&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 15&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0</font></font></font></p></td> </tr> </tbody></table> 　 <li> <b><font color="#000099">设定开机时启动：</font></b></li>  <br>开机的时候自动启动的设定在哪里还记得吗？没错！就是在 /etc/rc.d/rc.local 底下：所以你可以使用 vi 在这个档案的最后面加上一行： <br>　 <table width="700" bgcolor="#000000" border="1" cols="1"> <tbody><tr> <td><font face="细明体"><font size="-1"><font color="#ffffff">[root @test /root ]#</font><font color="#ffff00"> vi /etc/rc.d/rc.local&nbsp;</font></font></font> <br><font face="细明体"><font color="#ffffff"><font size="-1">/sbin/quotaon -aug&nbsp;</font></font></font></td> </tr> </tbody></table> 　 <br>如果要关闭 qutoa 就是用 quotaoff 吧！没错！这样就将 quota 设定完毕了！很简单吧！！</ol> </ul>  <hr width="100%"><a name="pop3"></a><font color="#000099"><font size="+1">使用邮件主机进行 quota 的实例：</font></font> <ul>好了，我们前面 <a href="http://linux.vbird.org/linux_basic/0420quota/0410accountmanager.php">账号管理</a> 的部分曾经提到 e-mail 这个东西嘛！好了，如果我们要设定一个对外开启的邮件主机的时候，那么最好对于邮件空间有点限制比较好，免得如同上面提到的一些问题一样，造成使用者的使用权不一！所以说，使用 quota 确实是一个好建议！这个时候该怎么办呢？什么怎么办？嗯！是这样的，由于 quota 『<b><font color="#000099">只能针对一个 partition 进行整体的磁盘配额，无法针对某个目录进行磁盘配额！</font></b>』针对这个观念，我们不难发现，『<b>(1)将邮件存在个人的家目录与 (2)将邮件统一放在 /home 下的一个共享目录</b>』是一样的！为什么呢？这是因为 quota 针对的是一个磁盘呀！呵呵！所以啰，您必须先确定『<b>您的 /home 是一个独立的 partition</b> 』才行！当然啰，您也可以使用其他的独立的 partition 来进行底下的步骤！但是在这里，我们预设以 /home 这一个目录来假定这一个目录是一个独立的 partition ！</ul>  <ul>如此则在 /home 底下，由于每个人的磁盘配额已经设定好了！所以当然啰！该信件就可以得到完整的 quota 限额的限制了！所以呢，就需要进行下面的步骤：</ul>  <ul> <ol> <li> 以 <a href="#manual">上面设定</a> 的方式设定好使用者 quota 的所有工作（即是在 /home 这个 partition ）；</li>  <li> 将 /var/spool/mail 这个邮件预设的文件夹备份到其他的目录去；</li>  <li> 建立 /home/mail，这是因为假设我们的邮件放置在这个目录中；</li>  <li> 修改 /home/mail 的属性，使成为 拥有者 root ，群组 mail ，及属性为 775 才行！</li>  <li> 将 /home/mail 给他 Link 到 /var/spool/mail 去即可！</li>  <li> 以后每个人的邮件将都会放置 /home/mail 这个目录中！</li> </ol>  <table width="800" bgcolor="#000000" border="1" cols="1"> <tbody><tr> <td><font face="细明体"><font color="#ffffcc"><font size="-1">1. 建立并修改 /home/mail 这个目录：</font></font></font> <br><font face="细明体"><font size="-1"><font color="#ffffff">[root @test /root ]#</font><font color="#ffff00"> mkdir /home/mail</font></font></font> <br><font face="细明体"><font size="-1"><font color="#ffffff">[root @test /root ]# </font><font color="#ffff00">chown root:mail /home/mail</font></font></font> <br><font face="细明体"><font size="-1"><font color="#ffffff">[root @test /root ]# </font><font color="#ffff00">chmod 775 /home/mail</font></font></font> <p><font face="细明体"><font color="#ffffcc"><font size="-1">2. 备份并移动原本的 mail 到 /home/mail 底下去：</font></font></font> <br><font face="细明体"><font size="-1"><font color="#ffffff">[root @test /root ]# </font><font color="#ffff00">cp -r /var/spool/mail /var/spool/mail.back</font></font></font> <br><font face="细明体"><font size="-1"><font color="#ffffff">[root @test /root ]# </font><font color="#ffff00">mv /var/spool/mail/* /home/mail</font></font></font> <br><font face="细明体"><font size="-1"><font color="#ffffff">[root @test /root ]# </font><font color="#ffff00">rmdir /var/spool/mail</font></font></font> </p><p><font face="细明体"><font color="#ffffcc"><font size="-1">3. 建立连结：</font></font></font> <br><font face="细明体"><font size="-1"><font color="#ffffff">[root @test /root ]#</font><font color="#ffff00"> ln -s /home/mail /var/spool/mail</font></font></font></p></td> </tr> </tbody></table>  <p>只要这样的一个小步骤，嘿嘿！您家主机的邮件就有一定的限额啰！当然啰！您也可以依据不同的使用者与群组来设定 quota 然后同样的以上面的方式来进行 link 的动作！嘿嘿嘿！就有不同的限额针对不同的使用者提出啰！很方便吧！！ ^_^</p></ul>  <hr width="100%"><a name="FAQ"></a><font color="#000099"><font size="+1">本章习题练习 ( 要看答案请将鼠标移动到『答：』底下的空白处，按下左键圈选空白处即可察看 )</font></font> <ul> <li> 如果我有一个 Linux 主机，未来想要对外提供 mail 与 WWW 的服务，同时预计提供个人网页空间的服务，然而我希望 mail 提供 30 MB 而 WWW 则提供 20MB 的空间，那么我应该如何规划我的主机？</li>  <br>答： <ul><font color="#ffffff">在 quota 的限制中，由于他限制的是整个 partition 呢！所以既然要分为两个服务来限制，就需要设定成两个 partition 了！这个案例当中是以 Linux 为新架设的角度来看，所以我们的规划就较为简单！假设我的硬盘为 30GB 的硬盘，那么我可以这样设定：</font> <ul><font color="#ffffff">/&nbsp; 256 GB</font> <br><font color="#ffffff">Swap 2 * RAM</font> <br><font color="#ffffff">/usr&nbsp; 3~5 GB</font> <br><font color="#ffffff">/backup 5GB</font></ul> <font color="#ffffff">其他的空间平均分给</font> <ul><font color="#ffffff">/home</font> <br><font color="#ffffff">/var/spool/mail</font></ul> <font color="#ffffff">这样就可以啦！然后安装完成之后，套用 quota 的设定，即可做好限制啰！很是方便的！</font></ul> </ul>  <hr width="100%"><font face="新细明体"><font color="#000066"><font size="-1">2002/07/14：第一次完成</font></font></font> <br><font face="新细明体"><font color="#000066"><font size="-1">2003/02/10：重新编排与加入 FAQ</font></font></font> <br><font face="新细明体"><font color="#000066"><font size="-1">2003/09/02：加入 <a href="#quotacheck">quotacheck</a> 发生错误时的解决方法。</font></font></font> <br> <hr width="100%"> <center> <font color="#000066"><font size="-1">Designed by <a href="mailto:vbird@mail.vbird.idv.tw">VBird</a> during 2001-2004.&nbsp; Aerosol Lab.</font></font> ﻿<div id="apDiv4">       <p>本网页主要以Firefox配合解析度 1024x768 作为设计依据&nbsp;&nbsp;&nbsp;&nbsp; 鸟哥自由软件整合应用研究室</p></div></center> </div></center> </body></html> 
+﻿<!DOCTYPE HTML PUBLIC "-//w3c//dtd html 4.0 transitional//en">
+<html><head>
+
+
+   <meta http-equiv="Content-Type" content="text/html; charset=utf8">
+   <meta name="Author" content="VBird">
+   <title>鸟哥的 Linux 私房菜 -- 磁盘配额 (quota)</title>
+   	<script src="../../script/SpryMenuBar.js" type="text/javascript"></script>
+	<script src="../../script/index.js" type="text/javascript"></script>
+	<link href="../../css/SpryMenuBarHorizontal.css" rel="stylesheet" type="text/css" />
+    <link href="../../css/main.css" rel="stylesheet" type="text/css" />
+
+</head><body style="margin: 0pt; padding: 0pt;" class="table"onload="MM_preloadImages('image/title_19.png','image/title_26.png','image/title_27.png','image/title_28.png','image/title_06.png','image/title_08.png','image/title_10.png','image/title_12.png')">
+
+
+<!-- Copyright � 2005. Spidersoft Ltd -->
+<style>
+A.applink:hover {border: 2px dotted #DCE6F4;padding:2px;background-color:#ffff00;color:green;text-decoration:none}
+A.applink       {border: 2px dotted #DCE6F4;padding:2px;color:#2F5BFF;background:transparent;text-decoration:none}
+A.info          {color:#2F5BFF;background:transparent;text-decoration:none}
+A.info:hover    {color:green;background:transparent;text-decoration:underline}
+</style>
+<div style='BORDER: 1px solid #DCE6F4; MARGIN-TOP: 20px; MARGIN-BOTTOM: 20px; MARGIN-LEFT: 5px; MARGIN-RIGHT: 5px; PADDING: 5px; BACKGROUND-COLOR: #eef8ff;line-height:180%; COLOR: #000000; font-family: Arial; font-size: 8pt; width=100%; FILTER: progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr="#FFFFFFFF", EndColorStr="#F2F5FAFF");'>
+This page was saved using <a class="applink" href="http://www.spidersoft.com"><b>WebZIP 7.0.3.1030</b></a> <a class="applink" href="http://www.spidersoft.com"><b>offline browser</b></a>  (Unregistered) on  02/12/15 12:14:49.<br>
+<b>Address:</b> <a class="info" href="http://vbird.dic.ksu.edu.tw/linux_basic/Mandrake9.0/0420quota.php">http://vbird.dic.ksu.edu.tw/linux_basic/Mandrake9.0/0420quota.php</a><br>
+<b>Title:</b> 鸟哥的 Linux 私房菜 -- 磁盘配额 (quota) &nbsp;&bull;&nbsp; <b>Size:</b> 67427<br></div>
+<!-- /Copyright � 2005. Spidersoft Ltd -->
+
+
+
+<center>
+<div id="apDiv5" align="left">
+<div> <LINK REL="SHORTCUT ICON" HREF="favicon.ico">
+<!-- ImageReady Slices (title3.ai) -->
+<table id="___01" width="898" height="81" border="0" align="center" cellpadding="0" cellspacing="0";>
+	<tr>
+		<td colspan="15">
+			<img src="image/title/title_01.png" width="900" height="1" alt=""></td>
+	</tr>
+	<tr>
+		<td rowspan="4" bgcolor="#182448"><p><img src="http://linux.vbird.org/cgi-bin/Count.cgi?dd=C&ft=5&sh=T&md=8&pad=Y&df=vbird.dic.ksu.edu.tw.dat" width="93" align="left" title="計數器" /></p>
+	    <p><font color="#FFFFFF" size="-1">since2012/04/23</font></p></td>
+		<td rowspan="4" align="left" valign="top"><a href="http://vbird.dic.ksu.edu.tw/"><img src="image/title/title_03.png" alt="" width="263" height="79" border="0"></a></td>
+		<td colspan="13">
+			<img src="image/title/title_04.png" alt="" width="535" height="9" border="0"></td>
+	</tr>
+	<tr>
+		<td rowspan="3">
+			<img src="image/title/title_05.png" alt="" width="53" height="70" border="0"></td>
+		<td colspan="2" align="left" valign="top"><a href="../0110whatislinux.php.html" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image51','','image/title/title_06.png',1)"><img src="image/title/title3_06.png" name="Image51" width="106" height="25" border="0" id="Image51" alt=""/></a></td>
+		<td rowspan="2">
+			<img src="image/title/title_07.png" alt="" width="27" height="37" border="0"></td>
+		<td colspan="3" align="left" valign="top"><a href="http://vbird.dic.ksu.edu.tw/linux_server/0110network_basic.php" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image52','','image/title/title_08.png',1)"><img src="image/title/title3_08.png" name="Image52" width="107" height="25" border="0" id="Image52" alt=""/></a></td>
+		<td rowspan="2">
+			<img src="image/title/title_09.png" alt="" width="37" height="37" border="0"></td>
+		<td colspan="2" align="left" valign="top"><a href="http://vbird.dic.ksu.edu.tw/about.php" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image53','','image/title/title_10.png',1)"><img src="image/title/title3_10.png" name="Image53" width="75" height="25" border="0" id="Image53" alt=""/></a></td>
+		<td rowspan="3">
+			<img src="image/title/title_11.png" alt="" width="35" height="70" border="0"></td>
+		<td align="left" valign="top"><a href="mailto:vbird@mail.vbird.idv.tw" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image54','','image/title/title_12.png',1)"><img src="image/title/title3_12.png" name="Image54" width="74" height="25" border="0" id="Image54" alt=""/></a></td>
+		<td rowspan="3">
+			<img src="image/title/title_13.png" alt="" width="21" height="70" border="0"></td>
+	</tr>
+	<tr>
+		<td colspan="2">
+			<img src="image/title/title_14.png" alt="" width="106" height="12" border="0"></td>
+		<td colspan="3">
+			<img src="image/title/title_15.png" alt="" width="107" height="12" border="0"></td>
+		<td colspan="2">
+			<img src="image/title/title_16.png" width="75" height="12" alt=""></td>
+		<td rowspan="2">
+			<img src="image/title/title_17.png" alt="" width="74" height="45" border="0"></td>
+	</tr>
+	<tr>
+		<td>
+			<img src="image/title/title_18.png" alt="" width="15" height="33" border="0"></td>
+		<td colspan="3" align="left" valign="top"><ul id="MenuBar1" class="MenuBarHorizontal">
+	  <li><a href="../linux_basic.php.html" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image44','','image/title/title_19.png',1)"><img src="image/title/title3_19.png" name="Image44" width="123" height="33" border="0" id="Image44" /></a>
+			    <ul>
+			      <li><a href="mandrake9.0.php.html" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image46','','image/title/title_26.png',1)"><img src="image/title/title_23.png" name="Image46" width="120" height="26" border="0" id="Image46" alt="" /></a></li>
+                  <li><a href="../fedora_4/fc4.php.html" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image47','','image/title/title_27.png',1)"><img src="image/title/title_24.png" name="Image47" width="120" height="26" border="0" id="Image47" alt="" /></a></li>
+                  <li><a href="../linux_basic.php.html" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image48','','image/title/title_28.png',1)"><img src="image/title/title_25.png" name="Image48" width="120" height="26" border="0" id="Image48" alt="" /></a></li>
+                </ul>
+		      </li>
+		</ul></td>
+		<td>
+			<img src="image/title/title_20.png" alt="" width="42" height="33" border="0"></td>
+		<td colspan="3" align="left" valign="top"><ul id="MenuBar2" class="MenuBarHorizontal">
+	  <li><a href="http://vbird.dic.ksu.edu.tw/linux_server/" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image45','','image/title/title_21.png',1)"><img src="image/title/title3_21.png" name="Image45" width="125" height="33" border="0" id="Image45" /></a>
+			    <ul>
+			      <li><a href="http://vbird.dic.ksu.edu.tw/linux_server/linux_redhat9/redhat9.php" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image43','','image/title/title_26.png',1)"><img src="image/title/title_23.png" name="Image43" width="120" height="26" border="0" id="Image43" alt=""/></a></li>
+			      <li><a href="http://vbird.dic.ksu.edu.tw/linux_server/centos4.php" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image49','','image/title/title_27.png',1)"><img src="image/title/title_24.png" name="Image49" width="120" height="26" border="0" id="Image49" alt="" /></a></li>
+			      <li><a href="http://vbird.dic.ksu.edu.tw/linux_server/" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image50','','image/title/title_28.png',1)"><img src="image/title/title_25.png" name="Image50" width="120" height="26" border="0" id="Image50" alt="" /></a></li>
+		        </ul>
+		      </li>
+		</ul></td>
+		<td>
+			<img src="image/title/title_22.png" alt="" width="47" height="33" border="0"></td>
+	</tr>
+	<tr>
+		<td>
+			<img src="image/title/Spacer.gif" width="101" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="263" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="53" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="15" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="91" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="27" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="5" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="42" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="60" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="37" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="28" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="47" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="35" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="74" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="22" height="1" alt=""></td>
+	</tr>
+</table>
+<!-- End ImageReady Slices -->
+<script type="text/javascript">
+<!--
+var MenuBar1 = new Spry.Widget.MenuBar("MenuBar1", {imgDown:"SpryAssets/SpryMenuBarDownHover.gif", imgRight:"SpryAssets/SpryMenuBarRightHover.gif"});
+var MenuBar2 = new Spry.Widget.MenuBar("MenuBar2", {imgDown:"SpryAssets/SpryMenuBarDownHover.gif", imgRight:"SpryAssets/SpryMenuBarRightHover.gif"});
+//-->
+</script></div>
+<div align="center"><font color="#3333ff"><font size="+2"><a href="http://linux.vbird.org/linux_basic/0420quota/0420quota.php" target="_self"><font face="Times New Roman,Times">Linux
+</font><font face="标楷体">磁盘配额（
+</font><font face="Times New Roman,Times">Quota</font><font face="标楷体">
+）</font></a></font></font><br>
+本文已不再维护，更新文章请参考 <a href="http://linux.vbird.org/linux_basic/0420quota.php">这里</a> 。
+</div>
+
+<div align="right"><font face="新细明体"><font color="#3333ff"><font size="-1">最近更新日期：2003/02/10</font></font></font></div>
+<font color="#000099"><font size="+1"><a href="#whatis">什么是 quota</a></font></font>
+<br><font color="#000099"><font size="+1"><a href="#quota_command">基本的
+quota 指令</a>：</font> <a href="#quota">quota</a>, <a href="#quotacheck">quotacheck</a>,
+<a href="#edquota">edquota</a>,
+<a href="#quotaon">quotaon</a>,
+<a href="#quotaoff">quotaoff</a>,</font>
+<br><font color="#000099"><font size="+1"><a href="#manual">动手作 quota</a></font></font>
+<br><font color="#000099"><font size="+1"><a href="#pop3">使用邮件主机进行
+quota 的实例</a></font></font>
+<br><font color="#000099"><font size="+1"><a href="#FAQ">本章习题练习</a></font></font>
+<br>
+<hr width="100%"><a name="whatis"></a><font color="#000099"><font size="+1">什么是
+quota？</font></font>
+<blockquote>quota 就字面上的意思来看，呵呵！就是有多少『限额』的意思啦！如果是用在零用钱上面，就是『有多少零用钱一个月』的意思之类的。如果是在容量空间上面呢？以
+Linux 来说，呵呵！就是有多少容量限制的意思。
+<br>　
+<br>在 Linux 
+系统中，由于是多人多任务的环境，所以会有多人共同使用一个硬盘空间的情况发生，如果其中有少数几个使用者大量的占掉了硬盘空间的话，那势必压缩其他使用者
+的使用权力！因此管理员应该适当的开放硬盘的权限给用户，以妥善的分配系统资源！避免有人抗议呀！比较常使用的几个情况是：
+<ul>
+<li>
+(1) 例如每个人的网页空间的容量限制！</li>
+
+<li>
+(2) 每个人的邮件空间限制。</li>
+</ul>
+在 Linux 当中，使用来作为硬盘空间管理的就是所谓的 quota 这个咚咚啦！使用这个模块要有几个步骤，底下就分别说说吧！另外要特别注意的是，使用
+quota 时有几个基本的限制需要谈一谈：
+<ul>
+<li>
+quota 实际在运作的时候，是针对『<b><font color="#000066">整个 partition</font></b>』进行限制的，例如：如果你的
+/dev/hda5 是挂载在 /home 底下，那么在 /home 底下的所有目录都会受到限制！</li>
+</ul>
+
+<ul>
+<li>
+Linux 系统核心必须有支持 quota 这个模块才行：如果您是使用 Mandrake 的预设核心，嘿嘿！那恭喜你了，你的系统已经默认有开放
+quota 这个模块啰！如果您是自行编译核心的，那么请特别留意您是否已经『真的』开启了
+quota 这个模块？否则底下的功夫将全部都视为『白工』。至于核心编译的过程我们会在未来进行说明呦！</li>
+</ul>
+
+<ul>
+<li>
+目前新版的 Linux distributions 如： Mandrake 9.0 与 Red Hat 8.0 等使用的是
+Kernel 2.4.xx 的核心版本，这个核心版本支持新的 quota 模块，使用的默认档案（
+aquota.user, aquota.group ）将不同于旧版本的 quota.user, quota.group ！（多了一个
+a 呦！）而由旧版本的 quota 可以藉由 convertquota 这个程序来转换呢！</li>
+</ul>
+&nbsp;quota 这支程序的限制内容主要分为底下几个部分：
+<ul>
+<li>
+<font color="#000099">soft </font>：这是最低限制容量的意思，用户在宽限期间之内，他的容量可以超过
+soft ，但必需要宽限时间之内将磁盘容量降低到 soft 的容量限制之下！</li>
+</ul>
+
+<ul>
+<li>
+<font color="#000099">hard </font>：这是『绝对不能超过』的容量！跟 soft
+相比的意思为何呢？通常 hard limit 会比 soft limit 为高，例如网络驱动器空间为
+30 MB ，那么 hard limit 就设定为 30MB ，但是为了让使用者有一定的警戒心，所以当使用空间超过
+25 MB 时，例如使用者使用了 27 MB 的空间时，那么系统就会警告用户，让使用者可以在『宽限时间内』将他的档案量降低至
+25 MB ( 亦即是 soft limit )之内！也就是说， soft 到 hard 之间的容量其实就是宽限的容量啦！可以达到针对使用者的『警示』作用！</li>
+</ul>
+
+<ul>
+<li>
+<font color="#000099">宽限时间</font>：那么宽限时间就可以很清楚的知道含意是什么了！也就是当您的使用者使用的空间超过了
+soft limit ，却还没有到达 hard limit 时，那么在这个『宽限时间』之内，就必需要请用户将使用的磁盘容量降低到
+soft limit 之下！而当用户将磁盘容量使用情况超过 soft limit 时，『宽限时间』就会自动被启动，而在用户将容量降低到
+soft limit 之下，那么宽限时间就会自动的取消啰！</li>
+</ul>
+</blockquote>
+
+<hr width="100%"><a name="quota_command"></a><font color="#000099"><font size="+1">基本的
+quota 指令：</font></font>
+<blockquote>在开始进行 quota 的实作之前，我们得来了解一下 quota 要使用的指令啰！基本上分为两种，一种是查询功能（quota,
+quotacheck, quotastats, warnquota, repquota），另一种则是编辑 quota 的内容（
+edquota, setquota ）。底下我们来谈一谈这些基本的指令吧！
+<blockquote>
+<hr width="100%">
+<li>
+<a name="quota"></a><b><font face="细明体"><font color="#000099">quota</font></font></b></li>
+
+<br><font color="#ff0000">语法</font>：
+<table width="600" bgcolor="#000000" border="1" cols="1">
+<tbody><tr>
+<td><font face="细明体"><font size="-1"><font color="#ffffff">[root @test
+/root ]# </font><font color="#ffff00">quota [-guvs] [user,group]</font></font></font>
+<br><font face="细明体"><font color="#ffffcc"><font size="-1">参数说明：</font></font></font>
+<br><font face="细明体"><font color="#ff9900"><font size="-1">-g&nbsp; ：显示
+group 群组</font></font></font>
+<br><font face="细明体"><font color="#ff9900"><font size="-1">-u&nbsp; ：显示
+user</font></font></font>
+<br><font face="细明体"><font color="#ff9900"><font size="-1">-v&nbsp; ：显示
+quota 的值</font></font></font>
+<br><font face="细明体"><font color="#ff9900"><font size="-1">-s&nbsp; ：选择
+inod 或 硬盘空间来显示</font></font></font>
+<br><font face="细明体"><font color="#ffffcc"><font size="-1">范例：</font></font></font>
+<br><font face="细明体"><font size="-1"><font color="#ffffff">[root @test
+/root ]# </font><font color="#ffff00">quota -guvs&nbsp;</font><font color="#ffffff">&nbsp;&nbsp;
+
+</font><font color="#ff9900">&lt;==显示目前执行者（就是 root ）的 quota
+值</font></font></font>
+<br><font face="细明体"><font size="-1"><font color="#ffffff">[root @test
+/root ]# </font><font color="#ffff00">quota -uvs test &lt;</font><font color="#ff9900">==显示
+test 这个使用者的 quota 值</font></font></font></td>
+</tr>
+</tbody></table>
+<font color="#ff0000">说明</font><font color="#000000">：</font>
+<br><font color="#000000">这个指令仅是使用来『显示(display)』目前某个群组或者某个使用者的
+quota 限值！您可以使用来观察一下呦！</font></blockquote>
+
+<blockquote>
+<hr width="100%">
+<li>
+<a name="quotacheck"></a><b><font face="细明体"><font color="#000099">quotacheck</font></font></b></li>
+
+<br><font color="#ff0000">语法</font>：
+<table width="700" bgcolor="#000000" border="1" cols="1">
+<tbody><tr>
+<td><font face="细明体"><font size="-1"><font color="#ffffff">[root @test
+/root ]# </font><font color="#ffff00">quotacheck [-auvg] /yourpath</font></font></font>
+<br><font face="细明体"><font color="#ffffcc"><font size="-1">参数说明：</font></font></font>
+<br><font face="细明体"><font color="#ff9900"><font size="-1">-a&nbsp; ：扫瞄所有在
+/etc/mtab 里头已经 mount 的具有 quota 支持的磁盘</font></font></font>
+<br><font face="细明体"><font color="#ff9900"><font size="-1">-u&nbsp; ：扫瞄用户的档案与目录</font></font></font>
+<br><font face="细明体"><font color="#ff9900"><font size="-1">-v&nbsp; ：显示扫瞄过程</font></font></font>
+<br><font face="细明体"><font color="#ff9900"><font size="-1">-g&nbsp; ：扫瞄群组使用的档案与目录</font></font></font>
+<br><font face="细明体"><font color="#ff9900"><font size="-1">-m　：强制进行
+quotacheck&nbsp;</font></font></font>
+<br><font face="细明体"><font color="#ffffcc"><font size="-1">范例：</font></font></font>
+<br><font face="细明体"><font color="#ffffcc"><font size="-1">范例一、要针对
+/home 这个 partition 进行 quota 的规划：</font></font></font>
+<br><font face="细明体"><font size="-1"><font color="#ffffff">[root@test
+root ]# </font><font color="#ffff00">quotacheck -uvg /home</font><font color="#ffffff">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#ff9900">
+&lt;==开始扫瞄 /home 这一个独立扇区的目录</font></font></font>
+<br><font face="细明体"><font size="-1"><font color="#ffffff">quotacheck:
+Scanning /dev/hda3 [/home] done&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#ff9900">&nbsp;
+&lt;==显示 /home 扇区为 /dev/hda3 ！</font></font></font>
+<br><font face="细明体"><font size="-1"><font color="#ffffff">quotacheck:
+Checked 35 directories and 342 files </font><font color="#ff9900">&lt;==扫瞄完毕，有
+35 目录与 342 档案。</font></font></font>
+<br><font face="细明体"><font size="-1"><font color="#ffffff">[root@test
+root ]# </font><font color="#ffff00">ls -l /home&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#ffffff">&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#ff9900">
+&lt;==查看一下 /home 这个目录底下，两个档案产生了！</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">-rw-------&nbsp;&nbsp;&nbsp;
+1 root&nbsp;&nbsp;&nbsp;&nbsp; root&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+7168 May&nbsp; 6 18:37 aquota.group</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">-rw-------&nbsp;&nbsp;&nbsp;
+1 root&nbsp;&nbsp;&nbsp;&nbsp; root&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+7168 May&nbsp; 6 18:37 aquota.user</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">　</font></font></font>
+<br><font face="细明体"><font color="#ffffcc"><font size="-1">关于 quotacheck
+发生错误的解决方法：</font></font></font>
+<br><font face="细明体"><font color="#ff6666"><font size="-1"># 有些时候，在新版的
+Linux distribution 当中，进行 quotacheck 时，可能会出现</font></font></font>
+<br><font face="细明体"><font color="#ff6666"><font size="-1"># quotacheck:
+Cannot get quotafile name for /dev/hda3</font></font></font>
+<br><font face="细明体"><font color="#ff6666"><font size="-1"># quotacheck:
+Cannot get quotafile name for /dev/hda3</font></font></font>
+<br><font face="细明体"><font color="#ff6666"><font size="-1"># 这可能是新版的
+quota 在设计时的小问题，解决的方法有两个：</font></font></font>
+<br><font face="细明体"><font size="-1"><font color="#ffffff">[root@test
+root]# </font><font color="#ffff00">quotacheck -uvgm&nbsp;</font></font></font>
+<br><font face="细明体"><font color="#ff6666"><font size="-1"># 加上 -m 的参数来强制进行，或者是：</font></font></font>
+<br><font face="细明体"><font size="-1"><font color="#ffffff">[root@test
+root]# </font><font color="#ffff00">touch /home/aquota.user; touch /home/aquota.group</font></font></font>
+<br><font face="细明体"><font size="-1"><font color="#ffffff">[root@test
+root]#</font><font color="#ffff00"> quotacheck -uvg</font></font></font>
+<br><font face="细明体"><font color="#ff6666"><font size="-1"># 既然 quotacheck
+找不到 quotafile ，那么我就手动将 quotafile 建立起来即可！</font></font></font>
+<br><font face="细明体"><font color="#ff6666"><font size="-1"># 然后再重新进行
+quotacheck 一次即可！</font></font></font>
+<br><font face="细明体"><font color="#ff6666"><font size="-1"># 注意喔！因为我的
+/dev/hda3 对应到 /home ，所以当然就是在 /home 底下建立起 qoutafile 了！</font></font></font></td>
+</tr>
+</tbody></table>
+<font color="#ff0000">说明</font><font color="#000000">：</font>
+<br><font color="#000000">这这个指令主要的目的在扫瞄某一个磁盘的 quota
+空间，他会针对该磁盘进行扫瞄，并且，由于该磁盘若持续运作时，可能扫瞄的过程中，档案可能会增减，造成
+quota 扫瞄的错误发生，因此，当使用 quotacheck 时，该磁盘将『自动被设定成为唯独扇区（read-only）；至于扫瞄完毕之后，扫瞄所得的磁盘空间结果会写入该扇区最顶端（例如：在我的例子中，扫瞄
+/home 这个 /dev/hda3 的扇区，如果是初次扫瞄，那么扫瞄完毕之后会产生 aquota.user
+与 aquota.group ，会放置在 /home/aquota.xxx 底下！而如果是建立 quota 后的扫瞄，那么就会更新这两个档案！）另外，
+Linux 也特别强调 quota 在使用的时候，需要特别注意在 reboot 时，得先将 quota
+关闭才好！</font>
+<br><font color="#000000">此外，由于新版的 Linux distribution 在 quota
+的设计上似乎有点小问题，有时候无法完整的进行 quotacheck ，发生如同上表的情况，解决的方法就是主动手动的建立
+quotafile 即可喔！</font></blockquote>
+
+<blockquote>
+<hr width="100%">
+<li>
+<a name="edquota"></a><b><font face="细明体"><font color="#000099">edquota</font></font></b></li>
+
+<br><font color="#ff0000">语法</font>：
+<table width="750" bgcolor="#000000" border="1" cols="1">
+<tbody><tr>
+<td><font face="细明体"><font size="-1"><font color="#ffffff">[root @test
+/root ]# </font><font color="#ffff00">edquota [-u user] [-g group] [-t]</font></font></font>
+<br><font face="细明体"><font size="-1"><font color="#ffffff">[root @test
+/root ]# </font><font color="#ffff00">edquota -p user_demo -u user</font></font></font>
+<br><font face="细明体"><font color="#ffffcc"><font size="-1">参数说明：</font></font></font>
+<br><font face="细明体"><font color="#ff9900"><font size="-1">-u&nbsp; ：编辑
+user 的 quota</font></font></font>
+<br><font face="细明体"><font color="#ff9900"><font size="-1">-g&nbsp; ：编辑
+group 的 quota</font></font></font>
+<br><font face="细明体"><font color="#ff9900"><font size="-1">-t&nbsp; ：编辑宽限时间（就是超过
+quota 值后，还能使用硬盘的宽限期限）</font></font></font>
+<br><font face="细明体"><font color="#ff9900"><font size="-1">-p&nbsp; ：copy
+模板（以建立好的使用者或群组）到另一个使用者（或群组）</font></font></font>
+<br><font face="细明体"><font color="#ffffcc"><font size="-1">范例：</font></font></font>
+<br><font face="细明体"><font size="-1"><font color="#ffffff">[root @test
+/root ]# </font><font color="#ffff00">edquota -u test&nbsp;&nbsp;</font><font color="#ffffff">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#ff9900">
+&lt;==设定 test 这个使用者的 quota 数值，会直接进入 vi 画面</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">Disk quotas
+for user test (uid 501):</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp; Filesystem&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+blocks&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; soft&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+hard&nbsp;&nbsp;&nbsp;&nbsp; inodes&nbsp;&nbsp;&nbsp;&nbsp; soft&nbsp;&nbsp;&nbsp;&nbsp;
+hard</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp; 
+/dev/hda3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+8&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ 0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+5&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0</font></font></font>
+<br><font face="细明体"><font color="#ff9900"><font size="-1">修改一下成为：</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">Disk quotas
+for user test (uid 501):</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp; Filesystem&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+blocks&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; soft&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+hard&nbsp;&nbsp;&nbsp;&nbsp; inodes&nbsp;&nbsp;&nbsp;&nbsp; soft&nbsp;&nbsp;&nbsp;&nbsp;
+hard</font></font></font>
+<br><font face="细明体"><font size="-1"><font color="#ffffff">&nbsp; 
+/dev/hda3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+8&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ </font><font color="#ffff00">50005000</font><font color="#ffffff">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+5&nbsp;&nbsp;&nbsp;&nbsp; </font><font color="#ffff00">50005000</font></font></font>
+<p><font face="细明体"><font size="-1"><font color="#ffffff">[root @test
+/root ]# </font><font color="#ffff00">edquota -p test -u test2&nbsp;</font><font color="#ff9900">
+&lt;==将 test 这个人的 quota 资料复制给 test2 这个人！</font></font></font>
+</p><p><font face="细明体"><font size="-1"><font color="#ffffff">[root @test
+/root ]# </font><font color="#ffff00">edquota -t&nbsp;&nbsp;&nbsp;</font><font color="#ffffff">&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#ff9900">&nbsp;
+&lt;==设定宽限时间，也就是超过 quota 值之后的修正时间啦！</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">Grace period
+before enforcing soft limits for users:</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">Time units
+may be: days, hours, minutes, or seconds</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp; Filesystem&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Block grace period&nbsp;&nbsp;&nbsp;&nbsp; Inode grace period</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp; /dev/hda3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+0minutes&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+0minutes</font></font></font>
+<br><font face="细明体"><font color="#ff9900"><font size="-1">上面的 0minutes
+可以改成 60minutes 即可！也就是 60 分钟之内必须要赶快整理硬盘的意思！</font></font></font></p></td>
+</tr>
+</tbody></table>
+<font color="#ff0000">说明</font><font color="#000000">：</font>
+<br><font color="#000000">这个指令就是在编辑每一个『个人』或者是『群组』的
+quota 数值！通常我们以 edquota -u username 或者是 edquota -g groupname
+来编辑个人与群组的 quota 设定值。不过，或许您会觉得一个一个分配似乎很慢的样子！那么您也可以直接
+copy 一个人的设定值给其他人，就如同上面第二个例子，利用已经建立好的 test
+来建立 test2 这个人的 quota 限额！这个指令可是很重要的呦！另外，上面有几个重要的信息，我们来谈一谈吧：</font>
+<ol>
+<li>
+<font color="#000066">filesystem</font><font color="#000000">：这个是那个
+partition 的意思！以上面来说，就是 /dev/hda3 啰！</font></li>
+
+<li>
+<font color="#000066">blocks</font><font color="#000000">：这个是目前使用者
+test ( uid 501 )在 /dev/hda3 这个 filesystem (参考上面一个信息)，所耗掉的磁盘容量，也就是目前的使用掉的空间啦！单位是
+Kbytes 喔！这个信息是 quota 程序自己计算出来的，所以请不要修改他！</font></li>
+
+<li>
+<font color="#000066">soft 与 hard </font><font color="#000000">：这个是目前的
+test 在这个 filesystem 之内的 quota 限制值！至于 soft 与 hard 的意思就如同
+14-1 节最后面提的那个意思啦！当 soft 与 hard 数值为 0 的时候，表示『没有限制』的意思！而数值的单位仍是
+Kbytes 喔！</font></li>
+
+<li>
+<font color="#000066">inodes</font><font color="#000000"> ：是目前使用掉
+inode 的状态，也是 quota 自己计算出来而得到的，所以不要去变更他。一般而言，
+inode 不容易控制，所以您可以不必去限制 inode 呢！</font></li>
+</ol>
+</blockquote>
+
+<blockquote>
+<hr width="100%">
+<li>
+<a name="quotaon"></a><b><font face="细明体"><font color="#000099">quotaon</font></font></b></li>
+
+<br><font color="#ff0000">语法</font>：
+<table width="700" bgcolor="#000000" border="1" cols="1">
+<tbody><tr>
+<td><font face="细明体"><font size="-1"><font color="#ffffff">[root @test
+/root ]# </font><font color="#ffcc00">quotaon [-a] [-uvg directory]</font></font></font>
+<br><font face="细明体"><font color="#ffffcc"><font size="-1">参数说明：</font></font></font>
+<br><font face="细明体"><font color="#ff9900"><font size="-1">-a&nbsp; ：全部的
+quota 设定都启动（会自动去寻找 /etc/mtab 的设定）</font></font></font>
+<br><font face="细明体"><font color="#ff9900"><font size="-1">-u&nbsp; ：使用者的
+quota 启动</font></font></font>
+<br><font face="细明体"><font color="#ff9900"><font size="-1">-g&nbsp; ：群组的
+quota 设定启动</font></font></font>
+<br><font face="细明体"><font color="#ff9900"><font size="-1">-v&nbsp; ：显示讯息</font></font></font>
+<br><font face="细明体"><font color="#ffffcc"><font size="-1">范例：</font></font></font>
+<br><font face="细明体"><font size="-1"><font color="#ffffff">[root @test
+/root ]# </font><font color="#ffff00">quotaon -a&nbsp;</font><font color="#ffffff">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#ff9900">
+&lt;==全部的 quota 限制都启动</font></font></font>
+<br><font face="细明体"><font size="-1"><font color="#ffffff">[root @test
+/root ]# </font><font color="#ffff00">quotaon -uv /home</font><font color="#ffffff">&nbsp;</font><font color="#ff9900">
+&lt;==只有激活 /home 底下的使用者 quota 限额，group 不激活！</font></font></font></td>
+</tr>
+</tbody></table>
+<font color="#ff0000">说明</font><font color="#000000">：</font>
+<br><font color="#000000">这个指令是在启动 quota 的！不过，由于这个指令是启动
+aquota.group 与 aquota.user 的，所以您就必须要先完成 <a href="#quotacheck">qutoacheck</a>
+的工作了！然后简单的下达 quotaon -a 即可启动！</font></blockquote>
+
+<blockquote>
+<hr width="100%">
+<li>
+<a name="quotaoff"></a><b><font face="细明体"><font color="#000099">quotaoff</font></font></b></li>
+
+<br><font color="#ff0000">语法</font>：
+<table width="700" bgcolor="#000000" border="1" cols="1">
+<tbody><tr>
+<td><font face="细明体"><font size="-1"><font color="#ffffff">[root @test
+/root ]# </font><font color="#ffff00">quotaoff -a</font></font></font>
+<br><font face="细明体"><font color="#ffffcc"><font size="-1">参数说明：</font></font></font>
+<br><font face="细明体"><font color="#ff9900"><font size="-1">-a&nbsp; ：全部的
+quota 设定都关闭（会自动去寻找 /etc/mtab 的设定）</font></font></font>
+<br><font face="细明体"><font color="#ffffcc"><font size="-1">范例：</font></font></font>
+<br><font face="细明体"><font size="-1"><font color="#ffffff">[root @test
+/root ]#</font><font color="#ffff00"> quotaoff -a&nbsp;&nbsp;&nbsp;</font><font color="#ffffff">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#ff9900">
+&lt;==全部的 quota 限制都关闭了！</font></font></font></td>
+</tr>
+</tbody></table>
+<font color="#ff0000">说明</font><font color="#000000">：</font>
+<br><font color="#000000">这个指令就是关闭了 quota 的限制啦！</font></blockquote>
+</blockquote>
+
+<hr width="100%"><a name="manual"></a><font color="#000099"><font size="+1">动手作
+quota：</font></font>
+<ul>quota 可以作用的功能有很多，包括了：
+<br>　
+<ul>
+<li>
+限制某一群组所能使用的最大磁盘配额（使用 群组 限制）：你可以将你的主机上的用户分门别类，有点像是目前很流行的付费与免付费会员制的情况，你比较喜好的那一群的使用配额就可以给高一些！呵呵！
+^_^...</li>
+</ul>
+　
+<ul>
+<li>
+限制某一用户的最大磁盘配额（使用 用户 限制）：在限制了群组之后，您也可以再继续针对个人来进行限制，使得同一群组之下还可以有更公平的分配！</li>
+</ul>
+　
+<ul>
+<li>
+以 Link 的方式，来使邮件可以作为限制的配额（更改 /var/spool/mail 这个路径）：如果是分为付费与免付费会员的『邮件主机系统』，是否需要重新再规划一个硬盘呢？也不需要啦！直接使用
+Link 的方式指向 /home （或者其他已经做好的 quota 磁盘）就可以啦！</li>
+</ul>
+　
+<br>底下先列出几个主要的步骤来说明：
+<br>　
+<ol>
+<li>
+<font color="#000066">开启磁盘的 quota 功能：编辑 /etc/fstab ，使得准备要开放的
+quota 磁盘可以支持 quota 啰；</font></li>
+
+<li>
+<font color="#000066">预扫瞄磁盘的使用情况：使用 quotacheck 来扫瞄一下我们要使用的磁盘啰；</font></li>
+
+<li>
+<font color="#000066">建立使用者的 quota ：使用 edquota 来编辑每个使用者或群组的可使用空间啰；</font></li>
+
+<li>
+<font color="#000066">启动 quota ：使用 quotaon 吧！</font></li>
+</ol>
+　
+<br>整个步骤大致上就只有这几步，我们来瞧一瞧如何使用吧！！底下我们以一个简单的范例来进行
+quota 的说明啰！整个范例的说明如下：
+<br>　
+<ol>
+<li>
+<font color="#000066">我们假设 test 这部主机里头有 test 与 test2 这两个使用者，且他们两个都挂在
+test 这个群组下；</font></li>
+
+<li>
+<font color="#000066">每个使用者总共有 50MB 的磁盘空间（不考虑 inode ）限制！并且
+soft limit 为 45 MB；</font></li>
+
+<li>
+<font color="#000066">而宽限时间设定为 1 天，也就是说，这四个人可以突破
+40MB 的限制，但是在一天之内必须要将多余的档案砍掉，否则将无法使用剩下的空间（也就是说，这个账号大概就不能使用了?）；</font></li>
+
+<li>
+<font color="#000066">test 这个群组考虑最大限额，所以设定为 90 MB 好了！</font></li>
+</ol>
+　
+<br>整个执行步骤可以照下面来执行看看：</ul>
+
+<ul>
+<ol>
+<li>
+<b><font color="#000099">建立 test2 这个使用者：</font></b></li>
+
+<br>由于我们之前只有 test 这个使用者挂在 test 群组之中，所以必需要先设定一下
+test2 这个使用者！因为他的群组必需是 test 这个，而我们去查了一下 /etc/group
+发现 test 的 uid 为 501 ，因此，我们可以这样来设定 test2 呢！
+<br>　
+<table width="700" bgcolor="#000000" border="1" cols="1">
+<tbody><tr>
+<td><font face="细明体"><font size="-1"><font color="#ffffff">[root @test
+root]#</font><font color="#ffff00"> useradd –m –g 501 test2</font></font></font>
+<br><font face="细明体"><font size="-1"><font color="#ffffff">[root @test
+root]#</font><font color="#ffff00"> passwd test2</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">Changing password
+for user test2.</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">New UNIX password:</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">Retype new
+UNIX password:</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">passwd: all
+authentication tokens updated successfully.</font></font></font></td>
+</tr>
+</tbody></table>
+　
+<li>
+<b><font color="#000099">开启磁盘的 quota 功能：</font></b></li>
+
+<br>由于 quota 需要在 ext 的 Linux 延伸格式档案才可以启动，所以你就必须要将准备开启
+quota 的磁盘启动参数，写进入 quota 的磁盘设定才行 ( /etc/fstab )！以我的例子而言，我想要在
+/home 底下进行 quota 的限制test, test2 这两个人！正巧 /home 是一个独立的扇区，这可以使用
+df 来查询：此外，必需要特别留意的是，最好不要以根目录亦即是 / 进行 quota
+啦！否则容易有些问题呢！另外，不要针对 root 做 quota 喔！
+<br>　
+<table width="700" bgcolor="#000000" border="1" cols="1">
+<tbody><tr>
+<td><font face="细明体"><font size="-1"><font color="#ffffff">[root @test
+root]# </font><font color="#ffff00">df</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">Filesystem&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+1K-blocks&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Used Available Use% Mounted on</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">/dev/hda1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+1904920&nbsp;&nbsp; 1088136&nbsp;&nbsp;&nbsp; 720020&nbsp; 61% /</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">/dev/hdb1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+976344&nbsp;&nbsp;&nbsp;&nbsp; 71504&nbsp;&nbsp;&nbsp; 854444&nbsp;&nbsp;
+8% /backup</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">/dev/hdb2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+101540&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 4252&nbsp;&nbsp;&nbsp;&nbsp; 92048&nbsp;&nbsp;
+5% /home</font></font></font></td>
+</tr>
+</tbody></table>
+　
+<br>嗯！我的 home 是独立的 partition ，并且他的装置名为 /dev/hdb2 ，好了！那么我就必须要启动
+/home 这个 /dev/hdb2 的 quota 文件格式，好了！那么由于文件格式的设定是写在<a href="http://linux.vbird.org/linux_basic/0420quota/0230filesystem.php#mount-fstab">
+/etc/fstab </a>里头，所以我们以 vi 来编辑他吧！只要在 /etc/fstab 里头增加了
+usrquota, grpquota 就可以啦！『注：请特别留意，这两个项目请『务必』不要写错了！请再写入
+/etc/fstab 之前好好的再次检查，因为写错之后，很有可能造成系统无法开机（虽然机率不高，但是有可能！?）』
+<br>　
+<table width="700" bgcolor="#000000" border="1" cols="1">
+<tbody><tr>
+<td><font face="细明体"><font size="-1"><font color="#ffffff">[root @test
+root]# </font><font color="#ffff00">vi /etc/fstab</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1"># device&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+MountPoint&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; filesystem&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+parameters&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; dump&nbsp;&nbsp;&nbsp; fsck</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">/dev/hda1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+/&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ext3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+defaults&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+1</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">/dev/hda2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+swap&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+swap&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+defaults&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+0</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">/dev/hdb1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+/backup&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ext3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+defaults&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+1</font></font></font>
+<br><font face="细明体"><font color="#ffff00"><font size="-1">/dev/hdb2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+/home&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ ext3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+defaults&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+1</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">none&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+/dev/pts&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; devpts&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+mode=0620&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+0</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">none&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+/proc&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ proc&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+defaults&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+0</font></font></font>
+<p><font face="细明体"><font color="#ffffcc"><font size="-1">上面的黄色字体改成底下的样子！</font></font></font>
+<br><font face="细明体"><font color="#ffff00"><font size="-1">/dev/hdb2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+/home&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ ext3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+defaults,usrquota,grpquota 1 1</font></font></font></p></td>
+</tr>
+</tbody></table>
+　
+<br>多了 usrquota,grpquota 注意，由 defaults,usrquota,grpquota 之间都没有空格！
+<br>　
+<br>这样就算加入了 quota 的磁盘格式了！不过，由于真正的 quota 在读取的时候是读取
+/etc/mtab 这个档案的，偏偏这一个档案需要重新启动之后才能够以 /etc/fstab
+的新数据进行改写！所以这个时候你可以选择：
+<br>　
+<ol><font color="#000066">(1)重新启动==&gt;reboot；也可以选择</font>
+<br><font color="#000066">(2)重新 remount filesystem 来驱动设定值！</font></ol>
+　
+<br>我是不太喜欢重新启动的人啦！所以我就这么做：
+<br>　
+<table width="700" bgcolor="#000000" border="1" cols="1">
+<tbody><tr>
+<td><font face="细明体"><font size="-1"><font color="#ffffff">[root@test
+/]# </font><font color="#ffff00">umount /dev/hdb2</font></font></font>
+<br><font face="细明体"><font size="-1"><font color="#ffffff">[root@test
+/]#</font><font color="#ffff00"> mount -a</font></font></font>
+<br><font face="细明体"><font size="-1"><font color="#ffffff">[root@test
+/]# </font><font color="#ffff00">more /etc/mtab</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">/dev/hda1 /
+ext3 rw 0 0</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">none /proc
+proc rw 0 0</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">none /proc/bus/usb
+usbdevfs rw 0 0</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">none /dev devfs
+rw 0 0</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">none /dev/pts
+devpts rw,mode=0620 0 0</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">/dev/hdb1 /backup
+ext3 rw 0 0</font></font></font>
+<br><font face="细明体"><font color="#ffff00"><font size="-1">/dev/hdb2 /home
+ext3 rw,usrquota,grpquota 0 0</font></font></font>
+<p><font face="细明体"><font color="#ffffcc"><font size="-1">或者以下列的方式重新
+mount 所有的磁盘：</font></font></font>
+<br><font face="细明体"><font size="-1"><font color="#ffffff">[root @test
+/root ]# </font><font color="#ffff00">mount -a -o remount&nbsp;</font><font color="#ff9900">
+&lt;==这个指令可以重新将 /etc/fstab 的咚咚 mount 下来！</font></font></font></p></td>
+</tr>
+</tbody></table>
+　
+<br>嘿嘿嘿嘿！这样我们就已经成功的将 quota 的功能写入 partition 当中啰！另外，我们这里是以
+ext3 这个磁盘格式来测试 quota 的呦！
+<br>&nbsp;
+<li>
+<b><font color="#000099">扫瞄磁盘的用户使用状况，并产生重要的 aquota.group
+与 aquota.user：</font></b></li>
+
+<br>接着下来就是要来扫瞄一下我们所需要的磁盘到底有没有多余的空间可以让我们来设定
+quota 呢？并且将扫瞄的结果输出到这个磁盘的最顶层去（也就是 /home 底下）这个时候就需要
+quotacheck 这个指令的帮忙了！使用 quotacheck 就可以轻易的将所需要的数据给他输出了！现在就
+OK 啦！并且在 /home 底下会产生 aquota.group 与 aquota.user 这两个档案！
+<br>　
+<table width="700" bgcolor="#000000" border="1" cols="1">
+<tbody><tr>
+<td><font face="细明体"><font size="-1"><font color="#ffffff">[root@test
+/]# </font><font color="#ffff00">quotacheck -avug</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">quotacheck:
+Scanning /dev/hdb2 [/home] done</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">quotacheck:
+Checked 10 directories and 22 files</font></font></font>
+<br><font face="细明体"><font size="-1"><font color="#ffffff">[root@test
+/]# </font><font color="#ffff00">ll /home</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">total 44</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">-rw-------&nbsp;&nbsp;&nbsp;
+1 root&nbsp;&nbsp;&nbsp;&nbsp; root&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+7168 Oct 28 14:05 aquota.group</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">-rw-------&nbsp;&nbsp;&nbsp;
+1 root&nbsp;&nbsp;&nbsp;&nbsp; root&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+7168 Oct 28 14:05 aquota.user</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">drwx------&nbsp;&nbsp;&nbsp;
+2 root&nbsp;&nbsp;&nbsp;&nbsp; root&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+16384 Oct 22 16:54 lost+found/</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">drwxr-xr-x&nbsp;&nbsp;&nbsp;
+3 test&nbsp;&nbsp;&nbsp;&nbsp; test&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+4096 Oct 28 01:45 test/</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">drwxr-xr-x&nbsp;&nbsp;&nbsp;
+3 test2&nbsp;&nbsp;&nbsp; test&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+4096 Oct 28 13:37 test2/</font></font></font></td>
+</tr>
+</tbody></table>
+　
+<br>使用 quotacheck 就可以轻易的将所需要的数据给他输出了！现在就 OK 啦！并且在
+/home 底下会产生 aquota.group 与 aquota.user 这两个档案！注：但是很奇怪的是，在某些
+Linux 版本中，我不能够以 aquota.user(group) 来启动我的 quota ，真的是很奇怪呢！所以我就另外做了一个
+link 档案来欺骗 quota 啰：
+<br>　
+<table width="700" bgcolor="#000000" border="1" cols="1">
+<tbody><tr>
+<td><font face="细明体"><font size="-1"><font color="#ffffff">[root @test
+/root ]# </font><font color="#ffff00">cd /home&nbsp;</font></font></font>
+<br><font face="细明体"><font size="-1"><font color="#ffffff">[root @test
+/root ]# </font><font color="#ffff00">ls -l aquota*&nbsp;</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">-rw-------&nbsp;&nbsp;&nbsp;
+1 root&nbsp;&nbsp;&nbsp;&nbsp; root&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+7168 May&nbsp; 6 22:16 aquota.group&nbsp;</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">-rw-------&nbsp;&nbsp;&nbsp;
+1 root&nbsp;&nbsp;&nbsp;&nbsp; root&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+7168 May&nbsp; 6 22:16 aquota.user&nbsp;</font></font></font>
+<br><font face="细明体"><font size="-1"><font color="#ffffff">[root @test
+/root ]# </font><font color="#ffff00">ln -s aquota.group quota.group&nbsp;</font></font></font>
+<br><font face="细明体"><font size="-1"><font color="#ffffff">[root @test
+/root ]# </font><font color="#ffff00">ln -s aquota.user quota.user</font></font></font></td>
+</tr>
+</tbody></table>
+　
+<li>
+<b><font color="#000099">启动 quota 的限额！</font></b></li>
+
+<br>再来就是要启动 quota 啦！启动的方式也是很简单的！就是使用 quotaon -av
+即可：
+<br>　
+<table width="700" bgcolor="#000000" border="1" cols="1">
+<tbody><tr>
+<td><font face="细明体"><font size="-1"><font color="#ffffff">[root@test
+/]#</font><font color="#ffff00"> quotaon -av</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">/dev/hdb2 [/home]:
+group quotas turned on</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">/dev/hdb2 [/home]:
+user quotas turned on</font></font></font></td>
+</tr>
+</tbody></table>
+　
+<br>注意：要看到上面有个 turned on 的出现，才是真的成功了！
+<br>　
+<li>
+<b><font color="#000099">编辑使用者的可使用空间：</font></b></li>
+
+<br>由于我们有两个使用者要设定，先来设定 test 好了，使用 edquota 就对了
+<br>　
+<table width="700" bgcolor="#000000" border="1" cols="1">
+<tbody><tr>
+<td><font face="细明体"><font size="-1"><font color="#ffffff">[root @test
+/]# </font><font color="#ffff00">edquota –u test</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">Disk quotas
+for user test (uid 501):</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp; Filesystem&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+blocks&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; soft&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+hard&nbsp;&nbsp;&nbsp;&nbsp; inodes&nbsp;&nbsp;&nbsp;&nbsp; soft&nbsp;&nbsp;&nbsp;&nbsp;
+hard</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp; /dev/hdb2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+32&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 8&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0</font></font></font>
+<p><font face="细明体"><font color="#ffffcc"><font size="-1">将上面的原本设定改为底下的模样：</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">Disk quotas
+for user test (uid 501):</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp; Filesystem&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+blocks&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; soft&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+hard&nbsp;&nbsp;&nbsp;&nbsp; inodes&nbsp;&nbsp;&nbsp;&nbsp; soft&nbsp;&nbsp;&nbsp;&nbsp;
+hard</font></font></font>
+<br><font face="细明体"><font size="-1"><font color="#ffffff">&nbsp; /dev/hdb2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+32&nbsp;&nbsp;&nbsp;&nbsp; </font><font color="#ffff00">40000&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+50000&nbsp;</font><font color="#ffffff">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+8&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+0</font></font></font></p></td>
+</tr>
+</tbody></table>
+　
+<br>要特别留意的是，上面的黑体数值代表的是 KB 呦！转成 MB 是需要乘上 1024
+倍，这里简单的计算一下就好了！这样就算编辑完毕了！接下来我们就需要将这个设定同时复制给
+test2 这个家伙！
+<br>　
+<table width="700" bgcolor="#000000" border="1" cols="1">
+<tbody><tr>
+<td><font face="细明体"><font size="-1"><font color="#ffffff">[root@test
+/]#</font><font color="#ffff00"> edquota -p test test2</font></font></font></td>
+</tr>
+</tbody></table>
+　
+<br>接下来要来设定宽限时间，还是使用 edquota ！
+<br>　
+<table width="700" bgcolor="#000000" border="1" cols="1">
+<tbody><tr>
+<td><font face="细明体"><font size="-1"><font color="#ffffff">[root@test
+/]# </font><font color="#ffff00">edquota -t</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">Grace period
+before enforcing soft limits for users:</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">Time units
+may be: days, hours, minutes, or seconds</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp; Filesystem&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Block grace period&nbsp;&nbsp;&nbsp;&nbsp; Inode grace period</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp; 
+/dev/hdb2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+1days&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+1days</font></font></font></td>
+</tr>
+</tbody></table>
+　
+<br>将时间改为 1 天（原本是 7days 改成 1days ），好了！查询一下是否真的有设定进去呢？使用
+quota -v 来查询
+<br>　
+<table width="700" bgcolor="#000000" border="1" cols="1">
+<tbody><tr>
+<td><font face="细明体"><font size="-1"><font color="#ffffff">[root@test
+/]# </font><font color="#ffff00">quota –vu test test2</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">Disk quotas
+for user test (uid 501):</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp;&nbsp;&nbsp;&nbsp;
+Filesystem&nbsp; blocks&nbsp;&nbsp; quota&nbsp;&nbsp; limit&nbsp;&nbsp;
+grace&nbsp;&nbsp; files&nbsp;&nbsp; quota&nbsp;&nbsp; limit&nbsp;&nbsp;
+grace</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+/dev/hdb2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 32&nbsp;&nbsp; 40000&nbsp;&nbsp;
+50000&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+8&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+0</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">Disk quotas
+for user test2 (uid 502):</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp;&nbsp;&nbsp;&nbsp;
+Filesystem&nbsp; blocks&nbsp;&nbsp; quota&nbsp;&nbsp; limit&nbsp;&nbsp;
+grace&nbsp;&nbsp; files&nbsp;&nbsp; quota&nbsp;&nbsp; limit&nbsp;&nbsp;
+grace</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+/dev/hdb2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 28&nbsp;&nbsp; 40000&nbsp;&nbsp;
+50000&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+7&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+0</font></font></font></td>
+</tr>
+</tbody></table>
+　
+<br>特别注意到，由于我们的使用者尚未超过 40 MB，所以 grace ( 宽限时间 )就不会出现啦！这样很够清楚了吧？！
+<br>　
+<li>
+<b><font color="#000099">编辑群组使用空间：</font></b></li>
+
+<br>其实也差不多，还是使用 edquota：
+<br>　
+<table width="700" bgcolor="#000000" border="1" cols="1">
+<tbody><tr>
+<td><font face="细明体"><font size="-1"><font color="#ffffff">[root@test
+/]# </font><font color="#ffff00">edquota -g test&nbsp;</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">Disk quotas
+for group test (gid 501):</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp; Filesystem&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+blocks&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; soft&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+hard&nbsp;&nbsp;&nbsp;&nbsp; inodes&nbsp;&nbsp;&nbsp;&nbsp; soft&nbsp;&nbsp;&nbsp;&nbsp;
+hard</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp; /dev/hdb2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+60&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 15&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0</font></font></font>
+<p><font face="细明体"><font color="#ffffcc"><font size="-1">修改成底下这样：</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">Disk quotas
+for group test (gid 501):</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp; Filesystem&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+blocks&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; soft&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+hard&nbsp;&nbsp;&nbsp;&nbsp; inodes&nbsp;&nbsp;&nbsp;&nbsp; soft&nbsp;&nbsp;&nbsp;&nbsp;
+hard</font></font></font>
+<br><font face="细明体"><font size="-1"><font color="#ffffff">&nbsp; /dev/hdb2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+60&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </font><font color="#ffff00">80000&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+90000&nbsp;</font><font color="#ffffff">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+15&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+0</font></font></font>
+</p><p><font face="细明体"><font size="-1"><font color="#ffffff">[root@test /]#
+</font><font color="#ffff00">quota
+-vg test</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">Disk quotas
+for group test (gid 501):</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp;&nbsp;&nbsp;&nbsp;
+Filesystem&nbsp; blocks&nbsp;&nbsp; quota&nbsp;&nbsp; limit&nbsp;&nbsp;
+grace&nbsp;&nbsp; files&nbsp;&nbsp; quota&nbsp;&nbsp; limit&nbsp;&nbsp;
+grace</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+/dev/hdb2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 60&nbsp;&nbsp; 80000&nbsp;&nbsp;
+90000&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+15&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+0</font></font></font></p></td>
+</tr>
+</tbody></table>
+　
+<li>
+<b><font color="#000099">设定开机时启动：</font></b></li>
+
+<br>开机的时候自动启动的设定在哪里还记得吗？没错！就是在 /etc/rc.d/rc.local
+底下：所以你可以使用 vi 在这个档案的最后面加上一行：
+<br>　
+<table width="700" bgcolor="#000000" border="1" cols="1">
+<tbody><tr>
+<td><font face="细明体"><font size="-1"><font color="#ffffff">[root @test
+/root ]#</font><font color="#ffff00"> vi /etc/rc.d/rc.local&nbsp;</font></font></font>
+<br><font face="细明体"><font color="#ffffff"><font size="-1">/sbin/quotaon
+-aug&nbsp;</font></font></font></td>
+</tr>
+</tbody></table>
+　
+<br>如果要关闭 qutoa 就是用 quotaoff 吧！没错！这样就将 quota 设定完毕了！很简单吧！！</ol>
+</ul>
+
+<hr width="100%"><a name="pop3"></a><font color="#000099"><font size="+1">使用邮件主机进行
+quota 的实例：</font></font>
+<ul>好了，我们前面 <a href="http://linux.vbird.org/linux_basic/0420quota/0410accountmanager.php">账号管理</a> 的部分曾经提到
+e-mail 这个东西嘛！好了，如果我们要设定一个对外开启的邮件主机的时候，那么最好对于邮件空间有点限制比较好，免得如同上面提到的一些问题一样，造成使用者的使用权不一！所以说，使用
+quota 确实是一个好建议！这个时候该怎么办呢？什么怎么办？嗯！是这样的，由于
+quota 『<b><font color="#000099">只能针对一个 partition 进行整体的磁盘配额，无法针对某个目录进行磁盘配额！</font></b>』针对这个观念，我们不难发现，『<b>(1)将邮件存在个人的家目录与
+(2)将邮件统一放在 /home 下的一个共享目录</b>』是一样的！为什么呢？这是因为
+quota 针对的是一个磁盘呀！呵呵！所以啰，您必须先确定『<b>您的 /home 是一个独立的
+partition</b> 』才行！当然啰，您也可以使用其他的独立的 partition 来进行底下的步骤！但是在这里，我们预设以
+/home 这一个目录来假定这一个目录是一个独立的 partition ！</ul>
+
+<ul>如此则在 /home 底下，由于每个人的磁盘配额已经设定好了！所以当然啰！该信件就可以得到完整的
+quota 限额的限制了！所以呢，就需要进行下面的步骤：</ul>
+
+<ul>
+<ol>
+<li>
+以 <a href="#manual">上面设定</a> 的方式设定好使用者 quota 的所有工作（即是在
+/home 这个 partition ）；</li>
+
+<li>
+将 /var/spool/mail 这个邮件预设的文件夹备份到其他的目录去；</li>
+
+<li>
+建立 /home/mail，这是因为假设我们的邮件放置在这个目录中；</li>
+
+<li>
+修改 /home/mail 的属性，使成为 拥有者 root ，群组 mail ，及属性为 775 才行！</li>
+
+<li>
+将 /home/mail 给他 Link 到 /var/spool/mail 去即可！</li>
+
+<li>
+以后每个人的邮件将都会放置 /home/mail 这个目录中！</li>
+</ol>
+
+<table width="800" bgcolor="#000000" border="1" cols="1">
+<tbody><tr>
+<td><font face="细明体"><font color="#ffffcc"><font size="-1">1. 建立并修改
+/home/mail 这个目录：</font></font></font>
+<br><font face="细明体"><font size="-1"><font color="#ffffff">[root @test
+/root ]#</font><font color="#ffff00"> mkdir /home/mail</font></font></font>
+<br><font face="细明体"><font size="-1"><font color="#ffffff">[root @test
+/root ]# </font><font color="#ffff00">chown root:mail /home/mail</font></font></font>
+<br><font face="细明体"><font size="-1"><font color="#ffffff">[root @test
+/root ]# </font><font color="#ffff00">chmod 775 /home/mail</font></font></font>
+<p><font face="细明体"><font color="#ffffcc"><font size="-1">2. 备份并移动原本的
+mail 到 /home/mail 底下去：</font></font></font>
+<br><font face="细明体"><font size="-1"><font color="#ffffff">[root @test
+/root ]# </font><font color="#ffff00">cp -r /var/spool/mail /var/spool/mail.back</font></font></font>
+<br><font face="细明体"><font size="-1"><font color="#ffffff">[root @test
+/root ]# </font><font color="#ffff00">mv /var/spool/mail/* /home/mail</font></font></font>
+<br><font face="细明体"><font size="-1"><font color="#ffffff">[root @test
+/root ]# </font><font color="#ffff00">rmdir /var/spool/mail</font></font></font>
+</p><p><font face="细明体"><font color="#ffffcc"><font size="-1">3. 建立连结：</font></font></font>
+<br><font face="细明体"><font size="-1"><font color="#ffffff">[root @test
+/root ]#</font><font color="#ffff00"> ln -s /home/mail /var/spool/mail</font></font></font></p></td>
+</tr>
+</tbody></table>
+
+<p>只要这样的一个小步骤，嘿嘿！您家主机的邮件就有一定的限额啰！当然啰！您也可以依据不同的使用者与群组来设定
+quota 然后同样的以上面的方式来进行 link 的动作！嘿嘿嘿！就有不同的限额针对不同的使用者提出啰！很方便吧！！
+^_^</p></ul>
+
+<hr width="100%"><a name="FAQ"></a><font color="#000099"><font size="+1">本章习题练习
+( 要看答案请将鼠标移动到『答：』底下的空白处，按下左键圈选空白处即可察看
+)</font></font>
+<ul>
+<li>
+如果我有一个 Linux 主机，未来想要对外提供 mail 与 WWW 的服务，同时预计提供个人网页空间的服务，然而我希望
+mail 提供 30 MB 而 WWW 则提供 20MB 的空间，那么我应该如何规划我的主机？</li>
+
+<br>答：
+<ul><font color="#ffffff">在 quota 的限制中，由于他限制的是整个 partition
+呢！所以既然要分为两个服务来限制，就需要设定成两个 partition 了！这个案例当中是以
+Linux 为新架设的角度来看，所以我们的规划就较为简单！假设我的硬盘为 30GB
+的硬盘，那么我可以这样设定：</font>
+<ul><font color="#ffffff">/&nbsp; 256 GB</font>
+<br><font color="#ffffff">Swap 2 * RAM</font>
+<br><font color="#ffffff">/usr&nbsp; 3~5 GB</font>
+<br><font color="#ffffff">/backup 5GB</font></ul>
+<font color="#ffffff">其他的空间平均分给</font>
+<ul><font color="#ffffff">/home</font>
+<br><font color="#ffffff">/var/spool/mail</font></ul>
+<font color="#ffffff">这样就可以啦！然后安装完成之后，套用 quota 的设定，即可做好限制啰！很是方便的！</font></ul>
+</ul>
+
+<hr width="100%"><font face="新细明体"><font color="#000066"><font size="-1">2002/07/14：第一次完成</font></font></font>
+<br><font face="新细明体"><font color="#000066"><font size="-1">2003/02/10：重新编排与加入
+FAQ</font></font></font>
+<br><font face="新细明体"><font color="#000066"><font size="-1">2003/09/02：加入
+<a href="#quotacheck">quotacheck</a> 发生错误时的解决方法。</font></font></font>
+<br>
+<hr width="100%">
+<center>
+<font color="#000066"><font size="-1">Designed by <a href="mailto:vbird@mail.vbird.idv.tw">VBird</a>
+during 2001-2004.&nbsp; Aerosol Lab.</font></font>
+﻿<div id="apDiv4">
+      <p>本网页主要以Firefox配合解析度 1024x768 作为设计依据&nbsp;&nbsp;&nbsp;&nbsp; 鸟哥自由软件整合应用研究室</p></div></center>
+</div></center>
+</body></html>

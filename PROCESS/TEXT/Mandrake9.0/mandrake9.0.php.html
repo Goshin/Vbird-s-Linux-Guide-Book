@@ -1,1 +1,276 @@
-﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> <html xmlns="http://www.w3.org/1999/xhtml"><head> 	<meta http-equiv="Content-Type" content="text/html; charset=utf8"> 	<meta name="Author" content="VBird, 鸟哥"> 	<meta name="Description" content="基础学习篇第一版，经过校稿且部分编修后的内容"> 	<title>鸟哥的 Linux 私房菜 -- 鸟哥基础学习篇第一版的Mandrake内容</title> 	<script src="../../script/SpryMenuBar.js" type="text/javascript"></script> 	<script src="../../script/index.js" type="text/javascript"></script> 	<link href="../../css/SpryMenuBarHorizontal.css" rel="stylesheet" type="text/css" />     <link href="../../css/main.css" rel="stylesheet" type="text/css" /> </head> <body style="margin: 0pt; padding: 0pt;" class="table"onload="MM_preloadImages('image/title_19.png','image/title_26.png','image/title_27.png','image/title_28.png','image/title_06.png','image/title_08.png','image/title_10.png','image/title_12.png')">   <!-- Copyright � 2005. Spidersoft Ltd --> <style> A.applink:hover {border: 2px dotted #DCE6F4;padding:2px;background-color:#ffff00;color:green;text-decoration:none} A.applink       {border: 2px dotted #DCE6F4;padding:2px;color:#2F5BFF;background:transparent;text-decoration:none} A.info          {color:#2F5BFF;background:transparent;text-decoration:none} A.info:hover    {color:green;background:transparent;text-decoration:underline} </style> <div style='BORDER: 1px solid #DCE6F4; MARGIN-TOP: 20px; MARGIN-BOTTOM: 20px; MARGIN-LEFT: 5px; MARGIN-RIGHT: 5px; PADDING: 5px; BACKGROUND-COLOR: #eef8ff;line-height:180%; COLOR: #000000; font-family: Arial; font-size: 8pt; width=100%; FILTER: progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr="#FFFFFFFF", EndColorStr="#F2F5FAFF");'> This page was saved using <a class="applink" href="http://www.spidersoft.com"><b>WebZIP 7.0.3.1030</b></a> <a class="applink" href="http://www.spidersoft.com"><b>offline browser</b></a>  (Unregistered) on  02/12/15 12:14:48.<br> <b>Address:</b> <a class="info" href="http://vbird.dic.ksu.edu.tw/linux_basic/Mandrake9.0/mandrake9.0.php">http://vbird.dic.ksu.edu.tw/linux_basic/Mandrake9.0/mandrake9.0.php</a><br> <b>Title:</b> 鸟哥的 Linux 私房菜 -- 鸟哥基础学习篇第一版的Mandrake内容 &nbsp;&bull;&nbsp; <b>Size:</b> 22698<br></div> <!-- /Copyright � 2005. Spidersoft Ltd -->   <center>  <!-- 这里是关于页首按钮处的按钮程序 --> <div id="apDiv5"> <div> <LINK REL="SHORTCUT ICON" HREF="favicon.ico"> <!-- ImageReady Slices (title3.ai) --> <table id="___01" width="898" height="81" border="0" align="center" cellpadding="0" cellspacing="0";> 	<tr> 		<td colspan="15"> 			<img src="image/title/title_01.png" width="900" height="1" alt=""></td> 	</tr> 	<tr> 		<td rowspan="4" bgcolor="#182448"><p><img src="http://linux.vbird.org/cgi-bin/Count.cgi?dd=C&ft=5&sh=T&md=8&pad=Y&df=vbird.dic.ksu.edu.tw.dat" width="93" align="left" title="計數器" /></p> 	    <p><font color="#FFFFFF" size="-1">since2012/04/23</font></p></td> 		<td rowspan="4" align="left" valign="top"><a href="http://vbird.dic.ksu.edu.tw/"><img src="image/title/title_03.png" alt="" width="263" height="79" border="0"></a></td> 		<td colspan="13"> 			<img src="image/title/title_04.png" alt="" width="535" height="9" border="0"></td> 	</tr> 	<tr> 		<td rowspan="3"> 			<img src="image/title/title_05.png" alt="" width="53" height="70" border="0"></td> 		<td colspan="2" align="left" valign="top"><a href="../0110whatislinux.php.html" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image51','','image/title/title_06.png',1)"><img src="image/title/title3_06.png" name="Image51" width="106" height="25" border="0" id="Image51" alt=""/></a></td> 		<td rowspan="2"> 			<img src="image/title/title_07.png" alt="" width="27" height="37" border="0"></td> 		<td colspan="3" align="left" valign="top"><a href="http://vbird.dic.ksu.edu.tw/linux_server/0110network_basic.php" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image52','','image/title/title_08.png',1)"><img src="image/title/title3_08.png" name="Image52" width="107" height="25" border="0" id="Image52" alt=""/></a></td> 		<td rowspan="2"> 			<img src="image/title/title_09.png" alt="" width="37" height="37" border="0"></td> 		<td colspan="2" align="left" valign="top"><a href="http://vbird.dic.ksu.edu.tw/about.php" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image53','','image/title/title_10.png',1)"><img src="image/title/title3_10.png" name="Image53" width="75" height="25" border="0" id="Image53" alt=""/></a></td> 		<td rowspan="3"> 			<img src="image/title/title_11.png" alt="" width="35" height="70" border="0"></td> 		<td align="left" valign="top"><a href="mailto:vbird@mail.vbird.idv.tw" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image54','','image/title/title_12.png',1)"><img src="image/title/title3_12.png" name="Image54" width="74" height="25" border="0" id="Image54" alt=""/></a></td> 		<td rowspan="3"> 			<img src="image/title/title_13.png" alt="" width="21" height="70" border="0"></td> 	</tr> 	<tr> 		<td colspan="2"> 			<img src="image/title/title_14.png" alt="" width="106" height="12" border="0"></td> 		<td colspan="3"> 			<img src="image/title/title_15.png" alt="" width="107" height="12" border="0"></td> 		<td colspan="2"> 			<img src="image/title/title_16.png" width="75" height="12" alt=""></td> 		<td rowspan="2"> 			<img src="image/title/title_17.png" alt="" width="74" height="45" border="0"></td> 	</tr> 	<tr> 		<td> 			<img src="image/title/title_18.png" alt="" width="15" height="33" border="0"></td> 		<td colspan="3" align="left" valign="top"><ul id="MenuBar1" class="MenuBarHorizontal"> 	  <li><a href="../linux_basic.php.html" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image44','','image/title/title_19.png',1)"><img src="image/title/title3_19.png" name="Image44" width="123" height="33" border="0" id="Image44" /></a> 			    <ul> 			      <li><a href="mandrake9.0.php.html" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image46','','image/title/title_26.png',1)"><img src="image/title/title_23.png" name="Image46" width="120" height="26" border="0" id="Image46" alt="" /></a></li>                   <li><a href="../fedora_4/fc4.php.html" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image47','','image/title/title_27.png',1)"><img src="image/title/title_24.png" name="Image47" width="120" height="26" border="0" id="Image47" alt="" /></a></li>                   <li><a href="../linux_basic.php.html" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image48','','image/title/title_28.png',1)"><img src="image/title/title_25.png" name="Image48" width="120" height="26" border="0" id="Image48" alt="" /></a></li>                 </ul> 		      </li> 		</ul></td> 		<td> 			<img src="image/title/title_20.png" alt="" width="42" height="33" border="0"></td> 		<td colspan="3" align="left" valign="top"><ul id="MenuBar2" class="MenuBarHorizontal"> 	  <li><a href="http://vbird.dic.ksu.edu.tw/linux_server/" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image45','','image/title/title_21.png',1)"><img src="image/title/title3_21.png" name="Image45" width="125" height="33" border="0" id="Image45" /></a> 			    <ul> 			      <li><a href="http://vbird.dic.ksu.edu.tw/linux_server/linux_redhat9/redhat9.php" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image43','','image/title/title_26.png',1)"><img src="image/title/title_23.png" name="Image43" width="120" height="26" border="0" id="Image43" alt=""/></a></li> 			      <li><a href="http://vbird.dic.ksu.edu.tw/linux_server/centos4.php" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image49','','image/title/title_27.png',1)"><img src="image/title/title_24.png" name="Image49" width="120" height="26" border="0" id="Image49" alt="" /></a></li> 			      <li><a href="http://vbird.dic.ksu.edu.tw/linux_server/" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image50','','image/title/title_28.png',1)"><img src="image/title/title_25.png" name="Image50" width="120" height="26" border="0" id="Image50" alt="" /></a></li> 		        </ul> 		      </li> 		</ul></td> 		<td> 			<img src="image/title/title_22.png" alt="" width="47" height="33" border="0"></td> 	</tr> 	<tr> 		<td> 			<img src="image/title/Spacer.gif" width="101" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="263" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="53" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="15" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="91" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="27" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="5" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="42" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="60" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="37" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="28" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="47" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="35" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="74" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="22" height="1" alt=""></td> 	</tr> </table> <!-- End ImageReady Slices --> <script type="text/javascript"> <!-- var MenuBar1 = new Spry.Widget.MenuBar("MenuBar1", {imgDown:"SpryAssets/SpryMenuBarDownHover.gif", imgRight:"SpryAssets/SpryMenuBarRightHover.gif"}); var MenuBar2 = new Spry.Widget.MenuBar("MenuBar2", {imgDown:"SpryAssets/SpryMenuBarDownHover.gif", imgRight:"SpryAssets/SpryMenuBarRightHover.gif"}); //--> </script></div>  <table summary="本文内容的排版" style="width: 888px;" border="0" cellpadding="0" cellspacing="0">   <tbody><tr><td style="width: 10px; height: 6px;">　</td>     <td style="width: 850px; height: 6px;">　</td>     <td style="width: 10px; height: 6px;">　</td></tr> <tr><td style="width: 10px; ">　</td>     <td width="718">  <!-- 本文的档头部分 --> <div style="text-align: center;">     <a href="mandrake9.0.php.html">     <span class="text_head0">鸟哥的第一本书的主要内容，以<span class="text_head_en"> Mandrake 9.0 </span>为例</span></a><br> </div>  <!-- 本文的档头部分 --> <table class="head1" summary="排版：文章档头的说明"><tbody><tr><td class="head1"> 	这个部分的内容主要是来自于鸟哥第一版基础篇的内容。不过，因为年代久远，事实上与第一版的内容有点出入～ 	因为这是在第一版与第二版之间在经过编修后的内容了，所以，请大家不要拿这个部分来跟第一版的内容比对喔！ 	另外，这是鸟哥比较早期的文章，大约是在2001~2004年左右的文章，所以内容有部分已经确认有问题了， 	列出来只是要让鸟哥未来能够知道文章的沿革，请大家拿最新版的内容来阅读比较好喔！ ^_^。 	因为各网页的标头都有一个连结，按下各网页的连结就能够看到最新的文章了！以上！报告完毕！ ^_^ </td></tr></tbody></table><br>  <hr><img src="../image/logo.png" alt="大标题的图示" width="63" align="middle" height=56"><span class="text_h1">各文章的标题与大纲</span><br> <div class="block1">  <table width="100%" bgcolor="lightyellow" border="1" cellpadding="3" cellspacing="0"> <tbody><tr align="center" bgcolor="#182448"><td colspan="2"><font color="FFFFFF">第一篇：Linux的规划与安装</font></td></tr> <tr align="center" bgcolor="#182448"><td width="200"><font color="FFFFFF">章节标题</font></td><td><font color="FFFFFF">内容大纲</font></td></tr> <tr><td><a href="0110whatislinux.php.html">一、Linux是什么</a></td> 	<td>早在 Linux 出现之前的二十年 ( 大约在 1970 年代 )， 就有一个相当稳定而成熟的操作系统存在了！那就是 Linux  	的老大哥『 Unix 』是也！怎么这么说呢？！他们这两个家伙有什么关系呀？...</td></tr> <tr><td><a href="0120howtolinux.php.html">一、Linux如何学习</a></td> 	<td>其实，不论学什么系统，『从头学起』是很重要的！还记得你刚刚接触微软的 Windows  	都在干什么？还不就是由档案总管学起，然后慢慢的玩到控制台、玩到桌面管理...</td></tr> <tr><td><a href="0130designlinux.php.html">二、Linux主机规划</a></td> 	<td>『什么？学 Linux 还得要玩硬件？！』呵呵！没错！Linux 与微软 Windows 在硬件之认知上有相当大不同的差异！ 	其实由前面『 Linux 是什么 』那个章节中您或许已经知道了， Linux...</td></tr> <tr><td><a href="0155installmdk.php.html">三、安装Mandrake9.0</a></td> 	<td>由第二章的内容我们大致上可以了解：『Linux 主机的配备要求与 Linux 主机所提供的服务有关』，所以啰，要安装 Linux  	的第一步就是先进行 Linux 主机的未来蓝图规划啦！....</td></tr> <tr><td><a href="0160startlinux.php.html">四、首次开机与关机</a></td> 	<td>啊开机就开机呀！怎么还有所谓的登入与离开呀！？呵呵！开什么玩笑，在 Linux 里面，正确的开关机可是很重要的！ 	因为，不正常的关机可能会导致整个系统的扇区错乱...</td></tr> <tr align="center" bgcolor="#182448"><td colspan="2"><font color="FFFFFF">第二篇：Linux档案、目录与磁盘格式</font></td></tr> <tr align="center" bgcolor="#182448"><td width="200"><font color="FFFFFF">章节标题</font></td><td><font color="FFFFFF">内容大纲</font></td></tr> <tr><td><a href="0210filepermission.php.html">五、Linux档案权限与目录配置</a></td> 	<td>初次接触 Linux 的朋友大概会觉得很怪异，怎么『Linux 有这么多使用者，还分什么群组，有什么用？』。 	这个『用户与群组』的功能可是相当健全而好用的一个安全防护...</td></tr> <tr><td><a href="0220filemanager.php.html">六、Linux档案与目录管理</a></td> 	<td>由前一章节『Linux 的档案权限与目录配置』中约略了解到 Linux 的『树状目录』概念之后， 	接下来就得要实际的来搞定一些基本的路径问题了！这些问题当中，最重要的莫过于『绝对路径...</td></tr> <tr><td><a href="0230filesystem.php.html">七、磁盘与硬件管理</a></td> 	<td>我们在前面的档案权限介绍的章节当中，提到很多的权限与属性的观念，那么接下来要了解的是， 	这些属性是记录在硬盘的那个地方？这里就要特别了解到 Linux 文件系统...</td></tr> <tr><td>八、文件系统之挂载</td><td>这个章节在后来已经与前一章(第七章)合并了！不再单独存在。鸟哥我也已经找不到档案了～ 	非常抱歉...</td></tr> <tr align="center" bgcolor="#182448"><td colspan="2"><font color="FFFFFF">第三篇：学习Shell</td></tr> <tr align="center" bgcolor="#182448"><td width="200"><font color="FFFFFF">章节标题</font></td><td><font color="FFFFFF">内容大纲</font></td></tr> <tr><td><a href="0310vi.php.html">九、vi字处理器</a></td> 	<td>一个系统管理员至少应该要熟悉一种字处理软件，以方便未来的系统管理， 	包括系统设定与架站时候的参数配置文件修订等等工作之进行。在 Unix-Like 系统中....</td></tr> <tr><td><a href="0320bash.php.html">十、认识BASH</a> 	</td><td>这应该是个蛮有趣的话题：『什么是 Shell ？』相信只要摸过计算机，对于操作系统 	（不论是 Linux 、 Unix 或者是 Windows ）有点概念的朋友们大多听过这个名词...</td></tr> <tr><td><a href="0240tarcompress.php.html">十一、压缩指令与正规表示法</a></td> 	<td>您是否有过文件档案太大，导致无法以一片软盘将他复制完成的困扰？又，您是否有过，发现一个软件里面有好多档案， 	这些档案要将他复制与携带都很不方便的问题？...</td></tr> <tr><td><a href="0340bashshell-scripts.php.html">十二、学习Shell script</a></td> 	<td>这个问题可有趣的很了，我为什么要学习 scripts 呢？不要学可不可以呀！？呵呵！如果您只想要『会用』  	Linux 就好的话，那么这一个部分确实可以先跳过去不看也没关系，不过...</td></tr> <tr align="center" bgcolor="#182448"><td colspan="2"><font color="FFFFFF">第四篇：Linux使用者管理</font></td></tr> <tr align="center" bgcolor="#182448"><td width="200"><font color="FFFFFF">章节标题</font></td><td><font color="FFFFFF">内容大纲</font></td></tr> <tr><td><a href="0410accountmanager.php.html">十三、账号管理</a></td> 	<td>管理员的工作中，相当重要的一环就是『管理账号』啦！因为整个系统都是你在管理的， 	并且所有的一般用户的申请，都必须要透过你的协助才行！所以...</td></tr> <tr><td><a href="0420quota.php.html">十四、磁盘配额(Quota)</a></td> 	<td>quota 就字面上的意思来看，呵呵！就是有多少『限额』的意思啦！如果是用在零用钱上面， 	就是『有多少零用钱一个月』的意思之类的。如果是在容量空间上面呢？...</td></tr> <tr><td><a href="0430cron.php.html">十五、例行性命令at、cron</a></td> 	<td>每个人或多或少都有一些约会或者是工作，有的工作是例行性的，例如每年一次的加薪、每个月一次的工作报告、 	每周一次的午餐会报、每天需要的打卡等等；有的工作....</td></tr> <tr><td><a href="0440processcontrol.php.html">十六、程序与资源管理</a></td> 	<td>基本上，使用 Linux 最好还是使用文字界面登入比较好！这是因为 X-Window 虽然对于新手来说， 	他的附加功能蛮强大的，不过，如果单纯使用 X-Window 来使用 Linux 的话...</td></tr> <tr align="center" bgcolor="#182448"><td colspan="2"><font color="FFFFFF">第五篇：Linux系统管理员</font></td></tr> <tr align="center" bgcolor="#182448"><td width="200"><font color="FFFFFF">章节标题</font></td><td><font color="FFFFFF">内容大纲</font></td></tr> <tr><td><a href="0510osloader.php.html">十七、开机流程与Loader</a></td> 	<td>开机不是只要单击电源钮而关机只要关掉电源钮就可以了吗？有何大学问？话是这样没错啦， 	但是由于 Linux 是一套多人多任务的操作系统，你难保你在关机时没有人在在线...</td></tr> <tr><td><a href="0520rpmtarball.php.html">十八、RPM与Tarball套件管理</a></td> 	<td>这真是一个很有趣的课题，为何需要升级套件？如果我的机器运作的好好的，那么我干嘛需要升级？通常我们升级的原因主要有三个...</td></tr> <tr><td><a href="0530srpm.php.html">十八、动手制作SRPM</a></td> 	<td>在上一节当中，我们介绍了 RPM 这个既可爱又可恨的家伙，RPM 的可爱在于他的数据库管理方式， 	很容易去查询与升级，而他的可恨呢？...</td></tr> <tr><td><a href="0540kernel-2.4.18.php.html">十九、核心编译与模块管理</a></td> 	<td>如果您已经从前面一路走来都没有休息的话，那么问您一个问题好了，那就是『什么是 Linux  	distribution ？』呵呵！应该还没有忘记吧？ Linux distribution...</td></tr> <tr><td><a href="0550setup.php.html">二十、基础系统设定指令</a></td> 	<td>我们在 Linux 系统开机流程的说明中提及了相当多次的系统配置文件案所在的目录，那就是 /etc/sysconfig  	这个目录啰，您可以手动的修改一下该目录里面的各个档案...</td></tr> <tr><td><a href="0560daemons.php.html">二十一、认识系统服务</a></td> 	<td>如果您常常上网去查看一些数据的话，尤其是关于 Unix-Like 的相关操作系统，如 FreeBSD, Unix,  	Linux 等等，应该会常常听到 daemons 这个字眼，那么 daemon 是什么东西呀...</td></tr> <tr><td><a href="0570syslog.php.html">二十二、分析登录档</a></td> 	<td>这部分是最容易被新手所忽略的，那就是详细而确实的纪录或者是备份系统的登录文件。什么是登录档呢？简单的说， 	就是记录系统活动记录的几个档案，例如：何时、何地、何人...</td></tr> <tr><td><a href="0580backup.php.html">二十三、Linux备份策略</a></td> 	<td>前面我们提到了相当多的 Linux 系统基础，这个时候我们再来谈一谈：『若您的系统由于不预期的伤害， 	导致系统发生错误，该如何修复？』这可是个相当大的问题呀...</td></tr> <tr><td><a href="0590xwindow.php.html">二十四、X Window设定</a></td> 	<td>在Unix-Like包括Linux等作业底下的图形界面通常被我们简称为X-Window啰，这个X-Window怎么来的？ 	他目前的版本是怎样？还有，X-Window主要是主从架构的(Server, Client)...</td></tr> <tr><td>二十五、连上Internet</td><td>这一篇是由于出版社主编的要求而加上的，是由服务器篇简化写成的，写的不好～所以我将他拿掉了！</td></tr> </tbody></table>  </div>  <hr><span class="text_history"> 2008/08/17：前两天突然想到，为啥我的文章经过修改后，相同版本的文章完整性就不见了？于是乎就将所有的同期文章汇整在一起！ ^_^<hr> </span>     </td>     <td style="width: 10px; font-size: 6px;">　</td></tr> <tr><td style="width: 10px; height: 6px;">　</td>     <td style="width: 850px; height: 6px;">　</td>     <td style="width: 10px; height: 6px;">　</td></tr> </tbody></table>  <span style="font-size: 80%;"><a href="http://vbird.dic.ksu.edu.tw/" target="_top" title="前往鸟哥的首页">http://vbird.dic.ksu.edu.tw/</a> 	is designed by <a href="mailto:vbird@mail.vbird.idv.tw" title="联络鸟哥(我不要广告信！)">VBird</a> 		during 2001-2011. <a href="http://www.ksu.edu.tw/" target="_blank">ksu.edu</a></span>    ﻿<div id="apDiv4">       <p>本网页主要以Firefox配合解析度 1024x768 作为设计依据&nbsp;&nbsp;&nbsp;&nbsp; 鸟哥自由软件整合应用研究室</p></div> </div> </div>  </center> </body></html> 
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf8">
+	<meta name="Author" content="VBird, 鸟哥">
+	<meta name="Description" content="基础学习篇第一版，经过校稿且部分编修后的内容">
+	<title>鸟哥的 Linux 私房菜 -- 鸟哥基础学习篇第一版的Mandrake内容</title>
+	<script src="../../script/SpryMenuBar.js" type="text/javascript"></script>
+	<script src="../../script/index.js" type="text/javascript"></script>
+	<link href="../../css/SpryMenuBarHorizontal.css" rel="stylesheet" type="text/css" />
+    <link href="../../css/main.css" rel="stylesheet" type="text/css" />
+</head>
+<body style="margin: 0pt; padding: 0pt;" class="table"onload="MM_preloadImages('image/title_19.png','image/title_26.png','image/title_27.png','image/title_28.png','image/title_06.png','image/title_08.png','image/title_10.png','image/title_12.png')">
+
+
+<!-- Copyright � 2005. Spidersoft Ltd -->
+<style>
+A.applink:hover {border: 2px dotted #DCE6F4;padding:2px;background-color:#ffff00;color:green;text-decoration:none}
+A.applink       {border: 2px dotted #DCE6F4;padding:2px;color:#2F5BFF;background:transparent;text-decoration:none}
+A.info          {color:#2F5BFF;background:transparent;text-decoration:none}
+A.info:hover    {color:green;background:transparent;text-decoration:underline}
+</style>
+<div style='BORDER: 1px solid #DCE6F4; MARGIN-TOP: 20px; MARGIN-BOTTOM: 20px; MARGIN-LEFT: 5px; MARGIN-RIGHT: 5px; PADDING: 5px; BACKGROUND-COLOR: #eef8ff;line-height:180%; COLOR: #000000; font-family: Arial; font-size: 8pt; width=100%; FILTER: progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr="#FFFFFFFF", EndColorStr="#F2F5FAFF");'>
+This page was saved using <a class="applink" href="http://www.spidersoft.com"><b>WebZIP 7.0.3.1030</b></a> <a class="applink" href="http://www.spidersoft.com"><b>offline browser</b></a>  (Unregistered) on  02/12/15 12:14:48.<br>
+<b>Address:</b> <a class="info" href="http://vbird.dic.ksu.edu.tw/linux_basic/Mandrake9.0/mandrake9.0.php">http://vbird.dic.ksu.edu.tw/linux_basic/Mandrake9.0/mandrake9.0.php</a><br>
+<b>Title:</b> 鸟哥的 Linux 私房菜 -- 鸟哥基础学习篇第一版的Mandrake内容 &nbsp;&bull;&nbsp; <b>Size:</b> 22698<br></div>
+<!-- /Copyright � 2005. Spidersoft Ltd -->
+
+
+<center>
+
+<!-- 这里是关于页首按钮处的按钮程序 -->
+<div id="apDiv5">
+<div> <LINK REL="SHORTCUT ICON" HREF="favicon.ico">
+<!-- ImageReady Slices (title3.ai) -->
+<table id="___01" width="898" height="81" border="0" align="center" cellpadding="0" cellspacing="0";>
+	<tr>
+		<td colspan="15">
+			<img src="image/title/title_01.png" width="900" height="1" alt=""></td>
+	</tr>
+	<tr>
+		<td rowspan="4" bgcolor="#182448"><p><img src="http://linux.vbird.org/cgi-bin/Count.cgi?dd=C&ft=5&sh=T&md=8&pad=Y&df=vbird.dic.ksu.edu.tw.dat" width="93" align="left" title="計數器" /></p>
+	    <p><font color="#FFFFFF" size="-1">since2012/04/23</font></p></td>
+		<td rowspan="4" align="left" valign="top"><a href="http://vbird.dic.ksu.edu.tw/"><img src="image/title/title_03.png" alt="" width="263" height="79" border="0"></a></td>
+		<td colspan="13">
+			<img src="image/title/title_04.png" alt="" width="535" height="9" border="0"></td>
+	</tr>
+	<tr>
+		<td rowspan="3">
+			<img src="image/title/title_05.png" alt="" width="53" height="70" border="0"></td>
+		<td colspan="2" align="left" valign="top"><a href="../0110whatislinux.php.html" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image51','','image/title/title_06.png',1)"><img src="image/title/title3_06.png" name="Image51" width="106" height="25" border="0" id="Image51" alt=""/></a></td>
+		<td rowspan="2">
+			<img src="image/title/title_07.png" alt="" width="27" height="37" border="0"></td>
+		<td colspan="3" align="left" valign="top"><a href="http://vbird.dic.ksu.edu.tw/linux_server/0110network_basic.php" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image52','','image/title/title_08.png',1)"><img src="image/title/title3_08.png" name="Image52" width="107" height="25" border="0" id="Image52" alt=""/></a></td>
+		<td rowspan="2">
+			<img src="image/title/title_09.png" alt="" width="37" height="37" border="0"></td>
+		<td colspan="2" align="left" valign="top"><a href="http://vbird.dic.ksu.edu.tw/about.php" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image53','','image/title/title_10.png',1)"><img src="image/title/title3_10.png" name="Image53" width="75" height="25" border="0" id="Image53" alt=""/></a></td>
+		<td rowspan="3">
+			<img src="image/title/title_11.png" alt="" width="35" height="70" border="0"></td>
+		<td align="left" valign="top"><a href="mailto:vbird@mail.vbird.idv.tw" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image54','','image/title/title_12.png',1)"><img src="image/title/title3_12.png" name="Image54" width="74" height="25" border="0" id="Image54" alt=""/></a></td>
+		<td rowspan="3">
+			<img src="image/title/title_13.png" alt="" width="21" height="70" border="0"></td>
+	</tr>
+	<tr>
+		<td colspan="2">
+			<img src="image/title/title_14.png" alt="" width="106" height="12" border="0"></td>
+		<td colspan="3">
+			<img src="image/title/title_15.png" alt="" width="107" height="12" border="0"></td>
+		<td colspan="2">
+			<img src="image/title/title_16.png" width="75" height="12" alt=""></td>
+		<td rowspan="2">
+			<img src="image/title/title_17.png" alt="" width="74" height="45" border="0"></td>
+	</tr>
+	<tr>
+		<td>
+			<img src="image/title/title_18.png" alt="" width="15" height="33" border="0"></td>
+		<td colspan="3" align="left" valign="top"><ul id="MenuBar1" class="MenuBarHorizontal">
+	  <li><a href="../linux_basic.php.html" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image44','','image/title/title_19.png',1)"><img src="image/title/title3_19.png" name="Image44" width="123" height="33" border="0" id="Image44" /></a>
+			    <ul>
+			      <li><a href="mandrake9.0.php.html" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image46','','image/title/title_26.png',1)"><img src="image/title/title_23.png" name="Image46" width="120" height="26" border="0" id="Image46" alt="" /></a></li>
+                  <li><a href="../fedora_4/fc4.php.html" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image47','','image/title/title_27.png',1)"><img src="image/title/title_24.png" name="Image47" width="120" height="26" border="0" id="Image47" alt="" /></a></li>
+                  <li><a href="../linux_basic.php.html" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image48','','image/title/title_28.png',1)"><img src="image/title/title_25.png" name="Image48" width="120" height="26" border="0" id="Image48" alt="" /></a></li>
+                </ul>
+		      </li>
+		</ul></td>
+		<td>
+			<img src="image/title/title_20.png" alt="" width="42" height="33" border="0"></td>
+		<td colspan="3" align="left" valign="top"><ul id="MenuBar2" class="MenuBarHorizontal">
+	  <li><a href="http://vbird.dic.ksu.edu.tw/linux_server/" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image45','','image/title/title_21.png',1)"><img src="image/title/title3_21.png" name="Image45" width="125" height="33" border="0" id="Image45" /></a>
+			    <ul>
+			      <li><a href="http://vbird.dic.ksu.edu.tw/linux_server/linux_redhat9/redhat9.php" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image43','','image/title/title_26.png',1)"><img src="image/title/title_23.png" name="Image43" width="120" height="26" border="0" id="Image43" alt=""/></a></li>
+			      <li><a href="http://vbird.dic.ksu.edu.tw/linux_server/centos4.php" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image49','','image/title/title_27.png',1)"><img src="image/title/title_24.png" name="Image49" width="120" height="26" border="0" id="Image49" alt="" /></a></li>
+			      <li><a href="http://vbird.dic.ksu.edu.tw/linux_server/" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image50','','image/title/title_28.png',1)"><img src="image/title/title_25.png" name="Image50" width="120" height="26" border="0" id="Image50" alt="" /></a></li>
+		        </ul>
+		      </li>
+		</ul></td>
+		<td>
+			<img src="image/title/title_22.png" alt="" width="47" height="33" border="0"></td>
+	</tr>
+	<tr>
+		<td>
+			<img src="image/title/Spacer.gif" width="101" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="263" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="53" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="15" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="91" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="27" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="5" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="42" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="60" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="37" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="28" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="47" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="35" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="74" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="22" height="1" alt=""></td>
+	</tr>
+</table>
+<!-- End ImageReady Slices -->
+<script type="text/javascript">
+<!--
+var MenuBar1 = new Spry.Widget.MenuBar("MenuBar1", {imgDown:"SpryAssets/SpryMenuBarDownHover.gif", imgRight:"SpryAssets/SpryMenuBarRightHover.gif"});
+var MenuBar2 = new Spry.Widget.MenuBar("MenuBar2", {imgDown:"SpryAssets/SpryMenuBarDownHover.gif", imgRight:"SpryAssets/SpryMenuBarRightHover.gif"});
+//-->
+</script></div>
+
+<table summary="本文内容的排版" style="width: 888px;" border="0" cellpadding="0" cellspacing="0">
+  <tbody><tr><td style="width: 10px; height: 6px;">　</td>
+    <td style="width: 850px; height: 6px;">　</td>
+    <td style="width: 10px; height: 6px;">　</td></tr>
+<tr><td style="width: 10px; ">　</td>
+    <td width="718">
+
+<!-- 本文的档头部分 -->
+<div style="text-align: center;">
+    <a href="mandrake9.0.php.html">
+    <span class="text_head0">鸟哥的第一本书的主要内容，以<span class="text_head_en"> Mandrake 9.0 </span>为例</span></a><br>
+</div>
+
+<!-- 本文的档头部分 -->
+<table class="head1" summary="排版：文章档头的说明"><tbody><tr><td class="head1">
+	这个部分的内容主要是来自于鸟哥第一版基础篇的内容。不过，因为年代久远，事实上与第一版的内容有点出入～
+	因为这是在第一版与第二版之间在经过编修后的内容了，所以，请大家不要拿这个部分来跟第一版的内容比对喔！
+	另外，这是鸟哥比较早期的文章，大约是在2001~2004年左右的文章，所以内容有部分已经确认有问题了，
+	列出来只是要让鸟哥未来能够知道文章的沿革，请大家拿最新版的内容来阅读比较好喔！ ^_^。
+	因为各网页的标头都有一个连结，按下各网页的连结就能够看到最新的文章了！以上！报告完毕！ ^_^
+</td></tr></tbody></table><br>
+
+<hr><img src="../images/logo.png" alt="大标题的图示" width="63" align="middle" height=56"><span class="text_h1">各文章的标题与大纲</span><br>
+<div class="block1">
+
+<table width="100%" bgcolor="lightyellow" border="1" cellpadding="3" cellspacing="0">
+<tbody><tr align="center" bgcolor="#182448"><td colspan="2"><font color="FFFFFF">第一篇：Linux的规划与安装</font></td></tr>
+<tr align="center" bgcolor="#182448"><td width="200"><font color="FFFFFF">章节标题</font></td><td><font color="FFFFFF">内容大纲</font></td></tr>
+<tr><td><a href="0110whatislinux.php.html">一、Linux是什么</a></td>
+	<td>早在 Linux 出现之前的二十年 ( 大约在 1970 年代 )， 就有一个相当稳定而成熟的操作系统存在了！那就是 Linux 
+	的老大哥『 Unix 』是也！怎么这么说呢？！他们这两个家伙有什么关系呀？...</td></tr>
+<tr><td><a href="0120howtolinux.php.html">一、Linux如何学习</a></td>
+	<td>其实，不论学什么系统，『从头学起』是很重要的！还记得你刚刚接触微软的 Windows 
+	都在干什么？还不就是由档案总管学起，然后慢慢的玩到控制台、玩到桌面管理...</td></tr>
+<tr><td><a href="0130designlinux.php.html">二、Linux主机规划</a></td>
+	<td>『什么？学 Linux 还得要玩硬件？！』呵呵！没错！Linux 与微软 Windows 在硬件之认知上有相当大不同的差异！
+	其实由前面『 Linux 是什么 』那个章节中您或许已经知道了， Linux...</td></tr>
+<tr><td><a href="0155installmdk.php.html">三、安装Mandrake9.0</a></td>
+	<td>由第二章的内容我们大致上可以了解：『Linux 主机的配备要求与 Linux 主机所提供的服务有关』，所以啰，要安装 Linux 
+	的第一步就是先进行 Linux 主机的未来蓝图规划啦！....</td></tr>
+<tr><td><a href="0160startlinux.php.html">四、首次开机与关机</a></td>
+	<td>啊开机就开机呀！怎么还有所谓的登入与离开呀！？呵呵！开什么玩笑，在 Linux 里面，正确的开关机可是很重要的！
+	因为，不正常的关机可能会导致整个系统的扇区错乱...</td></tr>
+<tr align="center" bgcolor="#182448"><td colspan="2"><font color="FFFFFF">第二篇：Linux档案、目录与磁盘格式</font></td></tr>
+<tr align="center" bgcolor="#182448"><td width="200"><font color="FFFFFF">章节标题</font></td><td><font color="FFFFFF">内容大纲</font></td></tr>
+<tr><td><a href="0210filepermission.php.html">五、Linux档案权限与目录配置</a></td>
+	<td>初次接触 Linux 的朋友大概会觉得很怪异，怎么『Linux 有这么多使用者，还分什么群组，有什么用？』。
+	这个『用户与群组』的功能可是相当健全而好用的一个安全防护...</td></tr>
+<tr><td><a href="0220filemanager.php.html">六、Linux档案与目录管理</a></td>
+	<td>由前一章节『Linux 的档案权限与目录配置』中约略了解到 Linux 的『树状目录』概念之后，
+	接下来就得要实际的来搞定一些基本的路径问题了！这些问题当中，最重要的莫过于『绝对路径...</td></tr>
+<tr><td><a href="0230filesystem.php.html">七、磁盘与硬件管理</a></td>
+	<td>我们在前面的档案权限介绍的章节当中，提到很多的权限与属性的观念，那么接下来要了解的是，
+	这些属性是记录在硬盘的那个地方？这里就要特别了解到 Linux 文件系统...</td></tr>
+<tr><td>八、文件系统之挂载</td><td>这个章节在后来已经与前一章(第七章)合并了！不再单独存在。鸟哥我也已经找不到档案了～
+	非常抱歉...</td></tr>
+<tr align="center" bgcolor="#182448"><td colspan="2"><font color="FFFFFF">第三篇：学习Shell</td></tr>
+<tr align="center" bgcolor="#182448"><td width="200"><font color="FFFFFF">章节标题</font></td><td><font color="FFFFFF">内容大纲</font></td></tr>
+<tr><td><a href="0310vi.php.html">九、vi字处理器</a></td>
+	<td>一个系统管理员至少应该要熟悉一种字处理软件，以方便未来的系统管理，
+	包括系统设定与架站时候的参数配置文件修订等等工作之进行。在 Unix-Like 系统中....</td></tr>
+<tr><td><a href="0320bash.php.html">十、认识BASH</a>
+	</td><td>这应该是个蛮有趣的话题：『什么是 Shell ？』相信只要摸过计算机，对于操作系统
+	（不论是 Linux 、 Unix 或者是 Windows ）有点概念的朋友们大多听过这个名词...</td></tr>
+<tr><td><a href="0240tarcompress.php.html">十一、压缩指令与正规表示法</a></td>
+	<td>您是否有过文件档案太大，导致无法以一片软盘将他复制完成的困扰？又，您是否有过，发现一个软件里面有好多档案，
+	这些档案要将他复制与携带都很不方便的问题？...</td></tr>
+<tr><td><a href="0340bashshell-scripts.php.html">十二、学习Shell script</a></td>
+	<td>这个问题可有趣的很了，我为什么要学习 scripts 呢？不要学可不可以呀！？呵呵！如果您只想要『会用』 
+	Linux 就好的话，那么这一个部分确实可以先跳过去不看也没关系，不过...</td></tr>
+<tr align="center" bgcolor="#182448"><td colspan="2"><font color="FFFFFF">第四篇：Linux使用者管理</font></td></tr>
+<tr align="center" bgcolor="#182448"><td width="200"><font color="FFFFFF">章节标题</font></td><td><font color="FFFFFF">内容大纲</font></td></tr>
+<tr><td><a href="0410accountmanager.php.html">十三、账号管理</a></td>
+	<td>管理员的工作中，相当重要的一环就是『管理账号』啦！因为整个系统都是你在管理的，
+	并且所有的一般用户的申请，都必须要透过你的协助才行！所以...</td></tr>
+<tr><td><a href="0420quota.php.html">十四、磁盘配额(Quota)</a></td>
+	<td>quota 就字面上的意思来看，呵呵！就是有多少『限额』的意思啦！如果是用在零用钱上面，
+	就是『有多少零用钱一个月』的意思之类的。如果是在容量空间上面呢？...</td></tr>
+<tr><td><a href="0430cron.php.html">十五、例行性命令at、cron</a></td>
+	<td>每个人或多或少都有一些约会或者是工作，有的工作是例行性的，例如每年一次的加薪、每个月一次的工作报告、
+	每周一次的午餐会报、每天需要的打卡等等；有的工作....</td></tr>
+<tr><td><a href="0440processcontrol.php.html">十六、程序与资源管理</a></td>
+	<td>基本上，使用 Linux 最好还是使用文字界面登入比较好！这是因为 X-Window 虽然对于新手来说，
+	他的附加功能蛮强大的，不过，如果单纯使用 X-Window 来使用 Linux 的话...</td></tr>
+<tr align="center" bgcolor="#182448"><td colspan="2"><font color="FFFFFF">第五篇：Linux系统管理员</font></td></tr>
+<tr align="center" bgcolor="#182448"><td width="200"><font color="FFFFFF">章节标题</font></td><td><font color="FFFFFF">内容大纲</font></td></tr>
+<tr><td><a href="0510osloader.php.html">十七、开机流程与Loader</a></td>
+	<td>开机不是只要单击电源钮而关机只要关掉电源钮就可以了吗？有何大学问？话是这样没错啦，
+	但是由于 Linux 是一套多人多任务的操作系统，你难保你在关机时没有人在在线...</td></tr>
+<tr><td><a href="0520rpmtarball.php.html">十八、RPM与Tarball套件管理</a></td>
+	<td>这真是一个很有趣的课题，为何需要升级套件？如果我的机器运作的好好的，那么我干嘛需要升级？通常我们升级的原因主要有三个...</td></tr>
+<tr><td><a href="0530srpm.php.html">十八、动手制作SRPM</a></td>
+	<td>在上一节当中，我们介绍了 RPM 这个既可爱又可恨的家伙，RPM 的可爱在于他的数据库管理方式，
+	很容易去查询与升级，而他的可恨呢？...</td></tr>
+<tr><td><a href="0540kernel-2.4.18.php.html">十九、核心编译与模块管理</a></td>
+	<td>如果您已经从前面一路走来都没有休息的话，那么问您一个问题好了，那就是『什么是 Linux 
+	distribution ？』呵呵！应该还没有忘记吧？ Linux distribution...</td></tr>
+<tr><td><a href="0550setup.php.html">二十、基础系统设定指令</a></td>
+	<td>我们在 Linux 系统开机流程的说明中提及了相当多次的系统配置文件案所在的目录，那就是 /etc/sysconfig 
+	这个目录啰，您可以手动的修改一下该目录里面的各个档案...</td></tr>
+<tr><td><a href="0560daemons.php.html">二十一、认识系统服务</a></td>
+	<td>如果您常常上网去查看一些数据的话，尤其是关于 Unix-Like 的相关操作系统，如 FreeBSD, Unix, 
+	Linux 等等，应该会常常听到 daemons 这个字眼，那么 daemon 是什么东西呀...</td></tr>
+<tr><td><a href="0570syslog.php.html">二十二、分析登录档</a></td>
+	<td>这部分是最容易被新手所忽略的，那就是详细而确实的纪录或者是备份系统的登录文件。什么是登录档呢？简单的说，
+	就是记录系统活动记录的几个档案，例如：何时、何地、何人...</td></tr>
+<tr><td><a href="0580backup.php.html">二十三、Linux备份策略</a></td>
+	<td>前面我们提到了相当多的 Linux 系统基础，这个时候我们再来谈一谈：『若您的系统由于不预期的伤害，
+	导致系统发生错误，该如何修复？』这可是个相当大的问题呀...</td></tr>
+<tr><td><a href="0590xwindow.php.html">二十四、X Window设定</a></td>
+	<td>在Unix-Like包括Linux等作业底下的图形界面通常被我们简称为X-Window啰，这个X-Window怎么来的？
+	他目前的版本是怎样？还有，X-Window主要是主从架构的(Server, Client)...</td></tr>
+<tr><td>二十五、连上Internet</td><td>这一篇是由于出版社主编的要求而加上的，是由服务器篇简化写成的，写的不好～所以我将他拿掉了！</td></tr>
+</tbody></table>
+
+</div>
+
+<hr><span class="text_history">
+2008/08/17：前两天突然想到，为啥我的文章经过修改后，相同版本的文章完整性就不见了？于是乎就将所有的同期文章汇整在一起！ ^_^<hr>
+</span>
+    </td>
+    <td style="width: 10px; font-size: 6px;">　</td></tr>
+<tr><td style="width: 10px; height: 6px;">　</td>
+    <td style="width: 850px; height: 6px;">　</td>
+    <td style="width: 10px; height: 6px;">　</td></tr>
+</tbody></table>
+
+<span style="font-size: 80%;"><a href="http://vbird.dic.ksu.edu.tw/" target="_top" title="前往鸟哥的首页">http://vbird.dic.ksu.edu.tw/</a>
+	is designed by <a href="mailto:vbird@mail.vbird.idv.tw" title="联络鸟哥(我不要广告信！)">VBird</a>
+		during 2001-2011. <a href="http://www.ksu.edu.tw/" target="_blank">ksu.edu</a></span>
+   ﻿<div id="apDiv4">
+      <p>本网页主要以Firefox配合解析度 1024x768 作为设计依据&nbsp;&nbsp;&nbsp;&nbsp; 鸟哥自由软件整合应用研究室</p></div>
+</div>
+</div>
+
+</center>
+</body></html>

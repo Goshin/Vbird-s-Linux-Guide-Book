@@ -1,1 +1,203 @@
-﻿<!DOCTYPE HTML PUBLIC "-//w3c//dtd html 4.0 transitional//en"> <html><head>      <meta http-equiv="Content-Type" content="text/html; charset=utf8">    <meta name="Author" content="VBird">    <title>VBird's Linux - Before setup Linux</title> <style>    <!-- 	body{   background-image:url('http://linux.vbird.org/images/VBirdLinux.jpg'); 		background-ATTACHMENT:FIXED}    --> </style> </head><body>   <!-- Copyright � 2005. Spidersoft Ltd --> <style> A.applink:hover {border: 2px dotted #DCE6F4;padding:2px;background-color:#ffff00;color:green;text-decoration:none} A.applink       {border: 2px dotted #DCE6F4;padding:2px;color:#2F5BFF;background:transparent;text-decoration:none} A.info          {color:#2F5BFF;background:transparent;text-decoration:none} A.info:hover    {color:green;background:transparent;text-decoration:underline} </style> <div style='BORDER: 1px solid #DCE6F4; MARGIN-TOP: 20px; MARGIN-BOTTOM: 20px; MARGIN-LEFT: 5px; MARGIN-RIGHT: 5px; PADDING: 5px; BACKGROUND-COLOR: #eef8ff;line-height:180%; COLOR: #000000; font-family: Arial; font-size: 8pt; width=100%; FILTER: progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr="#FFFFFFFF", EndColorStr="#F2F5FAFF");'> This page was saved using <a class="applink" href="http://www.spidersoft.com"><b>WebZIP 7.0.3.1030</b></a> <a class="applink" href="http://www.spidersoft.com"><b>offline browser</b></a>  (Unregistered) on  02/12/15 12:14:49.<br> <b>Address:</b> <a class="info" href="http://vbird.dic.ksu.edu.tw/linux_basic/redhat6.1/linux_02before_setup.php">http://vbird.dic.ksu.edu.tw/linux_basic/redhat6.1/linux_02before_setup.php</a><br> <b>Title:</b> VBird's Linux - Before setup Linux &nbsp;&bull;&nbsp; <b>Size:</b> 13796<br></div> <!-- /Copyright � 2005. Spidersoft Ltd -->   <center><b><font color="#3333ff"><font size="+2"><font face="标楷体">鸟哥的</font><font face="Times New Roman,Times"> Linux </font><font face="标楷体">与</font><font face="Times New Roman,Times"> ADSL </font><font face="标楷体">私房菜</font></font></font></b> <br> <a href="http://linux.vbird.org/" target="_top"><img src="linux_02before_setup_files/VBirdTitle2.jpg" nosave="" width="90" border="0" height="25"></a> <a href="http://linux.vbird.org/linux_basic"><img src="linux_02before_setup_files/icon_system.gif" nosave="" width="90" border="0" height="25"></a> <a href="http://linux.vbird.org/linux_server"><img src="linux_02before_setup_files/icon_server.gif" nosave="" width="90" border="0" height="25"></a> <a href="http://linux.vbird.org/linux_security"><img src="linux_02before_setup_files/icon_security.jpg" nosave="" width="90" border="0" height="25"></a> <a href="http://phorum.vbird.org/" target="_blank"><img src="linux_02before_setup_files/icon_forums.gif" nosave="" width="90" border="0" height="25"></a> <a href="http://linux.vbird.org/adsl"><img src="linux_02before_setup_files/icon_adsl.gif" nosave="" width="90" border="0" height="25"></a> <br> <hr width="100%"> </center> <center><font color="#3333ff"><font size="+2"><font face="标楷体">在实际的安装 </font><font face="Times New Roman Baltic">Linux</font><font face="标楷体"> 之前，有些事情.......</font></font></font></center>  <div align="right"><font face="新细明体"><font color="#3333ff"><font size="-1">最近更新日期：2001/07/17</font></font></font></div>  <blockquote><font color="#000000">虽然说简易的 Linux 安装及设定并不很难（如果不涉及繁杂的企业网络架构，及为了避免黑客入侵而设置的强大防火墙），但是你也总得知道一下要安装 Linux 之前的一些前置作业吧！有哪些需要注意的事情呢？</font> <ol> <li> <font color="#000000"><a href="#hard">认识你的硬件配备</a>；</font></li>  <li> <font color="#000000"><a href="#linuxdistribution">选择所需要的 Linux 来源（distribution）</a>；</font></li>  <li> <font color="#000000"><a href="#work">你要用 Linux 做啥？功能有哪些？</a></font></li> </ol> </blockquote>  <hr width="100%"><a name="hard"></a><font face="标楷体"><font color="#000099"><font size="+1">认识硬件：</font></font></font> <blockquote><font color="#000000">基本上 Linux 所需要的硬件资源是很低的，只要你有 Pentun-133 以上等级的机器就可以跑得很顺畅啰！所以，若你手上有升级后要汰换的设备，千万别急着丢掉，可以尝试着组装一下，然后来玩玩 Linux 呀！</font> <p><font color="#000000">不过，也由于 Linux 是近来才崛起的梁山泊好汉，所以他可以支持的硬件相对的是比 Windows 少上很多的！如果你手上的设备是很旧（老古董的两倍数光驱...），或者很新（最新的 Pentun-4，还有 Geforce 3等等的设备）的咚咚，是非常有可能无法进行 Linux 的安装的！因此，你需要了解一下你的硬件。要了解你的硬件是否被 Linux 支持，你可以到下面这个网站上去看看，相信会有所帮助的！</font> </p><ul> <li> <font color="#000000"><a href="http://www.linux.org.tw/hardware/index.php3" target="_blan">台湾 Linux/FreeBSD 硬件支持数据库</a></font></li> </ul> </blockquote>  <p><br> </p><hr width="100%"><font face="标楷体"><font color="#000099"><font size="+1">建议的硬件配备：</font></font></font> <blockquote><font color="#000000">如果你只是需要 Linux 来做 NAT 功能的主机，也就是类似 『IP分享器』 的功能的话，而且用这台 NAT 主机的 PC 数并不多，那你只需要 Pentun-166, 32MB RAM, 及一块不太特殊的显示适配器及网络卡也就够了！当然，硬件的需求与你服务的对象多寡是有相当的相关性的！大致的需求如下：</font> <ul> <li> <font color="#000099">CPU（微处理器）</font><font color="#000000">：</font><font color="#000099">Pentun-166</font><font color="#000000"> 以上等级就可以了。不过强烈建议 K6-2 300 以上等级的CPU，（不过，这个网页的目的中还不用使用到 PIII 以上等级的就是了！）当然了，CPU的等级是与你旧有的主板兼容程度是有相关性的；</font></li>  <br>&nbsp; <li> <font color="#000099">RAM（内存）</font><font color="#000000">：</font><font color="#000099">32MB 以上</font><font color="#000000">。其实除了 CPU 之外，在 Linux 系统中最重要的应该是内存的大小了，因为如果你的服务开得太多，而你的内存不够大，势必要使用类似 Windows 的『虚拟内存』的东西，这东西可操硬盘的紧！所以虽然内存的需求是 32MB 就可以了，不过强烈建议最好是有 64MB 以上比较好，尤其是如果你还要玩 X-Window的话！</font></li>  <br>&nbsp; <li> <font color="#000099">Harddisk（硬盘）</font><font color="#000000">：最好有</font><font color="#000099"> 2GB 以上</font><font color="#000000">。当然是越大越好，最好至少为 3GB 的硬盘！</font></li>  <br>&nbsp; <li> <font color="#000099">VGA（显示适配器）</font><font color="#000000">：最好是 S3 早期的显示适配器。 Linux 对于最新的显示适配器支持的并不是很足够，而且通常我是建议人家使用淘汰的零件当主机使用，并且如果你又不玩 X-Window 的话，一块 1MB 内存的 </font><font color="#000099">S3-775 显示适配器</font><font color="#000000">就够了！重要的是， Linux 对于 S3 旧的 VGA 卡（如 Virge 系列）支持的程度相当的成熟，所以我推荐他！</font></li>  <br>&nbsp; <li> <font color="#000099">NetCard（网络卡）</font><font color="#000000">：一块极其普通的 10/100 MB 的网卡就可以了，我是建议用具有 </font><font color="#000099">RTL8139</font><font color="#000000">或者是</font><font color="#000099">NE2000</font><font color="#000000">兼容的芯片的网卡，因为 Linux 本身就有支持，不用再额外加挂驱动程序！强烈的建议使用 </font><font color="#000099">Realtek RTL8139 芯片的 PCI 接口网络卡</font><font color="#000000">，例如劲驹的网络卡，便宜又蛮好用的！</font></li>  <br>&nbsp; <li> <font color="#000099">光盘、软盘、键盘与鼠标</font><font color="#000000">：不要太旧的就可以了。（基本上除了键盘之外，其他的装置都是非必备的，以鸟哥为例，在安装 Linux 的时候先拿别部计算机的光驱、软盘驱动器与鼠标来安装，等到安装完毕之后，关机，将所有的装置拔掉，只要剩下硬盘与电源供应器就可以啦！，等到所有的设定都完成之后，连屏幕都可以搬走了！剩下的 Linux 会自动搞定！因为通常服务器这东西就是平时没事不要去动他是最好的！）</font></li> </ul> </blockquote>  <hr width="100%"><a name="linuxdistribution"></a><font color="#000099"><font size="+1"><font face="标楷体">所需要的 </font><font face="Times New Roman Baltic">Linux distribution：</font></font></font> <blockquote><font color="#000000">由于 Linux 只是一种系统核心，要搭配其他的组件才能作很多的动作，然而由于开发者的不同，产生很多种不甚相同的操作系统（虽然都是 Linux），各操作系统是各有各的好，我们也不用去评论他，目前我是使用 Redhat 这一个</font><font color="#000099"> distribution</font><font color="#000000">。那去哪里下载这些程序呢？在下列的各 FTP 站中都有提供下载，不过一个档案都要 600MB 以上，而且因为提供的是 ISO 档（也就是刻录后的档案）所以也要有刻录机才行！在下列的 FTP 站中，进入 RedHat （或 distribution）目录，找 iso 目录，这个 iso 目录下的咚咚（通常档名是 *.iso 文件）就是 Redhat 的光盘数据啦！目前 Redhat 已经出到 7.X 版了，而且在安全的防护上也越来越强！不过，个人还是比较偏好 </font><font color="#000099">Redhat 6.1 </font><font color="#000000">版这个接口，所以我们的范例大多以 6.1 版来做说明！</font> <ul> <li> <font color="#000099"><a href="ftp://ftp.nsysu.edu.tw/pub/Linux" target="_blank">ftp://ftp.nsysu.edu.tw/pub/Linux</a></font></li>  <li> <font color="#000099"><a href="ftp://ftp.csie.ncu.edu.tw/OS/Linux" target="_blank">ftp://ftp.csie.ncu.edu.tw/OS/Linux</a></font></li>  <li> <font color="#000099"><a href="ftp://ftp.nctu.edu.tw/" target="_blank">ftp://ftp.nctu.edu.tw</a></font></li> </ul> <font color="#000000">因为在这个网页中我是使用 Linux RedHat 6.1 版本为范例（因为懒得再去下载最新的咚咚），所以我也提供下载的档案在这里，这个档案是以 Nero 刻录程序烧成的，所以你可以由 </font><font color="#000099">Nero</font><font color="#000000"> 刻录完成可开机光盘！</font> <br><font color="#000000">当然啰，目前市面上关于 Linux 的书籍很多，其中均会附上 Linux 的可开机光盘，那也是一种取得的方法！</font></blockquote>  <hr width="100%"><a name="work"></a><font face="标楷体"><font color="#000099"><font size="+1">你要的服务种类与硬盘规划：</font></font></font> <blockquote><font color="#000000">通常一般人架设 Linux 都是为了架站，这个网页的目的也是，所以这时你要想一想你所要开放的服务有哪些（所谓的服务就是你这部 Linux 主机的功能啦）？最常见的服务有：</font><font color="#660000">mail server 、 www server 、 FTP server 、 NAT server </font><font color="#000000">等。 如果你只是要使用在你家里（以鸟哥为例，小弟家中连同主机共有四部计算机），而需要的项目仅有、NAT server、Mail server 及 Web  server，那所需要的硬件需求则真的是很低啦！上面提到的最低配备硬件就已经很足够了！不过，若你想要使用在小型的局域网络内（可能服务的计算机数有 20台以上），由于当客户端同时连上来的时候，系统会非常的忙碌，因此就需要比较大的内存及比较好的运算能力之 CPU 了！</font> <p><font color="#000099">打造 Windows 与 Linux 共存的环境</font><font color="#000000">：但是因为一般硬件对于 Windows 的支持度比较足够，你也希望这架机器在不使用 Linux 的情况下还能以 Windows 系统作业，这时你就需要使用多重引导选单了！ Linux 本身就附上一个很不错的多重引导程序，叫做 </font><font color="#000099">LILO</font><font color="#000000"> ，如果你需要两个以上的操作系统在你这台主机上的话，例如 Windows98 与 Linux 共存，那你必须先安装 </font><font color="#3333ff">Windows98 再灌 Linux 系统</font><font color="#000000">就可以了！ 不过这涉及硬盘规划的问题，如果你的硬盘有 6GB ，那你可以先以 DOS 的 Fdisk 或其他的分割程序如 SPFdisk 进行硬盘的划分。仅割出 Windows 要的扇区就好。例如你要分 1GB 给 windows ，那以 Fdisk 分割一个 1GB 的主分割就好了！其他的等 Linux 灌的时候再弄就可以啦！这部分我会在后面再提到！这里不懂没关系！</font></p></blockquote>  <hr width="100%"><font face="标楷体"><font color="#000099"><font size="+1">鸟哥的范例：</font></font></font> <blockquote><font color="#000000">这里提供鸟哥的主机范例：</font> <ul> <li> <font color="#000000">硬件：Pentun-166MMX, 64MB RAM, 6GB Harddisk, S3 Virge VGA, RTL 8139 Netcard, 20X CD-ROM ...</font></li>  <li> <font color="#000000">系统：提供多重引导（Windows+Linux并存）。 6GB 硬盘中有 1GB 给 Windows98&nbsp; 其他 5GB 为 RedHat 6.1</font></li>  <li> <font color="#000000">对外联机： ADSL 浮动式 IP</font></li>  <li> <font color="#000000">服务：Mail server, Web server, NAT server, 及 Samba server</font></li> </ul> </blockquote> <font face="新细明体"><font color="#3333ff"><font size="-1">2002/ 01/01以来统计人数</font></font></font> <br><img src="linux_02before_setup_files/Count.gif" nosave="" width="60" align="ABSCENTER" height="15"> <hr width="100%"> <center> <a href="http://linux.vbird.org/" target="_top"><img src="linux_02before_setup_files/VBirdTitle2.jpg" nosave="" width="90" border="0" height="25"></a> <a href="http://linux.vbird.org/linux_basic"><img src="linux_02before_setup_files/icon_system.gif" nosave="" width="90" border="0" height="25"></a> <a href="http://linux.vbird.org/linux_server"><img src="linux_02before_setup_files/icon_server.gif" nosave="" width="90" border="0" height="25"></a> <a href="http://linux.vbird.org/linux_security"><img src="linux_02before_setup_files/icon_security.jpg" nosave="" width="90" border="0" height="25"></a> <a href="http://phorum.vbird.org/" target="_blank"><img src="linux_02before_setup_files/icon_forums.gif" nosave="" width="90" border="0" height="25"></a> <a href="http://linux.vbird.org/adsl"><img src="linux_02before_setup_files/icon_adsl.gif" nosave="" width="90" border="0" height="25"></a> <br><font color="#000066"><font size="-1">Designed by <a href="mailto:vbird@mail.vbird.idv.tw">VBird</a> during 2001-2004.&nbsp; Aerosol Lab.</font></font></center> </body></html> 
+﻿<!DOCTYPE HTML PUBLIC "-//w3c//dtd html 4.0 transitional//en">
+<html><head>
+
+
+   <meta http-equiv="Content-Type" content="text/html; charset=utf8">
+   <meta name="Author" content="VBird">
+   <title>VBird's Linux - Before setup Linux</title>
+<style>
+   <!--
+	body{   background-image:url('http://linux.vbird.org/images/VBirdLinux.jpg');
+		background-ATTACHMENT:FIXED}
+   -->
+</style>
+</head><body>
+
+
+<!-- Copyright � 2005. Spidersoft Ltd -->
+<style>
+A.applink:hover {border: 2px dotted #DCE6F4;padding:2px;background-color:#ffff00;color:green;text-decoration:none}
+A.applink       {border: 2px dotted #DCE6F4;padding:2px;color:#2F5BFF;background:transparent;text-decoration:none}
+A.info          {color:#2F5BFF;background:transparent;text-decoration:none}
+A.info:hover    {color:green;background:transparent;text-decoration:underline}
+</style>
+<div style='BORDER: 1px solid #DCE6F4; MARGIN-TOP: 20px; MARGIN-BOTTOM: 20px; MARGIN-LEFT: 5px; MARGIN-RIGHT: 5px; PADDING: 5px; BACKGROUND-COLOR: #eef8ff;line-height:180%; COLOR: #000000; font-family: Arial; font-size: 8pt; width=100%; FILTER: progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr="#FFFFFFFF", EndColorStr="#F2F5FAFF");'>
+This page was saved using <a class="applink" href="http://www.spidersoft.com"><b>WebZIP 7.0.3.1030</b></a> <a class="applink" href="http://www.spidersoft.com"><b>offline browser</b></a>  (Unregistered) on  02/12/15 12:14:49.<br>
+<b>Address:</b> <a class="info" href="http://vbird.dic.ksu.edu.tw/linux_basic/redhat6.1/linux_02before_setup.php">http://vbird.dic.ksu.edu.tw/linux_basic/redhat6.1/linux_02before_setup.php</a><br>
+<b>Title:</b> VBird's Linux - Before setup Linux &nbsp;&bull;&nbsp; <b>Size:</b> 13796<br></div>
+<!-- /Copyright � 2005. Spidersoft Ltd -->
+
+
+<center><b><font color="#3333ff"><font size="+2"><font face="标楷体">鸟哥的</font><font face="Times New Roman,Times"> Linux </font><font face="标楷体">与</font><font face="Times New Roman,Times"> ADSL </font><font face="标楷体">私房菜</font></font></font></b>
+<br>
+<a href="http://linux.vbird.org/" target="_top"><img src="linux_02before_setup_files/VBirdTitle2.jpg" nosave="" width="90" border="0" height="25"></a>
+<a href="http://linux.vbird.org/linux_basic"><img src="linux_02before_setup_files/icon_system.gif" nosave="" width="90" border="0" height="25"></a>
+<a href="http://linux.vbird.org/linux_server"><img src="linux_02before_setup_files/icon_server.gif" nosave="" width="90" border="0" height="25"></a>
+<a href="http://linux.vbird.org/linux_security"><img src="linux_02before_setup_files/icon_security.jpg" nosave="" width="90" border="0" height="25"></a>
+<a href="http://phorum.vbird.org/" target="_blank"><img src="linux_02before_setup_files/icon_forums.gif" nosave="" width="90" border="0" height="25"></a>
+<a href="http://linux.vbird.org/adsl"><img src="linux_02before_setup_files/icon_adsl.gif" nosave="" width="90" border="0" height="25"></a>
+<br>
+<hr width="100%">
+</center>
+<center><font color="#3333ff"><font size="+2"><font face="标楷体">在实际的安装
+</font><font face="Times New Roman Baltic">Linux</font><font face="标楷体">
+之前，有些事情.......</font></font></font></center>
+
+<div align="right"><font face="新细明体"><font color="#3333ff"><font size="-1">最近更新日期：2001/07/17</font></font></font></div>
+
+<blockquote><font color="#000000">虽然说简易的 Linux 安装及设定并不很难（如果不涉及繁杂的企业网络架构，及为了避免黑客入侵而设置的强大防火墙），但是你也总得知道一下要安装
+Linux 之前的一些前置作业吧！有哪些需要注意的事情呢？</font>
+<ol>
+<li>
+<font color="#000000"><a href="#hard">认识你的硬件配备</a>；</font></li>
+
+<li>
+<font color="#000000"><a href="#linuxdistribution">选择所需要的 Linux 来源（distribution）</a>；</font></li>
+
+<li>
+<font color="#000000"><a href="#work">你要用 Linux 做啥？功能有哪些？</a></font></li>
+</ol>
+</blockquote>
+
+<hr width="100%"><a name="hard"></a><font face="标楷体"><font color="#000099"><font size="+1">认识硬件：</font></font></font>
+<blockquote><font color="#000000">基本上 Linux 所需要的硬件资源是很低的，只要你有
+Pentun-133 以上等级的机器就可以跑得很顺畅啰！所以，若你手上有升级后要汰换的设备，千万别急着丢掉，可以尝试着组装一下，然后来玩玩
+Linux 呀！</font>
+<p><font color="#000000">不过，也由于 Linux 是近来才崛起的梁山泊好汉，所以他可以支持的硬件相对的是比
+Windows 少上很多的！如果你手上的设备是很旧（老古董的两倍数光驱...），或者很新（最新的
+Pentun-4，还有 Geforce 3等等的设备）的咚咚，是非常有可能无法进行 Linux
+的安装的！因此，你需要了解一下你的硬件。要了解你的硬件是否被 Linux 支持，你可以到下面这个网站上去看看，相信会有所帮助的！</font>
+</p><ul>
+<li>
+<font color="#000000"><a href="http://www.linux.org.tw/hardware/index.php3" target="_blan">台湾
+Linux/FreeBSD 硬件支持数据库</a></font></li>
+</ul>
+</blockquote>
+
+<p><br>
+</p><hr width="100%"><font face="标楷体"><font color="#000099"><font size="+1">建议的硬件配备：</font></font></font>
+<blockquote><font color="#000000">如果你只是需要 Linux 来做 NAT 功能的主机，也就是类似
+『IP分享器』 的功能的话，而且用这台 NAT 主机的 PC 数并不多，那你只需要
+Pentun-166, 32MB RAM, 及一块不太特殊的显示适配器及网络卡也就够了！当然，硬件的需求与你服务的对象多寡是有相当的相关性的！大致的需求如下：</font>
+<ul>
+<li>
+<font color="#000099">CPU（微处理器）</font><font color="#000000">：</font><font color="#000099">Pentun-166</font><font color="#000000">
+以上等级就可以了。不过强烈建议 K6-2 300 以上等级的CPU，（不过，这个网页的目的中还不用使用到
+PIII 以上等级的就是了！）当然了，CPU的等级是与你旧有的主板兼容程度是有相关性的；</font></li>
+
+<br>&nbsp;
+<li>
+<font color="#000099">RAM（内存）</font><font color="#000000">：</font><font color="#000099">32MB
+以上</font><font color="#000000">。其实除了 CPU 之外，在 Linux 系统中最重要的应该是内存的大小了，因为如果你的服务开得太多，而你的内存不够大，势必要使用类似
+Windows 的『虚拟内存』的东西，这东西可操硬盘的紧！所以虽然内存的需求是
+32MB 就可以了，不过强烈建议最好是有 64MB 以上比较好，尤其是如果你还要玩
+X-Window的话！</font></li>
+
+<br>&nbsp;
+<li>
+<font color="#000099">Harddisk（硬盘）</font><font color="#000000">：最好有</font><font color="#000099">
+2GB 以上</font><font color="#000000">。当然是越大越好，最好至少为 3GB 的硬盘！</font></li>
+
+<br>&nbsp;
+<li>
+<font color="#000099">VGA（显示适配器）</font><font color="#000000">：最好是
+S3 早期的显示适配器。 Linux 对于最新的显示适配器支持的并不是很足够，而且通常我是建议人家使用淘汰的零件当主机使用，并且如果你又不玩
+X-Window 的话，一块 1MB 内存的 </font><font color="#000099">S3-775 显示适配器</font><font color="#000000">就够了！重要的是，
+Linux 对于 S3 旧的 VGA 卡（如 Virge 系列）支持的程度相当的成熟，所以我推荐他！</font></li>
+
+<br>&nbsp;
+<li>
+<font color="#000099">NetCard（网络卡）</font><font color="#000000">：一块极其普通的
+10/100 MB 的网卡就可以了，我是建议用具有 </font><font color="#000099">RTL8139</font><font color="#000000">或者是</font><font color="#000099">NE2000</font><font color="#000000">兼容的芯片的网卡，因为
+Linux 本身就有支持，不用再额外加挂驱动程序！强烈的建议使用
+</font><font color="#000099">Realtek
+RTL8139 芯片的 PCI 接口网络卡</font><font color="#000000">，例如劲驹的网络卡，便宜又蛮好用的！</font></li>
+
+<br>&nbsp;
+<li>
+<font color="#000099">光盘、软盘、键盘与鼠标</font><font color="#000000">：不要太旧的就可以了。（基本上除了键盘之外，其他的装置都是非必备的，以鸟哥为例，在安装
+Linux 的时候先拿别部计算机的光驱、软盘驱动器与鼠标来安装，等到安装完毕之后，关机，将所有的装置拔掉，只要剩下硬盘与电源供应器就可以啦！，等到所有的设定都完成之后，连屏幕都可以搬走了！剩下的
+Linux 会自动搞定！因为通常服务器这东西就是平时没事不要去动他是最好的！）</font></li>
+</ul>
+</blockquote>
+
+<hr width="100%"><a name="linuxdistribution"></a><font color="#000099"><font size="+1"><font face="标楷体">所需要的
+</font><font face="Times New Roman Baltic">Linux
+distribution：</font></font></font>
+<blockquote><font color="#000000">由于 Linux 只是一种系统核心，要搭配其他的组件才能作很多的动作，然而由于开发者的不同，产生很多种不甚相同的操作系统（虽然都是
+Linux），各操作系统是各有各的好，我们也不用去评论他，目前我是使用 Redhat
+这一个</font><font color="#000099"> distribution</font><font color="#000000">。那去哪里下载这些程序呢？在下列的各
+FTP 站中都有提供下载，不过一个档案都要 600MB 以上，而且因为提供的是 ISO
+档（也就是刻录后的档案）所以也要有刻录机才行！在下列的 FTP 站中，进入 RedHat
+（或 distribution）目录，找 iso 目录，这个 iso 目录下的咚咚（通常档名是
+*.iso 文件）就是 Redhat 的光盘数据啦！目前 Redhat 已经出到 7.X 版了，而且在安全的防护上也越来越强！不过，个人还是比较偏好
+</font><font color="#000099">Redhat
+6.1 </font><font color="#000000">版这个接口，所以我们的范例大多以 6.1 版来做说明！</font>
+<ul>
+<li>
+<font color="#000099"><a href="ftp://ftp.nsysu.edu.tw/pub/Linux" target="_blank">ftp://ftp.nsysu.edu.tw/pub/Linux</a></font></li>
+
+<li>
+<font color="#000099"><a href="ftp://ftp.csie.ncu.edu.tw/OS/Linux" target="_blank">ftp://ftp.csie.ncu.edu.tw/OS/Linux</a></font></li>
+
+<li>
+<font color="#000099"><a href="ftp://ftp.nctu.edu.tw/" target="_blank">ftp://ftp.nctu.edu.tw</a></font></li>
+</ul>
+<font color="#000000">因为在这个网页中我是使用 Linux RedHat 6.1 版本为范例（因为懒得再去下载最新的咚咚），所以我也提供下载的档案在这里，这个档案是以
+Nero 刻录程序烧成的，所以你可以由 </font><font color="#000099">Nero</font><font color="#000000">
+刻录完成可开机光盘！</font>
+<br><font color="#000000">当然啰，目前市面上关于 Linux 的书籍很多，其中均会附上
+Linux 的可开机光盘，那也是一种取得的方法！</font></blockquote>
+
+<hr width="100%"><a name="work"></a><font face="标楷体"><font color="#000099"><font size="+1">你要的服务种类与硬盘规划：</font></font></font>
+<blockquote><font color="#000000">通常一般人架设 Linux 都是为了架站，这个网页的目的也是，所以这时你要想一想你所要开放的服务有哪些（所谓的服务就是你这部
+Linux 主机的功能啦）？最常见的服务有：</font><font color="#660000">mail
+server 、 www server 、 FTP server 、 NAT server </font><font color="#000000">等。
+如果你只是要使用在你家里（以鸟哥为例，小弟家中连同主机共有四部计算机），而需要的项目仅有、NAT
+server、Mail server 及 Web 
+server，那所需要的硬件需求则真的是很低啦！上面提到的最低配备硬件就已经很足够了！不过，若你想要使用在小型的局域网络内（可能服务的计算机数有
+20台以上），由于当客户端同时连上来的时候，系统会非常的忙碌，因此就需要比较大的内存及比较好的运算能力之
+CPU 了！</font>
+<p><font color="#000099">打造 Windows 与 Linux 共存的环境</font><font color="#000000">：但是因为一般硬件对于
+Windows 的支持度比较足够，你也希望这架机器在不使用 Linux 的情况下还能以
+Windows 系统作业，这时你就需要使用多重引导选单了！ Linux 本身就附上一个很不错的多重引导程序，叫做
+</font><font color="#000099">LILO</font><font color="#000000">
+，如果你需要两个以上的操作系统在你这台主机上的话，例如 Windows98 与 Linux
+共存，那你必须先安装 </font><font color="#3333ff">Windows98 再灌 Linux
+系统</font><font color="#000000">就可以了！ 不过这涉及硬盘规划的问题，如果你的硬盘有
+6GB ，那你可以先以 DOS 的 Fdisk 或其他的分割程序如 SPFdisk 进行硬盘的划分。仅割出
+Windows 要的扇区就好。例如你要分 1GB 给 windows ，那以 Fdisk 分割一个 1GB
+的主分割就好了！其他的等 Linux 灌的时候再弄就可以啦！这部分我会在后面再提到！这里不懂没关系！</font></p></blockquote>
+
+<hr width="100%"><font face="标楷体"><font color="#000099"><font size="+1">鸟哥的范例：</font></font></font>
+<blockquote><font color="#000000">这里提供鸟哥的主机范例：</font>
+<ul>
+<li>
+<font color="#000000">硬件：Pentun-166MMX, 64MB RAM, 6GB Harddisk, S3 Virge
+VGA, RTL 8139 Netcard, 20X CD-ROM ...</font></li>
+
+<li>
+<font color="#000000">系统：提供多重引导（Windows+Linux并存）。 6GB 硬盘中有
+1GB 给 Windows98&nbsp; 其他 5GB 为 RedHat 6.1</font></li>
+
+<li>
+<font color="#000000">对外联机： ADSL 浮动式 IP</font></li>
+
+<li>
+<font color="#000000">服务：Mail server, Web server, NAT server, 及 Samba
+server</font></li>
+</ul>
+</blockquote>
+<font face="新细明体"><font color="#3333ff"><font size="-1">2002/ 01/01以来统计人数</font></font></font>
+<br><img src="linux_02before_setup_files/Count.gif" nosave="" width="60" align="ABSCENTER" height="15">
+<hr width="100%">
+<center>
+<a href="http://linux.vbird.org/" target="_top"><img src="linux_02before_setup_files/VBirdTitle2.jpg" nosave="" width="90" border="0" height="25"></a>
+<a href="http://linux.vbird.org/linux_basic"><img src="linux_02before_setup_files/icon_system.gif" nosave="" width="90" border="0" height="25"></a>
+<a href="http://linux.vbird.org/linux_server"><img src="linux_02before_setup_files/icon_server.gif" nosave="" width="90" border="0" height="25"></a>
+<a href="http://linux.vbird.org/linux_security"><img src="linux_02before_setup_files/icon_security.jpg" nosave="" width="90" border="0" height="25"></a>
+<a href="http://phorum.vbird.org/" target="_blank"><img src="linux_02before_setup_files/icon_forums.gif" nosave="" width="90" border="0" height="25"></a>
+<a href="http://linux.vbird.org/adsl"><img src="linux_02before_setup_files/icon_adsl.gif" nosave="" width="90" border="0" height="25"></a>
+<br><font color="#000066"><font size="-1">Designed by <a href="mailto:vbird@mail.vbird.idv.tw">VBird</a>
+during 2001-2004.&nbsp; Aerosol Lab.</font></font></center>
+</body></html>

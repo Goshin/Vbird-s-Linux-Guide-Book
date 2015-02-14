@@ -1,1 +1,407 @@
-<html><head>  	<meta http-equiv="Content-Type" content="text/html; charset=utf8">  	<meta name="Author" content="lee">  	<meta name="Description" content="首次进入 Linux 的启动、关机与命令下达方式的介绍">  	<title>鸟哥的 Linux 私房菜 -- 启动关机、在线求助与命令下达方式</title>      <script src="../script/SpryMenuBar.js" type="text/javascript"></script> 	<script src="../script/index.js" type="text/javascript"></script> 	<link href="../css/SpryMenuBarHorizontal.css" rel="stylesheet" type="text/css" />     <link href="../css/main.css" rel="stylesheet" type="text/css" />     </head><body style="margin: 0pt; padding: 0pt;" class="table"onload="MM_preloadImages('image/title_19.png','image/title_26.png','image/title_27.png','image/title_28.png','image/title_06.png','image/title_08.png','image/title_10.png','image/title_12.png')">   <!-- Copyright � 2005. Spidersoft Ltd --> <style> A.applink:hover {border: 2px dotted #DCE6F4;padding:2px;background-color:#ffff00;color:green;text-decoration:none} A.applink       {border: 2px dotted #DCE6F4;padding:2px;color:#2F5BFF;background:transparent;text-decoration:none} A.info          {color:#2F5BFF;background:transparent;text-decoration:none} A.info:hover    {color:green;background:transparent;text-decoration:underline} </style> <div style='BORDER: 1px solid #DCE6F4; MARGIN-TOP: 20px; MARGIN-BOTTOM: 20px; MARGIN-LEFT: 5px; MARGIN-RIGHT: 5px; PADDING: 5px; BACKGROUND-COLOR: #eef8ff;line-height:180%; COLOR: #000000; font-family: Arial; font-size: 8pt; width=100%; FILTER: progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr="#FFFFFFFF", EndColorStr="#F2F5FAFF");'> This page was saved using <a class="applink" href="http://www.spidersoft.com"><b>WebZIP 7.0.3.1030</b></a> <a class="applink" href="http://www.spidersoft.com"><b>offline browser</b></a>  (Unregistered) on  02/12/15 12:14:48.<br> <b>Address:</b> <a class="info" href="http://vbird.dic.ksu.edu.tw/linux_basic/0160startlinux_2.php">http://vbird.dic.ksu.edu.tw/linux_basic/0160startlinux_2.php</a><br> <b>Title:</b> 鸟哥的 Linux 私房菜 -- 启动关机、在线求助与命令下达方式 &nbsp;&bull;&nbsp; <b>Size:</b> 36270<br></div> <!-- /Copyright � 2005. Spidersoft Ltd -->    <center> <div id="apDiv5"> <div> <LINK REL="SHORTCUT ICON" HREF="favicon.ico"> <!-- ImageReady Slices (title3.ai) --> <table id="___01" width="898" height="81" border="0" align="center" cellpadding="0" cellspacing="0";> 	<tr> 		<td colspan="15"> 			<img src="image/title/title_01.png" width="900" height="1" alt=""></td> 	</tr> 	<tr> 		<td rowspan="4" bgcolor="#182448"><p><img src="http://linux.vbird.org/cgi-bin/Count.cgi?dd=C&ft=5&sh=T&md=8&pad=Y&df=vbird.dic.ksu.edu.tw.dat" width="93" align="left" title="計數器" /></p> 	    <p><font color="#FFFFFF" size="-1">since2012/04/23</font></p></td> 		<td rowspan="4" align="left" valign="top"><a href="http://vbird.dic.ksu.edu.tw/"><img src="image/title/title_03.png" alt="" width="263" height="79" border="0"></a></td> 		<td colspan="13"> 			<img src="image/title/title_04.png" alt="" width="535" height="9" border="0"></td> 	</tr> 	<tr> 		<td rowspan="3"> 			<img src="image/title/title_05.png" alt="" width="53" height="70" border="0"></td> 		<td colspan="2" align="left" valign="top"><a href="0110whatislinux.php.html" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image51','','image/title/title_06.png',1)"><img src="image/title/title3_06.png" name="Image51" width="106" height="25" border="0" id="Image51" alt=""/></a></td> 		<td rowspan="2"> 			<img src="image/title/title_07.png" alt="" width="27" height="37" border="0"></td> 		<td colspan="3" align="left" valign="top"><a href="http://vbird.dic.ksu.edu.tw/linux_server/0110network_basic.php" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image52','','image/title/title_08.png',1)"><img src="image/title/title3_08.png" name="Image52" width="107" height="25" border="0" id="Image52" alt=""/></a></td> 		<td rowspan="2"> 			<img src="image/title/title_09.png" alt="" width="37" height="37" border="0"></td> 		<td colspan="2" align="left" valign="top"><a href="http://vbird.dic.ksu.edu.tw/about.php" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image53','','image/title/title_10.png',1)"><img src="image/title/title3_10.png" name="Image53" width="75" height="25" border="0" id="Image53" alt=""/></a></td> 		<td rowspan="3"> 			<img src="image/title/title_11.png" alt="" width="35" height="70" border="0"></td> 		<td align="left" valign="top"><a href="mailto:vbird@mail.vbird.idv.tw" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image54','','image/title/title_12.png',1)"><img src="image/title/title3_12.png" name="Image54" width="74" height="25" border="0" id="Image54" alt=""/></a></td> 		<td rowspan="3"> 			<img src="image/title/title_13.png" alt="" width="21" height="70" border="0"></td> 	</tr> 	<tr> 		<td colspan="2"> 			<img src="image/title/title_14.png" alt="" width="106" height="12" border="0"></td> 		<td colspan="3"> 			<img src="image/title/title_15.png" alt="" width="107" height="12" border="0"></td> 		<td colspan="2"> 			<img src="image/title/title_16.png" width="75" height="12" alt=""></td> 		<td rowspan="2"> 			<img src="image/title/title_17.png" alt="" width="74" height="45" border="0"></td> 	</tr> 	<tr> 		<td> 			<img src="image/title/title_18.png" alt="" width="15" height="33" border="0"></td> 		<td colspan="3" align="left" valign="top"><ul id="MenuBar1" class="MenuBarHorizontal"> 	  <li><a href="linux_basic.php.html" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image44','','image/title/title_19.png',1)"><img src="image/title/title3_19.png" name="Image44" width="123" height="33" border="0" id="Image44" /></a> 			    <ul> 			      <li><a href="Mandrake9.0/mandrake9.0.php.html" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image46','','image/title/title_26.png',1)"><img src="image/title/title_23.png" name="Image46" width="120" height="26" border="0" id="Image46" alt="" /></a></li>                   <li><a href="fedora_4/fc4.php.html" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image47','','image/title/title_27.png',1)"><img src="image/title/title_24.png" name="Image47" width="120" height="26" border="0" id="Image47" alt="" /></a></li>                   <li><a href="linux_basic.php.html" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image48','','image/title/title_28.png',1)"><img src="image/title/title_25.png" name="Image48" width="120" height="26" border="0" id="Image48" alt="" /></a></li>                 </ul> 		      </li> 		</ul></td> 		<td> 			<img src="image/title/title_20.png" alt="" width="42" height="33" border="0"></td> 		<td colspan="3" align="left" valign="top"><ul id="MenuBar2" class="MenuBarHorizontal"> 	  <li><a href="http://vbird.dic.ksu.edu.tw/linux_server/" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image45','','image/title/title_21.png',1)"><img src="image/title/title3_21.png" name="Image45" width="125" height="33" border="0" id="Image45" /></a> 			    <ul> 			      <li><a href="http://vbird.dic.ksu.edu.tw/linux_server/linux_redhat9/redhat9.php" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image43','','image/title/title_26.png',1)"><img src="image/title/title_23.png" name="Image43" width="120" height="26" border="0" id="Image43" alt=""/></a></li> 			      <li><a href="http://vbird.dic.ksu.edu.tw/linux_server/centos4.php" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image49','','image/title/title_27.png',1)"><img src="image/title/title_24.png" name="Image49" width="120" height="26" border="0" id="Image49" alt="" /></a></li> 			      <li><a href="http://vbird.dic.ksu.edu.tw/linux_server/" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image50','','image/title/title_28.png',1)"><img src="image/title/title_25.png" name="Image50" width="120" height="26" border="0" id="Image50" alt="" /></a></li> 		        </ul> 		      </li> 		</ul></td> 		<td> 			<img src="image/title/title_22.png" alt="" width="47" height="33" border="0"></td> 	</tr> 	<tr> 		<td> 			<img src="image/title/Spacer.gif" width="101" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="263" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="53" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="15" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="91" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="27" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="5" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="42" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="60" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="37" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="28" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="47" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="35" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="74" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="22" height="1" alt=""></td> 	</tr> </table> <!-- End ImageReady Slices --> <script type="text/javascript"> <!-- var MenuBar1 = new Spry.Widget.MenuBar("MenuBar1", {imgDown:"SpryAssets/SpryMenuBarDownHover.gif", imgRight:"SpryAssets/SpryMenuBarRightHover.gif"}); var MenuBar2 = new Spry.Widget.MenuBar("MenuBar2", {imgDown:"SpryAssets/SpryMenuBarDownHover.gif", imgRight:"SpryAssets/SpryMenuBarRightHover.gif"}); //--> </script></div> <table summary="本文内容的排版" style="width: 898px;" border="0" cellpadding="0" cellspacing="0">  <tbody><tr><td style="width: 16px; height: 16px;">　</td>      <td style="width: 866px; height: 16px;">　</td>      <td style="width: 16px; height: 16px;">　</td></tr>  <tr><td style="width: 16px; font-size: 6px;">　</td>      <td width="866">    <!-- 本文的档头部分 -->  <div style="text-align: center;">      <a href="0160startlinux.php.html">      <span class="text_head0">第五章、首次登陆与在线求助<span class="text_head_en"> man page</span></span></a><br>  </div>      <div style="text-align: right;">          <span class="text_history">最近升级日期：2009/08/17</span>      </div>  <!-- 本文的连结区部分 -->  <div class="block1">  <span class="text_h1">  2. <a href="#cmd">文本模式下命令的下达</a><br>  	<span class="text_h2">  	　　2.1 <a href="#cmd_cmd">开始下达命令</a>, <a href="#cmd_cmd_lang">语系的支持</a><br>  	　　2.2 <a href="#cmd_basic">基础命令的操作</a>, <a href="#date">date</a>, <a href="#cal">cal</a>,   		<a href="#bc">bc</a><br>  	　　2.3 <a href="#cmd_hkey">重要的几个热键[Tab], [ctrl]-c, [ctrl]-d</a><br>  	　　2.4 <a href="#cmd_err">错误信息的查看</a><br>  	</span>  </span></div> <!-- 本文的正式部分 -->  <hr><a name="cmd"></a><img src="../image/logo.png" alt="大标题的图示" width="35" align="middle" height="34"><span class="text_h1">文本模式下命令的下达</span>  <div class="block1">  	<p>其实我们都是透过『程序』在跟系统作沟通的，本章上面提到的窗口管理员或文本模式都是一组或一只程序在负责我们所想要完成的命令。  	文本模式登陆后所取得的程序被称为壳(Shell)，这是因为这支程序负责最外面跟使用者(我们)沟通，所以才被戏称为壳程序！  	更多与操作系统及壳程序的相关性可以参考<a href="http://vbird.dic.ksu.edu.tw/linux_basic/0105computers.php#program_os">第零章、计算器概论</a>内的说明。</p>    	<p>我们Linux的壳程序就是厉害的bash这一支！关于更多的bash我们在第三篇再来介绍。现在让我们来练一练打字吧！<br><br></p>    	<hr><a name="cmd_cmd"></a><img src="../image/logo.png" alt="小标题的图示" width="24" align="middle" height="23"><span class="text_h2">开始下达命令</span><br>  	<div class="block2">  		<p>其实整个命令下达的方式很简单，你只要记得几个重要的概念就可以了。  		举例来说，你可以这样下达命令的：</p>    <table class="term"><tbody><tr><td class="term"><pre>[vbird@www ~]$ <span class="term_command">command [-options] parameter1 parameter2 ...</span>  <span class="term_note">                  命令     选项      参数(1)    参数(2)</span>  <span class="term_say">说明：  0. 一行命令中第一个输入的部分绝对是『命令(command)』或『可运行文件案』  1. command 为命令的名称，例如变换路径的命令为 cd 等等；  2. 中刮号[]并不存在于实际的命令中，而加入选项配置时，通常选项前会带 - 号，     例如 -h；有时候会使用选项的完整全名，则选项前带有 -- 符号，例如 --help；  3. parameter1 parameter2.. 为依附在选项后面的参数，或者是 command 的参数；   4. 命令, 选项, 参数等这几个咚咚中间以空格来区分，不论空几格 shell 都视为一格；   5. 按下[Enter]按键后，该命令就立即运行。[Enter]按键代表着一行命令的开始启动。  6. 命令太长的时候，可以使用反斜杠 (\) 来跳脱[Enter]符号，使命令连续到下一行。     注意！反斜杠后就立刻接特殊字符，才能跳脱！  其他：  a. 在 Linux 系统中，<b>英文大小写字母是不一样的</b>。举例来说， cd 与 CD 并不同。  b. 更多的介绍等到<a href="0320bash.php.html">第十一章 bash</a> 时，再来详述。</span>  </pre></td></tr></tbody></table>    		<p>注意到上面的说明当中，『<span class="text_import2">第一个被输入的数据绝对是命令或者是可运行的文件</span>』！  		这个是很重要的概念喔！还有，按下[Enter]键表示要开始运行此一命令的意思。我们来实际操作一下：  		以ls这个『命令』列出『自己家目录(~)』下的『所有隐藏档与相关的文件属性』，  		要达成上述的要求需要加入 -al 这样的选项，所以：</p>    <table class="term"><tbody><tr><td class="term"><pre>[vbird@www ~]$ <span class="term_command">ls -al ~</span>  [vbird@www ~]$ <span class="term_command">ls           -al   ~</span>  [vbird@www ~]$ <span class="term_command">ls -a  -l ~</span>  </pre></td></tr></tbody></table>    		<p>上面这三个命令的下达方式是一模一样的运行结果喔！为什么？请参考上面的说明吧！  		关于更详细的文本模式使用方式，我们会在<a href="0320bash.php.html">第十一章认识BASH</a>再来强调喔！  		此外，<span class="text_import2">请特别留意，在Linux的环境中，  		『大小写字母是不一样的东西！』</span>也就是说，<span class="text_import2">在Linux底下，  		VBird与vbird这两个文件是『完全不一样的』文件呢</span>！所以，  		你在下达命令的时候千万要注意到命令是大写还是小写。例如当输入底下这个命令的时候，看看有什么现象：</p>    <table class="term"><tbody><tr><td class="term"><pre>[vbird@www ~]$ <span class="term_command">date</span>  <span class="term_note">&lt;==结果显示日期与时间</span>  [vbird@www ~]$ <span class="term_command">Date</span>  <span class="term_note">&lt;==结果显示找不到命令</span>  [vbird@www ~]$ <span class="term_command">DATE</span>  <span class="term_note">&lt;==结果显示找不到命令</span>  </pre></td></tr></tbody></table>    		<p>很好玩吧！<span class="text_import2">只是改变小写成为大写而已，该命令就变的不存在了！</span>  		因此，请千万记得这个状态呦！<br><br></p>    		<a name="cmd_cmd_lang"></a>  		<hr><ul class="list1"><li class="text_import1">语系的支持</li></ul>    		<p>另外，很多时候你会发现，<span class="text_import2">咦！怎么我输入命令之后显示的结果的是乱码？</span>  		这跟鸟哥说的不一样啊！呵呵！不要紧张～我们前面提到过，Linux是可以支持多国语系的，若可能的话，  		屏幕的信息是会以该支持语系来输出的。但是，我们的终端机接口(terminal)在默认的情况下，  		无法支持以中文编码输出数据的。这个时候，我们就得将支持语系改为英文，才能够以英文显示出正确的信息。  		那怎么做呢？你可以这样做：</p>    <table class="term"><tbody><tr><td class="term"><pre><span class="term_hd">1. 显示目前所支持的语系</span>  [vbird@www ~]$ <span class="term_command">echo $LANG</span>  zh_TW.UTF-8  <span class="term_say"># 上面的意思是说，目前的语系(LANG)为zh_TW.UTF-8，亦即台湾繁体中文的万国码</span>    <span class="term_hd">2. 修改语系成为英文语系</span>  [vbird@www ~]$ <span class="term_command">LANG=en_US</span>  <span class="term_say"># 注意到上面的命令中没有空格符，且英文语系为en_US才对喔！</span>  [vbird@www ~]$ <span class="term_command">echo $LANG</span>  en_US  <span class="term_say"># 再次确认一下，结果出现，确实是en_US这个英文语系！</span>  </pre></td></tr></tbody></table>    		<p>注意一下，那个『LANG=en_US』是连续输入的，等号两边并没有空格符喔！  		这样一来，就能够在『这次的登陆』察看英文信息啰！为什么说是『这次的登陆』呢？  		因为，如果你注销Linux后，刚刚下达的命令就没有用啦！ ^_^，这个我们会在<a href="0320bash.php.html">第十一章</a>再好好聊一聊的！好啰，底下我们来练习一下一些简单的命令，  		好让你可以了解命令下达方式的模式：</p>  	</div>    	<hr><a name="cmd_basic"></a><img src="../image/logo.png" alt="小标题的图示" width="24" align="middle" height="23"><span class="text_h2">基础命令的操作</span><br>  	<div class="block2">  		<p>底下我们立刻来操作几个简单的命令看看啰！</p>  		<ul class="text_import2">  		<li>显示日期与时间的命令： date</li>  		<li>显示日历的命令： cal</li>  		<li>简单好用的计算器： bc</li>  		</ul><br>    		<a name="date"></a>  		<hr><span class="text_h2">1. 显示日期的命令： date</span><br>  		<div class="block2">  		<p>如果在文字接口中想要知道目前Linux系统的时间，那么就直接在命令列模式输入date即可显示：</p>    <table class="term"><tbody><tr><td class="term"><pre>[vbird@www ~]$ <span class="term_command">date</span>  Mon Aug 17 17:02:52 CST 2009  </pre></td></tr></tbody></table>    		<p>上面显示的是：星期一, 八月十七日, 17:02 分, 52秒，在 2009 年的 CST 时区！台湾在CST时区中啦！  		请赶快动手做做看呦！好了，那么如果我想要让这个程序显示出『2009/08/17』这样的日期显示方式呢？  		那么就使用date的格式化输出功能吧！</p>    <table class="term"><tbody><tr><td class="term"><pre>[vbird@www ~]$ <span class="term_command">date +%Y/%m/%d</span>  2009/08/17  [vbird@www ~]$ <span class="term_command">date +%H:%M</span>  17:04  </pre></td></tr></tbody></table>    		<p>那个『+%Y%m%d』就是date命令的一些参数功能啦！很好玩吧！那你问我，  		鸟哥怎么知道这些参数的啊？要背起来吗？当然不必啦！底下再告诉你怎么查这些参数啰！</p>    		<p><span class="text_import2">从上面的例子当中我们也可以知道，命令之后的选项除了前面带有减号『-』之外，某些特殊情况下，  		选项或参数前面也会带有正号『+』的情况</span>！这部份可不要轻易的忘记了呢！</p>  		</div>    		<a name="cal"></a>  		<hr><span class="text_h2">2. 显示日历的命令： cal</span><br>  		<div class="block2">  		<p>那如果我想要列出目前这个月份的月历呢？呵呵！直接给他下达cal即可！</p>    <table class="term"><tbody><tr><td class="term"><pre>[vbird@www ~]$ <span class="term_command">cal</span>       August 2009  Su Mo Tu We Th Fr Sa                     1   2  3  4  5  6  7  8   9 10 11 12 13 14 15  16 <span class="term_white">17</span> 18 19 20 21 22  23 24 25 26 27 28 29  30 31  </pre></td></tr></tbody></table>    		<p>除了本月的日历之外，连同今日所在处都会有反白的显示呢！真有趣！cal   		(calendar)这个命令可以做的事情还很多，例如你可以显示整年的月历情况：</p>    <table class="term"><tbody><tr><td class="term"><pre>[vbird@www ~]$ <span class="term_command">cal 2009</span>                                 2009           January               February                 March  Su Mo Tu We Th Fr Sa   Su Mo Tu We Th Fr Sa   Su Mo Tu We Th Fr Sa               1  2  3    1  2  3  4  5  6  7    1  2  3  4  5  6  7   4  5  6  7  8  9 10    8  9 10 11 12 13 14    8  9 10 11 12 13 14  11 12 13 14 15 16 17   15 16 17 18 19 20 21   15 16 17 18 19 20 21  18 19 20 21 22 23 24   22 23 24 25 26 27 28   22 23 24 25 26 27 28  25 26 27 28 29 30 31                          29 30 31            April                   May                   June  Su Mo Tu We Th Fr Sa   Su Mo Tu We Th Fr Sa   Su Mo Tu We Th Fr Sa            1  2  3  4                   1  2       1  2  3  4  5  6   5  6  7  8  9 10 11    3  4  5  6  7  8  9    7  8  9 10 11 12 13  12 13 14 15 16 17 18   10 11 12 13 14 15 16   14 15 16 17 18 19 20  19 20 21 22 23 24 25   17 18 19 20 21 22 23   21 22 23 24 25 26 27  26 27 28 29 30         24 25 26 27 28 29 30   28 29 30                         31  <span class="term_say">....(以下省略)....</span>  </pre></td></tr></tbody></table>    		<p>基本上cal这个命令可以接的语法为：</p>    <table class="term"><tbody><tr><td class="term"><pre>[vbird@www ~]$ <span class="term_command">cal [month] [year]</span>  </pre></td></tr></tbody></table>    		<p>所以，如果我想要知道2009年10月的月历，可以直接下达：</p>    <table class="term"><tbody><tr><td class="term"><pre>[vbird@www ~]$ <span class="term_command">cal 10 2009</span>      October 2009  Su Mo Tu We Th Fr Sa               1  2  3   4  5  6  7  8  9 10  11 12 13 14 15 16 17  18 19 20 21 22 23 24  25 26 27 28 29 30 31  </pre></td></tr></tbody></table>    		<p>那请问今年有没有13月啊？来测试一下这个命令的正确性吧！下达下列命令看看：</p>    <table class="term"><tbody><tr><td class="term"><pre>[vbird@www ~]$ <span class="term_command">cal 13 2009</span>  cal: illegal month value: use 1-12  </pre></td></tr></tbody></table>    		<p>cal竟然会告诉我们『错误的月份，请使用1-12』这样的信息呢！所以，  		未来你可以很轻易的就以cal来取得日历上面的日期啰！简直就是万年历啦！ ^_^。  		另外，由这个cal命令的练习我们也可以知道，<span class="text_import2">某些命令有特殊的参数存在，  		若输入错误的参数，则该命令会有错误信息的提示，透过这个提示我们可以藉以了解命令下达错误之处。</span>  		这个练习的结果请牢记在心中喔！</p>  		</div>    		<a name="bc"></a>  		<hr><span class="text_h2">3. 简单好用的计算器： bc</span><br>  		<div class="block2">  		<p>如果在文本模式当中，突然想要作一些简单的加减乘除，偏偏手边又没有计算器！这个时候要笔算吗？  		不需要啦！我们的Linux有提供一支计算程序，那就是bc喔。你在命令列输入bc后，屏幕会显示出版本信息，  		之后就进入到等待指示的阶段。如下所示：</p>    <table class="term"><tbody><tr><td class="term"><pre>[vbird@www ~]$ <span class="term_command">bc</span>  bc 1.06  Copyright 1991-1994, 1997, 1998, 2000 Free Software Foundation, Inc.  This is free software with ABSOLUTELY NO WARRANTY.  For details type `warranty'.  _ <span class="term_note">&lt;==这个时候，光标会停留在这里等待你的输入</span>  </pre></td></tr></tbody></table>    		<p>事实上，我们是『<span class="text_import2">进入到bc这个软件的工作环境当中</span>』了！  		就好像我们在Windows里面使用『小算盘』一样！所以，我们底下尝试输入的数据，  		都是在bc程序当中在进行运算的动作。所以啰，<span class="text_import2">你输入的数据当然就得要符合bc的要求才行</span>！  		在基本的bc计算器操作之前，先告知几个使用的运算符好了：</p>    		<ul style="font-family: '细明体'; color: rgb(0, 0, 136);">  		<li>+  加法</li>  		<li>-  减法</li>  		<li>*  乘法</li>  		<li>/  除法</li>  		<li>^  指数</li>  		<li>%  余数</li></ul>    		<p>好！让我们来使用bc计算一些咚咚吧！</p>    <table class="term"><tbody><tr><td class="term"><pre>[vbird@www ~]$ <span class="term_command">bc</span>  bc 1.06  Copyright 1991-1994, 1997, 1998, 2000 Free Software Foundation, Inc.  This is free software with ABSOLUTELY NO WARRANTY.  For details type `warranty'.  <span class="term_command">1+2+3+4</span>  <span class="term_note">&lt;==只有加法时</span>  10  <span class="term_command">7-8+3</span>  2  <span class="term_command">10*52</span>  520  <span class="term_command">10%3</span>     <span class="term_note">&lt;==计算『余数』</span>  1  <span class="term_command">10^2</span>  100  <span class="term_command">10/100</span>   <span class="term_note">&lt;==这个最奇怪！不是应该是 0.1 吗？</span>  0  <span class="term_command">quit</span>     <span class="term_note">&lt;==离开 bc 这个计算器</span>  </pre></td></tr></tbody></table>    		<p>在上表当中，粗体字表示输入的数据，而在每个粗体字的底下就是输出的结果。  		咦！每个计算都还算正确，怎么10/100会变成0呢？这是<span class="text_import2">因为bc默认仅输出整数，如果要输出小数点下位数，那么就必须要运行  		scale=number ，那个number就是小数点位数</span>，例如：</p>    <table class="term"><tbody><tr><td class="term"><pre>[vbird@www ~]$ <span class="term_command">bc</span>  bc 1.06  Copyright 1991-1994, 1997, 1998, 2000 Free Software Foundation, Inc.  This is free software with ABSOLUTELY NO WARRANTY.  For details type `warranty'.  <span class="term_command">scale=3</span>     <span class="term_note">&lt;==没错！就是这里！！</span>  <span class="term_command">1/3</span>  .333  <span class="term_command">340/2349</span>  .144  <span class="term_command">quit</span>  </pre></td></tr></tbody></table>    		<p>注意啊！要离开bc回到命令提示字符时，务必要输入『quit』来离开bc的软件环境喔！  		好了！就是这样子啦！简单的很吧！以后你可以轻轻松松的进行加减乘除啦！</p>    		<p>从上面的练习我们大概可以知道在命令列模式里面下达命令时，会有两种主要的情况：</p>  		<ul class="text_import2">  		<li>一种是该命令会直接显示结果然后回到命令提示字符等待下一个命令的输入；</li>  		<li>一种是进入到该命令的环境，直到结束该命令才回到命令提示字符的环境。</li>  		</ul>  		<p>我们以一个简单的图示来说明：</p>    		<center><img src="0160startlinux_files/command.gif" alt="命令下达的环境" title="命令下达的环境" border="0"><br>  		图2.2.1、命令下达的环境，上图为直接显示结果，下图为进入软件功能<br></center>    		<p>如图2.2.1所示，上方命令下达后立即显示信息且立刻回到命令提示字符的环境。  		如果有进入软件功能的环境(例如上面的bc软件)，那么就得要使用该软件的结束命令  		(例如在bc环境中输入quit)才能够回到命令提示字符中！那你怎么知道你是否在命令提示字符的环境呢？  		很简单！<span class="text_import2">你只要看到光标是在『[vbird@www ~]$』这种提示字符后面，  		那就是等待输入命令的环境了。</span>很容易判断吧！不过初学者还是很容易忘记啦！</p>  		</div>  	</div>    	<hr><a name="cmd_hkey"></a><img src="../image/logo.png" alt="小标题的图示" width="24" align="middle" height="23"><span class="text_h2">重要的几个热键[Tab],   	[ctrl]-c, [ctrl]-d</span><br>  	<div class="block2">  		<p>在继续后面章节的学习之前，这里很需要跟大家再来报告一件事，那就是我们的文本模式里头具有很多的功能组合键，  		这些按键可以辅助我们进行命令的编写与程序的中断呢！这几个按键请大家务必要记住的！很重要喔！<br><br></p>    		<hr><ul class="list1"><li class="text_import1">[Tab]按键</li></ul>  		<p>[Tab]按键就是在键盘的大写灯切换按键([Caps Lock])上面的那个按键！在各种Unix-Like的Shell当中，  		这个[Tab]按键算是Linux的Bash shell最棒的功能之一了！他具有『命令补全』与『文件补齐』的功能喔！  		重点是，可以避免我们打错命令或文件名呢！很棒吧！但是[Tab]按键在不同的地方输入，会有不一样的结果喔！  		我们举下面的例子来说明。上一小节我们不是提到 cal 这个命令吗？如果我在命令列输入	ca 再按两次 [tab] 按键，  		会出现什么信息？</p>    <table class="term"><tbody><tr><td class="term"><pre>[vbird@www ~]$ <span class="term_command">ca[tab][tab]</span>    <span class="term_note">&lt;==[tab]按键是紧接在 a 字母后面！</span>  cadaver             callgrind_control   capifax             card  cal                 cameratopam         capifaxrcvd         case  caller              cancel              capiinfo            cat  callgrind_annotate  cancel.cups         captoinfo           catchsegv  <span class="term_say"># 上面的 [tab] 指的是『按下那个tab键』，不是要你输入中括号内的tab啦！</span>  </pre></td></tr></tbody></table>    		<p>发现什么事？所有以ca为开头的命令都被显示出来啦！很不错吧！那如果你输入『ls -al   		~/.bash』再加两个[tab]会出现什么？</p>    <table class="term"><tbody><tr><td class="term"><pre>[vbird@www ~]$ <span class="term_command">ls -al ~/.bash[tab][tab]</span>  .bash_history  .bash_logout   .bash_profile  .bashrc  </pre></td></tr></tbody></table>    		<p>咦！在该目录下面所有以 .bash 为开头的文件名都会被显示出来了呢！注意看上面两个例子喔，  		我们按[tab]按键的地方如果是在command(第一个输入的数据)后面时，他就代表着  		『命令补全』，如果是接在第二个字以后的，就会变成『文件补齐』的功能了！总结一下：</p>    		<ul class="text_import2">  		<li>[Tab] 接在一串命令的第一个字的后面，则为命令补全；</li>  		<li>[Tab] 接在一串命令的第二个字以后时，则为『文件补齐』！</li>  		</ul>    		<p>善用 [tab] 按键真的是个很好的习惯！<span class="text_import2">可以让你避免掉很多输入错误的机会！</span><br><br></p>    		<hr><ul class="list1"><li class="text_import1">[Ctrl]-c 按键</li></ul>  		<p>如果你在Linux底下输入了错误的命令或参数，有的时候这个命令或程序会在系统底下『跑不停』这个时候怎么办？别担心，  		如果你想让当前的程序『停掉』的话，可以输入：[Ctrl]与c按键(<span class="text_import2">先按着[Ctrl]不放，且再按下c按键，是组合按键</span>)，  		那就是<span class="text_import2">中断目前程序</span>的按键啦！举例来说，如果你输入了『find   		/』这个命令时，系统会开始跑一些东西(先不要理会这个命令串的意义)，此时你给他按下  		[Ctrl]-c 组合按键，嘿嘿！是否立刻发现这个命令串被终止了！就是这样的意思啦！</p>    <table class="term"><tbody><tr><td class="term"><pre>[vbird@www ~]$ <span class="term_command">find /</span>  <span class="term_say">....(一堆东西都省略)....  # 此时屏幕会很花，你看不到命令提示字符的！直接按下[ctrl]-c即可！</span>  [vbird@www ~]$ <span class="term_note">&lt;==此时提示字符就会回来了！find程序就被中断！</span>  </pre></td></tr></tbody></table>    		<p>不过你应该要注意的是，这个组合键是可以将正在运行中的命令中断的，  		如果你正在运行比较重要的命令，可别急着使用这个组合按键喔！ ^_^<br><br></p>    		<hr><ul class="list1"><li class="text_import1">[Ctrl]-d 按键</li></ul>  		<p>那么[Ctrl]-d是什么呢？就是[Ctrl]与d按键的组合啊！这个组合按键通常代表着：  		『<span class="text_import2">键盘输入结束(End Of File, EOF 或 End Of Input)</span>』的意思！  		另外，他也可以用来取代exit的输入呢！例如<span class="text_import2">你想要直接离开文字接口，可以直接按下[Ctrl]-d就能够直接离开了(相当于输入exit啊！)</span>。</p>    		<p>总之，在Linux底下，文字接口的功能是很强悍的！要多多的学习他，而要学习他的基础要诀就是...多使用、多熟悉啦！</p>  	</div>    	<hr><a name="cmd_err"></a><img src="../image/logo.png" alt="小标题的图示" width="24" align="middle" height="23"><span class="text_h2">错误信息的察看</span><br>  	<div class="block2">  		<p>万一我下达了错误的命令怎么办？不要紧呀！你可以<span class="text_import2">藉由屏幕上面显示的错误信息来了解你的问题点</span>，  		那就很容易知道如何改善这个错误信息啰！举个例子来说，假如想运行date却因为大小写打错成为DATE时，  		这个错误的信息是这样显示的：</p>    <table class="term"><tbody><tr><td class="term"><pre>[vbird@www ~]$ <span class="term_command">DATE</span>  -bash: DATE: command not found  </pre></td></tr></tbody></table>    		<p>上面那个<span class="text_import2">bash:</span>表示的是我们的Shell的名称，  		本小节一开始就谈到过Linux的默认壳程序就是bash啰！  		那么上面的例子说明了bash有错误，什么错误呢？bash告诉你：</p>    		<blockquote><span class="text_import2">DATE: command not found</span></blockquote>    		<p>字面上的意思是说『命令找不到』，那个命令呢？就是DATE这个命令啦！  		所以说，系统上面可能并没有DATE这个命令啰！就是这么简单！通常出现『command not found』的可能原因为：</p>  		<ul class="text_import2">  		<li>这个命令不存在，因为该软件没有安装之故。解决方法就是安装该软件；</li>  		<li>这个命令所在的目录目前的用户并没有将他加入命令搜寻路径中，请参考bash的PATH说明；</li>  		<li>很简单！因为你打错字！</li>  		</ul>    		<p>另外常见的错误就是我们曾经看过的例子，如下所示：</p>    <table class="term"><tbody><tr><td class="term"><pre>[vbird@www ~]$ <span class="term_command">cal 13 2009</span>  cal: illegal month value: use 1-12  </pre></td></tr></tbody></table>    		<p>屏幕会告诉我们错误的信息啦！照着屏幕的信息去处理即可解决你的错误啦！是否很简单啊！  		因此，以后如果出现了问题，屏幕上的信息真的是很重要的呢！不要忽略了他呦！</p>  	</div>    	<p>介绍这几个命令让你玩一玩先，更详细的命令操作方法我们会在第三篇的时候再进行介绍！  	现在让我们来想一想，万一我在操作date这个命令的时候，手边又没有这本书，我要怎么知道要如何加那些奇怪的参数，  	好让输出的结果符合我想要的输出格式呢？嘿嘿！到下一节鸟哥来告诉你怎么办吧！</p>  </div>  <hr />     </td>     <td style="width: 16px; font-size: 6px;">　</td></tr> <tr><td style="width: 16px; height: 16px;">　</td>     <td style="width: 866px; height: 16px;">　</td>     <td style="width: 16px; height: 16px;">　</td></tr> </tbody></table>  <div style="padding-top: 0px; text-align: center;"> <span style="font-size: 80%;"> 	<a href="http://vbird.dic.ksu.edu.tw/" target="_top" title="前往鸟哥的首页">http://linux.vbird.org</a> 	is designed by <a href="mailto:vbird@mail.vbird.idv.tw" title="联络鸟哥(我不要广告信！)">VBird</a> 		during 2001-2011. <a href="http://www.ksu.edu.tw/" target="_blank">ksu.edu</a></span>          ﻿<div id="apDiv4">       <p>本网页主要以Firefox配合解析度 1024x768 作为设计依据&nbsp;&nbsp;&nbsp;&nbsp; 鸟哥自由软件整合应用研究室</p></div></div> </div> </center> </body></html> 
+<?xml version="1.0" encoding="utf-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"    "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><title>第五章、首次登陆与在线求助<span class="text_head_en"> man page</title><link href="../Styles/style.css" rel="stylesheet" type="text/css" /></head><body> 
+ 
+<!-- 本文的档头部分 --> 
+<div style="text-align: center;"> 
+    <a href="0160startlinux.php.html"> 
+    <span class="text_head0">第五章、首次登陆与在线求助<span class="text_head_en"> man page</span></span></a><br> 
+</div> 
+    <div style="text-align: right;"> 
+        <span class="text_history">最近升级日期：2009/08/17</span> 
+    </div> 
+<!-- 本文的连结区部分 --> 
+<div class="block1"> 
+<span class="text_h1"> 
+2. <a href="#cmd">文本模式下命令的下达</a><br> 
+	<span class="text_h2"> 
+	　　2.1 <a href="#cmd_cmd">开始下达命令</a>, <a href="#cmd_cmd_lang">语系的支持</a><br> 
+	　　2.2 <a href="#cmd_basic">基础命令的操作</a>, <a href="#date">date</a>, <a href="#cal">cal</a>,  
+		<a href="#bc">bc</a><br> 
+	　　2.3 <a href="#cmd_hkey">重要的几个热键[Tab], [ctrl]-c, [ctrl]-d</a><br> 
+	　　2.4 <a href="#cmd_err">错误信息的查看</a><br> 
+	</span> 
+</span></div>
+<!-- 本文的正式部分 --> 
+<hr><a name="cmd"></a><img src="../images/logo.png" alt="大标题的图示" width="35" align="middle" height="34"><span class="text_h1">文本模式下命令的下达</span> 
+<div class="block1"> 
+	<p>其实我们都是透过『程序』在跟系统作沟通的，本章上面提到的窗口管理员或文本模式都是一组或一只程序在负责我们所想要完成的命令。 
+	文本模式登陆后所取得的程序被称为壳(Shell)，这是因为这支程序负责最外面跟使用者(我们)沟通，所以才被戏称为壳程序！ 
+	更多与操作系统及壳程序的相关性可以参考<a href="http://vbird.dic.ksu.edu.tw/linux_basic/0105computers.php#program_os">第零章、计算器概论</a>内的说明。</p> 
+ 
+	<p>我们Linux的壳程序就是厉害的bash这一支！关于更多的bash我们在第三篇再来介绍。现在让我们来练一练打字吧！<br><br></p> 
+ 
+	<hr><a name="cmd_cmd"></a><img src="../images/logo.png" alt="小标题的图示" width="24" align="middle" height="23"><span class="text_h2">开始下达命令</span><br> 
+	<div class="block2"> 
+		<p>其实整个命令下达的方式很简单，你只要记得几个重要的概念就可以了。 
+		举例来说，你可以这样下达命令的：</p> 
+ 
+<table class="term"><tbody><tr><td class="term"><pre>[vbird@www ~]$ <span class="term_command">command [-options] parameter1 parameter2 ...</span> 
+<span class="term_note">                  命令     选项      参数(1)    参数(2)</span> 
+<span class="term_say">说明： 
+0. 一行命令中第一个输入的部分绝对是『命令(command)』或『可运行文件案』 
+1. command 为命令的名称，例如变换路径的命令为 cd 等等； 
+2. 中刮号[]并不存在于实际的命令中，而加入选项配置时，通常选项前会带 - 号， 
+   例如 -h；有时候会使用选项的完整全名，则选项前带有 -- 符号，例如 --help； 
+3. parameter1 parameter2.. 为依附在选项后面的参数，或者是 command 的参数；  
+4. 命令, 选项, 参数等这几个咚咚中间以空格来区分，不论空几格 shell 都视为一格；  
+5. 按下[Enter]按键后，该命令就立即运行。[Enter]按键代表着一行命令的开始启动。 
+6. 命令太长的时候，可以使用反斜杠 (\) 来跳脱[Enter]符号，使命令连续到下一行。 
+   注意！反斜杠后就立刻接特殊字符，才能跳脱！ 
+其他： 
+a. 在 Linux 系统中，<b>英文大小写字母是不一样的</b>。举例来说， cd 与 CD 并不同。 
+b. 更多的介绍等到<a href="0320bash.php.html">第十一章 bash</a> 时，再来详述。</span> 
+</pre></td></tr></tbody></table> 
+ 
+		<p>注意到上面的说明当中，『<span class="text_import2">第一个被输入的数据绝对是命令或者是可运行的文件</span>』！ 
+		这个是很重要的概念喔！还有，按下[Enter]键表示要开始运行此一命令的意思。我们来实际操作一下： 
+		以ls这个『命令』列出『自己家目录(~)』下的『所有隐藏档与相关的文件属性』， 
+		要达成上述的要求需要加入 -al 这样的选项，所以：</p> 
+ 
+<table class="term"><tbody><tr><td class="term"><pre>[vbird@www ~]$ <span class="term_command">ls -al ~</span> 
+[vbird@www ~]$ <span class="term_command">ls           -al   ~</span> 
+[vbird@www ~]$ <span class="term_command">ls -a  -l ~</span> 
+</pre></td></tr></tbody></table> 
+ 
+		<p>上面这三个命令的下达方式是一模一样的运行结果喔！为什么？请参考上面的说明吧！ 
+		关于更详细的文本模式使用方式，我们会在<a href="0320bash.php.html">第十一章认识BASH</a>再来强调喔！ 
+		此外，<span class="text_import2">请特别留意，在Linux的环境中， 
+		『大小写字母是不一样的东西！』</span>也就是说，<span class="text_import2">在Linux底下， 
+		VBird与vbird这两个文件是『完全不一样的』文件呢</span>！所以， 
+		你在下达命令的时候千万要注意到命令是大写还是小写。例如当输入底下这个命令的时候，看看有什么现象：</p> 
+ 
+<table class="term"><tbody><tr><td class="term"><pre>[vbird@www ~]$ <span class="term_command">date</span>  <span class="term_note">&lt;==结果显示日期与时间</span> 
+[vbird@www ~]$ <span class="term_command">Date</span>  <span class="term_note">&lt;==结果显示找不到命令</span> 
+[vbird@www ~]$ <span class="term_command">DATE</span>  <span class="term_note">&lt;==结果显示找不到命令</span> 
+</pre></td></tr></tbody></table> 
+ 
+		<p>很好玩吧！<span class="text_import2">只是改变小写成为大写而已，该命令就变的不存在了！</span> 
+		因此，请千万记得这个状态呦！<br><br></p> 
+ 
+		<a name="cmd_cmd_lang"></a> 
+		<hr><ul class="list1"><li class="text_import1">语系的支持</li></ul> 
+ 
+		<p>另外，很多时候你会发现，<span class="text_import2">咦！怎么我输入命令之后显示的结果的是乱码？</span> 
+		这跟鸟哥说的不一样啊！呵呵！不要紧张～我们前面提到过，Linux是可以支持多国语系的，若可能的话， 
+		屏幕的信息是会以该支持语系来输出的。但是，我们的终端机接口(terminal)在默认的情况下， 
+		无法支持以中文编码输出数据的。这个时候，我们就得将支持语系改为英文，才能够以英文显示出正确的信息。 
+		那怎么做呢？你可以这样做：</p> 
+ 
+<table class="term"><tbody><tr><td class="term"><pre><span class="term_hd">1. 显示目前所支持的语系</span> 
+[vbird@www ~]$ <span class="term_command">echo $LANG</span> 
+zh_TW.UTF-8 
+<span class="term_say"># 上面的意思是说，目前的语系(LANG)为zh_TW.UTF-8，亦即台湾繁体中文的万国码</span> 
+ 
+<span class="term_hd">2. 修改语系成为英文语系</span> 
+[vbird@www ~]$ <span class="term_command">LANG=en_US</span> 
+<span class="term_say"># 注意到上面的命令中没有空格符，且英文语系为en_US才对喔！</span> 
+[vbird@www ~]$ <span class="term_command">echo $LANG</span> 
+en_US 
+<span class="term_say"># 再次确认一下，结果出现，确实是en_US这个英文语系！</span> 
+</pre></td></tr></tbody></table> 
+ 
+		<p>注意一下，那个『LANG=en_US』是连续输入的，等号两边并没有空格符喔！ 
+		这样一来，就能够在『这次的登陆』察看英文信息啰！为什么说是『这次的登陆』呢？ 
+		因为，如果你注销Linux后，刚刚下达的命令就没有用啦！ ^_^，这个我们会在<a href="0320bash.php.html">第十一章</a>再好好聊一聊的！好啰，底下我们来练习一下一些简单的命令， 
+		好让你可以了解命令下达方式的模式：</p> 
+	</div> 
+ 
+	<hr><a name="cmd_basic"></a><img src="../images/logo.png" alt="小标题的图示" width="24" align="middle" height="23"><span class="text_h2">基础命令的操作</span><br> 
+	<div class="block2"> 
+		<p>底下我们立刻来操作几个简单的命令看看啰！</p> 
+		<ul class="text_import2"> 
+		<li>显示日期与时间的命令： date</li> 
+		<li>显示日历的命令： cal</li> 
+		<li>简单好用的计算器： bc</li> 
+		</ul><br> 
+ 
+		<a name="date"></a> 
+		<hr><span class="text_h2">1. 显示日期的命令： date</span><br> 
+		<div class="block2"> 
+		<p>如果在文字接口中想要知道目前Linux系统的时间，那么就直接在命令列模式输入date即可显示：</p> 
+ 
+<table class="term"><tbody><tr><td class="term"><pre>[vbird@www ~]$ <span class="term_command">date</span> 
+Mon Aug 17 17:02:52 CST 2009 
+</pre></td></tr></tbody></table> 
+ 
+		<p>上面显示的是：星期一, 八月十七日, 17:02 分, 52秒，在 2009 年的 CST 时区！台湾在CST时区中啦！ 
+		请赶快动手做做看呦！好了，那么如果我想要让这个程序显示出『2009/08/17』这样的日期显示方式呢？ 
+		那么就使用date的格式化输出功能吧！</p> 
+ 
+<table class="term"><tbody><tr><td class="term"><pre>[vbird@www ~]$ <span class="term_command">date +%Y/%m/%d</span> 
+2009/08/17 
+[vbird@www ~]$ <span class="term_command">date +%H:%M</span> 
+17:04 
+</pre></td></tr></tbody></table> 
+ 
+		<p>那个『+%Y%m%d』就是date命令的一些参数功能啦！很好玩吧！那你问我， 
+		鸟哥怎么知道这些参数的啊？要背起来吗？当然不必啦！底下再告诉你怎么查这些参数啰！</p> 
+ 
+		<p><span class="text_import2">从上面的例子当中我们也可以知道，命令之后的选项除了前面带有减号『-』之外，某些特殊情况下， 
+		选项或参数前面也会带有正号『+』的情况</span>！这部份可不要轻易的忘记了呢！</p> 
+		</div> 
+ 
+		<a name="cal"></a> 
+		<hr><span class="text_h2">2. 显示日历的命令： cal</span><br> 
+		<div class="block2"> 
+		<p>那如果我想要列出目前这个月份的月历呢？呵呵！直接给他下达cal即可！</p> 
+ 
+<table class="term"><tbody><tr><td class="term"><pre>[vbird@www ~]$ <span class="term_command">cal</span> 
+     August 2009 
+Su Mo Tu We Th Fr Sa 
+                   1 
+ 2  3  4  5  6  7  8 
+ 9 10 11 12 13 14 15 
+16 <span class="term_white">17</span> 18 19 20 21 22 
+23 24 25 26 27 28 29 
+30 31 
+</pre></td></tr></tbody></table> 
+ 
+		<p>除了本月的日历之外，连同今日所在处都会有反白的显示呢！真有趣！cal  
+		(calendar)这个命令可以做的事情还很多，例如你可以显示整年的月历情况：</p> 
+ 
+<table class="term"><tbody><tr><td class="term"><pre>[vbird@www ~]$ <span class="term_command">cal 2009</span> 
+                               2009 
+ 
+       January               February                 March 
+Su Mo Tu We Th Fr Sa   Su Mo Tu We Th Fr Sa   Su Mo Tu We Th Fr Sa 
+             1  2  3    1  2  3  4  5  6  7    1  2  3  4  5  6  7 
+ 4  5  6  7  8  9 10    8  9 10 11 12 13 14    8  9 10 11 12 13 14 
+11 12 13 14 15 16 17   15 16 17 18 19 20 21   15 16 17 18 19 20 21 
+18 19 20 21 22 23 24   22 23 24 25 26 27 28   22 23 24 25 26 27 28 
+25 26 27 28 29 30 31                          29 30 31 
+ 
+        April                   May                   June 
+Su Mo Tu We Th Fr Sa   Su Mo Tu We Th Fr Sa   Su Mo Tu We Th Fr Sa 
+          1  2  3  4                   1  2       1  2  3  4  5  6 
+ 5  6  7  8  9 10 11    3  4  5  6  7  8  9    7  8  9 10 11 12 13 
+12 13 14 15 16 17 18   10 11 12 13 14 15 16   14 15 16 17 18 19 20 
+19 20 21 22 23 24 25   17 18 19 20 21 22 23   21 22 23 24 25 26 27 
+26 27 28 29 30         24 25 26 27 28 29 30   28 29 30 
+                       31 
+<span class="term_say">....(以下省略)....</span> 
+</pre></td></tr></tbody></table> 
+ 
+		<p>基本上cal这个命令可以接的语法为：</p> 
+ 
+<table class="term"><tbody><tr><td class="term"><pre>[vbird@www ~]$ <span class="term_command">cal [month] [year]</span> 
+</pre></td></tr></tbody></table> 
+ 
+		<p>所以，如果我想要知道2009年10月的月历，可以直接下达：</p> 
+ 
+<table class="term"><tbody><tr><td class="term"><pre>[vbird@www ~]$ <span class="term_command">cal 10 2009</span> 
+    October 2009 
+Su Mo Tu We Th Fr Sa 
+             1  2  3 
+ 4  5  6  7  8  9 10 
+11 12 13 14 15 16 17 
+18 19 20 21 22 23 24 
+25 26 27 28 29 30 31 
+</pre></td></tr></tbody></table> 
+ 
+		<p>那请问今年有没有13月啊？来测试一下这个命令的正确性吧！下达下列命令看看：</p> 
+ 
+<table class="term"><tbody><tr><td class="term"><pre>[vbird@www ~]$ <span class="term_command">cal 13 2009</span> 
+cal: illegal month value: use 1-12 
+</pre></td></tr></tbody></table> 
+ 
+		<p>cal竟然会告诉我们『错误的月份，请使用1-12』这样的信息呢！所以， 
+		未来你可以很轻易的就以cal来取得日历上面的日期啰！简直就是万年历啦！ ^_^。 
+		另外，由这个cal命令的练习我们也可以知道，<span class="text_import2">某些命令有特殊的参数存在， 
+		若输入错误的参数，则该命令会有错误信息的提示，透过这个提示我们可以藉以了解命令下达错误之处。</span> 
+		这个练习的结果请牢记在心中喔！</p> 
+		</div> 
+ 
+		<a name="bc"></a> 
+		<hr><span class="text_h2">3. 简单好用的计算器： bc</span><br> 
+		<div class="block2"> 
+		<p>如果在文本模式当中，突然想要作一些简单的加减乘除，偏偏手边又没有计算器！这个时候要笔算吗？ 
+		不需要啦！我们的Linux有提供一支计算程序，那就是bc喔。你在命令列输入bc后，屏幕会显示出版本信息， 
+		之后就进入到等待指示的阶段。如下所示：</p> 
+ 
+<table class="term"><tbody><tr><td class="term"><pre>[vbird@www ~]$ <span class="term_command">bc</span> 
+bc 1.06 
+Copyright 1991-1994, 1997, 1998, 2000 Free Software Foundation, Inc. 
+This is free software with ABSOLUTELY NO WARRANTY. 
+For details type `warranty'. 
+_ <span class="term_note">&lt;==这个时候，光标会停留在这里等待你的输入</span> 
+</pre></td></tr></tbody></table> 
+ 
+		<p>事实上，我们是『<span class="text_import2">进入到bc这个软件的工作环境当中</span>』了！ 
+		就好像我们在Windows里面使用『小算盘』一样！所以，我们底下尝试输入的数据， 
+		都是在bc程序当中在进行运算的动作。所以啰，<span class="text_import2">你输入的数据当然就得要符合bc的要求才行</span>！ 
+		在基本的bc计算器操作之前，先告知几个使用的运算符好了：</p> 
+ 
+		<ul style="font-family: '细明体'; color: rgb(0, 0, 136);"> 
+		<li>+  加法</li> 
+		<li>-  减法</li> 
+		<li>*  乘法</li> 
+		<li>/  除法</li> 
+		<li>^  指数</li> 
+		<li>%  余数</li></ul> 
+ 
+		<p>好！让我们来使用bc计算一些咚咚吧！</p> 
+ 
+<table class="term"><tbody><tr><td class="term"><pre>[vbird@www ~]$ <span class="term_command">bc</span> 
+bc 1.06 
+Copyright 1991-1994, 1997, 1998, 2000 Free Software Foundation, Inc. 
+This is free software with ABSOLUTELY NO WARRANTY. 
+For details type `warranty'. 
+<span class="term_command">1+2+3+4</span>  <span class="term_note">&lt;==只有加法时</span> 
+10 
+<span class="term_command">7-8+3</span> 
+2 
+<span class="term_command">10*52</span> 
+520 
+<span class="term_command">10%3</span>     <span class="term_note">&lt;==计算『余数』</span> 
+1 
+<span class="term_command">10^2</span> 
+100 
+<span class="term_command">10/100</span>   <span class="term_note">&lt;==这个最奇怪！不是应该是 0.1 吗？</span> 
+0 
+<span class="term_command">quit</span>     <span class="term_note">&lt;==离开 bc 这个计算器</span> 
+</pre></td></tr></tbody></table> 
+ 
+		<p>在上表当中，粗体字表示输入的数据，而在每个粗体字的底下就是输出的结果。 
+		咦！每个计算都还算正确，怎么10/100会变成0呢？这是<span class="text_import2">因为bc默认仅输出整数，如果要输出小数点下位数，那么就必须要运行 
+		scale=number ，那个number就是小数点位数</span>，例如：</p> 
+ 
+<table class="term"><tbody><tr><td class="term"><pre>[vbird@www ~]$ <span class="term_command">bc</span> 
+bc 1.06 
+Copyright 1991-1994, 1997, 1998, 2000 Free Software Foundation, Inc. 
+This is free software with ABSOLUTELY NO WARRANTY. 
+For details type `warranty'. 
+<span class="term_command">scale=3</span>     <span class="term_note">&lt;==没错！就是这里！！</span> 
+<span class="term_command">1/3</span> 
+.333 
+<span class="term_command">340/2349</span> 
+.144 
+<span class="term_command">quit</span> 
+</pre></td></tr></tbody></table> 
+ 
+		<p>注意啊！要离开bc回到命令提示字符时，务必要输入『quit』来离开bc的软件环境喔！ 
+		好了！就是这样子啦！简单的很吧！以后你可以轻轻松松的进行加减乘除啦！</p> 
+ 
+		<p>从上面的练习我们大概可以知道在命令列模式里面下达命令时，会有两种主要的情况：</p> 
+		<ul class="text_import2"> 
+		<li>一种是该命令会直接显示结果然后回到命令提示字符等待下一个命令的输入；</li> 
+		<li>一种是进入到该命令的环境，直到结束该命令才回到命令提示字符的环境。</li> 
+		</ul> 
+		<p>我们以一个简单的图示来说明：</p> 
+ 
+		<center><img src="0160startlinux_files/command.gif" alt="命令下达的环境" title="命令下达的环境" border="0"><br> 
+		图2.2.1、命令下达的环境，上图为直接显示结果，下图为进入软件功能<br></center> 
+ 
+		<p>如图2.2.1所示，上方命令下达后立即显示信息且立刻回到命令提示字符的环境。 
+		如果有进入软件功能的环境(例如上面的bc软件)，那么就得要使用该软件的结束命令 
+		(例如在bc环境中输入quit)才能够回到命令提示字符中！那你怎么知道你是否在命令提示字符的环境呢？ 
+		很简单！<span class="text_import2">你只要看到光标是在『[vbird@www ~]$』这种提示字符后面， 
+		那就是等待输入命令的环境了。</span>很容易判断吧！不过初学者还是很容易忘记啦！</p> 
+		</div> 
+	</div> 
+ 
+	<hr><a name="cmd_hkey"></a><img src="../images/logo.png" alt="小标题的图示" width="24" align="middle" height="23"><span class="text_h2">重要的几个热键[Tab],  
+	[ctrl]-c, [ctrl]-d</span><br> 
+	<div class="block2"> 
+		<p>在继续后面章节的学习之前，这里很需要跟大家再来报告一件事，那就是我们的文本模式里头具有很多的功能组合键， 
+		这些按键可以辅助我们进行命令的编写与程序的中断呢！这几个按键请大家务必要记住的！很重要喔！<br><br></p> 
+ 
+		<hr><ul class="list1"><li class="text_import1">[Tab]按键</li></ul> 
+		<p>[Tab]按键就是在键盘的大写灯切换按键([Caps Lock])上面的那个按键！在各种Unix-Like的Shell当中， 
+		这个[Tab]按键算是Linux的Bash shell最棒的功能之一了！他具有『命令补全』与『文件补齐』的功能喔！ 
+		重点是，可以避免我们打错命令或文件名呢！很棒吧！但是[Tab]按键在不同的地方输入，会有不一样的结果喔！ 
+		我们举下面的例子来说明。上一小节我们不是提到 cal 这个命令吗？如果我在命令列输入	ca 再按两次 [tab] 按键， 
+		会出现什么信息？</p> 
+ 
+<table class="term"><tbody><tr><td class="term"><pre>[vbird@www ~]$ <span class="term_command">ca[tab][tab]</span>    <span class="term_note">&lt;==[tab]按键是紧接在 a 字母后面！</span> 
+cadaver             callgrind_control   capifax             card 
+cal                 cameratopam         capifaxrcvd         case 
+caller              cancel              capiinfo            cat 
+callgrind_annotate  cancel.cups         captoinfo           catchsegv 
+<span class="term_say"># 上面的 [tab] 指的是『按下那个tab键』，不是要你输入中括号内的tab啦！</span> 
+</pre></td></tr></tbody></table> 
+ 
+		<p>发现什么事？所有以ca为开头的命令都被显示出来啦！很不错吧！那如果你输入『ls -al  
+		~/.bash』再加两个[tab]会出现什么？</p> 
+ 
+<table class="term"><tbody><tr><td class="term"><pre>[vbird@www ~]$ <span class="term_command">ls -al ~/.bash[tab][tab]</span> 
+.bash_history  .bash_logout   .bash_profile  .bashrc 
+</pre></td></tr></tbody></table> 
+ 
+		<p>咦！在该目录下面所有以 .bash 为开头的文件名都会被显示出来了呢！注意看上面两个例子喔， 
+		我们按[tab]按键的地方如果是在command(第一个输入的数据)后面时，他就代表着 
+		『命令补全』，如果是接在第二个字以后的，就会变成『文件补齐』的功能了！总结一下：</p> 
+ 
+		<ul class="text_import2"> 
+		<li>[Tab] 接在一串命令的第一个字的后面，则为命令补全；</li> 
+		<li>[Tab] 接在一串命令的第二个字以后时，则为『文件补齐』！</li> 
+		</ul> 
+ 
+		<p>善用 [tab] 按键真的是个很好的习惯！<span class="text_import2">可以让你避免掉很多输入错误的机会！</span><br><br></p> 
+ 
+		<hr><ul class="list1"><li class="text_import1">[Ctrl]-c 按键</li></ul> 
+		<p>如果你在Linux底下输入了错误的命令或参数，有的时候这个命令或程序会在系统底下『跑不停』这个时候怎么办？别担心， 
+		如果你想让当前的程序『停掉』的话，可以输入：[Ctrl]与c按键(<span class="text_import2">先按着[Ctrl]不放，且再按下c按键，是组合按键</span>)， 
+		那就是<span class="text_import2">中断目前程序</span>的按键啦！举例来说，如果你输入了『find  
+		/』这个命令时，系统会开始跑一些东西(先不要理会这个命令串的意义)，此时你给他按下 
+		[Ctrl]-c 组合按键，嘿嘿！是否立刻发现这个命令串被终止了！就是这样的意思啦！</p> 
+ 
+<table class="term"><tbody><tr><td class="term"><pre>[vbird@www ~]$ <span class="term_command">find /</span> 
+<span class="term_say">....(一堆东西都省略).... 
+# 此时屏幕会很花，你看不到命令提示字符的！直接按下[ctrl]-c即可！</span> 
+[vbird@www ~]$ <span class="term_note">&lt;==此时提示字符就会回来了！find程序就被中断！</span> 
+</pre></td></tr></tbody></table> 
+ 
+		<p>不过你应该要注意的是，这个组合键是可以将正在运行中的命令中断的， 
+		如果你正在运行比较重要的命令，可别急着使用这个组合按键喔！ ^_^<br><br></p> 
+ 
+		<hr><ul class="list1"><li class="text_import1">[Ctrl]-d 按键</li></ul> 
+		<p>那么[Ctrl]-d是什么呢？就是[Ctrl]与d按键的组合啊！这个组合按键通常代表着： 
+		『<span class="text_import2">键盘输入结束(End Of File, EOF 或 End Of Input)</span>』的意思！ 
+		另外，他也可以用来取代exit的输入呢！例如<span class="text_import2">你想要直接离开文字接口，可以直接按下[Ctrl]-d就能够直接离开了(相当于输入exit啊！)</span>。</p> 
+ 
+		<p>总之，在Linux底下，文字接口的功能是很强悍的！要多多的学习他，而要学习他的基础要诀就是...多使用、多熟悉啦！</p> 
+	</div> 
+ 
+	<hr><a name="cmd_err"></a><img src="../images/logo.png" alt="小标题的图示" width="24" align="middle" height="23"><span class="text_h2">错误信息的察看</span><br> 
+	<div class="block2"> 
+		<p>万一我下达了错误的命令怎么办？不要紧呀！你可以<span class="text_import2">藉由屏幕上面显示的错误信息来了解你的问题点</span>， 
+		那就很容易知道如何改善这个错误信息啰！举个例子来说，假如想运行date却因为大小写打错成为DATE时， 
+		这个错误的信息是这样显示的：</p> 
+ 
+<table class="term"><tbody><tr><td class="term"><pre>[vbird@www ~]$ <span class="term_command">DATE</span> 
+-bash: DATE: command not found 
+</pre></td></tr></tbody></table> 
+ 
+		<p>上面那个<span class="text_import2">bash:</span>表示的是我们的Shell的名称， 
+		本小节一开始就谈到过Linux的默认壳程序就是bash啰！ 
+		那么上面的例子说明了bash有错误，什么错误呢？bash告诉你：</p> 
+ 
+		<blockquote><span class="text_import2">DATE: command not found</span></blockquote> 
+ 
+		<p>字面上的意思是说『命令找不到』，那个命令呢？就是DATE这个命令啦！ 
+		所以说，系统上面可能并没有DATE这个命令啰！就是这么简单！通常出现『command not found』的可能原因为：</p> 
+		<ul class="text_import2"> 
+		<li>这个命令不存在，因为该软件没有安装之故。解决方法就是安装该软件；</li> 
+		<li>这个命令所在的目录目前的用户并没有将他加入命令搜寻路径中，请参考bash的PATH说明；</li> 
+		<li>很简单！因为你打错字！</li> 
+		</ul> 
+ 
+		<p>另外常见的错误就是我们曾经看过的例子，如下所示：</p> 
+ 
+<table class="term"><tbody><tr><td class="term"><pre>[vbird@www ~]$ <span class="term_command">cal 13 2009</span> 
+cal: illegal month value: use 1-12 
+</pre></td></tr></tbody></table> 
+ 
+		<p>屏幕会告诉我们错误的信息啦！照着屏幕的信息去处理即可解决你的错误啦！是否很简单啊！ 
+		因此，以后如果出现了问题，屏幕上的信息真的是很重要的呢！不要忽略了他呦！</p> 
+	</div> 
+ 
+	<p>介绍这几个命令让你玩一玩先，更详细的命令操作方法我们会在第三篇的时候再进行介绍！ 
+	现在让我们来想一想，万一我在操作date这个命令的时候，手边又没有这本书，我要怎么知道要如何加那些奇怪的参数， 
+	好让输出的结果符合我想要的输出格式呢？嘿嘿！到下一节鸟哥来告诉你怎么办吧！</p> 
+</div> 
+<hr />
+    </td>
+    <td style="width: 16px; font-size: 6px;">　</td></tr>
+<tr><td style="width: 16px; height: 16px;">　</td>
+    <td style="width: 866px; height: 16px;">　</td>
+    <td style="width: 16px; height: 16px;">　</body></html>

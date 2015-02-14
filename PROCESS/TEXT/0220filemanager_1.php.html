@@ -1,1 +1,360 @@
-<html><head> 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"> 	<meta name="Author" content="2010/04/16,white"> 	<meta name="Description" content="说明在 Linux 底下处理文件与目录的相关命令啊～^_^"> 	<title>鸟哥的 Linux 私房菜 -- 文件与目录管理</title>     <script src="../script/SpryMenuBar.js" type="text/javascript"></script> 	<script src="../script/index.js" type="text/javascript"></script> 	<link href="../css/SpryMenuBarHorizontal.css" rel="stylesheet" type="text/css" />     <link href="../css/main.css" rel="stylesheet" type="text/css" />     </head><body style="margin: 0pt; padding: 0pt;" class="table"onload="MM_preloadImages('image/title_19.png','image/title_26.png','image/title_27.png','image/title_28.png','image/title_06.png','image/title_08.png','image/title_10.png','image/title_12.png')">   <!-- Copyright � 2005. Spidersoft Ltd --> <style> A.applink:hover {border: 2px dotted #DCE6F4;padding:2px;background-color:#ffff00;color:green;text-decoration:none} A.applink       {border: 2px dotted #DCE6F4;padding:2px;color:#2F5BFF;background:transparent;text-decoration:none} A.info          {color:#2F5BFF;background:transparent;text-decoration:none} A.info:hover    {color:green;background:transparent;text-decoration:underline} </style> <div style='BORDER: 1px solid #DCE6F4; MARGIN-TOP: 20px; MARGIN-BOTTOM: 20px; MARGIN-LEFT: 5px; MARGIN-RIGHT: 5px; PADDING: 5px; BACKGROUND-COLOR: #eef8ff;line-height:180%; COLOR: #000000; font-family: Arial; font-size: 8pt; width=100%; FILTER: progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr="#FFFFFFFF", EndColorStr="#F2F5FAFF");'> This page was saved using <a class="applink" href="http://www.spidersoft.com"><b>WebZIP 7.0.3.1030</b></a> <a class="applink" href="http://www.spidersoft.com"><b>offline browser</b></a>  (Unregistered) on  02/12/15 12:14:48.<br> <b>Address:</b> <a class="info" href="http://vbird.dic.ksu.edu.tw/linux_basic/0220filemanager_1.php">http://vbird.dic.ksu.edu.tw/linux_basic/0220filemanager_1.php</a><br> <b>Title:</b> 鸟哥的 Linux 私房菜 -- 文件与目录管理 &nbsp;&bull;&nbsp; <b>Size:</b> 37229<br></div> <!-- /Copyright � 2005. Spidersoft Ltd -->    <center> <div id="apDiv5"> <div> <LINK REL="SHORTCUT ICON" HREF="favicon.ico"> <!-- ImageReady Slices (title3.ai) --> <table id="___01" width="898" height="81" border="0" align="center" cellpadding="0" cellspacing="0";> 	<tr> 		<td colspan="15"> 			<img src="image/title/title_01.png" width="900" height="1" alt=""></td> 	</tr> 	<tr> 		<td rowspan="4" bgcolor="#182448"><p><img src="http://linux.vbird.org/cgi-bin/Count.cgi?dd=C&ft=5&sh=T&md=8&pad=Y&df=vbird.dic.ksu.edu.tw.dat" width="93" align="left" title="計數器" /></p> 	    <p><font color="#FFFFFF" size="-1">since2012/04/23</font></p></td> 		<td rowspan="4" align="left" valign="top"><a href="http://vbird.dic.ksu.edu.tw/"><img src="image/title/title_03.png" alt="" width="263" height="79" border="0"></a></td> 		<td colspan="13"> 			<img src="image/title/title_04.png" alt="" width="535" height="9" border="0"></td> 	</tr> 	<tr> 		<td rowspan="3"> 			<img src="image/title/title_05.png" alt="" width="53" height="70" border="0"></td> 		<td colspan="2" align="left" valign="top"><a href="0110whatislinux.php.html" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image51','','image/title/title_06.png',1)"><img src="image/title/title3_06.png" name="Image51" width="106" height="25" border="0" id="Image51" alt=""/></a></td> 		<td rowspan="2"> 			<img src="image/title/title_07.png" alt="" width="27" height="37" border="0"></td> 		<td colspan="3" align="left" valign="top"><a href="http://vbird.dic.ksu.edu.tw/linux_server/0110network_basic.php" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image52','','image/title/title_08.png',1)"><img src="image/title/title3_08.png" name="Image52" width="107" height="25" border="0" id="Image52" alt=""/></a></td> 		<td rowspan="2"> 			<img src="image/title/title_09.png" alt="" width="37" height="37" border="0"></td> 		<td colspan="2" align="left" valign="top"><a href="http://vbird.dic.ksu.edu.tw/about.php" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image53','','image/title/title_10.png',1)"><img src="image/title/title3_10.png" name="Image53" width="75" height="25" border="0" id="Image53" alt=""/></a></td> 		<td rowspan="3"> 			<img src="image/title/title_11.png" alt="" width="35" height="70" border="0"></td> 		<td align="left" valign="top"><a href="mailto:vbird@mail.vbird.idv.tw" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image54','','image/title/title_12.png',1)"><img src="image/title/title3_12.png" name="Image54" width="74" height="25" border="0" id="Image54" alt=""/></a></td> 		<td rowspan="3"> 			<img src="image/title/title_13.png" alt="" width="21" height="70" border="0"></td> 	</tr> 	<tr> 		<td colspan="2"> 			<img src="image/title/title_14.png" alt="" width="106" height="12" border="0"></td> 		<td colspan="3"> 			<img src="image/title/title_15.png" alt="" width="107" height="12" border="0"></td> 		<td colspan="2"> 			<img src="image/title/title_16.png" width="75" height="12" alt=""></td> 		<td rowspan="2"> 			<img src="image/title/title_17.png" alt="" width="74" height="45" border="0"></td> 	</tr> 	<tr> 		<td> 			<img src="image/title/title_18.png" alt="" width="15" height="33" border="0"></td> 		<td colspan="3" align="left" valign="top"><ul id="MenuBar1" class="MenuBarHorizontal"> 	  <li><a href="linux_basic.php.html" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image44','','image/title/title_19.png',1)"><img src="image/title/title3_19.png" name="Image44" width="123" height="33" border="0" id="Image44" /></a> 			    <ul> 			      <li><a href="Mandrake9.0/mandrake9.0.php.html" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image46','','image/title/title_26.png',1)"><img src="image/title/title_23.png" name="Image46" width="120" height="26" border="0" id="Image46" alt="" /></a></li>                   <li><a href="fedora_4/fc4.php.html" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image47','','image/title/title_27.png',1)"><img src="image/title/title_24.png" name="Image47" width="120" height="26" border="0" id="Image47" alt="" /></a></li>                   <li><a href="linux_basic.php.html" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image48','','image/title/title_28.png',1)"><img src="image/title/title_25.png" name="Image48" width="120" height="26" border="0" id="Image48" alt="" /></a></li>                 </ul> 		      </li> 		</ul></td> 		<td> 			<img src="image/title/title_20.png" alt="" width="42" height="33" border="0"></td> 		<td colspan="3" align="left" valign="top"><ul id="MenuBar2" class="MenuBarHorizontal"> 	  <li><a href="http://vbird.dic.ksu.edu.tw/linux_server/" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image45','','image/title/title_21.png',1)"><img src="image/title/title3_21.png" name="Image45" width="125" height="33" border="0" id="Image45" /></a> 			    <ul> 			      <li><a href="http://vbird.dic.ksu.edu.tw/linux_server/linux_redhat9/redhat9.php" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image43','','image/title/title_26.png',1)"><img src="image/title/title_23.png" name="Image43" width="120" height="26" border="0" id="Image43" alt=""/></a></li> 			      <li><a href="http://vbird.dic.ksu.edu.tw/linux_server/centos4.php" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image49','','image/title/title_27.png',1)"><img src="image/title/title_24.png" name="Image49" width="120" height="26" border="0" id="Image49" alt="" /></a></li> 			      <li><a href="http://vbird.dic.ksu.edu.tw/linux_server/" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image50','','image/title/title_28.png',1)"><img src="image/title/title_25.png" name="Image50" width="120" height="26" border="0" id="Image50" alt="" /></a></li> 		        </ul> 		      </li> 		</ul></td> 		<td> 			<img src="image/title/title_22.png" alt="" width="47" height="33" border="0"></td> 	</tr> 	<tr> 		<td> 			<img src="image/title/Spacer.gif" width="101" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="263" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="53" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="15" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="91" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="27" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="5" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="42" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="60" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="37" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="28" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="47" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="35" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="74" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="22" height="1" alt=""></td> 	</tr> </table> <!-- End ImageReady Slices --> <script type="text/javascript"> <!-- var MenuBar1 = new Spry.Widget.MenuBar("MenuBar1", {imgDown:"SpryAssets/SpryMenuBarDownHover.gif", imgRight:"SpryAssets/SpryMenuBarRightHover.gif"}); var MenuBar2 = new Spry.Widget.MenuBar("MenuBar2", {imgDown:"SpryAssets/SpryMenuBarDownHover.gif", imgRight:"SpryAssets/SpryMenuBarRightHover.gif"}); //--> </script></div> <table summary="本文内容的排版" style="width: 898px;" border="0" cellpadding="0" cellspacing="0"> <tbody><tr><td style="width: 16px; height: 16px;">　</td>     <td style="width: 866px; height: 16px;">　</td>     <td style="width: 16px; height: 16px;">　</td></tr> <tr><td style="width: 16px; font-size: 6px;">　</td>     <td width="866"> <!-- 本文的档头部分 --> <div style="text-align: center;">     <a href="0220filemanager.php.html">     <span class="text_head0">第七章、<span class="text_head_en">Linux </span>文件与目录管理</span></a><br> </div>     <div style="text-align: right;">         <span class="text_history">最近升级日期：2009/08/26</span>     </div>  <!-- 本文的连结区部分 --> <div class="block1"> <span class="text_h1"> 1. <a href="#dir">目录与路径</a><br> 	<span class="text_h2"> 	　　1.1 <a href="#dir_pathway">相对路径与绝对路径</a><br> 	　　1.2 <a href="#dir_opdir">目录的相关操作</a>： <a href="#cd">cd</a>, <a href="#pwd">pwd</a>,  		<a href="#mkdir">mkdir</a>, <a href="#rmdir">rmdir</a><br> 	　　1.3 <a href="#dir_path">关於运行档路径的变量： $PATH</a><br> 	</span> </span></div> <!-- 本文的正式部分 --> <hr><a name="dir"></a><img src="../image/logo.png" alt="大标题的图示" width="35" align="middle" height="34"><span class="text_h1">目录与路径：</span><br> <div class="block1"> 	<p>由第六章<a href="0210filepermission.php.html">Linux的文件权限与目录配置</a>中透过FHS了解了Linux的『树状目录』概念之后， 	接下来就得要实际的来搞定一些基本的路径问题了！这些目录的问题当中，最重要的莫过於第六章也谈过的<a href="http://vbird.dic.ksu.edu.tw/linux_basic/0210filepermission.php#dir_path">『绝对路径』与『相对路径』</a>的意义啦！ 	绝对/相对路径的写法并不相同，要特别注意。此外，当你下达命令时，该命令是透过什么功能来取得的？ 	这与PATH这个变量有关呢！底下就让我们来谈谈罗！<br><br></p>  	<hr><a name="dir_pathway"></a><img src="../image/logo.png" alt="小标题的图示" width="24" align="middle" height="23"><span class="text_h2">相对路径与绝对路径：</span> 	<div class="block2"> 		<p>在开始目录的切换之前，你必须要先了解一下所谓的『<span class="text_import2">路径(PATH)</span>』， 		有趣的是：什么是『<span class="text_import2">相对路径</span>』与『<span class="text_import2">绝对路径</span>』？ 		虽然前一章已经稍微针对这个议题提过一次，不过，这里不厌其烦的再次的强调一下！</p>  		<ul> 		<li><span class="text_import2">绝对路径</span>：路径的写法『<span class="text_import2">一定由根目录 			/ 写起</span>』，例如： /usr/share/doc 这个目录。</li> 		<li><span class="text_import2">相对路径</span>：路径的写法『<span class="text_import2">不是由 			/ 写起</span>』，例如由 /usr/share/doc 要到 /usr/share/man 底下时，可以写成： 			『<span style="font-family: '细明体';">cd  			../man</span>』这就是相对路径的写法啦！相对路径意指『相对於目前工作目录的路径！』</li></ul><br>  		<hr><ul class="list1"><li class="text_import1">相对路径的用途</li></ul> 		<p>那么相对路径与绝对路径有什么了不起呀？喝！那可真的是了不起了！假设你写了一个软件， 		这个软件共需要三个目录，分别是 etc, bin, man 这三个目录，然而由於不同的人喜欢安装在不同的目录之下， 		假设甲安装的目录是 /usr/local/packages/etc, /usr/local/packages/bin 及 /usr/local/packages/man  		，不过乙却喜欢安装在 /home/packages/etc, /home/packages/bin, /home/packages/man  		这三个目录中，请问如果需要用到绝对路径的话，那么是否很麻烦呢？是的！ 		如此一来每个目录下的东西就很难对应的起来！这个时候相对路径的写法就显的特别的重要了！</p>  		<p>此外，如果你跟鸟哥一样，喜欢将路径的名字写的很长，好让自己知道那个目录是在干什么的，例如： 		/cluster/raid/output/taiwan2006/smoke 这个目录，而另一个目录在  		/cluster/raid/output/taiwan2006/cctm ，那么我从第一个要到第二个目录去的话，怎么写比较方便？ 		当然是『 <span style="font-family: '细明体';">cd ../cctm</span> 』比较方便罗！对吧！<br><br></p>  		<hr><ul class="list1"><li class="text_import1">绝对路径的用途</li></ul> 		<p>但是对於档名的正确性来说，『<span class="text_import2">绝对路径的正确度要比较好～</span>』。 		一般来说，鸟哥会建议你，如果是在写程序 (shell scripts) 来管理系统的条件下，务必使用绝对路径的写法。 		怎么说呢？因为绝对路径的写法虽然比较麻烦，但是可以肯定这个写法绝对不会有问题。 		如果使用相对路径在程序当中，则可能由於你运行的工作环境不同，导致一些问题的发生。 		这个问题在<a href="0430cron.php.html">工作排程(at, cron, 第十六章)</a>当中尤其重要！这个现象我们在<a href="0340bashshell-scripts.php.html">十三章、shell script</a>时，会再次的提醒你喔！ ^_^</p> 	</div>  	<hr><a name="dir_opdir"></a><img src="../image/logo.png" alt="小标题的图示" width="24" align="middle" height="23"><span class="text_h2">目录的相关操作：</span> 	<div class="block2"> 		<p>我们之前稍微提到变换目录的命令是cd，还有哪些可以进行目录操作的命令呢？ 		例如创建目录啊、删除目录之类的～还有，得要先知道的，就是有哪些比较特殊的目录呢？ 		举例来说，底下这些就是比较特殊的目录，得要用力的记下来才行：</p>  <table class="term"><tbody><tr><td class="term"><pre><span class="term_write">.         代表此层目录 ..        代表上一层目录 -         代表前一个工作目录 ~         代表『目前使用者身份』所在的家目录 ~account  代表 account 这个使用者的家目录(account是个帐号名称)</span> </pre></td></tr></tbody></table>  		<p>需要特别注意的是：<span class="text_import2">在所有目录底下都会存在的两个目录，分别是『.』与『..』</span> 		分别代表此层与上一级目录的意思。那么来思考一下底下这个例题：</p>  <table border="1" cellpadding="5" cellspacing="0" width="90%"><tbody><tr><td> 例题：<div class="block2"> 请问在Linux底下，根目录下有没有上一级目录(..)存在？ </div> 答：<div class="block2"> 若使用『 ls -al / 』去查询，可以看到根目录下确实存在 . 与 .. 两个目录，再仔细的查阅， 可发现这两个目录的属性与权限完全一致，这代表<span class="text_import2">根目录的上一层(..)与根目录自己(.)是同一个目录。</span> </div> </td></tr></tbody></table>  		<p>底下我们就来谈一谈几个常见的处理目录的命令吧：</p> 		<ul class="text_import2"> 		<li>cd：变换目录</li> 		<li>pwd：显示目前的目录</li> 		<li>mkdir：创建一个新的目录</li> 		<li>rmdir：删除一个空的目录</li></ul><br>  		<a name="cd"></a> 		<hr><ul class="list1"><li class="text_import1">cd (变换目录)</li></ul> 		<p>我们知道vbird这个使用者的家目录是/home/vbird/，而root家目录则是/root/，假设我以root身份在  		Linux系统中，那么简单的说明一下这几个特殊的目录的意义是：</p>  <table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">cd [相对路径或绝对路径]</span> <span class="term_say"># 最重要的就是目录的绝对路径与相对路径，还有一些特殊目录的符号罗！</span> [root@www ~]# <span class="term_command">cd ~vbird</span> <span class="term_say"># 代表去到 vbird 这个使用者的家目录，亦即 /home/vbird</span> [root@www vbird]# <span class="term_command">cd ~</span> <span class="term_say"># 表示回到自己的家目录，亦即是 /root 这个目录</span> [root@www ~]# <span class="term_command">cd</span> <span class="term_say"># 没有加上任何路径，也还是代表回到自己家目录的意思喔！</span> [root@www ~]# <span class="term_command">cd ..</span> <span class="term_say"># 表示去到目前的上一级目录，亦即是 /root 的上一级目录的意思；</span> [root@www /]# <span class="term_command">cd -</span> <span class="term_say"># 表示回到刚刚的那个目录，也就是 /root 罗～</span> [root@www ~]# <span class="term_command">cd /var/spool/mail</span> <span class="term_say"># 这个就是绝对路径的写法！直接指定要去的完整路径名称！</span> [root@www mail]# <span class="term_command">cd ../mqueue</span> <span class="term_say"># 这个是相对路径的写法，我们由/var/spool/mail 去到/var/spool/mqueue 就这样写！</span> </pre></td></tr></tbody></table>  		<p>cd是Change Directory的缩写，这是用来变换工作目录的命令。注意，目录名称与cd命令之间存在一个空格。 		一登陆Linux系统后，root会在root的家目录！那回到上一层目录可以用『 cd .. 』。 		利用相对路径的写法必须要确认你目前的路径才能正确的去到想要去的目录。例如上表当中最后一个例子， 		你必须要确认你是在/var/spool/mail当中，并且知道在/var/spool当中有个mqueue的目录才行啊～ 		这样才能使用cd ../mqueue去到正确的目录说，否则就要直接输入cd /var/spool/mqueue罗～</p>  		<p>其实，我们的提示字节，亦即那个 [root@www ~]# 当中，就已经有指出目前的目录了， 		刚登陆时会到自己的家目录，而家目录还有一个代码，那就是『 ~ 』符号！ 		例如上面的例子可以发现，使用『 cd ~ 』可以回到个人的家目录里头去呢！ 		另外，针对 cd 的使用方法，如果仅输入 cd 时，代表的就是『 cd ~ 』的意思喔～ 		亦即是会回到自己的家目录啦！而那个『 cd - 』比较难以理解，请自行多做几次练习， 		就会比较明白了。</p>  		<div style="padding: 10pt 0pt;" align="right"><table width="90%"><tbody><tr><td><b>Tips:</b><br><span style="color: rgb(0, 144, 0);"><font size="-1">		还是要一再地提醒，我们的 Linux 的默认命令列模式 (bash shell) 具有文件补齐功能， 		你要常常利用 [tab] 按键来达成你的目录完整性啊！这可是个好习惯啊～ 		可以避免你按错键盘输入错字说～ ^_^ 		</font></span></td><td><img src="0220filemanager_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div> 		<a name="pwd"></a> 		<hr><ul class="list1"><li class="text_import1">pwd (显示目前所在的目录)</li></ul>  <table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">pwd [-P]</span> <span class="term_say">选项与参数： -P  ：显示出确实的路径，而非使用连结 (link) 路径。</span>  <span class="term_hd">范例：单纯显示出目前的工作目录：</span> [root@www ~]# <span class="term_command">pwd</span> /root   <span class="term_note">&lt;== 显示出目录啦～</span>  <span class="term_hd">范例：显示出实际的工作目录，而非连结档本身的目录名而已</span> [root@www ~]# <span class="term_command">cd /var/mail</span>   <span class="term_note">&lt;==注意，/var/mail是一个连结档</span> [root@www mail]# <span class="term_command">pwd</span> /var/mail         <span class="term_note">&lt;==列出目前的工作目录</span> [root@www mail]# <span class="term_command">pwd -P</span> /var/spool/mail   <span class="term_note">&lt;==怎么回事？有没有加 -P 差很多～</span> [root@www mail]# <span class="term_command">ls -ld /var/mail</span> <span class="term_write">lrwxrwxrwx</span> 1 root root 10 Sep  4 17:54 /var/mail -&gt; spool/mail <span class="term_say"># 看到这里应该知道为啥了吧？因为 /var/mail 是连结档，连结到 /var/spool/mail  # 所以，加上 pwd -P 的选项后，会不以连结档的数据显示，而是显示正确的完整路径啊！</span> </pre></td></tr></tbody></table>  		<p>pwd是Print Working Directory的缩写，也就是显示目前所在目录的命令， 		例如在上个表格最后的目录是/var/mail这个目录，但是提示字节仅显示mail， 		如果你想要知道目前所在的目录，可以输入pwd即可。此外，由於很多的套件所使用的目录名称都相同，例如  		/usr/local/etc还有/etc，但是通常Linux仅列出最后面那一个目录而已，这个时候你就可以使用pwd  		来知道你的所在目录罗！免得搞错目录，结果...</p>  		<p>其实有趣的是那个 -P 的选项啦！他可以让我们取得正确的目录名称，而不是以连结档的路径来显示的。 		如果你使用的是CentOS 5.x的话，刚刚好/var/mail是/var/spool/mail的连结档， 		所以，透过到/var/mail下达pwd -P就能够知道这个选项的意义罗～ ^_^<br><br></p>  		<a name="mkdir"></a> 		<hr><ul class="list1"><li class="text_import1">mkdir (创建新目录)</li></ul>  <table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">mkdir [-mp] 目录名称</span> <span class="term_say">选项与参数： -m ：配置文件的权限喔！直接配置，不需要看默认权限 (umask) 的脸色～ -p ：帮助你直接将所需要的目录(包含上一级目录)递回创建起来！</span>  <span class="term_hd">范例：请到/tmp底下尝试创建数个新目录看看：</span> [root@www ~]# <span class="term_command">cd /tmp</span> [root@www tmp]# <span class="term_command">mkdir test</span>    <span class="term_note">&lt;==创建一名为 test 的新目录</span> [root@www tmp]# <span class="term_command">mkdir test1/test2/test3/test4</span> mkdir: cannot create directory `test1/test2/test3/test4':  No such file or directory       <span class="term_note">&lt;== 没办法直接创建此目录啊！</span> [root@www tmp]# <span class="term_command">mkdir -p test1/test2/test3/test4</span> <span class="term_say"># 加了这个 -p 的选项，可以自行帮你创建多层目录！</span>  <span class="term_hd">范例：创建权限为rwx--x--x的目录</span> [root@www tmp]# <span class="term_command">mkdir -m 711 test2</span> [root@www tmp]# <span class="term_command">ls -l</span> drwxr-xr-x  3 root  root 4096 Jul 18 12:50 test drwxr-xr-x  3 root  root 4096 Jul 18 12:53 test1 <span class="term_write">drwx--x--x</span>  2 root  root 4096 Jul 18 12:54 test2 <span class="term_say"># 仔细看上面的权限部分，如果没有加上 -m 来强制配置属性，系统会使用默认属性。 # 那么你的默认属性为何？这要透过底下介绍的 <a href="#umask"><span class="term_say" style="text-decoration: underline;">umask</span></a> 才能了解喔！ ^_^</span> </pre></td></tr></tbody></table>  		<p>如果想要创建新的目录的话，那么就使用mkdir (make directory)吧！ 不过，在默认的情况下， 		<span class="text_import2">你所需要的目录得一层一层的创建才行</span>！例如：假如你要创建一个目录为  		/home/bird/testing/test1，那么首先必须要有 /home 然后 /home/bird ，再来 /home/bird/testing  		都必须要存在，才可以创建 /home/bird/testing/test1 这个目录！假如没有 /home/bird/testing  		时，就没有办法创建 test1 的目录罗！</p>  		<p>不过，现在有个更简单有效的方法啦！那就是加上 -p 这个选项喔！你可以直接下达：『 <span class="text_import2">mkdir -p /home/bird/testing/test1</span> 』 		则系统会自动的帮你将 /home, /home/bird, /home/bird/testing 依序的创建起目录！并且， 		<span class="text_import2">如果该目录本来就已经存在时，系统也不会显示错误信息喔</span>！挺快乐的吧！ ^_^。 		不过鸟哥不建议常用-p这个选项，因为担心如果你打错字，那么目录名称就会变的乱七八糟的！</p>  		<p>另外，有个地方你必须要先有概念，那就是『默认权限』的地方。我们可以利用 -m 来强制给予一个新的目录相关的权限， 		例如上表当中，我们给予 -m 711 来给予新的目录 drwx--x--x 的权限。不过，如果没有给予 -m 选项时， 		那么默认的新建目录权限又是什么呢？这个跟 <a href="#umask">umask</a> 有关，我们在本章后头会加以介绍的。<br><br></p>  		<a name="rmdir"></a> 		<hr><ul class="list1"><li class="text_import1">rmdir (删除『空』的目录)</li></ul>  <table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">rmdir [-p] 目录名称</span> <span class="term_say">选项与参数： -p ：连同上一级『空的』目录也一起删除</span>  <span class="term_hd">范例：将於mkdir范例中创建的目录(/tmp底下)删除掉！</span> [root@www tmp]# <span class="term_command">ls -l</span>   <span class="term_note">&lt;==看看有多少目录存在？</span> drwxr-xr-x  3 root  root 4096 Jul 18 12:50 test drwxr-xr-x  3 root  root 4096 Jul 18 12:53 test1 drwx--x--x  2 root  root 4096 Jul 18 12:54 test2 [root@www tmp]# <span class="term_command">rmdir test </span>  <span class="term_note">&lt;==可直接删除掉，没问题</span> [root@www tmp]# <span class="term_command">rmdir test1</span>  <span class="term_note">&lt;==因为尚有内容，所以无法删除！</span> rmdir: `test1': Directory not empty [root@www tmp]# <span class="term_command">rmdir -p test1/test2/test3/test4</span> [root@www tmp]# <span class="term_command">ls -l      </span>  <span class="term_note">&lt;==您看看，底下的输出中test与test1不见了！</span> drwx--x--x  2 root  root 4096 Jul 18 12:54 test2 <span class="term_say"># 瞧！利用 -p 这个选项，立刻就可以将 test1/test2/test3/test4 一次删除～ # 不过要注意的是，这个 rmdir 仅能『删除空的目录』喔！</span> </pre></td></tr></tbody></table>  		<p>如果想要删除旧有的目录时，就使用rmdir吧！例如将刚刚创建的test杀掉，使用『  		rmdir test 』即可！请注意呦！目录需要一层一层的删除才行！而且<span class="text_import2">被删除的目录里面必定不能存在其他的目录或文件！</span> 		这也是所谓的空的目录(empty directory)的意思啊！那如果要将所有目录下的东西都杀掉呢？！ 		这个时候就必须使用『 rm -r test 』罗！不过，还是使用 rmdir 比较不危险！你也可以尝试以 -p  		的选项加入，来删除上一级的目录喔！</p> 	</div>  	<hr><a name="dir_path"></a><img src="../image/logo.png" alt="小标题的图示" width="24" align="middle" height="23"><span class="text_h2">关於运行档路径的变量： $PATH</span> 	<div class="block2"> 		<p>经过第六章FHS的说明后，我们知道查阅文件属性的命令ls完整档名为：/bin/ls(这是绝对路径)， 		那你会不会觉得很奇怪：『<span class="text_import2">为什么我可以在任何地方运行/bin/ls这个命令呢？</span> 』 		为什么我在任何目录下输入 ls 就一定可以显示出一些信息而不会说找不到该 /bin/ls 命令呢？ 		<span class="text_import2">这是因为环境变量 PATH 的帮助所致呀</span>！</p>  		<p>当我们在运行一个命令的时候，举例来说『ls』好了，系统会依照PATH的配置去每个PATH定义的目录下搜寻档名为ls的可运行档， 		如果在PATH定义的目录中含有多个档名为ls的可运行档，那么先搜寻到的同名命令先被运行！</p>  		<p>现在，请下达『echo $PATH』来看看到底有哪些目录被定义出来了？ 		echo有『显示、印出』的意思，而 PATH 前面加的 $ 表示后面接的是变量，所以会显示出目前的 PATH ！</p>  <table class="term"><tbody><tr><td class="term"><pre><span class="term_hd">范例：先用root的身份列出搜寻的路径为何？</span> [root@www ~]# <span class="term_command">echo $PATH</span> /usr/kerberos/sbin:/usr/kerberos/bin:/usr/local/sbin:/usr/local/bin:/sbin :<span class="term_write">/bin</span>:/usr/sbin:/usr/bin:/root/bin  <span class="term_note">&lt;==这是同一行！</span>  <span class="term_hd">范例：用vbird的身份列出搜寻的路径为何？</span> [root@www ~]# <span class="term_command">su - vbird</span> [vbird@www ~]# <span class="term_command">echo $PATH</span> /usr/kerberos/bin:/usr/local/bin:<span class="term_write">/bin</span>:/usr/bin:/home/vbird/bin <span class="term_say"># 仔细看，一般用户vbird的PATH中，并不包含任何『sbin』的目录存在喔！</span> </pre></td></tr></tbody></table>  		<p>PATH(一定是大写)这个变量的内容是由一堆目录所组成的，每个目录中间用冒号(:)来隔开， 		每个目录是有『顺序』之分的。仔细看一下上面的输出，你可以发现到无论是root还是vbird都有/bin 		这个目录在PATH变量内，所以当然就能够在任何地方运行ls来找到/bin/ls运行档罗！</p>  		<p>我们用几个范例来让你了解一下，为什么PATH是那么重要的项目！</p>  <table border="1" cellpadding="5" cellspacing="0" width="90%"><tbody><tr><td> 例题：<div class="block2"> 请问你能不能使用一般身份使用者下达ifconfig eth0这个命令呢？ </div> 答：<div class="block2"> 如上面的范例所示，当你使用vbird这个帐号运行ifconfig时，会出现『-bash: ifconfig: command not found』的字样， 因为ifconfig的是放置到/sbin底下，而由上表的结果中我们可以发现vbird的PATH并没有配置/sbin， 所以默认无法运行。<br><br> 但是你可以使用『/sbin/ifconfig eth0』来运行这个命令喔！因为一般用户还是可以使用ifconfig来查询系统IP的参数， 既然PATH没有规范到/sbin，那么<span class="text_import2">我们使用『绝对路径』也可以运行到该命令的</span>！ </div> </td></tr></tbody></table><br>  <table border="1" cellpadding="5" cellspacing="0" width="90%"><tbody><tr><td> 例题：<div class="block2"> 假设你是root，如果你将ls由/bin/ls移动成为/root/ls(可用『mv /bin/ls /root』命令达成)，然后你自己本身也在/root目录下， 请问(1)你能不能直接输入ls来运行？(2)若不能，你该如何运行ls这个命令？(3)若要直接输入ls即可运行，又该如何进行？ </div> 答：<div class="block2"> 由於这个例题的重点是将某个运行档移动到非正规目录去，所以我们先要进行底下的动作才行：(务必使用root的身份)<br> <table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">mv /bin/ls /root</span> <span class="term_say"># mv 为移动，可将文件在不同的目录间进行移动作业</span> </pre></td></tr></tbody></table> (1)接下来不论你在那个目录底下输入任何与ls相关的命令，都没有办法顺利的运行ls了！ 也就是说，你不能直接输入ls来运行，<span class="text_import2">因为/root这个目录并不在PATH指定的目录中， 所以，即使你在/root目录下，也不能够搜寻到ls这个命令！</span><br><br> (2)因为这个ls确实存在於/root底下，并不是被删除了！所以我们可以透过使用绝对路径或者是相对路径直接指定这个运行档档名， 底下的两个方法都能够运行ls这个命令：<br>  <table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">/root/ls</span>  <span class="term_note">&lt;==直接用绝对路径指定该档名</span> [root@www ~]# <span class="term_command">./ls    </span>  <span class="term_note">&lt;==因为在 /root 目录下，就用./ls来指定</span> </pre></td></tr></tbody></table>  (3)如果想要让root在任何目录均可运行/root底下的ls，那么就将/root加入PATH当中即可。 加入的方法很简单，就像底下这样：<br>  <table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">PATH="$PATH":/root</span> </pre></td></tr></tbody></table> 上面这个作法就能够将/root加入到运行档搜寻路径PATH中了！不相信的话请您自行使用『echo $PATH』去查看吧！ 如果确定这个例题进行没有问题了，请将ls搬回/bin底下，不然系统会挂点的！<br>  <table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">mv /root/ls /bin</span> </pre></td></tr></tbody></table> </div> </td></tr></tbody></table><br>  <table border="1" cellpadding="5" cellspacing="0" width="90%"><tbody><tr><td> 例题：<div class="block2"> 如果我有两个ls命令在不同的目录中，例如/usr/local/bin/ls与/bin/ls那么当我下达 ls 的时候，哪个ls会被运行？ </div> 答：<div class="block2"> 那还用说，就找出 PATH 里面哪个目录先被查询，则那个目录下的命令就会被先运行了！ </div> </td></tr></tbody></table><br>  <table border="1" cellpadding="5" cellspacing="0" width="90%"><tbody><tr><td> 例题：<div class="block2"> 为什么PATH搜寻的目录不加入本目录(.)？加入本目录的搜寻不是也不错？ </div> 答：<div class="block2"> 如果在PATH中加入本目录(.)后，确实我们就能够在命令所在目录进行命令的运行了。 但是由於你的工作目录并非固定(常常会使用cd来切换到不同的目录)， 因此能够运行的命令会有变动(因为每个目录底下的可运行档都不相同嘛！)，这对使用者来说并非好事。<br><br> 另外，如果有个坏心使用者在/tmp底下做了一个命令，因为/tmp是大家都能够写入的环境，所以他当然可以这样做。 假设该命令可能会窃取使用者的一些数据，如果你使用root的身份来运行这个命令，那不是很糟糕？ 如果这个命令的名称又是经常会被用到的ls时，那『中标』的机率就更高了！<br><br> 所以，<span class="text_import2">为了安全起见，不建议将『.』加入PATH的搜寻目录中。</span> </div> </td></tr></tbody></table><br>   		<p>而由上面的几个例题我们也可以知道几件事情：</p> 		<ul class="text_import2"> 		<li>不同身份使用者默认的PATH不同，默认能够随意运行的命令也不同(如root与vbird)；</li> 		<li>PATH是可以修改的，所以一般使用者还是可以透过修改PATH来运行某些位於/sbin或/usr/sbin下的命令来查询；</li> 		<li>使用绝对路径或相对路径直接指定某个命令的档名来运行，会比搜寻PATH来的正确；</li> 		<li>命令应该要放置到正确的目录下，运行才会比较方便；</li> 		<li>本目录(.)最好不要放到PATH当中。</li> 		</ul> 		<p>对於PATH更详细的『变量』说明，我们会在第三篇的<a href="0320bash.php.html">bash shell</a>中详细说明的！</p> 	</div> </div> <hr />     </td>     <td style="width: 16px; font-size: 6px;">　</td></tr> <tr><td style="width: 16px; height: 16px;">　</td>     <td style="width: 866px; height: 16px;">　</td>     <td style="width: 16px; height: 16px;">　</td></tr> </tbody></table>  <div style="padding-top: 0px; text-align: center;"> <span style="font-size: 80%;"> 	<a href="http://vbird.dic.ksu.edu.tw/" target="_top" title="前往鸟哥的首页">http://linux.vbird.org</a> 	is designed by <a href="mailto:vbird@mail.vbird.idv.tw" title="联络鸟哥(我不要广告信！)">VBird</a> 		during 2001-2011. <a href="http://www.ksu.edu.tw/" target="_blank">ksu.edu</a></span>          ﻿<div id="apDiv4">       <p>本网页主要以Firefox配合解析度 1024x768 作为设计依据&nbsp;&nbsp;&nbsp;&nbsp; 鸟哥自由软件整合应用研究室</p></div></div> </div> </center> </body></html> 
+<?xml version="1.0" encoding="utf-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"    "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><title>第七章、<span class="text_head_en">Linux </title><link href="../Styles/style.css" rel="stylesheet" type="text/css" /></head><body>
+<!-- 本文的档头部分 -->
+<div style="text-align: center;">
+    <a href="0220filemanager.php.html">
+    <span class="text_head0">第七章、<span class="text_head_en">Linux </span>文件与目录管理</span></a><br>
+</div>
+    <div style="text-align: right;">
+        <span class="text_history">最近升级日期：2009/08/26</span>
+    </div>
+
+<!-- 本文的连结区部分 -->
+<div class="block1">
+<span class="text_h1">
+1. <a href="#dir">目录与路径</a><br>
+	<span class="text_h2">
+	　　1.1 <a href="#dir_pathway">相对路径与绝对路径</a><br>
+	　　1.2 <a href="#dir_opdir">目录的相关操作</a>： <a href="#cd">cd</a>, <a href="#pwd">pwd</a>, 
+		<a href="#mkdir">mkdir</a>, <a href="#rmdir">rmdir</a><br>
+	　　1.3 <a href="#dir_path">关於运行档路径的变量： $PATH</a><br>
+	</span>
+</span></div>
+<!-- 本文的正式部分 -->
+<hr><a name="dir"></a><img src="../images/logo.png" alt="大标题的图示" width="35" align="middle" height="34"><span class="text_h1">目录与路径：</span><br>
+<div class="block1">
+	<p>由第六章<a href="0210filepermission.php.html">Linux的文件权限与目录配置</a>中透过FHS了解了Linux的『树状目录』概念之后，
+	接下来就得要实际的来搞定一些基本的路径问题了！这些目录的问题当中，最重要的莫过於第六章也谈过的<a href="http://vbird.dic.ksu.edu.tw/linux_basic/0210filepermission.php#dir_path">『绝对路径』与『相对路径』</a>的意义啦！
+	绝对/相对路径的写法并不相同，要特别注意。此外，当你下达命令时，该命令是透过什么功能来取得的？
+	这与PATH这个变量有关呢！底下就让我们来谈谈罗！<br><br></p>
+
+	<hr><a name="dir_pathway"></a><img src="../images/logo.png" alt="小标题的图示" width="24" align="middle" height="23"><span class="text_h2">相对路径与绝对路径：</span>
+	<div class="block2">
+		<p>在开始目录的切换之前，你必须要先了解一下所谓的『<span class="text_import2">路径(PATH)</span>』，
+		有趣的是：什么是『<span class="text_import2">相对路径</span>』与『<span class="text_import2">绝对路径</span>』？
+		虽然前一章已经稍微针对这个议题提过一次，不过，这里不厌其烦的再次的强调一下！</p>
+
+		<ul>
+		<li><span class="text_import2">绝对路径</span>：路径的写法『<span class="text_import2">一定由根目录
+			/ 写起</span>』，例如： /usr/share/doc 这个目录。</li>
+		<li><span class="text_import2">相对路径</span>：路径的写法『<span class="text_import2">不是由
+			/ 写起</span>』，例如由 /usr/share/doc 要到 /usr/share/man 底下时，可以写成：
+			『<span style="font-family: '细明体';">cd 
+			../man</span>』这就是相对路径的写法啦！相对路径意指『相对於目前工作目录的路径！』</li></ul><br>
+
+		<hr><ul class="list1"><li class="text_import1">相对路径的用途</li></ul>
+		<p>那么相对路径与绝对路径有什么了不起呀？喝！那可真的是了不起了！假设你写了一个软件，
+		这个软件共需要三个目录，分别是 etc, bin, man 这三个目录，然而由於不同的人喜欢安装在不同的目录之下，
+		假设甲安装的目录是 /usr/local/packages/etc, /usr/local/packages/bin 及 /usr/local/packages/man 
+		，不过乙却喜欢安装在 /home/packages/etc, /home/packages/bin, /home/packages/man 
+		这三个目录中，请问如果需要用到绝对路径的话，那么是否很麻烦呢？是的！
+		如此一来每个目录下的东西就很难对应的起来！这个时候相对路径的写法就显的特别的重要了！</p>
+
+		<p>此外，如果你跟鸟哥一样，喜欢将路径的名字写的很长，好让自己知道那个目录是在干什么的，例如：
+		/cluster/raid/output/taiwan2006/smoke 这个目录，而另一个目录在 
+		/cluster/raid/output/taiwan2006/cctm ，那么我从第一个要到第二个目录去的话，怎么写比较方便？
+		当然是『 <span style="font-family: '细明体';">cd ../cctm</span> 』比较方便罗！对吧！<br><br></p>
+
+		<hr><ul class="list1"><li class="text_import1">绝对路径的用途</li></ul>
+		<p>但是对於档名的正确性来说，『<span class="text_import2">绝对路径的正确度要比较好～</span>』。
+		一般来说，鸟哥会建议你，如果是在写程序 (shell scripts) 来管理系统的条件下，务必使用绝对路径的写法。
+		怎么说呢？因为绝对路径的写法虽然比较麻烦，但是可以肯定这个写法绝对不会有问题。
+		如果使用相对路径在程序当中，则可能由於你运行的工作环境不同，导致一些问题的发生。
+		这个问题在<a href="0430cron.php.html">工作排程(at, cron, 第十六章)</a>当中尤其重要！这个现象我们在<a href="0340bashshell-scripts.php.html">十三章、shell script</a>时，会再次的提醒你喔！ ^_^</p>
+	</div>
+
+	<hr><a name="dir_opdir"></a><img src="../images/logo.png" alt="小标题的图示" width="24" align="middle" height="23"><span class="text_h2">目录的相关操作：</span>
+	<div class="block2">
+		<p>我们之前稍微提到变换目录的命令是cd，还有哪些可以进行目录操作的命令呢？
+		例如创建目录啊、删除目录之类的～还有，得要先知道的，就是有哪些比较特殊的目录呢？
+		举例来说，底下这些就是比较特殊的目录，得要用力的记下来才行：</p>
+
+<table class="term"><tbody><tr><td class="term"><pre><span class="term_write">.         代表此层目录
+..        代表上一层目录
+-         代表前一个工作目录
+~         代表『目前使用者身份』所在的家目录
+~account  代表 account 这个使用者的家目录(account是个帐号名称)</span>
+</pre></td></tr></tbody></table>
+
+		<p>需要特别注意的是：<span class="text_import2">在所有目录底下都会存在的两个目录，分别是『.』与『..』</span>
+		分别代表此层与上一级目录的意思。那么来思考一下底下这个例题：</p>
+
+<table border="1" cellpadding="5" cellspacing="0" width="90%"><tbody><tr><td>
+例题：<div class="block2">
+请问在Linux底下，根目录下有没有上一级目录(..)存在？
+</div>
+答：<div class="block2">
+若使用『 ls -al / 』去查询，可以看到根目录下确实存在 . 与 .. 两个目录，再仔细的查阅，
+可发现这两个目录的属性与权限完全一致，这代表<span class="text_import2">根目录的上一层(..)与根目录自己(.)是同一个目录。</span>
+</div>
+</td></tr></tbody></table>
+
+		<p>底下我们就来谈一谈几个常见的处理目录的命令吧：</p>
+		<ul class="text_import2">
+		<li>cd：变换目录</li>
+		<li>pwd：显示目前的目录</li>
+		<li>mkdir：创建一个新的目录</li>
+		<li>rmdir：删除一个空的目录</li></ul><br>
+
+		<a name="cd"></a>
+		<hr><ul class="list1"><li class="text_import1">cd (变换目录)</li></ul>
+		<p>我们知道vbird这个使用者的家目录是/home/vbird/，而root家目录则是/root/，假设我以root身份在 
+		Linux系统中，那么简单的说明一下这几个特殊的目录的意义是：</p>
+
+<table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">cd [相对路径或绝对路径]</span>
+<span class="term_say"># 最重要的就是目录的绝对路径与相对路径，还有一些特殊目录的符号罗！</span>
+[root@www ~]# <span class="term_command">cd ~vbird</span>
+<span class="term_say"># 代表去到 vbird 这个使用者的家目录，亦即 /home/vbird</span>
+[root@www vbird]# <span class="term_command">cd ~</span>
+<span class="term_say"># 表示回到自己的家目录，亦即是 /root 这个目录</span>
+[root@www ~]# <span class="term_command">cd</span>
+<span class="term_say"># 没有加上任何路径，也还是代表回到自己家目录的意思喔！</span>
+[root@www ~]# <span class="term_command">cd ..</span>
+<span class="term_say"># 表示去到目前的上一级目录，亦即是 /root 的上一级目录的意思；</span>
+[root@www /]# <span class="term_command">cd -</span>
+<span class="term_say"># 表示回到刚刚的那个目录，也就是 /root 罗～</span>
+[root@www ~]# <span class="term_command">cd /var/spool/mail</span>
+<span class="term_say"># 这个就是绝对路径的写法！直接指定要去的完整路径名称！</span>
+[root@www mail]# <span class="term_command">cd ../mqueue</span>
+<span class="term_say"># 这个是相对路径的写法，我们由/var/spool/mail 去到/var/spool/mqueue 就这样写！</span>
+</pre></td></tr></tbody></table>
+
+		<p>cd是Change Directory的缩写，这是用来变换工作目录的命令。注意，目录名称与cd命令之间存在一个空格。
+		一登陆Linux系统后，root会在root的家目录！那回到上一层目录可以用『 cd .. 』。
+		利用相对路径的写法必须要确认你目前的路径才能正确的去到想要去的目录。例如上表当中最后一个例子，
+		你必须要确认你是在/var/spool/mail当中，并且知道在/var/spool当中有个mqueue的目录才行啊～
+		这样才能使用cd ../mqueue去到正确的目录说，否则就要直接输入cd /var/spool/mqueue罗～</p>
+
+		<p>其实，我们的提示字节，亦即那个 [root@www ~]# 当中，就已经有指出目前的目录了，
+		刚登陆时会到自己的家目录，而家目录还有一个代码，那就是『 ~ 』符号！
+		例如上面的例子可以发现，使用『 cd ~ 』可以回到个人的家目录里头去呢！
+		另外，针对 cd 的使用方法，如果仅输入 cd 时，代表的就是『 cd ~ 』的意思喔～
+		亦即是会回到自己的家目录啦！而那个『 cd - 』比较难以理解，请自行多做几次练习，
+		就会比较明白了。</p>
+
+		<div style="padding: 10pt 0pt;" align="right"><table width="90%"><tbody><tr><td><b>Tips:</b><br><span style="color: rgb(0, 144, 0);"><font size="-1">		还是要一再地提醒，我们的 Linux 的默认命令列模式 (bash shell) 具有文件补齐功能，
+		你要常常利用 [tab] 按键来达成你的目录完整性啊！这可是个好习惯啊～
+		可以避免你按错键盘输入错字说～ ^_^
+		</font></span></td><td><img src="0220filemanager_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div>
+		<a name="pwd"></a>
+		<hr><ul class="list1"><li class="text_import1">pwd (显示目前所在的目录)</li></ul>
+
+<table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">pwd [-P]</span>
+<span class="term_say">选项与参数：
+-P  ：显示出确实的路径，而非使用连结 (link) 路径。</span>
+
+<span class="term_hd">范例：单纯显示出目前的工作目录：</span>
+[root@www ~]# <span class="term_command">pwd</span>
+/root   <span class="term_note">&lt;== 显示出目录啦～</span>
+
+<span class="term_hd">范例：显示出实际的工作目录，而非连结档本身的目录名而已</span>
+[root@www ~]# <span class="term_command">cd /var/mail</span>   <span class="term_note">&lt;==注意，/var/mail是一个连结档</span>
+[root@www mail]# <span class="term_command">pwd</span>
+/var/mail         <span class="term_note">&lt;==列出目前的工作目录</span>
+[root@www mail]# <span class="term_command">pwd -P</span>
+/var/spool/mail   <span class="term_note">&lt;==怎么回事？有没有加 -P 差很多～</span>
+[root@www mail]# <span class="term_command">ls -ld /var/mail</span>
+<span class="term_write">lrwxrwxrwx</span> 1 root root 10 Sep  4 17:54 /var/mail -&gt; spool/mail
+<span class="term_say"># 看到这里应该知道为啥了吧？因为 /var/mail 是连结档，连结到 /var/spool/mail 
+# 所以，加上 pwd -P 的选项后，会不以连结档的数据显示，而是显示正确的完整路径啊！</span>
+</pre></td></tr></tbody></table>
+
+		<p>pwd是Print Working Directory的缩写，也就是显示目前所在目录的命令，
+		例如在上个表格最后的目录是/var/mail这个目录，但是提示字节仅显示mail，
+		如果你想要知道目前所在的目录，可以输入pwd即可。此外，由於很多的套件所使用的目录名称都相同，例如 
+		/usr/local/etc还有/etc，但是通常Linux仅列出最后面那一个目录而已，这个时候你就可以使用pwd 
+		来知道你的所在目录罗！免得搞错目录，结果...</p>
+
+		<p>其实有趣的是那个 -P 的选项啦！他可以让我们取得正确的目录名称，而不是以连结档的路径来显示的。
+		如果你使用的是CentOS 5.x的话，刚刚好/var/mail是/var/spool/mail的连结档，
+		所以，透过到/var/mail下达pwd -P就能够知道这个选项的意义罗～ ^_^<br><br></p>
+
+		<a name="mkdir"></a>
+		<hr><ul class="list1"><li class="text_import1">mkdir (创建新目录)</li></ul>
+
+<table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">mkdir [-mp] 目录名称</span>
+<span class="term_say">选项与参数：
+-m ：配置文件的权限喔！直接配置，不需要看默认权限 (umask) 的脸色～
+-p ：帮助你直接将所需要的目录(包含上一级目录)递回创建起来！</span>
+
+<span class="term_hd">范例：请到/tmp底下尝试创建数个新目录看看：</span>
+[root@www ~]# <span class="term_command">cd /tmp</span>
+[root@www tmp]# <span class="term_command">mkdir test</span>    <span class="term_note">&lt;==创建一名为 test 的新目录</span>
+[root@www tmp]# <span class="term_command">mkdir test1/test2/test3/test4</span>
+mkdir: cannot create directory `test1/test2/test3/test4': 
+No such file or directory       <span class="term_note">&lt;== 没办法直接创建此目录啊！</span>
+[root@www tmp]# <span class="term_command">mkdir -p test1/test2/test3/test4</span>
+<span class="term_say"># 加了这个 -p 的选项，可以自行帮你创建多层目录！</span>
+
+<span class="term_hd">范例：创建权限为rwx--x--x的目录</span>
+[root@www tmp]# <span class="term_command">mkdir -m 711 test2</span>
+[root@www tmp]# <span class="term_command">ls -l</span>
+drwxr-xr-x  3 root  root 4096 Jul 18 12:50 test
+drwxr-xr-x  3 root  root 4096 Jul 18 12:53 test1
+<span class="term_write">drwx--x--x</span>  2 root  root 4096 Jul 18 12:54 test2
+<span class="term_say"># 仔细看上面的权限部分，如果没有加上 -m 来强制配置属性，系统会使用默认属性。
+# 那么你的默认属性为何？这要透过底下介绍的 <a href="#umask"><span class="term_say" style="text-decoration: underline;">umask</span></a> 才能了解喔！ ^_^</span>
+</pre></td></tr></tbody></table>
+
+		<p>如果想要创建新的目录的话，那么就使用mkdir (make directory)吧！ 不过，在默认的情况下，
+		<span class="text_import2">你所需要的目录得一层一层的创建才行</span>！例如：假如你要创建一个目录为 
+		/home/bird/testing/test1，那么首先必须要有 /home 然后 /home/bird ，再来 /home/bird/testing 
+		都必须要存在，才可以创建 /home/bird/testing/test1 这个目录！假如没有 /home/bird/testing 
+		时，就没有办法创建 test1 的目录罗！</p>
+
+		<p>不过，现在有个更简单有效的方法啦！那就是加上 -p 这个选项喔！你可以直接下达：『 <span class="text_import2">mkdir -p /home/bird/testing/test1</span> 』
+		则系统会自动的帮你将 /home, /home/bird, /home/bird/testing 依序的创建起目录！并且，
+		<span class="text_import2">如果该目录本来就已经存在时，系统也不会显示错误信息喔</span>！挺快乐的吧！ ^_^。
+		不过鸟哥不建议常用-p这个选项，因为担心如果你打错字，那么目录名称就会变的乱七八糟的！</p>
+
+		<p>另外，有个地方你必须要先有概念，那就是『默认权限』的地方。我们可以利用 -m 来强制给予一个新的目录相关的权限，
+		例如上表当中，我们给予 -m 711 来给予新的目录 drwx--x--x 的权限。不过，如果没有给予 -m 选项时，
+		那么默认的新建目录权限又是什么呢？这个跟 <a href="#umask">umask</a> 有关，我们在本章后头会加以介绍的。<br><br></p>
+
+		<a name="rmdir"></a>
+		<hr><ul class="list1"><li class="text_import1">rmdir (删除『空』的目录)</li></ul>
+
+<table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">rmdir [-p] 目录名称</span>
+<span class="term_say">选项与参数：
+-p ：连同上一级『空的』目录也一起删除</span>
+
+<span class="term_hd">范例：将於mkdir范例中创建的目录(/tmp底下)删除掉！</span>
+[root@www tmp]# <span class="term_command">ls -l</span>   <span class="term_note">&lt;==看看有多少目录存在？</span>
+drwxr-xr-x  3 root  root 4096 Jul 18 12:50 test
+drwxr-xr-x  3 root  root 4096 Jul 18 12:53 test1
+drwx--x--x  2 root  root 4096 Jul 18 12:54 test2
+[root@www tmp]# <span class="term_command">rmdir test </span>  <span class="term_note">&lt;==可直接删除掉，没问题</span>
+[root@www tmp]# <span class="term_command">rmdir test1</span>  <span class="term_note">&lt;==因为尚有内容，所以无法删除！</span>
+rmdir: `test1': Directory not empty
+[root@www tmp]# <span class="term_command">rmdir -p test1/test2/test3/test4</span>
+[root@www tmp]# <span class="term_command">ls -l      </span>  <span class="term_note">&lt;==您看看，底下的输出中test与test1不见了！</span>
+drwx--x--x  2 root  root 4096 Jul 18 12:54 test2
+<span class="term_say"># 瞧！利用 -p 这个选项，立刻就可以将 test1/test2/test3/test4 一次删除～
+# 不过要注意的是，这个 rmdir 仅能『删除空的目录』喔！</span>
+</pre></td></tr></tbody></table>
+
+		<p>如果想要删除旧有的目录时，就使用rmdir吧！例如将刚刚创建的test杀掉，使用『 
+		rmdir test 』即可！请注意呦！目录需要一层一层的删除才行！而且<span class="text_import2">被删除的目录里面必定不能存在其他的目录或文件！</span>
+		这也是所谓的空的目录(empty directory)的意思啊！那如果要将所有目录下的东西都杀掉呢？！
+		这个时候就必须使用『 rm -r test 』罗！不过，还是使用 rmdir 比较不危险！你也可以尝试以 -p 
+		的选项加入，来删除上一级的目录喔！</p>
+	</div>
+
+	<hr><a name="dir_path"></a><img src="../images/logo.png" alt="小标题的图示" width="24" align="middle" height="23"><span class="text_h2">关於运行档路径的变量： $PATH</span>
+	<div class="block2">
+		<p>经过第六章FHS的说明后，我们知道查阅文件属性的命令ls完整档名为：/bin/ls(这是绝对路径)，
+		那你会不会觉得很奇怪：『<span class="text_import2">为什么我可以在任何地方运行/bin/ls这个命令呢？</span> 』
+		为什么我在任何目录下输入 ls 就一定可以显示出一些信息而不会说找不到该 /bin/ls 命令呢？
+		<span class="text_import2">这是因为环境变量 PATH 的帮助所致呀</span>！</p>
+
+		<p>当我们在运行一个命令的时候，举例来说『ls』好了，系统会依照PATH的配置去每个PATH定义的目录下搜寻档名为ls的可运行档，
+		如果在PATH定义的目录中含有多个档名为ls的可运行档，那么先搜寻到的同名命令先被运行！</p>
+
+		<p>现在，请下达『echo $PATH』来看看到底有哪些目录被定义出来了？
+		echo有『显示、印出』的意思，而 PATH 前面加的 $ 表示后面接的是变量，所以会显示出目前的 PATH ！</p>
+
+<table class="term"><tbody><tr><td class="term"><pre><span class="term_hd">范例：先用root的身份列出搜寻的路径为何？</span>
+[root@www ~]# <span class="term_command">echo $PATH</span>
+/usr/kerberos/sbin:/usr/kerberos/bin:/usr/local/sbin:/usr/local/bin:/sbin
+:<span class="term_write">/bin</span>:/usr/sbin:/usr/bin:/root/bin  <span class="term_note">&lt;==这是同一行！</span>
+
+<span class="term_hd">范例：用vbird的身份列出搜寻的路径为何？</span>
+[root@www ~]# <span class="term_command">su - vbird</span>
+[vbird@www ~]# <span class="term_command">echo $PATH</span>
+/usr/kerberos/bin:/usr/local/bin:<span class="term_write">/bin</span>:/usr/bin:/home/vbird/bin
+<span class="term_say"># 仔细看，一般用户vbird的PATH中，并不包含任何『sbin』的目录存在喔！</span>
+</pre></td></tr></tbody></table>
+
+		<p>PATH(一定是大写)这个变量的内容是由一堆目录所组成的，每个目录中间用冒号(:)来隔开，
+		每个目录是有『顺序』之分的。仔细看一下上面的输出，你可以发现到无论是root还是vbird都有/bin
+		这个目录在PATH变量内，所以当然就能够在任何地方运行ls来找到/bin/ls运行档罗！</p>
+
+		<p>我们用几个范例来让你了解一下，为什么PATH是那么重要的项目！</p>
+
+<table border="1" cellpadding="5" cellspacing="0" width="90%"><tbody><tr><td>
+例题：<div class="block2">
+请问你能不能使用一般身份使用者下达ifconfig eth0这个命令呢？
+</div>
+答：<div class="block2">
+如上面的范例所示，当你使用vbird这个帐号运行ifconfig时，会出现『-bash: ifconfig: command not found』的字样，
+因为ifconfig的是放置到/sbin底下，而由上表的结果中我们可以发现vbird的PATH并没有配置/sbin，
+所以默认无法运行。<br><br>
+但是你可以使用『/sbin/ifconfig eth0』来运行这个命令喔！因为一般用户还是可以使用ifconfig来查询系统IP的参数，
+既然PATH没有规范到/sbin，那么<span class="text_import2">我们使用『绝对路径』也可以运行到该命令的</span>！
+</div>
+</td></tr></tbody></table><br>
+
+<table border="1" cellpadding="5" cellspacing="0" width="90%"><tbody><tr><td>
+例题：<div class="block2">
+假设你是root，如果你将ls由/bin/ls移动成为/root/ls(可用『mv /bin/ls /root』命令达成)，然后你自己本身也在/root目录下，
+请问(1)你能不能直接输入ls来运行？(2)若不能，你该如何运行ls这个命令？(3)若要直接输入ls即可运行，又该如何进行？
+</div>
+答：<div class="block2">
+由於这个例题的重点是将某个运行档移动到非正规目录去，所以我们先要进行底下的动作才行：(务必使用root的身份)<br>
+<table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">mv /bin/ls /root</span>
+<span class="term_say"># mv 为移动，可将文件在不同的目录间进行移动作业</span>
+</pre></td></tr></tbody></table>
+(1)接下来不论你在那个目录底下输入任何与ls相关的命令，都没有办法顺利的运行ls了！
+也就是说，你不能直接输入ls来运行，<span class="text_import2">因为/root这个目录并不在PATH指定的目录中，
+所以，即使你在/root目录下，也不能够搜寻到ls这个命令！</span><br><br>
+(2)因为这个ls确实存在於/root底下，并不是被删除了！所以我们可以透过使用绝对路径或者是相对路径直接指定这个运行档档名，
+底下的两个方法都能够运行ls这个命令：<br>
+
+<table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">/root/ls</span>  <span class="term_note">&lt;==直接用绝对路径指定该档名</span>
+[root@www ~]# <span class="term_command">./ls    </span>  <span class="term_note">&lt;==因为在 /root 目录下，就用./ls来指定</span>
+</pre></td></tr></tbody></table>
+
+(3)如果想要让root在任何目录均可运行/root底下的ls，那么就将/root加入PATH当中即可。
+加入的方法很简单，就像底下这样：<br>
+
+<table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">PATH="$PATH":/root</span>
+</pre></td></tr></tbody></table>
+上面这个作法就能够将/root加入到运行档搜寻路径PATH中了！不相信的话请您自行使用『echo $PATH』去查看吧！
+如果确定这个例题进行没有问题了，请将ls搬回/bin底下，不然系统会挂点的！<br>
+
+<table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">mv /root/ls /bin</span>
+</pre></td></tr></tbody></table>
+</div>
+</td></tr></tbody></table><br>
+
+<table border="1" cellpadding="5" cellspacing="0" width="90%"><tbody><tr><td>
+例题：<div class="block2">
+如果我有两个ls命令在不同的目录中，例如/usr/local/bin/ls与/bin/ls那么当我下达 ls 的时候，哪个ls会被运行？
+</div>
+答：<div class="block2">
+那还用说，就找出 PATH 里面哪个目录先被查询，则那个目录下的命令就会被先运行了！
+</div>
+</td></tr></tbody></table><br>
+
+<table border="1" cellpadding="5" cellspacing="0" width="90%"><tbody><tr><td>
+例题：<div class="block2">
+为什么PATH搜寻的目录不加入本目录(.)？加入本目录的搜寻不是也不错？
+</div>
+答：<div class="block2">
+如果在PATH中加入本目录(.)后，确实我们就能够在命令所在目录进行命令的运行了。
+但是由於你的工作目录并非固定(常常会使用cd来切换到不同的目录)，
+因此能够运行的命令会有变动(因为每个目录底下的可运行档都不相同嘛！)，这对使用者来说并非好事。<br><br>
+另外，如果有个坏心使用者在/tmp底下做了一个命令，因为/tmp是大家都能够写入的环境，所以他当然可以这样做。
+假设该命令可能会窃取使用者的一些数据，如果你使用root的身份来运行这个命令，那不是很糟糕？
+如果这个命令的名称又是经常会被用到的ls时，那『中标』的机率就更高了！<br><br>
+所以，<span class="text_import2">为了安全起见，不建议将『.』加入PATH的搜寻目录中。</span>
+</div>
+</td></tr></tbody></table><br>
+
+
+		<p>而由上面的几个例题我们也可以知道几件事情：</p>
+		<ul class="text_import2">
+		<li>不同身份使用者默认的PATH不同，默认能够随意运行的命令也不同(如root与vbird)；</li>
+		<li>PATH是可以修改的，所以一般使用者还是可以透过修改PATH来运行某些位於/sbin或/usr/sbin下的命令来查询；</li>
+		<li>使用绝对路径或相对路径直接指定某个命令的档名来运行，会比搜寻PATH来的正确；</li>
+		<li>命令应该要放置到正确的目录下，运行才会比较方便；</li>
+		<li>本目录(.)最好不要放到PATH当中。</li>
+		</ul>
+		<p>对於PATH更详细的『变量』说明，我们会在第三篇的<a href="0320bash.php.html">bash shell</a>中详细说明的！</p>
+	</div>
+</div>
+<hr />
+    </td>
+    <td style="width: 16px; font-size: 6px;">　</td></tr>
+<tr><td style="width: 16px; height: 16px;">　</td>
+    <td style="width: 866px; height: 16px;">　</td>
+    <td style="width: 16px; height: 16px;">　</body></html>

@@ -1,1 +1,618 @@
-﻿<!DOCTYPE HTML PUBLIC "-//w3c//dtd html 4.0 transitional//en"> <html><head>      <meta http-equiv="Content-Type" content="text/html; charset=utf8">    <meta name="Author" content="VBird">    <title>VBird's Linux - Setup</title> <style>    <!--    body{background-image:url('http://linux.vbird.org/images/VBirdLinux.jpg'); 	background-ATTACHMENT:FIXED}    --> </style> </head><body>   <!-- Copyright � 2005. Spidersoft Ltd --> <style> A.applink:hover {border: 2px dotted #DCE6F4;padding:2px;background-color:#ffff00;color:green;text-decoration:none} A.applink       {border: 2px dotted #DCE6F4;padding:2px;color:#2F5BFF;background:transparent;text-decoration:none} A.info          {color:#2F5BFF;background:transparent;text-decoration:none} A.info:hover    {color:green;background:transparent;text-decoration:underline} </style> <div style='BORDER: 1px solid #DCE6F4; MARGIN-TOP: 20px; MARGIN-BOTTOM: 20px; MARGIN-LEFT: 5px; MARGIN-RIGHT: 5px; PADDING: 5px; BACKGROUND-COLOR: #eef8ff;line-height:180%; COLOR: #000000; font-family: Arial; font-size: 8pt; width=100%; FILTER: progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr="#FFFFFFFF", EndColorStr="#F2F5FAFF");'> This page was saved using <a class="applink" href="http://www.spidersoft.com"><b>WebZIP 7.0.3.1030</b></a> <a class="applink" href="http://www.spidersoft.com"><b>offline browser</b></a>  (Unregistered) on  02/12/15 12:14:49.<br> <b>Address:</b> <a class="info" href="http://vbird.dic.ksu.edu.tw/linux_basic/redhat6.1/linux_03setup_1.php">http://vbird.dic.ksu.edu.tw/linux_basic/redhat6.1/linux_03setup_1.php</a><br> <b>Title:</b> VBird's Linux - Setup &nbsp;&bull;&nbsp; <b>Size:</b> 40032<br></div> <!-- /Copyright � 2005. Spidersoft Ltd -->   <center><b><font color="#3333ff"><font size="+2"><font face="标楷体">鸟哥的</font><font face="Times New Roman,Times"> Linux </font><font face="标楷体">与</font><font face="Times New Roman,Times"> ADSL </font><font face="标楷体">私房菜</font></font></font></b> <br> <a href="http://linux.vbird.org/" target="_top"><img src="linux_03setup_1_files/VBirdTitle2.jpg" nosave="" width="90" border="0" height="25"></a> <a href="http://linux.vbird.org/linux_basic"><img src="linux_03setup_1_files/icon_system.gif" nosave="" width="90" border="0" height="25"></a> <a href="http://linux.vbird.org/linux_server"><img src="linux_03setup_1_files/icon_server.gif" nosave="" width="90" border="0" height="25"></a> <a href="http://linux.vbird.org/linux_security"><img src="linux_03setup_1_files/icon_security.jpg" nosave="" width="90" border="0" height="25"></a> <a href="http://phorum.vbird.org/" target="_blank"><img src="linux_03setup_1_files/icon_forums.gif" nosave="" width="90" border="0" height="25"></a> <a href="http://linux.vbird.org/adsl"><img src="linux_03setup_1_files/icon_adsl.gif" nosave="" width="90" border="0" height="25"></a> <br> <hr width="100%"> </center>  <center><font color="#3333ff"><font size="+2"><font face="标楷体">简易 </font><font face="Times New Roman Baltic">Linux</font><font face="标楷体"> 安装</font></font></font></center>  <div align="right"><font face="新细明体"><font color="#3333ff"><font size="-1">最近更新日期：2001/08/12</font></font></font></div> <font face="标楷体"><font color="#000099"><font size="+1"><a href="#carful">注意事项</a></font></font></font> <br><font face="标楷体"><font color="#000000"><font size="+1"><a href="#HD">硬盘规划</a></font></font></font> <br><font color="#000000"><font size="+1"><a href="http://linux.vbird.org/linux_basic/redhat6.1/linux_03setup_2.php"><font face="Times New Roman Baltic">SPFdisk</font><font face="标楷体"> 的范例</font></a></font></font> <br><font color="#000000"><font size="+1"><a href="#linux"><font face="Times New Roman Baltic">Linux</font><font face="标楷体"> 安装流程</font></a></font></font> <br><font color="#000000"><font size="+1"><font face="标楷体"><a href="#QA">本章问题讨论</a>：如何移除 </font><font face="Times New Roman Baltic">Lilo</font><font face="标楷体">、何谓虚拟</font><font face="Times New Roman Baltic">IP</font><font face="标楷体">....</font></font></font> <br> <hr width="100%"> <br><a name="carful"></a><font face="标楷体"><font color="#000099"><font size="+1">注意事项：</font></font></font> <blockquote> <ul> <li> <font color="#000000"><a href="http://linux.vbird.org/linux_basic/redhat6.1/linux_01introduction.php">在安装 Linux 之前，先了解一下你为何要安装 Linux 呢？ Linux 是什么？ 要如何学习 Linux 呢？</a></font></li>  <br>&nbsp; <li> <font color="#000000"><a href="http://linux.vbird.org/linux_basic/redhat6.1/linux_02before_setup.php">另外，你要了解一下，哪一种硬件可以适合 Linux 的安装？你要安装哪一种版本的 Linux 呢？ 最主要的，你安装的 Linux 目的是啥？</a></font></li>  <br>&nbsp; <li> <font color="#000000">在进行 Linux 的安装之前，必须先知道到一下你的硬件配备与所需要的操作系统。以下我的示范是以 Windows98 及 Linux (RedHat 6.1) 为基准，建立一个多重引导在 6GB 的硬盘上！</font></li> </ul>  <ul> <li> <font color="#000000">再确认一次，我们使用的 Linux 版本是 </font><font color="#000099">RedHat 6.1</font><font color="#000000">，</font><font color="#000099">核心为 2.2.12-20 </font><font color="#000000">的稳定版本，以可开机光盘进行文本模式的安装。</font></li> </ul>  <ul> <li> <font color="#000000">当然啰，再提一下鸟哥的硬件配备：Pentun-166MMX, 64MB RAM, 6GB Harddisk, S3 Virge VGA, RTL 8139 Netcard, 20X CD-ROM ...</font></li> </ul>  <ul> <li> <font color="#000000">由于我需要进行多重引导的设定，然而 Linux 本身的强悍功能可能会让你的 Windows 没有办法在安装了 Linux 后还能顺利安装完毕，所以这里要说的是：『</font><font color="#000099">请先安装了 Windows98 之后再安装 Linux</font><font color="#000000">！』，否则等你安装完了 Linux 之后，要再安装 Windows 可能要花上好一番功夫啰！安装流程如下图所示：</font></li> </ul>  <center><img src="linux_03setup_1_files/linux_03setup_flow_fig.jpg" width="285" height="505"></center> </blockquote>  <center> <hr width="100%"></center> <a name="HD"></a><font face="标楷体"><font color="#000099"><font size="+1">硬盘规划：</font></font></font> <blockquote><font color="#000000">鸟哥的硬盘规划为： 1GB windows98 + 5GB Linux ，多重引导选单！</font> <p><font color="#000000">先假设你对于硬件的了解还算可以（亦即你可以自己将旧的零件组装成一台新的计算机！），在你将所有的零件组合好之后，就要开始进行你这部主机的操作系统规划了。由于各软硬件厂商所开发的驱动程序毕竟还是以微软的 Windows 系统为主流，而你要确定你的系统有没有问题时，通常也是使用 Windows 的即插即用的功能去捉你的硬件。也曾在网络上听说过，当你的 Linux 硬件配置有问题时，可以在 Windows 中察看其 IRQ 与 DMA 等硬件配置，然后再回到 Linux 中去设定！</font> </p><p><font color="#000000">另外，再假设你还有其他的小弟小妹可能会来碰你的计算机，你又想将这部计算机在不跑 Linux 时还可以当小弟小妹的打字练习机，或上网浏览器使用.....。这样一来，是否觉得这部计算机有多重系统的设定需要呢？我就觉得有需要！所以在我的主机上我是设计成 Windows98 与 Linux 共存的情况！同时，若仅使用 Windows 作为 Web server 的主机也是有很多的程序可用的！在后面的章节中我也会以 Windows 98 做为主机的情况略做说明！</font> </p><p><font color="#000000">假设你的旧机子上已经存在旧有的数据，那样一来你势必要重新规划你的硬盘，以符合你要灌的系统需求！这里我是将我的 6GB 硬盘规划为两个扇区，一个是 1GB 给 Windows 使用，一个是 5GB 给 Linux 使用。咦！ Linux 不是不会用到很多的资源吗？为何要划分 5GB 给 Linux 使用呢？</font><font color="#000099">通常你灌完 Linux 全部的系统需求大约需要 1.2GB</font><font color="#000000"> ，但是因为我还有设定 『代理服务器』 的服务，这项服务会很耗硬盘空间，所以开的系统是比较大一些的，而且，还有一些预留空间是给『信件』及『网页空间』与『网络驱动器』使用的空间！此外，这部机器上主要是提供 Linux 主机之用，当然 Windows 的空间就不用太大啦！</font> </p><p><font color="#000000">注：如果你有的只是1～2GB的小硬盘，那基本上你可以仅安装 Linux 即可！那样的话，占用的硬盘空间会变的很小！（只要 1GB 即可）</font> </p><p><font color="#000000">好了，接下来就是使用 DOS 下的 FDisk 程序或是国人开发的 SPFdisk 程序进行硬盘的分割了！这里假设你已经会使用 DOS 或是 SPFdisk 的程序进行硬盘分割，所以将硬盘分出主分割区 1GB 及未分割区为 5GB ，在这一个部分只有一个地方需要注意，『</font><font color="#000099">若您的硬盘很大（例如现在的 30GB 硬盘），由于开机系统区并不支持在 1023 扇区以外的硬盘扇区，所以在分割的时候要先注意一下你要将系统启动扇区放置的区域是哪一个！！！』</font> </p><p><font color="#3333ff">Fdisk 的范例</font><font color="#000000">：若您还不会使用 fdisk 的功能，可以<a href="http://linux.vbird.org/linux_basic/redhat6.1/linux_03setup_2.php">按这里</a>看一个范例（使用 1.2GB 的硬盘作为范例分割成两个主要分割区）。</font></p></blockquote>  <hr width="100%"> <br><font face="Times New Roman Baltic"><font color="#000099"><font size="+1">Windows98：</font></font></font> <blockquote>好啦！硬盘终于分割好啦，那接下来要做的就是灌 Windows98 啦！说实在的，玩个人计算机的朋友们， Windows98 不灌个几十遍以上是不可能的，因为<font color="#000099"> Windows98 有个别名叫做『晕倒九八』</font>，就是要灌到晕倒 98 次以上才会成精！哈哈！当然这是个笑话，不过这个笑话里隐藏了一个很大的问题，就是 Windows98 或 Windows ME 的不稳定性。当然了，如果你对于 Windows2000 或 Windows NT 有兴趣的话，那你可能会说『微软出的东西不错呀！』就连玩硬件的玩家都知道的『<a href="http://www.big5.tomshardware.com/" target="_blank">汤姆的五金店</a>』对于微软这款 Windows2000 都赞誉有加，不过汤姆的五金店中也说了，微软根本不希望 Windows2000 可以卖的好，因为如此一来使用 Windows 的客户将不想要再继续升级其操作系统，因为 Win2000 实在是太稳定了，那微软赚啥？？？这或许是上述这个网站对于微软过去行为的不谅解，不过也可以说明在个人计算机上使用的 98 核心的不稳定性了！ <p>说到这里实在是有点离题，好，回归主题！ Windows98 在 1GB 的硬盘空间要灌到怎样的地步呢？其实只要能开机就可以了！因为后续的安装可以在你 Linux 系统装完之后再继续安装，因为 Linux 安装完毕之后，你的这部机器就可以使用多重引导了，当然 Windows 既然可以开机当然也可以继续他未完成的安装啦！ </p><p>话虽如此，不过最好还是能把一些常用的执行程序也一起灌好，尤其是网络卡的安装与联机程序的安装！因为这一台 PC 是要被当成主机使用的，不用说，其因特网的连接一定是主要的功能，所以当然你要先确认在比较容易以图形接口安装的 Windows 接口下，即插即用的配备均可正常运作！而以拨接网络或 ADSL 拨接或固定制网络系统或校园网络系统.....不管何种连接上网络的系统，你要先确认所有的运作是正常的！这样就可以了！ </p><p>安装 Windows98 的过程我就不多说了，主要是先以 98 制作的开机片开机并驱动光驱，放入原版的 98 光盘后打入 <br>&nbsp; <table width="80%" bgcolor="#000000" cols="1"> <tbody><tr> <td><font color="#ffffff">C:&gt;setup /is </font><font color="#ffff00">（如果你已经格式化好硬盘了）</font></td> </tr> </tbody></table>  </p><p>&nbsp;/is 这个参数是令 Windows 不要去检查硬盘的指令。然后就按照屏幕上的指示一步一步的安装吧，照你机器的速度，安装大约需要30分钟以上的时间，泡个茶去看个电视再回来吧！</p></blockquote>  <hr width="100%"> <br><a name="linux"></a><font face="Times New Roman Baltic"><font color="#000099"><font size="+1">Linux：</font></font></font> <ol>OK！Windows 终于安装完毕了，开始进入 Linux 的安装啰！准备好你的 Linux 光盘吧！什么？没有光盘！刚刚不是跟你说过了下载的地方吗？伤脑筋，<a href="http://linux.vbird.org/linux_basic/redhat6.1/linux_02before_setup.php#linuxdistribution">来这里下载吧</a>！然后开始下列的步骤啰！ <p>简易流程 <br>1. <a href="#BIOS_check">确认 BIOS 是否支持光盘开机</a>； <br>2. <a href="#text_setup">以文本模式开始安装 Linux</a><font color="#000000">；</font> <br>3. <a href="#flow">安装流程</a>； <br>&nbsp;</p></ol> <a name="BIOS_check"></a><font color="#993300"><font size="+1"><font face="Times New Roman Baltic">1. </font><font face="标楷体">确认 </font><font face="Times New Roman Baltic">BIOS</font><font face="标楷体"> 是否支持光盘开机：</font></font></font> <blockquote>基本上如果是不太旧的版子都会支持光盘开机的，使用 CD-ROM 开机的好处是比较快，而且也不用再去做 Linux 安装开机片，确认的方法如下： <ol> <li> 按电源键开机；</li>  <br>&nbsp; <li> 在进入系统之前会出现 Del 字样（每个厂牌不太相同），此时按下键盘上的 Delete 键；</li>  <br>&nbsp; <li> 进入 BIOS 之后以箭头键选择 『<font color="#000099">BIOS Features Setup</font>』 这一项，或者是 『<font color="#000099">Advanced BIOS Features</font>』 ，不管如何，反正只要看到 『<font color="#000099">BIOS Features</font>』 字样的那一项就对了！；</li>  <br>&nbsp; <li> 将箭头键移动至 『Boot Sequence』 或者是 『First Boot Device』； 这一项，按键盘上的 『Page Up』 或 『Page Down』 按键，选择 『CD-ROM』 为第一开机顺位即可。这里注意一下，如果你的机器并不支持 CD-ROM 开机的话，你一定找不到 CD-ROM 这一项，这时请制作开机片吧，并将此项调整为 『A』 为第一顺位；</li>  <br>&nbsp; <li> 按键盘上 『ESC』 键退出；</li>  <br>&nbsp; <li> 将箭头键移动至 『Save and Exit』 这一项按 『Enter』 及 『Y』 确认后重新启动即可！</li> </ol> </blockquote> <a name="text_setup"></a><font color="#993300"><font size="+1"><font face="Times New Roman Baltic">2. </font><font face="标楷体">以文本模式开始安装</font><font face="Times New Roman Baltic"> Linux</font><font face="标楷体">：</font></font></font> <blockquote>Linux 的安装一定要使用 Linux 安装程序开机片，或者是由 CD-ROM 直接以 Linux 光盘开机，方法为： <ul> <li> <font color="#000099">BIOS可使用 CD-ROM 开机</font>：若是你可以 BIOS 开机，则按照『步骤一』设定开机为 CD-ROM ，然后在开机之前放入 Linux 可开机光盘即可自动开机；</li>  <br>&nbsp; <li> <font color="#000099">仅能使用软盘开机</font>：若你的主机无法以 CD-ROM 开机，则你需要在 DOS 接口中制作 Linux 开机片：</li>  <br>a. 随便找一台 Windows 计算机，开启 MS-DOS 窗口； <br>b. 将可开机 Linux 光盘放入光驱中，在 MS-DOS 窗口键入： <br>&nbsp; <table width="90%" bgcolor="#330033" cols="1"> <tbody><tr> <td><font color="#ffffff">C:\WINDOWS&gt; cd&nbsp;&nbsp; E:\dosutils</font></td> </tr> </tbody></table>  <p>&nbsp;&nbsp; 上面的 E 为你的光驱代号； <br>c. 在 DOS 提示字符下键入： <br>&nbsp; <table width="90%" bgcolor="#330033" cols="1"> <tbody><tr> <td><font color="#ffffff">E:\dosutils&gt; rawrite&nbsp;&nbsp; -f&nbsp;&nbsp; e:\images\boot.img&nbsp;&nbsp; -d&nbsp;&nbsp; a:</font></td> </tr> </tbody></table>  </p><p>&nbsp;&nbsp; 上面的 e 为你的光驱代号，这时在软盘驱动器放入一片空白的软盘片后，按 『Enter』 即可。</p></ul> OK！在完成上面的步骤之后（不论是何种开机方法），将可开机 Linux 光盘放入你主机的光驱中，将可开机软盘放入软盘驱动器中，按下电源键开机，开机完成之后会进入安装启始画面，此时请在提示字符下打 <font color="#000099">text</font> 然后按 Enter ，便可进入文本模式安装 Linux 了！ <p>个人是比较偏好文本模式的安装，因为图形接口的安装虽然方便，但是好像常常会有问题，而且当你的主机速度并不快时，图形接口的安装会有一点点的慢， 所以我是建议使用文本模式啦，以下也以文本模式作为介绍。不过，如果使用图形接口也是可以的，安装的顺序都相同，只是以图形的方式呈现罢了！</p></blockquote> <a name="flow"></a><font color="#993300"><font size="+1"><font face="Times New Roman Baltic">3. </font><font face="标楷体">安装流程：</font></font></font> <ol>接下来的安装流程是蛮繁复的，你可要一步一步的慢慢来！ <br>&nbsp; <ol> <li> <font color="#000066">选择显示模式</font>===&gt; 一开始安装程序要你确认你的安装模式，你可以在提示字符 boot:&nbsp; 下输入 『<font color="#000099">text』 </font><font color="#000000">这个即是文字安装模式，按下 Enter 之后，便会加载 Linux 的一些驱动程序；</font></li>  <br>&nbsp; <li> <font color="#000066">选择语系</font><font color="#000000">=======&gt; 因为没有中文，所以这里选择 『</font><font color="#000099">English</font><font color="#000000">』 按 Enter 即可；</font></li>  <br>&nbsp; <li> <font color="#000066">选择键盘模式</font><font color="#000000">===&gt; 同样是选择 『</font><font color="#000099">us</font><font color="#000000">』 即可；</font></li> </ol>  <ol> <li> <font color="#000066">欢迎画面</font><font color="#000000">=======&gt; 按 Enter 即可；</font></li>  <br>&nbsp; <li> <font color="#000066">选择系统模式</font><font color="#000000">===&gt; 这一版的 Linux 提供五种模式选择，分别是 GNOME, KDE, Server, Custom, 及 Upgrade ，除第五种为升级安装之外，前面四种最大的不同乃是在其硬盘分割的部分，因为我们是初学者，一开始选择 Custom 自己分割是比较好的一个方式，所以移动箭头键至 『</font><font color="#000099">Install Custom System</font><font color="#000000">』 按 Enter；</font></li>  <br>&nbsp; <li> <a name="HD11"></a><font color="#000066">硬盘划分</font><font color="#000000">=======&gt; <font size="+2">『</font></font><font size="+2"><font color="#3333ff">极度重要</font><font color="#000000">』</font></font><font color="#000000">再来是最重要的部分『硬盘划分』，你应该可以看到如下的画面（图一），由于 Linux 对于硬盘的观念与 DOS 并不相同，他是将以前 DOS 下的分槽（C：、D：、E：.....）都看做是一个目录，所以最重要的当然就是『</font><font color="#000099">根目录</font><font color="#000000">』了，因为如果没有根目录的话，其他的目录就无法存在！然后由于虚拟内存也是需要的（如果你的内存不够大的话），由于我们的 6GB 硬盘已经分 1GB 给 Windows98 了，所以你可以将我们剩下的 5GB 的空间分 100MB 给虚拟内存，而剩下的全部都挂在根目录 『/』 底下即可；</font></li>  <br>如图一中你会看到一个已经分割好的 DOS 系统，那是之前安装 Windows98 的咚咚，那一列不要理他，其他的两列在一开始你并不会看到。然后你还会看到 Device 这个东西， Linux 会自动去侦测你 IDE 接口的硬盘，注意：<font color="#000099">接在 primary IDE 的 Master 硬盘（就是所谓的 C: 槽）称为 『hda』，而这个硬盘的逻辑分割就称为 『hda1、hda6、.....』，而接在 slave 的则称为 『hdb』啰。至于接在 secondary IDE 的 Master 就称为 『hdc』</font>，因此你需要知道你的硬盘是接在哪一个区域！以下列出IDE接口的各个硬盘在 Linux 下的代号： <br>&nbsp; <table width="50%" border="1" cols="2"> <tbody><tr> <td> <center>IDE界面插槽</center> </td>  <td> <center>Linux 下的硬盘代号</center> </td> </tr>  <tr> <td> <center>Primary, Master</center> </td>  <td> <center>hda</center> </td> </tr>  <tr> <td> <center>Primary, Slave</center> </td>  <td> <center>hdb</center> </td> </tr>  <tr> <td> <center>Secondary, Master</center> </td>  <td> <center>hdc</center> </td> </tr>  <tr> <td> <center>Secondary, Slave</center> </td>  <td> <center>hdd</center> </td> </tr> </tbody></table>  <center> <p>图一&nbsp;<img src="linux_03setup_1_files/linux_03setup_1.png" width="580" height="320"></p></center>  <p><font color="#000066">建立虚拟内存</font>=&gt; 在图一中你可以按键盘的 『Tab』 键选择至 『<font color="#000099">Add</font>』 这一项按 Enter，会出现一个如下所示的窗口（图二），『Mount Point』不用理他，按 『Tab』 移动至 『<font color="#000099">Size (Megs)</font><font color="#000000">』</font> 这一个选项后，输入 『<font color="#000099">100</font>』 （我们要建立100MB的虚拟内存），然后再按&nbsp; 『Tab』键移动至画面中的 Type 这一项，选择『<font color="#000099">Linux Swap</font>』这一项（Linux Swap 即是 Linux 下的虚拟内存了），然后再按 Tab 键至『<font color="#000099">OK</font>』按 Enter 即可； </p><center> <p>图二&nbsp;<img src="linux_03setup_1_files/linux_03setup_2.png" width="605" height="336"></p></center>  <p><font color="#000066">建立根目录</font>=====&gt; 在图一的画面中再次移动至 『<font color="#000099">Add</font>』 这一项，出现图二的画面后，在 『Mount Point』 输入 『/』，然后在 『<font color="#000099">Grow to fill disk?:</font>』 按一次空格键使括号内出现一个 <font color="#000099">[*]</font> 符号，这是说『将所有剩下的硬盘空间都配置给根目录』的意思（当然了，如果你不要将所有的空间都分配给 Linux 的话，在 Size 的地方输入你要给 Linux 的磁盘空间，单位为 MB ，最少要给 2048MB 的空间喔！）。而在 Type 的地方选择 『<font color="#000099">Linux Native</font>』 这一项（Linux Native 就是 Linux 的扇区），再按 『<font color="#000099">OK</font>』 即可！ </p><p><font color="#000066">贮存变更区域</font>===&gt; 刚刚的变动都做完之后，你应该可以看到原先图一的画面上多出了两列，就是刚刚分割的那两列，而且最底下的那一列有个 <font color="#000099">free</font> 项目的那一栏应该会显示为 0，然后选择『<font color="#000099">OK</font>』这个项目，会出现要你 <font color="#000000">Save</font> 磁盘分区的讯息，按 『<font color="#000099">Yes</font>』 即可。 <br>&nbsp; </p><li> <font color="#000066">格式化硬盘</font><font color="#000000">=====&gt; 分割完硬盘当然要格式化（format）啰，因为 Linux 与 DOS 的档案型态不同，所以你必须格式化硬盘，由于你只将硬盘分割为一个扇区（根目录），所以画面上应该只会有一个扇区，然后有一个选项『</font><font color="#000099">Check for bad blocks during format</font><font color="#000000">』 这个项目主要是在检查你的硬盘是否有坏轨。</font><font color="#000099">切记，如果你确定你的硬盘没有坏轨的话，这个项目一定不要选，不然你可能会等的疯掉</font><font color="#000000">。</font></li>  <br>&nbsp; <li> <font color="#000066">SCSI适配卡</font><font color="#000000">=====&gt; 接下来的动作是设定 SCSI 卡，不过我们没有这个卡，所以直接选『</font><font color="#000099">OK</font><font color="#000000">』跳过！</font></li>  <br>&nbsp; <li> <font color="#000066">选择开机区</font><font color="#000000">=====&gt; 再来则是 LILO 这套程序设定开机的地方，画面上应该会有两列，第一列后端会显示『</font><font color="#000099">Master Boot Record (MBR)</font><font color="#000000">』通常我们就是选择这个，按 『</font><font color="#000099">OK</font><font color="#000000">』 行了！</font></li>  <br>&nbsp; <li> <font color="#000066">检视启动扇区=</font><font color="#000000">==&gt; 这个画面会显示你的主机系统中的可启动扇区，应该是有两列的，第一列是 Windows98 的开机区，另一列则是 Linux 的开机区。你可以改变开机的名称，在 『Default Boot Label』 的地方可以看到你的开机名称，按 Enter 后可以改变名称，不要变名称的话选择 『</font><font color="#000099">OK</font><font color="#000000">』 即可；</font></li>  <br>&nbsp; <li> <font color="#000066">设定主机名</font><font color="#000000">===&gt; 由于我们将来要去申请免费的『</font><font color="#000099">动态IP</font><font color="#000000">』的 DNS ，所以这里请定你的名称为 『</font><font color="#000099">xxx.adsldns.org』</font><font color="#000000">，其中 xxx 为你想取的名称，后面 adsldns.org 请照写，注意喔，主机名尽量使用小写！例如我的主机就定名为 vbird.adsldns.org，不过主机名后来也可以修改，所以这里先随意定一个名称吧！</font></li>  <br>&nbsp; <li> <font color="#000066">设定网络卡</font><font color="#000000">=====&gt;<font size="+2">『</font></font><font size="+2"><font color="#3333ff">极度重要</font><font color="#000000">』</font></font><font color="#000000"> 如果你够幸运的话，系统可以捉到网络卡就会进入这个项目。（如果你是使用鸟哥建议的 RTL 8139 芯片的网络卡，那几乎一定可以捉的到！）首先这个项目会问你是不是要使用 DHCP 的设定，由于我们是使用 ADSL 联机的，所以这里可以输入『<a href="#QA">虚拟IP</a>』或者是你有固定的IP即可填入。通常我都是输入『</font><font color="#000099">192.168.1.11</font><font color="#000000">』这个虚拟IP，你可以照我的设定输入为：</font></li>  <ol><font color="#000099">IP address:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 192.168.1.11</font> <br><font color="#000099">Netmask:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 255.255.255.0</font> <br><font color="#000099">Default gateway(IP) 192.168.1.11</font> <br><font color="#000099">Primary nameserver: 192.168.1.11</font></ol> <font color="#000000">关于 IP 的网段理论，及屏蔽子域的设定等等，你可以在网中人的 <a href="http://www.study-area.net/linux/linuxfr.htm" target="_blank">study-area</a> 这个网站上找到相关的讯息！尤其是『何为虚拟IP？』真的需要了解一下！</font> <br>&nbsp; <li> <font color="#000066">设定鼠标</font><font color="#000000">=======&gt; 在设定鼠标的地方请依照你的实际需求选择，通常我们的鼠标都是三个钮的，你可以选『</font><font color="#000099">Generic - 3 Button Mouse (serial)或(PS/2）</font><font color="#000000">』这一项，如果你是两个钮的，就选另一个两钮的吧！另外要注意的是，底下有一个『</font><font color="#000099">Emulate 3 Buttons</font><font color="#000000">』预设是选择的，这是仿真按钮成三个钮的项目，</font><font color="#000099">通常我们不要这个项目</font><font color="#000000">，所以请将这个项目的选择取消（按 Tab 键后，按空格键取消）；</font></li>  <br>&nbsp; <li> <font color="#000066">设定鼠标接端口</font><font color="#000000">===&gt; 因为我们是接在 COM1 的接埠，所以直接按 Enter 即可；</font></li>  <br>&nbsp; <li> <font color="#000066">设定系统时区</font><font color="#000000">===&gt; 以 Tab 及箭头键选择我们的时区为『</font><font color="#000099">Asia/Taipei</font><font color="#000000">』，再至『</font><font color="#000099">OK</font><font color="#000000">』按 Enter ；</font></li>  <br>&nbsp; <li> <font color="#000066">设定root密码===&gt;</font><font color="#000000"> 接下来</font><font color="#000099">请输入两次你的密码</font><font color="#000000">，root就是系统管理员，这个密码很重要，不要忘了！另外，输入密码的时候画面上并不会有任何的显示。</font></li>  <br>&nbsp; <li> <font color="#000066">设定账号</font><font color="#000000">=======&gt; 这一版的 Linux 可以让你先设定一个账号，你也可以不设定，直接按 </font><font color="#000099">OK</font><font color="#000000"> 跳过，如果要设定的话，你的 ID 最好是小写，然后密码也是要输入两次！至于 Full name 可以先不用写！</font></li>  <br>&nbsp; <li> <font color="#000066">设定密码保护</font><font color="#000000">===&gt; 目前 Linux 系统支持几种不同的密码保护，我们也不用选择 NIF 系统，直接接受默认值按 OK 就可以了。</font></li>  <br>&nbsp; <li> <font color="#000066">选择安装套件</font><font color="#000000">===&gt; 不用说，直接按箭头键一直向下选择最后一个『</font><font color="#000099">Everything</font><font color="#000000">』即可，</font></li>  <br>&nbsp; <li> <font color="#000066">设定显示适配器</font><font color="#000000">=====&gt; 因为我们的显示适配器是 S3 的 Virge ，所以 Linux 可以捉到，这时按 OK 接受默认值即可；</font></li>  <br>&nbsp; <li> <font color="#000066">制作启动盘</font><font color="#000000">===&gt; 由于可能会有问题发生，当然是制作开机片比较好啰，选择 OK！</font></li>  <br>&nbsp; <li> <font color="#000066">即将开始安装</font><font color="#000000">===&gt; 这时出现的画面告诉你，你的安装过程会记录在 /tmp/install.log 档案中，按 OK；</font></li>  <br><font color="#000000">然后你会等待一定的时间，这个时间与你选择的套件及是否有检查硬盘坏轨有关，在我的 P-166 MMX 64MB RAM 系统中，大概需要 30-60 分钟左右的时间，去休息一下吧！</font> <br>&nbsp; <li> <font color="#000066">安装启动盘===&gt; </font><font color="#000000">在安装完所有的套件之后，再来则是制作开机片，请放入空白磁盘后按 Enter；</font></li>  <br>&nbsp; <li> <font color="#000066">设定显示器</font><font color="#000000">=====&gt; 由于我们的显示器不见得会被 Linux 支持，一般我们都是选择 『</font><font color="#000099">Custom</font><font color="#000000">』自行设定：</font></li>  <ol><font color="#000000">a. 先按 OK 略过画面；</font> <br><font color="#000000">b. 选第七项『</font><font color="#000099">High Frequency SVGA, 1024x768 @ 70 Hz</font><font color="#000000">』，这是因为目前的屏幕还不错！</font> <br><font color="#000000">c. 选第二项『50-90』即可；</font> <br><font color="#000000">d. 选『</font><font color="#000099">Probe</font><font color="#000000">』让 Linux 自己去捉显示适配器的硬件！</font> <br><font color="#000000">e. 在显示的画面中按 </font><font color="#000099">OK</font><font color="#000000"> 开始测试 X-Windows；</font> <br><font color="#000000">f. 如果你的显示器与显示适配器没有问题，屏幕上会显示 Window 的画面，且接下来会有十秒钟的时间让你确认；</font> <br><font color="#000000">g. 接下来会问你是否在开机的时候进入 X-Widows，由于我们的主机主要是当作 Server 使用，因此在 X-Windows 的使用情况不是很多，另外，由于开启 X-Windows 会占去不少的内存资源，因此我不建议你进入 X-Windows 在开机的时候，所以这里选择 『</font><font color="#000099">NO』</font><font color="#000000">。</font></ol>  <li> <font color="#000066">安装完成</font><font color="#000000">=======&gt; 接下来的画面告诉你安装完毕了，请按 </font><font color="#000099">OK</font><font color="#000000"> 跳过！</font></li>  <br><font color="#000000">终于安装完毕，这时系统会重新启动，注意喔，请一定要将 CD-ROM 中可开机的光盘片拿出来，不然就请你进 BIOS 将开机选项选为 C: 或者是 A: 。此外，在开机的过程中，注意一下，在出现：</font> <br>&nbsp; <table width="80%" bgcolor="#000000" cols="1"> <tbody><tr> <td><font color="#ffffff">LILO boot:</font></td> </tr> </tbody></table>  <p><font color="#000000">的提示字符之后，马上按 『</font><font color="#000099">Tab</font><font color="#000000">』键，则会出现两个开机系统，分别是『linux』与『dos』，如果要进入 Windows98 系统，请在 boot: 后面输入 dos 即可，如果要进入 linux 则输入 linux 即可。当然了，如果你不按任何键，则系统会主动以 Linux 开机！这个多重引导的部分我们会在后面继续谈到！</font></p></ol> </ol>  <hr width="100%"> <br><a name="QA"></a><font face="Times New Roman Baltic"><font color="#000099"><font size="+1">Q&amp;A</font></font></font> <blockquote> <ol> <li> <font color="#000000"><font size="+2">Q</font>：在灌过了 Linux 之后，由于安装 Lilo 开机区在 MBR 中，所以虽然 Linux 被移除了，但是开机还是会以 MBR 的设定为主，因此，很多人灌完了 Linux 想改回 Windows 时，硬盘总是还会以 Linux 开机。</font><font color="#000066">请问要如何将 Lilo 自 MBR 中移除</font><font color="#000000">？</font></li>  <br><font color="#000066"><font size="+2">A</font>：</font> <br><font color="#000066">你可以使用 Windows98 的软盘开机后，输入：</font> <table width="80%" bgcolor="#330033" cols="1"> <tbody><tr> <td><font color="#ffffff">A:\&gt; fdisk /mbr&nbsp; </font><font color="#ffff00">(fdisk 是 DOS 下的指令)</font></td> </tr> </tbody></table> <font color="#000066">如此则可将 MBR 中的 Lilo 完全移除了！</font> <br>&nbsp; <li> <font size="+2">Q</font>：何谓『虚拟 IP 』，与『实体 IP 』或者『固定 IP 』『动态 IP 』有啥不同？</li>  <br><font color="#000066"><font size="+2">A</font>：</font> <br><font color="#000066">『实体 IP 』：在网络的世界里，为了要辨识每一部计算机的位置，因此有了计算机 IP 地址的定义。一个 IP 就好似一个门牌！例如，你要去微软的网站的话，就要去『 207.46.197.101 』这个 IP 位置！这些可以直接在因特网上沟通的 IP 就被称为『实体 IP 』了。</font> <p><font color="#000066">『虚拟 IP 』：不过，众所皆知的，IP 地址仅为 xxx.xxx.xxx.xxx 的数据型态，其中， xxx 为 1-255 间的整数，由于近来计算机的成长速度太快，实体的 IP 已经有点不足了，好在早在规划 IP 时就已经预留了三个网段的 IP 做为内部网域的虚拟 IP 之用。这三个预留的 IP 分别为：</font> </p><ol><font color="#000066">10.0.0.0 - 10.255.255.255</font> <br><font color="#000066">172.16.0.0 - 172.31.255.255</font> <br><font color="#000066">192.168.0.0 - 192.168.255.255</font></ol> <font color="#000066">不过，由于是虚拟 IP ，所以当您使用这些地址的时候﹐当然是有所限制的，限制如下：</font> <ol><font color="#000066">私有地址的路由信息不能对外散播</font> <br><font color="#000066">使用私有地址作为来源或目的地址的封包﹐不能透过Internet来转送</font> <br><font color="#000066">关于私有地址的参考纪录(如DNS)﹐只能限于内部网络使用</font></ol> <font color="#000066">这给我们架设IP网络做成很大的方便﹐比如﹕即使您目前的公司还没有连上Internet﹐但不保证将来不 会啊。如果使用公共IP的话﹐如果没经过注册﹐等到以后真正要连上网络的时候﹐就很可能和别人冲突了。也正如前面所分析的﹐到时候再重新规划IP的话﹐将 是件非常头痛的问题。这时候﹐我们可以先利用私有地址来架设网络﹐等到真要连上intetnet的时候﹐我们可以使用IP转换协议﹐如NAT (Network Addresss Translation)等技术﹐配合新注册的IP就可以了。</font> <p><font color="#000066">『固定 IP 』与『动态 IP 』：基本上，这两个东西是由于近来网络公司大量的成长下的产物，例如，你如果向中华电信申请一个商业型态的 ADSL 专线，那他会给你一个固定的实体 IP ，这个实体 IP 就被称为『固定 IP 』了。而若你是申请计时制的 ADSL ，那由于你的 IP 可能是由数十人共同使用，因此你每次重新启动上网时，你这部计算机的 IP 都不会是固定的！于是就被称为『动态 IP』或者是『浮动式IP』。基本上，这两个都是『实体IP』，只是网络公司用来分配给用户的方法不同而产生不同的名称而已！</font> </p><p><font color="#000066">这里只有说了一些概念性的东西，基本是，IP是很麻烦的，小弟也不甚了解，例如子网掩码的计算等等！强烈的建议初学者到 <a href="http://www.study-area.net/network/network_ipadd.htm" target="_blank">study-area</a> 这个网站去看看，相信对你往后的计算机网络概念有很大的帮助喔！</font> <br>&nbsp; </p><li> <font color="#000000"><font size="+2">Q</font>：什么是 Linux 的核心，核心有哪些版本？哪里可以取得最新的核心程序？</font></li>  <br><font color="#000066"><font size="+2">A</font>：</font> <br><font color="#000066">所谓的核心可以简单的想成是 Linux 的心脏，核心包含了你的系统所需要的硬件配置与 Linux 系统模块，核心是相当重要的一个咚咚，当你的硬件太新，而使你原来的 Linux 捉不到时，就可以借着跟新核心程序来捉到！</font> <p><font color="#000066">基本上，目前可以听到的核心大概有 2.2.X 、 2.3.X 及 2.4.X，要注意的是，这些版本是同时发展的，只是目的不同，所以 2.3.X 并不是指比 2.2.X 来的新，这点一定要注意。通常，2.2.X与2.4.X是较为稳定的版本，至于 2.3.X 则是适用于一些程序发展者所需要的特殊核心，因此，对于我们这种初学者来说，使用 2.2.X 的核心版本就可以了！</font> </p><p><font color="#000066">在各大 FTP 站上均可以捉到最新的核心程序，只是，除非你很确定你要的新核心作用为何，否则小弟并不是十分建议常常更新核心的啦！毕竟，计算机够用且适用就好！</font> <br>&nbsp; </p><li> <font color="#000000"><font size="+2">Q</font>：在灌完了 Linux 之后，想改回来 Windows，但是以 DOS 的 Fdisk 却无法分割这个硬盘，该如何是好？</font></li>  <br><font color="#000066"><font size="+2">A</font>：</font> <br><font color="#000066">由于 Windows98 开机片的系统并不认识 Linux 的档案配置区，所以使用 DOS 下的 Fdisk 是无法修正硬盘的数据的！你有两个方法可以将这一个硬盘回复，一个是再以 Linux 系统重新划分；另一个则是使用国人发展的 Spfdisk 来划分，这里有一个 <a href="http://linux.vbird.org/linux_basic/redhat6.1/linux_03setup_2.php">spfdisk 的范例</a>可以让你看看如何划分硬盘。</font> <br>&nbsp; <li> 等待加入新问题</li> </ol> </blockquote> <font face="新细明体"><font color="#3333ff"><font size="-1">2002/01/01以来统计人数</font></font></font> <br><img src="linux_03setup_1_files/Count.gif" nosave="" width="60" align="ABSCENTER" height="15"> <hr width="100%"> <center> <a href="http://linux.vbird.org/" target="_top"><img src="linux_03setup_1_files/VBirdTitle2.jpg" nosave="" width="90" border="0" height="25"></a> <a href="http://linux.vbird.org/linux_basic"><img src="linux_03setup_1_files/icon_system.gif" nosave="" width="90" border="0" height="25"></a> <a href="http://linux.vbird.org/linux_server"><img src="linux_03setup_1_files/icon_server.gif" nosave="" width="90" border="0" height="25"></a> <a href="http://linux.vbird.org/linux_security"><img src="linux_03setup_1_files/icon_security.jpg" nosave="" width="90" border="0" height="25"></a> <a href="http://phorum.vbird.org/" target="_blank"><img src="linux_03setup_1_files/icon_forums.gif" nosave="" width="90" border="0" height="25"></a> <a href="http://linux.vbird.org/adsl"><img src="linux_03setup_1_files/icon_adsl.gif" nosave="" width="90" border="0" height="25"></a> <br><font color="#000066"><font size="-1">Designed by <a href="mailto:vbird@mail.vbird.idv.tw">VBird</a> during 2001-2004.&nbsp; Aerosol Lab.</font></font></center> </body></html> 
+﻿<!DOCTYPE HTML PUBLIC "-//w3c//dtd html 4.0 transitional//en">
+<html><head>
+
+
+   <meta http-equiv="Content-Type" content="text/html; charset=utf8">
+   <meta name="Author" content="VBird">
+   <title>VBird's Linux - Setup</title>
+<style>
+   <!--
+   body{background-image:url('http://linux.vbird.org/images/VBirdLinux.jpg');
+	background-ATTACHMENT:FIXED}
+   -->
+</style>
+</head><body>
+
+
+<!-- Copyright � 2005. Spidersoft Ltd -->
+<style>
+A.applink:hover {border: 2px dotted #DCE6F4;padding:2px;background-color:#ffff00;color:green;text-decoration:none}
+A.applink       {border: 2px dotted #DCE6F4;padding:2px;color:#2F5BFF;background:transparent;text-decoration:none}
+A.info          {color:#2F5BFF;background:transparent;text-decoration:none}
+A.info:hover    {color:green;background:transparent;text-decoration:underline}
+</style>
+<div style='BORDER: 1px solid #DCE6F4; MARGIN-TOP: 20px; MARGIN-BOTTOM: 20px; MARGIN-LEFT: 5px; MARGIN-RIGHT: 5px; PADDING: 5px; BACKGROUND-COLOR: #eef8ff;line-height:180%; COLOR: #000000; font-family: Arial; font-size: 8pt; width=100%; FILTER: progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr="#FFFFFFFF", EndColorStr="#F2F5FAFF");'>
+This page was saved using <a class="applink" href="http://www.spidersoft.com"><b>WebZIP 7.0.3.1030</b></a> <a class="applink" href="http://www.spidersoft.com"><b>offline browser</b></a>  (Unregistered) on  02/12/15 12:14:49.<br>
+<b>Address:</b> <a class="info" href="http://vbird.dic.ksu.edu.tw/linux_basic/redhat6.1/linux_03setup_1.php">http://vbird.dic.ksu.edu.tw/linux_basic/redhat6.1/linux_03setup_1.php</a><br>
+<b>Title:</b> VBird's Linux - Setup &nbsp;&bull;&nbsp; <b>Size:</b> 40032<br></div>
+<!-- /Copyright � 2005. Spidersoft Ltd -->
+
+
+<center><b><font color="#3333ff"><font size="+2"><font face="标楷体">鸟哥的</font><font face="Times New Roman,Times"> Linux </font><font face="标楷体">与</font><font face="Times New Roman,Times"> ADSL </font><font face="标楷体">私房菜</font></font></font></b>
+<br>
+<a href="http://linux.vbird.org/" target="_top"><img src="linux_03setup_1_files/VBirdTitle2.jpg" nosave="" width="90" border="0" height="25"></a>
+<a href="http://linux.vbird.org/linux_basic"><img src="linux_03setup_1_files/icon_system.gif" nosave="" width="90" border="0" height="25"></a>
+<a href="http://linux.vbird.org/linux_server"><img src="linux_03setup_1_files/icon_server.gif" nosave="" width="90" border="0" height="25"></a>
+<a href="http://linux.vbird.org/linux_security"><img src="linux_03setup_1_files/icon_security.jpg" nosave="" width="90" border="0" height="25"></a>
+<a href="http://phorum.vbird.org/" target="_blank"><img src="linux_03setup_1_files/icon_forums.gif" nosave="" width="90" border="0" height="25"></a>
+<a href="http://linux.vbird.org/adsl"><img src="linux_03setup_1_files/icon_adsl.gif" nosave="" width="90" border="0" height="25"></a>
+<br>
+<hr width="100%">
+</center>
+
+<center><font color="#3333ff"><font size="+2"><font face="标楷体">简易
+</font><font face="Times New Roman Baltic">Linux</font><font face="标楷体">
+安装</font></font></font></center>
+
+<div align="right"><font face="新细明体"><font color="#3333ff"><font size="-1">最近更新日期：2001/08/12</font></font></font></div>
+<font face="标楷体"><font color="#000099"><font size="+1"><a href="#carful">注意事项</a></font></font></font>
+<br><font face="标楷体"><font color="#000000"><font size="+1"><a href="#HD">硬盘规划</a></font></font></font>
+<br><font color="#000000"><font size="+1"><a href="http://linux.vbird.org/linux_basic/redhat6.1/linux_03setup_2.php"><font face="Times New Roman Baltic">SPFdisk</font><font face="标楷体">
+的范例</font></a></font></font>
+<br><font color="#000000"><font size="+1"><a href="#linux"><font face="Times New Roman Baltic">Linux</font><font face="标楷体">
+安装流程</font></a></font></font>
+<br><font color="#000000"><font size="+1"><font face="标楷体"><a href="#QA">本章问题讨论</a>：如何移除
+</font><font face="Times New Roman Baltic">Lilo</font><font face="标楷体">、何谓虚拟</font><font face="Times New Roman Baltic">IP</font><font face="标楷体">....</font></font></font>
+<br>
+<hr width="100%">
+<br><a name="carful"></a><font face="标楷体"><font color="#000099"><font size="+1">注意事项：</font></font></font>
+<blockquote>
+<ul>
+<li>
+<font color="#000000"><a href="http://linux.vbird.org/linux_basic/redhat6.1/linux_01introduction.php">在安装 Linux 之前，先了解一下你为何要安装
+Linux 呢？ Linux 是什么？ 要如何学习 Linux 呢？</a></font></li>
+
+<br>&nbsp;
+<li>
+<font color="#000000"><a href="http://linux.vbird.org/linux_basic/redhat6.1/linux_02before_setup.php">另外，你要了解一下，哪一种硬件可以适合
+Linux 的安装？你要安装哪一种版本的 Linux 呢？ 最主要的，你安装的 Linux
+目的是啥？</a></font></li>
+
+<br>&nbsp;
+<li>
+<font color="#000000">在进行 Linux 的安装之前，必须先知道到一下你的硬件配备与所需要的操作系统。以下我的示范是以
+Windows98 及 Linux (RedHat 6.1) 为基准，建立一个多重引导在 6GB 的硬盘上！</font></li>
+</ul>
+
+<ul>
+<li>
+<font color="#000000">再确认一次，我们使用的 Linux 版本是 </font><font color="#000099">RedHat
+6.1</font><font color="#000000">，</font><font color="#000099">核心为 2.2.12-20
+</font><font color="#000000">的稳定版本，以可开机光盘进行文本模式的安装。</font></li>
+</ul>
+
+<ul>
+<li>
+<font color="#000000">当然啰，再提一下鸟哥的硬件配备：Pentun-166MMX, 64MB
+RAM, 6GB Harddisk, S3 Virge VGA, RTL 8139 Netcard, 20X CD-ROM ...</font></li>
+</ul>
+
+<ul>
+<li>
+<font color="#000000">由于我需要进行多重引导的设定，然而 Linux 本身的强悍功能可能会让你的
+Windows 没有办法在安装了 Linux 后还能顺利安装完毕，所以这里要说的是：『</font><font color="#000099">请先安装了
+Windows98 之后再安装 Linux</font><font color="#000000">！』，否则等你安装完了
+Linux 之后，要再安装 Windows 可能要花上好一番功夫啰！安装流程如下图所示：</font></li>
+</ul>
+
+<center><img src="linux_03setup_1_files/linux_03setup_flow_fig.jpg" width="285" height="505"></center>
+</blockquote>
+
+<center>
+<hr width="100%"></center>
+<a name="HD"></a><font face="标楷体"><font color="#000099"><font size="+1">硬盘规划：</font></font></font>
+<blockquote><font color="#000000">鸟哥的硬盘规划为： 1GB windows98 + 5GB
+Linux ，多重引导选单！</font>
+<p><font color="#000000">先假设你对于硬件的了解还算可以（亦即你可以自己将旧的零件组装成一台新的计算机！），在你将所有的零件组合好之后，就要开始进行你这部主机的操作系统规划了。由于各软硬件厂商所开发的驱动程序毕竟还是以微软的
+Windows 系统为主流，而你要确定你的系统有没有问题时，通常也是使用 Windows
+的即插即用的功能去捉你的硬件。也曾在网络上听说过，当你的 Linux 硬件配置有问题时，可以在
+Windows 中察看其 IRQ 与 DMA 等硬件配置，然后再回到 Linux 中去设定！</font>
+</p><p><font color="#000000">另外，再假设你还有其他的小弟小妹可能会来碰你的计算机，你又想将这部计算机在不跑
+Linux 时还可以当小弟小妹的打字练习机，或上网浏览器使用.....。这样一来，是否觉得这部计算机有多重系统的设定需要呢？我就觉得有需要！所以在我的主机上我是设计成
+Windows98 与 Linux 共存的情况！同时，若仅使用 Windows 作为 Web server 的主机也是有很多的程序可用的！在后面的章节中我也会以
+Windows 98 做为主机的情况略做说明！</font>
+</p><p><font color="#000000">假设你的旧机子上已经存在旧有的数据，那样一来你势必要重新规划你的硬盘，以符合你要灌的系统需求！这里我是将我的
+6GB 硬盘规划为两个扇区，一个是 1GB 给 Windows 使用，一个是 5GB 给 Linux
+使用。咦！ Linux 不是不会用到很多的资源吗？为何要划分 5GB 给 Linux 使用呢？</font><font color="#000099">通常你灌完
+Linux 全部的系统需求大约需要 1.2GB</font><font color="#000000"> ，但是因为我还有设定
+『代理服务器』 的服务，这项服务会很耗硬盘空间，所以开的系统是比较大一些的，而且，还有一些预留空间是给『信件』及『网页空间』与『网络驱动器』使用的空间！此外，这部机器上主要是提供
+Linux 主机之用，当然 Windows 的空间就不用太大啦！</font>
+</p><p><font color="#000000">注：如果你有的只是1～2GB的小硬盘，那基本上你可以仅安装
+Linux 即可！那样的话，占用的硬盘空间会变的很小！（只要 1GB 即可）</font>
+</p><p><font color="#000000">好了，接下来就是使用 DOS 下的 FDisk 程序或是国人开发的
+SPFdisk 程序进行硬盘的分割了！这里假设你已经会使用 DOS 或是 SPFdisk 的程序进行硬盘分割，所以将硬盘分出主分割区
+1GB 及未分割区为 5GB ，在这一个部分只有一个地方需要注意，『</font><font color="#000099">若您的硬盘很大（例如现在的
+30GB 硬盘），由于开机系统区并不支持在 1023 扇区以外的硬盘扇区，所以在分割的时候要先注意一下你要将系统启动扇区放置的区域是哪一个！！！』</font>
+</p><p><font color="#3333ff">Fdisk 的范例</font><font color="#000000">：若您还不会使用
+fdisk 的功能，可以<a href="http://linux.vbird.org/linux_basic/redhat6.1/linux_03setup_2.php">按这里</a>看一个范例（使用
+1.2GB 的硬盘作为范例分割成两个主要分割区）。</font></p></blockquote>
+
+<hr width="100%">
+<br><font face="Times New Roman Baltic"><font color="#000099"><font size="+1">Windows98：</font></font></font>
+<blockquote>好啦！硬盘终于分割好啦，那接下来要做的就是灌 Windows98 啦！说实在的，玩个人计算机的朋友们，
+Windows98 不灌个几十遍以上是不可能的，因为<font color="#000099"> Windows98
+有个别名叫做『晕倒九八』</font>，就是要灌到晕倒 98 次以上才会成精！哈哈！当然这是个笑话，不过这个笑话里隐藏了一个很大的问题，就是
+Windows98 或 Windows ME 的不稳定性。当然了，如果你对于 Windows2000 或 Windows
+NT 有兴趣的话，那你可能会说『微软出的东西不错呀！』就连玩硬件的玩家都知道的『<a href="http://www.big5.tomshardware.com/" target="_blank">汤姆的五金店</a>』对于微软这款
+Windows2000 都赞誉有加，不过汤姆的五金店中也说了，微软根本不希望 Windows2000
+可以卖的好，因为如此一来使用 Windows 的客户将不想要再继续升级其操作系统，因为
+Win2000 实在是太稳定了，那微软赚啥？？？这或许是上述这个网站对于微软过去行为的不谅解，不过也可以说明在个人计算机上使用的
+98 核心的不稳定性了！
+<p>说到这里实在是有点离题，好，回归主题！ Windows98 在 1GB 的硬盘空间要灌到怎样的地步呢？其实只要能开机就可以了！因为后续的安装可以在你
+Linux 系统装完之后再继续安装，因为 Linux 安装完毕之后，你的这部机器就可以使用多重引导了，当然
+Windows 既然可以开机当然也可以继续他未完成的安装啦！
+</p><p>话虽如此，不过最好还是能把一些常用的执行程序也一起灌好，尤其是网络卡的安装与联机程序的安装！因为这一台
+PC 是要被当成主机使用的，不用说，其因特网的连接一定是主要的功能，所以当然你要先确认在比较容易以图形接口安装的
+Windows 接口下，即插即用的配备均可正常运作！而以拨接网络或 ADSL 拨接或固定制网络系统或校园网络系统.....不管何种连接上网络的系统，你要先确认所有的运作是正常的！这样就可以了！
+</p><p>安装 Windows98 的过程我就不多说了，主要是先以 98 制作的开机片开机并驱动光驱，放入原版的
+98 光盘后打入
+<br>&nbsp;
+<table width="80%" bgcolor="#000000" cols="1">
+<tbody><tr>
+<td><font color="#ffffff">C:&gt;setup /is </font><font color="#ffff00">（如果你已经格式化好硬盘了）</font></td>
+</tr>
+</tbody></table>
+
+</p><p>&nbsp;/is 这个参数是令 Windows 不要去检查硬盘的指令。然后就按照屏幕上的指示一步一步的安装吧，照你机器的速度，安装大约需要30分钟以上的时间，泡个茶去看个电视再回来吧！</p></blockquote>
+
+<hr width="100%">
+<br><a name="linux"></a><font face="Times New Roman Baltic"><font color="#000099"><font size="+1">Linux：</font></font></font>
+<ol>OK！Windows 终于安装完毕了，开始进入 Linux 的安装啰！准备好你的 Linux
+光盘吧！什么？没有光盘！刚刚不是跟你说过了下载的地方吗？伤脑筋，<a href="http://linux.vbird.org/linux_basic/redhat6.1/linux_02before_setup.php#linuxdistribution">来这里下载吧</a>！然后开始下列的步骤啰！
+<p>简易流程
+<br>1. <a href="#BIOS_check">确认 BIOS 是否支持光盘开机</a>；
+<br>2. <a href="#text_setup">以文本模式开始安装 Linux</a><font color="#000000">；</font>
+<br>3. <a href="#flow">安装流程</a>；
+<br>&nbsp;</p></ol>
+<a name="BIOS_check"></a><font color="#993300"><font size="+1"><font face="Times New Roman Baltic">1.
+</font><font face="标楷体">确认
+</font><font face="Times New Roman Baltic">BIOS</font><font face="标楷体">
+是否支持光盘开机：</font></font></font>
+<blockquote>基本上如果是不太旧的版子都会支持光盘开机的，使用 CD-ROM 开机的好处是比较快，而且也不用再去做
+Linux 安装开机片，确认的方法如下：
+<ol>
+<li>
+按电源键开机；</li>
+
+<br>&nbsp;
+<li>
+在进入系统之前会出现 Del 字样（每个厂牌不太相同），此时按下键盘上的 Delete
+键；</li>
+
+<br>&nbsp;
+<li>
+进入 BIOS 之后以箭头键选择 『<font color="#000099">BIOS Features Setup</font>』
+这一项，或者是 『<font color="#000099">Advanced BIOS Features</font>』
+，不管如何，反正只要看到 『<font color="#000099">BIOS Features</font>』
+字样的那一项就对了！；</li>
+
+<br>&nbsp;
+<li>
+将箭头键移动至 『Boot Sequence』 或者是 『First Boot Device』； 这一项，按键盘上的
+『Page Up』 或 『Page Down』 按键，选择 『CD-ROM』 为第一开机顺位即可。这里注意一下，如果你的机器并不支持
+CD-ROM 开机的话，你一定找不到 CD-ROM 这一项，这时请制作开机片吧，并将此项调整为
+『A』 为第一顺位；</li>
+
+<br>&nbsp;
+<li>
+按键盘上 『ESC』 键退出；</li>
+
+<br>&nbsp;
+<li>
+将箭头键移动至 『Save and Exit』 这一项按 『Enter』 及 『Y』 确认后重新启动即可！</li>
+</ol>
+</blockquote>
+<a name="text_setup"></a><font color="#993300"><font size="+1"><font face="Times New Roman Baltic">2.
+</font><font face="标楷体">以文本模式开始安装</font><font face="Times New Roman Baltic">
+Linux</font><font face="标楷体">：</font></font></font>
+<blockquote>Linux 的安装一定要使用 Linux 安装程序开机片，或者是由 CD-ROM
+直接以 Linux 光盘开机，方法为：
+<ul>
+<li>
+<font color="#000099">BIOS可使用 CD-ROM 开机</font>：若是你可以 BIOS 开机，则按照『步骤一』设定开机为
+CD-ROM ，然后在开机之前放入 Linux 可开机光盘即可自动开机；</li>
+
+<br>&nbsp;
+<li>
+<font color="#000099">仅能使用软盘开机</font>：若你的主机无法以 CD-ROM
+开机，则你需要在 DOS 接口中制作 Linux 开机片：</li>
+
+<br>a. 随便找一台 Windows 计算机，开启 MS-DOS 窗口；
+<br>b. 将可开机 Linux 光盘放入光驱中，在 MS-DOS 窗口键入：
+<br>&nbsp;
+<table width="90%" bgcolor="#330033" cols="1">
+<tbody><tr>
+<td><font color="#ffffff">C:\WINDOWS&gt; cd&nbsp;&nbsp; E:\dosutils</font></td>
+</tr>
+</tbody></table>
+
+<p>&nbsp;&nbsp; 上面的 E 为你的光驱代号；
+<br>c. 在 DOS 提示字符下键入：
+<br>&nbsp;
+<table width="90%" bgcolor="#330033" cols="1">
+<tbody><tr>
+<td><font color="#ffffff">E:\dosutils&gt; rawrite&nbsp;&nbsp; -f&nbsp;&nbsp;
+e:\images\boot.img&nbsp;&nbsp; -d&nbsp;&nbsp; a:</font></td>
+</tr>
+</tbody></table>
+
+</p><p>&nbsp;&nbsp; 上面的 e 为你的光驱代号，这时在软盘驱动器放入一片空白的软盘片后，按
+『Enter』 即可。</p></ul>
+OK！在完成上面的步骤之后（不论是何种开机方法），将可开机 Linux 光盘放入你主机的光驱中，将可开机软盘放入软盘驱动器中，按下电源键开机，开机完成之后会进入安装启始画面，此时请在提示字符下打
+<font color="#000099">text</font>
+然后按 Enter ，便可进入文本模式安装 Linux 了！
+<p>个人是比较偏好文本模式的安装，因为图形接口的安装虽然方便，但是好像常常会有问题，而且当你的主机速度并不快时，图形接口的安装会有一点点的慢，
+所以我是建议使用文本模式啦，以下也以文本模式作为介绍。不过，如果使用图形接口也是可以的，安装的顺序都相同，只是以图形的方式呈现罢了！</p></blockquote>
+<a name="flow"></a><font color="#993300"><font size="+1"><font face="Times New Roman Baltic">3.
+</font><font face="标楷体">安装流程：</font></font></font>
+<ol>接下来的安装流程是蛮繁复的，你可要一步一步的慢慢来！
+<br>&nbsp;
+<ol>
+<li>
+<font color="#000066">选择显示模式</font>===&gt; 一开始安装程序要你确认你的安装模式，你可以在提示字符
+boot:&nbsp; 下输入 『<font color="#000099">text』
+</font><font color="#000000">这个即是文字安装模式，按下
+Enter 之后，便会加载 Linux 的一些驱动程序；</font></li>
+
+<br>&nbsp;
+<li>
+<font color="#000066">选择语系</font><font color="#000000">=======&gt; 因为没有中文，所以这里选择
+『</font><font color="#000099">English</font><font color="#000000">』 按
+Enter 即可；</font></li>
+
+<br>&nbsp;
+<li>
+<font color="#000066">选择键盘模式</font><font color="#000000">===&gt; 同样是选择
+『</font><font color="#000099">us</font><font color="#000000">』 即可；</font></li>
+</ol>
+
+<ol>
+<li>
+<font color="#000066">欢迎画面</font><font color="#000000">=======&gt; 按
+Enter 即可；</font></li>
+
+<br>&nbsp;
+<li>
+<font color="#000066">选择系统模式</font><font color="#000000">===&gt; 这一版的
+Linux 提供五种模式选择，分别是 GNOME, KDE, Server, Custom, 及 Upgrade ，除第五种为升级安装之外，前面四种最大的不同乃是在其硬盘分割的部分，因为我们是初学者，一开始选择
+Custom 自己分割是比较好的一个方式，所以移动箭头键至 『</font><font color="#000099">Install
+Custom System</font><font color="#000000">』 按 Enter；</font></li>
+
+<br>&nbsp;
+<li>
+<a name="HD11"></a><font color="#000066">硬盘划分</font><font color="#000000">=======&gt;
+<font size="+2">『</font></font><font size="+2"><font color="#3333ff">极度重要</font><font color="#000000">』</font></font><font color="#000000">再来是最重要的部分『硬盘划分』，你应该可以看到如下的画面（图一），由于
+Linux 对于硬盘的观念与 DOS 并不相同，他是将以前 DOS 下的分槽（C：、D：、E：.....）都看做是一个目录，所以最重要的当然就是『</font><font color="#000099">根目录</font><font color="#000000">』了，因为如果没有根目录的话，其他的目录就无法存在！然后由于虚拟内存也是需要的（如果你的内存不够大的话），由于我们的
+6GB 硬盘已经分 1GB 给 Windows98 了，所以你可以将我们剩下的 5GB 的空间分
+100MB 给虚拟内存，而剩下的全部都挂在根目录 『/』 底下即可；</font></li>
+
+<br>如图一中你会看到一个已经分割好的 DOS 系统，那是之前安装 Windows98 的咚咚，那一列不要理他，其他的两列在一开始你并不会看到。然后你还会看到
+Device 这个东西， Linux 会自动去侦测你 IDE 接口的硬盘，注意：<font color="#000099">接在
+primary IDE 的 Master 硬盘（就是所谓的 C: 槽）称为 『hda』，而这个硬盘的逻辑分割就称为
+『hda1、hda6、.....』，而接在 slave 的则称为 『hdb』啰。至于接在 secondary
+IDE 的 Master 就称为 『hdc』</font>，因此你需要知道你的硬盘是接在哪一个区域！以下列出IDE接口的各个硬盘在
+Linux 下的代号：
+<br>&nbsp;
+<table width="50%" border="1" cols="2">
+<tbody><tr>
+<td>
+<center>IDE界面插槽</center>
+</td>
+
+<td>
+<center>Linux 下的硬盘代号</center>
+</td>
+</tr>
+
+<tr>
+<td>
+<center>Primary, Master</center>
+</td>
+
+<td>
+<center>hda</center>
+</td>
+</tr>
+
+<tr>
+<td>
+<center>Primary, Slave</center>
+</td>
+
+<td>
+<center>hdb</center>
+</td>
+</tr>
+
+<tr>
+<td>
+<center>Secondary, Master</center>
+</td>
+
+<td>
+<center>hdc</center>
+</td>
+</tr>
+
+<tr>
+<td>
+<center>Secondary, Slave</center>
+</td>
+
+<td>
+<center>hdd</center>
+</td>
+</tr>
+</tbody></table>
+
+<center>
+<p>图一&nbsp;<img src="linux_03setup_1_files/linux_03setup_1.png" width="580" height="320"></p></center>
+
+<p><font color="#000066">建立虚拟内存</font>=&gt; 在图一中你可以按键盘的
+『Tab』 键选择至 『<font color="#000099">Add</font>』 这一项按 Enter，会出现一个如下所示的窗口（图二），『Mount
+Point』不用理他，按 『Tab』 移动至 『<font color="#000099">Size (Megs)</font><font color="#000000">』</font>
+这一个选项后，输入 『<font color="#000099">100</font>』 （我们要建立100MB的虚拟内存），然后再按&nbsp;
+『Tab』键移动至画面中的 Type 这一项，选择『<font color="#000099">Linux
+Swap</font>』这一项（Linux Swap 即是 Linux 下的虚拟内存了），然后再按
+Tab 键至『<font color="#000099">OK</font>』按 Enter 即可；
+</p><center>
+<p>图二&nbsp;<img src="linux_03setup_1_files/linux_03setup_2.png" width="605" height="336"></p></center>
+
+<p><font color="#000066">建立根目录</font>=====&gt; 在图一的画面中再次移动至
+『<font color="#000099">Add</font>』 这一项，出现图二的画面后，在 『Mount
+Point』 输入 『/』，然后在 『<font color="#000099">Grow to fill disk?:</font>』
+按一次空格键使括号内出现一个
+<font color="#000099">[*]</font> 符号，这是说『将所有剩下的硬盘空间都配置给根目录』的意思（当然了，如果你不要将所有的空间都分配给
+Linux 的话，在 Size 的地方输入你要给 Linux 的磁盘空间，单位为 MB ，最少要给
+2048MB 的空间喔！）。而在 Type 的地方选择 『<font color="#000099">Linux
+Native</font>』 这一项（Linux Native 就是 Linux 的扇区），再按 『<font color="#000099">OK</font>』
+即可！
+</p><p><font color="#000066">贮存变更区域</font>===&gt; 刚刚的变动都做完之后，你应该可以看到原先图一的画面上多出了两列，就是刚刚分割的那两列，而且最底下的那一列有个
+<font color="#000099">free</font>
+项目的那一栏应该会显示为 0，然后选择『<font color="#000099">OK</font>』这个项目，会出现要你
+<font color="#000000">Save</font>
+磁盘分区的讯息，按 『<font color="#000099">Yes</font>』 即可。
+<br>&nbsp;
+</p><li>
+<font color="#000066">格式化硬盘</font><font color="#000000">=====&gt; 分割完硬盘当然要格式化（format）啰，因为
+Linux 与 DOS 的档案型态不同，所以你必须格式化硬盘，由于你只将硬盘分割为一个扇区（根目录），所以画面上应该只会有一个扇区，然后有一个选项『</font><font color="#000099">Check
+for bad blocks during format</font><font color="#000000">』 这个项目主要是在检查你的硬盘是否有坏轨。</font><font color="#000099">切记，如果你确定你的硬盘没有坏轨的话，这个项目一定不要选，不然你可能会等的疯掉</font><font color="#000000">。</font></li>
+
+<br>&nbsp;
+<li>
+<font color="#000066">SCSI适配卡</font><font color="#000000">=====&gt; 接下来的动作是设定
+SCSI 卡，不过我们没有这个卡，所以直接选『</font><font color="#000099">OK</font><font color="#000000">』跳过！</font></li>
+
+<br>&nbsp;
+<li>
+<font color="#000066">选择开机区</font><font color="#000000">=====&gt; 再来则是
+LILO 这套程序设定开机的地方，画面上应该会有两列，第一列后端会显示『</font><font color="#000099">Master
+Boot Record (MBR)</font><font color="#000000">』通常我们就是选择这个，按
+『</font><font color="#000099">OK</font><font color="#000000">』 行了！</font></li>
+
+<br>&nbsp;
+<li>
+<font color="#000066">检视启动扇区=</font><font color="#000000">==&gt; 这个画面会显示你的主机系统中的可启动扇区，应该是有两列的，第一列是
+Windows98 的开机区，另一列则是 Linux 的开机区。你可以改变开机的名称，在
+『Default Boot Label』 的地方可以看到你的开机名称，按 Enter 后可以改变名称，不要变名称的话选择
+『</font><font color="#000099">OK</font><font color="#000000">』 即可；</font></li>
+
+<br>&nbsp;
+<li>
+<font color="#000066">设定主机名</font><font color="#000000">===&gt; 由于我们将来要去申请免费的『</font><font color="#000099">动态IP</font><font color="#000000">』的
+DNS ，所以这里请定你的名称为 『</font><font color="#000099">xxx.adsldns.org』</font><font color="#000000">，其中
+xxx 为你想取的名称，后面 adsldns.org 请照写，注意喔，主机名尽量使用小写！例如我的主机就定名为
+vbird.adsldns.org，不过主机名后来也可以修改，所以这里先随意定一个名称吧！</font></li>
+
+<br>&nbsp;
+<li>
+<font color="#000066">设定网络卡</font><font color="#000000">=====&gt;<font size="+2">『</font></font><font size="+2"><font color="#3333ff">极度重要</font><font color="#000000">』</font></font><font color="#000000">
+如果你够幸运的话，系统可以捉到网络卡就会进入这个项目。（如果你是使用鸟哥建议的
+RTL 8139 芯片的网络卡，那几乎一定可以捉的到！）首先这个项目会问你是不是要使用
+DHCP 的设定，由于我们是使用 ADSL 联机的，所以这里可以输入『<a href="#QA">虚拟IP</a>』或者是你有固定的IP即可填入。通常我都是输入『</font><font color="#000099">192.168.1.11</font><font color="#000000">』这个虚拟IP，你可以照我的设定输入为：</font></li>
+
+<ol><font color="#000099">IP address:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+192.168.1.11</font>
+<br><font color="#000099">Netmask:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+255.255.255.0</font>
+<br><font color="#000099">Default gateway(IP) 192.168.1.11</font>
+<br><font color="#000099">Primary nameserver: 192.168.1.11</font></ol>
+<font color="#000000">关于 IP 的网段理论，及屏蔽子域的设定等等，你可以在网中人的
+<a href="http://www.study-area.net/linux/linuxfr.htm" target="_blank">study-area</a>
+这个网站上找到相关的讯息！尤其是『何为虚拟IP？』真的需要了解一下！</font>
+<br>&nbsp;
+<li>
+<font color="#000066">设定鼠标</font><font color="#000000">=======&gt; 在设定鼠标的地方请依照你的实际需求选择，通常我们的鼠标都是三个钮的，你可以选『</font><font color="#000099">Generic
+- 3 Button Mouse (serial)或(PS/2）</font><font color="#000000">』这一项，如果你是两个钮的，就选另一个两钮的吧！另外要注意的是，底下有一个『</font><font color="#000099">Emulate
+3 Buttons</font><font color="#000000">』预设是选择的，这是仿真按钮成三个钮的项目，</font><font color="#000099">通常我们不要这个项目</font><font color="#000000">，所以请将这个项目的选择取消（按
+Tab 键后，按空格键取消）；</font></li>
+
+<br>&nbsp;
+<li>
+<font color="#000066">设定鼠标接端口</font><font color="#000000">===&gt; 因为我们是接在
+COM1 的接埠，所以直接按 Enter 即可；</font></li>
+
+<br>&nbsp;
+<li>
+<font color="#000066">设定系统时区</font><font color="#000000">===&gt; 以
+Tab 及箭头键选择我们的时区为『</font><font color="#000099">Asia/Taipei</font><font color="#000000">』，再至『</font><font color="#000099">OK</font><font color="#000000">』按
+Enter ；</font></li>
+
+<br>&nbsp;
+<li>
+<font color="#000066">设定root密码===&gt;</font><font color="#000000"> 接下来</font><font color="#000099">请输入两次你的密码</font><font color="#000000">，root就是系统管理员，这个密码很重要，不要忘了！另外，输入密码的时候画面上并不会有任何的显示。</font></li>
+
+<br>&nbsp;
+<li>
+<font color="#000066">设定账号</font><font color="#000000">=======&gt; 这一版的
+Linux 可以让你先设定一个账号，你也可以不设定，直接按 </font><font color="#000099">OK</font><font color="#000000">
+跳过，如果要设定的话，你的 ID 最好是小写，然后密码也是要输入两次！至于
+Full name 可以先不用写！</font></li>
+
+<br>&nbsp;
+<li>
+<font color="#000066">设定密码保护</font><font color="#000000">===&gt; 目前
+Linux 系统支持几种不同的密码保护，我们也不用选择 NIF 系统，直接接受默认值按
+OK 就可以了。</font></li>
+
+<br>&nbsp;
+<li>
+<font color="#000066">选择安装套件</font><font color="#000000">===&gt; 不用说，直接按箭头键一直向下选择最后一个『</font><font color="#000099">Everything</font><font color="#000000">』即可，</font></li>
+
+<br>&nbsp;
+<li>
+<font color="#000066">设定显示适配器</font><font color="#000000">=====&gt; 因为我们的显示适配器是
+S3 的 Virge ，所以 Linux 可以捉到，这时按 OK 接受默认值即可；</font></li>
+
+<br>&nbsp;
+<li>
+<font color="#000066">制作启动盘</font><font color="#000000">===&gt; 由于可能会有问题发生，当然是制作开机片比较好啰，选择
+OK！</font></li>
+
+<br>&nbsp;
+<li>
+<font color="#000066">即将开始安装</font><font color="#000000">===&gt; 这时出现的画面告诉你，你的安装过程会记录在
+/tmp/install.log 档案中，按 OK；</font></li>
+
+<br><font color="#000000">然后你会等待一定的时间，这个时间与你选择的套件及是否有检查硬盘坏轨有关，在我的
+P-166 MMX 64MB RAM 系统中，大概需要 30-60 分钟左右的时间，去休息一下吧！</font>
+<br>&nbsp;
+<li>
+<font color="#000066">安装启动盘===&gt; </font><font color="#000000">在安装完所有的套件之后，再来则是制作开机片，请放入空白磁盘后按
+Enter；</font></li>
+
+<br>&nbsp;
+<li>
+<font color="#000066">设定显示器</font><font color="#000000">=====&gt; 由于我们的显示器不见得会被
+Linux 支持，一般我们都是选择 『</font><font color="#000099">Custom</font><font color="#000000">』自行设定：</font></li>
+
+<ol><font color="#000000">a. 先按 OK 略过画面；</font>
+<br><font color="#000000">b. 选第七项『</font><font color="#000099">High
+Frequency SVGA, 1024x768 @ 70 Hz</font><font color="#000000">』，这是因为目前的屏幕还不错！</font>
+<br><font color="#000000">c. 选第二项『50-90』即可；</font>
+<br><font color="#000000">d. 选『</font><font color="#000099">Probe</font><font color="#000000">』让
+Linux 自己去捉显示适配器的硬件！</font>
+<br><font color="#000000">e. 在显示的画面中按
+</font><font color="#000099">OK</font><font color="#000000">
+开始测试 X-Windows；</font>
+<br><font color="#000000">f. 如果你的显示器与显示适配器没有问题，屏幕上会显示
+Window 的画面，且接下来会有十秒钟的时间让你确认；</font>
+<br><font color="#000000">g. 接下来会问你是否在开机的时候进入 X-Widows，由于我们的主机主要是当作
+Server 使用，因此在 X-Windows 的使用情况不是很多，另外，由于开启 X-Windows
+会占去不少的内存资源，因此我不建议你进入 X-Windows 在开机的时候，所以这里选择
+『</font><font color="#000099">NO』</font><font color="#000000">。</font></ol>
+
+<li>
+<font color="#000066">安装完成</font><font color="#000000">=======&gt; 接下来的画面告诉你安装完毕了，请按
+</font><font color="#000099">OK</font><font color="#000000">
+跳过！</font></li>
+
+<br><font color="#000000">终于安装完毕，这时系统会重新启动，注意喔，请一定要将
+CD-ROM 中可开机的光盘片拿出来，不然就请你进 BIOS 将开机选项选为 C: 或者是
+A: 。此外，在开机的过程中，注意一下，在出现：</font>
+<br>&nbsp;
+<table width="80%" bgcolor="#000000" cols="1">
+<tbody><tr>
+<td><font color="#ffffff">LILO boot:</font></td>
+</tr>
+</tbody></table>
+
+<p><font color="#000000">的提示字符之后，马上按 『</font><font color="#000099">Tab</font><font color="#000000">』键，则会出现两个开机系统，分别是『linux』与『dos』，如果要进入
+Windows98 系统，请在 boot: 后面输入 dos 即可，如果要进入 linux 则输入 linux
+即可。当然了，如果你不按任何键，则系统会主动以 Linux 开机！这个多重引导的部分我们会在后面继续谈到！</font></p></ol>
+</ol>
+
+<hr width="100%">
+<br><a name="QA"></a><font face="Times New Roman Baltic"><font color="#000099"><font size="+1">Q&amp;A</font></font></font>
+<blockquote>
+<ol>
+<li>
+<font color="#000000"><font size="+2">Q</font>：在灌过了 Linux 之后，由于安装
+Lilo 开机区在 MBR 中，所以虽然 Linux 被移除了，但是开机还是会以 MBR 的设定为主，因此，很多人灌完了
+Linux 想改回 Windows 时，硬盘总是还会以 Linux 开机。</font><font color="#000066">请问要如何将
+Lilo 自 MBR 中移除</font><font color="#000000">？</font></li>
+
+<br><font color="#000066"><font size="+2">A</font>：</font>
+<br><font color="#000066">你可以使用 Windows98 的软盘开机后，输入：</font>
+<table width="80%" bgcolor="#330033" cols="1">
+<tbody><tr>
+<td><font color="#ffffff">A:\&gt; fdisk /mbr&nbsp; </font><font color="#ffff00">(fdisk
+是 DOS 下的指令)</font></td>
+</tr>
+</tbody></table>
+<font color="#000066">如此则可将 MBR 中的 Lilo 完全移除了！</font>
+<br>&nbsp;
+<li>
+<font size="+2">Q</font>：何谓『虚拟 IP 』，与『实体 IP 』或者『固定 IP 』『动态
+IP 』有啥不同？</li>
+
+<br><font color="#000066"><font size="+2">A</font>：</font>
+<br><font color="#000066">『实体 IP 』：在网络的世界里，为了要辨识每一部计算机的位置，因此有了计算机
+IP 地址的定义。一个 IP 就好似一个门牌！例如，你要去微软的网站的话，就要去『
+207.46.197.101 』这个 IP 位置！这些可以直接在因特网上沟通的 IP 就被称为『实体
+IP 』了。</font>
+<p><font color="#000066">『虚拟 IP 』：不过，众所皆知的，IP 地址仅为 xxx.xxx.xxx.xxx
+的数据型态，其中， xxx 为 1-255 间的整数，由于近来计算机的成长速度太快，实体的
+IP 已经有点不足了，好在早在规划 IP 时就已经预留了三个网段的 IP 做为内部网域的虚拟
+IP 之用。这三个预留的 IP 分别为：</font>
+</p><ol><font color="#000066">10.0.0.0 - 10.255.255.255</font>
+<br><font color="#000066">172.16.0.0 - 172.31.255.255</font>
+<br><font color="#000066">192.168.0.0 - 192.168.255.255</font></ol>
+<font color="#000066">不过，由于是虚拟 IP ，所以当您使用这些地址的时候﹐当然是有所限制的，限制如下：</font>
+<ol><font color="#000066">私有地址的路由信息不能对外散播</font>
+<br><font color="#000066">使用私有地址作为来源或目的地址的封包﹐不能透过Internet来转送</font>
+<br><font color="#000066">关于私有地址的参考纪录(如DNS)﹐只能限于内部网络使用</font></ol>
+<font color="#000066">这给我们架设IP网络做成很大的方便﹐比如﹕即使您目前的公司还没有连上Internet﹐但不保证将来不
+会啊。如果使用公共IP的话﹐如果没经过注册﹐等到以后真正要连上网络的时候﹐就很可能和别人冲突了。也正如前面所分析的﹐到时候再重新规划IP的话﹐将
+是件非常头痛的问题。这时候﹐我们可以先利用私有地址来架设网络﹐等到真要连上intetnet的时候﹐我们可以使用IP转换协议﹐如NAT
+(Network Addresss Translation)等技术﹐配合新注册的IP就可以了。</font>
+<p><font color="#000066">『固定 IP 』与『动态 IP 』：基本上，这两个东西是由于近来网络公司大量的成长下的产物，例如，你如果向中华电信申请一个商业型态的
+ADSL 专线，那他会给你一个固定的实体 IP ，这个实体 IP 就被称为『固定 IP
+』了。而若你是申请计时制的 ADSL ，那由于你的 IP 可能是由数十人共同使用，因此你每次重新启动上网时，你这部计算机的
+IP 都不会是固定的！于是就被称为『动态 IP』或者是『浮动式IP』。基本上，这两个都是『实体IP』，只是网络公司用来分配给用户的方法不同而产生不同的名称而已！</font>
+</p><p><font color="#000066">这里只有说了一些概念性的东西，基本是，IP是很麻烦的，小弟也不甚了解，例如子网掩码的计算等等！强烈的建议初学者到
+<a href="http://www.study-area.net/network/network_ipadd.htm" target="_blank">study-area</a>
+这个网站去看看，相信对你往后的计算机网络概念有很大的帮助喔！</font>
+<br>&nbsp;
+</p><li>
+<font color="#000000"><font size="+2">Q</font>：什么是 Linux 的核心，核心有哪些版本？哪里可以取得最新的核心程序？</font></li>
+
+<br><font color="#000066"><font size="+2">A</font>：</font>
+<br><font color="#000066">所谓的核心可以简单的想成是 Linux 的心脏，核心包含了你的系统所需要的硬件配置与
+Linux 系统模块，核心是相当重要的一个咚咚，当你的硬件太新，而使你原来的
+Linux 捉不到时，就可以借着跟新核心程序来捉到！</font>
+<p><font color="#000066">基本上，目前可以听到的核心大概有 2.2.X 、 2.3.X
+及 2.4.X，要注意的是，这些版本是同时发展的，只是目的不同，所以 2.3.X 并不是指比
+2.2.X 来的新，这点一定要注意。通常，2.2.X与2.4.X是较为稳定的版本，至于
+2.3.X 则是适用于一些程序发展者所需要的特殊核心，因此，对于我们这种初学者来说，使用
+2.2.X 的核心版本就可以了！</font>
+</p><p><font color="#000066">在各大 FTP 站上均可以捉到最新的核心程序，只是，除非你很确定你要的新核心作用为何，否则小弟并不是十分建议常常更新核心的啦！毕竟，计算机够用且适用就好！</font>
+<br>&nbsp;
+</p><li>
+<font color="#000000"><font size="+2">Q</font>：在灌完了 Linux 之后，想改回来
+Windows，但是以 DOS 的 Fdisk 却无法分割这个硬盘，该如何是好？</font></li>
+
+<br><font color="#000066"><font size="+2">A</font>：</font>
+<br><font color="#000066">由于 Windows98 开机片的系统并不认识 Linux 的档案配置区，所以使用
+DOS 下的 Fdisk 是无法修正硬盘的数据的！你有两个方法可以将这一个硬盘回复，一个是再以
+Linux 系统重新划分；另一个则是使用国人发展的 Spfdisk 来划分，这里有一个
+<a href="http://linux.vbird.org/linux_basic/redhat6.1/linux_03setup_2.php">spfdisk
+的范例</a>可以让你看看如何划分硬盘。</font>
+<br>&nbsp;
+<li>
+等待加入新问题</li>
+</ol>
+</blockquote>
+<font face="新细明体"><font color="#3333ff"><font size="-1">2002/01/01以来统计人数</font></font></font>
+<br><img src="linux_03setup_1_files/Count.gif" nosave="" width="60" align="ABSCENTER" height="15">
+<hr width="100%">
+<center>
+<a href="http://linux.vbird.org/" target="_top"><img src="linux_03setup_1_files/VBirdTitle2.jpg" nosave="" width="90" border="0" height="25"></a>
+<a href="http://linux.vbird.org/linux_basic"><img src="linux_03setup_1_files/icon_system.gif" nosave="" width="90" border="0" height="25"></a>
+<a href="http://linux.vbird.org/linux_server"><img src="linux_03setup_1_files/icon_server.gif" nosave="" width="90" border="0" height="25"></a>
+<a href="http://linux.vbird.org/linux_security"><img src="linux_03setup_1_files/icon_security.jpg" nosave="" width="90" border="0" height="25"></a>
+<a href="http://phorum.vbird.org/" target="_blank"><img src="linux_03setup_1_files/icon_forums.gif" nosave="" width="90" border="0" height="25"></a>
+<a href="http://linux.vbird.org/adsl"><img src="linux_03setup_1_files/icon_adsl.gif" nosave="" width="90" border="0" height="25"></a>
+<br><font color="#000066"><font size="-1">Designed by <a href="mailto:vbird@mail.vbird.idv.tw">VBird</a>
+during 2001-2004.&nbsp; Aerosol Lab.</font></font></center>
+</body></html>

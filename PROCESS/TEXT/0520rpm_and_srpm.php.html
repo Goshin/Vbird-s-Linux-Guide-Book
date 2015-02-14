@@ -1,1 +1,1977 @@
-<html><head> 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> 	<meta name="Author" content="2011/04/20,Airman"> 	<meta name="Description" content="利用 RPM 来管理整个 Linux 的软件，同时以一个简单的范例来操纵 SRPM 的创建"> 	<title>鸟哥的 Linux 私房菜 -- RPM 与 SRPM 软件管理员</title>     <script src="../script/SpryMenuBar.js" type="text/javascript"></script> 	<script src="../script/index.js" type="text/javascript"></script> 	<link href="../css/SpryMenuBarHorizontal.css" rel="stylesheet" type="text/css" />     <link href="../css/main.css" rel="stylesheet" type="text/css" />     </head><body style="margin: 0pt; padding: 0pt;" class="table"onload="MM_preloadImages('image/title_19.png','image/title_26.png','image/title_27.png','image/title_28.png','image/title_06.png','image/title_08.png','image/title_10.png','image/title_12.png')">   <!-- Copyright � 2005. Spidersoft Ltd --> <style> A.applink:hover {border: 2px dotted #DCE6F4;padding:2px;background-color:#ffff00;color:green;text-decoration:none} A.applink       {border: 2px dotted #DCE6F4;padding:2px;color:#2F5BFF;background:transparent;text-decoration:none} A.info          {color:#2F5BFF;background:transparent;text-decoration:none} A.info:hover    {color:green;background:transparent;text-decoration:underline} </style> <div style='BORDER: 1px solid #DCE6F4; MARGIN-TOP: 20px; MARGIN-BOTTOM: 20px; MARGIN-LEFT: 5px; MARGIN-RIGHT: 5px; PADDING: 5px; BACKGROUND-COLOR: #eef8ff;line-height:180%; COLOR: #000000; font-family: Arial; font-size: 8pt; width=100%; FILTER: progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr="#FFFFFFFF", EndColorStr="#F2F5FAFF");'> This page was saved using <a class="applink" href="http://www.spidersoft.com"><b>WebZIP 7.0.3.1030</b></a> <a class="applink" href="http://www.spidersoft.com"><b>offline browser</b></a>  (Unregistered) on  02/12/15 12:14:49.<br> <b>Address:</b> <a class="info" href="http://vbird.dic.ksu.edu.tw/linux_basic/0520rpm_and_srpm.php">http://vbird.dic.ksu.edu.tw/linux_basic/0520rpm_and_srpm.php</a><br> <b>Title:</b> 鸟哥的 Linux 私房菜 -- RPM 与 SRPM 软件管理员 &nbsp;&bull;&nbsp; <b>Size:</b> 148687<br></div> <!-- /Copyright � 2005. Spidersoft Ltd -->    <center> <div id="apDiv5"> <div> <LINK REL="SHORTCUT ICON" HREF="favicon.ico"> <!-- ImageReady Slices (title3.ai) --> <table id="___01" width="898" height="81" border="0" align="center" cellpadding="0" cellspacing="0";> 	<tr> 		<td colspan="15"> 			<img src="image/title/title_01.png" width="900" height="1" alt=""></td> 	</tr> 	<tr> 		<td rowspan="4" bgcolor="#182448"><p><img src="http://linux.vbird.org/cgi-bin/Count.cgi?dd=C&ft=5&sh=T&md=8&pad=Y&df=vbird.dic.ksu.edu.tw.dat" width="93" align="left" title="計數器" /></p> 	    <p><font color="#FFFFFF" size="-1">since2012/04/23</font></p></td> 		<td rowspan="4" align="left" valign="top"><a href="http://vbird.dic.ksu.edu.tw/"><img src="image/title/title_03.png" alt="" width="263" height="79" border="0"></a></td> 		<td colspan="13"> 			<img src="image/title/title_04.png" alt="" width="535" height="9" border="0"></td> 	</tr> 	<tr> 		<td rowspan="3"> 			<img src="image/title/title_05.png" alt="" width="53" height="70" border="0"></td> 		<td colspan="2" align="left" valign="top"><a href="0110whatislinux.php.html" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image51','','image/title/title_06.png',1)"><img src="image/title/title3_06.png" name="Image51" width="106" height="25" border="0" id="Image51" alt=""/></a></td> 		<td rowspan="2"> 			<img src="image/title/title_07.png" alt="" width="27" height="37" border="0"></td> 		<td colspan="3" align="left" valign="top"><a href="http://vbird.dic.ksu.edu.tw/linux_server/0110network_basic.php" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image52','','image/title/title_08.png',1)"><img src="image/title/title3_08.png" name="Image52" width="107" height="25" border="0" id="Image52" alt=""/></a></td> 		<td rowspan="2"> 			<img src="image/title/title_09.png" alt="" width="37" height="37" border="0"></td> 		<td colspan="2" align="left" valign="top"><a href="http://vbird.dic.ksu.edu.tw/about.php" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image53','','image/title/title_10.png',1)"><img src="image/title/title3_10.png" name="Image53" width="75" height="25" border="0" id="Image53" alt=""/></a></td> 		<td rowspan="3"> 			<img src="image/title/title_11.png" alt="" width="35" height="70" border="0"></td> 		<td align="left" valign="top"><a href="mailto:vbird@mail.vbird.idv.tw" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image54','','image/title/title_12.png',1)"><img src="image/title/title3_12.png" name="Image54" width="74" height="25" border="0" id="Image54" alt=""/></a></td> 		<td rowspan="3"> 			<img src="image/title/title_13.png" alt="" width="21" height="70" border="0"></td> 	</tr> 	<tr> 		<td colspan="2"> 			<img src="image/title/title_14.png" alt="" width="106" height="12" border="0"></td> 		<td colspan="3"> 			<img src="image/title/title_15.png" alt="" width="107" height="12" border="0"></td> 		<td colspan="2"> 			<img src="image/title/title_16.png" width="75" height="12" alt=""></td> 		<td rowspan="2"> 			<img src="image/title/title_17.png" alt="" width="74" height="45" border="0"></td> 	</tr> 	<tr> 		<td> 			<img src="image/title/title_18.png" alt="" width="15" height="33" border="0"></td> 		<td colspan="3" align="left" valign="top"><ul id="MenuBar1" class="MenuBarHorizontal"> 	  <li><a href="linux_basic.php.html" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image44','','image/title/title_19.png',1)"><img src="image/title/title3_19.png" name="Image44" width="123" height="33" border="0" id="Image44" /></a> 			    <ul> 			      <li><a href="Mandrake9.0/mandrake9.0.php.html" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image46','','image/title/title_26.png',1)"><img src="image/title/title_23.png" name="Image46" width="120" height="26" border="0" id="Image46" alt="" /></a></li>                   <li><a href="fedora_4/fc4.php.html" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image47','','image/title/title_27.png',1)"><img src="image/title/title_24.png" name="Image47" width="120" height="26" border="0" id="Image47" alt="" /></a></li>                   <li><a href="linux_basic.php.html" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image48','','image/title/title_28.png',1)"><img src="image/title/title_25.png" name="Image48" width="120" height="26" border="0" id="Image48" alt="" /></a></li>                 </ul> 		      </li> 		</ul></td> 		<td> 			<img src="image/title/title_20.png" alt="" width="42" height="33" border="0"></td> 		<td colspan="3" align="left" valign="top"><ul id="MenuBar2" class="MenuBarHorizontal"> 	  <li><a href="http://vbird.dic.ksu.edu.tw/linux_server/" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image45','','image/title/title_21.png',1)"><img src="image/title/title3_21.png" name="Image45" width="125" height="33" border="0" id="Image45" /></a> 			    <ul> 			      <li><a href="http://vbird.dic.ksu.edu.tw/linux_server/linux_redhat9/redhat9.php" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image43','','image/title/title_26.png',1)"><img src="image/title/title_23.png" name="Image43" width="120" height="26" border="0" id="Image43" alt=""/></a></li> 			      <li><a href="http://vbird.dic.ksu.edu.tw/linux_server/centos4.php" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image49','','image/title/title_27.png',1)"><img src="image/title/title_24.png" name="Image49" width="120" height="26" border="0" id="Image49" alt="" /></a></li> 			      <li><a href="http://vbird.dic.ksu.edu.tw/linux_server/" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image50','','image/title/title_28.png',1)"><img src="image/title/title_25.png" name="Image50" width="120" height="26" border="0" id="Image50" alt="" /></a></li> 		        </ul> 		      </li> 		</ul></td> 		<td> 			<img src="image/title/title_22.png" alt="" width="47" height="33" border="0"></td> 	</tr> 	<tr> 		<td> 			<img src="image/title/Spacer.gif" width="101" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="263" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="53" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="15" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="91" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="27" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="5" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="42" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="60" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="37" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="28" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="47" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="35" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="74" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="22" height="1" alt=""></td> 	</tr> </table> <!-- End ImageReady Slices --> <script type="text/javascript"> <!-- var MenuBar1 = new Spry.Widget.MenuBar("MenuBar1", {imgDown:"SpryAssets/SpryMenuBarDownHover.gif", imgRight:"SpryAssets/SpryMenuBarRightHover.gif"}); var MenuBar2 = new Spry.Widget.MenuBar("MenuBar2", {imgDown:"SpryAssets/SpryMenuBarDownHover.gif", imgRight:"SpryAssets/SpryMenuBarRightHover.gif"}); //--> </script></div> <table summary="本文内容的排版" style="width: 898px;" border="0" cellpadding="0" cellspacing="0"> <tbody><tr><td style="width: 16px; height: 16px;">　</td>     <td style="width: 866px; height: 16px;">　</td>     <td style="width: 16px; height: 16px;">　</td></tr> <tr><td style="width: 16px; font-size: 6px;">　</td>     <td width="866">  <!-- 本文的档头部分 --> <div style="text-align: center;">     <a href="0520rpm_and_srpm.php.html">     <span class="text_head0">第二十三章、软件安装：<span class="text_head_en"> RPM, SRPM </span>与<span class="text_head_en"> YUM </span>功能</span></a><br> </div>     <div style="text-align: right;">         <span class="text_history">最近升级日期：2009/09/18</span>     </div>  <!-- 本文的档头部分 --> <center><table class="head1" summary="排版：文章档头的说明"><tbody><tr><td class="head1"> 	虽然使用原始码进行软件编译可以具有客制化的配置，但对於 Linux distribution 的发布商来说，则有软件管理不易的问题， 	毕竟不是每个人都会进行原始码编译的。如果能够将软件预先在相同的硬件与操作系统上面编译好才发布的话， 	不就能够让相同的 distribution 具有完全一致的软件版本吗？如果再加上简易的安装/移除/管理等机制的话， 	对於软件控管就会简易的多。有这种东西吗？有的，那就是 RPM 与 YUM 这两个好用的咚咚。 	既然这么好用，我们当然不能错过学习机会罗！赶紧来参详参详！ </td></tr></tbody></table></center><br>  <!-- 本文的连结区部分 --> <div class="block1"> <span class="text_h1"> 1. <a href="#intro">软件管理员简介</a><br> 	<span class="text_h2"> 	　　1.1 <a href="#intro_import2">Linux 界的两大主流: RPM 与 DPKG</a><br> 	　　1.2 <a href="#intro_whatisrpm">什么是 RPM 与 SRPM</a><br> 	　　1.3 <a href="#intro_i386586">什么是 i386, i586, i686, noarch, x86_64</a><br> 	　　1.4 <a href="#intro_advance">RPM 的优点</a><br> 	　　1.5 <a href="#intro_solution">RPM 属性相依的克服方式： YUM 线上升级</a><br> 	</span> 2. <a href="#rpmmanager">RPM 软件管理程序： rpm</a><br> 	<span class="text_h2"> 	　　2.1 <a href="#rpmmanager_dir">RPM 默认安装的路径</a><br> 	　　2.2 <a href="#rpmmanager_install">RPM 安装 (install)</a><br> 	　　2.3 <a href="#rpmmanager_update">RPM 升级与升级 (upgrade/freshen)</a><br> 	　　2.4 <a href="#rpmmanager_query">RPM 查询 (query)</a><br> 	　　2.5 <a href="#rpmmanager_verify">RPM 验证与数码签章 (Verify/signature)</a><br> 	　　2.6 <a href="#rpmmanager_rebuild">RPM 反安装与重建数据库 (erase/rebuilddb)</a><br> 	</span> 3. <a href="#srpmmanager">SRPM 的使用： rpmbuild</a><br> 	<span class="text_h2"> 	　　3.1 <a href="#srpmmanager_rebuild">利用默认值安装 SRPM 文件 (--rebuid/--recompile)</a><br> 	　　3.2 <a href="#srpmmanager_dir">SRPM 使用的路径与需要的软件</a><br> 	　　3.3 <a href="#srpmmanager_config">配置档的主要内容  (*.spec)</a><br> 	　　3.4 <a href="#srpmmanager_command">SRPM 的编译命令 (-ba/-bb)</a><br> 	　　3.5 <a href="#srpmmanager_myself">一个打包自己软件的范例</a><br> 	</span> 4. <a href="#yumclient">YUM 线上升级机制</a><br> 	<span class="text_h2"> 	　　4.1 <a href="#yumclient_yum">利用 yum 进行查询、安装、升级与移除功能</a><br> 	　　4.2 <a href="#yumclient_config">yum 的配置档</a><br> 	　　4.3 <a href="#yumclient_group">yum 的软件群组功能</a><br> 	　　4.4 <a href="#yumclient_system">全系统自动升级</a><br> 	</span> 5. <a href="#rpmortarball">管理的抉择：RPM 还是 Tarball</a><br> 6. <a href="#hint">重点回顾</a><br> 7. <a href="#ex">本章习题</a><br> 8. <a href="#reference">参考数据与延伸阅读</a><br> <span class="text_h2"> 9. <a href="http://phorum.vbird.org/viewtopic.php?t=23893" target="_blank">针对本文的建议：http://phorum.vbird.org/viewtopic.php?t=23893</a> </span> </span> </div>   <!-- 本文的正式部分 --> <hr><a name="intro"></a><img src="../image/logo.png" alt="大标题的图示" width="35" align="middle" height="34"><span class="text_h1">软件管理员简介</span> <div class="block1"> 	<p>在前一章我们提到以原始码的方式来安装软件，也就是利用厂商释出的 Tarball  	来进行软件的安装。不过，你应该很容易发现，那就是每次安装软件都需要侦测操作系统与环境、配置编译参数、实际的编译、 	最后还要依据个人喜好的方式来安装软件到定位。这过程是真的很麻烦的，而且对於不熟整个系统的朋友来说，还真是累人啊！</p>  	<p>那有没有想过，如果我的 Linux 系统与厂商的系统一模一样，那么在厂商的系统上面编译出来的运行档， 	自然也就可以在我的系统上面跑罗！也就是说，<span class="text_import2">厂商先在他们的系统上面编译好了我们使用者所需要的软件， 	然后将这个编译好的可运行的软件直接释出给使用者来安装</span>，如此一来，由於我们本来就使用厂商的 	Linux distribution ，所以当然系统 (硬件与操作系统) 是一样的，那么使用厂商提供的编译过的可运行档就没有问题啦！ 	说的比较白话一些，那就是利用类似 Windows  	的安装方式，由程序开发者直接在已知的系统上面编译好，再将该程序直接给使用者来安装，如此而已。</p>  	<p>那么如果在安装的时候还可以加上一些与这些程序相关的资讯，将他创建成为数据库，那不就可以进行安装、反安装、 	升级与验证等等的相关功能罗 (类似 Windows 底下的『新增移除程序』)？确实如此，在 Linux  	上面至少就有两种常见的这方面的软件管理员，分别是 RPM 与 Debian 的 dpkg 。我们的 CentOS  	主要是以 RPM 为主，但也不能不知道 dpkg 啦！所以底下就来约略介绍一下这两个玩意儿。<br><br></p>  	<hr><a name="intro_import2"></a><img src="../image/logo.png" alt="小标题的图示" width="24" align="middle" height="23"><span class="text_h2">Linux 界的两大主流: RPM 与 DPKG</span> 	<div class="block2"> 		<p>由於自由软件的蓬勃发展，加上大型 Unix-Like 主机的强大效能，让很多软件开发者将他们的软件使用 Tarball 来释出。 		后来 Linux 发展起来后，由一些企业或社群将这些软件收集起来制作成为 distributions 		以发布这好用的 Linux 操作系统。但后来发现到，这些 distribution 的软件管理实在伤脑筋， 		如果软件有漏洞时，又该如何修补呢？使用 tarball 的方式来管理吗？又常常不晓得到底我们安装过了哪些程序？ 		因此，一些社群与企业就开始思考 Linux 的软件管理方式。</p>  		<p>如同刚刚谈过的方式，Linux 开发商先在固定的硬件平台与操作系统平台上面将需要安装或升级的软件编译好， 		然后将这个软件的所有相关文件打包成为一个特殊格式的文件，在这个软件文件内还包含了预先侦测系统与相依软件的脚本， 		并提供记载该软件提供的所有文件资讯等。最终将这个软件文件释出。<span class="text_import2">用户端取得这个文件后，只要透过特定的命令来安装， 		那么该软件文件就会依照内部的脚本来侦测相依的前驱软件是否存在，若安装的环境符合需求，那就会开始安装</span>， 		安装完成后还会将该软件的资讯写入软件管理机制中，以达成未来可以进行升级、移除等动作呢。</p>  		<p>目前在 Linux 界软件安装方式最常见的有两种，分别是：</p>  		<ul> 		<li><span class="text_import1">dpkg</span>：<br> 		这个机制最早是由 Debian Linux 社群所开发出来的，透过 dpkg 的机制， Debian  		提供的软件就能够简单的安装起来，同时还能提供安装后的软件资讯，实在非常不错。 		只要是衍生於 Debian 的其他 Linux distributions 大多使用 dpkg 这个机制来管理软件的， 		包括 B2D, Ubuntu 等等。<br><br></li>  		<li><span class="text_import1">RPM</span>：<br> 		这个机制最早是由 Red Hat 这家公司开发出来的，后来实在很好用，因此很多 distributions  		就使用这个机制来作为软件安装的管理方式。包括 Fedora, CentOS, SuSE 等等知名的开发商都是用这咚咚。</li> 		</ul>  		<p>如前所述，不论 dpkg/rpm 这些机制或多或少都会有软件属性相依的问题，那该如何解决呢？ 		其实前面不是谈到过每个软件文件都有提供相依属性的检查吗？那么如果我们将相依属性的数据做成列表， 		等到实际软件安装时，若发生有相依属性的软件状况时，例如安装 A 需要先安装 B 与 C ，而安装 B 则需要安装 		D 与 E 时，那么当你要安装 A ，透过相依属性列表，管理机制自动去取得 B, C, D, E 来同时安装， 		不就解决了属性相依的问题吗？</p>  		<p>没错！您真聪明！目前新的 Linux 开发商都有提供这样的『线上升级』机制，透过这个机制， 		原版光盘就只有第一次安装时需要用到而已，其他时候只要有网络，你就能够取得原本开发商所提供的任何软件了呢！ 		在 dpkg 管理机制上就开发出 APT 的线上升级机制，RPM 则依开发商的不同，有 Red Hat 系统的 yum ， 		SuSE 系统的 Yast Online Update (YOU)， Mandriva 的 urpmi 软件等。</p>  <table bgcolor="lightyellow" border="1" cellpadding="3" cellspacing="0" width="95%"> <tbody><tr align="center" bgcolor="#182448"><td><font color="#FFFFFF">distribution 代表</font></td><td><font color="#FFFFFF">软件管理机制</font></td><td><font color="#FFFFFF">使用命令</font></td><td><font color="#FFFFFF">线上升级机制(命令)</font></td></tr> <tr align="center"><td>Red Hat/Fedora</td><td>RPM</td><td>rpm, rpmbuild</td><td>YUM (yum)</td></tr> <tr align="center"><td>Debian/Ubuntu</td><td>DPKG</td><td>dpkg</td><td>APT (apt-get)</td></tr> </tbody></table>  		<p>我们这里使用的是 CentOS 系统嘛！所以说：<span class="text_import2">使用的软件管理机制为 RPM 		机制，而用来作为线上升级的方式则为 yum </span>！底下就让我们来谈谈 RPM 与 YUM  的相关说明吧！</p> 	</div>  	<hr><a name="intro_whatisrpm"></a><img src="../image/logo.png" alt="小标题的图示" width="24" align="middle" height="23"><span class="text_h2">什么是 RPM 与 SRPM</span> 	<div class="block2"> 		<p>RPM 全名是『<span class="text_import2"> RedHat Package Manager </span>』简称则为 		RPM 啦！顾名思义，当初这个软件管理的机制是由 Red Hat 这家公司发展出来的。 		RPM 是以一种数据库记录的方式来将你所需要的软件安装到你的 Linux 系统的一套管理机制。</p>  		<p>他最大的特点就是将你要安装的软件先编译过， 		并且打包成为 RPM 机制的包装文件，透过包装好的软件里头默认的数据库记录， 		记录这个软件要安装的时候必须具备的相依属性软件，当安装在你的 Linux 主机时， 		RPM 会先依照软件里头的数据查询 Linux 主机的相依属性软件是否满足， 		若满足则予以安装，若不满足则不予安装。那么安装的时候就将该软件的资讯整个写入 		RPM 的数据库中，以便未来的查询、验证与反安装！这样一来的优点是：</p>  		<ol class="text_import2"> 		<li>由於已经编译完成并且打包完毕，所以软件传输与安装上很方便 (不需要再重新编译)；</li> 		<li>由於软件的资讯都已经记录在 Linux 主机的数据库上，很方便查询、升级与反安装</li> 		</ol>  		<p>但是这也造成些许的困扰。由於 RPM 文件是已经包装好的数据，也就是说， 		里面的数据已经都『编译完成』了！所以，<span class="text_import2">该软件文件几乎只能安装在原本默认的硬件与操作系统版本中。</span> 		也就是说，你的主机系统环境必须要与当初创建这个软件文件的主机环境相同才行！ 		举例来说，rp-pppoe 这个 ADSL 拨接软件，他必须要在 ppp 这个软件存在的环境下才能进行安装！如果你的主机并没有 		ppp 这个软件，那么很抱歉，除非你先安装 ppp 否则 rp-pppoe 就是不让你安装的 		(当然你可以强制安装，但是通常都会有点问题发生就是了！)。</p>  		<p>所以，<span class="text_import2">通常不同的 distribution 所释出的 RPM 文件，并不能用在其他的  		distributions 上</span>。举例来说，Red Hat 释出的 RPM 文件，通常无法直接在 SuSE 		上面进行安装的。更有甚者，相同 distribution 的不同版本之间也无法互通，例如 CentOS 4.x 的 RPM  		文件就无法直接套用在 CentOS 5.x ！因此，这样可以发现这些软件管理机制的问题是：</p>  		<ol class="text_import2"> 		<li>软件文件安装的环境必须与打包时的环境需求一致或相当；</li> 		<li>需要满足软件的相依属性需求；</li> 		<li>反安装时需要特别小心，最底层的软件不可先移除，否则可能造成整个系统的问题！</li> 		</ol>  		<p>那怎么办？如果我真的想要安装其他 distributions 提供的好用的 RPM 软件文件时？ 		呵呵！还好，还有 SRPM 这个东西！<span class="text_import2">SRPM 是什么呢？顾名思义，他是 		Source RPM 的意思，也就是这个 RPM 文件里面含有原始码哩</span>！特别注意的是，这个  		<span class="text_import2">SRPM 所提供的软件内容『并没有经过编译』</span>， 		他提供的是原始码喔！</p>  		<p>通常 <span class="text_import2">SRPM 的扩展名是以 ***.src.rpm 这种格式来命名的</span>。不过，既然 SRPM  		提供的是原始码，那么为什么我们不使用 Tarball 直接来安装就好了？这是因为 SRPM 虽然内容是原始码， 		但是他仍然含有该软件所需要的相依性软件说明、以及所有 RPM 文件所提供的数据。同时，他与 RPM  		不同的是，他也提供了参数配置档 (就是 configure 与 makefile)。所以，如果我们下载的是  		SRPM ，那么要安装该软件时，你就必须要：</p>  		<ul class="text_import2"> 		<li>先将该软件以 RPM 管理的方式编译，此时 SRPM 会被编译成为 RPM 文件；</li> 		<li>然后将编译完成的 RPM 文件安装到 Linux 系统当中</li> 		</ul>  		<p>怪了，怎么 SRPM 这么麻烦呐！还要重新编译一次，那么我们直接使用 RPM 		来安装不就好了？通常一个软件在释出的时候，都会同时释出该软件的 		RPM 与 SRPM 。我们现在知道 RPM 文件必须要在相同的 Linux 环境下才能够安装，而 SRPM  		既然是原始码的格式，自然<span class="text_import2">我们就可以透过修改 SRPM 内的参数配置档，然后重新编译产生能适合我们 		Linux 环境的 RPM 文件</span>，如此一来，不就可以将该软件安装到我们的系统当中，而不必与原作者打包的 		Linux 环境相同了？这就是 SRPM 的用处了！</p>  <table bgcolor="lightyellow" border="1" cellpadding="3" cellspacing="0" width="95%"> <tbody><tr align="center" bgcolor="#182448"><td><font color="#FFFFFF">文件格式</font></td><td><font color="#FFFFFF">档名格式</font></td><td><font color="#FFFFFF">直接安装与否</font></td><td><font color="#FFFFFF">内含程序类型</font></td><td><font color="#FFFFFF">可否修改参数并编译</font></td></tr> <tr align="center"><td>RPM</td><td>xxx.rpm</td><td>可</td><td>已编译</td><td>不可</td></tr> <tr align="center"><td>SRPM</td><td>xxx.src.rpm</td><td>不可</td><td>未编译之原始码</td><td>可</td></tr> </tbody></table>  		<div style="padding: 10pt 0pt;" align="right"><table width="90%"><tbody><tr><td><b>Tips:</b><br><span style="color: rgb(0, 144, 0);"><font size="-1">		为何说 CentOS 是『社群维护的企业版』呢？ Red Hat 公司的 RHEL 释出后，连带会将 SRPM 释出。 		社群的朋友就将这些 SRPM 收集起来并重新编译成为所需要的软件，再重复释出成为 CentOS，所以才能号称与 		Red Hat 的 RHEL 企业版同步啊！真要感谢 SRPM 哩！如果你想要理解 CentOS 是如何编译一支程序的， 		也能够透过学习 SRPM 内含的编译参数，来学习的啊！ 		</font></span></td><td><img src="0520rpm_and_srpm_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div> 	</div>  	<hr><a name="intro_i386586"></a><img src="../image/logo.png" alt="小标题的图示" width="24" align="middle" height="23"><span class="text_h2">什么是 	i386, i586, i686, noarch, x86_64</span> 	<div class="block2"> 		<p>从上面的说明，现在我们知道 RPM 与 SRPM 的格式分别为：</p>  <table class="term"><tbody><tr><td class="term"><pre><span class="term_write">xxxxxxxxx.rpm</span>   <span class="term_note">&lt;==RPM 的格式，已经经过编译且包装完成的 rpm 文件；</span> <span class="term_write">xxxxx.src.rpm</span>   <span class="term_note">&lt;==SRPM的格式，包含未编译的原始码资讯。</span> </pre></td></tr></tbody></table>  		<p>那么我们怎么知道这个软件的版本、适用的平台、编译释出的次数呢？只要透过档名就可以知道了！例如 		<span class="text_import2">rp-pppoe-3.1-5.i386.rpm</span> 		这的文件的意义为：</p>  <table class="term"><tbody><tr><td class="term"><pre><span class="term_write">rp-pppoe -        3.1    -     5        .i386        .rpm</span> 软件名称   软件的版本资讯 释出的次数 适合的硬件平台 扩展名 </pre></td></tr></tbody></table>  		<p>除了后面适合的硬件平台与扩展名外，主要是以『-』来隔开各个部分，这样子可以很清楚的发现该软件的名称、 		版本资讯、打包次数与操作的硬件平台！好了，来谈一谈每个不同的地方吧：</p>  		<ul> 		<li><span class="text_import2">软件名称</span>：<br> 		当然就是每一个软件的名称了！上面的范例就是 rp-pppoe 。<br><br></li>  		<li><span class="text_import2">版本资讯</span>：<br> 		每一次升级版本就需要有一个版本的资讯，否则如何知道这一版是新是旧？这里通常又分为主版本跟次版本。以上面为例，主版本为 		3 ，在主版本的架构下更动部分原始码内容，而释出一个新的版本，就是次版本啦！以上面为例，就是 1 罗！<br><br></li>  		<li><span class="text_import2">释出版本次数</span>：<br> 		通常就是编译的次数啦！那么为何需要重复的编译呢？这是由於同一版的软件中，可能由於有某些 		bug 或者是安全上的顾虑，所以必须要进行小幅度的 patch 或重设一些编译参数。 		配置完成之后重新编译并打包成 RPM 文件！因此就有不同的打包数出现了！<br><br></li>  		<li><span class="text_import2">操作硬件平台</span>：<br> 		这是个很好玩的地方，由於 RPM 可以适用在不同的操作平台上，但是不同的平台配置的参数还是有所差异性！ 		并且，我们可以针对比较高阶的 CPU 来进行最佳化参数的配置，这样才能够使用高阶 CPU 所带来的硬件加速功能。 		所以就有所谓的 i386, i586, i686, x86_64 与 noarch 等的文件名称出现了！<br><br>  <table bgcolor="lightyellow" border="1" cellpadding="3" cellspacing="0" width="95%"> <tbody><tr align="center" bgcolor="#182448"><td width="80"><font color="#FFFFFF">平台名称</font></td><td><font color="#FFFFFF">适合平台说明</font></td></tr> <tr><td align="center"><span class="text_import2">i386</span></td> 	<td>几乎适用於所有的 x86 平台，不论是旧的 pentum 或者是新的 Intel Core 2 与  	K8 系列的 CPU 等等，都可以正常的工作！那个 i 指的是 Intel 兼容的 CPU 的意思，至於 386  	不用说，就是 CPU 的等级啦！</td></tr> <tr><td align="center"><span class="text_import2">i586</span></td> 	<td>就是针对 586 等级的计算机进行最佳化编译。那是哪些 CPU 呢？包括 pentum 第一代 MMX CPU， AMD 的 K5, K6 系列 CPU  	(socket 7 插脚) 等等的 CPU 都算是这个等级；</td></tr> <tr><td align="center"><span class="text_import2">i686</span></td> 	<td>在 pentun II 以后的 Intel 系列 CPU ，及 K7 以后等级的 CPU 都属於这个 686 等级！ 	由於目前市面上几乎仅剩 P-II 以后等级的硬件平台，因此很多 distributions 都直接释出这种等级的 RPM 文件。</td></tr> <tr><td align="center"><span class="text_import2">x86_64</span></td> 	<td>针对 64 位的 CPU 进行最佳化编译配置，包括 Intel 的 Core 2 以上等级 CPU ，以及 AMD 的 Athlon64 	以后等级的 CPU ，都属於这一类型的硬件平台。</td></tr> <tr><td align="center"><span class="text_import2">noarch</span></td> 	<td>就是没有任何硬件等级上的限制。一般来说，这种类型的 RPM 文件，里面应该没有 binary program 存在， 	较常出现的就是属於 shell script 方面的软件。</td></tr> </tbody></table><br>  		受惠於目前 x86 系统的支持方面，新的 CPU 都能够运行旧型 CPU 所支持的软件，也就是说硬件方面都可以向下兼容的， 		因此<span class="text_import2">最低等级的 i386 软件可以安装在所有的 x86 硬件平台上面</span>，不论是 32  		位还是 64 位。但是反过来说就不行了。举例来说，目前硬件大多是 64 位的等级，因此你可以在该硬件上面安装 		x86_64 或 i386 等级的 RPM 软件。但在你的旧型主机，例如 P-III/P-4 32 位机器上面，就不能够安装 x86_64 的软件！ 		</li> 		</ul>  		<p>根据上面的说明，其实我们只要选择 i386 版本来安装在你的 x86 硬件上面就肯定没问题。但是如果强调效能的话， 		还是选择搭配你的硬件的 RPM 文件吧！毕竟该软件才有针对你的 CPU 硬件平台进行过参数最佳化的编译嘛！</p> 	</div>  	<hr><a name="intro_advance"></a><img src="../image/logo.png" alt="小标题的图示" width="24" align="middle" height="23"><span class="text_h2">RPM 的优点</span> 	<div class="block2"> 		<p>由於 RPM 是透过预先编译并打包成为 RPM 文件格式后，再加以安装的一种方式，并且还能够进行数据库的记载。 		所以 RPM 有以下的优点：</p>  		<ul class="text_import2"> 		<li>RPM 内含已经编译过的程序与配置档等数据，可以让使用者免除重新编译的困扰；</li> 		<li>RPM 在被安装之前，会先检查系统的硬盘容量、操作系统版本等，可避免文件被错误安装；</li> 		<li>RPM 文件本身提供软件版本资讯、相依属性软件名称、软件用途说明、软件所含文件等资讯，便於了解软件；</li> 		<li>RPM 管理的方式使用数据库记录 RPM 文件的相关参数，便於升级、移除、查询与验证。</li> 		</ul>  		<p>为什么 RPM 在使用上很方便呢？我们前面提过， RPM 这个软件管理员所处理的软件，是由软件提供者在特定的 		Linux 作业平台上面将该软件编译完成并且打包好。那使用者只要拿到这个打包好的软件， 		然后将里头的文件放置到应该要摆放的目录，不就完成安装罗？对啦！就是这样！</p>  		<p>但是有没有想过，我们在前一章里面提过的，有些软件是有相关性的，例如要安装网络卡驱动程序，就得要有  		kernel source 与 gcc 及 make  		等软件。那么我们的 RPM 软件是否一定可以安装完成呢？如果该软件安装之后，却找不到他相关的前驱软件， 		那不是挺麻烦的吗？因为安装好的软件也无法使用啊！</p>  		<p>为了解决这种具有相关性的软件之间的问题 (就是所谓的软件相依属性)，RPM  		就在提供打包的软件时，同时加入一些信息登录的功能，这些信息包括软件的版本、 		打包软件者、相依属性的其他软件、本软件的功能说明、本软件的所有文件记录等等，然后在 		Linux 系统上面亦创建一个 RPM 软件数据库，如此一来，当你要安装某个以 		RPM 型态提供的软件时，在安装的过程中， RPM 会去检验一下数据库里面是否已经存在相关的软件了， 		如果数据库显示不存在，那么这个 RPM 文件『默认』就不能安装。呵呵！没有错，这个就是 RPM  		类型的文件最为人所诟病的『<span class="text_import2">软件的属性相依</span>』问题啦！</p> 	</div>  	<hr><a name="intro_solution"></a><img src="../image/logo.png" alt="小标题的图示" width="24" align="middle" height="23"><span class="text_h2">RPM 	属性相依的克服方式： YUM 线上升级</span> 	<div class="block2"> 		<p>为了重复利用既有的软件功能，因此很多软件都会以函式库的方式释出部分功能，以方便其他软件的呼叫应用， 		例如 PAM 模块的验证功能。此外，为了节省使用者的数据量，目前的 distributions 在释出软件时， 		都会将软件的内容分为一般使用与开发使用 (development) 两大类。所以你才会常常看到有类似 		pam-x.x.rpm 与 pam-devel-x.x.rpm 之类的档名啊！而默认情况下，大部分的 software-devel-x.x.rpm 		都不会安装，因为终端用户大部分不会去开发软件嘛！</p>  		<p>因为有上述的现象，因此 RPM 软件文件就会有所谓的属性相依的问题产生 (其实所有的软件管理几乎都有这方面的情况存在)。 		那有没有办法解决啊？前面不是谈到 RPM 软件文件内部会记录相依属性的数据吗？那想一想，要是我将这些相依属性的软件先列表， 		在有要安装软件需求的时候，先到这个列表去找，同时与系统内已安装的软件相比较，没安装到的相依软件就一口气同时安装起来， 		那不就解决了相依属性的问题了吗？有没有这种机制啊？有啊！那就是 YUM 机制的由来！</p>  		<p>CentOS 先将释出的软件放置到 YUM 服务器内，然后分析这些软件的相依属性问题，将软件内的记录资讯写下来 (header)。 		然后再将这些资讯分析后记录成软件相关性的清单列表。这些列表数据与软件所在的位置可以称呼为容器 (repository)。 		当用户端有软件安装的需求时，用户端主机会主动的向网络上面的 yum 服务器的容器网址下载清单列表， 		然后透过清单列表的数据与本机 RPM 数据库已存在的软件数据相比较，就能够一口气安装所有需要的具有相依属性的软件了。 		整个流程可以简单的如下图说明：</p>  		<a name="fig1.5.1"></a> 		<center><img src="0520rpm_and_srpm_files/yum-01.gif" alt="YUM 使用的流程示意图" title="YUM 使用的流程示意图" border="1"><br> 		图 1.5.1、YUM 使用的流程示意图<br></center>  		<p>当用户端有升级、安装的需求时， yum 会向容器要求清单的升级，等到清单升级到本机的 /var/cache/yum 里面后， 		等一下升级时就会用这个本机清单与本机的 RPM 数据库进行比较，这样就知道该下载什么软件。接下来 yum 会跑到容器服务器  		(yum server) 下载所需要的软件，然后再透过 RPM 的机制开始安装软件啦！这就是整个流程！ 		谈到最后，还是需要动到 RPM 的啦！所以下个小节就让我们来谈谈 RPM 这咚咚吧！</p>  		<div style="padding: 10pt 0pt;" align="right"><table width="90%"><tbody><tr><td><b>Tips:</b><br><span style="color: rgb(0, 144, 0);"><font size="-1">		为什么要做出『容器』呢？由於 yum 服务器提供的 RPM 文件内容可能有所差异，举例来说，原厂释出的数据有  		(1)原版数据； (2)升级数据 (update)； (3)特殊数据 (例如第三方协力软件，或某些特殊功能的软件)。 		这些软件文件基本上不会放置到一起，那如何分辨这些软件功能呢？就用『容器』的概念来处理的啦！ 		不同的『容器』网址，可以放置不同的软件功能之意！ 		</font></span></td><td><img src="0520rpm_and_srpm_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div>	</div> </div>   <hr><a name="rpmmanager"></a><img src="../image/logo.png" alt="大标题的图示" width="35" align="middle" height="34"><span class="text_h1">RPM 软件管理程序： rpm</span> <div class="block1"> 	<p>RPM 的使用其实不难，只要使用 rpm 这个命令即可！鸟哥最喜欢的就是 	rpm 命令的查询功能了，可以让我很轻易的就知道某个系统有没有安装鸟哥要的软件呢！此外， 	我们最好还是得要知道一下，到底 RPM 类型的文件他们是将软件的相关文件放置在哪里呢？还有，我们说的那个 RPM 	的数据库又是放置在哪里呢？<br><br></p>  	<hr><a name="rpmmanager_dir"></a><img src="../image/logo.png" alt="小标题的图示" width="24" align="middle" height="23"><span class="text_h2">RPM 默认安装的路径</span> 	<div class="block2"> 		<p>一般来说，RPM 类型的文件在安装的时候，会先去读取文件内记载的配置参数内容，然后将该数据用来比对 		Linux 系统的环境，以找出是否有属性相依的软件尚未安装的问题。例如 Openssh 这个连线软件需要透过 		Openssl 这个加密软件的帮忙，所以得先安装 openssl 才能装 openssh 的意思。那你的环境如果没有 openssl ， 		你就无法安装 openssh 的意思啦。</p>  		<p>若环境检查合格了，那么 RPM 文件就开始被安装到你的 Linux 系统上。安装完毕后，该软件相关的资讯就会被写入 		<span class="text_import2">/var/lib/rpm/</span> 目录下的数据库文件中了。 		上面这个目录内的数据很重要喔！因为未来如果我们有任何软件升级的需求，版本之间的比较就是来自於这个数据库， 		而如果你想要查询系统已经安装的软件，也是从这里查询的！同时，目前的 RPM 也提供数码签章资讯， 		这些数码签章也是在这个目录内记录的呢！所以说，这个目录得要注意不要被删除了啊！</p>  		<p>那么软件内的文件到底是放置到哪里去啊？当然与文件系统有关对吧！我们在<a href="http://vbird.dic.ksu.edu.tw/linux_basic/0210filepermission.php#dir">第六章的目录配置</a>谈过每个目录的意义， 		这里再次的强调罗：</p>   <table bgcolor="lightyellow" border="1" cellpadding="3" cellspacing="0" width="95%"> <tbody><tr><td style="font-family: '细明体'; color: rgb(0, 0, 102);" width="120">/etc</td> 	<td style="font-family: '细明体'; color: rgb(0, 0, 102);">一些配置档放置的目录，例如 /etc/crontab</td></tr> <tr><td style="font-family: '细明体'; color: rgb(0, 0, 102);">/usr/bin</td> 	<td style="font-family: '细明体'; color: rgb(0, 0, 102);">一些可运行文件</td></tr> <tr><td style="font-family: '细明体'; color: rgb(0, 0, 102);">/usr/lib</td> 	<td style="font-family: '细明体'; color: rgb(0, 0, 102);">一些程序使用的动态函式库</td></tr> <tr><td style="font-family: '细明体'; color: rgb(0, 0, 102);">/usr/share/doc</td> 	<td style="font-family: '细明体'; color: rgb(0, 0, 102);">一些基本的软件使用手册与说明档</td></tr> <tr><td style="font-family: '细明体'; color: rgb(0, 0, 102);">/usr/share/man</td> 	<td style="font-family: '细明体'; color: rgb(0, 0, 102);">一些 man page 文件</td></tr> </tbody></table>  		<p>好了，底下我们就来针对每个 RPM 的相关命令来进行说明罗！</p> 	</div>  	<hr><a name="rpmmanager_install"></a><img src="../image/logo.png" alt="小标题的图示" width="24" align="middle" height="23"><span class="text_h2">RPM 安装 (install)</span> 	<div class="block2"> 		<p>因为安装软件是 root 的工作，因此你得要是 root 的身份才能够操作 rpm 这命令的。 		用 rpm 来安装很简单啦！假设我要安装一个档名为 rp-pppoe-3.5-32.1.i386.rpm 的文件，那么我可以这样：</p>  <table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">rpm -i rp-pppoe-3.5-32.1.i386.rpm</span> </pre></td></tr></tbody></table>  		<p>不过，这样的参数其实无法显示安装的进度，所以，通常我们会这样下达安装命令：</p>  <table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">rpm -ivh package_name</span> <span class="term_say">选项与参数： -i ：install 的意思 -v ：察看更细部的安装资讯画面 -h ：以安装资讯列显示安装进度</span>  <span class="term_hd">范例一：安装 rp-pppoe-3.5-32.1.i386.rpm</span> [root@www ~]# <span class="term_command">rpm -ivh rp-pppoe-3.5-32.1.i386.rpm</span> Preparing...     ####################################### [100%]    1:rp-pppoe    ####################################### [100%]   <span class="term_hd">范例二、一口气安装两个以上的软件时：</span> [root@www ~]# <span class="term_command">rpm -ivh a.i386.rpm b.i386.rpm *.rpm</span> <span class="term_say"># 后面直接接上许多的软件文件！</span>  <span class="term_hd">范例三、直接由网络上面的某个文件安装，以网址来安装：</span> [root@www ~]# <span class="term_command">rpm -ivh http://website.name/path/pkgname.rpm</span> </pre></td></tr></tbody></table>  		<p>另外，如果我们在安装的过程当中发现问题，或者已经知道会发生的问题， 		而还是『执意』要安装这个软件时，可以使用如下的参数『强制』安装上去：</p>  <table bgcolor="lightyellow" border="1" cellpadding="3" cellspacing="0" width="95%"> <caption>rpm 安装时常用的选项与参数说明</caption> <tbody><tr align="center" bgcolor="#182448"><td width="130"><font color="#FFFFFF">可下达的选项</font></td><td><font color="#FFFFFF">代表意义</font></td></tr> <tr><td class="text_import1" style="font-family: '细明体';">--nodeps</td> 	<td><span class="text_import2">使用时机</span>：当发生软件属性相依问题而无法安装，但你执意安装时<br> 	<span class="text_import2">危险性</span>： 	软件会有相依性的原因是因为彼此会使用到对方的机制或功能，如果强制安装而不考虑软件的属性相依， 	则可能会造成该软件的无法正常使用！</td></tr> <tr><td class="text_import2" style="font-family: '细明体';">--replacefiles</td> 	<td><span class="text_import2">使用时机：</span> 	如果在安装的过程当中出现了『某个文件已经被安装在你的系统上面』的资讯，又或许出现版本不合的信息 (confilcting files)  	时，可以使用这个参数来直接覆盖文件。<br> 	<span class="text_import2">危险性：</span> 	覆盖的动作是无法复原的！所以，你必须要很清楚的知道被覆盖的文件是真的可以被覆盖喔！否则会欲哭无泪！</td></tr> <tr><td class="text_import2" style="font-family: '细明体';">--replacepkgs</td> 	<td><span class="text_import2">使用时机：</span> 	重新安装某个已经安装过的软件！如果你要安装一堆 RPM 软件文件时，可以使用 rpm -ivh *.rpm ，但若某些软件已经安装过了， 	此时系统会出现『某软件已安装』的资讯，导致无法继续安装。此时可使用这个选项来重复安装喔！</td></tr> <tr><td class="text_import2" style="font-family: '细明体';">--force</td> 	<td><span class="text_import2">使用时机：</span>这个参数其实就是 --replacefiles 与 --replacepkgs 的综合体！</td></tr> <tr><td class="text_import2" style="font-family: '细明体';">--test</td> 	<td><span class="text_import2">使用时机：</span> 	想要测试一下该软件是否可以被安装到使用者的 Linux 环境当中，可找出是否有属性相依的问题。范例为：<br> 	<span class="text_import2"><font face="细明体">rpm -ivh pkgname.i386.rpm --test</font></span></td></tr> <tr><td class="text_import2" style="font-family: '细明体';">--justdb</td> 	<td><span class="text_import2">使用时机：</span> 	由於 RPM 数据库破损或者是某些缘故产生错误时，可使用这个选项来升级软件在数据库内的相关资讯。</td></tr> <tr><td class="text_import2" style="font-family: '细明体';">--nosignature</td> 	<td><span class="text_import2">使用时机：</span> 	想要略过数码签章的检查时，可以使用这个选项。</td></tr> <tr><td class="text_import2" style="font-family: '细明体';">--prefix 新路径</td> 	<td><span class="text_import2"><font face="细明体">使用时机：</font></span> 	要将软件安装到其他非正规目录时。举例来说，你想要将某软件安装到 /usr/local 而非正规的 /bin, /etc 等目录， 	就可以使用『 --prefix /usr/local 』来处理了。</td></tr> <tr><td class="text_import2" style="font-family: '细明体';">--noscripts</td> 	<td><span class="text_import2">使用时机：</span>不想让该软件在安装过程中自行运行某些系统命令。<br> 	<span class="text_import2">说明：</span> 	RPM 的优点除了可以将文件放置到定位之外，还可以自动运行一些前置作业的命令，例如数据库的初始化。 	如果你不想要让 RPM 帮你自动运行这一类型的命令，就加上他吧！</td></tr> </tbody></table>  		<p>一般来说，rpm 的安装选项与参数大约就是这些了。通常鸟哥建议直接使用 -ivh 就好了， 		如果安装的过程中发现问题，一个一个去将问题找出来，尽量不要使用『 		<span class="text_import2">暴力安装法</span> 』，就是透过 --force 去强制安装！ 		因为可能会发生很多不可预期的问题呢！除非你很清楚的知道使用上面的参数后，安装的结果是你预期的！</p>  <table border="1" cellpadding="5" cellspacing="0" width="90%"><tbody><tr><td> 例题：<div class="block2"> 在没有网络的前提下，你想要安装一个名为 pam-devel 的软件，你手边只有原版光盘，该如何是好？ </div> 答：<div class="block2"> 你可以透过挂载原版光盘来进行数据的查询与安装。请将原版光盘放入光驱，底下我们尝试将光盘挂载到 /media 当中， 并据以处理软件的下载罗： <ul style="font-family: '细明体';"> 	<li>挂载光盘，使用： mount /dev/cdrom /media</li> 	<li>找出文件的实际路径：find /media -name 'pam-devel*' </li> 	<li>测试此软件是否具有相依性： rpm -ivh pam-devel... --test</li> 	<li>直接安装： rpm -ivh pam-devel...</li> 	<li>卸载光盘： umount /dev/cdrom</li> </ul> 在鸟哥的系统中，刚好这个软件并没有属性相依的问题，因此最后一个步骤可以顺利的进行下去呢！ </div> </td></tr></tbody></table><br>  	</div>  	<hr><a name="rpmmanager_update"></a><img src="../image/logo.png" alt="小标题的图示" width="24" align="middle" height="23"><span class="text_h2">RPM 升级与升级 (upgrade/freshen)</span> 	<div class="block2"> 		<p>使用 RPM 来升级真是太简单了！就以 -Uvh 或 -Fvh 来升级即可，而 -Uvh 与 -Fvh 可以用的选项与参数，跟 install 		是一样的。不过， -U 与 -F 的意义还是不太一样的，基本的差别是这样的：</p>   <table bgcolor="lightyellow" border="1" cellpadding="3" cellspacing="0" width="95%"> <tbody><tr><td style="font-family: '细明体'; color: rgb(0, 0, 102);" align="center" width="50">-Uvh</td> 	<td style="font-family: '细明体';">后面接的软件即使没有安装过，则系统将予以直接安装； 	若后面接的软件有安装过旧版，则系统自动升级至新版；</td></tr> <tr><td style="font-family: '细明体'; color: rgb(0, 0, 102);" align="center">-Fvh</td> 	<td style="font-family: '细明体';">如果后面接的软件并未安装到你的 Linux 系统上，则该软件不会被安装；亦即只有已安装至你 	Linux 系统内的软件会被『升级』！</td></tr> </tbody></table><br>  		<p>由上面的说明来看，如果你想要大量的升级系统旧版本的软件时，使用 -Fvh  		则是比较好的作法，因为没有安装的软件才不会被不小心安装进系统中。但是需要注意的是，如果你使用的是 -Fvh  		，偏偏你的机器上尚无这一个软件，那么很抱歉，该软件并不会被安装在你的 Linux 主机上面，所以请重新以 ivh  		来安装吧！</p>  		<p>通常有的朋友在进行整个操作系统的旧版软件修补时，喜欢这么进行：</p>  		<ol class="text_import2"> 		<li>先到各发展商的 errata 网站或者是国内的 FTP 映像站捉下来最新的 RPM 文件；</li> 		<li>使用 -Fvh 来将你的系统内曾安装过的软件进行修补与升级！(真是方便呀！)</li> 		</ol>  		<p>所以，在不晓得 yum 功能的情况下，你依旧可以到 CentOS 的映设站台下载 updates 数据，然后利用上述的方法来一口气升级！ 		当然罗，升级也是可以利用 <span class="text_import2">--nodeps/--force</span> 等等的参数啦！</p> 	</div>  	<hr><a name="rpmmanager_query"></a><img src="../image/logo.png" alt="小标题的图示" width="24" align="middle" height="23"><span class="text_h2">RPM 查询 (query)</span> 	<div class="block2"> 		<p>RPM 在查询的时候，其实查询的地方是在 <span class="text_import2">/var/lib/rpm/</span> 		这个目录下的数据库文件啦！另外， RPM 也可以查询未安装的 RPM 文件内的资讯喔！那如何去查询呢？ 		我们先来谈谈可用的选项有哪些？</p>  <table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">rpm -qa                            </span>  <span class="term_note">&lt;==已安装软件</span> [root@www ~]# <span class="term_command">rpm -q[licdR] 已安装的软件名称     </span>  <span class="term_note">&lt;==已安装软件</span> [root@www ~]# <span class="term_command">rpm -qf 存在於系统上面的某个档名   </span>  <span class="term_note">&lt;==已安装软件</span> [root@www ~]# <span class="term_command">rpm -qp[licdR] 未安装的某个文件名称</span>  <span class="term_note">&lt;==查阅RPM文件</span> <span class="term_say">选项与参数： 查询已安装软件的资讯： -q  ：仅查询，后面接的软件名称是否有安装； -qa ：列出所有的，已经安装在本机 Linux 系统上面的所有软件名称； -qi ：列出该软件的详细资讯 (information)，包含开发商、版本与说明等； -ql ：列出该软件所有的文件与目录所在完整档名 (list)； -qc ：列出该软件的所有配置档 (找出在 /etc/ 底下的档名而已) -qd ：列出该软件的所有说明档 (找出与 man 有关的文件而已) -qR ：列出与该软件有关的相依软件所含的文件 (Required 的意思) -qf ：由后面接的文件名称，找出该文件属於哪一个已安装的软件； 查询某个 RPM 文件内含有的资讯： -qp[icdlR]：注意 -qp 后面接的所有参数以上面的说明一致。但用途仅在於找出 	    某个 RPM 文件内的资讯，而非已安装的软件资讯！注意！</span> </pre></td></tr></tbody></table>  		<p>在查询的部分，所有的参数之前都需要加上 -q 才是所谓的查询！查询主要分为两部分， 		一个是查已安装到系统上面的的软件资讯，这部份的资讯都是由 /var/lib/rpm/ 所提供。另一个则是查某个 rpm 文件内容， 		等於是由 RPM 文件内找出一些要写入数据库内的资讯就是了，这部份就得要使用 -qp (p 是 package 的意思)。 		那就来看看几个简单的范例吧！</p>  <table class="term"><tbody><tr><td class="term"><pre><span class="term_hd">范例一：找出你的 Linux 是否有安装 logrotate 这个软件？</span> [root@www ~]# <span class="term_command">rpm -q logrotate</span> logrotate-3.7.4-8 [root@www ~]# <span class="term_command">rpm -q logrotating</span> package logrotating is not installed <span class="term_say"># 注意到，系统会去找是否有安装后面接的软件名称。注意， # 不必要加上版本喔！至於显示的结果，一看就知道有没有安装啦！</span>  <span class="term_hd">范例二：列出上题当中，属於该软件所提供的所有目录与文件：</span> [root@www ~]# <span class="term_command">rpm -ql logrotate</span> /etc/cron.daily/logrotate /etc/logrotate.conf <span class="term_say">....(以下省略)....</span> <span class="term_say"># 可以看出该软件到底提供了多少的文件与目录，也可以追踪软件的数据。</span>  <span class="term_hd">范例三：列出 logrotate 这个软件的相关说明数据：</span> [root@www ~]# <span class="term_command">rpm -qi logrotate</span> Name        : logrotate             Relocations: (not relocatable) Version     : 3.7.4                      Vendor: CentOS Release     : 8                      Build Date: Sun 02 Dec 2007 08:38:06 AM CST Install Date: Sat 09 May 2009 11:59:05 PM CST    Build Host: builder6 Group       : System Environment/Base  Source RPM: logrotate-3.7.4-8.src.rpm Size        : 53618                     License: GPL Signature   : DSA/SHA1, Sun 02 Dec 2007 09:10:01 AM CST, Key ID a8a447dce8562897 Summary     : Rotates, compresses, removes and mails system log files. Description : The logrotate utility is designed to simplify the administration of log files on a system which generates a lot of log files.  Logrotate allows for the automatic rotation compression, removal and mailing of log files.  Logrotate can be set to handle a log file daily, weekly, monthly or when the log file gets to a certain size.  Normally, logrotate runs as a daily cron job.  Install the logrotate package if you need a utility to deal with the log files on your system. <span class="term_say"># 列出该软件的 information (资讯)，里面的资讯可多著呢，包括了软件名称、 # 版本、开发商、SRPM文件名称、打包次数、简单说明资讯、软件打包者、 # 安装日期等等！如果想要详细的知道该软件的数据，用这个参数来了解一下</span>  <span class="term_hd">范例四：分别仅找出 logrotate 的配置档与说明档</span> [root@www ~]# <span class="term_command">rpm -qc logrotate</span> [root@www ~]# <span class="term_command">rpm -qd logrotate</span>  <span class="term_hd">范例五：若要成功安装 logrotate ，他还需要什么文件的帮忙？</span> [root@www ~]# <span class="term_command">rpm -qR logrotate</span> /bin/sh config(logrotate) = 3.7.4-8 libc.so.6 <span class="term_say">....(以下省略).... # 由这里看起来，呵呵～还需要很多文件的支持才行喔！</span>  <span class="term_hd">范例六：由上面的范例五，找出 /bin/sh 是那个软件提供的？</span> [root@www ~]# <span class="term_command">rpm -qf /bin/sh</span> bash-3.2-21.el5 <span class="term_say"># 这个参数后面接的可是『文件』呐！不像前面都是接软件喔！ # 这个功能在查询系统的某个文件属於哪一个软件所有的。</span>  <span class="term_hd">范例七：假设我有下载一个 RPM 文件，想要知道该文件的需求文件，该如何？</span> [root@www ~]# <span class="term_command">rpm -qpR filename.i386.rpm</span> <span class="term_say"># 加上 -qpR ，找出该文件需求的数据！</span> </pre></td></tr></tbody></table>  		<p>常见的查询就是这些了！要特别说明的是，在查询本机上面的 RPM 软件相关资讯时， 		不需要加上版本的名称，只要加上软件名称即可！因为他会由 /var/lib/rpm 这个数据库里面去查询， 		所以我们可以不需要加上版本名称。但是查询某个 RPM 文件就不同了，我们必须要列出整个文件的完整档名才行～ 		这一点朋友们常常会搞错。底下我们就来做几个简单的练习吧！</p>  <table border="1" cellpadding="5" cellspacing="0" width="90%"><tbody><tr><td> 例题：<ol> <li>我想要知道我的系统当中，以 c 开头的软件有几个，如何实做？</li> <li>我的 WWW 服务器为 Apache ，我知道他使用的 RPM 软件档名为 httpd 。现在，我想要知道这个软件的所有配置档放置在何处，可以怎么作？</li> <li>承上题，如果查出来的配置文件已经被我改过，但是我忘记了曾经修改过哪些地方，所以想要直接重新安装一次该软件，该如何作？</li> <li>如果我误砍了某个重要文件，例如 /etc/crontab，偏偏不晓得他属於哪一个软件，该怎么办？</li> </ol> 答：<ol class="text_import2" style="font-family: '细明体';"> <li>rpm -qa | grep ^c | wc -l</li> <li>rpm -qc httpd</li> <li>假设该软件在网络上的网址为：<br>http://web.site.name/path/httpd-x.x.xx.i386.rpm<br> 则我可以这样做：<br> rpm -ivh http://web.site.name/path/httpd-x.x.xx.i386.rpm --replacepkgs</li> <li>虽然已经没有这个文件了，不过没有关系，因为 RPM 有记录在 /var/lib/rpm 当中的数据库啊！所以直接下达：<br> rpm -qf /etc/crontab<br> 就可以知道是那个软件罗！重新安装一次该软件即可！</li> </ol> </td></tr></tbody></table><br>  	</div>  	<hr><a name="rpmmanager_verify"></a><img src="../image/logo.png" alt="小标题的图示" width="24" align="middle" height="23"><span class="text_h2">RPM 验证与数码签章 	(Verify/signature)</span> 	<div class="block2"> 		<p>验证 (Verify) 的功能主要在於提供系统管理员一个有用的管理机制！作用的方式是『<span class="text_import2">使用  		/var/lib/rpm 底下的数据库内容来比对目前 Linux  		系统的环境下的所有软件文件</span> 』也就是说，当你有数据不小心遗失， 		或者是因为你误杀了某个软件的文件，或者是不小心不知道修改到某一个软件的文件内容， 		就用这个简单的方法来验证一下原本的文件系统吧！好让你了解这一阵子到底是修改到哪些文件数据了！验证的方式很简单：</p>  <table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">rpm -Va</span> [root@www ~]# <span class="term_command">rpm -V  已安装的软件名称</span> [root@www ~]# <span class="term_command">rpm -Vp 某个 RPM 文件的档名</span> [root@www ~]# <span class="term_command">rpm -Vf 在系统上面的某个文件</span> <span class="term_say">选项与参数： -V  ：后面加的是软件名称，若该软件所含的文件被更动过，才会列出来； -Va ：列出目前系统上面所有可能被更动过的文件； -Vp ：后面加的是文件名称，列出该软件内可能被更动过的文件； -Vf ：列出某个文件是否被更动过～</span>  <span class="term_hd">范例一：列出你的 Linux 内的 logrotate 这个软件是否被更动过？</span> [root@www ~]# <span class="term_command">rpm -V logrotate</span> <span class="term_say"># 如果没有出现任何信息，恭喜你，该软件所提供的文件没有被更动过。 # 如果有出现任何信息，才是有出现状况啊！</span>  <span class="term_hd">范例二：查询一下，你的 /etc/crontab 是否有被更动过？</span> [root@www ~]# <span class="term_command">rpm -Vf /etc/crontab</span> S.5....T  c /etc/crontab <span class="term_say"># 瞧！因为有被更动过，所以会列出被更动过的资讯类型！</span> </pre></td></tr></tbody></table>  		<p>好了，那么我怎么知道到底我的文件被更动过的内容是什么？例如上面的范例二。呵呵！简单的说明一下吧！ 		例如，我们检查一下 logrotate 这个软件：</p>  <table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">rpm -ql logrotate</span> /etc/cron.daily/logrotate /etc/logrotate.conf /etc/logrotate.d /usr/sbin/logrotate /usr/share/doc/logrotate-3.7.4 /usr/share/doc/logrotate-3.7.4/CHANGES /usr/share/man/man8/logrotate.8.gz /var/lib/logrotate.status <span class="term_say"># 呵呵！共有八个文件啊！请修改 /etc/logrotate.conf 内的 rotate 变成 5</span>  [root@www ~]# <span class="term_command">rpm -V logrotate</span> ..5....T  c /etc/logrotate.conf </pre></td></tr></tbody></table>  		<p>你会发现在档名之前有个 c ，然后就是一堆奇怪的文字了。那个 c 代表的是 configuration ， 		就是配置档的意思。至於最前面的八个资讯是：</p>  		<ul class="text_import2" style="font-family: '细明体';"> 		<li>S ：(file Size differs) 文件的容量大小是否被改变</li> 		<li>M ：(Mode differs) 文件的类型或文件的属性 (rwx) 是否被改变？如是否可运行等参数已被改变</li> 		<li>5 ：(MD5 sum differs) MD5 这一种指纹码的内容已经不同</li> 		<li>D ：(Device major/minor number mis-match) 装置的主/次代码已经改变</li> 		<li>L ：(readLink(2) path mis-match) Link 路径已被改变</li> 		<li>U ：(User ownership differs) 文件的所属人已被改变</li> 		<li>G ：(Group ownership differs) 文件的所属群组已被改变</li> 		<li>T ：(mTime differs) 文件的创建时间已被改变</li> 		</ul>  		<p>所以，如果当一个配置档所有的资讯都被更动过，那么他的显示就会是：</p>  <table class="term"><tbody><tr><td class="term"><pre>SM5DLUGT c filename </pre></td></tr></tbody></table>  		<p>至於那个 c 代表的是『 Config file 』的意思，也就是文件的类型，文件类型有底下这几类：</p>  		<ul class="text_import2" style="font-family: '细明体';"> 		<li>c ：配置档 (config file)</li> 		<li>d ：文件数据档 (documentation)</li> 		<li>g ：鬼文件～通常是该文件不被某个软件所包含，较少发生！(ghost file)</li> 		<li>l ：授权文件 (license file)</li> 		<li>r ：读我文件 (read me)</li> 		</ul>  		<p>经过验证的功能，你就可以知道那个文件被更动过。那么如果该文件的变更是『预期中的』， 		那么就没有什么大问题，但是如果该文件是『非预期的』，那么是否被入侵了呢？呵呵！得注意注意罗！ 		一般来说，配置档 (configure) 被更动过是很正常的，万一你的 binary program 被更动过呢？ 		那就得要特别特别小心啊！</p>  		<div style="padding: 10pt 0pt;" align="right"><table width="90%"><tbody><tr><td><b>Tips:</b><br><span style="color: rgb(0, 144, 0);"><font size="-1">		虽说家丑不可外扬，不过有件事情还是跟大家分享一下的好。鸟哥之前的主机曾经由於安装一套软件，导致被攻击成为跳板。 		会发现的原因是系统中只要出现 *.patch 的扩展名时，使用 ls -l 就是显示不出来该档名 (该档名确实存在)。 		找了好久，用了好多工具都找不出问题，最终利用 rpm -Va 找出来，原来好多 binary program 被更动过，连 init  		都被恶搞！此时，赶紧重新安装 Linux 并移除那套软件，之后就比较正常了。所以说，这个 rpm -Va 是个好功能喔！ 		</font></span></td><td><img src="0520rpm_and_srpm_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div> 		<hr><ul class="list1"><li class="text_import1">数码签章 (digital signature)</li></ul>  		<p>谈完了软件的验证后，不知道你有没有发现一个问题，那就是，验证只能验证软件内的资讯与 /var/lib/rpm/ 		里面的数据库资讯而已，如果该软件文件所提供的数据本身就有问题，那你使用验证的手段也无法确定该软件的正确性啊！ 		那如何解决呢？在 Tarball 与文件的验证方面，我们可以使用前一章谈到的 md5 指纹码来检查， 		不过，连指纹码也可能会被窜改的嘛！那怎办？没关系，我们可以透过数码签章来检验软件的来源的！</p>  		<p>就像你自己的签名一样，我们的软件开发商原厂所推出的软件也会有一个厂商自己的签章系统！ 		只是这个签章被数码化了而已。厂商可以数码签章系统产生一个专属於该软件的签章，并将该签章的公钥 (public key) 释出。 		当你要安装一个 RPM 文件时：</p> 		<ol class="text_import2"> 		<li>首先你必须要先安装原厂释出的公钥文件；</li> 		<li>实际安装原厂的 RPM 软件时， rpm 命令会去读取 RPM 文件的签章资讯，与本机系统内的签章资讯比对，</li> 		<li>若签章相同则予以安装，若找不到相关的签章资讯时，则给予警告并且停止安装喔。</li> 		</ol>  		<p>我们 CentOS 使用的数码签章系统为 GNU 计画的 GnuPG (GNU Privacy Guard, GPG)(<a href="#ps1">注1</a>)。 		GPG 可以透过杂凑运算，算出独一无二的专属金钥系统或者是数码签章系统，有兴趣的朋友可以参考文末的延伸阅读， 		去了解一下 GPG 加密的机制喔！这里我们仅简单的说明数码签章在 RPM 文件上的应用而已。 		而根据上面的说明，我们也会知道首先必须要安装原厂释出的 GPG 数码签章的公钥文件啊！CentOS 的数码签章位於：</p>  <table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">ll /etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-5</span> -rw-r--r-- 1 root root 1504  6月 19  2008 /etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-5 [root@www ~]# <span class="term_command">cat /etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-5</span> -----BEGIN PGP PUBLIC KEY BLOCK----- Version: GnuPG v1.2.6 (GNU/Linux)  mQGiBEWfB6MRBACrnYW6yKMT+MwJlCIhoyTxGf3mAxmnAiDEy6HcYN8rivssVTJk <span class="term_say">....(中间省略)....</span> -----END PGP PUBLIC KEY BLOCK----- </pre></td></tr></tbody></table>  		<p>从上面的输出，你会知道该数码签章码其实仅是一个乱数而已，这个乱数对於数码签章有意义而已， 		我们看不懂啦！那么这个文件如何安装呢？透过底下的方式来安装即可喔！</p>  <table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-5</span> </pre></td></tr></tbody></table>  		<p>由於不同版本 GPG 金钥文件放置的位置可能不同，不过档名大多是以 GPG-KEY 来说明的， 		因此你可以简单的使用 locate 或 find 来找寻，如以下的方式来搜寻即可：</p>  <table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">locate GPG-KEY</span> [root@www ~]# <span class="term_command">find /etc -name '*GPG-KEY*'</span> </pre></td></tr></tbody></table>  		<p>那安装完成之后，这个金钥的内容会以什么方式呈现呢？基本上都是使用 pubkey 作为软件的名称的！ 		那我们先列出金钥软件名称后，再以 -qi 的方式来查询看看该软件的资讯为何：</p>  <table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">rpm -qa | grep pubkey</span> gpg-pubkey-e8562897-459f07a4 [root@www ~]# <span class="term_command">rpm -qi gpg-pubkey-e8562897-459f07a4</span> Name        : gpg-pubkey        Relocations: (not relocatable) Version     : e8562897               Vendor: (none) Release     : 459f07a4           Build Date: Wed 27 May 2009 10:07:26 PM CST Install Date: Wed 27 May 2009 10:07:26 PM CST   Build Host: localhost Group       : Public Keys        Source RPM: (none) Size        : 0                     License: pubkey Signature   : (none) Summary     : gpg(CentOS-5 Key &lt;centos-5-key@centos.org&gt;) Description : -----BEGIN PGP PUBLIC KEY BLOCK----- Version: rpm-4.4.2 (beecrypt-4.1.2) <span class="term_say">....(底下省略)....</span> </pre></td></tr></tbody></table>  		<p>重点就是最后面出现的那一串乱码啦！那可是作为数码签章非常重要的一环哩！ 		如果你忘记加上数码签章，很可能很多原版软件就不能让你安装罗～除非你利用 rpm 时选择略过数码签章的选项。</p> 	</div>  	<hr><a name="rpmmanager_rebuild"></a><img src="../image/logo.png" alt="小标题的图示" width="24" align="middle" height="23"><span class="text_h2">RPM 反安装与重建数据库 	(erase/rebuilddb)</span> 	<div class="block2"> 		<p>反安装就是将软件卸载啦！要注意的是，『解安装的过程一定要由最上一级往下解除』，以 		rp-pppoe 为例，这一个软件主要是依据 ppp 这个软件来安装的，所以当你要解除 		ppp 的时候，就必须要先解除 rp-pppoe 才行！否则就会发生结构上的问题啦！这个可以由建筑物来说明， 		如果你要拆除五、六楼，那么当然要由六楼拆起，否则先拆的是第五楼时，那么上面的楼层难道会悬空？</p>  		<p>移除的选项很简单，就透过 -e 即可移除。不过，很常发生软件属性相依导致无法移除某些软件的问题！ 		我们以底下的例子来说明：</p>  <table class="term"><tbody><tr><td class="term"><pre><span class="term_hd"># 1. 找出与 pam 有关的软件名称，并尝试移除 pam 这个软件：</span> [root@www ~]# <span class="term_command">rpm -qa | grep pam</span> pam-devel-0.99.6.2-3.27.el5 pam_passwdqc-1.0.2-1.2.2 pam_pkcs11-0.5.3-23 pam_smb-1.1.7-7.2.1 pam-0.99.6.2-3.27.el5 pam_ccreds-3-5 pam_krb5-2.2.14-1 [root@www ~]# <span class="term_command">rpm -e pam</span> error: Failed dependencies:  <span class="term_note">&lt;==这里提到的是相依性的问题</span>         libpam.so.0 is needed by (installed) coreutils-5.97-14.el5.i386         libpam.so.0 is needed by (installed) libuser-0.54.7-2.el5.5.i386 <span class="term_say">....(以下省略)....</span>  <span class="term_hd"># 2. 若仅移除 pam-devel 这个之前范例安装上的软件呢？</span> [root@www ~]# <span class="term_command">rpm -e pam-devel</span>  <span class="term_note">&lt;==不会出现任何信息！</span> [root@www ~]# <span class="term_command">rpm -q pam-devel</span> package pam-devel is not installed </pre></td></tr></tbody></table>  		<p>从范例一我们知道 pam 所提供的函式库是让非常多其他软件使用的，因此你不能移除 pam  		，除非将其他相依软件一口气也全部移除！你当然也能加 --nodeps 来强制移除， 		不过，如此一来所有会用到 pam 函式库的软件，都将成为无法运行的程序，我想，你的主机也只好准备停机休假了吧！ 		至於范例二中，由於 pam-devel 是依附於 pam 的开发工具，你可以单独安装与单独移除啦！</p>  		<p>由於 RPM 文件常常会安装/移除/升级等，某些动作或许可能会导致 RPM 数据库 /var/lib/rpm/  		内的文件破损。果真如此的话，那你该如何是好？别担心，我们可以使用 --rebuilddb 这个选项来重建一下数据库喔！ 		作法如下：</p>  <table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">rpm --rebuilddb   <span class="term_note">&lt;==重建数据库</span></span> </pre></td></tr></tbody></table> 	</div> </div>   <hr><a name="srpmmanager"></a><img src="../image/logo.png" alt="大标题的图示" width="35" align="middle" height="34"><span class="text_h1">SRPM 的使用 ： rpmbuild</span> <div class="block1"> 	<p>谈完了 RPM 类型的软件之后，再来我们谈一谈包含了 Source code 的 SRPM 该如何使用呢？假如今天我们由网络上面下载了一个  	SRPM 的文件，该如何安装他？又，如果我想要修改这个 SRPM 里面原始码的相关配置值，又该如何订正与重新编译呢？ 	此外，最需要注意的是，<span class="text_import2">新版的 rpm 已经将 RPM 与 SRPM 的命令分开了，SRPM 使用的是 rpmbuild  	这个命令，而不是 rpm 喔</span>！如果你是 Red Hat 7.3 以前的用户，那么请使用 rpm 来替代 rpmbuild 啦！<br><br></p>  	<hr><a name="srpmmanager_rebuild"></a><img src="../image/logo.png" alt="小标题的图示" width="24" align="middle" height="23"><span class="text_h2">利用默认值安装 SRPM 文件 	(--rebuid/--recompile)</span> 	<div class="block2"> 		<p>假设我下载了一个 SRPM 的文件，又不想要修订这个文件内的原始码与相关的配置值， 		那么我可以直接编译并安装吗？当然可以！利用 rpmbuild 配合选项即可。选项主要有底下两个：</p>  <table bgcolor="lightyellow" border="1" cellpadding="3" cellspacing="0" width="95%"> <tbody><tr><td class="text_import2" style="font-family: '细明体';" width="100">--rebuild</td> 	<td style="font-family: '细明体';">这个选项会将后面的 SRPM 进行『编译』与『打包』的动作，最后会产生 	RPM 的文件，但是产生的 RPM 文件并没有安装到系统上。当你使用 --rebuild 的时候，最后通常会发现一行字体：<br> 	<span class="text_import2">Wrote: /usr/src/redhat/RPMS/i386/pkgname.i386.rpm</span><br> 	这个就是编译完成的 RPM 文件罗！这个文件就可以用来安装啦！安装的时候请加绝对路径来安装即可！</td></tr> <tr><td class="text_import2" style="font-family: '细明体';">--recompile</td> 	<td style="font-family: '细明体';">这个动作会直接的『编译』『打包』并且『安装』罗！请注意， 	rebuild 仅『编译并打包』而已，而 recompile 不但进行编译跟打包，还同时进行『安装』了！</td></tr> </tbody></table>  		<p>不过，要注意的是，这两个选项都没有修改过 SRPM 内的配置值，仅是透过再次编译来产生 RPM 可安装软件文件而已。 		一般来说，如果编译的动作顺利的话，那么编译过程所产生的中间缓存档都会被自动删除，如果发生任何错误， 		则该中间文件会被保留在系统上，等待使用者的除错动作！那么，该如何除错呢？如果想要自行除错， 		或者是想要修改 SRPM 内的配置值时，就得要知道利用 SRPM 的时候，系统会动用到哪些重要的目录了！ 		底下我们就来谈一谈当处理 SRPM 时，系统会使用到的目录。</p> 	</div>  	<hr><a name="srpmmanager_dir"></a><img src="../image/logo.png" alt="小标题的图示" width="24" align="middle" height="23"><span class="text_h2">SRPM 使用的路径与需要的软件</span> 	<div class="block2"> 		<p>SRPM 既然含有 source code ，那么其中必定有配置档罗，所以首先我们必需要知道，这个 		SRPM 在进行编译的时候会使用到哪些目录呢？这样一来才能够来修改嘛！你可以到你的 		/usr/src 这个目录里面去查看一下，通常每个 distribution 提供的目录都不太相同，以 		CentOS 5.x 为例，他是以 <span class="text_import2">/usr/src/redhat/</span> 为工作目录， Openlinux 则是以  		/usr/src/openlinux 为工作目录！无论如何，反正就是在 /usr/src 这个目录下就对了！好了，既然我们是 CentOS ， 		请到 /usr/src/redhat 里头去看一看呦：</p>  <table bgcolor="lightyellow" border="1" cellpadding="3" cellspacing="0" width="95%"> <tbody><tr><td class="text_import2" style="font-family: '细明体';" width="200">/usr/src/redhat/SPECS</td> 	<td>这个目录当中放置的是该软件的配置档，例如这个软件的资讯参数、配置项目等等都放置在这里；</td></tr> <tr><td class="text_import2" style="font-family: '细明体';">/usr/src/redhat/SOURCES</td> 	<td>这个目录当中放置的是该软件的原始档 (*.tar.gz 的文件) 以及 config 这个配置档；</td></tr> <tr><td class="text_import2" style="font-family: '细明体';">/usr/src/redhat/BUILD</td> 	<td>在编译的过程中，有些缓存的数据都会放置在这个目录当中；</td></tr> <tr><td class="text_import2" style="font-family: '细明体';">/usr/src/redhat/RPMS</td> 	<td>经过编译之后，并且顺利的编译成功之后，将打包完成的文件放置在这个目录当中。里头有包含了 	i386, i586, i686, noarch.... 等等的次目录。</td></tr> <tr><td class="text_import2" style="font-family: '细明体';">/usr/src/redhat/SRPMS</td> 	<td>与 RPMS 内相似的，这里放置的就是 SRPM 封装的文件罗！有时候你想要将你的软件用 SRPM 的方式释出时， 	你的 SRPM 文件就会放置在这个目录中了。</td></tr> </tbody></table>  		<p>此外，在编译的过程当中，可能会发生不明的错误，或者是配置的错误，这个时候就会在 		/tmp 底下产生一个相对应的错误档，你可以根据该错误档进行除错的工作呢！ 		等到所有的问题都解决之后，也编译成功了，那么刚刚解压缩之后的文件，就是在 		/usr/src/redhat/SPECS, SOURCES, BUILD 等等的文件都会被杀掉，而只剩下放置在 		/usr/src/redhat/RPMS 底下的文件了！</p>  		<p>由於 SRPM 需要重新编译，而编译的过程当中，我们<span class="text_import2">至少需要有 make 与其相关的程序，及 		gcc, c, c++ 等其他的编译用的程序语言来进行编译</span>，更多说明请参考<a href="http://vbird.dic.ksu.edu.tw/linux_basic/0520source_code_and_tarball.php#tarball_pack">第二十二章原始码所需基础软件</a>吧。 		所以，如果你在安装的过程当中没有选取软件开发工具之类的软件， 		呵呵！得重新拿出你的光盘，然后再安装喔！哈哈！只是得要克服一大堆的属性相依的问题就是了～ 		这问题待会儿可以使用 yum 来处理，你当然也可以先使用『 yum groupinstall "Development Tools" 』来安装开发软件。 		鸟哥这里假设你已经安装了该软件群组罗。</p>  <table border="1" cellpadding="5" cellspacing="0" width="90%"><tbody><tr><td> 例题：<div class="block2"> 尝试使用 --rebuild 选项制作出一个 RPM 软件文件，可以到国家高速网络中心下载 rp-pppoe 这个 SRPM 软件文件， 你可以到 <a href="http://ftp.twaren.net/Linux/CentOS/5/os/SRPMS/" target="_blank">http://ftp.twaren.net/Linux/CentOS/5/os/SRPMS/</a> 找到这个软件来下载。 鸟哥这里使用 CentOS 5.3 的 rp-pppoe-3.5-32.1.src.rpm 为例喔。 </div> 答：<div class="block2"> 假设你已经将 rp-pppoe 软件下载到 /root 底下，那接下来可以简单的使用底下的方式来重新编译：  <table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">rpmbuild --rebuild rp-pppoe-3.5-32.1.src.rpm</span> 正在安装 rp-pppoe-3.5-32.1.src.rpm 警告：使用者 mockbuild 不存在 - 现使用 root 代替 <span class="term_say">....(中间省略)....</span> <span class="term_write">已写入：/usr/src/redhat/RPMS/i386/rp-pppoe-3.5-32.1.i386.rpm 已写入：/usr/src/redhat/RPMS/i386/rp-pppoe-debuginfo-3.5-32.1.i386.rpm</span> 正在运行 (%clean)：/bin/sh -e /var/tmp/rpm-tmp.69789 + umask 022 + cd /usr/src/redhat/BUILD + cd rp-pppoe-3.5 + rm -rf /var/tmp/rp-pppoe-3.5-32.1-root + exit 0 正在运行 (--clean)：/bin/sh -e /var/tmp/rpm-tmp.69789 + umask 022 + cd /usr/src/redhat/BUILD + rm -rf rp-pppoe-3.5 + exit 0  [root@www ~]# <span class="term_command">ll /usr/src/redhat/RPMS/i386/</span> -rw-r--r-- 1 root root 105443  6月 27 02:51 rp-pppoe-3.5-32.1.i386.rpm -rw-r--r-- 1 root root  18756  6月 27 02:51 rp-pppoe-debuginfo-3.5-32.1.i386.rpm </pre></td></tr></tbody></table> 其实整个过程与 Tarball 的方式差不多，也是编译后变成 binary program，接著再以 RPM 的机制封装起来啦。 重点在上面特殊字体的部分，记得要察看一下喔！若一切正常，则会看到 exit 0 的字样，且会主动的删除 (rm) 很多中间缓存档哩。  </div> </td></tr></tbody></table><br> 	</div>  	<hr><a name="srpmmanager_config"></a><img src="../image/logo.png" alt="小标题的图示" width="24" align="middle" height="23"><span class="text_h2">配置档的主要内容 (*.spec)</span> 	<div class="block2"> 		<p>除了使用 SRPM 内默认的参数来进行编译之外，我们还可以修改这些参数后再重新编译喔！那该如何处理呢？ 		首先我们必须要将 SRPM 内的文件安置到 /usr/src/redhat/ 内的相关目录，然后再去修改配置档即可啊！ 		我们就拿刚刚上头那个 rp-pppoe 来说明好了，假设我们已经将该文件放置到 /root 中啦，然后：</p>  <table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">rpm -i rp-pppoe-3.5-32.1.src.rpm</span> <span class="term_say"># 过程不会显示任何东西，他只会将 SRPM 的文件解开后，放置到 /usr/src/redhat/</span>  [root@www ~]# <span class="term_command">find /usr/src/redhat/ -type f</span> /usr/src/redhat/SOURCES/rp-pppoe-3.5-firewall.patch  <span class="term_note">&lt;==补丁档</span> /usr/src/redhat/SOURCES/adsl-stop                    <span class="term_note">&lt;==CentOS 提供的脚本</span> /usr/src/redhat/SOURCES/rp-pppoe-3.5.tar.gz          <span class="term_note">&lt;==原始码啦！</span> /usr/src/redhat/SOURCES/rp-pppoe-3.5-buildroot.patch <span class="term_note">&lt;==补丁档</span> /usr/src/redhat/SOURCES/adsl-start                   <span class="term_note">&lt;==CentOS 提供的脚本</span> /usr/src/redhat/SOURCES/adsl-connect /usr/src/redhat/SOURCES/adsl-setup /usr/src/redhat/SOURCES/adsl-status /usr/src/redhat/SOURCES/rp-pppoe-3.4-redhat.patch    <span class="term_note">&lt;==补丁档</span> <span class="term_write">/usr/src/redhat/SPECS/rp-pppoe.spec</span>                  <span class="term_note">&lt;==重要配置档！</span> <span class="term_say"># 主要含有原始码与一个重要的配置档啊！ rp-pppoe.spec ！</span> </pre></td></tr></tbody></table>  		<p>好了，来看看我们的配置参数档，亦即是在 /usr/src/redhat/SPECS 内的 *.spec 文件罗！</p>  <table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">cd /usr/src/redhat/SPECS</span> [root@www SPECS]# <span class="term_command">vi rp-pppoe.spec</span> <span class="term_say"># 1. 首先，这个部分在介绍整个软件的基本相关资讯！不论是版本还是释出次数等。</span> Summary: A PPP over Ethernet client (for xDSL support). Name: rp-pppoe Version: 3.5 Release: 32.1 License: GPL Group: System Environment/Daemons Url: http://www.roaringpenguin.com/pppoe/ Source: http://www.roaringpenguin.com/rp-pppoe-%{version}.tar.gz Source1: adsl-connect Source2: adsl-setup <span class="term_say">....(中间省略)....</span>  <span class="term_say"># 2. 这部分则是在配置相依属性需求的地方！</span> BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root  Prereq: /sbin/chkconfig  <span class="term_note">&lt;==需要的前驱程序有哪些！</span> Prereq: /sbin/service Prereq: fileutils  Requires: ppp &gt;= 2.4.2         <span class="term_note">&lt;==需要的软件又有哪些！</span> Requires: initscripts &gt;= 5.92 Requires: iproute &gt;= 2.6  BuildRequires: libtool   <span class="term_note">&lt;==还需要哪些工具软件？</span> BuildRequires: autoconf BuildRequires: automake  %description             <span class="term_note">&lt;==此软件的描述啦！</span> PPPoE (Point-to-Point Protocol over Ethernet) is a protocol used by many ADSL Internet Service Providers. This package contains the Roaring Penguin PPPoE client, a user-mode program that does not require any kernel modifications. It is fully compliant with RFC 2516, the official PPPoE specification.   <span class="term_say"># 3. 编译前的预处理，以及编译过程当中所需要进行的命令，都写在这里 #    尤其 %build 底下的数据，几乎就是 makefile 里面的资讯啊！</span> %prep  <span class="term_note">&lt;==这部份在预先 (pre) 进行处理，大致就是 patch 软件啊！</span> %setup -q %patch0 -p1 -b .config %patch1 -p1 -b .buildroot %patch2 -p1 -b .ipchains  %build <span class="term_note">&lt;==这部分就是在实际编译罗！</span> cd src autoconf CFLAGS="-D_GNU_SOURCE" %configure make  install -m 0755 %{SOURCE1} scripts install -m 0755 %{SOURCE2} scripts install -m 0755 %{SOURCE3} scripts install -m 0755 %{SOURCE4} scripts install -m 0755 %{SOURCE5} scripts  %install  <span class="term_note">&lt;==这就是安装过程！</span> rm -rf %{buildroot}  mkdir -p %{buildroot}/sbin make -C src install RPM_INSTALL_ROOT=%{buildroot} <span class="term_say">....(中间省略)....</span>  <span class="term_say"># 4. 这里列出，这个软件释出的文件有哪些的意思！</span> %files   <span class="term_note">&lt;==这个软件提供的文件有哪些？需要记录在数据库内！</span> %defattr(-,root,root) %doc doc/LICENSE scripts/adsl-connect scripts/adsl-setup scripts/adsl-init %doc scripts/adsl-start scripts/adsl-status scripts/adsl-stop %doc configs %config(noreplace) %{_sysconfdir}/ppp/pppoe-server-options %config(noreplace) %{_sysconfdir}/ppp/firewall* /sbin/* %{_sbindir}/* %{_mandir}/man?/*  <span class="term_say"># 5. 列出这个软件的更改历史纪录档！</span> %changelog * Wed Jul 12 2006 Jesse Keating &lt;jkeating@redhat.com&gt; - 3.5-32.1 - rebuild <span class="term_say">....(中间省略)....</span> * Wed May 31 2000 Than Ngo &lt;than@redhat.de&gt; - adopted for Winston. </pre></td></tr></tbody></table>  		<p>要注意到的是 rp-pppoe.sepc 这个文件，这是主要的将 SRPM 编译成 RPM 的配置档，他的基本守则可以这样看：</p> 		<ol class="text_import2"> 		<li>整个文件的开头以Summary为开始，这部份的配置都是最基础的说明内容；</li> 		<li>然后每个不同的段落之间，都以%来做为开头，例如%prep与%install等；</li> 		</ol>  		<p>我们来谈一谈几个常见的 SRPM 配置段落：<br><br></p>  		<hr><ul class="list1"><li class="text_import1">系统整体资讯方面：</li></ul>  		<p>刚刚你看到的就有底下这些重要的咚咚罗：</p>  <table bgcolor="lightyellow" border="1" cellpadding="3" cellspacing="0" width="95%"> <tbody><tr align="center" bgcolor="#182448"><td><font color="#FFFFFF">参数</font></td><td><font color="#FFFFFF">参数意义</font></td></tr> <tr><td width="100"><span class="text_import2">Summary</span></td> 	<td>本软件的主要说明，例如上表中说明了本软件是针对 xDSL 的拨接用途啦！</td></tr> <tr><td><span class="text_import2">Name</span></td> 	<td>本软件的软件名称 (最终会是 RPM 文件的档名构成之一)</td></tr> <tr><td><span class="text_import2">Version</span></td> 	<td>本软件的版本 (也会是 RPM 档名的构成之一)</td></tr> <tr><td><span class="text_import2">Release</span></td> 	<td>这个是该版本打包的次数说明 (也会是 RPM 档名的构成之一)。由於我们想要动点手脚，所以上头的文件中， 	<span class="text_import2">这个部分请修改为 32.2.vbird</span> 看看</td></tr> <tr><td><span class="text_import2">License</span></td> 	<td>这个软件的授权模式，我们是使用 GPL 啦！</td></tr> <tr><td><span class="text_import2">Group</span></td> 	<td>这个软件的发展团体名称；</td></tr> <tr><td><span class="text_import2">Url</span></td> 	<td>这个原始码的主要官方网站；</td></tr> <tr><td><span class="text_import2">Source</span></td> 	<td>这个软件的来源，如果是网络上下载的软件，通常一定会有这个资讯来告诉大家这个原始档的来源！ 	此外，还有来自开发商自己提供的原始档数据喔！例如上面的 adsl-start 等程序。</td></tr> <tr><td><span class="text_import2">Patch</span></td> 	<td>就是作为补丁的 patch file 罗！</td></tr> <tr><td><span class="text_import2">BuildRoot</span></td> 	<td>配置作为编译时，该使用哪个目录来缓存中间文件 (如编译过程的目标文件/连结文件等档)。</td></tr> <tr><td><span class="text_import2">ExclusiveArch</span></td> 	<td>这个是说明这个软件的适合安装的硬件，通常默认为 i386，当然，你也可以调整为 i586 啦等等的！ 	由於我们的系统是新的 CPU 架构，这里我们修改内容成为『<span class="text_import2">ExclusiveArch: i686</span>』来玩玩看。</td></tr> <tr align="center" bgcolor="#182448"><td colspan="2"><font color="#FFFFFF">上述为必须要存在的项目，底下为可使用的额外配置值</font></td></tr> <tr><td><span class="text_import2">Requires</span></td> 	<td>如果你这个软件还需要其他的软件的支持，那么这里就必需写上来，则当你制作成 RPM 	之后，系统就会自动的去检查啦！这就是『相依属性』的主要来源罗！</td></tr> <tr><td><span class="text_import2">Prereq</span></td> 	<td>这个软件需要的前驱程序为何！这里指的是『程序』而 Requires 指的是『软件』！</td></tr> <tr><td><span class="text_import2">BuildRequires</span></td> 	<td>编译过程中所需要的软件。Requires 指的是『安装时需要检查』的，因为与实际运行有关，这个 BuildRequires 	指的是『编译时』所需要的软件，只有在 SRPM 编译成为 RPM 时才会检查的项目。</td></tr> <tr><td><span class="text_import2">Packager</span></td> 	<td>这个软件是经由谁来打包的呢？</td></tr> <tr><td><span class="text_import2">Vender</span></td> 	<td>发展的厂商哪；</td></tr> </tbody></table><br>  		<p>上面几个数据通常都必需要写啦！但是如果你的软件没有相依属性的关系时，那么就可以不需要那个 Requires 罗！ 		根据上面的配置，最终的档名就会是『{Name}-{Version}-{Release}.{ExclusiveArch}.rpm』的样式， 		以我们上面的配置来说，档名应该会是『rp-pppoe-3.5-32.2.vbird.i686.rpm』的样子罗！<br><br></p>  		<hr><ul class="list1"><li class="text_import1">%description：</li></ul>  		<p>将你的软件做一个简短的说明！这个也是必需要的。还记得使用『 rpm -qi 软件名称 』会出现一些基础的说明吗？ 		上面这些东西包括 Description  就是在显示这些重要资讯的啦！所以，这里记得要详加解释喔！<br><br></p>  		<hr><ul class="list1"><li class="text_import1">%prep：</li></ul>  		<p>pre 这个关键字原本就有『在...之前』的意思，因此这个项目在这里指的就是『<span class="text_import2">尚未进行配置或安装之前，你要编译完成的 RPM	帮你事先做的事情</span>』，就是 prepare  		的简写罗！那么他的工作事项主要有：</p>  		<ol class="text_import2"> 		<li>进行软件的补丁 (patch) 等相关工作；</li> 		<li>寻找软件所需要的目录是否已经存在？确认用的！</li> 		<li>事先创建你的软件所需要的目录，或者事先需要进行的任务；</li> 		<li>如果待安装的Linux系统内已经有安装的时候可能会被覆盖掉的文件时，那么就必需要进行备份(backup)的工作了！</li> 		</ol>  		<p>在本案例中，你会发现程序会使用 patch 去进行补丁的动作啦！<br><br></p>  		<hr><ul class="list1"><li class="text_import1">%setup：</li></ul>  		<p>这个项目就是在进行类似解压缩之类的工作！这个项目一定要写喔！不然你的 tarball 		原始码是无法被解压缩的哩！切记切记！<br><br></p>  		<hr><ul class="list1"><li class="text_import1">%build：</li></ul>  		<p>build 就是创建啊！所以当然罗，这个段落就是在谈怎么 make 编译成为可运行的程序罗！ 		你会发现在此部分的程序码方面，就是 ./configure, make 等项目哩！<br><br></p>  		<hr><ul class="list1"><li class="text_import1">%install：</li></ul>  		<p>编译完成 (build) 之后，就是要安装啦！安装就是写在这里，也就是类似 Tarball 里面的 make 		install 的意思罗！<br><br></p>  		<hr><ul class="list1"><li class="text_import1">%clean：</li></ul>  		<p>编译与安装完毕后，必须要将一些缓存在 BuildRoot 内的数据删除才好， 		因此这个时候这个 clean 的项目就重要啦！这有点像是 make clean 的感觉～保持系统的干爽嘛！<br><br></p>  		<hr><ul class="list1"><li class="text_import1">%files：</li></ul>  		<p>这个软件安装的文件都需要写到这里来，当然包括了『目录』喔！所以连同目录请一起写到这个段落当中！以备查验呢！^_^ 		！此外，你也可以指定每个文件的类型，包括文件档 (%doc 后面接的) 与配置档 (%config 后面接的) 等等。<br><br></p>  		<hr><ul class="list1"><li class="text_import1">%changelog：</li></ul>  		<p>这个项目主要则是在记录这个软件曾经的升级纪录罗！星号 (*) 后面应该要以时间，修改者， email 与软件版本来作为说明， 		减号 (-) 后面则是你要作的详细说明罗！在这部份鸟哥就新增了两行，内容如下：</p>  <table class="term"><tbody><tr><td class="term"><pre>%changelog <span class="term_write">* Wed Jul 01 2009 VBird Tsai &lt;vbird@mail.vbird.idv.tw&gt; - 3.5-32.2.vbird - only rebuild this SRPM to RPM</span>  * Wed Jul 12 2006 Jesse Keating &lt;jkeating@redhat.com&gt; - 3.5-32.1 <span class="term_say">....(底下省略)....</span> </pre></td></tr></tbody></table>  		<p>修改到这里也差不多了，您也应该要了解到这个 rp-pppoe.spec 有多么重要！我们用 rpm -q 去查询一堆资讯时， 		其实都是在这里写入的！这样了解否？接下来，就让我们来了解一下如何将 SRPM 给他编译出 RPM 来吧！</p> 	</div>  	<hr><a name="srpmmanager_command"></a><img src="../image/logo.png" alt="小标题的图示" width="24" align="middle" height="23"><span class="text_h2">SRPM 的编译命令 (-ba/-bb)</span> 	<div class="block2"> 		<p>要将在 /usr/src/redhat 底下的数据编译或者是单纯的打包成为 RPM 或 SRPM 时，就需要 rpmbuild 		命令与相关选项的帮忙了！我们只介绍两个常用的选项给您了解一下：</p>  <table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">rpmbuild -ba rp-pppoe.spec  <span class="term_note">&lt;==编译并同时产生 RPM 与 SRPM 文件</span></span> [root@www ~]# <span class="term_command">rpmbuild -bb rp-pppoe.spec  <span class="term_note">&lt;==仅编译成 RPM 文件</span></span> </pre></td></tr></tbody></table>  		<p>这个时候系统就会这样做：</p> 		<ol class="text_import2"> 		<li>先进入到 BUILD 这个目录中，亦即是： /usr/src/redhat/BUILD 这个目录；<br><br></li> 		<li>依照 *.spec 文件内的 Name 与 Version 定义出工作的目录名称，以我们上面的例子为例，那么系统就会在  		BUILD 目录中先删除 rp-pppoe-3.5 的目录，再重新创建一个 rp-pppoe-3.5 的目录，并进入该目录；<br><br></li> 		<li>在新建的目录里面，针对 SOURCES 目录下的来源文件，也就是 *.spec 里面的 Source 配置的那个文件，以 tar  		进行解压缩，以我们这个例子来说，则会在 /usr/src/redhat/BUILD/rp-pppoe-3.5 当中，将  		/usr/src/redhat/SOURCES/rp-pppoe-3.5.tar.gz 进行解压缩啦！<br><br></li> 		<li>再来开始 %build 及 %install 的配置与编译！<br><br></li> 		<li>最后将完成打包的文件给他放置到该放置的地方去，如果你的规定的硬件是在 i386 的系统，那么最后编译成功的  		*.i386.rpm文件就会被放置在 /usr/src/redhat/RPMS/i386 里面罗！如果是 i686 那么自然就是  		/usr/src/redhat/RPMS/i686 目录下罗！</li> 		</ol>  		<p>整个步骤大概就是这样子！最后的结果数据会放置在 RPMS 那个目录底下就对啦！我们这个案例中想要同时打包 RPM 与 SRPM ， 		因此请您自行处理一下『 rpmbuild -ba rp-pppoe.spec 』吧！</p>  <table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">cd /usr/src/redhat/SPECS</span> [root@www SPECS]# <span class="term_command">rpmbuild -ba rp-pppoe.spec</span> <span class="term_say">....(以上省略)....</span> <span class="term_write">正在处理文件：rp-pppoe-debuginfo-3.5-32.2.vbird 已写入：/usr/src/redhat/SRPMS/rp-pppoe-3.5-32.2.vbird.src.rpm 已写入：/usr/src/redhat/RPMS/i386/rp-pppoe-3.5-32.2.vbird.i386.rpm 已写入：/usr/src/redhat/RPMS/i386/rp-pppoe-debuginfo-3.5-32.2.vbird.i386.rpm</span> 正在运行 (%clean)：/bin/sh -e /var/tmp/rpm-tmp.10628 + umask 022 + cd /usr/src/redhat/BUILD + cd rp-pppoe-3.5 + rm -rf /var/tmp/rp-pppoe-3.5-32.2.vbird-root + exit 0  [root@www SPECS]# <span class="term_command">find /usr/src/redhat -name 'rp-pppoe*rpm'</span> /usr/src/redhat/RPMS/i386/rp-pppoe-3.5-32.2.vbird.i386.rpm /usr/src/redhat/RPMS/i386/rp-pppoe-debuginfo-3.5-32.2.vbird.i386.rpm /usr/src/redhat/SRPMS/rp-pppoe-3.5-32.2.vbird.src.rpm <span class="term_say"># 上面分别是 RPM 与 SRPM 的文件档名！</span> </pre></td></tr></tbody></table>  		<p>老实说，应该会出现 i686 的档名才对！不过，可能是原始码本身没有支持 i686 之类的语法吧！ 		所以仅出现 i386 的档名而已。另外，你可以看到档名确实是如同我们之前谈到的喔！ 		那你可以自行制作出有你特殊名称的档名罗 (例如上面的 vbird 罗)。</p> 	</div>  	<hr><a name="srpmmanager_myself"></a><img src="../image/logo.png" alt="小标题的图示" width="24" align="middle" height="23"><span class="text_h2">一个打包自己软件的范例</span> 	<div class="block2"> 		<p>这个就有趣了！我们自己来编辑一下自己制作的 RPM 怎么样？会很难吗？完全不会！ 		我们这里就举个例子来玩玩吧！还记得我们在前一章谈到 Tarball 与 make 时，曾经谈到的 <a href="http://vbird.dic.ksu.edu.tw/linux_basic/0520source_code_and_tarball.php#make">main</a> 这个程序吗？现在我们将这个程序加上 Makefile 后， 		将他制作成为 main-0.1.i386.rpm 好吗？那该如何进行呢？底下就让我们来处理处理吧！<br><br></p>  		<hr><ul class="list1"><li class="text_import1">制作原始码文件 tarball 产生：</li></ul>  		<p>请将前一章你曾经处理过的 main.tgz 再次的捉下来一次，我们将这个文件放置到 /root 底下， 		并且在 /usr/local/src 底下创建一个名为 main-0.1 的目录来解压缩喔！</p>  <table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">mkdir /usr/local/src/main-0.1</span> [root@www ~]# <span class="term_command">tar -zxvf main.tgz -C /usr/local/src/main-0.1</span> [root@www ~]# <span class="term_command">cd /usr/local/src/main-0.1</span> [root@www main-0.1]# <span class="term_command">vim Makefile</span>  <span class="term_note">&lt;==创建原始码所需 make 守则</span> <span class="term_write">LIBS = -lm OBJS = main.o haha.o sin_value.o cos_value.o main: ${OBJS} 	gcc -o main ${OBJS} ${LIBS} clean: 	rm -f main ${OBJS} install: 	install -m 755 main $(RPM_INSTALL_ROOT)/usr/local/bin/main</span> <span class="term_say"># 记得 gcc 与 rm 之前是使用 &lt;tab&gt; 按键作出来的空白喔！</span>  [root@www main-0.1]# <span class="term_command">cd ..</span> [root@www src]# <span class="term_command">tar -zcvf main-0.1.tar.gz main-0.1</span> <span class="term_say"># 此时会产生 main-0.1.tar.gz ，将他挪到 /usr/src/redhat/SOURCES 底下：</span> [root@www src]# <span class="term_command">cp main-0.1.tar.gz /usr/src/redhat/SOURCES</span> </pre></td></tr></tbody></table>  		<p>这个时候在 /usr/src/redhat 底下的原始码就创建成功了！接下来就是 spec 文件的创建罗！<br><br></p>  		<hr><ul class="list1"><li class="text_import1">创建 *.spec 的配置档</li></ul>  		<p>这个文件的建置是所有 RPM 制作里面最重要的课题！你必须要仔细的配置他，不要随便处理！仔细看看吧！</p>  <table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">cd /usr/src/redhat/SPECS</span> [root@www SPECS]# <span class="term_command">vim main.spec</span> <span class="term_write">Summary:   calculate sin and cos value. Name:      main Version:   0.1 Release:   1 License:   GPL Group:     VBird's Home Source:    main-0.1.tar.gz   <span class="term_note">&lt;==记得要写正确的 Tarball 档名喔！</span> Url:       http://linux.vbird.org Packager:  VBird BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root  %description This package will let you input your name and calculate sin cos value.  %prep %setup -q  %build make  %install rm -rf %{buildroot} mkdir -p %{buildroot}/usr/local/bin make install RPM_INSTALL_ROOT=%{buildroot}   <span class="term_note">&lt;==这项目也很重要！</span>  %files /usr/local/bin/main  %changelog * Wed Jul 01 2009 VBird Tsai &lt;vbird@mail.vbird.idv.tw&gt; 0.1 - build the program</span> </pre></td></tr></tbody></table>  		<hr><ul class="list1"><li class="text_import1">编译成为 RPM 与 SRPM</li></ul>  		<p>老实说，那个 spec 文件建置妥当后，后续的动作就简单的要命了！开始来编译吧！</p>  <table class="term"><tbody><tr><td class="term"><pre>[root@www SPECS]# <span class="term_command">rpmbuild -ba main.spec</span> <span class="term_say">....(前面省略)....</span> 已写入：/usr/src/redhat/SRPMS/main-0.1-1.src.rpm 已写入：/usr/src/redhat/RPMS/i386/main-0.1-1.i386.rpm 已写入：/usr/src/redhat/RPMS/i386/main-debuginfo-0.1-1.i386.rpm </pre></td></tr></tbody></table>  		<p>很快的，我们就已经创建了几个 RPM 文件罗！接下来让我们好好测试一下打包起来的成果吧！<br><br></p>  		<hr><ul class="list1"><li class="text_import1">安装/测试/实际查询</li></ul>  <table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">rpm -ivh /usr/src/redhat/RPMS/i386/main-0.1-1.i386.rpm</span> 正在准备…             ########################################### [100%]    1:main                   ########################################### [100%]  [root@www ~]# <span class="term_command">rpm -ql main</span> /usr/local/bin/main   <span class="term_note">&lt;==自己尝试运行 main 看看！</span>  [root@www ~]# <span class="term_command">rpm -qi main</span> Name        : main              Relocations: (not relocatable) Version     : 0.1                    Vendor: (none) Release     : 1                  Build Date: 西元2009年07月02日 (周四) Install Date: 西元2009年07月02日 Build Host: www.vbird.tsai Group       : VBird's Home       Source RPM: main-0.1-1.src.rpm Size        : 3360                  License: GPL Signature   : (none) Packager    : VBird URL         : http://linux.vbird.org Summary     : calculate sin and cos value. Description : This package will let you input your name and calculate sin cos value. <span class="term_say"># 看到没？属於你自己的软件喔！真是很愉快的啦！</span> </pre></td></tr></tbody></table>  		<p>用很简单的方式，就可以将自己的软件或者程序给他修改与配置妥当！以后你就可以自行配置你的 RPM  		罗！当然，也可以手动修改你的 SRPM 的来源档内容罗！</p> 	</div> </div>   <hr><a name="yumclient"></a><img src="../image/logo.png" alt="大标题的图示" width="35" align="middle" height="34"><span class="text_h1">YUM 线上升级机制</span><br> <div class="block1"> 	<p>我们在本章一开始的地方谈到过 <a href="#intro_solution">yum</a> 这玩意儿，这个 yum 是透过分析 RPM 的标头数据后， 	根据各软件的相关性制作出属性相依时的解决方案，然后可以自动处理软件的相依属性问题，以解决软件安装或移除与升级的问题。 	详细的 yum 服务器与用户端之间的沟通，可以再回到前面的部分查阅一下<a href="#fig1.5.1">图 1.5.1</a> 的说明。</p>  	<p>由於 distribution 必须要先释出软件，然后将软件放置於 yum 服务器上面，以提供用户端来要求安装与升级之用的。 	因此我们想要使用 yum 的功能时，必须要先找到适合的 yum server 才行啊！而每个 yum server 	可能都会提供许多不同的软件功能，那就是我们之前谈到的『容器』啦！因此，你必须要前往 yum server  	查询到相关的容器网址后，再继续处理后续的配置事宜。</p>  	<p>事实上 CentOS 在释出软件时已经制作出多部映射站台 (mirror site) 提供全世界的软件升级之用。 	所以，理论上我们不需要处理任何配置值，只要能够连上 Internet ，就可以使用 yum 罗！底下就让我们来玩玩看吧！<br><br></p>  	<hr><a name="yumclient_yum"></a><img src="../image/logo.png" alt="小标题的图示" width="24" align="middle" height="23"><span class="text_h2">利用 yum  	进行查询、安装、升级与移除功能</span><br> 	<div class="block2"> 		<p>yum 的使用真是非常简单，就是透过 yum 这个命令啊！那么这个命令怎么用呢？ 		用法很简单，就让我们来简单的谈谈：<br><br></p>  		<hr><ul class="list1"><li class="text_import1">查询功能：yum [list|info|search|provides|whatprovides] 参数</li></ul>  		<p>如果想要查询利用 yum 来查询原版 distribution 所提供的软件，或已知某软件的名称，想知道该软件的功能， 		可以利用 yum 相关的参数为：</p>  <table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">yum [option] [查询工作项目] [相关参数]</span> <span class="term_say">选项与参数： [option]：主要的选项，包括有：   -y ：当 yum 要等待使用者输入时，这个选项可以自动提供 yes 的回应；   --installroot=/some/path ：将该软件安装在 /some/path 而不使用默认路径 [查询工作项目] [相关参数]：这方面的参数有：   search  ：搜寻某个软件名称或者是描述 (description) 的重要关键字；   list    ：列出目前 yum 所管理的所有的软件名称与版本，有点类似 rpm -qa；   info    ：同上，不过有点类似 rpm -qai 的运行结果；   provides：从文件去搜寻软件！类似 rpm -qf 的功能！</span>  <span class="term_hd">范例一：搜寻磁盘阵列 (raid) 相关的软件有哪些？</span> [root@www ~]# <span class="term_command">yum search raid</span> <span class="term_say">....(前面省略)....</span> mdadm.i386 : mdadm controls Linux md devices (software RAID arrays) lvm2.i386 : Userland logical volume management tools <span class="term_say">....(后面省略).... # 在冒号 (:)  左边的是软件名称，右边的则是在 RPM 内的 name 配置 (软件名) # 瞧！上面的结果，这不就是与 RAID 有关的软件吗？如果想了解 mdadm 的软件内容呢？</span>  <span class="term_hd">范例二：找出 mdadm 这个软件的功能为何</span> [root@www ~]# <span class="term_command">yum info mdadm</span> Installed Packages      <span class="term_note">&lt;==这说明该软件是已经安装的了</span> Name   : mdadm          <span class="term_note">&lt;==这个软件的名称</span> Arch   : i386           <span class="term_note">&lt;==这个软件的编译架构</span> Version: 2.6.4          <span class="term_note">&lt;==此软件的版本</span> Release: 1.el5          <span class="term_note">&lt;==释出的版本</span> Size   : 1.7 M          <span class="term_note">&lt;==此软件的文件总容量</span> Repo   : installed      <span class="term_note">&lt;==容器回报说已安装的</span> Summary: mdadm controls Linux md devices (software RAID arrays) Description:            <span class="term_note">&lt;==看到否？这就是 rpm -qi 嘛！</span> mdadm is used to create, manage, and monitor Linux MD (software RAID) devices.  As such, it provides similar functionality to the raidtools package.  However, mdadm is a single program, and it can perform almost all functions without a configuration file, though a configuration file can be used to help with some common tasks. <span class="term_say"># 不要跟我说，上面说些啥？自己找字典翻一翻吧！拜托拜托！</span>  <span class="term_hd">范例三：列出 yum 服务器上面提供的所有软件名称</span> [root@www ~]# <span class="term_command">yum list</span> Installed Packages <span class="term_note">&lt;==已安装软件</span> Deployment_Guide-en-US.noarch            5.2-9.el5.centos       installed Deployment_Guide-zh-CN.noarch            5.2-9.el5.centos       installed Deployment_Guide-zh-TW.noarch            5.2-9.el5.centos       installed <span class="term_say">....(中间省略)....</span> Available Packages <span class="term_note">&lt;==还可以安装的其他软件</span> Cluster_Administration-as-IN.noarch      5.2-1.el5.centos       base Cluster_Administration-bn-IN.noarch      5.2-1.el5.centos       base <span class="term_say">....(底下省略).... # 上面提供的意义为：『 软件名称   版本   在那个容器内 』</span>  <span class="term_hd">范例四：列出目前服务器上可供本机进行升级的软件有哪些？</span> [root@www ~]# <span class="term_command">yum list updates</span>  <span class="term_note">&lt;==一定要是 update<u>s</u> 喔！</span> Updated Packages Deployment_Guide-en-US.noarch            5.2-11.el5.centos      base Deployment_Guide-zh-CN.noarch            5.2-11.el5.centos      base Deployment_Guide-zh-TW.noarch            5.2-11.el5.centos      base <span class="term_say">....(底下省略).... # 上面就列出在那个容器内可以提供升级的软件与版本！</span>  <span class="term_hd">范例五：列出提供 passwd 这个文件的软件有哪些</span> [root@www ~]# <span class="term_command">yum provides passwd</span> passwd.i386 : The passwd utility for setting/changing passwords using PAM passwd.i386 : The passwd utility for setting/changing passwords using PAM <span class="term_say"># 找到啦！就是上面的这个软件提供了 passwd 这个程序！</span> </pre></td></tr></tbody></table>  		<p>透过上面的查询，你应该大致知道 yum 如何用在查询上面了吧？那么实际来应用一下：</p>  <table border="1" cellpadding="5" cellspacing="0" width="90%"><tbody><tr><td> 例题：<div class="block2"> 利用 yum 的功能，找出以 pam 为开头的软件名称有哪些？而其中尚未安装的又有哪些？ </div> 答：<div class="block2"> 可以透过如下的方法来查询：<br>  <table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">yum list pam*</span> Installed Packages <u>pam.i386                  0.99.6.2-3.27.el5      installed</u> pam_ccreds.i386           3-5                    installed <u>pam_krb5.i386             2.2.14-1               installed</u> pam_passwdqc.i386         1.0.2-1.2.2            installed pam_pkcs11.i386           0.5.3-23               installed pam_smb.i386              1.1.7-7.2.1            installed Available Packages <span class="term_note">&lt;==底下则是『可升级』的或『未安装』的</span> <u>pam.i386                  0.99.6.2-4.el5         base</u> pam-devel.i386            0.99.6.2-4.el5         base <u>pam_krb5.i386             2.2.14-10              base</u> </pre></td></tr></tbody></table>  如上所示，所以可升级者有 pam, pam_krb5 这两个软件，完全没有安装的则是 pam-devel 这个软件罗！ </div> </td></tr></tbody></table><br>  		<hr><ul class="list1"><li class="text_import1">安装/升级功能：yum [install|update] 软件</li></ul>  		<p>既然可以查询，那么安装与升级呢？很简单啦！就利用 install 与 update 这两项工作来处理即可喔！</p>  <table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">yum [option] [查询工作项目] [相关参数]</span> <span class="term_say">选项与参数：   install ：后面接要安装的软件！   update  ：后面接要升级的软件，若要整个系统都升级，就直接 update 即可</span>  <span class="term_hd">范例一：将前一个练习找到的未安装的 pam-devel 安装起来</span> [root@www ~]# <span class="term_command">yum install pam-devel</span> Setting up Install Process Parsing package install arguments Resolving Dependencies  <span class="term_note">&lt;==先检查软件的属性相依问题</span> --&gt; Running transaction check ---&gt; Package <u>pam-devel.i386</u> 0:0.99.6.2-4.el5 set to be updated --&gt; Processing Dependency: pam = 0.99.6.2-4.el5 for package: pam-devel --&gt; Running transaction check ---&gt; Package <u>pam.i386</u> 0:0.99.6.2-4.el5 set to be updated filelists.xml.gz          100% |=========================| 1.6 MB    00:05 filelists.xml.gz          100% |=========================| 138 kB    00:00 -&gt; Finished Dependency Resolution  Dependencies Resolved  =============================================================================  Package                 Arch       Version          Repository        Size ============================================================================= Installing:  pam-devel               i386       0.99.6.2-4.el5   base              186 k Updating:  pam                     i386       0.99.6.2-4.el5   base              965 k  Transaction Summary ============================================================================= Install      1 Package(s)  <span class="term_note">&lt;==结果发现要安装此软件需要升级另一个相依的软件</span> Update       1 Package(s) Remove       0 Package(s)  Total download size: 1.1 M Is this ok [y/N]: <span class="term_command">y</span>  <span class="term_note">&lt;==确定要安装！</span> Downloading Packages: <span class="term_note">&lt;==先下载！</span> (1/2): pam-0.99.6.2-4.el5 100% |=========================| 965 kB    00:05 (2/2): pam-devel-0.99.6.2 100% |=========================| 186 kB    00:01 Running rpm_check_debug Running Transaction Test Finished Transaction Test Transaction Test Succeeded Running Transaction <span class="term_note">&lt;==开始安装！</span>   Updating  : pam                          ######################### [1/3]   Installing: pam-devel                    ######################### [2/3]   Cleanup   : pam                          ######################### [3/3]  Installed: pam-devel.i386 0:0.99.6.2-4.el5 Updated: pam.i386 0:0.99.6.2-4.el5 Complete! </pre></td></tr></tbody></table>  		<p>有没有很高兴啊！你不必知道软件在哪里，你不必手动下载软件，你也不必拿出原版光盘出来 mount 		之后查询再安装！全部不需要，只要有了 yum 这个家伙，你的安装、升级再也不是什么难事！ 		而且还能主动的进行软件的属性相依处理流程，如上所示，一口气帮我们处理好了所有事情！ 		是不是很过瘾啊！而且整个动作完全免费！够酷吧！<br><br></p>  		<hr><ul class="list1"><li class="text_import1">移除功能：yum [remove] 软件</li></ul>  		<p>那能不能用 yum 移除软件呢？将刚刚的软件移除看看，会出现啥状况啊？</p>  <table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">yum remove pam-devel</span> Setting up Remove Process Resolving Dependencies  <span class="term_note">&lt;==同样的，先解决属性相依的问题</span> --&gt; Running transaction check ---&gt; Package pam-devel.i386 0:0.99.6.2-4.el5 set to be erased --&gt; Finished Dependency Resolution  Dependencies Resolved  =============================================================================  Package                 Arch       Version          Repository        Size ============================================================================= Removing:  pam-devel               i386       0.99.6.2-4.el5   installed         495 k  Transaction Summary ============================================================================= Install      0 Package(s) Update       0 Package(s) Remove       1 Package(s)  <span class="term_note">&lt;==还好，并没有属性相依的问题，单纯移除一个软件</span>  Is this ok [y/N]: <span class="term_command">y</span> Downloading Packages: Running rpm_check_debug Running Transaction Test Finished Transaction Test Transaction Test Succeeded Running Transaction   Erasing   : pam-devel                    ######################### [1/1]  Removed: pam-devel.i386 0:0.99.6.2-4.el5 Complete! </pre></td></tr></tbody></table>  		<p>连移除也这么简单！看来，似乎不需要 rpm 这个命令也能够快乐的安装所有的软件了！ 		虽然是如此，但是 yum 毕竟是架构在 rpm 上面所发展起来的，所以，鸟哥认为你还是得需要了解 rpm  		才行！不要学了 yum 之后就将 rpm 的功能忘记了呢！切记切记！</p> 	</div>  	<hr><a name="yumclient_config"></a><img src="../image/logo.png" alt="小标题的图示" width="24" align="middle" height="23"><span class="text_h2">yum 的配置档</span><br> 	<div class="block2"> 		<p>虽然 yum 是你的主机能够连线上 Internet 就可以直接使用的，不过，由於 CentOS 的映射站台可能会选错， 		举例来说，我们在台湾，但是 CentOS 的映射站台却选择到了大陆北京或者是日本去，有没有可能发生啊！ 		有啊！鸟哥教学方面就常常发生这样的问题，要知道，我们连线到大陆或日本的速度是非常慢的呢！那怎办？ 		当然就是手动的修改一下 yum 的配置档就好罗！</p>  		<p>在台湾，CentOS 的映射站台主要有高速网络中心与义首大学，鸟哥近来比较偏好高速网络中心， 		似乎升级的速度比较快，而且连接台湾学术网络也非常快速哩！因此，鸟哥底下建议台湾的朋友使用高速网络中心的  		ftp 主机资源来作为 yum 服务器来源喔！目前高速网络中心对於 CentOS  所提供的相关网址如下：</p>  		<ul><li><a href="http://ftp.twaren.net/Linux/CentOS/5/" target="_blank">http://ftp.twaren.net/Linux/CentOS/5/</a></li></ul>  		<p>如果你连接到上述的网址后，就会发现里面有一堆连结，那些连结就是这个 yum 服务器所提供的容器了！ 		所以高速网络中心也提供了 addons, centosplus, extras, fasttrack, os, updates 等容器，最好认的容器就是 		os (系统默认的软件) 与 updates (软件升级版本) 罗！由於鸟哥在我的测试用主机是利用 i386 的版本， 		因此那个 os 再点进去就会得到如下的可提供安装的网址：</p>  		<ul><li><a href="http://ftp.twaren.net/Linux/CentOS/5/os/i386/" target="_blank">http://ftp.twaren.net/Linux/CentOS/5/os/i386/</a></li></ul>  		<p>为什么在上述的网址内呢？有什么特色！<span class="text_import2">最重要的特色就是那个『 repodata 		』的目录！该目录就是分析 RPM 软件后所产生的软件属性相依数据放置处！</span>因此，当你要找容器所在网址时， 		最重要的就是该网址底下一定要有个名为 repodata 的目录存在！那就是容器的网址了！ 		其他的容器正确网址，就请各位看倌自行寻找一下喔！现在让我们修改配置档吧！</p>  <table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">vi /etc/yum.repos.d/CentOS-Base.repo</span> [base] name=CentOS-$releasever - Base mirrorlist=http://mirrorlist.centos.org/?release=$releasever&amp;arch=$basearch&amp;repo=os #baseurl=http://mirror.centos.org/centos/$releasever/os/$basearch/ gpgcheck=1 gpgkey=http://mirror.centos.org/centos/RPM-GPG-KEY-CentOS-5 </pre></td></tr></tbody></table>  		<p>如上所示，鸟哥仅列出 base 这个容器内容而已，其他的容器内容请自行查阅罗！上面的数据需要注意的是：</p>  		<ul class="text_import2"> 		<li>[base]：代表容器的名字！中刮号一定要存在，里面的名称则可以随意取。但是不能有两个相同的容器名称， 		否则 yum 会不晓得该到哪里去找容器相关软件清单文件。<br><br></li> 		<li>name：只是说明一下这个容器的意义而已，重要性不高！<br><br></li> 		<li>mirrorlist=：列出这个容器可以使用的映射站台，如果不想使用，可以注解到这行；<br><br></li> 		<li>baseurl=：这个最重要，因为后面接的就是容器的实际网址！ mirrorlist 是由 yum 程序自行去捉映射站台， 		baseurl 则是指定固定的一个容器网址！我们刚刚找到的网址放到这里来啦！<br><br></li> 		<li>enable=1：就是让这个容器被启动。如果不想启动可以使用 enable=0 喔！<br><br></li> 		<li>gpgcheck=1：还记得 RPM 的数码签章吗？这就是指定是否需要查阅 RPM 文件内的数码签章！<br><br></li> 		<li>gpgkey=：就是数码签章的公钥档所在位置！使用默认值即可<br><br></li> 		</ul>  		<p>了解这个配置档之后，接下来让我们修改整个文件的内容，让我们这部主机可以直接使用高速网络中心的资源吧！ 		修改的方式鸟哥仅列出 base 这个容器项目而已，其他的项目请您自行依照上述的作法来处理即可！</p>  <table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">vi /etc/yum.repos.d/CentOS-Base.repo</span> [base] name=CentOS-$releasever - Base baseurl=<span class="term_write">http://ftp.twaren.net/Linux/CentOS/5/os/i386/</span> gpgcheck=1 gpgkey=http://mirror.centos.org/centos/RPM-GPG-KEY-CentOS-5 <span class="term_say"># 底下其他的容器项目，请自行到高速网络中心去查询后自己处理！</span> </pre></td></tr></tbody></table>  		<p>接下来当然就是给他测试一下罗！如何测试呢？再次使用 yum 即可啊！</p>  <table class="term"><tbody><tr><td class="term"><pre><span class="term_hd">范例一：列出目前 yum server 所使用的容器有哪些？</span> [root@www ~]# <span class="term_command">yum repolist all</span> <u>repo id         repo name                  status</u> addons          CentOS-5 - Addons          enabled base            CentOS-5 - Base            enabled c5-media        CentOS-5 - Media           disabled centosplus      CentOS-5 - Plus            disabled extras          CentOS-5 - Extras          enabled updates         CentOS-5 - Updates         enabled <span class="term_say"># 上面最右边有写 enabled 才是有启动的！由於 /etc/yum.repos.d/ # 有多个配置档，所以你会发现还有其他的容器存在。</span> </pre></td></tr></tbody></table><br>  		<hr><ul class="list1"><li class="text_import1">修改容器产生的问题与解决之道</li></ul>  		<p>由於我们是修改系统默认的配置档，事实上，我们应该要在 /etc/yum.repos.d/ 底下新建一个文件， 		该扩展名必须是 .repo 才行！但因为我们使用的是指定特定的映射站台，而不是其他软件开发生提供的容器， 		因此才修改系统默认配置档。但是可能由於使用的容器版本有新旧之分，你得要知道， 		yum 会先下载容器的清单到本机的 /var/cache/yum 里面去！那我们修改了网址却没有修改容器名称 (中刮号内的文字)， 		可能就会造成本机的清单与 yum 服务器的清单不同步，此时就会出现无法升级的问题了！</p>  		<p>那怎么办啊？很简单，就清除掉本机上面的旧数据即可！需要手动处理吗？不需要的， 		透过 yum 的 clean 项目来处理即可！</p>  <table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">yum clean [packages|headers|all] </span> <span class="term_say">选项与参数：  packages：将已下载的软件文件删除  headers ：将下载的软件档头删除  all     ：将所有容器数据都删除！</span>  <span class="term_hd">范例一：删除已下载过的所有容器的相关数据 (含软件本身与清单)</span> [root@www ~]# <span class="term_command">yum clean all</span> </pre></td></tr></tbody></table>  	</div>  	<hr><a name="yumclient_group"></a><img src="../image/logo.png" alt="小标题的图示" width="24" align="middle" height="23"><span class="text_h2">yum 的软件群组功能</span><br> 	<div class="block2"> 		<p>透过 yum 来线上安装一个软件是非常的简单，但是，如果要安装的是一个大型专案呢？ 		举例来说，鸟哥使用默认安装的方式安装了测试机，这部主机就只有 GNOME 这个窗口管理员， 		那我如果想要安装 KDE 呢？难道需要重新安装？当然不需要，透过 yum的软件群组功能即可！ 		来看看命令先：</p>  <table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">yum [群组功能] [软件群组]</span> <span class="term_say">选项与参数：    grouplist   ：列出所有可使用的『套件组』，例如 Development Tools 之类的；    groupinfo   ：后面接 group_name，则可了解该 group 内含的所有套件名；    groupinstall：这个好用！可以安装一整组的套件群组，相当的不错用！    groupremove ：移除某个套件群组；</span>  <span class="term_hd">范例一：查阅目前容器与本机上面的可用与安装过的软件群组有哪些？</span> [root@www ~]# <span class="term_command">yum grouplist</span> Installed Groups:    Office/Productivity    Editors    System Tools <span class="term_say">....(中间省略)....</span> Available Groups:    Tomboy    Cluster Storage    Engineering and Scientific <span class="term_say">....(以下省略)....</span> </pre></td></tr></tbody></table>  		<p>你会发现系统上面的软件大多是群组的方式一口气来提供安装的！还记全新安装 CentOS 时， 		不是可以选择所需要的软件吗？而那些软件不是利用 GNOME/KDE/X Window ... 之类的名称存在吗？ 		其实那就是软件群组罗！如果你运行上述的命令后，在『Available Groups』底下应该会看到一个 		『XFCE-4.4』的软件群组，想知道那是啥吗？就这样做：</p>  <table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">yum groupinfo XFCE-4.4</span> Setting up Group Process  Group: XFCE-4.4  <u>Description: This group contains the XFCE desktop environment.</u>  Mandatory Packages:    xfce4-session <span class="term_say">....(中间省略)....</span>  Default Packages:    xfce4-websearch-plugin <span class="term_say">....(中间省略)....</span>  Optional Packages:    xfce-mcs-manager-devel    xfce4-panel-devel <span class="term_say">....(以下省略)....</span> </pre></td></tr></tbody></table>  		<p>你会发现那就是一个壁纸环境 (desktop environment) ，也就是一个窗口管理员啦！ 		至於底下就列出主要的与选择性 (optional) 的软件名称罗！让我们直接安装看看：</p>  <table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">yum groupinstall XFCE-4.4</span> </pre></td></tr></tbody></table>  		<p>你会发现系统进行了一大堆软件的安装！那就是啦！整个安装 XFCE 这个窗口介面所需的所有软件！ 		这个咚咚真是非常的方便呢！这个功能请一定要记下来，对你未来安装软件是非常有帮助的喔！ ^_^</p> 	</div>  	<hr><a name="yumclient_system"></a><img src="../image/logo.png" alt="小标题的图示" width="24" align="middle" height="23"><span class="text_h2">全系统自动升级</span><br> 	<div class="block2"> 		<p>我们可以手动选择是否需要升级，那能不能让系统自动升级，让我们的系统随时保持在最新的状态呢？ 		当然可以啊！透过『 yum -y update 』来自动升级，那个 -y 很重要，因为可以自动回答 yes 来开始下载与安装！ 		然后再透过 crontab 的功能来处理即可！假设我每天在台湾时间 3:00am  网络频宽比较轻松的时候进行升级， 		你可以这样做的：</p>  <table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">vim /etc/crontab</span> <span class="term_say">....(前面省略并保留配置值)....</span> <span class="term_write">0  3 * * * root /usr/bin/yum -y update</span> </pre></td></tr></tbody></table>  		<p>从此你的系统就会自动升级啦！很棒吧！此外，你还是得要分析登录档与收集 root 的信件的， 		因为如果升级的是核心软件 (kernel)，那么你还是得要重新启动才会让安装的软件顺利运行的！ 		所以还是得分析登录档，若有新核心安装，就重新启动，否则就让系统自动维持在最新较安全的环境吧！ 		真是轻松愉快的管理啊！</p> 	</div> </div>   <hr><a name="rpmortarball"></a><img src="../image/logo.png" alt="大标题的图示" width="35" align="middle" height="34"><span class="text_h1">管理的抉择：RPM 还是 Tarball</span> <div class="block1"> 	<p>这一直是个有趣的问题：『<span class="text_import2">如果我要升级的话，或者是全新安装一个新的软件， 	那么该选择 RPM 还是 Tarball 来安装呢？</span>』，事实上考虑的因素很多，不过鸟哥通常是这样建议的：</p>  	<ol> 		<li><span class="text_import1">优先选择原厂的 RPM 功能：</span><br><br>  		由於原厂释出的软件通常具有一段时间的维护期，举例来说， RHEL 与 CentOS  		每一个版本至少提供五年以上的升级期限。这对於我们的系统安全性来说，实在是非常好的选项！ 		何解？既然 yum 可以自动升级，加上原厂会持续维护软件升级，那么我们的系统就能够自己保持在软件最新的状态， 		对於资安来说当然会比较好一些的！ 		此外，由於 RPM 与 yum 具有容易安装/移除/升级等特点，且还提供查询与验证的功能，安装时更有数码签章的保护， 		让你的软件管理变的更轻松自在！因此，当然首选就是利用 RPM 来处理啦！<br><br></li>  		<li><span class="text_import1">选择软件官网释出的 RPM 或者是提供的容器网址：</span><br><br>  		不过，原厂并不会包山包海，因此某些特殊软件你的原版厂商并不会提供的！举例来说 CentOS  		就没有提供 NTFS 的相关模块。此时你可以自行到官网去查阅，看看有没有提供相对到你的系统的 RPM 文件， 		如果有提供容器网址，那就更好啦！可以修改 yum 配置档来加入该容器，就能够自动安装与升级该软件！ 		你说方不方便啊！<br><br></li>  		<li><span class="text_import1">利用 Tarball 安装特殊软件：</span><br><br>  		某些特殊用途的软件并不会特别帮你制作 RPM 文件的，此时建议你也不要妄想自行制作 SRPM 来转成 RPM 啦！ 		因为你只有区区一部主机而已，若是你要管理相同的 100 部主机，那么将原始码转制作成 RPM 就有价值！ 		单机版的特殊软件，例如学术网络常会用到的 MPICH/PVM 等平行运算函式库，这种软件建议使用 tarball 来安装即可， 		不需要特别去搜寻 RPM 罗！<br><br></li>  		<li><span class="text_import1">用 Tarball 测试新版软件：</span><br><br>  		某些时刻你可能需要使用到新版的某个软件，但是原版厂商仅提供旧版软件，举例来说，我们的 CentOS  		主要是定位於企业版，因此很多软件的要求是『稳』而不是『新』，但你就是需要新软件啊！ 		然后又担心新软件装好后产生问题，回不到旧软件，那就惨了！此时你可以用 tarball 安装新软件到 /usr/local 底下， 		那么该软件就能够同时安装两个版本在系统上面了！而且大多数软件安装数种版本时还不会互相干扰的！ 		嘿嘿！用来作为测试新软件是很不错的呦！只是你就得要知道你使用的命令是新版软件还是旧版软件了！</li> 	</ol>  	<p>所以说，RPM 与 Tarball 各有其优缺点，不过，如果有 RPM 的话，那么优先权还是在於 	RPM 安装上面，毕竟管理上比较便利，但是如果软件的架构差异性太大， 	或者是无法解决相依属性的问题，那么与其花大把的时间与精力在解决属性相依的问题上，还不如直接以 	tarball 来安装，轻松又惬意！</p> </div>   <hr><a name="hint"></a><img src="../image/logo.png" alt="大标题的图示" width="35" align="middle" height="34"><span class="text_h1">重点回顾</span><br> <div class="block1"> <ul class="text_import2"> 	<li>为了避免使用者自行编译的困扰，开发商自行在特定的硬件与操作系统平台上面预先编译好软件， 	并将软件以特殊格式封包成文件，提供终端用户直接安装到固定的操作系统上，并提供简单的查询/安装/移除等流程。 	此称为软件管理员。常见的软件管理员有 RPM 与 DPKG 两大主流。</li> 	<li>RPM 的全名是 RedHat Package Manager，原本是由 Red Hat 公司所发展的，流传甚广；</li> 	<li>RPM 类型的软件中，所含有的软件是经过编译后的 binary program ，所以可以直接安装在使用者端的系统上， 	不过，也由於如此，所以 RPM 对於安装者的环境要求相当严格；</li> 	<li>RPM 除了将软件安装至使用者的系统上之外，还会将该软件的版本、名称、文件与目录配置、系统需求等等均记录於数据库 	(/var/lib/rpm) 当中，方便未来的查询与升级、移除；</li> 	<li>RPM 可针对不同的硬件等级来加以编译，制作出来的文件可於扩展名 (i386, i586, i686, x86_64) 来分辨；</li> 	<li>RPM 最大的问题为软件之间的相依性问题；</li> 	<li>SRPM 为 Source RPM ，内含的文件为 Source code 而非为 binary file ，所以安装 SRPM 时还需要经过  	compile ，不过，SRPM 最大的优点就是可以让使用者自行修改配置参数 (makefile/configure 的参数) 	，以符合使用者自己的 Linux 环境；</li> 	<li>RPM 软件的属性相依问题，已经可以藉由  yum 或者是 APT 等方式加以克服。 CentOS 使用的就是 yum 机制。</li> 	<li>yum 服务器提供多个不同的容器放置个别的软件，以提供用户端分别管理软件类别。</li> </ul> </div>   <hr><a name="ex"></a><img src="../image/logo.png" alt="大标题的图示" width="35" align="middle" height="34"><span class="text_h1">本章习题</span><br> <div class="block1"> <ul style="padding-left: 10px;"> 	<li>情境模拟题一：实际安装 php, php-mysql, php-devel, httpd-devel 等软件的方式<br><br> 	<ul> 		<li>目标：利用 rpm 查询软件是否已安装，利用 yum 进行线上查询；</li> 		<li>目标：你的 Linux 必须要已经接上 Internet 才行；</li> 		<li>需求：最好了解磁碟容量是否够用，以及如何启动服务等。</li> 	</ul><br>  	这个模拟题的目的是想要安装一套较为完整的 WWW 服务器，并且此服务器可以支持外挂的其他网页服务器模块。 	所以需要安装的就会有网页程序语言 php 与数据库软件 MySQL ，以及未来开发用的 php-devel, httpd-devel 等软件。 	整个流程会有点像这样：<br><br>  	<ol> 		<li>检查所需要的软件是否存在？最好直接使用 rpm ，因为可以直接取得 RPM 的数据库内容：<br>  <table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">rpm -q httpd httpd-devel php php-devel php-mysql</span> httpd-2.2.3-22.el5.centos package httpd-devel is not installed  <span class="term_note">&lt;==没有安装的软件！</span> php-5.1.6-23.el5 package php-devel is not installed    <span class="term_note">&lt;==没有安装的软件！</span> package php-mysql is not installed    <span class="term_note">&lt;==没有安装的软件！</span> </pre></td></tr></tbody></table>  		经过上面的分析，我们知道 httpd-devel, php-devel, php-mysql 等软件并没有安装！那么该如何安装 		可以使用 yum  直接线上安装。不过我们必须要先有网络才行！<br><br></li>  		<li>确认网络的可行性：<br>  <table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">ifconfig eth0</span> eth0      Link encap:Ethernet  HWaddr 08:00:27:11:3B:75           inet addr:<span class="term_write">192.168.201.201</span>  Bcast:192.168.201.255  Mask:<span class="term_write">255.255.255.0</span> <span class="term_say">....(底下省略).... # 你可以看到我们的主机是有 IP 存在的！再来看看有没有路由配置存在？</span>  [root@www ~]# <span class="term_command">route -n</span> Kernel IP routing table Destination     Gateway         Genmask         Flags Metric Ref    Use Iface 192.168.201.0   0.0.0.0         255.255.255.0   U     0      0        0 eth0 0.0.0.0         <span class="term_write">192.168.201.254</span> 0.0.0.0         UG    0      0        0 eth0 <span class="term_say"># 确实是有路由器 (Gateway) 存在的！那么该路由器是否配置正确呢？</span>  [root@www ~]# <span class="term_command">ping -c 2 192.168.201.254</span> PING 192.168.201.254 (192.168.201.254) 56(84) bytes of data. 64 bytes from 192.168.201.254: icmp_seq=1 ttl=64 <span class="term_write">time=0.325 ms</span> 64 bytes from 192.168.201.254: icmp_seq=2 ttl=64 <span class="term_write">time=0.281 ms</span> <span class="term_say"># 路由器有回应！表示可以连接到路由器！那么 TCP/IP 设好了， # 但是主机名称解析器统 (DNS) 该如何处理？</span>  [root@www ~]# <span class="term_command">dig www.google.com</span>  ; &lt;&lt;&gt;&gt; DiG 9.3.4-P1 &lt;&lt;&gt;&gt; www.google.com ;; global options:  printcmd <span class="term_say">....(中间省略)....</span> ;; QUESTION SECTION: ;www.google.com.                        IN      A <span class="term_say">....(中间省略)....</span> ;; ANSWER SECTION: www.google.com.         522933  IN      CNAME   www.l.google.com. www.l.google.com.       107     IN      A       <span class="term_write">72.14.203.103</span> <span class="term_say">....(中间省略)....</span> ;; Query time: 5 msec ;; SERVER: <span class="term_write">120.114.150.1#53(120.114.150.1)</span> ;; WHEN: Fri Sep 18 13:14:45 2009 ;; MSG SIZE  rcvd: 340 <span class="term_say"># 确实有查到 Google 的 IP ，且是由 120.114.150.1 那部 DNS 主机帮忙解析的！</span> </pre></td></tr></tbody></table></li>  		<li>网络配置妥当之后，那我们就能够直接使用 yum 罗！可以这样直接进行安装的：<br>  <table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">yum install httpd httpd-devel php php-devel php-mysql</span> </pre></td></tr></tbody></table>  		然后接著一步一步进行安装即可。</li> 	</ol><br></li> </ul>  <hr>简答题部分： <ul> 	<li>如果你曾经修改过 yum 配置档内的容器配置 (/etc/yum.repos.d/*.repo) ，导致下次使用 yum 进行安装时老是发现错误， 	此时你该如何是好？ 	<div class="blockex"> 		先确认你的配置档确实是正确的，如果没问题，可以将 yum 的缓存清除，使用『yum clean all』即可。 		事实上， yum 的所有缓存、下载软件、下载软件的表头数据，都放置於 /var/cache/yum/ 目录下。 	</div></li>  	<li>简单说明 RPM 与 SRPM 的异同？ 	<div class="blockex"> 	RPM 文件是由程序打包者 (通常是由 distribution 的开发商) 藉由程序的原始码，在特定的平台上面所编译成功的 	binary program 的数据，并将该数据制作成为 RPM 的格式，以方便相同软、硬件平台的使用者之安装使用。 	在安装时显的很简单，因为程序打包者的平台与使用者所使用的平台默认为相同。<br> 	至於 SRPM 则是藉由与 RPM 相同的配置档数据，不过将原始码直接包在 SRPM 文件当中，而不经过编译。 	因为 SRPM 所内含的数据为原始码，所以安装时必须要再经过编译的行为才能成为 RPM 并提供使用者安装。 	</div></li>  	<li>假设我想要安装一个软件，例如 pkgname.i386.rpm ，但却老是发生无法安装的问题，请问我可以加入哪些参数来强制安装他？ 	<div class="blockex"> 	可以加入 --nodeps 等参数。例如 rpm -ivh --nodeps pkgname.i386.rpm 	</div></li>  	<li>承上题，你认为强制安装之后，该软件是否可以正常运行？为什么？ 	<div class="blockex"> 	一般来说，应该是『不能运行』的，因为该软件具有相依属性的问题， 	某些时刻该软件的程序可能需要呼叫外部的函式库，但函式库可能未安装，因此当然无法运行成功。 	</div></li>  	<li>有些人使用 OpenLinux 3.1 Server 安装在自己的 P-166 MMX ，却发现无法安装，在查询了该原版光盘的内容，发现里面的文件名称为 	***.i686.rpm 。请问，无法安装的可能原因为何？ 	<div class="blockex"> 	因为 P-166MMX 为 i586 的硬件平台，而 OpenLinux 为针对 i686 的硬件平台进行最佳化， 	因此很可能由於下达的参数无法支持的问题，导致无法安装成功。 	</div></li>  	<li>请问我使用 rpm -Fvh *.rpm 及 rpm -Uvh *.rpm 来升级时，两者有何不同？ 	<div class="blockex"> 	-Uvh 后面接的软件，如果原本未安装，则直接安装，原本已安装时，则直接升级；<br> 	-Fvh 后面接的软件，如果原本未安装，则不安装，原本已安装时，则直接升级； 	</div></li>  	<li>假设有一个厂商推出软件时，自行处理了数码签章，你想要安装他们的软件所以需要使用数码签章，假设数码签章的档名为 signe， 	那你该如何安装？ 	<div class="blockex"> 		rpm --import signe 	</div></li>  	<li>承上，假设该软件厂商提供了 yum 的安装网址为： http://their.server.name/path/ ，那你该如何处理 yum 的配置档？ 	<div class="blockex"> 		可以自行取个档名，在此例中我们使用『 vim /etc/yum.repos.d/their.repo 』，扩展名要正确！ 		内容有点像这样即可：<pre>[their] name=their server name baseurl=http://their.server.name/path/ enable=1 gpgcheck=0</pre>然后使用 yum 去安装该软件看看。 	</div></li> </ul> </div>   <hr><a name="reference"></a><img src="../image/logo.png" alt="大标题的图示" width="35" align="middle" height="34"><span class="text_h1">参考数据与延伸阅读</span><br> <div class="block1"> <ul> 	<li><a name="ps1"></a>注1：GNU Privacy Guard (GPG) 官方网站的介绍：<a href="http://www.gnupg.org/" target="_blank">http://www.gnupg.org/</a></li> 	<li>RPM 包装文件管理程序：<a href="http://www.study-area.org/tips/rpm.htm" target="_blank">http://www.study-area.org/tips/rpm.htm</a></li> 	<li>中文 RPM HOW-TO：<a href="http://www.linux.org.tw/CLDP/RPM-HOWTO.html" target="_blank">http://www.linux.org.tw/CLDP/RPM-HOWTO.html</a></li> 	<li>RPM 的使用：<a href="http://linux.tnc.edu.tw/techdoc/rpm-howto.htm" target="_blank">http://linux.tnc.edu.tw/techdoc/rpm-howto.htm</a></li> 	<li>大家来作 RPM ：<a href="http://freebsd.ntu.edu.tw/bsd/4/3/2/29.html" target="_blank">http://freebsd.ntu.edu.tw/bsd/4/3/2/29.html</a></li> 	<li>一本 RPM 的原文书：<a href="http://linux.tnc.edu.tw/techdoc/maximum-rpm/rpmbook/" target="_blank">http://linux.tnc.edu.tw/techdoc/maximum-rpm/rpmbook/</a></li> 	<li>台湾网络危机处理小组：<a href="http://www.cert.org.tw/" target="_blank">http://www.cert.org.tw/</a></li> </ul> </div>   <hr><span class="text_history"> 2002/08/21：第一次完成<br> 2003/02/11：重新编排与加入 FAQ<br> 2004/04/11：已经完成了 <a href="http://linux.vbird.org/linux_basic/0520source_code_and_tarball.php">Source code 与 Tarball </a>，开始进行  	RPM 与 SRPM 的介绍！(需要耗时多日啊！因为又要进兵营去了！)<br> 2004/04/20：终於给他熬出来啦！又是过了两个休假期间～啊！给我退伍令、其余免谈！<br> 2005/10/02：旧版的 SRPM 数据已经移动到 <a href="http://linux.vbird.org/linux_basic/0520softwaremanager/0530srpm.php">此处</a> 。<br> 2005/10/03：旧版的针对 Red Hat 与 Mandriva 的版本移动到 <a href="http://linux.vbird.org/linux_basic/0520softwaremanager/0520rpm_and_srpm.php">此处</a> 	。<br> 2005/10/03：将原本去年的版本改为 FC4 为范例的模样！<br> 2009/06/20：原本的针对 FC4 写的旧版文章移动到<a href="http://linux.vbird.org/linux_basic/0520softwaremanager/0520rpm_and_srpm-fc4.php">此处</a>。<br> 2009/09/18：加入了简单的情境模拟，也加入了一些关於 yum 的习题喔！<hr> </span>     </td>     <td style="width: 16px; font-size: 6px;">　</td></tr> <tr><td style="width: 16px; height: 16px;">　</td>     <td style="width: 866px; height: 16px;">　</td>     <td style="width: 16px; height: 16px;">　</td></tr> </tbody></table>  <div style="padding-top: 0px; text-align: center;"> <span style="font-size: 80%;"> 	<a href="http://vbird.dic.ksu.edu.tw/" target="_top" title="前往鸟哥的首页">http://linux.vbird.org</a> 	is designed by <a href="mailto:vbird@mail.vbird.idv.tw" title="联络鸟哥(我不要广告信！)">VBird</a> 		during 2001-2011. <a href="http://www.ksu.edu.tw/" target="_blank">ksu.edu</a></span>          ﻿<div id="apDiv4">       <p>本网页主要以Firefox配合解析度 1024x768 作为设计依据&nbsp;&nbsp;&nbsp;&nbsp; 鸟哥自由软件整合应用研究室</p></div></div> </div> </center> </body></html> 
+<?xml version="1.0" encoding="utf-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"    "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><title>第二十三章、软件安装：<span class="text_head_en"> RPM, SRPM </title><link href="../Styles/style.css" rel="stylesheet" type="text/css" /></head><body>
+
+<!-- 本文的档头部分 -->
+<div style="text-align: center;">
+    <a href="0520rpm_and_srpm.php.html">
+    <span class="text_head0">第二十三章、软件安装：<span class="text_head_en"> RPM, SRPM </span>与<span class="text_head_en"> YUM </span>功能</span></a><br>
+</div>
+    <div style="text-align: right;">
+        <span class="text_history">最近升级日期：2009/09/18</span>
+    </div>
+
+<!-- 本文的档头部分 -->
+<center><table class="head1" summary="排版：文章档头的说明"><tbody><tr><td class="head1">
+	虽然使用原始码进行软件编译可以具有客制化的配置，但对於 Linux distribution 的发布商来说，则有软件管理不易的问题，
+	毕竟不是每个人都会进行原始码编译的。如果能够将软件预先在相同的硬件与操作系统上面编译好才发布的话，
+	不就能够让相同的 distribution 具有完全一致的软件版本吗？如果再加上简易的安装/移除/管理等机制的话，
+	对於软件控管就会简易的多。有这种东西吗？有的，那就是 RPM 与 YUM 这两个好用的咚咚。
+	既然这么好用，我们当然不能错过学习机会罗！赶紧来参详参详！
+</td></tr></tbody></table></center><br>
+
+<!-- 本文的连结区部分 -->
+<div class="block1">
+<span class="text_h1">
+1. <a href="#intro">软件管理员简介</a><br>
+	<span class="text_h2">
+	　　1.1 <a href="#intro_import2">Linux 界的两大主流: RPM 与 DPKG</a><br>
+	　　1.2 <a href="#intro_whatisrpm">什么是 RPM 与 SRPM</a><br>
+	　　1.3 <a href="#intro_i386586">什么是 i386, i586, i686, noarch, x86_64</a><br>
+	　　1.4 <a href="#intro_advance">RPM 的优点</a><br>
+	　　1.5 <a href="#intro_solution">RPM 属性相依的克服方式： YUM 线上升级</a><br>
+	</span>
+2. <a href="#rpmmanager">RPM 软件管理程序： rpm</a><br>
+	<span class="text_h2">
+	　　2.1 <a href="#rpmmanager_dir">RPM 默认安装的路径</a><br>
+	　　2.2 <a href="#rpmmanager_install">RPM 安装 (install)</a><br>
+	　　2.3 <a href="#rpmmanager_update">RPM 升级与升级 (upgrade/freshen)</a><br>
+	　　2.4 <a href="#rpmmanager_query">RPM 查询 (query)</a><br>
+	　　2.5 <a href="#rpmmanager_verify">RPM 验证与数码签章 (Verify/signature)</a><br>
+	　　2.6 <a href="#rpmmanager_rebuild">RPM 反安装与重建数据库 (erase/rebuilddb)</a><br>
+	</span>
+3. <a href="#srpmmanager">SRPM 的使用： rpmbuild</a><br>
+	<span class="text_h2">
+	　　3.1 <a href="#srpmmanager_rebuild">利用默认值安装 SRPM 文件 (--rebuid/--recompile)</a><br>
+	　　3.2 <a href="#srpmmanager_dir">SRPM 使用的路径与需要的软件</a><br>
+	　　3.3 <a href="#srpmmanager_config">配置档的主要内容  (*.spec)</a><br>
+	　　3.4 <a href="#srpmmanager_command">SRPM 的编译命令 (-ba/-bb)</a><br>
+	　　3.5 <a href="#srpmmanager_myself">一个打包自己软件的范例</a><br>
+	</span>
+4. <a href="#yumclient">YUM 线上升级机制</a><br>
+	<span class="text_h2">
+	　　4.1 <a href="#yumclient_yum">利用 yum 进行查询、安装、升级与移除功能</a><br>
+	　　4.2 <a href="#yumclient_config">yum 的配置档</a><br>
+	　　4.3 <a href="#yumclient_group">yum 的软件群组功能</a><br>
+	　　4.4 <a href="#yumclient_system">全系统自动升级</a><br>
+	</span>
+5. <a href="#rpmortarball">管理的抉择：RPM 还是 Tarball</a><br>
+6. <a href="#hint">重点回顾</a><br>
+7. <a href="#ex">本章习题</a><br>
+8. <a href="#reference">参考数据与延伸阅读</a><br>
+<span class="text_h2">
+9. <a href="http://phorum.vbird.org/viewtopic.php?t=23893" target="_blank">针对本文的建议：http://phorum.vbird.org/viewtopic.php?t=23893</a>
+</span>
+</span>
+</div>
+
+
+<!-- 本文的正式部分 -->
+<hr><a name="intro"></a><img src="../images/logo.png" alt="大标题的图示" width="35" align="middle" height="34"><span class="text_h1">软件管理员简介</span>
+<div class="block1">
+	<p>在前一章我们提到以原始码的方式来安装软件，也就是利用厂商释出的 Tarball 
+	来进行软件的安装。不过，你应该很容易发现，那就是每次安装软件都需要侦测操作系统与环境、配置编译参数、实际的编译、
+	最后还要依据个人喜好的方式来安装软件到定位。这过程是真的很麻烦的，而且对於不熟整个系统的朋友来说，还真是累人啊！</p>
+
+	<p>那有没有想过，如果我的 Linux 系统与厂商的系统一模一样，那么在厂商的系统上面编译出来的运行档，
+	自然也就可以在我的系统上面跑罗！也就是说，<span class="text_import2">厂商先在他们的系统上面编译好了我们使用者所需要的软件，
+	然后将这个编译好的可运行的软件直接释出给使用者来安装</span>，如此一来，由於我们本来就使用厂商的
+	Linux distribution ，所以当然系统 (硬件与操作系统) 是一样的，那么使用厂商提供的编译过的可运行档就没有问题啦！
+	说的比较白话一些，那就是利用类似 Windows 
+	的安装方式，由程序开发者直接在已知的系统上面编译好，再将该程序直接给使用者来安装，如此而已。</p>
+
+	<p>那么如果在安装的时候还可以加上一些与这些程序相关的资讯，将他创建成为数据库，那不就可以进行安装、反安装、
+	升级与验证等等的相关功能罗 (类似 Windows 底下的『新增移除程序』)？确实如此，在 Linux 
+	上面至少就有两种常见的这方面的软件管理员，分别是 RPM 与 Debian 的 dpkg 。我们的 CentOS 
+	主要是以 RPM 为主，但也不能不知道 dpkg 啦！所以底下就来约略介绍一下这两个玩意儿。<br><br></p>
+
+	<hr><a name="intro_import2"></a><img src="../images/logo.png" alt="小标题的图示" width="24" align="middle" height="23"><span class="text_h2">Linux 界的两大主流: RPM 与 DPKG</span>
+	<div class="block2">
+		<p>由於自由软件的蓬勃发展，加上大型 Unix-Like 主机的强大效能，让很多软件开发者将他们的软件使用 Tarball 来释出。
+		后来 Linux 发展起来后，由一些企业或社群将这些软件收集起来制作成为 distributions
+		以发布这好用的 Linux 操作系统。但后来发现到，这些 distribution 的软件管理实在伤脑筋，
+		如果软件有漏洞时，又该如何修补呢？使用 tarball 的方式来管理吗？又常常不晓得到底我们安装过了哪些程序？
+		因此，一些社群与企业就开始思考 Linux 的软件管理方式。</p>
+
+		<p>如同刚刚谈过的方式，Linux 开发商先在固定的硬件平台与操作系统平台上面将需要安装或升级的软件编译好，
+		然后将这个软件的所有相关文件打包成为一个特殊格式的文件，在这个软件文件内还包含了预先侦测系统与相依软件的脚本，
+		并提供记载该软件提供的所有文件资讯等。最终将这个软件文件释出。<span class="text_import2">用户端取得这个文件后，只要透过特定的命令来安装，
+		那么该软件文件就会依照内部的脚本来侦测相依的前驱软件是否存在，若安装的环境符合需求，那就会开始安装</span>，
+		安装完成后还会将该软件的资讯写入软件管理机制中，以达成未来可以进行升级、移除等动作呢。</p>
+
+		<p>目前在 Linux 界软件安装方式最常见的有两种，分别是：</p>
+
+		<ul>
+		<li><span class="text_import1">dpkg</span>：<br>
+		这个机制最早是由 Debian Linux 社群所开发出来的，透过 dpkg 的机制， Debian 
+		提供的软件就能够简单的安装起来，同时还能提供安装后的软件资讯，实在非常不错。
+		只要是衍生於 Debian 的其他 Linux distributions 大多使用 dpkg 这个机制来管理软件的，
+		包括 B2D, Ubuntu 等等。<br><br></li>
+
+		<li><span class="text_import1">RPM</span>：<br>
+		这个机制最早是由 Red Hat 这家公司开发出来的，后来实在很好用，因此很多 distributions 
+		就使用这个机制来作为软件安装的管理方式。包括 Fedora, CentOS, SuSE 等等知名的开发商都是用这咚咚。</li>
+		</ul>
+
+		<p>如前所述，不论 dpkg/rpm 这些机制或多或少都会有软件属性相依的问题，那该如何解决呢？
+		其实前面不是谈到过每个软件文件都有提供相依属性的检查吗？那么如果我们将相依属性的数据做成列表，
+		等到实际软件安装时，若发生有相依属性的软件状况时，例如安装 A 需要先安装 B 与 C ，而安装 B 则需要安装
+		D 与 E 时，那么当你要安装 A ，透过相依属性列表，管理机制自动去取得 B, C, D, E 来同时安装，
+		不就解决了属性相依的问题吗？</p>
+
+		<p>没错！您真聪明！目前新的 Linux 开发商都有提供这样的『线上升级』机制，透过这个机制，
+		原版光盘就只有第一次安装时需要用到而已，其他时候只要有网络，你就能够取得原本开发商所提供的任何软件了呢！
+		在 dpkg 管理机制上就开发出 APT 的线上升级机制，RPM 则依开发商的不同，有 Red Hat 系统的 yum ，
+		SuSE 系统的 Yast Online Update (YOU)， Mandriva 的 urpmi 软件等。</p>
+
+<table bgcolor="lightyellow" border="1" cellpadding="3" cellspacing="0" width="95%">
+<tbody><tr align="center" bgcolor="#182448"><td><font color="#FFFFFF">distribution 代表</font></td><td><font color="#FFFFFF">软件管理机制</font></td><td><font color="#FFFFFF">使用命令</font></td><td><font color="#FFFFFF">线上升级机制(命令)</font></td></tr>
+<tr align="center"><td>Red Hat/Fedora</td><td>RPM</td><td>rpm, rpmbuild</td><td>YUM (yum)</td></tr>
+<tr align="center"><td>Debian/Ubuntu</td><td>DPKG</td><td>dpkg</td><td>APT (apt-get)</td></tr>
+</tbody></table>
+
+		<p>我们这里使用的是 CentOS 系统嘛！所以说：<span class="text_import2">使用的软件管理机制为 RPM
+		机制，而用来作为线上升级的方式则为 yum </span>！底下就让我们来谈谈 RPM 与 YUM  的相关说明吧！</p>
+	</div>
+
+	<hr><a name="intro_whatisrpm"></a><img src="../images/logo.png" alt="小标题的图示" width="24" align="middle" height="23"><span class="text_h2">什么是 RPM 与 SRPM</span>
+	<div class="block2">
+		<p>RPM 全名是『<span class="text_import2"> RedHat Package Manager </span>』简称则为
+		RPM 啦！顾名思义，当初这个软件管理的机制是由 Red Hat 这家公司发展出来的。
+		RPM 是以一种数据库记录的方式来将你所需要的软件安装到你的 Linux 系统的一套管理机制。</p>
+
+		<p>他最大的特点就是将你要安装的软件先编译过，
+		并且打包成为 RPM 机制的包装文件，透过包装好的软件里头默认的数据库记录，
+		记录这个软件要安装的时候必须具备的相依属性软件，当安装在你的 Linux 主机时，
+		RPM 会先依照软件里头的数据查询 Linux 主机的相依属性软件是否满足，
+		若满足则予以安装，若不满足则不予安装。那么安装的时候就将该软件的资讯整个写入
+		RPM 的数据库中，以便未来的查询、验证与反安装！这样一来的优点是：</p>
+
+		<ol class="text_import2">
+		<li>由於已经编译完成并且打包完毕，所以软件传输与安装上很方便 (不需要再重新编译)；</li>
+		<li>由於软件的资讯都已经记录在 Linux 主机的数据库上，很方便查询、升级与反安装</li>
+		</ol>
+
+		<p>但是这也造成些许的困扰。由於 RPM 文件是已经包装好的数据，也就是说，
+		里面的数据已经都『编译完成』了！所以，<span class="text_import2">该软件文件几乎只能安装在原本默认的硬件与操作系统版本中。</span>
+		也就是说，你的主机系统环境必须要与当初创建这个软件文件的主机环境相同才行！
+		举例来说，rp-pppoe 这个 ADSL 拨接软件，他必须要在 ppp 这个软件存在的环境下才能进行安装！如果你的主机并没有
+		ppp 这个软件，那么很抱歉，除非你先安装 ppp 否则 rp-pppoe 就是不让你安装的
+		(当然你可以强制安装，但是通常都会有点问题发生就是了！)。</p>
+
+		<p>所以，<span class="text_import2">通常不同的 distribution 所释出的 RPM 文件，并不能用在其他的 
+		distributions 上</span>。举例来说，Red Hat 释出的 RPM 文件，通常无法直接在 SuSE
+		上面进行安装的。更有甚者，相同 distribution 的不同版本之间也无法互通，例如 CentOS 4.x 的 RPM 
+		文件就无法直接套用在 CentOS 5.x ！因此，这样可以发现这些软件管理机制的问题是：</p>
+
+		<ol class="text_import2">
+		<li>软件文件安装的环境必须与打包时的环境需求一致或相当；</li>
+		<li>需要满足软件的相依属性需求；</li>
+		<li>反安装时需要特别小心，最底层的软件不可先移除，否则可能造成整个系统的问题！</li>
+		</ol>
+
+		<p>那怎么办？如果我真的想要安装其他 distributions 提供的好用的 RPM 软件文件时？
+		呵呵！还好，还有 SRPM 这个东西！<span class="text_import2">SRPM 是什么呢？顾名思义，他是
+		Source RPM 的意思，也就是这个 RPM 文件里面含有原始码哩</span>！特别注意的是，这个 
+		<span class="text_import2">SRPM 所提供的软件内容『并没有经过编译』</span>，
+		他提供的是原始码喔！</p>
+
+		<p>通常 <span class="text_import2">SRPM 的扩展名是以 ***.src.rpm 这种格式来命名的</span>。不过，既然 SRPM 
+		提供的是原始码，那么为什么我们不使用 Tarball 直接来安装就好了？这是因为 SRPM 虽然内容是原始码，
+		但是他仍然含有该软件所需要的相依性软件说明、以及所有 RPM 文件所提供的数据。同时，他与 RPM 
+		不同的是，他也提供了参数配置档 (就是 configure 与 makefile)。所以，如果我们下载的是 
+		SRPM ，那么要安装该软件时，你就必须要：</p>
+
+		<ul class="text_import2">
+		<li>先将该软件以 RPM 管理的方式编译，此时 SRPM 会被编译成为 RPM 文件；</li>
+		<li>然后将编译完成的 RPM 文件安装到 Linux 系统当中</li>
+		</ul>
+
+		<p>怪了，怎么 SRPM 这么麻烦呐！还要重新编译一次，那么我们直接使用 RPM
+		来安装不就好了？通常一个软件在释出的时候，都会同时释出该软件的
+		RPM 与 SRPM 。我们现在知道 RPM 文件必须要在相同的 Linux 环境下才能够安装，而 SRPM 
+		既然是原始码的格式，自然<span class="text_import2">我们就可以透过修改 SRPM 内的参数配置档，然后重新编译产生能适合我们
+		Linux 环境的 RPM 文件</span>，如此一来，不就可以将该软件安装到我们的系统当中，而不必与原作者打包的
+		Linux 环境相同了？这就是 SRPM 的用处了！</p>
+
+<table bgcolor="lightyellow" border="1" cellpadding="3" cellspacing="0" width="95%">
+<tbody><tr align="center" bgcolor="#182448"><td><font color="#FFFFFF">文件格式</font></td><td><font color="#FFFFFF">档名格式</font></td><td><font color="#FFFFFF">直接安装与否</font></td><td><font color="#FFFFFF">内含程序类型</font></td><td><font color="#FFFFFF">可否修改参数并编译</font></td></tr>
+<tr align="center"><td>RPM</td><td>xxx.rpm</td><td>可</td><td>已编译</td><td>不可</td></tr>
+<tr align="center"><td>SRPM</td><td>xxx.src.rpm</td><td>不可</td><td>未编译之原始码</td><td>可</td></tr>
+</tbody></table>
+
+		<div style="padding: 10pt 0pt;" align="right"><table width="90%"><tbody><tr><td><b>Tips:</b><br><span style="color: rgb(0, 144, 0);"><font size="-1">		为何说 CentOS 是『社群维护的企业版』呢？ Red Hat 公司的 RHEL 释出后，连带会将 SRPM 释出。
+		社群的朋友就将这些 SRPM 收集起来并重新编译成为所需要的软件，再重复释出成为 CentOS，所以才能号称与
+		Red Hat 的 RHEL 企业版同步啊！真要感谢 SRPM 哩！如果你想要理解 CentOS 是如何编译一支程序的，
+		也能够透过学习 SRPM 内含的编译参数，来学习的啊！
+		</font></span></td><td><img src="0520rpm_and_srpm_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div>
+	</div>
+
+	<hr><a name="intro_i386586"></a><img src="../images/logo.png" alt="小标题的图示" width="24" align="middle" height="23"><span class="text_h2">什么是
+	i386, i586, i686, noarch, x86_64</span>
+	<div class="block2">
+		<p>从上面的说明，现在我们知道 RPM 与 SRPM 的格式分别为：</p>
+
+<table class="term"><tbody><tr><td class="term"><pre><span class="term_write">xxxxxxxxx.rpm</span>   <span class="term_note">&lt;==RPM 的格式，已经经过编译且包装完成的 rpm 文件；</span>
+<span class="term_write">xxxxx.src.rpm</span>   <span class="term_note">&lt;==SRPM的格式，包含未编译的原始码资讯。</span>
+</pre></td></tr></tbody></table>
+
+		<p>那么我们怎么知道这个软件的版本、适用的平台、编译释出的次数呢？只要透过档名就可以知道了！例如
+		<span class="text_import2">rp-pppoe-3.1-5.i386.rpm</span>
+		这的文件的意义为：</p>
+
+<table class="term"><tbody><tr><td class="term"><pre><span class="term_write">rp-pppoe -        3.1    -     5        .i386        .rpm</span>
+软件名称   软件的版本资讯 释出的次数 适合的硬件平台 扩展名
+</pre></td></tr></tbody></table>
+
+		<p>除了后面适合的硬件平台与扩展名外，主要是以『-』来隔开各个部分，这样子可以很清楚的发现该软件的名称、
+		版本资讯、打包次数与操作的硬件平台！好了，来谈一谈每个不同的地方吧：</p>
+
+		<ul>
+		<li><span class="text_import2">软件名称</span>：<br>
+		当然就是每一个软件的名称了！上面的范例就是 rp-pppoe 。<br><br></li>
+
+		<li><span class="text_import2">版本资讯</span>：<br>
+		每一次升级版本就需要有一个版本的资讯，否则如何知道这一版是新是旧？这里通常又分为主版本跟次版本。以上面为例，主版本为
+		3 ，在主版本的架构下更动部分原始码内容，而释出一个新的版本，就是次版本啦！以上面为例，就是 1 罗！<br><br></li>
+
+		<li><span class="text_import2">释出版本次数</span>：<br>
+		通常就是编译的次数啦！那么为何需要重复的编译呢？这是由於同一版的软件中，可能由於有某些
+		bug 或者是安全上的顾虑，所以必须要进行小幅度的 patch 或重设一些编译参数。
+		配置完成之后重新编译并打包成 RPM 文件！因此就有不同的打包数出现了！<br><br></li>
+
+		<li><span class="text_import2">操作硬件平台</span>：<br>
+		这是个很好玩的地方，由於 RPM 可以适用在不同的操作平台上，但是不同的平台配置的参数还是有所差异性！
+		并且，我们可以针对比较高阶的 CPU 来进行最佳化参数的配置，这样才能够使用高阶 CPU 所带来的硬件加速功能。
+		所以就有所谓的 i386, i586, i686, x86_64 与 noarch 等的文件名称出现了！<br><br>
+
+<table bgcolor="lightyellow" border="1" cellpadding="3" cellspacing="0" width="95%">
+<tbody><tr align="center" bgcolor="#182448"><td width="80"><font color="#FFFFFF">平台名称</font></td><td><font color="#FFFFFF">适合平台说明</font></td></tr>
+<tr><td align="center"><span class="text_import2">i386</span></td>
+	<td>几乎适用於所有的 x86 平台，不论是旧的 pentum 或者是新的 Intel Core 2 与 
+	K8 系列的 CPU 等等，都可以正常的工作！那个 i 指的是 Intel 兼容的 CPU 的意思，至於 386 
+	不用说，就是 CPU 的等级啦！</td></tr>
+<tr><td align="center"><span class="text_import2">i586</span></td>
+	<td>就是针对 586 等级的计算机进行最佳化编译。那是哪些 CPU 呢？包括 pentum 第一代 MMX CPU， AMD 的 K5, K6 系列 CPU 
+	(socket 7 插脚) 等等的 CPU 都算是这个等级；</td></tr>
+<tr><td align="center"><span class="text_import2">i686</span></td>
+	<td>在 pentun II 以后的 Intel 系列 CPU ，及 K7 以后等级的 CPU 都属於这个 686 等级！
+	由於目前市面上几乎仅剩 P-II 以后等级的硬件平台，因此很多 distributions 都直接释出这种等级的 RPM 文件。</td></tr>
+<tr><td align="center"><span class="text_import2">x86_64</span></td>
+	<td>针对 64 位的 CPU 进行最佳化编译配置，包括 Intel 的 Core 2 以上等级 CPU ，以及 AMD 的 Athlon64
+	以后等级的 CPU ，都属於这一类型的硬件平台。</td></tr>
+<tr><td align="center"><span class="text_import2">noarch</span></td>
+	<td>就是没有任何硬件等级上的限制。一般来说，这种类型的 RPM 文件，里面应该没有 binary program 存在，
+	较常出现的就是属於 shell script 方面的软件。</td></tr>
+</tbody></table><br>
+
+		受惠於目前 x86 系统的支持方面，新的 CPU 都能够运行旧型 CPU 所支持的软件，也就是说硬件方面都可以向下兼容的，
+		因此<span class="text_import2">最低等级的 i386 软件可以安装在所有的 x86 硬件平台上面</span>，不论是 32 
+		位还是 64 位。但是反过来说就不行了。举例来说，目前硬件大多是 64 位的等级，因此你可以在该硬件上面安装
+		x86_64 或 i386 等级的 RPM 软件。但在你的旧型主机，例如 P-III/P-4 32 位机器上面，就不能够安装 x86_64 的软件！
+		</li>
+		</ul>
+
+		<p>根据上面的说明，其实我们只要选择 i386 版本来安装在你的 x86 硬件上面就肯定没问题。但是如果强调效能的话，
+		还是选择搭配你的硬件的 RPM 文件吧！毕竟该软件才有针对你的 CPU 硬件平台进行过参数最佳化的编译嘛！</p>
+	</div>
+
+	<hr><a name="intro_advance"></a><img src="../images/logo.png" alt="小标题的图示" width="24" align="middle" height="23"><span class="text_h2">RPM 的优点</span>
+	<div class="block2">
+		<p>由於 RPM 是透过预先编译并打包成为 RPM 文件格式后，再加以安装的一种方式，并且还能够进行数据库的记载。
+		所以 RPM 有以下的优点：</p>
+
+		<ul class="text_import2">
+		<li>RPM 内含已经编译过的程序与配置档等数据，可以让使用者免除重新编译的困扰；</li>
+		<li>RPM 在被安装之前，会先检查系统的硬盘容量、操作系统版本等，可避免文件被错误安装；</li>
+		<li>RPM 文件本身提供软件版本资讯、相依属性软件名称、软件用途说明、软件所含文件等资讯，便於了解软件；</li>
+		<li>RPM 管理的方式使用数据库记录 RPM 文件的相关参数，便於升级、移除、查询与验证。</li>
+		</ul>
+
+		<p>为什么 RPM 在使用上很方便呢？我们前面提过， RPM 这个软件管理员所处理的软件，是由软件提供者在特定的
+		Linux 作业平台上面将该软件编译完成并且打包好。那使用者只要拿到这个打包好的软件，
+		然后将里头的文件放置到应该要摆放的目录，不就完成安装罗？对啦！就是这样！</p>
+
+		<p>但是有没有想过，我们在前一章里面提过的，有些软件是有相关性的，例如要安装网络卡驱动程序，就得要有 
+		kernel source 与 gcc 及 make 
+		等软件。那么我们的 RPM 软件是否一定可以安装完成呢？如果该软件安装之后，却找不到他相关的前驱软件，
+		那不是挺麻烦的吗？因为安装好的软件也无法使用啊！</p>
+
+		<p>为了解决这种具有相关性的软件之间的问题 (就是所谓的软件相依属性)，RPM 
+		就在提供打包的软件时，同时加入一些信息登录的功能，这些信息包括软件的版本、
+		打包软件者、相依属性的其他软件、本软件的功能说明、本软件的所有文件记录等等，然后在
+		Linux 系统上面亦创建一个 RPM 软件数据库，如此一来，当你要安装某个以
+		RPM 型态提供的软件时，在安装的过程中， RPM 会去检验一下数据库里面是否已经存在相关的软件了，
+		如果数据库显示不存在，那么这个 RPM 文件『默认』就不能安装。呵呵！没有错，这个就是 RPM 
+		类型的文件最为人所诟病的『<span class="text_import2">软件的属性相依</span>』问题啦！</p>
+	</div>
+
+	<hr><a name="intro_solution"></a><img src="../images/logo.png" alt="小标题的图示" width="24" align="middle" height="23"><span class="text_h2">RPM
+	属性相依的克服方式： YUM 线上升级</span>
+	<div class="block2">
+		<p>为了重复利用既有的软件功能，因此很多软件都会以函式库的方式释出部分功能，以方便其他软件的呼叫应用，
+		例如 PAM 模块的验证功能。此外，为了节省使用者的数据量，目前的 distributions 在释出软件时，
+		都会将软件的内容分为一般使用与开发使用 (development) 两大类。所以你才会常常看到有类似
+		pam-x.x.rpm 与 pam-devel-x.x.rpm 之类的档名啊！而默认情况下，大部分的 software-devel-x.x.rpm
+		都不会安装，因为终端用户大部分不会去开发软件嘛！</p>
+
+		<p>因为有上述的现象，因此 RPM 软件文件就会有所谓的属性相依的问题产生 (其实所有的软件管理几乎都有这方面的情况存在)。
+		那有没有办法解决啊？前面不是谈到 RPM 软件文件内部会记录相依属性的数据吗？那想一想，要是我将这些相依属性的软件先列表，
+		在有要安装软件需求的时候，先到这个列表去找，同时与系统内已安装的软件相比较，没安装到的相依软件就一口气同时安装起来，
+		那不就解决了相依属性的问题了吗？有没有这种机制啊？有啊！那就是 YUM 机制的由来！</p>
+
+		<p>CentOS 先将释出的软件放置到 YUM 服务器内，然后分析这些软件的相依属性问题，将软件内的记录资讯写下来 (header)。
+		然后再将这些资讯分析后记录成软件相关性的清单列表。这些列表数据与软件所在的位置可以称呼为容器 (repository)。
+		当用户端有软件安装的需求时，用户端主机会主动的向网络上面的 yum 服务器的容器网址下载清单列表，
+		然后透过清单列表的数据与本机 RPM 数据库已存在的软件数据相比较，就能够一口气安装所有需要的具有相依属性的软件了。
+		整个流程可以简单的如下图说明：</p>
+
+		<a name="fig1.5.1"></a>
+		<center><img src="0520rpm_and_srpm_files/yum-01.gif" alt="YUM 使用的流程示意图" title="YUM 使用的流程示意图" border="1"><br>
+		图 1.5.1、YUM 使用的流程示意图<br></center>
+
+		<p>当用户端有升级、安装的需求时， yum 会向容器要求清单的升级，等到清单升级到本机的 /var/cache/yum 里面后，
+		等一下升级时就会用这个本机清单与本机的 RPM 数据库进行比较，这样就知道该下载什么软件。接下来 yum 会跑到容器服务器 
+		(yum server) 下载所需要的软件，然后再透过 RPM 的机制开始安装软件啦！这就是整个流程！
+		谈到最后，还是需要动到 RPM 的啦！所以下个小节就让我们来谈谈 RPM 这咚咚吧！</p>
+
+		<div style="padding: 10pt 0pt;" align="right"><table width="90%"><tbody><tr><td><b>Tips:</b><br><span style="color: rgb(0, 144, 0);"><font size="-1">		为什么要做出『容器』呢？由於 yum 服务器提供的 RPM 文件内容可能有所差异，举例来说，原厂释出的数据有 
+		(1)原版数据； (2)升级数据 (update)； (3)特殊数据 (例如第三方协力软件，或某些特殊功能的软件)。
+		这些软件文件基本上不会放置到一起，那如何分辨这些软件功能呢？就用『容器』的概念来处理的啦！
+		不同的『容器』网址，可以放置不同的软件功能之意！
+		</font></span></td><td><img src="0520rpm_and_srpm_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div>	</div>
+</div>
+
+
+<hr><a name="rpmmanager"></a><img src="../images/logo.png" alt="大标题的图示" width="35" align="middle" height="34"><span class="text_h1">RPM 软件管理程序： rpm</span>
+<div class="block1">
+	<p>RPM 的使用其实不难，只要使用 rpm 这个命令即可！鸟哥最喜欢的就是
+	rpm 命令的查询功能了，可以让我很轻易的就知道某个系统有没有安装鸟哥要的软件呢！此外，
+	我们最好还是得要知道一下，到底 RPM 类型的文件他们是将软件的相关文件放置在哪里呢？还有，我们说的那个 RPM
+	的数据库又是放置在哪里呢？<br><br></p>
+
+	<hr><a name="rpmmanager_dir"></a><img src="../images/logo.png" alt="小标题的图示" width="24" align="middle" height="23"><span class="text_h2">RPM 默认安装的路径</span>
+	<div class="block2">
+		<p>一般来说，RPM 类型的文件在安装的时候，会先去读取文件内记载的配置参数内容，然后将该数据用来比对
+		Linux 系统的环境，以找出是否有属性相依的软件尚未安装的问题。例如 Openssh 这个连线软件需要透过
+		Openssl 这个加密软件的帮忙，所以得先安装 openssl 才能装 openssh 的意思。那你的环境如果没有 openssl ，
+		你就无法安装 openssh 的意思啦。</p>
+
+		<p>若环境检查合格了，那么 RPM 文件就开始被安装到你的 Linux 系统上。安装完毕后，该软件相关的资讯就会被写入
+		<span class="text_import2">/var/lib/rpm/</span> 目录下的数据库文件中了。
+		上面这个目录内的数据很重要喔！因为未来如果我们有任何软件升级的需求，版本之间的比较就是来自於这个数据库，
+		而如果你想要查询系统已经安装的软件，也是从这里查询的！同时，目前的 RPM 也提供数码签章资讯，
+		这些数码签章也是在这个目录内记录的呢！所以说，这个目录得要注意不要被删除了啊！</p>
+
+		<p>那么软件内的文件到底是放置到哪里去啊？当然与文件系统有关对吧！我们在<a href="http://vbird.dic.ksu.edu.tw/linux_basic/0210filepermission.php#dir">第六章的目录配置</a>谈过每个目录的意义，
+		这里再次的强调罗：</p>
+
+
+<table bgcolor="lightyellow" border="1" cellpadding="3" cellspacing="0" width="95%">
+<tbody><tr><td style="font-family: '细明体'; color: rgb(0, 0, 102);" width="120">/etc</td>
+	<td style="font-family: '细明体'; color: rgb(0, 0, 102);">一些配置档放置的目录，例如 /etc/crontab</td></tr>
+<tr><td style="font-family: '细明体'; color: rgb(0, 0, 102);">/usr/bin</td>
+	<td style="font-family: '细明体'; color: rgb(0, 0, 102);">一些可运行文件</td></tr>
+<tr><td style="font-family: '细明体'; color: rgb(0, 0, 102);">/usr/lib</td>
+	<td style="font-family: '细明体'; color: rgb(0, 0, 102);">一些程序使用的动态函式库</td></tr>
+<tr><td style="font-family: '细明体'; color: rgb(0, 0, 102);">/usr/share/doc</td>
+	<td style="font-family: '细明体'; color: rgb(0, 0, 102);">一些基本的软件使用手册与说明档</td></tr>
+<tr><td style="font-family: '细明体'; color: rgb(0, 0, 102);">/usr/share/man</td>
+	<td style="font-family: '细明体'; color: rgb(0, 0, 102);">一些 man page 文件</td></tr>
+</tbody></table>
+
+		<p>好了，底下我们就来针对每个 RPM 的相关命令来进行说明罗！</p>
+	</div>
+
+	<hr><a name="rpmmanager_install"></a><img src="../images/logo.png" alt="小标题的图示" width="24" align="middle" height="23"><span class="text_h2">RPM 安装 (install)</span>
+	<div class="block2">
+		<p>因为安装软件是 root 的工作，因此你得要是 root 的身份才能够操作 rpm 这命令的。
+		用 rpm 来安装很简单啦！假设我要安装一个档名为 rp-pppoe-3.5-32.1.i386.rpm 的文件，那么我可以这样：</p>
+
+<table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">rpm -i rp-pppoe-3.5-32.1.i386.rpm</span>
+</pre></td></tr></tbody></table>
+
+		<p>不过，这样的参数其实无法显示安装的进度，所以，通常我们会这样下达安装命令：</p>
+
+<table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">rpm -ivh package_name</span>
+<span class="term_say">选项与参数：
+-i ：install 的意思
+-v ：察看更细部的安装资讯画面
+-h ：以安装资讯列显示安装进度</span>
+
+<span class="term_hd">范例一：安装 rp-pppoe-3.5-32.1.i386.rpm</span>
+[root@www ~]# <span class="term_command">rpm -ivh rp-pppoe-3.5-32.1.i386.rpm</span>
+Preparing...     ####################################### [100%]
+   1:rp-pppoe    ####################################### [100%] 
+
+<span class="term_hd">范例二、一口气安装两个以上的软件时：</span>
+[root@www ~]# <span class="term_command">rpm -ivh a.i386.rpm b.i386.rpm *.rpm</span>
+<span class="term_say"># 后面直接接上许多的软件文件！</span>
+
+<span class="term_hd">范例三、直接由网络上面的某个文件安装，以网址来安装：</span>
+[root@www ~]# <span class="term_command">rpm -ivh http://website.name/path/pkgname.rpm</span>
+</pre></td></tr></tbody></table>
+
+		<p>另外，如果我们在安装的过程当中发现问题，或者已经知道会发生的问题，
+		而还是『执意』要安装这个软件时，可以使用如下的参数『强制』安装上去：</p>
+
+<table bgcolor="lightyellow" border="1" cellpadding="3" cellspacing="0" width="95%">
+<caption>rpm 安装时常用的选项与参数说明</caption>
+<tbody><tr align="center" bgcolor="#182448"><td width="130"><font color="#FFFFFF">可下达的选项</font></td><td><font color="#FFFFFF">代表意义</font></td></tr>
+<tr><td class="text_import1" style="font-family: '细明体';">--nodeps</td>
+	<td><span class="text_import2">使用时机</span>：当发生软件属性相依问题而无法安装，但你执意安装时<br>
+	<span class="text_import2">危险性</span>：
+	软件会有相依性的原因是因为彼此会使用到对方的机制或功能，如果强制安装而不考虑软件的属性相依，
+	则可能会造成该软件的无法正常使用！</td></tr>
+<tr><td class="text_import2" style="font-family: '细明体';">--replacefiles</td>
+	<td><span class="text_import2">使用时机：</span>
+	如果在安装的过程当中出现了『某个文件已经被安装在你的系统上面』的资讯，又或许出现版本不合的信息 (confilcting files) 
+	时，可以使用这个参数来直接覆盖文件。<br>
+	<span class="text_import2">危险性：</span>
+	覆盖的动作是无法复原的！所以，你必须要很清楚的知道被覆盖的文件是真的可以被覆盖喔！否则会欲哭无泪！</td></tr>
+<tr><td class="text_import2" style="font-family: '细明体';">--replacepkgs</td>
+	<td><span class="text_import2">使用时机：</span>
+	重新安装某个已经安装过的软件！如果你要安装一堆 RPM 软件文件时，可以使用 rpm -ivh *.rpm ，但若某些软件已经安装过了，
+	此时系统会出现『某软件已安装』的资讯，导致无法继续安装。此时可使用这个选项来重复安装喔！</td></tr>
+<tr><td class="text_import2" style="font-family: '细明体';">--force</td>
+	<td><span class="text_import2">使用时机：</span>这个参数其实就是 --replacefiles 与 --replacepkgs 的综合体！</td></tr>
+<tr><td class="text_import2" style="font-family: '细明体';">--test</td>
+	<td><span class="text_import2">使用时机：</span>
+	想要测试一下该软件是否可以被安装到使用者的 Linux 环境当中，可找出是否有属性相依的问题。范例为：<br>
+	<span class="text_import2"><font face="细明体">rpm -ivh pkgname.i386.rpm --test</font></span></td></tr>
+<tr><td class="text_import2" style="font-family: '细明体';">--justdb</td>
+	<td><span class="text_import2">使用时机：</span>
+	由於 RPM 数据库破损或者是某些缘故产生错误时，可使用这个选项来升级软件在数据库内的相关资讯。</td></tr>
+<tr><td class="text_import2" style="font-family: '细明体';">--nosignature</td>
+	<td><span class="text_import2">使用时机：</span>
+	想要略过数码签章的检查时，可以使用这个选项。</td></tr>
+<tr><td class="text_import2" style="font-family: '细明体';">--prefix 新路径</td>
+	<td><span class="text_import2"><font face="细明体">使用时机：</font></span>
+	要将软件安装到其他非正规目录时。举例来说，你想要将某软件安装到 /usr/local 而非正规的 /bin, /etc 等目录，
+	就可以使用『 --prefix /usr/local 』来处理了。</td></tr>
+<tr><td class="text_import2" style="font-family: '细明体';">--noscripts</td>
+	<td><span class="text_import2">使用时机：</span>不想让该软件在安装过程中自行运行某些系统命令。<br>
+	<span class="text_import2">说明：</span>
+	RPM 的优点除了可以将文件放置到定位之外，还可以自动运行一些前置作业的命令，例如数据库的初始化。
+	如果你不想要让 RPM 帮你自动运行这一类型的命令，就加上他吧！</td></tr>
+</tbody></table>
+
+		<p>一般来说，rpm 的安装选项与参数大约就是这些了。通常鸟哥建议直接使用 -ivh 就好了，
+		如果安装的过程中发现问题，一个一个去将问题找出来，尽量不要使用『
+		<span class="text_import2">暴力安装法</span> 』，就是透过 --force 去强制安装！
+		因为可能会发生很多不可预期的问题呢！除非你很清楚的知道使用上面的参数后，安装的结果是你预期的！</p>
+
+<table border="1" cellpadding="5" cellspacing="0" width="90%"><tbody><tr><td>
+例题：<div class="block2">
+在没有网络的前提下，你想要安装一个名为 pam-devel 的软件，你手边只有原版光盘，该如何是好？
+</div>
+答：<div class="block2">
+你可以透过挂载原版光盘来进行数据的查询与安装。请将原版光盘放入光驱，底下我们尝试将光盘挂载到 /media 当中，
+并据以处理软件的下载罗：
+<ul style="font-family: '细明体';">
+	<li>挂载光盘，使用： mount /dev/cdrom /media</li>
+	<li>找出文件的实际路径：find /media -name 'pam-devel*' </li>
+	<li>测试此软件是否具有相依性： rpm -ivh pam-devel... --test</li>
+	<li>直接安装： rpm -ivh pam-devel...</li>
+	<li>卸载光盘： umount /dev/cdrom</li>
+</ul>
+在鸟哥的系统中，刚好这个软件并没有属性相依的问题，因此最后一个步骤可以顺利的进行下去呢！
+</div>
+</td></tr></tbody></table><br>
+
+	</div>
+
+	<hr><a name="rpmmanager_update"></a><img src="../images/logo.png" alt="小标题的图示" width="24" align="middle" height="23"><span class="text_h2">RPM 升级与升级 (upgrade/freshen)</span>
+	<div class="block2">
+		<p>使用 RPM 来升级真是太简单了！就以 -Uvh 或 -Fvh 来升级即可，而 -Uvh 与 -Fvh 可以用的选项与参数，跟 install
+		是一样的。不过， -U 与 -F 的意义还是不太一样的，基本的差别是这样的：</p> 
+
+<table bgcolor="lightyellow" border="1" cellpadding="3" cellspacing="0" width="95%">
+<tbody><tr><td style="font-family: '细明体'; color: rgb(0, 0, 102);" align="center" width="50">-Uvh</td>
+	<td style="font-family: '细明体';">后面接的软件即使没有安装过，则系统将予以直接安装；
+	若后面接的软件有安装过旧版，则系统自动升级至新版；</td></tr>
+<tr><td style="font-family: '细明体'; color: rgb(0, 0, 102);" align="center">-Fvh</td>
+	<td style="font-family: '细明体';">如果后面接的软件并未安装到你的 Linux 系统上，则该软件不会被安装；亦即只有已安装至你
+	Linux 系统内的软件会被『升级』！</td></tr>
+</tbody></table><br>
+
+		<p>由上面的说明来看，如果你想要大量的升级系统旧版本的软件时，使用 -Fvh 
+		则是比较好的作法，因为没有安装的软件才不会被不小心安装进系统中。但是需要注意的是，如果你使用的是 -Fvh 
+		，偏偏你的机器上尚无这一个软件，那么很抱歉，该软件并不会被安装在你的 Linux 主机上面，所以请重新以 ivh 
+		来安装吧！</p>
+
+		<p>通常有的朋友在进行整个操作系统的旧版软件修补时，喜欢这么进行：</p>
+
+		<ol class="text_import2">
+		<li>先到各发展商的 errata 网站或者是国内的 FTP 映像站捉下来最新的 RPM 文件；</li>
+		<li>使用 -Fvh 来将你的系统内曾安装过的软件进行修补与升级！(真是方便呀！)</li>
+		</ol>
+
+		<p>所以，在不晓得 yum 功能的情况下，你依旧可以到 CentOS 的映设站台下载 updates 数据，然后利用上述的方法来一口气升级！
+		当然罗，升级也是可以利用 <span class="text_import2">--nodeps/--force</span> 等等的参数啦！</p>
+	</div>
+
+	<hr><a name="rpmmanager_query"></a><img src="../images/logo.png" alt="小标题的图示" width="24" align="middle" height="23"><span class="text_h2">RPM 查询 (query)</span>
+	<div class="block2">
+		<p>RPM 在查询的时候，其实查询的地方是在 <span class="text_import2">/var/lib/rpm/</span>
+		这个目录下的数据库文件啦！另外， RPM 也可以查询未安装的 RPM 文件内的资讯喔！那如何去查询呢？
+		我们先来谈谈可用的选项有哪些？</p>
+
+<table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">rpm -qa                            </span>  <span class="term_note">&lt;==已安装软件</span>
+[root@www ~]# <span class="term_command">rpm -q[licdR] 已安装的软件名称     </span>  <span class="term_note">&lt;==已安装软件</span>
+[root@www ~]# <span class="term_command">rpm -qf 存在於系统上面的某个档名   </span>  <span class="term_note">&lt;==已安装软件</span>
+[root@www ~]# <span class="term_command">rpm -qp[licdR] 未安装的某个文件名称</span>  <span class="term_note">&lt;==查阅RPM文件</span>
+<span class="term_say">选项与参数：
+查询已安装软件的资讯：
+-q  ：仅查询，后面接的软件名称是否有安装；
+-qa ：列出所有的，已经安装在本机 Linux 系统上面的所有软件名称；
+-qi ：列出该软件的详细资讯 (information)，包含开发商、版本与说明等；
+-ql ：列出该软件所有的文件与目录所在完整档名 (list)；
+-qc ：列出该软件的所有配置档 (找出在 /etc/ 底下的档名而已)
+-qd ：列出该软件的所有说明档 (找出与 man 有关的文件而已)
+-qR ：列出与该软件有关的相依软件所含的文件 (Required 的意思)
+-qf ：由后面接的文件名称，找出该文件属於哪一个已安装的软件；
+查询某个 RPM 文件内含有的资讯：
+-qp[icdlR]：注意 -qp 后面接的所有参数以上面的说明一致。但用途仅在於找出
+	    某个 RPM 文件内的资讯，而非已安装的软件资讯！注意！</span>
+</pre></td></tr></tbody></table>
+
+		<p>在查询的部分，所有的参数之前都需要加上 -q 才是所谓的查询！查询主要分为两部分，
+		一个是查已安装到系统上面的的软件资讯，这部份的资讯都是由 /var/lib/rpm/ 所提供。另一个则是查某个 rpm 文件内容，
+		等於是由 RPM 文件内找出一些要写入数据库内的资讯就是了，这部份就得要使用 -qp (p 是 package 的意思)。
+		那就来看看几个简单的范例吧！</p>
+
+<table class="term"><tbody><tr><td class="term"><pre><span class="term_hd">范例一：找出你的 Linux 是否有安装 logrotate 这个软件？</span>
+[root@www ~]# <span class="term_command">rpm -q logrotate</span>
+logrotate-3.7.4-8
+[root@www ~]# <span class="term_command">rpm -q logrotating</span>
+package logrotating is not installed
+<span class="term_say"># 注意到，系统会去找是否有安装后面接的软件名称。注意，
+# 不必要加上版本喔！至於显示的结果，一看就知道有没有安装啦！</span>
+
+<span class="term_hd">范例二：列出上题当中，属於该软件所提供的所有目录与文件：</span>
+[root@www ~]# <span class="term_command">rpm -ql logrotate</span>
+/etc/cron.daily/logrotate
+/etc/logrotate.conf
+<span class="term_say">....(以下省略)....</span>
+<span class="term_say"># 可以看出该软件到底提供了多少的文件与目录，也可以追踪软件的数据。</span>
+
+<span class="term_hd">范例三：列出 logrotate 这个软件的相关说明数据：</span>
+[root@www ~]# <span class="term_command">rpm -qi logrotate</span>
+Name        : logrotate             Relocations: (not relocatable)
+Version     : 3.7.4                      Vendor: CentOS
+Release     : 8                      Build Date: Sun 02 Dec 2007 08:38:06 AM CST
+Install Date: Sat 09 May 2009 11:59:05 PM CST    Build Host: builder6
+Group       : System Environment/Base  Source RPM: logrotate-3.7.4-8.src.rpm
+Size        : 53618                     License: GPL
+Signature   : DSA/SHA1, Sun 02 Dec 2007 09:10:01 AM CST, Key ID a8a447dce8562897
+Summary     : Rotates, compresses, removes and mails system log files.
+Description :
+The logrotate utility is designed to simplify the administration of
+log files on a system which generates a lot of log files.  Logrotate
+allows for the automatic rotation compression, removal and mailing of
+log files.  Logrotate can be set to handle a log file daily, weekly,
+monthly or when the log file gets to a certain size.  Normally,
+logrotate runs as a daily cron job.
+
+Install the logrotate package if you need a utility to deal with the
+log files on your system.
+<span class="term_say"># 列出该软件的 information (资讯)，里面的资讯可多著呢，包括了软件名称、
+# 版本、开发商、SRPM文件名称、打包次数、简单说明资讯、软件打包者、
+# 安装日期等等！如果想要详细的知道该软件的数据，用这个参数来了解一下</span>
+
+<span class="term_hd">范例四：分别仅找出 logrotate 的配置档与说明档</span>
+[root@www ~]# <span class="term_command">rpm -qc logrotate</span>
+[root@www ~]# <span class="term_command">rpm -qd logrotate</span>
+
+<span class="term_hd">范例五：若要成功安装 logrotate ，他还需要什么文件的帮忙？</span>
+[root@www ~]# <span class="term_command">rpm -qR logrotate</span>
+/bin/sh
+config(logrotate) = 3.7.4-8
+libc.so.6
+<span class="term_say">....(以下省略)....
+# 由这里看起来，呵呵～还需要很多文件的支持才行喔！</span>
+
+<span class="term_hd">范例六：由上面的范例五，找出 /bin/sh 是那个软件提供的？</span>
+[root@www ~]# <span class="term_command">rpm -qf /bin/sh</span>
+bash-3.2-21.el5
+<span class="term_say"># 这个参数后面接的可是『文件』呐！不像前面都是接软件喔！
+# 这个功能在查询系统的某个文件属於哪一个软件所有的。</span>
+
+<span class="term_hd">范例七：假设我有下载一个 RPM 文件，想要知道该文件的需求文件，该如何？</span>
+[root@www ~]# <span class="term_command">rpm -qpR filename.i386.rpm</span>
+<span class="term_say"># 加上 -qpR ，找出该文件需求的数据！</span>
+</pre></td></tr></tbody></table>
+
+		<p>常见的查询就是这些了！要特别说明的是，在查询本机上面的 RPM 软件相关资讯时，
+		不需要加上版本的名称，只要加上软件名称即可！因为他会由 /var/lib/rpm 这个数据库里面去查询，
+		所以我们可以不需要加上版本名称。但是查询某个 RPM 文件就不同了，我们必须要列出整个文件的完整档名才行～
+		这一点朋友们常常会搞错。底下我们就来做几个简单的练习吧！</p>
+
+<table border="1" cellpadding="5" cellspacing="0" width="90%"><tbody><tr><td>
+例题：<ol>
+<li>我想要知道我的系统当中，以 c 开头的软件有几个，如何实做？</li>
+<li>我的 WWW 服务器为 Apache ，我知道他使用的 RPM 软件档名为 httpd 。现在，我想要知道这个软件的所有配置档放置在何处，可以怎么作？</li>
+<li>承上题，如果查出来的配置文件已经被我改过，但是我忘记了曾经修改过哪些地方，所以想要直接重新安装一次该软件，该如何作？</li>
+<li>如果我误砍了某个重要文件，例如 /etc/crontab，偏偏不晓得他属於哪一个软件，该怎么办？</li>
+</ol>
+答：<ol class="text_import2" style="font-family: '细明体';">
+<li>rpm -qa | grep ^c | wc -l</li>
+<li>rpm -qc httpd</li>
+<li>假设该软件在网络上的网址为：<br>http://web.site.name/path/httpd-x.x.xx.i386.rpm<br>
+则我可以这样做：<br>
+rpm -ivh http://web.site.name/path/httpd-x.x.xx.i386.rpm --replacepkgs</li>
+<li>虽然已经没有这个文件了，不过没有关系，因为 RPM 有记录在 /var/lib/rpm 当中的数据库啊！所以直接下达：<br>
+rpm -qf /etc/crontab<br>
+就可以知道是那个软件罗！重新安装一次该软件即可！</li>
+</ol>
+</td></tr></tbody></table><br>
+
+	</div>
+
+	<hr><a name="rpmmanager_verify"></a><img src="../images/logo.png" alt="小标题的图示" width="24" align="middle" height="23"><span class="text_h2">RPM 验证与数码签章
+	(Verify/signature)</span>
+	<div class="block2">
+		<p>验证 (Verify) 的功能主要在於提供系统管理员一个有用的管理机制！作用的方式是『<span class="text_import2">使用 
+		/var/lib/rpm 底下的数据库内容来比对目前 Linux 
+		系统的环境下的所有软件文件</span> 』也就是说，当你有数据不小心遗失，
+		或者是因为你误杀了某个软件的文件，或者是不小心不知道修改到某一个软件的文件内容，
+		就用这个简单的方法来验证一下原本的文件系统吧！好让你了解这一阵子到底是修改到哪些文件数据了！验证的方式很简单：</p>
+
+<table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">rpm -Va</span>
+[root@www ~]# <span class="term_command">rpm -V  已安装的软件名称</span>
+[root@www ~]# <span class="term_command">rpm -Vp 某个 RPM 文件的档名</span>
+[root@www ~]# <span class="term_command">rpm -Vf 在系统上面的某个文件</span>
+<span class="term_say">选项与参数：
+-V  ：后面加的是软件名称，若该软件所含的文件被更动过，才会列出来；
+-Va ：列出目前系统上面所有可能被更动过的文件；
+-Vp ：后面加的是文件名称，列出该软件内可能被更动过的文件；
+-Vf ：列出某个文件是否被更动过～</span>
+
+<span class="term_hd">范例一：列出你的 Linux 内的 logrotate 这个软件是否被更动过？</span>
+[root@www ~]# <span class="term_command">rpm -V logrotate</span>
+<span class="term_say"># 如果没有出现任何信息，恭喜你，该软件所提供的文件没有被更动过。
+# 如果有出现任何信息，才是有出现状况啊！</span>
+
+<span class="term_hd">范例二：查询一下，你的 /etc/crontab 是否有被更动过？</span>
+[root@www ~]# <span class="term_command">rpm -Vf /etc/crontab</span>
+S.5....T  c /etc/crontab
+<span class="term_say"># 瞧！因为有被更动过，所以会列出被更动过的资讯类型！</span>
+</pre></td></tr></tbody></table>
+
+		<p>好了，那么我怎么知道到底我的文件被更动过的内容是什么？例如上面的范例二。呵呵！简单的说明一下吧！
+		例如，我们检查一下 logrotate 这个软件：</p>
+
+<table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">rpm -ql logrotate</span>
+/etc/cron.daily/logrotate
+/etc/logrotate.conf
+/etc/logrotate.d
+/usr/sbin/logrotate
+/usr/share/doc/logrotate-3.7.4
+/usr/share/doc/logrotate-3.7.4/CHANGES
+/usr/share/man/man8/logrotate.8.gz
+/var/lib/logrotate.status
+<span class="term_say"># 呵呵！共有八个文件啊！请修改 /etc/logrotate.conf 内的 rotate 变成 5</span>
+
+[root@www ~]# <span class="term_command">rpm -V logrotate</span>
+..5....T  c /etc/logrotate.conf
+</pre></td></tr></tbody></table>
+
+		<p>你会发现在档名之前有个 c ，然后就是一堆奇怪的文字了。那个 c 代表的是 configuration ，
+		就是配置档的意思。至於最前面的八个资讯是：</p>
+
+		<ul class="text_import2" style="font-family: '细明体';">
+		<li>S ：(file Size differs) 文件的容量大小是否被改变</li>
+		<li>M ：(Mode differs) 文件的类型或文件的属性 (rwx) 是否被改变？如是否可运行等参数已被改变</li>
+		<li>5 ：(MD5 sum differs) MD5 这一种指纹码的内容已经不同</li>
+		<li>D ：(Device major/minor number mis-match) 装置的主/次代码已经改变</li>
+		<li>L ：(readLink(2) path mis-match) Link 路径已被改变</li>
+		<li>U ：(User ownership differs) 文件的所属人已被改变</li>
+		<li>G ：(Group ownership differs) 文件的所属群组已被改变</li>
+		<li>T ：(mTime differs) 文件的创建时间已被改变</li>
+		</ul>
+
+		<p>所以，如果当一个配置档所有的资讯都被更动过，那么他的显示就会是：</p>
+
+<table class="term"><tbody><tr><td class="term"><pre>SM5DLUGT c filename
+</pre></td></tr></tbody></table>
+
+		<p>至於那个 c 代表的是『 Config file 』的意思，也就是文件的类型，文件类型有底下这几类：</p>
+
+		<ul class="text_import2" style="font-family: '细明体';">
+		<li>c ：配置档 (config file)</li>
+		<li>d ：文件数据档 (documentation)</li>
+		<li>g ：鬼文件～通常是该文件不被某个软件所包含，较少发生！(ghost file)</li>
+		<li>l ：授权文件 (license file)</li>
+		<li>r ：读我文件 (read me)</li>
+		</ul>
+
+		<p>经过验证的功能，你就可以知道那个文件被更动过。那么如果该文件的变更是『预期中的』，
+		那么就没有什么大问题，但是如果该文件是『非预期的』，那么是否被入侵了呢？呵呵！得注意注意罗！
+		一般来说，配置档 (configure) 被更动过是很正常的，万一你的 binary program 被更动过呢？
+		那就得要特别特别小心啊！</p>
+
+		<div style="padding: 10pt 0pt;" align="right"><table width="90%"><tbody><tr><td><b>Tips:</b><br><span style="color: rgb(0, 144, 0);"><font size="-1">		虽说家丑不可外扬，不过有件事情还是跟大家分享一下的好。鸟哥之前的主机曾经由於安装一套软件，导致被攻击成为跳板。
+		会发现的原因是系统中只要出现 *.patch 的扩展名时，使用 ls -l 就是显示不出来该档名 (该档名确实存在)。
+		找了好久，用了好多工具都找不出问题，最终利用 rpm -Va 找出来，原来好多 binary program 被更动过，连 init 
+		都被恶搞！此时，赶紧重新安装 Linux 并移除那套软件，之后就比较正常了。所以说，这个 rpm -Va 是个好功能喔！
+		</font></span></td><td><img src="0520rpm_and_srpm_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div>
+		<hr><ul class="list1"><li class="text_import1">数码签章 (digital signature)</li></ul>
+
+		<p>谈完了软件的验证后，不知道你有没有发现一个问题，那就是，验证只能验证软件内的资讯与 /var/lib/rpm/
+		里面的数据库资讯而已，如果该软件文件所提供的数据本身就有问题，那你使用验证的手段也无法确定该软件的正确性啊！
+		那如何解决呢？在 Tarball 与文件的验证方面，我们可以使用前一章谈到的 md5 指纹码来检查，
+		不过，连指纹码也可能会被窜改的嘛！那怎办？没关系，我们可以透过数码签章来检验软件的来源的！</p>
+
+		<p>就像你自己的签名一样，我们的软件开发商原厂所推出的软件也会有一个厂商自己的签章系统！
+		只是这个签章被数码化了而已。厂商可以数码签章系统产生一个专属於该软件的签章，并将该签章的公钥 (public key) 释出。
+		当你要安装一个 RPM 文件时：</p>
+		<ol class="text_import2">
+		<li>首先你必须要先安装原厂释出的公钥文件；</li>
+		<li>实际安装原厂的 RPM 软件时， rpm 命令会去读取 RPM 文件的签章资讯，与本机系统内的签章资讯比对，</li>
+		<li>若签章相同则予以安装，若找不到相关的签章资讯时，则给予警告并且停止安装喔。</li>
+		</ol>
+
+		<p>我们 CentOS 使用的数码签章系统为 GNU 计画的 GnuPG (GNU Privacy Guard, GPG)(<a href="#ps1">注1</a>)。
+		GPG 可以透过杂凑运算，算出独一无二的专属金钥系统或者是数码签章系统，有兴趣的朋友可以参考文末的延伸阅读，
+		去了解一下 GPG 加密的机制喔！这里我们仅简单的说明数码签章在 RPM 文件上的应用而已。
+		而根据上面的说明，我们也会知道首先必须要安装原厂释出的 GPG 数码签章的公钥文件啊！CentOS 的数码签章位於：</p>
+
+<table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">ll /etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-5</span>
+-rw-r--r-- 1 root root 1504  6月 19  2008 /etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-5
+[root@www ~]# <span class="term_command">cat /etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-5</span>
+-----BEGIN PGP PUBLIC KEY BLOCK-----
+Version: GnuPG v1.2.6 (GNU/Linux)
+
+mQGiBEWfB6MRBACrnYW6yKMT+MwJlCIhoyTxGf3mAxmnAiDEy6HcYN8rivssVTJk
+<span class="term_say">....(中间省略)....</span>
+-----END PGP PUBLIC KEY BLOCK-----
+</pre></td></tr></tbody></table>
+
+		<p>从上面的输出，你会知道该数码签章码其实仅是一个乱数而已，这个乱数对於数码签章有意义而已，
+		我们看不懂啦！那么这个文件如何安装呢？透过底下的方式来安装即可喔！</p>
+
+<table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-5</span>
+</pre></td></tr></tbody></table>
+
+		<p>由於不同版本 GPG 金钥文件放置的位置可能不同，不过档名大多是以 GPG-KEY 来说明的，
+		因此你可以简单的使用 locate 或 find 来找寻，如以下的方式来搜寻即可：</p>
+
+<table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">locate GPG-KEY</span>
+[root@www ~]# <span class="term_command">find /etc -name '*GPG-KEY*'</span>
+</pre></td></tr></tbody></table>
+
+		<p>那安装完成之后，这个金钥的内容会以什么方式呈现呢？基本上都是使用 pubkey 作为软件的名称的！
+		那我们先列出金钥软件名称后，再以 -qi 的方式来查询看看该软件的资讯为何：</p>
+
+<table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">rpm -qa | grep pubkey</span>
+gpg-pubkey-e8562897-459f07a4
+[root@www ~]# <span class="term_command">rpm -qi gpg-pubkey-e8562897-459f07a4</span>
+Name        : gpg-pubkey        Relocations: (not relocatable)
+Version     : e8562897               Vendor: (none)
+Release     : 459f07a4           Build Date: Wed 27 May 2009 10:07:26 PM CST
+Install Date: Wed 27 May 2009 10:07:26 PM CST   Build Host: localhost
+Group       : Public Keys        Source RPM: (none)
+Size        : 0                     License: pubkey
+Signature   : (none)
+Summary     : gpg(CentOS-5 Key &lt;centos-5-key@centos.org&gt;)
+Description :
+-----BEGIN PGP PUBLIC KEY BLOCK-----
+Version: rpm-4.4.2 (beecrypt-4.1.2)
+<span class="term_say">....(底下省略)....</span>
+</pre></td></tr></tbody></table>
+
+		<p>重点就是最后面出现的那一串乱码啦！那可是作为数码签章非常重要的一环哩！
+		如果你忘记加上数码签章，很可能很多原版软件就不能让你安装罗～除非你利用 rpm 时选择略过数码签章的选项。</p>
+	</div>
+
+	<hr><a name="rpmmanager_rebuild"></a><img src="../images/logo.png" alt="小标题的图示" width="24" align="middle" height="23"><span class="text_h2">RPM 反安装与重建数据库
+	(erase/rebuilddb)</span>
+	<div class="block2">
+		<p>反安装就是将软件卸载啦！要注意的是，『解安装的过程一定要由最上一级往下解除』，以
+		rp-pppoe 为例，这一个软件主要是依据 ppp 这个软件来安装的，所以当你要解除
+		ppp 的时候，就必须要先解除 rp-pppoe 才行！否则就会发生结构上的问题啦！这个可以由建筑物来说明，
+		如果你要拆除五、六楼，那么当然要由六楼拆起，否则先拆的是第五楼时，那么上面的楼层难道会悬空？</p>
+
+		<p>移除的选项很简单，就透过 -e 即可移除。不过，很常发生软件属性相依导致无法移除某些软件的问题！
+		我们以底下的例子来说明：</p>
+
+<table class="term"><tbody><tr><td class="term"><pre><span class="term_hd"># 1. 找出与 pam 有关的软件名称，并尝试移除 pam 这个软件：</span>
+[root@www ~]# <span class="term_command">rpm -qa | grep pam</span>
+pam-devel-0.99.6.2-3.27.el5
+pam_passwdqc-1.0.2-1.2.2
+pam_pkcs11-0.5.3-23
+pam_smb-1.1.7-7.2.1
+pam-0.99.6.2-3.27.el5
+pam_ccreds-3-5
+pam_krb5-2.2.14-1
+[root@www ~]# <span class="term_command">rpm -e pam</span>
+error: Failed dependencies:  <span class="term_note">&lt;==这里提到的是相依性的问题</span>
+        libpam.so.0 is needed by (installed) coreutils-5.97-14.el5.i386
+        libpam.so.0 is needed by (installed) libuser-0.54.7-2.el5.5.i386
+<span class="term_say">....(以下省略)....</span>
+
+<span class="term_hd"># 2. 若仅移除 pam-devel 这个之前范例安装上的软件呢？</span>
+[root@www ~]# <span class="term_command">rpm -e pam-devel</span>  <span class="term_note">&lt;==不会出现任何信息！</span>
+[root@www ~]# <span class="term_command">rpm -q pam-devel</span>
+package pam-devel is not installed
+</pre></td></tr></tbody></table>
+
+		<p>从范例一我们知道 pam 所提供的函式库是让非常多其他软件使用的，因此你不能移除 pam 
+		，除非将其他相依软件一口气也全部移除！你当然也能加 --nodeps 来强制移除，
+		不过，如此一来所有会用到 pam 函式库的软件，都将成为无法运行的程序，我想，你的主机也只好准备停机休假了吧！
+		至於范例二中，由於 pam-devel 是依附於 pam 的开发工具，你可以单独安装与单独移除啦！</p>
+
+		<p>由於 RPM 文件常常会安装/移除/升级等，某些动作或许可能会导致 RPM 数据库 /var/lib/rpm/ 
+		内的文件破损。果真如此的话，那你该如何是好？别担心，我们可以使用 --rebuilddb 这个选项来重建一下数据库喔！
+		作法如下：</p>
+
+<table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">rpm --rebuilddb   <span class="term_note">&lt;==重建数据库</span></span>
+</pre></td></tr></tbody></table>
+	</div>
+</div>
+
+
+<hr><a name="srpmmanager"></a><img src="../images/logo.png" alt="大标题的图示" width="35" align="middle" height="34"><span class="text_h1">SRPM 的使用 ： rpmbuild</span>
+<div class="block1">
+	<p>谈完了 RPM 类型的软件之后，再来我们谈一谈包含了 Source code 的 SRPM 该如何使用呢？假如今天我们由网络上面下载了一个 
+	SRPM 的文件，该如何安装他？又，如果我想要修改这个 SRPM 里面原始码的相关配置值，又该如何订正与重新编译呢？
+	此外，最需要注意的是，<span class="text_import2">新版的 rpm 已经将 RPM 与 SRPM 的命令分开了，SRPM 使用的是 rpmbuild 
+	这个命令，而不是 rpm 喔</span>！如果你是 Red Hat 7.3 以前的用户，那么请使用 rpm 来替代 rpmbuild 啦！<br><br></p>
+
+	<hr><a name="srpmmanager_rebuild"></a><img src="../images/logo.png" alt="小标题的图示" width="24" align="middle" height="23"><span class="text_h2">利用默认值安装 SRPM 文件
+	(--rebuid/--recompile)</span>
+	<div class="block2">
+		<p>假设我下载了一个 SRPM 的文件，又不想要修订这个文件内的原始码与相关的配置值，
+		那么我可以直接编译并安装吗？当然可以！利用 rpmbuild 配合选项即可。选项主要有底下两个：</p>
+
+<table bgcolor="lightyellow" border="1" cellpadding="3" cellspacing="0" width="95%">
+<tbody><tr><td class="text_import2" style="font-family: '细明体';" width="100">--rebuild</td>
+	<td style="font-family: '细明体';">这个选项会将后面的 SRPM 进行『编译』与『打包』的动作，最后会产生
+	RPM 的文件，但是产生的 RPM 文件并没有安装到系统上。当你使用 --rebuild 的时候，最后通常会发现一行字体：<br>
+	<span class="text_import2">Wrote: /usr/src/redhat/RPMS/i386/pkgname.i386.rpm</span><br>
+	这个就是编译完成的 RPM 文件罗！这个文件就可以用来安装啦！安装的时候请加绝对路径来安装即可！</td></tr>
+<tr><td class="text_import2" style="font-family: '细明体';">--recompile</td>
+	<td style="font-family: '细明体';">这个动作会直接的『编译』『打包』并且『安装』罗！请注意，
+	rebuild 仅『编译并打包』而已，而 recompile 不但进行编译跟打包，还同时进行『安装』了！</td></tr>
+</tbody></table>
+
+		<p>不过，要注意的是，这两个选项都没有修改过 SRPM 内的配置值，仅是透过再次编译来产生 RPM 可安装软件文件而已。
+		一般来说，如果编译的动作顺利的话，那么编译过程所产生的中间缓存档都会被自动删除，如果发生任何错误，
+		则该中间文件会被保留在系统上，等待使用者的除错动作！那么，该如何除错呢？如果想要自行除错，
+		或者是想要修改 SRPM 内的配置值时，就得要知道利用 SRPM 的时候，系统会动用到哪些重要的目录了！
+		底下我们就来谈一谈当处理 SRPM 时，系统会使用到的目录。</p>
+	</div>
+
+	<hr><a name="srpmmanager_dir"></a><img src="../images/logo.png" alt="小标题的图示" width="24" align="middle" height="23"><span class="text_h2">SRPM 使用的路径与需要的软件</span>
+	<div class="block2">
+		<p>SRPM 既然含有 source code ，那么其中必定有配置档罗，所以首先我们必需要知道，这个
+		SRPM 在进行编译的时候会使用到哪些目录呢？这样一来才能够来修改嘛！你可以到你的
+		/usr/src 这个目录里面去查看一下，通常每个 distribution 提供的目录都不太相同，以
+		CentOS 5.x 为例，他是以 <span class="text_import2">/usr/src/redhat/</span> 为工作目录， Openlinux 则是以 
+		/usr/src/openlinux 为工作目录！无论如何，反正就是在 /usr/src 这个目录下就对了！好了，既然我们是 CentOS ，
+		请到 /usr/src/redhat 里头去看一看呦：</p>
+
+<table bgcolor="lightyellow" border="1" cellpadding="3" cellspacing="0" width="95%">
+<tbody><tr><td class="text_import2" style="font-family: '细明体';" width="200">/usr/src/redhat/SPECS</td>
+	<td>这个目录当中放置的是该软件的配置档，例如这个软件的资讯参数、配置项目等等都放置在这里；</td></tr>
+<tr><td class="text_import2" style="font-family: '细明体';">/usr/src/redhat/SOURCES</td>
+	<td>这个目录当中放置的是该软件的原始档 (*.tar.gz 的文件) 以及 config 这个配置档；</td></tr>
+<tr><td class="text_import2" style="font-family: '细明体';">/usr/src/redhat/BUILD</td>
+	<td>在编译的过程中，有些缓存的数据都会放置在这个目录当中；</td></tr>
+<tr><td class="text_import2" style="font-family: '细明体';">/usr/src/redhat/RPMS</td>
+	<td>经过编译之后，并且顺利的编译成功之后，将打包完成的文件放置在这个目录当中。里头有包含了
+	i386, i586, i686, noarch.... 等等的次目录。</td></tr>
+<tr><td class="text_import2" style="font-family: '细明体';">/usr/src/redhat/SRPMS</td>
+	<td>与 RPMS 内相似的，这里放置的就是 SRPM 封装的文件罗！有时候你想要将你的软件用 SRPM 的方式释出时，
+	你的 SRPM 文件就会放置在这个目录中了。</td></tr>
+</tbody></table>
+
+		<p>此外，在编译的过程当中，可能会发生不明的错误，或者是配置的错误，这个时候就会在
+		/tmp 底下产生一个相对应的错误档，你可以根据该错误档进行除错的工作呢！
+		等到所有的问题都解决之后，也编译成功了，那么刚刚解压缩之后的文件，就是在
+		/usr/src/redhat/SPECS, SOURCES, BUILD 等等的文件都会被杀掉，而只剩下放置在
+		/usr/src/redhat/RPMS 底下的文件了！</p>
+
+		<p>由於 SRPM 需要重新编译，而编译的过程当中，我们<span class="text_import2">至少需要有 make 与其相关的程序，及
+		gcc, c, c++ 等其他的编译用的程序语言来进行编译</span>，更多说明请参考<a href="http://vbird.dic.ksu.edu.tw/linux_basic/0520source_code_and_tarball.php#tarball_pack">第二十二章原始码所需基础软件</a>吧。
+		所以，如果你在安装的过程当中没有选取软件开发工具之类的软件，
+		呵呵！得重新拿出你的光盘，然后再安装喔！哈哈！只是得要克服一大堆的属性相依的问题就是了～
+		这问题待会儿可以使用 yum 来处理，你当然也可以先使用『 yum groupinstall "Development Tools" 』来安装开发软件。
+		鸟哥这里假设你已经安装了该软件群组罗。</p>
+
+<table border="1" cellpadding="5" cellspacing="0" width="90%"><tbody><tr><td>
+例题：<div class="block2">
+尝试使用 --rebuild 选项制作出一个 RPM 软件文件，可以到国家高速网络中心下载 rp-pppoe 这个 SRPM 软件文件，
+你可以到 <a href="http://ftp.twaren.net/Linux/CentOS/5/os/SRPMS/" target="_blank">http://ftp.twaren.net/Linux/CentOS/5/os/SRPMS/</a> 找到这个软件来下载。
+鸟哥这里使用 CentOS 5.3 的 rp-pppoe-3.5-32.1.src.rpm 为例喔。
+</div>
+答：<div class="block2">
+假设你已经将 rp-pppoe 软件下载到 /root 底下，那接下来可以简单的使用底下的方式来重新编译：
+
+<table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">rpmbuild --rebuild rp-pppoe-3.5-32.1.src.rpm</span>
+正在安装 rp-pppoe-3.5-32.1.src.rpm
+警告：使用者 mockbuild 不存在 - 现使用 root 代替
+<span class="term_say">....(中间省略)....</span>
+<span class="term_write">已写入：/usr/src/redhat/RPMS/i386/rp-pppoe-3.5-32.1.i386.rpm
+已写入：/usr/src/redhat/RPMS/i386/rp-pppoe-debuginfo-3.5-32.1.i386.rpm</span>
+正在运行 (%clean)：/bin/sh -e /var/tmp/rpm-tmp.69789
++ umask 022
++ cd /usr/src/redhat/BUILD
++ cd rp-pppoe-3.5
++ rm -rf /var/tmp/rp-pppoe-3.5-32.1-root
++ exit 0
+正在运行 (--clean)：/bin/sh -e /var/tmp/rpm-tmp.69789
++ umask 022
++ cd /usr/src/redhat/BUILD
++ rm -rf rp-pppoe-3.5
++ exit 0
+
+[root@www ~]# <span class="term_command">ll /usr/src/redhat/RPMS/i386/</span>
+-rw-r--r-- 1 root root 105443  6月 27 02:51 rp-pppoe-3.5-32.1.i386.rpm
+-rw-r--r-- 1 root root  18756  6月 27 02:51 rp-pppoe-debuginfo-3.5-32.1.i386.rpm
+</pre></td></tr></tbody></table>
+其实整个过程与 Tarball 的方式差不多，也是编译后变成 binary program，接著再以 RPM 的机制封装起来啦。
+重点在上面特殊字体的部分，记得要察看一下喔！若一切正常，则会看到 exit 0 的字样，且会主动的删除 (rm) 很多中间缓存档哩。
+
+</div>
+</td></tr></tbody></table><br>
+	</div>
+
+	<hr><a name="srpmmanager_config"></a><img src="../images/logo.png" alt="小标题的图示" width="24" align="middle" height="23"><span class="text_h2">配置档的主要内容 (*.spec)</span>
+	<div class="block2">
+		<p>除了使用 SRPM 内默认的参数来进行编译之外，我们还可以修改这些参数后再重新编译喔！那该如何处理呢？
+		首先我们必须要将 SRPM 内的文件安置到 /usr/src/redhat/ 内的相关目录，然后再去修改配置档即可啊！
+		我们就拿刚刚上头那个 rp-pppoe 来说明好了，假设我们已经将该文件放置到 /root 中啦，然后：</p>
+
+<table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">rpm -i rp-pppoe-3.5-32.1.src.rpm</span>
+<span class="term_say"># 过程不会显示任何东西，他只会将 SRPM 的文件解开后，放置到 /usr/src/redhat/</span>
+
+[root@www ~]# <span class="term_command">find /usr/src/redhat/ -type f</span>
+/usr/src/redhat/SOURCES/rp-pppoe-3.5-firewall.patch  <span class="term_note">&lt;==补丁档</span>
+/usr/src/redhat/SOURCES/adsl-stop                    <span class="term_note">&lt;==CentOS 提供的脚本</span>
+/usr/src/redhat/SOURCES/rp-pppoe-3.5.tar.gz          <span class="term_note">&lt;==原始码啦！</span>
+/usr/src/redhat/SOURCES/rp-pppoe-3.5-buildroot.patch <span class="term_note">&lt;==补丁档</span>
+/usr/src/redhat/SOURCES/adsl-start                   <span class="term_note">&lt;==CentOS 提供的脚本</span>
+/usr/src/redhat/SOURCES/adsl-connect
+/usr/src/redhat/SOURCES/adsl-setup
+/usr/src/redhat/SOURCES/adsl-status
+/usr/src/redhat/SOURCES/rp-pppoe-3.4-redhat.patch    <span class="term_note">&lt;==补丁档</span>
+<span class="term_write">/usr/src/redhat/SPECS/rp-pppoe.spec</span>                  <span class="term_note">&lt;==重要配置档！</span>
+<span class="term_say"># 主要含有原始码与一个重要的配置档啊！ rp-pppoe.spec ！</span>
+</pre></td></tr></tbody></table>
+
+		<p>好了，来看看我们的配置参数档，亦即是在 /usr/src/redhat/SPECS 内的 *.spec 文件罗！</p>
+
+<table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">cd /usr/src/redhat/SPECS</span>
+[root@www SPECS]# <span class="term_command">vi rp-pppoe.spec</span>
+<span class="term_say"># 1. 首先，这个部分在介绍整个软件的基本相关资讯！不论是版本还是释出次数等。</span>
+Summary: A PPP over Ethernet client (for xDSL support).
+Name: rp-pppoe
+Version: 3.5
+Release: 32.1
+License: GPL
+Group: System Environment/Daemons
+Url: http://www.roaringpenguin.com/pppoe/
+Source: http://www.roaringpenguin.com/rp-pppoe-%{version}.tar.gz
+Source1: adsl-connect
+Source2: adsl-setup
+<span class="term_say">....(中间省略)....</span>
+
+<span class="term_say"># 2. 这部分则是在配置相依属性需求的地方！</span>
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
+Prereq: /sbin/chkconfig  <span class="term_note">&lt;==需要的前驱程序有哪些！</span>
+Prereq: /sbin/service
+Prereq: fileutils
+
+Requires: ppp &gt;= 2.4.2         <span class="term_note">&lt;==需要的软件又有哪些！</span>
+Requires: initscripts &gt;= 5.92
+Requires: iproute &gt;= 2.6
+
+BuildRequires: libtool   <span class="term_note">&lt;==还需要哪些工具软件？</span>
+BuildRequires: autoconf
+BuildRequires: automake
+
+%description             <span class="term_note">&lt;==此软件的描述啦！</span>
+PPPoE (Point-to-Point Protocol over Ethernet) is a protocol used by
+many ADSL Internet Service Providers. This package contains the
+Roaring Penguin PPPoE client, a user-mode program that does not
+require any kernel modifications. It is fully compliant with RFC 2516,
+the official PPPoE specification.
+
+
+<span class="term_say"># 3. 编译前的预处理，以及编译过程当中所需要进行的命令，都写在这里
+#    尤其 %build 底下的数据，几乎就是 makefile 里面的资讯啊！</span>
+%prep  <span class="term_note">&lt;==这部份在预先 (pre) 进行处理，大致就是 patch 软件啊！</span>
+%setup -q
+%patch0 -p1 -b .config
+%patch1 -p1 -b .buildroot
+%patch2 -p1 -b .ipchains
+
+%build <span class="term_note">&lt;==这部分就是在实际编译罗！</span>
+cd src
+autoconf
+CFLAGS="-D_GNU_SOURCE" %configure
+make
+
+install -m 0755 %{SOURCE1} scripts
+install -m 0755 %{SOURCE2} scripts
+install -m 0755 %{SOURCE3} scripts
+install -m 0755 %{SOURCE4} scripts
+install -m 0755 %{SOURCE5} scripts
+
+%install  <span class="term_note">&lt;==这就是安装过程！</span>
+rm -rf %{buildroot}
+
+mkdir -p %{buildroot}/sbin
+make -C src install RPM_INSTALL_ROOT=%{buildroot}
+<span class="term_say">....(中间省略)....</span>
+
+<span class="term_say"># 4. 这里列出，这个软件释出的文件有哪些的意思！</span>
+%files   <span class="term_note">&lt;==这个软件提供的文件有哪些？需要记录在数据库内！</span>
+%defattr(-,root,root)
+%doc doc/LICENSE scripts/adsl-connect scripts/adsl-setup scripts/adsl-init
+%doc scripts/adsl-start scripts/adsl-status scripts/adsl-stop
+%doc configs
+%config(noreplace) %{_sysconfdir}/ppp/pppoe-server-options
+%config(noreplace) %{_sysconfdir}/ppp/firewall*
+/sbin/*
+%{_sbindir}/*
+%{_mandir}/man?/*
+
+<span class="term_say"># 5. 列出这个软件的更改历史纪录档！</span>
+%changelog
+* Wed Jul 12 2006 Jesse Keating &lt;jkeating@redhat.com&gt; - 3.5-32.1
+- rebuild
+<span class="term_say">....(中间省略)....</span>
+* Wed May 31 2000 Than Ngo &lt;than@redhat.de&gt;
+- adopted for Winston.
+</pre></td></tr></tbody></table>
+
+		<p>要注意到的是 rp-pppoe.sepc 这个文件，这是主要的将 SRPM 编译成 RPM 的配置档，他的基本守则可以这样看：</p>
+		<ol class="text_import2">
+		<li>整个文件的开头以Summary为开始，这部份的配置都是最基础的说明内容；</li>
+		<li>然后每个不同的段落之间，都以%来做为开头，例如%prep与%install等；</li>
+		</ol>
+
+		<p>我们来谈一谈几个常见的 SRPM 配置段落：<br><br></p>
+
+		<hr><ul class="list1"><li class="text_import1">系统整体资讯方面：</li></ul>
+
+		<p>刚刚你看到的就有底下这些重要的咚咚罗：</p>
+
+<table bgcolor="lightyellow" border="1" cellpadding="3" cellspacing="0" width="95%">
+<tbody><tr align="center" bgcolor="#182448"><td><font color="#FFFFFF">参数</font></td><td><font color="#FFFFFF">参数意义</font></td></tr>
+<tr><td width="100"><span class="text_import2">Summary</span></td>
+	<td>本软件的主要说明，例如上表中说明了本软件是针对 xDSL 的拨接用途啦！</td></tr>
+<tr><td><span class="text_import2">Name</span></td>
+	<td>本软件的软件名称 (最终会是 RPM 文件的档名构成之一)</td></tr>
+<tr><td><span class="text_import2">Version</span></td>
+	<td>本软件的版本 (也会是 RPM 档名的构成之一)</td></tr>
+<tr><td><span class="text_import2">Release</span></td>
+	<td>这个是该版本打包的次数说明 (也会是 RPM 档名的构成之一)。由於我们想要动点手脚，所以上头的文件中，
+	<span class="text_import2">这个部分请修改为 32.2.vbird</span> 看看</td></tr>
+<tr><td><span class="text_import2">License</span></td>
+	<td>这个软件的授权模式，我们是使用 GPL 啦！</td></tr>
+<tr><td><span class="text_import2">Group</span></td>
+	<td>这个软件的发展团体名称；</td></tr>
+<tr><td><span class="text_import2">Url</span></td>
+	<td>这个原始码的主要官方网站；</td></tr>
+<tr><td><span class="text_import2">Source</span></td>
+	<td>这个软件的来源，如果是网络上下载的软件，通常一定会有这个资讯来告诉大家这个原始档的来源！
+	此外，还有来自开发商自己提供的原始档数据喔！例如上面的 adsl-start 等程序。</td></tr>
+<tr><td><span class="text_import2">Patch</span></td>
+	<td>就是作为补丁的 patch file 罗！</td></tr>
+<tr><td><span class="text_import2">BuildRoot</span></td>
+	<td>配置作为编译时，该使用哪个目录来缓存中间文件 (如编译过程的目标文件/连结文件等档)。</td></tr>
+<tr><td><span class="text_import2">ExclusiveArch</span></td>
+	<td>这个是说明这个软件的适合安装的硬件，通常默认为 i386，当然，你也可以调整为 i586 啦等等的！
+	由於我们的系统是新的 CPU 架构，这里我们修改内容成为『<span class="text_import2">ExclusiveArch: i686</span>』来玩玩看。</td></tr>
+<tr align="center" bgcolor="#182448"><td colspan="2"><font color="#FFFFFF">上述为必须要存在的项目，底下为可使用的额外配置值</font></td></tr>
+<tr><td><span class="text_import2">Requires</span></td>
+	<td>如果你这个软件还需要其他的软件的支持，那么这里就必需写上来，则当你制作成 RPM
+	之后，系统就会自动的去检查啦！这就是『相依属性』的主要来源罗！</td></tr>
+<tr><td><span class="text_import2">Prereq</span></td>
+	<td>这个软件需要的前驱程序为何！这里指的是『程序』而 Requires 指的是『软件』！</td></tr>
+<tr><td><span class="text_import2">BuildRequires</span></td>
+	<td>编译过程中所需要的软件。Requires 指的是『安装时需要检查』的，因为与实际运行有关，这个 BuildRequires
+	指的是『编译时』所需要的软件，只有在 SRPM 编译成为 RPM 时才会检查的项目。</td></tr>
+<tr><td><span class="text_import2">Packager</span></td>
+	<td>这个软件是经由谁来打包的呢？</td></tr>
+<tr><td><span class="text_import2">Vender</span></td>
+	<td>发展的厂商哪；</td></tr>
+</tbody></table><br>
+
+		<p>上面几个数据通常都必需要写啦！但是如果你的软件没有相依属性的关系时，那么就可以不需要那个 Requires 罗！
+		根据上面的配置，最终的档名就会是『{Name}-{Version}-{Release}.{ExclusiveArch}.rpm』的样式，
+		以我们上面的配置来说，档名应该会是『rp-pppoe-3.5-32.2.vbird.i686.rpm』的样子罗！<br><br></p>
+
+		<hr><ul class="list1"><li class="text_import1">%description：</li></ul>
+
+		<p>将你的软件做一个简短的说明！这个也是必需要的。还记得使用『 rpm -qi 软件名称 』会出现一些基础的说明吗？
+		上面这些东西包括 Description  就是在显示这些重要资讯的啦！所以，这里记得要详加解释喔！<br><br></p>
+
+		<hr><ul class="list1"><li class="text_import1">%prep：</li></ul>
+
+		<p>pre 这个关键字原本就有『在...之前』的意思，因此这个项目在这里指的就是『<span class="text_import2">尚未进行配置或安装之前，你要编译完成的 RPM	帮你事先做的事情</span>』，就是 prepare 
+		的简写罗！那么他的工作事项主要有：</p>
+
+		<ol class="text_import2">
+		<li>进行软件的补丁 (patch) 等相关工作；</li>
+		<li>寻找软件所需要的目录是否已经存在？确认用的！</li>
+		<li>事先创建你的软件所需要的目录，或者事先需要进行的任务；</li>
+		<li>如果待安装的Linux系统内已经有安装的时候可能会被覆盖掉的文件时，那么就必需要进行备份(backup)的工作了！</li>
+		</ol>
+
+		<p>在本案例中，你会发现程序会使用 patch 去进行补丁的动作啦！<br><br></p>
+
+		<hr><ul class="list1"><li class="text_import1">%setup：</li></ul>
+
+		<p>这个项目就是在进行类似解压缩之类的工作！这个项目一定要写喔！不然你的 tarball
+		原始码是无法被解压缩的哩！切记切记！<br><br></p>
+
+		<hr><ul class="list1"><li class="text_import1">%build：</li></ul>
+
+		<p>build 就是创建啊！所以当然罗，这个段落就是在谈怎么 make 编译成为可运行的程序罗！
+		你会发现在此部分的程序码方面，就是 ./configure, make 等项目哩！<br><br></p>
+
+		<hr><ul class="list1"><li class="text_import1">%install：</li></ul>
+
+		<p>编译完成 (build) 之后，就是要安装啦！安装就是写在这里，也就是类似 Tarball 里面的 make
+		install 的意思罗！<br><br></p>
+
+		<hr><ul class="list1"><li class="text_import1">%clean：</li></ul>
+
+		<p>编译与安装完毕后，必须要将一些缓存在 BuildRoot 内的数据删除才好，
+		因此这个时候这个 clean 的项目就重要啦！这有点像是 make clean 的感觉～保持系统的干爽嘛！<br><br></p>
+
+		<hr><ul class="list1"><li class="text_import1">%files：</li></ul>
+
+		<p>这个软件安装的文件都需要写到这里来，当然包括了『目录』喔！所以连同目录请一起写到这个段落当中！以备查验呢！^_^
+		！此外，你也可以指定每个文件的类型，包括文件档 (%doc 后面接的) 与配置档 (%config 后面接的) 等等。<br><br></p>
+
+		<hr><ul class="list1"><li class="text_import1">%changelog：</li></ul>
+
+		<p>这个项目主要则是在记录这个软件曾经的升级纪录罗！星号 (*) 后面应该要以时间，修改者， email 与软件版本来作为说明，
+		减号 (-) 后面则是你要作的详细说明罗！在这部份鸟哥就新增了两行，内容如下：</p>
+
+<table class="term"><tbody><tr><td class="term"><pre>%changelog
+<span class="term_write">* Wed Jul 01 2009 VBird Tsai &lt;vbird@mail.vbird.idv.tw&gt; - 3.5-32.2.vbird
+- only rebuild this SRPM to RPM</span>
+
+* Wed Jul 12 2006 Jesse Keating &lt;jkeating@redhat.com&gt; - 3.5-32.1
+<span class="term_say">....(底下省略)....</span>
+</pre></td></tr></tbody></table>
+
+		<p>修改到这里也差不多了，您也应该要了解到这个 rp-pppoe.spec 有多么重要！我们用 rpm -q 去查询一堆资讯时，
+		其实都是在这里写入的！这样了解否？接下来，就让我们来了解一下如何将 SRPM 给他编译出 RPM 来吧！</p>
+	</div>
+
+	<hr><a name="srpmmanager_command"></a><img src="../images/logo.png" alt="小标题的图示" width="24" align="middle" height="23"><span class="text_h2">SRPM 的编译命令 (-ba/-bb)</span>
+	<div class="block2">
+		<p>要将在 /usr/src/redhat 底下的数据编译或者是单纯的打包成为 RPM 或 SRPM 时，就需要 rpmbuild
+		命令与相关选项的帮忙了！我们只介绍两个常用的选项给您了解一下：</p>
+
+<table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">rpmbuild -ba rp-pppoe.spec  <span class="term_note">&lt;==编译并同时产生 RPM 与 SRPM 文件</span></span>
+[root@www ~]# <span class="term_command">rpmbuild -bb rp-pppoe.spec  <span class="term_note">&lt;==仅编译成 RPM 文件</span></span>
+</pre></td></tr></tbody></table>
+
+		<p>这个时候系统就会这样做：</p>
+		<ol class="text_import2">
+		<li>先进入到 BUILD 这个目录中，亦即是： /usr/src/redhat/BUILD 这个目录；<br><br></li>
+		<li>依照 *.spec 文件内的 Name 与 Version 定义出工作的目录名称，以我们上面的例子为例，那么系统就会在 
+		BUILD 目录中先删除 rp-pppoe-3.5 的目录，再重新创建一个 rp-pppoe-3.5 的目录，并进入该目录；<br><br></li>
+		<li>在新建的目录里面，针对 SOURCES 目录下的来源文件，也就是 *.spec 里面的 Source 配置的那个文件，以 tar 
+		进行解压缩，以我们这个例子来说，则会在 /usr/src/redhat/BUILD/rp-pppoe-3.5 当中，将 
+		/usr/src/redhat/SOURCES/rp-pppoe-3.5.tar.gz 进行解压缩啦！<br><br></li>
+		<li>再来开始 %build 及 %install 的配置与编译！<br><br></li>
+		<li>最后将完成打包的文件给他放置到该放置的地方去，如果你的规定的硬件是在 i386 的系统，那么最后编译成功的 
+		*.i386.rpm文件就会被放置在 /usr/src/redhat/RPMS/i386 里面罗！如果是 i686 那么自然就是 
+		/usr/src/redhat/RPMS/i686 目录下罗！</li>
+		</ol>
+
+		<p>整个步骤大概就是这样子！最后的结果数据会放置在 RPMS 那个目录底下就对啦！我们这个案例中想要同时打包 RPM 与 SRPM ，
+		因此请您自行处理一下『 rpmbuild -ba rp-pppoe.spec 』吧！</p>
+
+<table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">cd /usr/src/redhat/SPECS</span>
+[root@www SPECS]# <span class="term_command">rpmbuild -ba rp-pppoe.spec</span>
+<span class="term_say">....(以上省略)....</span>
+<span class="term_write">正在处理文件：rp-pppoe-debuginfo-3.5-32.2.vbird
+已写入：/usr/src/redhat/SRPMS/rp-pppoe-3.5-32.2.vbird.src.rpm
+已写入：/usr/src/redhat/RPMS/i386/rp-pppoe-3.5-32.2.vbird.i386.rpm
+已写入：/usr/src/redhat/RPMS/i386/rp-pppoe-debuginfo-3.5-32.2.vbird.i386.rpm</span>
+正在运行 (%clean)：/bin/sh -e /var/tmp/rpm-tmp.10628
++ umask 022
++ cd /usr/src/redhat/BUILD
++ cd rp-pppoe-3.5
++ rm -rf /var/tmp/rp-pppoe-3.5-32.2.vbird-root
++ exit 0
+
+[root@www SPECS]# <span class="term_command">find /usr/src/redhat -name 'rp-pppoe*rpm'</span>
+/usr/src/redhat/RPMS/i386/rp-pppoe-3.5-32.2.vbird.i386.rpm
+/usr/src/redhat/RPMS/i386/rp-pppoe-debuginfo-3.5-32.2.vbird.i386.rpm
+/usr/src/redhat/SRPMS/rp-pppoe-3.5-32.2.vbird.src.rpm
+<span class="term_say"># 上面分别是 RPM 与 SRPM 的文件档名！</span>
+</pre></td></tr></tbody></table>
+
+		<p>老实说，应该会出现 i686 的档名才对！不过，可能是原始码本身没有支持 i686 之类的语法吧！
+		所以仅出现 i386 的档名而已。另外，你可以看到档名确实是如同我们之前谈到的喔！
+		那你可以自行制作出有你特殊名称的档名罗 (例如上面的 vbird 罗)。</p>
+	</div>
+
+	<hr><a name="srpmmanager_myself"></a><img src="../images/logo.png" alt="小标题的图示" width="24" align="middle" height="23"><span class="text_h2">一个打包自己软件的范例</span>
+	<div class="block2">
+		<p>这个就有趣了！我们自己来编辑一下自己制作的 RPM 怎么样？会很难吗？完全不会！
+		我们这里就举个例子来玩玩吧！还记得我们在前一章谈到 Tarball 与 make 时，曾经谈到的 <a href="http://vbird.dic.ksu.edu.tw/linux_basic/0520source_code_and_tarball.php#make">main</a> 这个程序吗？现在我们将这个程序加上 Makefile 后，
+		将他制作成为 main-0.1.i386.rpm 好吗？那该如何进行呢？底下就让我们来处理处理吧！<br><br></p>
+
+		<hr><ul class="list1"><li class="text_import1">制作原始码文件 tarball 产生：</li></ul>
+
+		<p>请将前一章你曾经处理过的 main.tgz 再次的捉下来一次，我们将这个文件放置到 /root 底下，
+		并且在 /usr/local/src 底下创建一个名为 main-0.1 的目录来解压缩喔！</p>
+
+<table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">mkdir /usr/local/src/main-0.1</span>
+[root@www ~]# <span class="term_command">tar -zxvf main.tgz -C /usr/local/src/main-0.1</span>
+[root@www ~]# <span class="term_command">cd /usr/local/src/main-0.1</span>
+[root@www main-0.1]# <span class="term_command">vim Makefile</span>  <span class="term_note">&lt;==创建原始码所需 make 守则</span>
+<span class="term_write">LIBS = -lm
+OBJS = main.o haha.o sin_value.o cos_value.o
+main: ${OBJS}
+	gcc -o main ${OBJS} ${LIBS}
+clean:
+	rm -f main ${OBJS}
+install:
+	install -m 755 main $(RPM_INSTALL_ROOT)/usr/local/bin/main</span>
+<span class="term_say"># 记得 gcc 与 rm 之前是使用 &lt;tab&gt; 按键作出来的空白喔！</span>
+
+[root@www main-0.1]# <span class="term_command">cd ..</span>
+[root@www src]# <span class="term_command">tar -zcvf main-0.1.tar.gz main-0.1</span>
+<span class="term_say"># 此时会产生 main-0.1.tar.gz ，将他挪到 /usr/src/redhat/SOURCES 底下：</span>
+[root@www src]# <span class="term_command">cp main-0.1.tar.gz /usr/src/redhat/SOURCES</span>
+</pre></td></tr></tbody></table>
+
+		<p>这个时候在 /usr/src/redhat 底下的原始码就创建成功了！接下来就是 spec 文件的创建罗！<br><br></p>
+
+		<hr><ul class="list1"><li class="text_import1">创建 *.spec 的配置档</li></ul>
+
+		<p>这个文件的建置是所有 RPM 制作里面最重要的课题！你必须要仔细的配置他，不要随便处理！仔细看看吧！</p>
+
+<table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">cd /usr/src/redhat/SPECS</span>
+[root@www SPECS]# <span class="term_command">vim main.spec</span>
+<span class="term_write">Summary:   calculate sin and cos value.
+Name:      main
+Version:   0.1
+Release:   1
+License:   GPL
+Group:     VBird's Home
+Source:    main-0.1.tar.gz   <span class="term_note">&lt;==记得要写正确的 Tarball 档名喔！</span>
+Url:       http://linux.vbird.org
+Packager:  VBird
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+
+%description
+This package will let you input your name and calculate sin cos value.
+
+%prep
+%setup -q
+
+%build
+make
+
+%install
+rm -rf %{buildroot}
+mkdir -p %{buildroot}/usr/local/bin
+make install RPM_INSTALL_ROOT=%{buildroot}   <span class="term_note">&lt;==这项目也很重要！</span>
+
+%files
+/usr/local/bin/main
+
+%changelog
+* Wed Jul 01 2009 VBird Tsai &lt;vbird@mail.vbird.idv.tw&gt; 0.1
+- build the program</span>
+</pre></td></tr></tbody></table>
+
+		<hr><ul class="list1"><li class="text_import1">编译成为 RPM 与 SRPM</li></ul>
+
+		<p>老实说，那个 spec 文件建置妥当后，后续的动作就简单的要命了！开始来编译吧！</p>
+
+<table class="term"><tbody><tr><td class="term"><pre>[root@www SPECS]# <span class="term_command">rpmbuild -ba main.spec</span>
+<span class="term_say">....(前面省略)....</span>
+已写入：/usr/src/redhat/SRPMS/main-0.1-1.src.rpm
+已写入：/usr/src/redhat/RPMS/i386/main-0.1-1.i386.rpm
+已写入：/usr/src/redhat/RPMS/i386/main-debuginfo-0.1-1.i386.rpm
+</pre></td></tr></tbody></table>
+
+		<p>很快的，我们就已经创建了几个 RPM 文件罗！接下来让我们好好测试一下打包起来的成果吧！<br><br></p>
+
+		<hr><ul class="list1"><li class="text_import1">安装/测试/实际查询</li></ul>
+
+<table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">rpm -ivh /usr/src/redhat/RPMS/i386/main-0.1-1.i386.rpm</span>
+正在准备…             ########################################### [100%]
+   1:main                   ########################################### [100%]
+
+[root@www ~]# <span class="term_command">rpm -ql main</span>
+/usr/local/bin/main   <span class="term_note">&lt;==自己尝试运行 main 看看！</span>
+
+[root@www ~]# <span class="term_command">rpm -qi main</span>
+Name        : main              Relocations: (not relocatable)
+Version     : 0.1                    Vendor: (none)
+Release     : 1                  Build Date: 西元2009年07月02日 (周四)
+Install Date: 西元2009年07月02日 Build Host: www.vbird.tsai
+Group       : VBird's Home       Source RPM: main-0.1-1.src.rpm
+Size        : 3360                  License: GPL
+Signature   : (none)
+Packager    : VBird
+URL         : http://linux.vbird.org
+Summary     : calculate sin and cos value.
+Description :
+This package will let you input your name and calculate sin cos value.
+<span class="term_say"># 看到没？属於你自己的软件喔！真是很愉快的啦！</span>
+</pre></td></tr></tbody></table>
+
+		<p>用很简单的方式，就可以将自己的软件或者程序给他修改与配置妥当！以后你就可以自行配置你的 RPM 
+		罗！当然，也可以手动修改你的 SRPM 的来源档内容罗！</p>
+	</div>
+</div>
+
+
+<hr><a name="yumclient"></a><img src="../images/logo.png" alt="大标题的图示" width="35" align="middle" height="34"><span class="text_h1">YUM 线上升级机制</span><br>
+<div class="block1">
+	<p>我们在本章一开始的地方谈到过 <a href="#intro_solution">yum</a> 这玩意儿，这个 yum 是透过分析 RPM 的标头数据后，
+	根据各软件的相关性制作出属性相依时的解决方案，然后可以自动处理软件的相依属性问题，以解决软件安装或移除与升级的问题。
+	详细的 yum 服务器与用户端之间的沟通，可以再回到前面的部分查阅一下<a href="#fig1.5.1">图 1.5.1</a> 的说明。</p>
+
+	<p>由於 distribution 必须要先释出软件，然后将软件放置於 yum 服务器上面，以提供用户端来要求安装与升级之用的。
+	因此我们想要使用 yum 的功能时，必须要先找到适合的 yum server 才行啊！而每个 yum server
+	可能都会提供许多不同的软件功能，那就是我们之前谈到的『容器』啦！因此，你必须要前往 yum server 
+	查询到相关的容器网址后，再继续处理后续的配置事宜。</p>
+
+	<p>事实上 CentOS 在释出软件时已经制作出多部映射站台 (mirror site) 提供全世界的软件升级之用。
+	所以，理论上我们不需要处理任何配置值，只要能够连上 Internet ，就可以使用 yum 罗！底下就让我们来玩玩看吧！<br><br></p>
+
+	<hr><a name="yumclient_yum"></a><img src="../images/logo.png" alt="小标题的图示" width="24" align="middle" height="23"><span class="text_h2">利用 yum 
+	进行查询、安装、升级与移除功能</span><br>
+	<div class="block2">
+		<p>yum 的使用真是非常简单，就是透过 yum 这个命令啊！那么这个命令怎么用呢？
+		用法很简单，就让我们来简单的谈谈：<br><br></p>
+
+		<hr><ul class="list1"><li class="text_import1">查询功能：yum [list|info|search|provides|whatprovides] 参数</li></ul>
+
+		<p>如果想要查询利用 yum 来查询原版 distribution 所提供的软件，或已知某软件的名称，想知道该软件的功能，
+		可以利用 yum 相关的参数为：</p>
+
+<table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">yum [option] [查询工作项目] [相关参数]</span>
+<span class="term_say">选项与参数：
+[option]：主要的选项，包括有：
+  -y ：当 yum 要等待使用者输入时，这个选项可以自动提供 yes 的回应；
+  --installroot=/some/path ：将该软件安装在 /some/path 而不使用默认路径
+[查询工作项目] [相关参数]：这方面的参数有：
+  search  ：搜寻某个软件名称或者是描述 (description) 的重要关键字；
+  list    ：列出目前 yum 所管理的所有的软件名称与版本，有点类似 rpm -qa；
+  info    ：同上，不过有点类似 rpm -qai 的运行结果；
+  provides：从文件去搜寻软件！类似 rpm -qf 的功能！</span>
+
+<span class="term_hd">范例一：搜寻磁盘阵列 (raid) 相关的软件有哪些？</span>
+[root@www ~]# <span class="term_command">yum search raid</span>
+<span class="term_say">....(前面省略)....</span>
+mdadm.i386 : mdadm controls Linux md devices (software RAID arrays)
+lvm2.i386 : Userland logical volume management tools
+<span class="term_say">....(后面省略)....
+# 在冒号 (:)  左边的是软件名称，右边的则是在 RPM 内的 name 配置 (软件名)
+# 瞧！上面的结果，这不就是与 RAID 有关的软件吗？如果想了解 mdadm 的软件内容呢？</span>
+
+<span class="term_hd">范例二：找出 mdadm 这个软件的功能为何</span>
+[root@www ~]# <span class="term_command">yum info mdadm</span>
+Installed Packages      <span class="term_note">&lt;==这说明该软件是已经安装的了</span>
+Name   : mdadm          <span class="term_note">&lt;==这个软件的名称</span>
+Arch   : i386           <span class="term_note">&lt;==这个软件的编译架构</span>
+Version: 2.6.4          <span class="term_note">&lt;==此软件的版本</span>
+Release: 1.el5          <span class="term_note">&lt;==释出的版本</span>
+Size   : 1.7 M          <span class="term_note">&lt;==此软件的文件总容量</span>
+Repo   : installed      <span class="term_note">&lt;==容器回报说已安装的</span>
+Summary: mdadm controls Linux md devices (software RAID arrays)
+Description:            <span class="term_note">&lt;==看到否？这就是 rpm -qi 嘛！</span>
+mdadm is used to create, manage, and monitor Linux MD (software RAID)
+devices.  As such, it provides similar functionality to the raidtools
+package.  However, mdadm is a single program, and it can perform
+almost all functions without a configuration file, though a configuration
+file can be used to help with some common tasks.
+<span class="term_say"># 不要跟我说，上面说些啥？自己找字典翻一翻吧！拜托拜托！</span>
+
+<span class="term_hd">范例三：列出 yum 服务器上面提供的所有软件名称</span>
+[root@www ~]# <span class="term_command">yum list</span>
+Installed Packages <span class="term_note">&lt;==已安装软件</span>
+Deployment_Guide-en-US.noarch            5.2-9.el5.centos       installed
+Deployment_Guide-zh-CN.noarch            5.2-9.el5.centos       installed
+Deployment_Guide-zh-TW.noarch            5.2-9.el5.centos       installed
+<span class="term_say">....(中间省略)....</span>
+Available Packages <span class="term_note">&lt;==还可以安装的其他软件</span>
+Cluster_Administration-as-IN.noarch      5.2-1.el5.centos       base
+Cluster_Administration-bn-IN.noarch      5.2-1.el5.centos       base
+<span class="term_say">....(底下省略)....
+# 上面提供的意义为：『 软件名称   版本   在那个容器内 』</span>
+
+<span class="term_hd">范例四：列出目前服务器上可供本机进行升级的软件有哪些？</span>
+[root@www ~]# <span class="term_command">yum list updates</span>  <span class="term_note">&lt;==一定要是 update<u>s</u> 喔！</span>
+Updated Packages
+Deployment_Guide-en-US.noarch            5.2-11.el5.centos      base
+Deployment_Guide-zh-CN.noarch            5.2-11.el5.centos      base
+Deployment_Guide-zh-TW.noarch            5.2-11.el5.centos      base
+<span class="term_say">....(底下省略)....
+# 上面就列出在那个容器内可以提供升级的软件与版本！</span>
+
+<span class="term_hd">范例五：列出提供 passwd 这个文件的软件有哪些</span>
+[root@www ~]# <span class="term_command">yum provides passwd</span>
+passwd.i386 : The passwd utility for setting/changing passwords using PAM
+passwd.i386 : The passwd utility for setting/changing passwords using PAM
+<span class="term_say"># 找到啦！就是上面的这个软件提供了 passwd 这个程序！</span>
+</pre></td></tr></tbody></table>
+
+		<p>透过上面的查询，你应该大致知道 yum 如何用在查询上面了吧？那么实际来应用一下：</p>
+
+<table border="1" cellpadding="5" cellspacing="0" width="90%"><tbody><tr><td>
+例题：<div class="block2">
+利用 yum 的功能，找出以 pam 为开头的软件名称有哪些？而其中尚未安装的又有哪些？
+</div>
+答：<div class="block2">
+可以透过如下的方法来查询：<br>
+
+<table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">yum list pam*</span>
+Installed Packages
+<u>pam.i386                  0.99.6.2-3.27.el5      installed</u>
+pam_ccreds.i386           3-5                    installed
+<u>pam_krb5.i386             2.2.14-1               installed</u>
+pam_passwdqc.i386         1.0.2-1.2.2            installed
+pam_pkcs11.i386           0.5.3-23               installed
+pam_smb.i386              1.1.7-7.2.1            installed
+Available Packages <span class="term_note">&lt;==底下则是『可升级』的或『未安装』的</span>
+<u>pam.i386                  0.99.6.2-4.el5         base</u>
+pam-devel.i386            0.99.6.2-4.el5         base
+<u>pam_krb5.i386             2.2.14-10              base</u>
+</pre></td></tr></tbody></table>
+
+如上所示，所以可升级者有 pam, pam_krb5 这两个软件，完全没有安装的则是 pam-devel 这个软件罗！
+</div>
+</td></tr></tbody></table><br>
+
+		<hr><ul class="list1"><li class="text_import1">安装/升级功能：yum [install|update] 软件</li></ul>
+
+		<p>既然可以查询，那么安装与升级呢？很简单啦！就利用 install 与 update 这两项工作来处理即可喔！</p>
+
+<table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">yum [option] [查询工作项目] [相关参数]</span>
+<span class="term_say">选项与参数：
+  install ：后面接要安装的软件！
+  update  ：后面接要升级的软件，若要整个系统都升级，就直接 update 即可</span>
+
+<span class="term_hd">范例一：将前一个练习找到的未安装的 pam-devel 安装起来</span>
+[root@www ~]# <span class="term_command">yum install pam-devel</span>
+Setting up Install Process
+Parsing package install arguments
+Resolving Dependencies  <span class="term_note">&lt;==先检查软件的属性相依问题</span>
+--&gt; Running transaction check
+---&gt; Package <u>pam-devel.i386</u> 0:0.99.6.2-4.el5 set to be updated
+--&gt; Processing Dependency: pam = 0.99.6.2-4.el5 for package: pam-devel
+--&gt; Running transaction check
+---&gt; Package <u>pam.i386</u> 0:0.99.6.2-4.el5 set to be updated
+filelists.xml.gz          100% |=========================| 1.6 MB    00:05
+filelists.xml.gz          100% |=========================| 138 kB    00:00
+-&gt; Finished Dependency Resolution
+
+Dependencies Resolved
+
+=============================================================================
+ Package                 Arch       Version          Repository        Size
+=============================================================================
+Installing:
+ pam-devel               i386       0.99.6.2-4.el5   base              186 k
+Updating:
+ pam                     i386       0.99.6.2-4.el5   base              965 k
+
+Transaction Summary
+=============================================================================
+Install      1 Package(s)  <span class="term_note">&lt;==结果发现要安装此软件需要升级另一个相依的软件</span>
+Update       1 Package(s)
+Remove       0 Package(s)
+
+Total download size: 1.1 M
+Is this ok [y/N]: <span class="term_command">y</span>  <span class="term_note">&lt;==确定要安装！</span>
+Downloading Packages: <span class="term_note">&lt;==先下载！</span>
+(1/2): pam-0.99.6.2-4.el5 100% |=========================| 965 kB    00:05
+(2/2): pam-devel-0.99.6.2 100% |=========================| 186 kB    00:01
+Running rpm_check_debug
+Running Transaction Test
+Finished Transaction Test
+Transaction Test Succeeded
+Running Transaction <span class="term_note">&lt;==开始安装！</span>
+  Updating  : pam                          ######################### [1/3]
+  Installing: pam-devel                    ######################### [2/3]
+  Cleanup   : pam                          ######################### [3/3]
+
+Installed: pam-devel.i386 0:0.99.6.2-4.el5
+Updated: pam.i386 0:0.99.6.2-4.el5
+Complete!
+</pre></td></tr></tbody></table>
+
+		<p>有没有很高兴啊！你不必知道软件在哪里，你不必手动下载软件，你也不必拿出原版光盘出来 mount
+		之后查询再安装！全部不需要，只要有了 yum 这个家伙，你的安装、升级再也不是什么难事！
+		而且还能主动的进行软件的属性相依处理流程，如上所示，一口气帮我们处理好了所有事情！
+		是不是很过瘾啊！而且整个动作完全免费！够酷吧！<br><br></p>
+
+		<hr><ul class="list1"><li class="text_import1">移除功能：yum [remove] 软件</li></ul>
+
+		<p>那能不能用 yum 移除软件呢？将刚刚的软件移除看看，会出现啥状况啊？</p>
+
+<table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">yum remove pam-devel</span>
+Setting up Remove Process
+Resolving Dependencies  <span class="term_note">&lt;==同样的，先解决属性相依的问题</span>
+--&gt; Running transaction check
+---&gt; Package pam-devel.i386 0:0.99.6.2-4.el5 set to be erased
+--&gt; Finished Dependency Resolution
+
+Dependencies Resolved
+
+=============================================================================
+ Package                 Arch       Version          Repository        Size
+=============================================================================
+Removing:
+ pam-devel               i386       0.99.6.2-4.el5   installed         495 k
+
+Transaction Summary
+=============================================================================
+Install      0 Package(s)
+Update       0 Package(s)
+Remove       1 Package(s)  <span class="term_note">&lt;==还好，并没有属性相依的问题，单纯移除一个软件</span>
+
+Is this ok [y/N]: <span class="term_command">y</span>
+Downloading Packages:
+Running rpm_check_debug
+Running Transaction Test
+Finished Transaction Test
+Transaction Test Succeeded
+Running Transaction
+  Erasing   : pam-devel                    ######################### [1/1]
+
+Removed: pam-devel.i386 0:0.99.6.2-4.el5
+Complete!
+</pre></td></tr></tbody></table>
+
+		<p>连移除也这么简单！看来，似乎不需要 rpm 这个命令也能够快乐的安装所有的软件了！
+		虽然是如此，但是 yum 毕竟是架构在 rpm 上面所发展起来的，所以，鸟哥认为你还是得需要了解 rpm 
+		才行！不要学了 yum 之后就将 rpm 的功能忘记了呢！切记切记！</p>
+	</div>
+
+	<hr><a name="yumclient_config"></a><img src="../images/logo.png" alt="小标题的图示" width="24" align="middle" height="23"><span class="text_h2">yum 的配置档</span><br>
+	<div class="block2">
+		<p>虽然 yum 是你的主机能够连线上 Internet 就可以直接使用的，不过，由於 CentOS 的映射站台可能会选错，
+		举例来说，我们在台湾，但是 CentOS 的映射站台却选择到了大陆北京或者是日本去，有没有可能发生啊！
+		有啊！鸟哥教学方面就常常发生这样的问题，要知道，我们连线到大陆或日本的速度是非常慢的呢！那怎办？
+		当然就是手动的修改一下 yum 的配置档就好罗！</p>
+
+		<p>在台湾，CentOS 的映射站台主要有高速网络中心与义首大学，鸟哥近来比较偏好高速网络中心，
+		似乎升级的速度比较快，而且连接台湾学术网络也非常快速哩！因此，鸟哥底下建议台湾的朋友使用高速网络中心的 
+		ftp 主机资源来作为 yum 服务器来源喔！目前高速网络中心对於 CentOS  所提供的相关网址如下：</p>
+
+		<ul><li><a href="http://ftp.twaren.net/Linux/CentOS/5/" target="_blank">http://ftp.twaren.net/Linux/CentOS/5/</a></li></ul>
+
+		<p>如果你连接到上述的网址后，就会发现里面有一堆连结，那些连结就是这个 yum 服务器所提供的容器了！
+		所以高速网络中心也提供了 addons, centosplus, extras, fasttrack, os, updates 等容器，最好认的容器就是
+		os (系统默认的软件) 与 updates (软件升级版本) 罗！由於鸟哥在我的测试用主机是利用 i386 的版本，
+		因此那个 os 再点进去就会得到如下的可提供安装的网址：</p>
+
+		<ul><li><a href="http://ftp.twaren.net/Linux/CentOS/5/os/i386/" target="_blank">http://ftp.twaren.net/Linux/CentOS/5/os/i386/</a></li></ul>
+
+		<p>为什么在上述的网址内呢？有什么特色！<span class="text_import2">最重要的特色就是那个『 repodata
+		』的目录！该目录就是分析 RPM 软件后所产生的软件属性相依数据放置处！</span>因此，当你要找容器所在网址时，
+		最重要的就是该网址底下一定要有个名为 repodata 的目录存在！那就是容器的网址了！
+		其他的容器正确网址，就请各位看倌自行寻找一下喔！现在让我们修改配置档吧！</p>
+
+<table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">vi /etc/yum.repos.d/CentOS-Base.repo</span>
+[base]
+name=CentOS-$releasever - Base
+mirrorlist=http://mirrorlist.centos.org/?release=$releasever&amp;arch=$basearch&amp;repo=os
+#baseurl=http://mirror.centos.org/centos/$releasever/os/$basearch/
+gpgcheck=1
+gpgkey=http://mirror.centos.org/centos/RPM-GPG-KEY-CentOS-5
+</pre></td></tr></tbody></table>
+
+		<p>如上所示，鸟哥仅列出 base 这个容器内容而已，其他的容器内容请自行查阅罗！上面的数据需要注意的是：</p>
+
+		<ul class="text_import2">
+		<li>[base]：代表容器的名字！中刮号一定要存在，里面的名称则可以随意取。但是不能有两个相同的容器名称，
+		否则 yum 会不晓得该到哪里去找容器相关软件清单文件。<br><br></li>
+		<li>name：只是说明一下这个容器的意义而已，重要性不高！<br><br></li>
+		<li>mirrorlist=：列出这个容器可以使用的映射站台，如果不想使用，可以注解到这行；<br><br></li>
+		<li>baseurl=：这个最重要，因为后面接的就是容器的实际网址！ mirrorlist 是由 yum 程序自行去捉映射站台，
+		baseurl 则是指定固定的一个容器网址！我们刚刚找到的网址放到这里来啦！<br><br></li>
+		<li>enable=1：就是让这个容器被启动。如果不想启动可以使用 enable=0 喔！<br><br></li>
+		<li>gpgcheck=1：还记得 RPM 的数码签章吗？这就是指定是否需要查阅 RPM 文件内的数码签章！<br><br></li>
+		<li>gpgkey=：就是数码签章的公钥档所在位置！使用默认值即可<br><br></li>
+		</ul>
+
+		<p>了解这个配置档之后，接下来让我们修改整个文件的内容，让我们这部主机可以直接使用高速网络中心的资源吧！
+		修改的方式鸟哥仅列出 base 这个容器项目而已，其他的项目请您自行依照上述的作法来处理即可！</p>
+
+<table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">vi /etc/yum.repos.d/CentOS-Base.repo</span>
+[base]
+name=CentOS-$releasever - Base
+baseurl=<span class="term_write">http://ftp.twaren.net/Linux/CentOS/5/os/i386/</span>
+gpgcheck=1
+gpgkey=http://mirror.centos.org/centos/RPM-GPG-KEY-CentOS-5
+<span class="term_say"># 底下其他的容器项目，请自行到高速网络中心去查询后自己处理！</span>
+</pre></td></tr></tbody></table>
+
+		<p>接下来当然就是给他测试一下罗！如何测试呢？再次使用 yum 即可啊！</p>
+
+<table class="term"><tbody><tr><td class="term"><pre><span class="term_hd">范例一：列出目前 yum server 所使用的容器有哪些？</span>
+[root@www ~]# <span class="term_command">yum repolist all</span>
+<u>repo id         repo name                  status</u>
+addons          CentOS-5 - Addons          enabled
+base            CentOS-5 - Base            enabled
+c5-media        CentOS-5 - Media           disabled
+centosplus      CentOS-5 - Plus            disabled
+extras          CentOS-5 - Extras          enabled
+updates         CentOS-5 - Updates         enabled
+<span class="term_say"># 上面最右边有写 enabled 才是有启动的！由於 /etc/yum.repos.d/
+# 有多个配置档，所以你会发现还有其他的容器存在。</span>
+</pre></td></tr></tbody></table><br>
+
+		<hr><ul class="list1"><li class="text_import1">修改容器产生的问题与解决之道</li></ul>
+
+		<p>由於我们是修改系统默认的配置档，事实上，我们应该要在 /etc/yum.repos.d/ 底下新建一个文件，
+		该扩展名必须是 .repo 才行！但因为我们使用的是指定特定的映射站台，而不是其他软件开发生提供的容器，
+		因此才修改系统默认配置档。但是可能由於使用的容器版本有新旧之分，你得要知道，
+		yum 会先下载容器的清单到本机的 /var/cache/yum 里面去！那我们修改了网址却没有修改容器名称 (中刮号内的文字)，
+		可能就会造成本机的清单与 yum 服务器的清单不同步，此时就会出现无法升级的问题了！</p>
+
+		<p>那怎么办啊？很简单，就清除掉本机上面的旧数据即可！需要手动处理吗？不需要的，
+		透过 yum 的 clean 项目来处理即可！</p>
+
+<table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">yum clean [packages|headers|all] </span>
+<span class="term_say">选项与参数：
+ packages：将已下载的软件文件删除
+ headers ：将下载的软件档头删除
+ all     ：将所有容器数据都删除！</span>
+
+<span class="term_hd">范例一：删除已下载过的所有容器的相关数据 (含软件本身与清单)</span>
+[root@www ~]# <span class="term_command">yum clean all</span>
+</pre></td></tr></tbody></table>
+
+	</div>
+
+	<hr><a name="yumclient_group"></a><img src="../images/logo.png" alt="小标题的图示" width="24" align="middle" height="23"><span class="text_h2">yum 的软件群组功能</span><br>
+	<div class="block2">
+		<p>透过 yum 来线上安装一个软件是非常的简单，但是，如果要安装的是一个大型专案呢？
+		举例来说，鸟哥使用默认安装的方式安装了测试机，这部主机就只有 GNOME 这个窗口管理员，
+		那我如果想要安装 KDE 呢？难道需要重新安装？当然不需要，透过 yum的软件群组功能即可！
+		来看看命令先：</p>
+
+<table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">yum [群组功能] [软件群组]</span>
+<span class="term_say">选项与参数：
+   grouplist   ：列出所有可使用的『套件组』，例如 Development Tools 之类的；
+   groupinfo   ：后面接 group_name，则可了解该 group 内含的所有套件名；
+   groupinstall：这个好用！可以安装一整组的套件群组，相当的不错用！
+   groupremove ：移除某个套件群组；</span>
+
+<span class="term_hd">范例一：查阅目前容器与本机上面的可用与安装过的软件群组有哪些？</span>
+[root@www ~]# <span class="term_command">yum grouplist</span>
+Installed Groups:
+   Office/Productivity
+   Editors
+   System Tools
+<span class="term_say">....(中间省略)....</span>
+Available Groups:
+   Tomboy
+   Cluster Storage
+   Engineering and Scientific
+<span class="term_say">....(以下省略)....</span>
+</pre></td></tr></tbody></table>
+
+		<p>你会发现系统上面的软件大多是群组的方式一口气来提供安装的！还记全新安装 CentOS 时，
+		不是可以选择所需要的软件吗？而那些软件不是利用 GNOME/KDE/X Window ... 之类的名称存在吗？
+		其实那就是软件群组罗！如果你运行上述的命令后，在『Available Groups』底下应该会看到一个
+		『XFCE-4.4』的软件群组，想知道那是啥吗？就这样做：</p>
+
+<table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">yum groupinfo XFCE-4.4</span>
+Setting up Group Process
+
+Group: XFCE-4.4
+ <u>Description: This group contains the XFCE desktop environment.</u>
+ Mandatory Packages:
+   xfce4-session
+<span class="term_say">....(中间省略)....</span>
+ Default Packages:
+   xfce4-websearch-plugin
+<span class="term_say">....(中间省略)....</span>
+ Optional Packages:
+   xfce-mcs-manager-devel
+   xfce4-panel-devel
+<span class="term_say">....(以下省略)....</span>
+</pre></td></tr></tbody></table>
+
+		<p>你会发现那就是一个壁纸环境 (desktop environment) ，也就是一个窗口管理员啦！
+		至於底下就列出主要的与选择性 (optional) 的软件名称罗！让我们直接安装看看：</p>
+
+<table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">yum groupinstall XFCE-4.4</span>
+</pre></td></tr></tbody></table>
+
+		<p>你会发现系统进行了一大堆软件的安装！那就是啦！整个安装 XFCE 这个窗口介面所需的所有软件！
+		这个咚咚真是非常的方便呢！这个功能请一定要记下来，对你未来安装软件是非常有帮助的喔！ ^_^</p>
+	</div>
+
+	<hr><a name="yumclient_system"></a><img src="../images/logo.png" alt="小标题的图示" width="24" align="middle" height="23"><span class="text_h2">全系统自动升级</span><br>
+	<div class="block2">
+		<p>我们可以手动选择是否需要升级，那能不能让系统自动升级，让我们的系统随时保持在最新的状态呢？
+		当然可以啊！透过『 yum -y update 』来自动升级，那个 -y 很重要，因为可以自动回答 yes 来开始下载与安装！
+		然后再透过 crontab 的功能来处理即可！假设我每天在台湾时间 3:00am  网络频宽比较轻松的时候进行升级，
+		你可以这样做的：</p>
+
+<table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">vim /etc/crontab</span>
+<span class="term_say">....(前面省略并保留配置值)....</span>
+<span class="term_write">0  3 * * * root /usr/bin/yum -y update</span>
+</pre></td></tr></tbody></table>
+
+		<p>从此你的系统就会自动升级啦！很棒吧！此外，你还是得要分析登录档与收集 root 的信件的，
+		因为如果升级的是核心软件 (kernel)，那么你还是得要重新启动才会让安装的软件顺利运行的！
+		所以还是得分析登录档，若有新核心安装，就重新启动，否则就让系统自动维持在最新较安全的环境吧！
+		真是轻松愉快的管理啊！</p>
+	</div>
+</div>
+
+
+<hr><a name="rpmortarball"></a><img src="../images/logo.png" alt="大标题的图示" width="35" align="middle" height="34"><span class="text_h1">管理的抉择：RPM 还是 Tarball</span>
+<div class="block1">
+	<p>这一直是个有趣的问题：『<span class="text_import2">如果我要升级的话，或者是全新安装一个新的软件，
+	那么该选择 RPM 还是 Tarball 来安装呢？</span>』，事实上考虑的因素很多，不过鸟哥通常是这样建议的：</p>
+
+	<ol>
+		<li><span class="text_import1">优先选择原厂的 RPM 功能：</span><br><br>
+
+		由於原厂释出的软件通常具有一段时间的维护期，举例来说， RHEL 与 CentOS 
+		每一个版本至少提供五年以上的升级期限。这对於我们的系统安全性来说，实在是非常好的选项！
+		何解？既然 yum 可以自动升级，加上原厂会持续维护软件升级，那么我们的系统就能够自己保持在软件最新的状态，
+		对於资安来说当然会比较好一些的！
+		此外，由於 RPM 与 yum 具有容易安装/移除/升级等特点，且还提供查询与验证的功能，安装时更有数码签章的保护，
+		让你的软件管理变的更轻松自在！因此，当然首选就是利用 RPM 来处理啦！<br><br></li>
+
+		<li><span class="text_import1">选择软件官网释出的 RPM 或者是提供的容器网址：</span><br><br>
+
+		不过，原厂并不会包山包海，因此某些特殊软件你的原版厂商并不会提供的！举例来说 CentOS 
+		就没有提供 NTFS 的相关模块。此时你可以自行到官网去查阅，看看有没有提供相对到你的系统的 RPM 文件，
+		如果有提供容器网址，那就更好啦！可以修改 yum 配置档来加入该容器，就能够自动安装与升级该软件！
+		你说方不方便啊！<br><br></li>
+
+		<li><span class="text_import1">利用 Tarball 安装特殊软件：</span><br><br>
+
+		某些特殊用途的软件并不会特别帮你制作 RPM 文件的，此时建议你也不要妄想自行制作 SRPM 来转成 RPM 啦！
+		因为你只有区区一部主机而已，若是你要管理相同的 100 部主机，那么将原始码转制作成 RPM 就有价值！
+		单机版的特殊软件，例如学术网络常会用到的 MPICH/PVM 等平行运算函式库，这种软件建议使用 tarball 来安装即可，
+		不需要特别去搜寻 RPM 罗！<br><br></li>
+
+		<li><span class="text_import1">用 Tarball 测试新版软件：</span><br><br>
+
+		某些时刻你可能需要使用到新版的某个软件，但是原版厂商仅提供旧版软件，举例来说，我们的 CentOS 
+		主要是定位於企业版，因此很多软件的要求是『稳』而不是『新』，但你就是需要新软件啊！
+		然后又担心新软件装好后产生问题，回不到旧软件，那就惨了！此时你可以用 tarball 安装新软件到 /usr/local 底下，
+		那么该软件就能够同时安装两个版本在系统上面了！而且大多数软件安装数种版本时还不会互相干扰的！
+		嘿嘿！用来作为测试新软件是很不错的呦！只是你就得要知道你使用的命令是新版软件还是旧版软件了！</li>
+	</ol>
+
+	<p>所以说，RPM 与 Tarball 各有其优缺点，不过，如果有 RPM 的话，那么优先权还是在於
+	RPM 安装上面，毕竟管理上比较便利，但是如果软件的架构差异性太大，
+	或者是无法解决相依属性的问题，那么与其花大把的时间与精力在解决属性相依的问题上，还不如直接以
+	tarball 来安装，轻松又惬意！</p>
+</div>
+
+
+<hr><a name="hint"></a><img src="../images/logo.png" alt="大标题的图示" width="35" align="middle" height="34"><span class="text_h1">重点回顾</span><br>
+<div class="block1">
+<ul class="text_import2">
+	<li>为了避免使用者自行编译的困扰，开发商自行在特定的硬件与操作系统平台上面预先编译好软件，
+	并将软件以特殊格式封包成文件，提供终端用户直接安装到固定的操作系统上，并提供简单的查询/安装/移除等流程。
+	此称为软件管理员。常见的软件管理员有 RPM 与 DPKG 两大主流。</li>
+	<li>RPM 的全名是 RedHat Package Manager，原本是由 Red Hat 公司所发展的，流传甚广；</li>
+	<li>RPM 类型的软件中，所含有的软件是经过编译后的 binary program ，所以可以直接安装在使用者端的系统上，
+	不过，也由於如此，所以 RPM 对於安装者的环境要求相当严格；</li>
+	<li>RPM 除了将软件安装至使用者的系统上之外，还会将该软件的版本、名称、文件与目录配置、系统需求等等均记录於数据库
+	(/var/lib/rpm) 当中，方便未来的查询与升级、移除；</li>
+	<li>RPM 可针对不同的硬件等级来加以编译，制作出来的文件可於扩展名 (i386, i586, i686, x86_64) 来分辨；</li>
+	<li>RPM 最大的问题为软件之间的相依性问题；</li>
+	<li>SRPM 为 Source RPM ，内含的文件为 Source code 而非为 binary file ，所以安装 SRPM 时还需要经过 
+	compile ，不过，SRPM 最大的优点就是可以让使用者自行修改配置参数 (makefile/configure 的参数)
+	，以符合使用者自己的 Linux 环境；</li>
+	<li>RPM 软件的属性相依问题，已经可以藉由  yum 或者是 APT 等方式加以克服。 CentOS 使用的就是 yum 机制。</li>
+	<li>yum 服务器提供多个不同的容器放置个别的软件，以提供用户端分别管理软件类别。</li>
+</ul>
+</div>
+
+
+<hr><a name="ex"></a><img src="../images/logo.png" alt="大标题的图示" width="35" align="middle" height="34"><span class="text_h1">本章习题</span><br>
+<div class="block1">
+<ul style="padding-left: 10px;">
+	<li>情境模拟题一：实际安装 php, php-mysql, php-devel, httpd-devel 等软件的方式<br><br>
+	<ul>
+		<li>目标：利用 rpm 查询软件是否已安装，利用 yum 进行线上查询；</li>
+		<li>目标：你的 Linux 必须要已经接上 Internet 才行；</li>
+		<li>需求：最好了解磁碟容量是否够用，以及如何启动服务等。</li>
+	</ul><br>
+
+	这个模拟题的目的是想要安装一套较为完整的 WWW 服务器，并且此服务器可以支持外挂的其他网页服务器模块。
+	所以需要安装的就会有网页程序语言 php 与数据库软件 MySQL ，以及未来开发用的 php-devel, httpd-devel 等软件。
+	整个流程会有点像这样：<br><br>
+
+	<ol>
+		<li>检查所需要的软件是否存在？最好直接使用 rpm ，因为可以直接取得 RPM 的数据库内容：<br>
+
+<table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">rpm -q httpd httpd-devel php php-devel php-mysql</span>
+httpd-2.2.3-22.el5.centos
+package httpd-devel is not installed  <span class="term_note">&lt;==没有安装的软件！</span>
+php-5.1.6-23.el5
+package php-devel is not installed    <span class="term_note">&lt;==没有安装的软件！</span>
+package php-mysql is not installed    <span class="term_note">&lt;==没有安装的软件！</span>
+</pre></td></tr></tbody></table>
+
+		经过上面的分析，我们知道 httpd-devel, php-devel, php-mysql 等软件并没有安装！那么该如何安装
+		可以使用 yum  直接线上安装。不过我们必须要先有网络才行！<br><br></li>
+
+		<li>确认网络的可行性：<br>
+
+<table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">ifconfig eth0</span>
+eth0      Link encap:Ethernet  HWaddr 08:00:27:11:3B:75
+          inet addr:<span class="term_write">192.168.201.201</span>  Bcast:192.168.201.255  Mask:<span class="term_write">255.255.255.0</span>
+<span class="term_say">....(底下省略)....
+# 你可以看到我们的主机是有 IP 存在的！再来看看有没有路由配置存在？</span>
+
+[root@www ~]# <span class="term_command">route -n</span>
+Kernel IP routing table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+192.168.201.0   0.0.0.0         255.255.255.0   U     0      0        0 eth0
+0.0.0.0         <span class="term_write">192.168.201.254</span> 0.0.0.0         UG    0      0        0 eth0
+<span class="term_say"># 确实是有路由器 (Gateway) 存在的！那么该路由器是否配置正确呢？</span>
+
+[root@www ~]# <span class="term_command">ping -c 2 192.168.201.254</span>
+PING 192.168.201.254 (192.168.201.254) 56(84) bytes of data.
+64 bytes from 192.168.201.254: icmp_seq=1 ttl=64 <span class="term_write">time=0.325 ms</span>
+64 bytes from 192.168.201.254: icmp_seq=2 ttl=64 <span class="term_write">time=0.281 ms</span>
+<span class="term_say"># 路由器有回应！表示可以连接到路由器！那么 TCP/IP 设好了，
+# 但是主机名称解析器统 (DNS) 该如何处理？</span>
+
+[root@www ~]# <span class="term_command">dig www.google.com</span>
+
+; &lt;&lt;&gt;&gt; DiG 9.3.4-P1 &lt;&lt;&gt;&gt; www.google.com
+;; global options:  printcmd
+<span class="term_say">....(中间省略)....</span>
+;; QUESTION SECTION:
+;www.google.com.                        IN      A
+<span class="term_say">....(中间省略)....</span>
+;; ANSWER SECTION:
+www.google.com.         522933  IN      CNAME   www.l.google.com.
+www.l.google.com.       107     IN      A       <span class="term_write">72.14.203.103</span>
+<span class="term_say">....(中间省略)....</span>
+;; Query time: 5 msec
+;; SERVER: <span class="term_write">120.114.150.1#53(120.114.150.1)</span>
+;; WHEN: Fri Sep 18 13:14:45 2009
+;; MSG SIZE  rcvd: 340
+<span class="term_say"># 确实有查到 Google 的 IP ，且是由 120.114.150.1 那部 DNS 主机帮忙解析的！</span>
+</pre></td></tr></tbody></table></li>
+
+		<li>网络配置妥当之后，那我们就能够直接使用 yum 罗！可以这样直接进行安装的：<br>
+
+<table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">yum install httpd httpd-devel php php-devel php-mysql</span>
+</pre></td></tr></tbody></table>
+
+		然后接著一步一步进行安装即可。</li>
+	</ol><br></li>
+</ul>
+
+<hr>简答题部分：
+<ul>
+	<li>如果你曾经修改过 yum 配置档内的容器配置 (/etc/yum.repos.d/*.repo) ，导致下次使用 yum 进行安装时老是发现错误，
+	此时你该如何是好？
+	<div class="blockex">
+		先确认你的配置档确实是正确的，如果没问题，可以将 yum 的缓存清除，使用『yum clean all』即可。
+		事实上， yum 的所有缓存、下载软件、下载软件的表头数据，都放置於 /var/cache/yum/ 目录下。
+	</div></li>
+
+	<li>简单说明 RPM 与 SRPM 的异同？
+	<div class="blockex">
+	RPM 文件是由程序打包者 (通常是由 distribution 的开发商) 藉由程序的原始码，在特定的平台上面所编译成功的
+	binary program 的数据，并将该数据制作成为 RPM 的格式，以方便相同软、硬件平台的使用者之安装使用。
+	在安装时显的很简单，因为程序打包者的平台与使用者所使用的平台默认为相同。<br>
+	至於 SRPM 则是藉由与 RPM 相同的配置档数据，不过将原始码直接包在 SRPM 文件当中，而不经过编译。
+	因为 SRPM 所内含的数据为原始码，所以安装时必须要再经过编译的行为才能成为 RPM 并提供使用者安装。
+	</div></li>
+
+	<li>假设我想要安装一个软件，例如 pkgname.i386.rpm ，但却老是发生无法安装的问题，请问我可以加入哪些参数来强制安装他？
+	<div class="blockex">
+	可以加入 --nodeps 等参数。例如 rpm -ivh --nodeps pkgname.i386.rpm
+	</div></li>
+
+	<li>承上题，你认为强制安装之后，该软件是否可以正常运行？为什么？
+	<div class="blockex">
+	一般来说，应该是『不能运行』的，因为该软件具有相依属性的问题，
+	某些时刻该软件的程序可能需要呼叫外部的函式库，但函式库可能未安装，因此当然无法运行成功。
+	</div></li>
+
+	<li>有些人使用 OpenLinux 3.1 Server 安装在自己的 P-166 MMX ，却发现无法安装，在查询了该原版光盘的内容，发现里面的文件名称为
+	***.i686.rpm 。请问，无法安装的可能原因为何？
+	<div class="blockex">
+	因为 P-166MMX 为 i586 的硬件平台，而 OpenLinux 为针对 i686 的硬件平台进行最佳化，
+	因此很可能由於下达的参数无法支持的问题，导致无法安装成功。
+	</div></li>
+
+	<li>请问我使用 rpm -Fvh *.rpm 及 rpm -Uvh *.rpm 来升级时，两者有何不同？
+	<div class="blockex">
+	-Uvh 后面接的软件，如果原本未安装，则直接安装，原本已安装时，则直接升级；<br>
+	-Fvh 后面接的软件，如果原本未安装，则不安装，原本已安装时，则直接升级；
+	</div></li>
+
+	<li>假设有一个厂商推出软件时，自行处理了数码签章，你想要安装他们的软件所以需要使用数码签章，假设数码签章的档名为 signe，
+	那你该如何安装？
+	<div class="blockex">
+		rpm --import signe
+	</div></li>
+
+	<li>承上，假设该软件厂商提供了 yum 的安装网址为： http://their.server.name/path/ ，那你该如何处理 yum 的配置档？
+	<div class="blockex">
+		可以自行取个档名，在此例中我们使用『 vim /etc/yum.repos.d/their.repo 』，扩展名要正确！
+		内容有点像这样即可：<pre>[their]
+name=their server name
+baseurl=http://their.server.name/path/
+enable=1
+gpgcheck=0</pre>然后使用 yum 去安装该软件看看。
+	</div></li>
+</ul>
+</div>
+
+
+<hr><a name="reference"></a><img src="../images/logo.png" alt="大标题的图示" width="35" align="middle" height="34"><span class="text_h1">参考数据与延伸阅读</span><br>
+<div class="block1">
+<ul>
+	<li><a name="ps1"></a>注1：GNU Privacy Guard (GPG) 官方网站的介绍：<a href="http://www.gnupg.org/" target="_blank">http://www.gnupg.org/</a></li>
+	<li>RPM 包装文件管理程序：<a href="http://www.study-area.org/tips/rpm.htm" target="_blank">http://www.study-area.org/tips/rpm.htm</a></li>
+	<li>中文 RPM HOW-TO：<a href="http://www.linux.org.tw/CLDP/RPM-HOWTO.html" target="_blank">http://www.linux.org.tw/CLDP/RPM-HOWTO.html</a></li>
+	<li>RPM 的使用：<a href="http://linux.tnc.edu.tw/techdoc/rpm-howto.htm" target="_blank">http://linux.tnc.edu.tw/techdoc/rpm-howto.htm</a></li>
+	<li>大家来作 RPM ：<a href="http://freebsd.ntu.edu.tw/bsd/4/3/2/29.html" target="_blank">http://freebsd.ntu.edu.tw/bsd/4/3/2/29.html</a></li>
+	<li>一本 RPM 的原文书：<a href="http://linux.tnc.edu.tw/techdoc/maximum-rpm/rpmbook/" target="_blank">http://linux.tnc.edu.tw/techdoc/maximum-rpm/rpmbook/</a></li>
+	<li>台湾网络危机处理小组：<a href="http://www.cert.org.tw/" target="_blank">http://www.cert.org.tw/</a></li>
+</ul>
+</div>
+
+
+<hr><span class="text_history">
+2002/08/21：第一次完成<br>
+2003/02/11：重新编排与加入 FAQ<br>
+2004/04/11：已经完成了 <a href="http://linux.vbird.org/linux_basic/0520source_code_and_tarball.php">Source code 与 Tarball </a>，开始进行 
+	RPM 与 SRPM 的介绍！(需要耗时多日啊！因为又要进兵营去了！)<br>
+2004/04/20：终於给他熬出来啦！又是过了两个休假期间～啊！给我退伍令、其余免谈！<br>
+2005/10/02：旧版的 SRPM 数据已经移动到 <a href="http://linux.vbird.org/linux_basic/0520softwaremanager/0530srpm.php">此处</a> 。<br>
+2005/10/03：旧版的针对 Red Hat 与 Mandriva 的版本移动到 <a href="http://linux.vbird.org/linux_basic/0520softwaremanager/0520rpm_and_srpm.php">此处</a>
+	。<br>
+2005/10/03：将原本去年的版本改为 FC4 为范例的模样！<br>
+2009/06/20：原本的针对 FC4 写的旧版文章移动到<a href="http://linux.vbird.org/linux_basic/0520softwaremanager/0520rpm_and_srpm-fc4.php">此处</a>。<br>
+2009/09/18：加入了简单的情境模拟，也加入了一些关於 yum 的习题喔！<hr>
+</span>
+    </td>
+    <td style="width: 16px; font-size: 6px;">　</td></tr>
+<tr><td style="width: 16px; height: 16px;">　</td>
+    <td style="width: 866px; height: 16px;">　</td>
+    <td style="width: 16px; height: 16px;">　</body></html>

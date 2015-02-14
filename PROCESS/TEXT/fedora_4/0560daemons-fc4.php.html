@@ -1,1 +1,1213 @@
-﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"> <html lang="zh-TW"><head>  	<meta http-equiv="Content-Type" content="text/html; charset=utf8"> 	<meta name="Author" content="VBird, 鸟哥"> 	<meta name="Description" content="认识 daemons 可重要了，能够更清楚的了解服务的启动与运作方式！"> 	<title>鸟哥的 Linux 私房菜 -- 认识 Linux 系统服务的 daemons</title>     <script src="../../script/SpryMenuBar.js" type="text/javascript"></script> 	<script src="../../script/index.js" type="text/javascript"></script> 	<link href="../../css/SpryMenuBarHorizontal.css" rel="stylesheet" type="text/css" />     <link href="../../css/main.css" rel="stylesheet" type="text/css" /> </head><body style="margin: 0pt; padding: 0pt;" class="table"onload="MM_preloadImages('image/title_19.png','image/title_26.png','image/title_27.png','image/title_28.png','image/title_06.png','image/title_08.png','image/title_10.png','image/title_12.png')">   <!-- Copyright � 2005. Spidersoft Ltd --> <style> A.applink:hover {border: 2px dotted #DCE6F4;padding:2px;background-color:#ffff00;color:green;text-decoration:none} A.applink       {border: 2px dotted #DCE6F4;padding:2px;color:#2F5BFF;background:transparent;text-decoration:none} A.info          {color:#2F5BFF;background:transparent;text-decoration:none} A.info:hover    {color:green;background:transparent;text-decoration:underline} </style> <div style='BORDER: 1px solid #DCE6F4; MARGIN-TOP: 20px; MARGIN-BOTTOM: 20px; MARGIN-LEFT: 5px; MARGIN-RIGHT: 5px; PADDING: 5px; BACKGROUND-COLOR: #eef8ff;line-height:180%; COLOR: #000000; font-family: Arial; font-size: 8pt; width=100%; FILTER: progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr="#FFFFFFFF", EndColorStr="#F2F5FAFF");'> This page was saved using <a class="applink" href="http://www.spidersoft.com"><b>WebZIP 7.0.3.1030</b></a> <a class="applink" href="http://www.spidersoft.com"><b>offline browser</b></a>  (Unregistered) on  02/12/15 12:14:49.<br> <b>Address:</b> <a class="info" href="http://vbird.dic.ksu.edu.tw/linux_basic/fedora_4/0560daemons-fc4.php">http://vbird.dic.ksu.edu.tw/linux_basic/fedora_4/0560daemons-fc4.php</a><br> <b>Title:</b> 鸟哥的 Linux 私房菜 -- 认识 Linux 系统服务的 daemons &nbsp;&bull;&nbsp; <b>Size:</b> 97756<br></div> <!-- /Copyright � 2005. Spidersoft Ltd -->    <center> <div id="apDiv5"> <div> <LINK REL="SHORTCUT ICON" HREF="favicon.ico"> <!-- ImageReady Slices (title3.ai) --> <table id="___01" width="898" height="81" border="0" align="center" cellpadding="0" cellspacing="0";> 	<tr> 		<td colspan="15"> 			<img src="image/title/title_01.png" width="900" height="1" alt=""></td> 	</tr> 	<tr> 		<td rowspan="4" bgcolor="#182448"><p><img src="http://linux.vbird.org/cgi-bin/Count.cgi?dd=C&ft=5&sh=T&md=8&pad=Y&df=vbird.dic.ksu.edu.tw.dat" width="93" align="left" title="計數器" /></p> 	    <p><font color="#FFFFFF" size="-1">since2012/04/23</font></p></td> 		<td rowspan="4" align="left" valign="top"><a href="http://vbird.dic.ksu.edu.tw/"><img src="image/title/title_03.png" alt="" width="263" height="79" border="0"></a></td> 		<td colspan="13"> 			<img src="image/title/title_04.png" alt="" width="535" height="9" border="0"></td> 	</tr> 	<tr> 		<td rowspan="3"> 			<img src="image/title/title_05.png" alt="" width="53" height="70" border="0"></td> 		<td colspan="2" align="left" valign="top"><a href="../0110whatislinux.php.html" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image51','','image/title/title_06.png',1)"><img src="image/title/title3_06.png" name="Image51" width="106" height="25" border="0" id="Image51" alt=""/></a></td> 		<td rowspan="2"> 			<img src="image/title/title_07.png" alt="" width="27" height="37" border="0"></td> 		<td colspan="3" align="left" valign="top"><a href="http://vbird.dic.ksu.edu.tw/linux_server/0110network_basic.php" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image52','','image/title/title_08.png',1)"><img src="image/title/title3_08.png" name="Image52" width="107" height="25" border="0" id="Image52" alt=""/></a></td> 		<td rowspan="2"> 			<img src="image/title/title_09.png" alt="" width="37" height="37" border="0"></td> 		<td colspan="2" align="left" valign="top"><a href="http://vbird.dic.ksu.edu.tw/about.php" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image53','','image/title/title_10.png',1)"><img src="image/title/title3_10.png" name="Image53" width="75" height="25" border="0" id="Image53" alt=""/></a></td> 		<td rowspan="3"> 			<img src="image/title/title_11.png" alt="" width="35" height="70" border="0"></td> 		<td align="left" valign="top"><a href="mailto:vbird@mail.vbird.idv.tw" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image54','','image/title/title_12.png',1)"><img src="image/title/title3_12.png" name="Image54" width="74" height="25" border="0" id="Image54" alt=""/></a></td> 		<td rowspan="3"> 			<img src="image/title/title_13.png" alt="" width="21" height="70" border="0"></td> 	</tr> 	<tr> 		<td colspan="2"> 			<img src="image/title/title_14.png" alt="" width="106" height="12" border="0"></td> 		<td colspan="3"> 			<img src="image/title/title_15.png" alt="" width="107" height="12" border="0"></td> 		<td colspan="2"> 			<img src="image/title/title_16.png" width="75" height="12" alt=""></td> 		<td rowspan="2"> 			<img src="image/title/title_17.png" alt="" width="74" height="45" border="0"></td> 	</tr> 	<tr> 		<td> 			<img src="image/title/title_18.png" alt="" width="15" height="33" border="0"></td> 		<td colspan="3" align="left" valign="top"><ul id="MenuBar1" class="MenuBarHorizontal"> 	  <li><a href="../linux_basic.php.html" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image44','','image/title/title_19.png',1)"><img src="image/title/title3_19.png" name="Image44" width="123" height="33" border="0" id="Image44" /></a> 			    <ul> 			      <li><a href="../Mandrake9.0/mandrake9.0.php.html" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image46','','image/title/title_26.png',1)"><img src="image/title/title_23.png" name="Image46" width="120" height="26" border="0" id="Image46" alt="" /></a></li>                   <li><a href="fc4.php.html" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image47','','image/title/title_27.png',1)"><img src="image/title/title_24.png" name="Image47" width="120" height="26" border="0" id="Image47" alt="" /></a></li>                   <li><a href="../linux_basic.php.html" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image48','','image/title/title_28.png',1)"><img src="image/title/title_25.png" name="Image48" width="120" height="26" border="0" id="Image48" alt="" /></a></li>                 </ul> 		      </li> 		</ul></td> 		<td> 			<img src="image/title/title_20.png" alt="" width="42" height="33" border="0"></td> 		<td colspan="3" align="left" valign="top"><ul id="MenuBar2" class="MenuBarHorizontal"> 	  <li><a href="http://vbird.dic.ksu.edu.tw/linux_server/" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image45','','image/title/title_21.png',1)"><img src="image/title/title3_21.png" name="Image45" width="125" height="33" border="0" id="Image45" /></a> 			    <ul> 			      <li><a href="http://vbird.dic.ksu.edu.tw/linux_server/linux_redhat9/redhat9.php" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image43','','image/title/title_26.png',1)"><img src="image/title/title_23.png" name="Image43" width="120" height="26" border="0" id="Image43" alt=""/></a></li> 			      <li><a href="http://vbird.dic.ksu.edu.tw/linux_server/centos4.php" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image49','','image/title/title_27.png',1)"><img src="image/title/title_24.png" name="Image49" width="120" height="26" border="0" id="Image49" alt="" /></a></li> 			      <li><a href="http://vbird.dic.ksu.edu.tw/linux_server/" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image50','','image/title/title_28.png',1)"><img src="image/title/title_25.png" name="Image50" width="120" height="26" border="0" id="Image50" alt="" /></a></li> 		        </ul> 		      </li> 		</ul></td> 		<td> 			<img src="image/title/title_22.png" alt="" width="47" height="33" border="0"></td> 	</tr> 	<tr> 		<td> 			<img src="image/title/Spacer.gif" width="101" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="263" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="53" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="15" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="91" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="27" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="5" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="42" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="60" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="37" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="28" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="47" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="35" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="74" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="22" height="1" alt=""></td> 	</tr> </table> <!-- End ImageReady Slices --> <script type="text/javascript"> <!-- var MenuBar1 = new Spry.Widget.MenuBar("MenuBar1", {imgDown:"SpryAssets/SpryMenuBarDownHover.gif", imgRight:"SpryAssets/SpryMenuBarRightHover.gif"}); var MenuBar2 = new Spry.Widget.MenuBar("MenuBar2", {imgDown:"SpryAssets/SpryMenuBarDownHover.gif", imgRight:"SpryAssets/SpryMenuBarRightHover.gif"}); //--> </script></div> <table summary="本文内容的排版" style="width: 898px;" border="0" cellpadding="0" cellspacing="0"> <tbody><tr><td style="width: 16px; height: 16px;">　</td>     <td style="width: 866px; height: 16px;">　</td>     <td style="width: 16px; height: 16px;">　</td></tr> <tr><td style="width: 16px; font-size: 6px;">　</td>     <td width="866">  <!-- 本文的档头部分 --> <div style="text-align: center;">     <a href="http://linux.vbird.org/linux_basic/0560daemons/0560daemons.php">     <span class="text_head0">认识系统服务<span class="text_head_en"> daemons</span></span></a><br> </div>     <div style="text-align: right;">         <span class="text_history">最近更新日期：2005/10/12</span>     </div>  <center>本文已不再维护，更新文章请参考<a href="http://linux.vbird.org/linux_basic/0560daemons.php">此处</a></center> <!-- 本文的档头部分 --> <center><table class="head1" summary="排版：文章档头的说明"><tbody><tr><td class="head1"> 	在 Unix-Like 的系统中，常常听到这个字眼： daemons ！那么什么是传说中的 daemons  	呢？这些 daemon 放在什么地方？他的功能是什么？该如何启动这些 daemons ？又如何有效的将这些 	 daemon 管理妥当！？此外，要如何视察这些 daemons 开了多少个 ports ？又这些 ports  	要如何关闭？还有还有，晓得你的系统的这些 port 各代表的是什么服务吗？ 	这些都是最基础需要注意的呢！尤其是在架设网站之前，这里个观念就显的更重要了。 </td></tr></tbody></table></center>   <!-- 本文的连结区部分 --> <div class="block1"> <span class="text_h1"> 1. <a href="#daemon">什么是 daemon 与服务 (service)</a>：<br> 	<span class="text_h2"> 	　　1.1 <a href="#daemon_type">daemon 的主要分类</a><br> 	　　1.2 <a href="#services">与服务有关的端口口对应资料：/etc/services</a><br> 	　　1.3 <a href="#name_rule">命名规则</a><br> 	　　1.4 <a href="#Whereisdaemon">系统的 Daemons 放在哪里</a>： <a href="#init.d">/etc/init.d/</a>, 		<a href="#xinetd.conf">/etc/xinetd.conf</a>, 		<a href="#xinetd.d">/etc/xinetd.d</a><br> 	　　1.5 <a href="#daemon_start">daemon 的启动方式</a>：<a href="#service">service</a><br> 	</span> 2. <a href="#superd">解析 super daemon 的配置文件</a><br> 	<span class="text_h2"> 	　　2.1 <a href="#xinetd">主要预设参数档 xinetd.conf 及相关参数原理</a><br> 	　　2.2 <a href="#superd_telnet">一个简单的 telnet 范例设定</a><br> 	</span> 3. <a href="#tcp_wrappers">TCP_Wrappers</a>：<span class="text_h2">/etc/hosts.allow, /etc/hosts.deny</span><br> 4. <a href="#open_services">系统开启的服务</a>：<br> 	<span class="text_h2"> 	　　4.1 <a href="#opened">观察系统启动的服务：</a><br> 	　　4.2 <a href="#starting_daemon">设定开机后立即启动服务的方法</a>： 		<a href="#chkconfig">chkconfig</a>, <a href="#ntsysv">ntsysv</a><br> 	　　4.3 <a href="#illustrations">各个服务的简单说明</a><br> 	</span> 5. <a href="#FAQ">本章习题练习</a><br> <span class="text_h2"> 6. <a href="http://phorum.vbird.org/viewtopic.php?t=23894" target="_blank">针对本文的建议：http://phorum.vbird.org/viewtopic.php?t=23894</a> </span> </span> </div>   <!-- 本文的正式部分 --> <hr><a name="daemon"></a><img src="../image/logo.png" alt="大标题的图示" width="35" align="middle" height="34"><span class="text_h1">什么是 daemon 与服务 (service)</span> <div class="block1"> 	如果您常常上网去查看一些数据的话，尤其是关于 Unix-Like 的相关操作系统，如 	FreeBSD, Unix, Linux 等等，应该会常常听到 daemons 这个字眼，那么 daemon 	是什么东西呀！？怎么这么常被见到？呵呵，Daemon 的字面上的意思就是『守护神、恶魔？』还真是有点奇怪呦！ 	^_^""<br><br>  	先来谈一谈 daemon 这个玩意儿是个啥咚咚？还记得我们在 <a href="http://linux.vbird.org/linux_basic/0560daemons/0440processcontrol.php">程序与资源管理</a> 	一文当中提到过程序的概念，程序有的在 bash 当中执行程序而触发的，也有开机的时候， 	系统自行触发而在背景当中执行的。当然也有系统管理员在开机完成后，登入系统来触发的等等。 	不论怎么说，这个 <span class="text_import2">daemon 其实就是一个『在背景当中执行的程序』啦</span>！ 	比较特殊的是，所谓的 <span class="text_import2">daemon 通常是负责系统上面的某个服务 (service) </span>， 	好让系统可以接受来自用户或者是网络客户(client)的要求，而加以工作。<br><br>  	那么什么又是服务 (service)？所谓的服务很简单啦，意思是说，主机提供的功能。 	这些功能主要分为系统上面的，以及针对网络的服务。针对系统上面的服务，例如我们第四篇提到的 crond  	与 atd 等等，他主要负责 Linux 主机上面的工作排程；至于网络服务呢？ 	包括远程联机 SSH 服务器，或者是全球信息网 WWW 服务器等等，这些让客户端连接上来取得数据的服务， 	就是网络服务啦！<br><br>  	那您了解了，之所以要有主机服务器就是希望他可以提供我们一些网络服务，或者是主机端自己的服务， 	好让我们用户或者是一般用户可以工作的更愉快！而主机要提供这些服务，必须要有相对应的 daemon  	来进行服务需求的监听，例如要提供工作排程的服务，就得要有 atd 或者是 crond 这两个 daemon 才行； 	而 daemon 的启动，其实就是某个程序 (program) 的执行，配合这个程序的配置文件， 	就能够有效的启动该程序，加载常驻到内存当中成为 daemon ，并提供相对的服务啰！<br><br>  	一般来说，当我们以 run level 3 或者是 run level 5 完整开机进入 Linux 主机后， 	系统已经提供我们很多的服务了！包括打印服务、工作排程服务、邮件管理服务等等； 	那么这些服务是如何被启动的？他们的工作型态如何？底下我们就来谈一谈啰！<br>  	<div style="padding: 10pt 0pt;" align="right"><table width="90%"><tbody><tr><td><b>Tips:</b><br><span style="color: rgb(0, 144, 0);"><font size="-1">		很多时候，我们不会很细的去切分什么是 daemon 而什么是 service， 		简单的来说，你可以将 service 与 daemon 视作相同的东西！ 		反正就是某个在背景当中执行的程序，他可以提供某些功能就是了！ ^_^ 	</font></span></td><td><img src="0560daemons-fc4_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div> 	<hr><a name="daemon_type"></a><img src="../image/logo.png" alt="小标题的图示" width="24" align="middle" height="23"><span class="text_h2">daemon 的主要分类</span> 	<div class="block2"> 		如果依据 daemon 的启动与管理方式，基本上，可以将 daemon 分为可独立启动的 stand alone ， 		与透过统一安全机制管理的 Super daemon 两大类，这两类 daemon 的说明是这样的：<br><br>  		<li><span class="text_import1">stand_alone：</span></li> 		<div class="block2"> 		 就字面上的意思来说，stand alone 就是『独立的启动』的意思，也就是说，该  		daemon 启动之后，就直接常驻在内存当中啰！他虽然会一直的占用系统的资源， 		但最大的优点就是，他会一直启动的啦！所以当有要求来的时候，他就会很快速的响应啰！常常用在这一种 		daemon 的网络服务如常见的全球信息网 WWW 的 daemon (httpd) 这一个即是一例！ 		因为他需要比较快的响应速度啊！<br><br> 		</div>  		<li><span class="text_import1">super daemon：</span></li> 		<div class="block2"> 		相对于 stand alone 的执行方式，这一种服务的启动方式则是藉由统一的一个 daemon  		来负责唤起该服务！这一个统一负责的 		daemon 就是 inet 这支服务啦！不过，在后来的 Linux 发展套件中，则是使用 		xinet 这个设定啰！我们这里以 FC4 的 xinet 来做说明。当有网络的服务要求来的时候，该要求会先送给 		xinet 这个服务，然后 xinet 根据该网络要求送来的数据封包的内容 ( 该内容会记录 		IP 与 port ) 来将数据封包送给实际运作的服务！而该服务这个时候才会启动的！最常见到的就是 		ftp 这支网络服务啦！<br><br>  		这种 daemon 最大的优点就是当没有数据封包来的时候，该服务不会一直占据系统资源 		( 该服务会在 sleeping 的状态吧！ ) ，但是相对的，他的反应时间也会比较慢， 		因为还要花费一段时间去『唤醒』该服务呀！<br><br> 		</div>  		那么这两种启动的方式哪一个比较好呢？见仁见智啦！而且还要看该主机的工作负荷与实际的用途说！ 		例如当你的主机是用来作为 		WWW 服务器的，那么 httpd 自然就以 stand alone 的启动方式较佳！事实上，我们常常开玩笑的说明 		stand alone 与 super daemon 的情况，可以银行的窗口来作为说明的范例！<br><br>  		<li><span class="text_import1">stand alone</span> ：</li> 		<div class="block2"> 		在银行里面，假设有一种单一服务的窗口，例如存钱窗口，所以，当你需要存钱的时候， 		直接前往该窗口，就有『专人』为您服务啦！<br><br> 		</div>  		<li><span class="text_import1">super daemon</span> ：</li> 		<div class="block2"> 		在银行里面假设还有另外一种复合型态的窗口，同时提供转账、资金调度、 		提款等等的业务，那当你需要其中一项业务的时候，就需要前往该窗口， 		但是坐在窗口的这个营业员，拿到你的需求单之后，往后面一丢『喂！那个转账的仁兄！该你的工作了』 		那么那个仁兄就开始工作去！然而里头还有资金调度与提款等负责业务的仁兄呢？他们在干嘛？ 		嘿嘿！看看报、喝喝茶啰！<br><br>  		那么这里就会引出另外一个问题啦！假设银行今天的人潮特别的汹涌， 		所以这个窗口后面除了你之外还有很多的人！那么想一想，这个窗口是要『一个完成再来下一个』 		还是『全部都把你们的单据拿来，我全部处理掉』呢？呵呵！是不是不太一样？基本上， 		针对这种 super daemon 的处理模式有两种，分别是这样：  		<ul> 		<li><span class="text_import2">multi-threaded：</span><br> 		就是我们提到的，全部的客户之要求都给他拿来，一次给他交办下去，所以一个服务同时会负责好几个程序。</li><br> 		<li><span class="text_import2">single-threaded</span>：<br> 		这个就是目前我们『人类的银行』最常见的方式啦，不论如何，反正一个一个来， 		第一个没有处理完之前，后面的请排队！嘿嘿！所以如果 		client 的要求突然大增的话，那么这些晚到的 client 可得等上一等！</li></ul>  		</div>  		另外，需要注意的是，既然银行里头有这两种窗口同时存在，所以啰，在 Linux 		系统里面，这两种 daemon 是可以同时存在的啦！也就是说，某些服务可以使用 		stand alone 来启动，而有其他的服务则可以使用 xinet ( 或者是 inet )  		大致的情况就是这样啦！瞭乎！？<br><br>  		不过，如果以 daemon 的工作状态来区分，则主要分为两类：<ul> 		<li><span class="text_import2">signal-control</span><br> 		这种 daemon 是透过讯号来管理的，只要有任何需求进来，他就会立即启动去处理！ 		例如打印机的服务 (cupsd)</li><br> 		<li><span class="text_import2">interval-control</span><br> 		这种 daemon 则主要是『每隔一段时间就主动的去执行某项工作』， 		所以，即使你设定好配置文件之后，他也不会立刻执行，而是某个时间点才会去工作。举例来说， 		atd 与 crond 就是这种 (每分钟执行一次！)</li> 		</ul>  		另外，如果您对于开发程序很有兴趣的话，那么可以自行查阅一下『 man 3 daemon 』 		看看系统对于 daemon 的详细说明吧！ ^_^。<br><br> 	</div>  	<hr><a name="services"></a><img src="../image/logo.png" alt="小标题的图示" width="24" align="middle" height="23"><span class="text_h2">与服务有关的端口口对应资料： 	/etc/services</span> 	<div class="block2"> 		现在我们知道系统所提供的服务是执行某个 program ，由该程序的功能所提供的。 		也知道一部主机上面可能会同时拥有多个服务，当然，可能会有多个网络服务同时存在。 		此时你会不会觉得很奇怪啊？我一部主机同时开启 WWW 与 FTP 时， 		客户端跟我要数据，那么主机会响应什么数据给客户端啊？奇不奇怪呢？<br><br>  		其实，就如同上面提到的人类的银行一样，不同的服务有不同的窗口号码， 		同样的，在 Linux 系统上面，不同的网络服务，确实有不一样的监听埠口 (listen port)。 		我们可以透过指定指向主机的某个端口口 (port) 来连上我们想要的服务呢！ 		举例来说，我们可以在浏览器上面输入这样的网址：<ul> 		<li><a href="http://ftp.isu.edu.tw/" target="_blank">http://ftp.isu.edu.tw/</a> 		</li><li><a href="ftp://ftp.isu.edu.tw/" target="_blank">ftp://ftp.isu.edu.tw/</a></li></ul> 		有没有发现，两个网址都是指向 ftp.isu.edu.tw 这个义守大学的 FTP 网站， 		但是浏览器上面显示的结果却是不一样的？是啊！这是因为我们指向不同的服务嘛！ 		一个是 http 这个 WWW 的服务，一个则是 ftp 这个服务，当然显示的结果就不同了。<br><br>  		那我们怎么知道那个 port 是由那个服务所启动的呢？ 		因为目前已经有很多既定的网络协议，这些通讯协议使用的 port 是固定的， 		也是公认的标准的 port number ，我们可以称为 well known 的信息。 		那么我们 Linux 主机有没有相关的信息呢？当然有啊！那就是  		<span class="text_import1">/etc/services</span> 这个档案啊！我们取 FC4 的这个档案一部份来说明：<br>  <table class="term"><tbody><tr><td class="term"><pre>[root@linux ~]# <span class="term_command">vi /etc/services</span> <span class="term_say">......省略......</span> ftp-data        20/tcp ftp-data        20/udp ftp             21/tcp ftp             21/udp          fsp fspd ssh             22/tcp                          # SSH Remote Login Protocol ssh             22/udp                          # SSH Remote Login Protocol telnet          23/tcp telnet          23/udp <span class="term_say">......省略......</span> http            80/tcp          www www-http    # WorldWideWeb HTTP http            80/udp          www www-http    # HyperT pop3            110/tcp         pop-3           # POP version 3 pop3            110/udp         pop-3 sunrpc          111/tcp         portmapper      # RPC 4.0 portmapper TCP sunrpc          111/udp         portmapper      # RPC 4.0 portmapper UDP netbios-ns      137/tcp                         # NETBIOS Name Service netbios-ns      137/udp netbios-dgm     138/tcp                         # NETBIOS Datagram Service netbios-dgm     138/udp netbios-ssn     139/tcp                         # NETBIOS session service netbios-ssn     139/udp <span class="term_say">......省略......</span> <span class="term_say"># 这个档案的内容是以底下的方式来编排的： # &lt;daemon name&gt;   &lt;port 与数据型态&gt;   &lt;该服务的说明&gt;</span> </pre></td></tr></tbody></table>  		像上面说的是，第一栏为 daemon 的名称、第二栏为该 daemon 所使用的 port 		号码与其网络数据封包传送时候的类型，主要为确定联机后才进行数据传输的可靠的 TCP 封包， 		以及较快速但不确定性较高的 UDP 封包等。 		举个例子说，那个 e-mail 的发信协议为 smtp 这个服务，而这个服务的使用之 		port 即为 25 啦！就这样！<br>  		<div style="padding: 10pt 0pt;" align="right"><table width="90%"><tbody><tr><td><b>Tips:</b><br><span style="color: rgb(0, 144, 0);"><font size="-1">			请特别注意！虽然有的时候您可以藉由修改 /etc/services 来更改一个服务的 port 			号，不过并不建议如此做，因为很有可能会造成一些协议的错误情况！ 			这里特此说明一番呦！(除非您要架设一个地下网站，否则的话，使用  			/etc/services 原先的设定就好啦！) 		</font></span></td><td><img src="0560daemons-fc4_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div>	</div>  	<hr><a name="name_rule"></a><img src="../image/logo.png" alt="小标题的图示" width="24" align="middle" height="23"><span class="text_h2">Daemon 的命名规则：</span> 	<div class="block2"> 		每一个服务的开发者，当初在开发他们的服务时，都有特别的故事啦！ 		不过，无论如何，这些服务的名称被建立之后，被挂上 		Linux 使用时，通常在服务的名称之后会加上一个 d ，例如例行性命令的建立的 		at, 与 cron 这两个服务，通常会被称为 atd 与 crond，这个 d 代表的就是 daemon 		的意思。所以，在<a href="http://linux.vbird.org/linux_basic/0560daemons/0440processcontrol.php">资源管理</a>那一章中，我们使用了 		ps 与 top 来观察程序时，都会发现到很多的 xxxd 的程序，呵呵！通常那就是一些 		daemon 的程序啰！<br><br> 	</div>  	<hr><a name="Whereisdaemon"></a><img src="../image/logo.png" alt="小标题的图示" width="24" align="middle" height="23"><span class="text_h2">系统的 Daemons 放在哪里：</span> 	<div class="block2"> 		我们说过， daemon 其实是一支可以在背景执行的程序，这个程序可以负责系统的某个服务。 		而既然要负责某个服务，当然啰，就需要有所谓的配置文件啰～而为了让使用者可以很轻易的启动该服务， 		因此各主要的 Linux distributions 都会替他们的系统进行较有亲和力的启动 daemon 的方式， 		那就是利用 shell script 啦！这也是为何我们会在第三篇的时候建议您务必要学习 shell  		script 的原因啊！^_^<br><br>  		举个例子来说，在 FC4 上面管理系统注册表档的服务为 syslogd 这个 daemon， 		那么你如何启动这个 daemon 呢？可以查询一下 man 8 syslogd 来看看到底他需要如何被启动。 		想必看的结果是『很烦ㄟ！』干嘛要这样启动啊！真是麻烦～ 		此时，启动 syslogd 这个 daemon 的 shell script (/etc/init.d/syslog) 就帮上忙了！ 		你只要『 /etc/init.d/syslog restart 』就能够重新启动 syslogd 呢！ 		真是很方便啊！而该 shell script 就会主动的去读取相关的配置文件，好让我们的设定生效啊！^_^<br><br>  		OK！那么这些 daemons 的 shell scripts 放在哪里啊？他们放置的地方依据 stand alone  		与 super daemon 的差异而有所不同，基本上，是放在这些地方： 		<ul> 		<li><span class="text_import1">stand alone</span>：<br> 		这个放置在 <span class="text_import2">/etc/init.d/ 		</span>这个目录里面，几乎所有的 		RPM 安装的套件之启动 scripts 都在这里啦！不过，实际上，我们的 FC4 是放置到 /etc/rc.d/init.d/* ， 		但你依旧可以记忆成 /etc/init.d ，因为所有的 unix like 机器都有这个目录！</li><br>  		<li><span class="text_import1">super daemon</span>：<br> 		这个工作的那一支服务其实就是 <b>xinet</b> 		或者是 <b>inet</b> 啦！请注意， <b>xinet</b> 也是一个 daemon 呢！他是 stand 		alone 启动的，也就是他会一直在监听大家的需求，所以 xinet 的启动 scripts 		写在 <span class="text_import2">/etc/init.d/xinetd</span> 这个 scripts 		里面啰！但是挂在这个 daemon 里头的服务之设定项目呢？嗯！就是写在<span class="text_import2"> 		/etc/xinetd.conf 与 /etc/xinetd.d/* </span>这个目录里面的任何档案！</li></ul>  		更详细的来说明每个目录底下的设定的话，总的来说，是这样的：<br><br>  		<li><a name="init.d"></a><span class="text_import1">/etc/init.d/*</span></li> 		<div class="block2"> 		OK！先来了解一下 stand alone 的 daemon 是怎么启动的呢？！很简单，假如我们要启动 		<a href="http://linux.vbird.org/linux_basic/0560daemons/0570syslog.php">syslog</a> 		这支记录登录文件的服务，那么要启动他的话，就直接下达：<br>  <table class="term"><tbody><tr><td class="term"><pre>[root@linux ~]# <span class="term_command">/etc/init.d/syslog start</span> [root@linux ~]# <span class="term_command">service syslog start</span> </pre></td></tr></tbody></table>  		那个 service 是一支程序，基本上，也只是用来启动 /etc/init.d/ 底下的 shell script 		而已～至于指令或者是档案后面接的参数，亦即是档名之后加上 start  		即可，或者是使用 Red Hat 系统有的这个 service script 		来进行启动的功能！如果你还记得我们前几节提到过的  		<a href="http://linux.vbird.org/linux_basic/0560daemons/0340bashshell-scripts.php">shell scripts</a> 的话，那么或许还记得  		<a href="http://linux.vbird.org/linux_basic/0560daemons/0340bashshell-scripts.php#case">case ..... esac</a>  		这个有选择性的项目的语法吧！？没错！这几支服务就是以 bash 		scripts 里头的 case 语法写成的！因此，只要加上后面的参数，如此一来， scripts 		就会自动的去找寻执行档来执行啰！如果有兴趣的话， 		可以在你的系统里面的该目录下开一个档案来观看一下，就知道如何写啰！<br><br> 		</div>  		<li><a name="xinetd.conf"></a><span class="text_import1">/etc/xinetd.conf</span></li> 		<div class="block2"> 		这个档案就是设定 xinet 服务的参数档案啦！<br><br> 		</div>  		<li><a name="xinetd.d"></a><span class="text_import1">/etc/xinetd.d/*</span></li> 		<div class="block2"> 		这个目录里面的所有档案就是个别挂上 xinet 的所有服务啦！例如赫赫有名的 		wu-ftpd 及 telnet 与 pop3 等等！ 		</div> 	</div>  	<hr><a name="daemon_start"></a><img src="../image/logo.png" alt="小标题的图示" width="24" align="middle" height="23"><span class="text_h2">daemon 的启动方式： service</span> 	<div class="block2"> 		知道了一些有关 daemon 的相关知识后，再来，那么我们如何启动一个 daemon 呢？ 		其实，我们知道所谓的 daemon 就是一支可以在系统背景下面运作的程序 (program) 啊， 		所以，要启动该 daemon ，就是找到他的执行档，执行他就是了。 		不过，因为该 daemon 的执行档所需要加的参数太多了！举例来说，你可以使用『man syslogd』及 		『man sshd』来查阅一下该 daemon 要启动时的设定参数！<br><br>  		为了克服这样的困扰，所以各主要 Linux distributions 都会针对该服务设计一个比较亲和的 		shell script 来进行启动的程序啊！那就是 /etc/init.d/ 底下的档案，以及 		/etc/xinetd.d/ 底下的设定数据。因此，启动服务的方法就变得很简单了。 		只要设定好该服务的配置文件，然后下达：<br>  <table class="term"><tbody><tr><td class="term"><pre><span class="term_hd">1. 启动 stand alone 服务的方式：以 syslog 为例：</span> [root@linux ~]# <span class="term_command">/etc/init.d/syslog start</span>  <span class="term_hd">2. 启动 super daemon 服务的方式：以 telnet 为例：</span> [root@linux ~]# <span class="term_command">vi /etc/xinetd.d/telnet (设定方式参考下节)</span> [root@linux ~]# <span class="term_command">/etc/init.d/xinetd restart</span> </pre></td></tr></tbody></table>  		另外，除了这样的启动方式之外，我们还可以透过 Fedora ( Red Hat 系统 ) 所提供的 service  		这个程序来进行 daemon 的启动喔！其实 service 仅是一支 script 啦， 		他可以解析后面带有的参数，然后去到 /etc/init.d/ 去启动相对应的服务名称的 script 而已！ 		有兴趣的话，可以自行去解析 /sbin/service 这支 shell script 啊！ 		底下我们大略说明一下他的用法！<br>  <a name="service"></a><table class="term"><tbody><tr><td class="term"><pre>[root@linux ~]# <span class="term_command">service [service name] (start|stop|restart|...)</span> <span class="term_say">参数： service name：亦即是需要启动的服务名称，需与 /etc/init.d/ 对应； start|...   ：亦即是该服务要进行的工作。 范例：</span>  <span class="term_hd">范例一：重新启动 crond 这支 daemon ：</span> [root@linux ~]# <span class="term_command">service crond restart</span> [root@linux ~]# <span class="term_command">/etc/init.d/crond restart</span> </pre></td></tr></tbody></table>  		在上面的范例当中，其实启动方式以 service 这个程序，或者直接去到 /etc/init.d/ 底下启动， 		都一样啦！自行去解析 /sbin/service 就知道为啥了！ ^_^<br>  		<div style="padding: 10pt 0pt;" align="right"><table width="90%"><tbody><tr><td><b>Tips:</b><br><span style="color: rgb(0, 144, 0);"><font size="-1">			事实上，在 Linux 系统中，要『开或关某个 port 』，就是需要『 			启动或关闭某个服务』啦！因此，你可以找出某个 port 对应的服务，程序对应的服务， 			进而启动或关闭他，那么那个经由该服务而启动的 port ，自然就会关掉了！ 		</font></span></td><td><img src="0560daemons-fc4_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div>	</div> </div>   <hr><a name="superd"></a><img src="../image/logo.png" alt="大标题的图示" width="35" align="middle" height="34"><span class="text_h1">解析 super daemon 的配置文件</span> <div class="block1"> 	前面提到，Super daemon 就是一支总管许多服务的 daemon ，这支 daemon 在 FC4 上面即是 xinet 啰～ 	通常我们也称呼为 xinetd 啦～这支 daemon 来管理许多的服务是有好处的， 	最大的优势就是『安全性较高！』。怎么说呢？因为 super daemon 可以透过额外的数据分析， 	来管理谁可以、谁不能使用某个服务，因此，多了一道类似防火墙的手续，自然就能够比较安全一些啦。 	而且他还可以记录该服务的使用状态，也可以记录错误登入的信息，用在管理一些比较危险的服务上面， 	确实有他的必要性啦！<br><br>  	底下我们就来谈一谈，这个 super daemon 到底是如何分析的， 	当然，就得要先谈一谈，这个 xinetd 的主要预设参数档： /etc/xinetd.conf 啰～<br><br>  	<hr><a name="xinetd"></a><img src="../image/logo.png" alt="小标题的图示" width="24" align="middle" height="23"><span class="text_h2">解析 xinetd.conf</span> 	<div class="block2"> 		先来看一看预设的 /etc/xinetd.conf 这个档案的内容是什么吧！<br>  <table class="term"><tbody><tr><td class="term"><pre>[root@linux ~]# <span class="term_command">vi /etc/xinetd.conf</span> # # Simple configuration file for xinetd # # Some defaults, and include /etc/xinetd.d/ defaults {   instances        = 60       <span class="term_note">&lt;==同一服务的同时联机数最多可达 60 个</span>   log_type         = SYSLOG authpriv <span class="term_note">&lt;==登录后，会被纪录到登录文件的信息</span>   log_on_success   = HOST PID <span class="term_note">&lt;==若成功的登入时，记录的信息有哪些？</span>   log_on_failure   = HOST     <span class="term_note">&lt;==若登入失败，则记录的信息又是如何？</span>   cps              = 25 30    <span class="term_note">&lt;==同一秒钟内最大联机数量为 25 个，若超过 25 个，                                  则该服务会暂时停止 30 秒！</span> }  includedir /etc/xinetd.d <span class="term_note">&lt;==更多的设定值在 /etc/xinetd.d 那个目录内</span> </pre></td></tr></tbody></table>  		基本上，这个预设参数档的意义是：『<span class="text_import2">当某个使用 super daemon 		管理的服务启动时，除非该服务已经设定好管理的项目，否则将以上述 xinetd.conf  		内的预设参数带入。</span>』的意思，也就是说，这仅是默认值， 		但我们可以自行指定新的设定值来取代 xinetd.conf 内的默认值啦！ 		也就是说，这个档案设定成，在预设的状态下『：<span class="text_import2">一个服务最多可达  		60 个联机，且同一秒内连接上的联机不可超过 25 个。而若登入的成功与否时， 		会分别记录不同的信息到登录文件当中。</span>』这样说，可以比较清楚了吧？ ^_^ 		至于更多的参数说明，我们会在底下再强调的！<br><br>  		既然这只是个预设参数档，那么自然有更多的服务参数档案啰～没错～而所有的服务参数档都在 		/etc/xinetd.d 里面，这是因为上表当中的最后一行啊！这样瞭了吧！ ^_^。 		那么每个参数档案的内容是怎样呢？一般来说，他是这样的：<br>  <table class="term"><tbody><tr><td class="term"><pre>service  &lt;service_name&gt; {        &lt;attribute&gt;   &lt;assign_op&gt;   &lt;value&gt;   &lt;value&gt; ...        ............. } </pre></td></tr></tbody></table>  		第一行一定都有个 service ，至于那个 &lt;service_name&gt; 里面的内容， 		则与 /etc/services 有关，因为他可以对照着 /etc/services 内的名称与 port number  		来决定所要启用的 port 是那个啊！然后相关的参数就在两个大刮号中间。 		attribute 是一些 xinetd 的管理参数， assign_op 则是参数的设定方法。 		assign_op 的主要设定形式为：  		<ul><span class="text_import2"><font face="细明体"> 		&nbsp;= ： 表示后面的设定参数就是这样啦！<br> 		+= ： 表示后面的设定为『<b>在原来的设定里头加入新的参数</b>』<br> 		-= ： 表示后面的设定为『<b>在原来的参数舍弃这里输入的参数</b>！』 		</font></span></ul><font face="细明体"></font>  		用途不太相同，敬请留意呦！好了！底下再来说一说那些 attribute 与 value ！<br><br>  <table width="95%" bgcolor="lightyellow" border="1" cellpadding="3" cellspacing="0"> <tbody><tr align="center" bgcolor="#182448"> 	<td width="120"><font color="#FFFFFF">attribute<br>(功能)</font></td><td width="120"><font color="#FFFFFF">assing_op<br>(允许的动作)</font></td> 	<td><font color="#FFFFFF">说明与范例</font></td></tr> <tr bgcolor="#182448"><td colspan="3"><span class="text_import1"><font color="#FFFFFF">一般设定项目：</font></span></td></tr> <tr> 	<td align="center"><font face="细明体">disable</font></td> 	<td align="center"><font face="细明体">yes<br>no</font></td> 	<td>允许该 server 可以执行或者是不能执行！当设定为 yes 表示该服务不能执行！ 		这个设定是一定要的啦。如果我想要启动某个服务，那么这里就要设定成为：<center> 		disable = no</center></td></tr> <tr> 	<td align="center"><font face="细明体">socket_type</font></td> 	<td align="center"><font face="细明体">stream<br>dgram<br>raw</font></td> 	<td>stream 为联机机制较为可靠的 TCP 封包，若为 UDP 封包则使用 dgram 机制。 		raw 代表 server 需要与 IP 直接对谈！例如 telnet 使用 TCP ，所以： 		<center>socket_type = stream</center></td></tr> <tr> 	<td align="center"><font face="细明体">protocol</font></td> 	<td align="center"><font face="细明体">tcp<br>udp<br>....</font></td> 	<td>这个东西说的是，联机的状态使用的是哪一种协议！？各个协议的代号可以参考  		/etc/protocols 内容！此外，除非是你自己设定的服务，否则这个可以不用设定啦！</td></tr> <tr> 	<td align="center"><font face="细明体">wait</font></td> 	<td align="center"><font face="细明体">yes<br>no</font></td> 	<td>这就是我们刚刚提到的 <b>Multi-threaded</b> 与 <b>single-threaded</b>  		的方式啦！一般来说，我们希望大家的要求都可以同时被启用，所以可以设定  		<center>wait = no</center></td></tr> <tr> 	<td align="center"><font face="细明体">user</font></td> 	<td align="center"><font face="细明体">UID<br>root</font></td> 	<td>还记得我们在 <a href="http://linux.vbird.org/linux_basic/0560daemons/0410accountmanager.php">账号管理</a> 那一篇提到的 UID  		概念吗？对啦！这个 UID 就是那个 UID 啦！要注意的是，假如你的服务启动者不要以  		root 为主的话，那么这个地方就可以改变其他的使用者，例如  		nobody ！这个咚咚也会有安全防护的机制存在！此外，需要注意这个 UID 必须存在于  		/etc/passwd 。</td></tr> <tr> 	<td align="center"><font face="细明体">group</font></td> 	<td align="center"><font face="细明体">GID</font></td> 	<td>跟 user 的意思相同！只是这个 GID 的使用者也必须存在于 /etc/group 当中！</td></tr> <tr> 	<td align="center"><font face="细明体">instances</font></td> 	<td align="center"><font face="细明体">number<br>UNLIMITED</font></td> 	<td>这个是『在同一时间之内，同一个服务可以允许的联机数目』的意思， 		你可以写入一个『数字』来控制联机数目，也可以使用 UNLIMITED  		来告诉系统『没有上限』啰！例如你在同时段之内仅允许 ftp 联机有 30  		个，那么这里就可以输入 30 啦！</td></tr> <tr> 	<td align="center"><font face="细明体">nice</font></td> 	<td align="center"><font face="细明体">-20 ~ 19</font></td> 	<td>还记得我们在 <a href="http://linux.vbird.org/linux_basic/0560daemons/0440processcontrol.php">程序管理</a> 里面谈到的那个 nice  		指令吗？！对啦！这里就是这个东西啰！数字越小( 负值 )代表该程序越优先被执行！</td></tr> <tr> 	<td align="center"><font face="细明体">server</font></td> 	<td align="center"><font face="细明体">program<br>完整檔名</font></td> 	<td>这个就是指出这个服务的启动程序！例如要启动 telnet 的话，其实就是 in.telnetd  		这支程序啦！所以这个时候在这里输入  		<center>server = /usr/sbin/in.telnetd</center></td></tr> <tr> 	<td align="center"><font face="细明体">server_args</font></td> 	<td align="center"><font face="细明体">program<br>一些参数</font></td> 	<td>这里应该输入的就是你的 server 那里需要输入的一些参数啦！例如 in.telnetd  		当中，我们还可以加入某些参数！ </td></tr> <tr> 	<td align="center"><font face="细明体">log_on_success</font></td> 	<td align="center"><font face="细明体">PID<br>HOST<br>USERID<br>EXIT<br>DURATION</font></td> 	<td>在『成功登入』之后，需要记录的项目：PID 为纪录该 server 启动时候的 process ID ， 		HOST 为远程主机的 IP、USERID 为登入者的账号、EXIT 为离开的时候记录的项目、 		DURATION 为该使用者使用此服务多久？</td></tr> <tr> 	<td align="center"><font face="细明体">log_on_failure</font></td> 	<td align="center"><font face="细明体">HOST<br>USERID<br>ATTEMPT<br>RECORD</font></td> 	<td>当登入失败之后被 syslog 登入的项目：HOST为远程主机的 IP，USERID为登入者账号、 		ATTEMPT为记录登入失败者企图的意图为何、RECORD为记录远程主机的信息！以及为何本机  		server 不能启动的原因！主要有 login, shell, exec, finger  		等指令可以使用在这里！( 基本上，可以在 /etc/hosts.allow 或 /etc/hosts.deny 书写内容 )。</td></tr> <tr bgcolor="#182448"><td colspan="3"><span class="text_import1"><font color="#FFFFFF">进阶设定项目：</font></span></td></tr> <tr> 	<td align="center"><font face="细明体">env</font></td> 	<td align="center"><font face="细明体">'name=value'</font></td> 	<td>这一个项目可以让你设定环境变量，环境变量的设定规则可以参考  		<a href="http://linux.vbird.org/linux_basic/0560daemons/0320bash.php">认识 BASH Shell </a>。</td></tr> <tr> 	<td align="center"><font face="细明体">port</font></td> 	<td align="center"><font face="细明体">number</font></td> 	<td>这里可以设定不同的服务与对应的 port ，但是请记住你的 port 与服务名称必须与  		/etc/services 内记载的相同才行！</td></tr> <tr> 	<td align="center"><font face="细明体">redirect</font></td> 	<td align="center"><font face="细明体">IP_Address port</font></td> 	<td>将 client 端对我们 server 的要求，转到另一部主机上去！呵呵！这个好玩呦！ 		例如当有人要使用你的 ftp 时，你可以将他转到另一部机器上面去！那个 IP_Address  		就代表另一部远程主机的 IP 啰！</td></tr> <tr> 	<td align="center"><font face="细明体">includedir</font></td> 	<td align="center"><font face="细明体">directory</font></td> 	<td>表示将某个目录底下的所有档案都给他塞进来 xinetd.conf 这个设定里头！这东西有用多了， 		如此一来我们可以一个一个设定不同的项目！而不需要将所有的服务都写在 xinetd.conf  		当中！你可以在 /etc/xinetd.conf 发现这个设定呦！</td></tr> <tr bgcolor="#182448"><td colspan="3"><span class="text_import1"><font color="#FFFFFF">安全控管项目：</font></span></td></tr> <tr> 	<td align="center"><font face="细明体">bind</font></td> 	<td align="center"><font face="细明体">IP_Address</font></td> 	<td>这个是设定『允许使用此一服务的适配卡』的意思！举个例子来说，你的 Linux  		主机上面有两个 IP ，而你只想要让 IP1 可以使用此一服务，但 IP2  		不能使用此服务，这里就可以将 IP1 写入即可！那么 IP2 就不可以使用此一 server 啰</td></tr> <tr> 	<td align="center"><font face="细明体">interface</font></td> 	<td align="center"><font face="细明体">IP_Address</font></td> 	<td>与 bind 相同</td></tr> <tr> 	<td align="center"><font face="细明体">only_from</font></td> 	<td align="center"><font face="细明体">0.0.0.0<br>192.168.1.0/24<br>host_name<br>domain_name</font></td> 	<td>这东西用在安全机制上面，也就是管制『只有这里面规定的 IP 或者是主机名可以登入！』如果是  		0.0.0.0 表示所有的 PC 皆可登入，如果是 192.168.1.0/24 则表示为 C class 的网域！亦即由  		192.168.1.1 ~ 192.168.1.255 皆可登入！另外，也可以选择 domain name ，例如  		.ev.ncku.edu.tw 就可以允许成大环工系的网域 IP 登入你的主机使用该 server ！</td></tr> <tr> 	<td align="center"><font face="细明体">no_access</font></td> 	<td align="center"><font face="细明体">0.0.0.0<br>192.168.1.0/24<br>host_name<br>domain_name</font></td> 	<td>跟 only_from 差不多啦！就是用来管理可否进入你的 Linux 主机启用你的 server 服务的管理项目！  		no_access 表示『不可登入』的 PC 啰！</td></tr> <tr> 	<td align="center"><font face="细明体">access_times</font></td> 	<td align="center"><font face="细明体">00:00-12:00<br>HH:MM-HH:MM</font></td> 	<td>这个项目在设定『该服务 server 启动的时间』，使用的是 24 小时的设定！例如你的 ftp 要在  		8 点到 16 点开放的话，就是： 08:00-16:00。</td></tr> <tr> 	<td align="center"><font face="细明体">umask</font></td> 	<td align="center"><font face="细明体">000<br>777<br>022</font></td> 	<td>还记得在 <a href="http://linux.vbird.org/linux_basic/0560daemons/0210filepermission.php">档案权限</a> 里面约略提过的 umask  		这个东西吗？呵呵！没错！就是那个鬼玩意儿啰！ 		可以设定用户建立目录或者是档案时候的属性！系统建议值是 022 。</td></tr> </tbody></table><br>  		OK！我们就利用上面这些参数来架构出我们所需要的一些服务的设定吧！ 		参考看看底下的设定方法啰！ ^_^<br><br> 	</div>  	<hr><a name="superd_telnet"></a><img src="../image/logo.png" alt="小标题的图示" width="24" align="middle" height="23"><span class="text_h2">一个简单的 telnet 范例设定</span> 	<div class="block2"> 		我们说过，使用 super daemon 来管理主机，最大的优点就是多了一道管理的手续， 		所以，可以进行比较多的监控动作，像上一个小节我们提到的相关参数当中， 		就能够发现到一些端倪了。在这里，我们举个简单的例子来说明一下整个 super daemon  		的管理吧！但是要设定 telnet 的话，就得要安装 telnet 才行。 		在 FC4 的版本上，我们安装的是 telnet-server-0.17-35 这个套件资料， 		请您先以 <a href="http://linux.vbird.org/linux_basic/0560daemons/0520rpm_and_srpm.php">rpm 的方式</a> 来安装喔！ ^_^<br><br>  		在预设的 /etc/xinetd.d/telnet 内容是这样的：<br>  <table class="term"><tbody><tr><td class="term"><pre>[root@linux ~]# <span class="term_command">vi /etc/xinetd.d/telnet</span> service telnet {         flags           = REUSE   <span class="term_note">&lt;==额外的参数使用 REUSE </span>         socket_type     = stream  <span class="term_note">&lt;==使用 TCP 的封包格式</span>         wait            = no      <span class="term_note">&lt;==可以有多个联机同时连进来</span>         user            = root    <span class="term_note">&lt;==启动者预设为 root </span>         server          = /usr/sbin/in.telnetd <span class="term_note">&lt;==使用的是这支程序！</span>         log_on_failure  += USERID <span class="term_note">&lt;==若登入错误，『加计』记录用户 ID</span>         disable         = yes     <span class="term_note">&lt;==此服务预设关闭！</span> } </pre></td></tr></tbody></table>  		其实，主要的参数可以参考上一小节的表格，也可以直接利用『 man xinetd.conf 』来查阅！ 		不过，如果你对于这样的设定并不满意的话，其实还可以手动来修改呢！ 		因为我们知道， telnet 并不是个十分安全的服务，详细机制可以参考 		<a href="http://linux.vbird.org/linux_basic/linux_server">服务器篇</a> 的  		<a href="http://linux.vbird.org/linux_basic/linux_server/0310telnetssh.php">远程联机服务器</a> 来查阅， 		所以，如果你想要更多的安全机制，举例来说，你想要让 telnet 在局域网络内与 Internet  		上面的联机机制有差异时，例如这样：<ul> 		<li>对内部网域开放较多权限的部分：<br> 		假设 Linux 主机有两张网络卡，对内的这一张 IP 为 192.168.1.100 ，且仅针对  		192.168.1.0/24 这个网段提供登入。然后开放所有与 telnet 有关的权限， 		包含总联机数量与连接时间等。但是， 192.168.1.120 及 192.168.1.130 		两个 IP 不允许登入；</li><br> 		<li>对外部网域较多限制的设定：<br> 		对外的 IP 假设为 140.116.44.125 ，且仅允许台南的校园网络 (140.116.0.0/16)， 		以及教育界的主机名 (.edu.tw)，另外，仅开放早上 1~9 点及 20~24 两个时段登入而已。 		此外，最多容许十个联机进入。 		</li></ul>  		在这样的规划情况下，我可以将刚刚上头的 /etc/xinetd.d/telnet 这个档案修改成为：<br>  <table class="term"><tbody><tr><td class="term"><pre>[root@linux ~]# <span class="term_command">vi /etc/xinetd.d/telnet</span> <span class="term_say"># 先针对对内的较为松散的限制来设定：</span> <span class="term_write">service telnet {     disable         = no                  <span class="term_note">&lt;==预设就是启动 telnet 服务</span>     bind            = 192.168.1.100       <span class="term_note">&lt;==只允许经由这个适配卡的封包进来</span>     only_from       = 192.168.1.0/24      <span class="term_note">&lt;==只允许 192.168.0.0/24 这个网段                                              的主机联机进来使用 telnet 的服务</span>     no_access       = 192.168.1.{120,130} <span class="term_note">&lt;==不许这些 PC 登入</span>     instances       = UNLIMITED           <span class="term_note">&lt;==同时允许联机不限制！</span>     nice            = 0                   <span class="term_note">&lt;==使用的优先级较高</span>     flags           = REUSE               <span class="term_note">&lt;==额外使用的参数</span>     socket_type     = stream              <span class="term_note">&lt;==使用 tcp 封包常用的联机型态</span>     wait            = no                  <span class="term_note">&lt;==不需等待，可以同时允许多个联机</span>     user            = root                <span class="term_note">&lt;==启动程序的用户身份</span>     server          = /usr/sbin/in.telnetd<span class="term_note">&lt;==服务启动的程序</span>     server_args     = -a none             <span class="term_note">&lt;==上面那个程序的参数</span>     log_on_failure  += USERID             <span class="term_note">&lt;==错误登入时，要记录下来的内容</span> }  <span class="term_say"># 再针对外部的联机来进行限制呢！</span> service telnet {     disable         = no                  <span class="term_note">&lt;==预设就是启动 telnet 服务</span>     bind            = 140.116.44.125      <span class="term_note">&lt;==只允许经由这个适配卡的封包进来</span>     only_from       = 140.116.0.0/16      <span class="term_note">&lt;==只允许 140.116.0.0 ~ 140.116.255.255                                              这个网段联机进来使用 telnet 的服务</span>     only_from      += .edu.tw             <span class="term_note">&lt;==累加设定，只有教务界才能联机！</span>     access_times    = 1:00-9:00 20:00-23:59                                           <span class="term_note">&lt;==每天只有这两个时段开放服务</span>     umask           = 022                 <span class="term_note">&lt;==建立档案时的默认属性设定</span>     instances       = 10                  <span class="term_note">&lt;==同时只允许 10 个联机</span>     nice            = 10                  <span class="term_note">&lt;==使用的优先级较低</span>     flags           = REUSE               <span class="term_note">&lt;==额外使用的参数</span>     socket_type     = stream              <span class="term_note">&lt;==使用 tcp 封包常用的联机型态</span>     wait            = no                  <span class="term_note">&lt;==不需等待，可以同时允许多个联机</span>     user            = root                <span class="term_note">&lt;==启动程序的用户身份</span>     server          = /usr/sbin/in.telnetd<span class="term_note">&lt;==服务启动的程序</span>     server_args     = -a none             <span class="term_note">&lt;==上面那个程序的参数</span>     log_on_failure  += USERID             <span class="term_note">&lt;==错误登入时，要记录下来的内容</span> }</span> </pre></td></tr></tbody></table>  		在上面这个范例当中，我们用了很多的网络 IP 显示方式，包括 192.168.1.0/24 ， 		以及 140.116.0.0/16 ，这代表『 192.168.1.0~192.168.1.255 的所有 IP 』以及 		『 140.116.0.0 ~140.116.255.255 所有的 IP 』更详细的说明，我们会在服务器篇内详谈的。 		用了这个设定值之后，你会发现你的 telnet 针对两个网段来设计了！ 		设计完成之后，由于这是 xinetd 的配置文件，所以启动的方式与观察的方式为：<br>  <table class="term"><tbody><tr><td class="term"><pre><span class="term_say"># 如果您的 telnet 本来就有启动的话，那么会发现有一个联机存在你的系统中</span> [root@linux ~]# <span class="term_command">netstat -tulnp</span> Active Internet connections (only servers) Proto Recv-Q Send-Q Local Address   Foreign Address  State   PID/Program name tcp        0      0 0.0.0.0:23      0.0.0.0:*        LISTEN  19255/xinetd <span class="term_say"># 看到喔！是 xinetd 的 program name 呢！</span>  <span class="term_say"># 重新修改 /etc/xinetd.d/telnet 之后，重新启动的方式与观察为：</span> [root@linux ~]# <span class="term_command">/etc/init.d/xinetd restart</span> [root@linux ~]# <span class="term_command">netstat -tulnp</span> Active Internet connections (only servers) Proto Recv-Q Send-Q Local Address      Foreign Address  State   PID/Program name tcp        0      0 140.116.44.125:23  0.0.0.0:*        LISTEN  19281/xinetd tcp        0      0 192.168.1.100:23   0.0.0.0:*        LISTEN  19281/xinetd <span class="term_say"># 有没有看到两个接口啊～而且， PID 会是同一个呢！</span> </pre></td></tr></tbody></table>  		呵呵！如上面的设定，我们可以将 telnet 的启动项目进行更多的限制！ 		如此一来，将有助于我们的安全防护呢！尤其如果可以针对不同的接口来设定，嘿嘿！ 		就更加的棒啰！不过，请注意喔！如果照上面的设定，那么您的主机上面将会开了两个 		23 port 的接口，分别是给两个接口来使用的呢！嗯！真好玩?同样的， 		你也可以针对自己的喜好来设定你的其他 daemon 使他挂在 xinetd 底下呢！ 	</div> </div>   <hr><a name="tcp_wrappers"></a><img src="../image/logo.png" alt="大标题的图示" width="35" align="middle" height="34"><span class="text_h1">TCP_Wrappers</span> <div class="block1"> 	事实上，除了使用 xinetd 的配置文件来设定安全机制之外， 	我们还可以利用额外的机制来抵挡某些不受欢迎的数据源喔！ 	那就是 /etc/hosts.allow 以及 /etc/hosts.deny 这两个档案的功能啦！ 	这两个档案可以藉由分析：<ul> 	<li>启动的服务名称 (daemon 执行档档名)； 	</li><li>客户端的 IP 来源或网段来源。 	</li></ul> 	来进行客户端使用者是否能够登入的判断呢！不过，虽然这两个档案已经被整合到 xinetd 里面去了， 	不过，要获得更多的功能，还是得要安装 tcp_wrappers 这个套件才行！ 	因为，这两个档案本身就是 tcp_wrappers ( 其实是 /usr/sbin/tcpd 那个档案而已啦！ ) 的配置文件啊！ 	而他也可以整合到整个系统的服务里头去，可以算是最最基础的一个防火墙架构啦！ ^_^<br><br>  	其实， /etc/hosts.allow 与 /etc/hosts.deny 是 /usr/sbin/tcpd 的配置文件， 	而这个 /usr/bin/tcpd 则是用来分析进入系统的 TCP 封包的一个软件，他是由 TCP Wrappers 所提供的。 	那为什么叫做 TCP_Wrappers 呢？那么 wrappers 有包裹的意思，所以说，这个套件本身的功能就是在分析 	TCP 网络数据封包啦！那么刚刚我们稍微提到我们网络的封包数据主要是以 TCP 	封包为主，这个 TCP 封包的文件头至少记录了来源与目主机的 IP 与 port ，因此，若藉由分析 	TCP 封包，就可以比对看我要不要让这个数据进入到主机里面来啰！所以啦，我们要使用 	TCP_Wrappers 来控管的，就是：<ol><span class="text_import2"> 	<li>来源 IP 	</li><li>port (就是服务啦)</li></span></ol>  	TCP_Wrappers 设定 TCP 封包是否可以进入的配置文件在 /etc/hosts.allow 与 /etc/hosts.deny 	当中。因此，基本上，如果一个服务是受到 xinetd 或 TCP_Wrappers 的控制时，那么该服务就会受限于 	hosts.allow 与 hosts.deny 的管理了！而如果你自己安装的套件当中( 亦即使用 	Tarball 安装的方式之套件 )，除非有自行定义支持 TCP_Wrappers 的功能 ，否则就无法使用这个玩意啰！嘿嘿！ 	<br><br>  	那么这两个档案是干嘛用的？刚刚不是提过哪！他主要是用来规范 TCP 封包的规则的，所以呢， 	里面记录的当然就是：『某些 IP 在特定服务中是否能够进入主机』！那么要怎么写？ 	这两个档案的内容基本的语法是：<br>  <table class="term"><tbody><tr><td class="term"><pre>&lt;service(program_name)&gt; : &lt;IP, domain, hostname&gt; : &lt;action&gt; </pre></td></tr></tbody></table>  	所以我们要先找出来那个 service_name 才行，例如以我们刚刚的 telnet 为例，那个 	service_name 是什么呢？其实指的就是在 xinetd.conf 配置文件中的 server 这个设定后面接的程序名称啦！所以， 	telnet 在 FC4 底下的名称为 in.telnetd 	因此，如果你不想让 140.116.44.202 这个地址及 140.116.32.0/255.255.255.0 	这个 C class 的网域进入你的主机的话，那么可以这样在 /etc/hosts.deny 里面设定： ( 	<span class="text_vbird">关于 IP, 网域, 网段, 还有相关的网络知识，在这个基础篇当中我们不会谈到， 	详细的数据请先自行参考服务器架设篇的内容！ </span>)<br>  <table class="term"><tbody><tr><td class="term"><pre>[root@linux ~]# <span class="term_command">vi /etc/hosts.deny</span> in.telnetd : 140.116.44.202 140.116.32.0/255.255.255.0 : deny </pre></td></tr></tbody></table>  	当然也可以写成两行，亦即是：<br>  <table class="term"><tbody><tr><td class="term"><pre>[root@linux ~]# <span class="term_command">vi /etc/hosts.deny</span> in.telnetd : 140.116.44.202             : deny in.telnetd : 140.116.32.0/255.255.255.0 : deny </pre></td></tr></tbody></table>  	这样一来，对方就无法以 telnet 进入你的主机啦！方便吧！不过，既然如此，为什么要设定成 	/etc/hosts.allow 及 /etc/hosts.deny 两个档案呢？其实只要有一个档案存在就够了， 	不过，为了设定方便起见，我们存在两个档案，其中需要注意的是： 	<ul><span class="text_import2"><font face="细明体"> 	<li>写在 hosts.allow 当中的 IP 与网段，为预设『可通行』的意思，亦即最后一个字段 allow 可以不用写； 	</li><li>而写在 hosts.deny 当中的 IP 与网段则预设为 deny ，第三栏的 deny 亦可省略； 	</li><li>这两个档案的判断依据是： (1) 以 /etc/hosts.allow 为优先，而 		(2) 若分析到的 IP 或网段并没有纪录在 /etc/hosts.allow ，则以 /etc/hosts.deny 来判断。 	</li></font></span></ul><font face="细明体"></font>  	也就是说， /etc/hosts.allow 的设定优先于 /etc/hosts.deny 啰！了解了吗？基本上，只要 	hosts.allow 也就够了，因为我们可以将 allow 与 deny 都写在同一个档案内， 	只是这样一来似乎显得有点杂乱无章，因此，通常我们都是： 	<ol><span class="text_import2"><font face="细明体"> 	<li>允许进入的写在 /etc/hosts.allow 当中； 	</li><li>不许进入的则写在 /etc/hosts.deny 当中。</li></font></span></ol><font face="细明体"></font>  	此外，我们还可以使用一些特殊参数在第一及第二个字段喔！内容有： 	<ul><span class="text_import2"><font face="细明体"> 	<li>ALL：代表全部的 program_name 或者是 IP 都接受的意思，例如 ALL: ALL: deny 	</li><li>LOCAL：代表来自本机的意思，例如： ALL: LOCAL: allow 	</li><li>UNKNOWN：代表不知道的 IP 或者是 domain 或者是服务时； 	</li><li>KNOWN：代表为可解析的 IP, domain 等等信息时； 	</li></font></span></ul><font face="细明体"></font>  	再强调一次，那个 service_name 其实是启动该服务的程序，举例来说， /etc/init.d/ssh 这个 script 里面， 	实际上启动 ssh 服务的是 sshd 这个程序，所以，你的 service_name 自然就是 sshd 啰！ 	而 /etc/xinetd.d/telnet 内有个 server 的设定项目， 	那个项目指到 in.telnetd 这个程序来启动的喔！要注意的很！(请分别使用 vi 进这两支 scripts 查阅) 	好了，我们还是以 telnet 为例子来说明好了，现在假设一个比较安全的流程来设定，就是：  	<ol><span class="text_import2"><font face="细明体"> 	<li>只允许 140.116.44.0/255.255.255.0 	与 140.116.79.0/255.255.255.0 这两个网域，及 140.116.141.99 这个主机可以进入我们的 telnet 服务器； 	</li><li>此外，其他的 IP 全部都挡掉！ 	</li></font></span></ol><font face="细明体"></font>  	这样的话，我可以这样设定：<br>  <table class="term"><tbody><tr><td class="term"><pre>[root@linux ~]# <span class="term_command">vi /etc/hosts.allow</span> <span class="term_write">in.telnetd:  140.116.44.0/255.255.255.0 in.telnetd:  140.116.79.0/255.255.255.0 in.telnetd:  140.116.141.99 in.telnetd:  LOCAL</span>  [root@linux ~]# <span class="term_command">vi /etc/hosts.deny</span> <span class="term_write">in.telnetd: ALL </span> </pre></td></tr></tbody></table>  	那么有没有更安全的设定，例如，当当有其他人扫瞄我的 	telnet port 时，我就将他的 IP 记住！以做为未来的查询与认证之用！ 	是有的！只是，那就得要有额外的动作参数加在第三栏了。主要的动作有：  	<ul><span class="text_import2"><font face="细明体"> 	<li><span class="text_import1">spawn (action)</span><br> 		可以利用后续接的 shell 来进行额外的工作，且具有变量功能，主要的变量内容为： 		%h (hostname), %a (address), %d (daemon)等等；</li><br> 	<li><span class="text_import1">twist (action)</span><br> 		立刻以后续的指令进行，且执行完后终止该次联机的要求 (DENY) 	</li></font></span></ul><font face="细明体"></font>  	我们知道 finger 可以反向追踪网络封包的来源，所以，我希望这样：<ol> 	<li>利用 safe_finger 去追踪出对方主机的信息； 	</li><li>将该追踪到的结果以 email 的方式寄给 root ； 	</li><li>在对方屏幕上面显示不可登入的讯息</li></ol>  	此时可以利用 spwan (action1) | (action2) : twist (action3) 来进行， 	也就是说，其实在 /etc/hosts.deny 的第三个字段可以继续延伸下去的！整个信息有如这样：<br>  <table class="term"><tbody><tr><td class="term"><pre>[root@linux ~]# <span class="term_command">vi /etc/hosts.deny</span> <span class="term_write">in.telnetd: ALL: spawn (echo "security notice from host `/bin/hostname`" ;\ 	echo; /usr/sbin/safe_finger @%h ) | \ 	/bin/mail -s "%d-%h security" root &amp; \ 	: twist ( /bin/echo -e "\n\nWARNING connection not allowed.\n\n" )</span> </pre></td></tr></tbody></table>  	在上面的例子中，第三行的 root 那个账号，可以写成你的个人账号或者其他 	e-mail ，以免很少以 root 身份登入 Linux 主机时，容易造成不知道的情况，另外，最后几行，亦即 	:twist 之后的那几行为同一行。如此一来，当未经允许的计算机尝试登入你的主机时， 	对方的屏幕上就会显示上面的最后一行，并且将他的 	IP 寄到 root ( 或者是你自己的信箱 )那里去！ 	另外请注意，那个 /usr/sbin/safe_finger 是由 tcp_wrappers 套件所提供的， 	所以您必须要安装该套件才行喔！ ^_^<br><br> </div>   <hr><a name="open_services"></a><img src="../image/logo.png" alt="大标题的图示" width="35" align="middle" height="34"><span class="text_h1">系统开启的服务</span> <div class="block1"> 	好了，现在假设您已经知道了 daemons 的启动档案放置的目录，也知道了服务与 	port 的对应，那么要如何查询目前系统上面已经启动了的服务呢？不要再打混了！已经学过了 	<a href="http://linux.vbird.org/linux_basic/0560daemons/0440processcontrol.php#ps">ps</a> 与 <a href="http://linux.vbird.org/linux_basic/0560daemons/0440processcontrol.php#top">top</a> 	应该要会应用才对耶！呵呵！没错，可以使用 ps 与 top 来找寻已经启动了的服务的程序与他的 	PID 呢！不过，我们怎么知道该服务启动的 port 是哪一个？呵呵！好问题！可以直接使用 	<a href="http://linux.vbird.org/linux_basic/0560daemons/0440processcontrol.php#netstat">netstat</a> 这个网络状态观察指令来检查我们的  	port 呢！甚至他也可以帮我们找到该 port 的程序呢( PID )！这个指令的相关用途，我们在 	<a href="http://linux.vbird.org/linux_basic/0560daemons/0440processcontrol.php">程序与资源管理</a> 那一章已经讲过了， 	不清楚的话请回去查一查先～这里仅介绍如何使用喔～<br><br>  	<hr><a name="opened"></a><img src="../image/logo.png" alt="小标题的图示" width="24" align="middle" height="23"><span class="text_h2">观察系统启动的服务：</span> 	<div class="block2"> 		观察系统已启动的服务方式很多，不过，我们最常使用 netstat 来观察。 		基本上，以 ps 来观察整个系统上面的服务是比较妥当的，因为他可以将全部的 process 都找出来。 		不过，我们比较关心的，还是在于有启动网络监听的服务啊，所以， 		鸟哥会比较喜欢使用 netstat 来查阅啦。<br>  <table class="term"><tbody><tr><td class="term"><pre><span class="term_hd">范例一：找出目前系统开启的『网络服务』有哪些？</span> [root@linux ~]# <span class="term_command">netstat -tulp</span> Active Internet connections (only servers) Proto Recv-Q Send-Q Local Address   Foreign Address State  PID/Program name tcp        0      0 *:ftp           *:*             LISTEN 1605/vsftpd tcp        0      0 *:pop3          *:*             LISTEN 1613/dovecot tcp        0      0 *:ssh           *:*             LISTEN 1587/sshd udp        0      0 *:bootpc        *:*                    26035/dhclient <span class="term_say"># 看一看上头，Local Address 的地方会出现主机名与服务名称， # 要记得的是，可以加上 -n 来显示 port number ，而服务名称与 port  # 对应则是写在 /etc/services 里头喔！</span>  <span class="term_hd">范例二：找出所有的有监听网络的服务 (包含 socket 状态)：</span> [root@linux ~]# <span class="term_command">netstat -lnp</span> Active Internet connections (only servers) Proto Recv-Q Send-Q Local Address   Foreign Address State  PID/Program name tcp        0      0 *:ftp           *:*             LISTEN 1605/vsftpd tcp        0      0 *:pop3          *:*             LISTEN 1613/dovecot tcp        0      0 *:ssh           *:*             LISTEN 1587/sshd udp        0      0 *:bootpc        *:*                    26035/dhclient Active UNIX domain sockets (only servers) Proto RefCnt Flags    Type   State     I-Node PID/Program name  Path unix  2      [ ACC ]  STREAM LISTENING 5188   1673/master       private/tlsmgr unix  2      [ ACC ]  STREAM LISTENING 5192   1673/master       private/rewrite <span class="term_say">......以下省略...... # 仔细的瞧一瞧啊，除了原有的网络监听 port 之外，还会有 socket 显示在上面， # 我们可以清楚的知道有哪些服务被启动呢！</span>  <span class="term_hd">范例三：观察所有的网络连接状态，查询是否有异常的联机。</span> [root@linux ~]# <span class="term_command">netstat -anp</span> <span class="term_say"># 利用这个指令可以查出有问题的联机，还可取得 PID， # 可以用来 kill 掉任何一个觉得怀疑的程序呢！</span> </pre></td></tr></tbody></table>  		利用 netstat 可以取得很多跟网络有关的服务信息，透过这个指令，我们可以轻易的了解到网络的状态， 		并且可以透过 PID 与 kill 的相关功能，将有问题的数据给他剔除说～ 		当然啦，要更详细的取得 PPID 的话，才能够完全的抵挡有问题的程序啦！<br><br>  		另外，除了已经存在系统当中的 daemon 之外，如何在一开机就完整的启动我们所需要的服务呢？ 		底下我们就来谈一谈 chkconfig 及 ntsysv 这两个好用的东西！<br><br> 	</div>  	<hr><a name="starting_daemon"></a><img src="../image/logo.png" alt="小标题的图示" width="24" align="middle" height="23"><span class="text_h2">设定开机后立即启动服务的方法：</span> 	<div class="block2"> 		就如同上面提到的，我们使用 netstat 仅能观察到目前已经存在于系统当中的 daemon ，使用  		<a href="#service">service</a> 这个指令或者是 /etc/init.d/* start 的方法， 		仅能在目前的环境下启动某个服务而已。那么重新启动后呢？该服务是否还是继续的自动启动？ 		这个时候我们就得要复习一下，到底我的 Linux 主机是怎么开机的呢？ 		<ol><span class="text_import2"> 		<li>BIOS 		</li><li>MBR (boot loader) 		</li><li>kernel loading 		</li><li>init program 		</li><li>initial script (/etc/rc.d/rc.sysinit) 		</li><li>daemon start (/etc/rc.d/rc[0-6].d/*) 		</li><li>local setting (/etc/rc.d/rc.local) 		</li></span></ol> 		大致的情况是这样，看到啰～整个服务可以被开机就启动的地方有两个， 		一个是在 daemon start (/etc/rc.d/rc[0-6].d/*) 那个目录下，该目录下的档案主要以 S 及 K 		开头，分别代表开机时启动与关机时关闭的意思，更多信息可以参考  		<a href="http://linux.vbird.org/linux_basic/0560daemons/0510osloader.php#startup_runlevel">开机关机流程与 loader</a> 那个章节～ 		也就是说，如果我可以将要启动的服务写入 /etc/rc.d/rc[0-6].d 目录内， 		那么该服务就可以在开机的时候自动的被启动了！就是这样简单～<br><br>  		至于另一个也可以在开机时启动的档案，那就是 /etc/rc.d/rc.local 这个档案喔！ 		你可以将任何想要在开机时启动的程序写入到这个档案当中，这个档案是以 shell script 		的语法写成的，所以你可以轻易的就设定好你想要启动的数据了！ ^_^<br><br>  		好了，既然如此的话，那么我是否要使用 ln 去到 /etc/rc.d/rc[0-6].d 当中设定相关的服务呢？ 		不需要的，因为我们 Fedora 有提供两个好用的指令来达成这个功能啊！那就是 chkconfig 与 ntsysv 喔！<br><br>  		<a name="chkconfig"></a><hr><li><span class="text_import1">chkconfig</span></li> 		<div class="block2">  <table class="term"><tbody><tr><td class="term"><pre>[root@linux ~]# <span class="term_command">chkconfig --list</span> [root@linux ~]# <span class="term_command">chkconfig [--add|--del] [service_name]</span> [root@linux ~]# <span class="term_command">chkconfig --level [0123456] [service_name] [on|off]</span> <span class="term_say">参数： --list ：仅将目前的各项服务状态栏出来 --add  ：增加一个服务名称给 chkconfig 来管理，该 service_name 必须在           /etc/init.d/ 内！ --del  ：删除一个给 chkconfig 管理的服务 --level：设定某个服务在该 level 下启动 (on) 或关闭 (off) 范例：</span>  <span class="term_hd">范例一：列出目前系统上面所有被 chkconfig 管理的服务</span> [root@linux ~]# <span class="term_command">chkconfig --list |more</span> NetworkManager  0:off   1:off   2:off   3:off   4:off   5:off   6:off <span class="term_say">.....中间省略.....</span> snmpd           0:off   1:off   2:off   3:off   4:off   5:off   6:off yum             0:off   1:off   2:off   3:off   4:off   5:off   6:off  xinetd based services:         chargen:        off <span class="term_say">.....中间省略.....</span>         telnet:         off <span class="term_say"># 这个 chkconfig 的输出主要分为两大部分，分别是 stand alone 的服务， # 他会分出 0~6 个 run level 的资料，亦即上半部的显示，至于下半部则是 # super daemon 管理的服务的输出情况！由 super daemon 管理的服务， # 是没有 run level 之分的喔！</span>  <span class="term_hd">范例二：显示出目前在 run level 3 为启动的服务</span> [root@linux ~]# <span class="term_command">chkconfig --list | grep '3:on'</span>  <span class="term_hd">范例三：让 atd 这个服务在 run level 为 3, 4, 5 时启动：</span> [root@linux ~]# <span class="term_command">chkconfig --level 345 atd on</span> </pre></td></tr></tbody></table>  			瞧！ chkconfig 是否很容易管理我们所需要的服务呢？真的很方便啦～ 			他的功能其实很简单，只是直接在 /etc/rc.d/rc[0-6].d 里面针对某服务进行连结档案的设定而已。 			例如上面的范例三，基本上，他仅是在 /etc/rc.d/rc3.d/, /etc/rc.d/rc4.d/  			及 /etc/rc.d/rc5.d/ 里面，建立一个连结档案， 			该连结档案连结到 /etc/init.d/atd 里面就是了！这样说，可以理解吗？<br><br>  			既然这个玩意儿这么好用，那么我们可否将自己建立的服务给他加入 chkconfig 的管理当中？ 			当然可以啊！只是该服务必须要加入 init 可以管理的 script 当中，亦即是 /etc/init.d/ 当中才行。 			举个例子，我们在 /etc/init.d/ 里面建立一个 myvbird 档案， 			该档案仅是一个简单的服务范例，基本上，没有任何用途.... 			对于该档案的必须性是这样的：<ul> 			<li>myvbird 将在 run level 3 及 5 启动； 			</li><li>myvbird 在 /etc/rc.d/rc[35].d 当中启动时，以 S80 开始以 K70 结束。</li></ul> 			那么我可以这样做：<br>  <table class="term"><tbody><tr><td class="term"><pre>[root@linux ~]# <span class="term_command">vi /etc/init.d/myvbird</span> <span class="term_write">#!/bin/bash # chkconfig: 35 80 70 # description: 没啥！只是用来作为练习之用的一个范例 echo "Nothing"</span> <span class="term_say"># 这个档案很好玩喔！你可以参考你自己系统上面的档案； # 基本上，比较重要的是第二行，他的语法是： # chkconfig: [runlevels] [start number] [stop number] # 其中， runlevels 为不同的 run level 状态， start number 与 # stop number 则是在 /etc/rc.d/rc[35].d 内建立以 S80myvbird # 及 K70myvbird 为档名的设定方式！</span>  [root@linux ~]# <span class="term_command">chkconfig --add myvbird</span> [root@linux ~]# <span class="term_command">chkconfig --list myvbird</span> myvbird         0:off   1:off   2:off   3:on    4:off   5:on    6:off <span class="term_say"># 看吧！加入了 chkconfig 的管理当中了！再去看看 /etc/rc.d/ 底下的档案：</span>  [root@linux ~]# <span class="term_command">find /etc/rc.d/ -type l | grep 'myvbird'|sort</span> /etc/rc.d/rc0.d/K70myvbird /etc/rc.d/rc1.d/K70myvbird /etc/rc.d/rc2.d/K70myvbird /etc/rc.d/rc3.d/S80myvbird /etc/rc.d/rc4.d/K70myvbird /etc/rc.d/rc5.d/S80myvbird /etc/rc.d/rc6.d/K70myvbird <span class="term_say"># 很有趣吧！如果要将这些数据都删除的话，那么就下达这样的情况：</span> [root@linux ~]# <span class="term_command">chkconfig --del myvbird</span> [root@linux ~]# <span class="term_command">rm /etc/init.d/myvbird</span> </pre></td></tr></tbody></table>  			chkconfig 真的是个不错用的工具吧！尤其是当你想要自己建立自己的服务时！ ^_^<br><br>			 		</div>  		<a name="ntsysv"></a><hr><li><span class="text_import1">ntsysv</span></li> 		<div class="block2"> 			基本上， chkconfig 真的已经很好用了，不过，我们的 Fedora 还有提供一个更不错用的， 			那就是 ntsysv 了！注意喔， chkconfig 很多的 distributions 都存在，但是 ntsysv 			则是 Red Hat 系统特有的！<br>  <table class="term"><tbody><tr><td class="term"><pre>[root@linux ~]# <span class="term_command">ntsysv [--level &lt;levels&gt;]</span> <span class="term_say">参数： --level ：后面可以接不同的 run level ，例如 ntsysv --level 35  范例：</span>  <span class="term_hd">范例一：直接编辑目前 run level 底下的开机默认启动项目：</span> [root@linux ~]# <span class="term_command">ntsysv</span>  <center><img src="0560daemons-fc4_files/ntsysv_01.htm" title="ntsysv 的显示图样！" alt="ntsysv 的显示图样！"></center>  <span class="term_say"># 此时，你可以使用底下的按键来进行选择： # 上下键： 可以在中间的方框当中，在各个服务之间移动； # 空格键： 可以用来选择你所需要的服务，前面的 [*] 会有 * 出现； # tab 键： 可以在方框、OK、Cancel 之间移动； # [F1]键： 可以显示该服务的说明。举例来说，移动到 myvbird 按下 F1 后</span>  <center><img src="0560daemons-fc4_files/ntsysv_02.htm" title="ntsysv 的显示图样！" alt="ntsysv 的显示图样！"></center>  <span class="term_say"># 没错！不要怀疑，这个就是 /etc/init.d/myvbird 档案内的 description: # 后面接的内容啊！了解了吗？ ^_^</span> </pre></td></tr></tbody></table>  			挺不错用的吧！还可以知道该服务的意义呢！也就是说， 			如果你想要知道某个 /etc/init.d/ 底下的服务启动的信息为何， 			直接以 vi 开启该档案，去察看一下 description: 的内容即可知道啊！ ^_^ 		</div> 	</div>  	<hr><a name="illustrations"></a><img src="../image/logo.png" alt="小标题的图示" width="24" align="middle" height="23"><span class="text_h2">各个服务的简单说明</span> 	<div class="block2"> 		随着 Linux 上面软件支持性越来越多，加上自由软件蓬勃的发展， 		我们可以在 Linux 上面用的 daemons 真的越来越多了。所以，想要写完所有的 daemons 		几乎是不可能的，因此，鸟哥这里仅介绍几个很常见的 daemons 而已， 		更多的信息呢，就得要麻烦您自己使用 ntsysv 或者是 vi /etc/init.d/* 里面的档案去瞧一瞧啰～ ^_^<br><br>  <table width="95%" bgcolor="lightyellow" border="1" cellpadding="3" cellspacing="0"> <tbody><tr align="center" bgcolor="#182448"><td colspan="2" align="center"><font color="#FFFFFF">Stand Alone Daemons</font></td></tr> <tr align="center" bgcolor="#182448"><td rowspan="2" width="100"><font color="#FFFFFF">服务名称</font></td> 	<td align="left"><li><font color="#FFFFFF">参数档</font></li><li><font color="#FFFFFF">预设启动的 port number</font></li><li><font color="#FFFFFF">鸟哥的建议：是否需要启动？</font></li></td></tr> 	<tr bgcolor="#182448"><td><font color="#FFFFFF">基本说明</font></td></tr> <tr><td rowspan="2" align="center">anacron</td> 	<td><li>/etc/anacrontab</li><li>不需要使用 port </li><li>全天候启用的主机，不需要开启这个服务</li></td></tr> 	<tr><td>当你的 Linux 主机并不是全天候开机的时候，这个 anacron 就可以帮你执行在『  		<a href="http://linux.vbird.org/linux_basic/0560daemons/0430cron.php#cron">crontab</a> 』既定的时间内没有执行的工作！举个例子来说，当你的主机在晚上  		12:00 会自动关闭，但是偏偏 crontab 这个例行性工作是在 4:00 工作， 		这个时候例行性工作不是都没有做到吗？嗯！ anacron 就可以使用啦！</td></tr> <tr><td rowspan="2" align="center">apmd</td> 	<td><li>/etc/sysconfig/apmd</li><li>不需要使用 port</li><li>一般主机不太需要这个 daemon</li></td></tr> 	<tr><td>apmd 是 Adventage Power Management daemon 的缩写，顾名思义，可以用来了解系统的『电池电量』， 		如果对于手提式计算机才有需要吧我想！</td></tr> <tr><td rowspan="2" align="center">atd</td> 	<td><li>/etc/at.allow, /etc/at.deny</li><li>不需要使用 port</li><li>若有启动 cron ，或许可以忽略</li></td></tr> 	<tr><td>这个总该不陌生了吧！就是 <a href="http://linux.vbird.org/linux_basic/0560daemons/0430cron.php#atjob">仅进行一次的工作排程</a>啰！ 		如果忘记了！赶紧去查看一下！</td></tr> <tr><td rowspan="2" align="center">autofs</td> 	<td><li>/etc/sysconfig/autofs</li><li>不需要使用 port</li><li>如果是服务器，不需要启动，如果是 Desktop，建议使用</li></td></tr> 	<tr><td>如果你的 Linux 是用来做为服务器的，那么这个服务就不需要启动了。 		因为这个服务可以自动挂载很多的文件系统与装置，举例来说，自动挂载光盘啊、USB硬盘啊等等的。 		如果是主机，我们可以自己好好的控制，不需要系统自动挂载。如果是个人桌面计算机， 		那么启动这个 daemon 也不错！</td></tr> <tr><td rowspan="2" align="center">crond</td> 	<td><li>/etc/crontab</li><li>不需要使用 port</li><li>务必启动啊！</li></td></tr> 	<tr><td>用来<a href="http://linux.vbird.org/linux_basic/0560daemons/0430cron.php">执行例行性命令</a>的 daemon ，请务必要启动他！</td></tr> <tr><td rowspan="2" align="center">cups</td> 	<td><li>/etc/printcap, /etc/cups/*</li><li>默认使用 port 631</li><li>没有打印机的话，就不要启动</li></td></tr> 	<tr><td>这个服务在管理 Linux 主机上面的打印机的！ 		他可以用来作为本机打印机的管理，也可以用来管理网络打印机， 		全名为 Common UNIX Printing System (CUPS)。如果您的网络环境当中有打印机， 		而且想要透过 Linux 来提供给所有用户使用，那么就可以管理一下 cups 啰～</td></tr> <tr><td rowspan="2" align="center">gpm</td> 	<td><li>/etc/sysconfig/mouse</li><li>不需要使用 port</li><li>不需要启动的</li></td></tr> 	<tr><td>在文本模式里面可以使用 mouse 来从事『复制、贴上、移动光标』等等的功能！ 		如果你是个教师，需要使用鼠标在纯文本接口底下秀出结果的话， 		再使用这玩意就好了。基本上，不需要启动他！</td></tr> <tr><td rowspan="2" align="center">httpd</td> 	<td><li>/etc/httpd/conf/httpd.conf, /etc/sysconfig/httpd</li><li>使用 port 80 (and/or) 443 		</li><li>除非需要设定 WWW 服务器，否则不要启动</li></td></tr> 	<tr><td>这个玩意儿可有趣的很哩～一般来说，新手最喜欢架设 Web 网站啰， 		而 WWW 服务器，就是这个玩意儿啊～更详细的信息请参考服务器篇的内容</td></tr> <tr><td rowspan="2" align="center">iptables</td> 	<td><li>/etc/sysconfig/iptables</li><li>不需要使用 port</li><li>连上 Internet 的主机务必启动</li></td></tr> 	<tr><td>这个家伙就是 Linux 上面有名的『防火墙』啦～如果你的 Linux 是在区网内， 		而且没有连上 Internet 的话，那么这个防火墙机制可以暂时不要启动， 		因为可能会抵挡掉你主机所提供的服务。如果连上了 Internet ，不开这个， 		会死的很惨～</td></tr> <tr><td rowspan="2" align="center">kudzu</td> 	<td><li>/etc/sysconfig/kudzu</li><li>不需要使用 port </li><li>如果系统已经稳定，不需要启动</li></td></tr> 	<tr><td>这个 daemon 预设是启动的，他会在开机的时候去侦测你的硬件， 		如果发现硬件有异动，或者是有新增其他的硬件， 		那么 kudzu 服务会主动的以 Fedora 相关的设定软件来设定你的新硬件。 		不过，对于稳定的系统来说，实在没有必要在开机的时候侦测一次硬件，因为....很慢～</td></tr> <tr><td rowspan="2" align="center">named</td> 	<td><li>/etc/named.conf</li><li>使用 port 53</li><li>不需要启动，除非是 DNS Server</li></td></tr> 	<tr><td>这是个很复杂的玩意儿，那就是 DNS (Domain Name System)。除非你真的很了解 DNS， 		否则这个服务不需要启动的！</td></tr> <tr><td rowspan="2" align="center">netfs</td> 	<td><li>/etc/fstab</li><li>不需要使用 port</li><li>如果你的主机有默认挂载网络上的磁盘文件系统时，才开启。</li></td></tr> 	<tr><td>这个服务在自动的挂载 /etc/fstab 里头记录的关于网络文件系统，如 NFS, SMB (网芳) 		等等，如果你的主机本身并没有挂载来自网络上的 filesystem，不需要启动。</td></tr> <tr><td rowspan="2" align="center">network</td> 	<td><li>/etc/sysconfig/network, /etc/sysconfig/network-scripts/* 		</li><li>不需要使用 port</li><li>务必启动</li></td></tr> 	<tr><td>看檔名就知道啦！是用来管理网络的，所以，当然要启动了。 		不论你有没有网络卡，这个服务都要启动，因为至少 network 会驱动 lo 这个网络接口。 		更多的网络相关信息，参考服务器篇的内容。</td></tr> <tr><td rowspan="2" align="center">nfs<br>nfslock</td> 	<td><li>/etc/sysconfig/nfs</li><li>随机使用 port，与 portmap 服务有关</li><li>不需要启动</li></td></tr> 	<tr><td>NFS 为 Network File System 的缩写，我们会在服务器篇谈这个服务， 		一般来说，不需要启动这个玩意儿～</td></tr> <tr><td rowspan="2" align="center">ntpd</td> 	<td><li>/etc/ntp.conf, /etc/sysconfig/ntpd</li><li>使用 port 123</li><li>不需要启动</li></td></tr> 	<tr><td>这个服务的全名是：Network Time Protocol，意思就是在进行网络校时的一个服务。 		一般来说，不需要启动他。</td></tr> <tr><td rowspan="2" align="center">portmap</td> 	<td><li>/sbin/portmap 直接启动</li><li>使用 port 111</li><li>除非你有启用类似 NFS 的服务，否则不需要启动</li></td></tr> 	<tr><td>这个咚咚与很多 RPC 的服务有关，例如 NFS 等等。一般来说，如果你的 Linux 尚未连上 internet， 		这个服务不需要启动。不过，为了方便起见，各主要 linux distributions 都预设启动这个服务的。 		鸟哥通常是关掉他！哈哈！</td></tr> <tr><td rowspan="2" align="center">postfix<br>sendmail</td> 	<td><li>/etc/postfix/* 或 /etc/mail/* </li><li>使用 port 25</li><li>预设要启动</li></td></tr> 	<tr><td>这个就是邮件服务器啦！由于近来网络垃圾大增，所以，目前所有的 Linux distributions 		预设都要启动 postfix 之类的邮件服务器后，我们发出的信件才会接收或者是传送。 		预设的情况下，一定会有一个邮件服务器启动的，不要关闭他～ 		否则我们主机上面的账号彼此之间无法以 email 传送数据喔！</td></tr> <tr><td rowspan="2" align="center">smb</td> 	<td><li>/etc/samba/*</li><li>使用 port 137~139, 445 等</li><li>不需要启动</li></td></tr> 	<tr><td>这个服务其实就是仿真 Linux 成为 Windows 的网络上的芳邻上头的主机啦～ 		由于我们还没有连上 Internet 啊，所以自然不需要启动他啦～</td></tr> <tr><td rowspan="2" align="center">sshd</td> 	<td><li>/etc/ssh/*</li><li>使用 port 22 </li><li>务必启动</li></td></tr> 	<tr><td>这个是取代 telnet 的远程联机服务器 daemon ，几乎所有的 Linux distributions 预设都会启动他～ 		我们也可以透过这个玩意儿让远程主机联机进来啊！所以当然是启动的啊！</td></tr> <tr><td rowspan="2" align="center">syslog</td> 	<td><li>/etc/syslog.conf</li><li>不需要使用 port</li><li>务必启动</li></td></tr> 	<tr><td>这个是登录文件记录的一个重要的 daemon ，没有他，你的主机几乎没有事后监控的功能～ 		所以请务必启动。我们会在 <a href="http://linux.vbird.org/linux_basic/0560daemons/0570syslog.php">认识登录档</a> 当中来谈这个咚咚～</td></tr> <tr><td rowspan="2" align="center">xfs</td> 	<td><li>使用 /usr/sbin/chkfontpath 直接启动与侦测</li><li>使用 socket 7100</li><li>如果是纯文本接口，则不需要启动</li></td></tr> 	<tr><td>X Font Server, xfs，顾名思义，他是用来管理 X Window 的字形的一个服务， 		如果你是 run level 5 ，或者是想要启动 X Window 的话，那么这个玩意儿就不能不启动。 		不过，如果你跟鸟哥一样都是使用纯文本接口的话，这个玩意儿不用启动啦！</td></tr> <tr><td rowspan="2" align="center">xinetd</td> 	<td><li>/etc/xinetd.d/*, /etc/xinetd.conf</li><li>不一定，要看设定值</li><li>务必启动</li></td></tr> 	<tr><td>刚刚上头才讲过这个玩意儿，不会就忘了吧？务必启动喔！</td></tr> <tr align="center" bgcolor="#182448"><td colspan="2" align="center"><font color="#FFFFFF">Super Daemons</font></td></tr> <tr><td rowspan="2" align="center">chargen<br>chargen-udp</td> 	<td><li>预设使用 port 19</li><li>不需要启动</li></td></tr> 	<tr><td>主要的功能在于提供类似远程打字的咚咚吧！</td></tr> <tr><td rowspan="2" align="center">daytime<br>daytime-udp</td> 	<td><li>预设使用 port 13</li><li>不需要启动</li></td></tr> 	<tr><td>用来作为 daytime 的服务，这是 NTP (Network Time Protocol) 的上一代， 		目的在进行时间的校正工作。不过，因为他不会计算网络联机过程当中的迟滞时间， 		并且是以明码传送，因此除了特殊目的外，目前已经很少使用这玩意儿了</td></tr> <tr><td rowspan="2" align="center">krb5-telnet</td> 	<td><li>预设使用 port 23</li><li>不需要启动</li></td></tr> 	<tr><td>用来取代传统的 telnet 服务！可提供 krb 5 的验证机制。</td></tr> <tr><td rowspan="2" align="center">gssftp</td> 	<td><li>预设使用 port 21</li><li>不必启动</li></td></tr> 	<tr><td>用来取代传统的 ftp server，可提供 krb 5 的验证机制</td></tr> </tbody></table>  	</div> </div>   <hr><a name="FAQ"></a><img src="../image/logo.png" alt="大标题的图示" width="35" align="middle" height="34"><span class="text_h1">本章习题练习</span><br> ( 要看答案请将鼠标移动到『答：』底下的空白处，按下左键圈选空白处即可察看 ) <div class="block1"> <ul> 	<li>使用 netstat -tul 与 netstat -tunl 有什么差异？为何会这样？</li> 	<div class="block2"><font color="white" size="-1"> 		使用 n 时， netstat 就不会使用主机名与服务名称 (hostname &amp; service_name) 来显示， 		取而代之的则是以 IP 及 port number 来显示的。IP 的分析与 /etc/hosts 及 /etc/resolv.conf 有关， 		这个在未来服务器篇才会提到。至于 port number 则与 /etc/services 有关，请自行参考喔！ ^_^ 	</font></div>  	<li>我想让系统一开机就自动执行 /usr/local/sbin/backup.sh 这个程序(假设已经存在)，你觉得可以如何进行？</li> 	<div class="block2"><font color="white" size="-1"> 		最简单的方法，就是直接将 /usr/local/sbin/backup.sh 这整个指令写入 		/etc/rc.d/rc.local 档案当中即可！ 	</font></div>    </ul> </div>   <hr><span class="text_history"> 2002/07/10：第一次完成<br> 2003/02/11：重新编排与加入 FAQ<br> 2005/10/03：将原本旧版的数据移动到 <a href="http://linux.vbird.org/linux_basic/0560daemons/0560daemons/0560daemons.php">此处</a> 。<br> 2005/10/12：经过一段时间的修订，将原本在 <a href="http://linux.vbird.org/linux_basic/0560daemons/9999old/0550setup.php">系统设定工具</a> 的内容移动到此， 并新增完毕！<hr> </span>     </td>     <td style="width: 16px; font-size: 6px;">　</td></tr> <tr><td style="width: 16px; height: 16px;">　</td>     <td style="width: 866px; height: 16px;">　</td>     <td style="width: 16px; height: 16px;">　</td></tr> </tbody></table>  <div style="padding-top: 0px; text-align: center;"> <span style="font-size: 80%;"> 	<a href="http://linux.vbird.org/" target="_top" title="前往鸟哥的首页">http://linux.vbird.org</a> 	is designed by <a href="mailto:vbird@mail.vbird.idv.tw" title="联络鸟哥(我不要广告信！)">VBird</a> 		during 2001-2011. <a href="http://www.ksu.edu.tw/" target="_blank">ksu.edu</a></span>                                 ﻿<div id="apDiv4">       <p>本网页主要以Firefox配合解析度 1024x768 作为设计依据&nbsp;&nbsp;&nbsp;&nbsp; 鸟哥自由软件整合应用研究室</p></div></div></div> </center> </body></html> 
+<?xml version="1.0" encoding="utf-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"    "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><title>认识系统服务<span class="text_head_en"> daemons</title><link href="../Styles/style.css" rel="stylesheet" type="text/css" /></head><body>
+
+<!-- 本文的档头部分 -->
+<div style="text-align: center;">
+    <a href="http://linux.vbird.org/linux_basic/0560daemons/0560daemons.php">
+    <span class="text_head0">认识系统服务<span class="text_head_en"> daemons</span></span></a><br>
+</div>
+    <div style="text-align: right;">
+        <span class="text_history">最近更新日期：2005/10/12</span>
+    </div>
+
+<center>本文已不再维护，更新文章请参考<a href="http://linux.vbird.org/linux_basic/0560daemons.php">此处</a></center>
+<!-- 本文的档头部分 -->
+<center><table class="head1" summary="排版：文章档头的说明"><tbody><tr><td class="head1">
+	在 Unix-Like 的系统中，常常听到这个字眼： daemons ！那么什么是传说中的 daemons 
+	呢？这些 daemon 放在什么地方？他的功能是什么？该如何启动这些 daemons ？又如何有效的将这些
+	 daemon 管理妥当！？此外，要如何视察这些 daemons 开了多少个 ports ？又这些 ports 
+	要如何关闭？还有还有，晓得你的系统的这些 port 各代表的是什么服务吗？
+	这些都是最基础需要注意的呢！尤其是在架设网站之前，这里个观念就显的更重要了。
+</td></tr></tbody></table></center>
+
+
+<!-- 本文的连结区部分 -->
+<div class="block1">
+<span class="text_h1">
+1. <a href="#daemon">什么是 daemon 与服务 (service)</a>：<br>
+	<span class="text_h2">
+	　　1.1 <a href="#daemon_type">daemon 的主要分类</a><br>
+	　　1.2 <a href="#services">与服务有关的端口口对应资料：/etc/services</a><br>
+	　　1.3 <a href="#name_rule">命名规则</a><br>
+	　　1.4 <a href="#Whereisdaemon">系统的 Daemons 放在哪里</a>： <a href="#init.d">/etc/init.d/</a>,
+		<a href="#xinetd.conf">/etc/xinetd.conf</a>,
+		<a href="#xinetd.d">/etc/xinetd.d</a><br>
+	　　1.5 <a href="#daemon_start">daemon 的启动方式</a>：<a href="#service">service</a><br>
+	</span>
+2. <a href="#superd">解析 super daemon 的配置文件</a><br>
+	<span class="text_h2">
+	　　2.1 <a href="#xinetd">主要预设参数档 xinetd.conf 及相关参数原理</a><br>
+	　　2.2 <a href="#superd_telnet">一个简单的 telnet 范例设定</a><br>
+	</span>
+3. <a href="#tcp_wrappers">TCP_Wrappers</a>：<span class="text_h2">/etc/hosts.allow, /etc/hosts.deny</span><br>
+4. <a href="#open_services">系统开启的服务</a>：<br>
+	<span class="text_h2">
+	　　4.1 <a href="#opened">观察系统启动的服务：</a><br>
+	　　4.2 <a href="#starting_daemon">设定开机后立即启动服务的方法</a>：
+		<a href="#chkconfig">chkconfig</a>, <a href="#ntsysv">ntsysv</a><br>
+	　　4.3 <a href="#illustrations">各个服务的简单说明</a><br>
+	</span>
+5. <a href="#FAQ">本章习题练习</a><br>
+<span class="text_h2">
+6. <a href="http://phorum.vbird.org/viewtopic.php?t=23894" target="_blank">针对本文的建议：http://phorum.vbird.org/viewtopic.php?t=23894</a>
+</span>
+</span>
+</div>
+
+
+<!-- 本文的正式部分 -->
+<hr><a name="daemon"></a><img src="../images/logo.png" alt="大标题的图示" width="35" align="middle" height="34"><span class="text_h1">什么是 daemon 与服务 (service)</span>
+<div class="block1">
+	如果您常常上网去查看一些数据的话，尤其是关于 Unix-Like 的相关操作系统，如
+	FreeBSD, Unix, Linux 等等，应该会常常听到 daemons 这个字眼，那么 daemon
+	是什么东西呀！？怎么这么常被见到？呵呵，Daemon 的字面上的意思就是『守护神、恶魔？』还真是有点奇怪呦！
+	^_^""<br><br>
+
+	先来谈一谈 daemon 这个玩意儿是个啥咚咚？还记得我们在 <a href="http://linux.vbird.org/linux_basic/0560daemons/0440processcontrol.php">程序与资源管理</a>
+	一文当中提到过程序的概念，程序有的在 bash 当中执行程序而触发的，也有开机的时候，
+	系统自行触发而在背景当中执行的。当然也有系统管理员在开机完成后，登入系统来触发的等等。
+	不论怎么说，这个 <span class="text_import2">daemon 其实就是一个『在背景当中执行的程序』啦</span>！
+	比较特殊的是，所谓的 <span class="text_import2">daemon 通常是负责系统上面的某个服务 (service) </span>，
+	好让系统可以接受来自用户或者是网络客户(client)的要求，而加以工作。<br><br>
+
+	那么什么又是服务 (service)？所谓的服务很简单啦，意思是说，主机提供的功能。
+	这些功能主要分为系统上面的，以及针对网络的服务。针对系统上面的服务，例如我们第四篇提到的 crond 
+	与 atd 等等，他主要负责 Linux 主机上面的工作排程；至于网络服务呢？
+	包括远程联机 SSH 服务器，或者是全球信息网 WWW 服务器等等，这些让客户端连接上来取得数据的服务，
+	就是网络服务啦！<br><br>
+
+	那您了解了，之所以要有主机服务器就是希望他可以提供我们一些网络服务，或者是主机端自己的服务，
+	好让我们用户或者是一般用户可以工作的更愉快！而主机要提供这些服务，必须要有相对应的 daemon 
+	来进行服务需求的监听，例如要提供工作排程的服务，就得要有 atd 或者是 crond 这两个 daemon 才行；
+	而 daemon 的启动，其实就是某个程序 (program) 的执行，配合这个程序的配置文件，
+	就能够有效的启动该程序，加载常驻到内存当中成为 daemon ，并提供相对的服务啰！<br><br>
+
+	一般来说，当我们以 run level 3 或者是 run level 5 完整开机进入 Linux 主机后，
+	系统已经提供我们很多的服务了！包括打印服务、工作排程服务、邮件管理服务等等；
+	那么这些服务是如何被启动的？他们的工作型态如何？底下我们就来谈一谈啰！<br>
+
+	<div style="padding: 10pt 0pt;" align="right"><table width="90%"><tbody><tr><td><b>Tips:</b><br><span style="color: rgb(0, 144, 0);"><font size="-1">		很多时候，我们不会很细的去切分什么是 daemon 而什么是 service，
+		简单的来说，你可以将 service 与 daemon 视作相同的东西！
+		反正就是某个在背景当中执行的程序，他可以提供某些功能就是了！ ^_^
+	</font></span></td><td><img src="0560daemons-fc4_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div>
+	<hr><a name="daemon_type"></a><img src="../images/logo.png" alt="小标题的图示" width="24" align="middle" height="23"><span class="text_h2">daemon 的主要分类</span>
+	<div class="block2">
+		如果依据 daemon 的启动与管理方式，基本上，可以将 daemon 分为可独立启动的 stand alone ，
+		与透过统一安全机制管理的 Super daemon 两大类，这两类 daemon 的说明是这样的：<br><br>
+
+		<li><span class="text_import1">stand_alone：</span></li>
+		<div class="block2">
+		 就字面上的意思来说，stand alone 就是『独立的启动』的意思，也就是说，该 
+		daemon 启动之后，就直接常驻在内存当中啰！他虽然会一直的占用系统的资源，
+		但最大的优点就是，他会一直启动的啦！所以当有要求来的时候，他就会很快速的响应啰！常常用在这一种
+		daemon 的网络服务如常见的全球信息网 WWW 的 daemon (httpd) 这一个即是一例！
+		因为他需要比较快的响应速度啊！<br><br>
+		</div>
+
+		<li><span class="text_import1">super daemon：</span></li>
+		<div class="block2">
+		相对于 stand alone 的执行方式，这一种服务的启动方式则是藉由统一的一个 daemon 
+		来负责唤起该服务！这一个统一负责的
+		daemon 就是 inet 这支服务啦！不过，在后来的 Linux 发展套件中，则是使用
+		xinet 这个设定啰！我们这里以 FC4 的 xinet 来做说明。当有网络的服务要求来的时候，该要求会先送给
+		xinet 这个服务，然后 xinet 根据该网络要求送来的数据封包的内容 ( 该内容会记录
+		IP 与 port ) 来将数据封包送给实际运作的服务！而该服务这个时候才会启动的！最常见到的就是
+		ftp 这支网络服务啦！<br><br>
+
+		这种 daemon 最大的优点就是当没有数据封包来的时候，该服务不会一直占据系统资源
+		( 该服务会在 sleeping 的状态吧！ ) ，但是相对的，他的反应时间也会比较慢，
+		因为还要花费一段时间去『唤醒』该服务呀！<br><br>
+		</div>
+
+		那么这两种启动的方式哪一个比较好呢？见仁见智啦！而且还要看该主机的工作负荷与实际的用途说！
+		例如当你的主机是用来作为
+		WWW 服务器的，那么 httpd 自然就以 stand alone 的启动方式较佳！事实上，我们常常开玩笑的说明
+		stand alone 与 super daemon 的情况，可以银行的窗口来作为说明的范例！<br><br>
+
+		<li><span class="text_import1">stand alone</span> ：</li>
+		<div class="block2">
+		在银行里面，假设有一种单一服务的窗口，例如存钱窗口，所以，当你需要存钱的时候，
+		直接前往该窗口，就有『专人』为您服务啦！<br><br>
+		</div>
+
+		<li><span class="text_import1">super daemon</span> ：</li>
+		<div class="block2">
+		在银行里面假设还有另外一种复合型态的窗口，同时提供转账、资金调度、
+		提款等等的业务，那当你需要其中一项业务的时候，就需要前往该窗口，
+		但是坐在窗口的这个营业员，拿到你的需求单之后，往后面一丢『喂！那个转账的仁兄！该你的工作了』
+		那么那个仁兄就开始工作去！然而里头还有资金调度与提款等负责业务的仁兄呢？他们在干嘛？
+		嘿嘿！看看报、喝喝茶啰！<br><br>
+
+		那么这里就会引出另外一个问题啦！假设银行今天的人潮特别的汹涌，
+		所以这个窗口后面除了你之外还有很多的人！那么想一想，这个窗口是要『一个完成再来下一个』
+		还是『全部都把你们的单据拿来，我全部处理掉』呢？呵呵！是不是不太一样？基本上，
+		针对这种 super daemon 的处理模式有两种，分别是这样：
+
+		<ul>
+		<li><span class="text_import2">multi-threaded：</span><br>
+		就是我们提到的，全部的客户之要求都给他拿来，一次给他交办下去，所以一个服务同时会负责好几个程序。</li><br>
+		<li><span class="text_import2">single-threaded</span>：<br>
+		这个就是目前我们『人类的银行』最常见的方式啦，不论如何，反正一个一个来，
+		第一个没有处理完之前，后面的请排队！嘿嘿！所以如果
+		client 的要求突然大增的话，那么这些晚到的 client 可得等上一等！</li></ul>
+
+		</div>
+
+		另外，需要注意的是，既然银行里头有这两种窗口同时存在，所以啰，在 Linux
+		系统里面，这两种 daemon 是可以同时存在的啦！也就是说，某些服务可以使用
+		stand alone 来启动，而有其他的服务则可以使用 xinet ( 或者是 inet ) 
+		大致的情况就是这样啦！瞭乎！？<br><br>
+
+		不过，如果以 daemon 的工作状态来区分，则主要分为两类：<ul>
+		<li><span class="text_import2">signal-control</span><br>
+		这种 daemon 是透过讯号来管理的，只要有任何需求进来，他就会立即启动去处理！
+		例如打印机的服务 (cupsd)</li><br>
+		<li><span class="text_import2">interval-control</span><br>
+		这种 daemon 则主要是『每隔一段时间就主动的去执行某项工作』，
+		所以，即使你设定好配置文件之后，他也不会立刻执行，而是某个时间点才会去工作。举例来说，
+		atd 与 crond 就是这种 (每分钟执行一次！)</li>
+		</ul>
+
+		另外，如果您对于开发程序很有兴趣的话，那么可以自行查阅一下『 man 3 daemon 』
+		看看系统对于 daemon 的详细说明吧！ ^_^。<br><br>
+	</div>
+
+	<hr><a name="services"></a><img src="../images/logo.png" alt="小标题的图示" width="24" align="middle" height="23"><span class="text_h2">与服务有关的端口口对应资料：
+	/etc/services</span>
+	<div class="block2">
+		现在我们知道系统所提供的服务是执行某个 program ，由该程序的功能所提供的。
+		也知道一部主机上面可能会同时拥有多个服务，当然，可能会有多个网络服务同时存在。
+		此时你会不会觉得很奇怪啊？我一部主机同时开启 WWW 与 FTP 时，
+		客户端跟我要数据，那么主机会响应什么数据给客户端啊？奇不奇怪呢？<br><br>
+
+		其实，就如同上面提到的人类的银行一样，不同的服务有不同的窗口号码，
+		同样的，在 Linux 系统上面，不同的网络服务，确实有不一样的监听埠口 (listen port)。
+		我们可以透过指定指向主机的某个端口口 (port) 来连上我们想要的服务呢！
+		举例来说，我们可以在浏览器上面输入这样的网址：<ul>
+		<li><a href="http://ftp.isu.edu.tw/" target="_blank">http://ftp.isu.edu.tw/</a>
+		</li><li><a href="ftp://ftp.isu.edu.tw/" target="_blank">ftp://ftp.isu.edu.tw/</a></li></ul>
+		有没有发现，两个网址都是指向 ftp.isu.edu.tw 这个义守大学的 FTP 网站，
+		但是浏览器上面显示的结果却是不一样的？是啊！这是因为我们指向不同的服务嘛！
+		一个是 http 这个 WWW 的服务，一个则是 ftp 这个服务，当然显示的结果就不同了。<br><br>
+
+		那我们怎么知道那个 port 是由那个服务所启动的呢？
+		因为目前已经有很多既定的网络协议，这些通讯协议使用的 port 是固定的，
+		也是公认的标准的 port number ，我们可以称为 well known 的信息。
+		那么我们 Linux 主机有没有相关的信息呢？当然有啊！那就是 
+		<span class="text_import1">/etc/services</span> 这个档案啊！我们取 FC4 的这个档案一部份来说明：<br>
+
+<table class="term"><tbody><tr><td class="term"><pre>[root@linux ~]# <span class="term_command">vi /etc/services</span>
+<span class="term_say">......省略......</span>
+ftp-data        20/tcp
+ftp-data        20/udp
+ftp             21/tcp
+ftp             21/udp          fsp fspd
+ssh             22/tcp                          # SSH Remote Login Protocol
+ssh             22/udp                          # SSH Remote Login Protocol
+telnet          23/tcp
+telnet          23/udp
+<span class="term_say">......省略......</span>
+http            80/tcp          www www-http    # WorldWideWeb HTTP
+http            80/udp          www www-http    # HyperT
+pop3            110/tcp         pop-3           # POP version 3
+pop3            110/udp         pop-3
+sunrpc          111/tcp         portmapper      # RPC 4.0 portmapper TCP
+sunrpc          111/udp         portmapper      # RPC 4.0 portmapper UDP
+netbios-ns      137/tcp                         # NETBIOS Name Service
+netbios-ns      137/udp
+netbios-dgm     138/tcp                         # NETBIOS Datagram Service
+netbios-dgm     138/udp
+netbios-ssn     139/tcp                         # NETBIOS session service
+netbios-ssn     139/udp
+<span class="term_say">......省略......</span>
+<span class="term_say"># 这个档案的内容是以底下的方式来编排的：
+# &lt;daemon name&gt;   &lt;port 与数据型态&gt;   &lt;该服务的说明&gt;</span>
+</pre></td></tr></tbody></table>
+
+		像上面说的是，第一栏为 daemon 的名称、第二栏为该 daemon 所使用的 port
+		号码与其网络数据封包传送时候的类型，主要为确定联机后才进行数据传输的可靠的 TCP 封包，
+		以及较快速但不确定性较高的 UDP 封包等。
+		举个例子说，那个 e-mail 的发信协议为 smtp 这个服务，而这个服务的使用之
+		port 即为 25 啦！就这样！<br>
+
+		<div style="padding: 10pt 0pt;" align="right"><table width="90%"><tbody><tr><td><b>Tips:</b><br><span style="color: rgb(0, 144, 0);"><font size="-1">			请特别注意！虽然有的时候您可以藉由修改 /etc/services 来更改一个服务的 port
+			号，不过并不建议如此做，因为很有可能会造成一些协议的错误情况！
+			这里特此说明一番呦！(除非您要架设一个地下网站，否则的话，使用 
+			/etc/services 原先的设定就好啦！)
+		</font></span></td><td><img src="0560daemons-fc4_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div>	</div>
+
+	<hr><a name="name_rule"></a><img src="../images/logo.png" alt="小标题的图示" width="24" align="middle" height="23"><span class="text_h2">Daemon 的命名规则：</span>
+	<div class="block2">
+		每一个服务的开发者，当初在开发他们的服务时，都有特别的故事啦！
+		不过，无论如何，这些服务的名称被建立之后，被挂上
+		Linux 使用时，通常在服务的名称之后会加上一个 d ，例如例行性命令的建立的
+		at, 与 cron 这两个服务，通常会被称为 atd 与 crond，这个 d 代表的就是 daemon
+		的意思。所以，在<a href="http://linux.vbird.org/linux_basic/0560daemons/0440processcontrol.php">资源管理</a>那一章中，我们使用了
+		ps 与 top 来观察程序时，都会发现到很多的 xxxd 的程序，呵呵！通常那就是一些
+		daemon 的程序啰！<br><br>
+	</div>
+
+	<hr><a name="Whereisdaemon"></a><img src="../images/logo.png" alt="小标题的图示" width="24" align="middle" height="23"><span class="text_h2">系统的 Daemons 放在哪里：</span>
+	<div class="block2">
+		我们说过， daemon 其实是一支可以在背景执行的程序，这个程序可以负责系统的某个服务。
+		而既然要负责某个服务，当然啰，就需要有所谓的配置文件啰～而为了让使用者可以很轻易的启动该服务，
+		因此各主要的 Linux distributions 都会替他们的系统进行较有亲和力的启动 daemon 的方式，
+		那就是利用 shell script 啦！这也是为何我们会在第三篇的时候建议您务必要学习 shell 
+		script 的原因啊！^_^<br><br>
+
+		举个例子来说，在 FC4 上面管理系统注册表档的服务为 syslogd 这个 daemon，
+		那么你如何启动这个 daemon 呢？可以查询一下 man 8 syslogd 来看看到底他需要如何被启动。
+		想必看的结果是『很烦ㄟ！』干嘛要这样启动啊！真是麻烦～
+		此时，启动 syslogd 这个 daemon 的 shell script (/etc/init.d/syslog) 就帮上忙了！
+		你只要『 /etc/init.d/syslog restart 』就能够重新启动 syslogd 呢！
+		真是很方便啊！而该 shell script 就会主动的去读取相关的配置文件，好让我们的设定生效啊！^_^<br><br>
+
+		OK！那么这些 daemons 的 shell scripts 放在哪里啊？他们放置的地方依据 stand alone 
+		与 super daemon 的差异而有所不同，基本上，是放在这些地方：
+		<ul>
+		<li><span class="text_import1">stand alone</span>：<br>
+		这个放置在 <span class="text_import2">/etc/init.d/
+		</span>这个目录里面，几乎所有的
+		RPM 安装的套件之启动 scripts 都在这里啦！不过，实际上，我们的 FC4 是放置到 /etc/rc.d/init.d/* ，
+		但你依旧可以记忆成 /etc/init.d ，因为所有的 unix like 机器都有这个目录！</li><br>
+
+		<li><span class="text_import1">super daemon</span>：<br>
+		这个工作的那一支服务其实就是 <b>xinet</b>
+		或者是 <b>inet</b> 啦！请注意， <b>xinet</b> 也是一个 daemon 呢！他是 stand
+		alone 启动的，也就是他会一直在监听大家的需求，所以 xinet 的启动 scripts
+		写在 <span class="text_import2">/etc/init.d/xinetd</span> 这个 scripts
+		里面啰！但是挂在这个 daemon 里头的服务之设定项目呢？嗯！就是写在<span class="text_import2">
+		/etc/xinetd.conf 与 /etc/xinetd.d/* </span>这个目录里面的任何档案！</li></ul>
+
+		更详细的来说明每个目录底下的设定的话，总的来说，是这样的：<br><br>
+
+		<li><a name="init.d"></a><span class="text_import1">/etc/init.d/*</span></li>
+		<div class="block2">
+		OK！先来了解一下 stand alone 的 daemon 是怎么启动的呢？！很简单，假如我们要启动
+		<a href="http://linux.vbird.org/linux_basic/0560daemons/0570syslog.php">syslog</a>
+		这支记录登录文件的服务，那么要启动他的话，就直接下达：<br>
+
+<table class="term"><tbody><tr><td class="term"><pre>[root@linux ~]# <span class="term_command">/etc/init.d/syslog start</span>
+[root@linux ~]# <span class="term_command">service syslog start</span>
+</pre></td></tr></tbody></table>
+
+		那个 service 是一支程序，基本上，也只是用来启动 /etc/init.d/ 底下的 shell script
+		而已～至于指令或者是档案后面接的参数，亦即是档名之后加上 start 
+		即可，或者是使用 Red Hat 系统有的这个 service script
+		来进行启动的功能！如果你还记得我们前几节提到过的 
+		<a href="http://linux.vbird.org/linux_basic/0560daemons/0340bashshell-scripts.php">shell scripts</a> 的话，那么或许还记得 
+		<a href="http://linux.vbird.org/linux_basic/0560daemons/0340bashshell-scripts.php#case">case ..... esac</a> 
+		这个有选择性的项目的语法吧！？没错！这几支服务就是以 bash
+		scripts 里头的 case 语法写成的！因此，只要加上后面的参数，如此一来， scripts
+		就会自动的去找寻执行档来执行啰！如果有兴趣的话，
+		可以在你的系统里面的该目录下开一个档案来观看一下，就知道如何写啰！<br><br>
+		</div>
+
+		<li><a name="xinetd.conf"></a><span class="text_import1">/etc/xinetd.conf</span></li>
+		<div class="block2">
+		这个档案就是设定 xinet 服务的参数档案啦！<br><br>
+		</div>
+
+		<li><a name="xinetd.d"></a><span class="text_import1">/etc/xinetd.d/*</span></li>
+		<div class="block2">
+		这个目录里面的所有档案就是个别挂上 xinet 的所有服务啦！例如赫赫有名的
+		wu-ftpd 及 telnet 与 pop3 等等！
+		</div>
+	</div>
+
+	<hr><a name="daemon_start"></a><img src="../images/logo.png" alt="小标题的图示" width="24" align="middle" height="23"><span class="text_h2">daemon 的启动方式： service</span>
+	<div class="block2">
+		知道了一些有关 daemon 的相关知识后，再来，那么我们如何启动一个 daemon 呢？
+		其实，我们知道所谓的 daemon 就是一支可以在系统背景下面运作的程序 (program) 啊，
+		所以，要启动该 daemon ，就是找到他的执行档，执行他就是了。
+		不过，因为该 daemon 的执行档所需要加的参数太多了！举例来说，你可以使用『man syslogd』及
+		『man sshd』来查阅一下该 daemon 要启动时的设定参数！<br><br>
+
+		为了克服这样的困扰，所以各主要 Linux distributions 都会针对该服务设计一个比较亲和的
+		shell script 来进行启动的程序啊！那就是 /etc/init.d/ 底下的档案，以及
+		/etc/xinetd.d/ 底下的设定数据。因此，启动服务的方法就变得很简单了。
+		只要设定好该服务的配置文件，然后下达：<br>
+
+<table class="term"><tbody><tr><td class="term"><pre><span class="term_hd">1. 启动 stand alone 服务的方式：以 syslog 为例：</span>
+[root@linux ~]# <span class="term_command">/etc/init.d/syslog start</span>
+
+<span class="term_hd">2. 启动 super daemon 服务的方式：以 telnet 为例：</span>
+[root@linux ~]# <span class="term_command">vi /etc/xinetd.d/telnet (设定方式参考下节)</span>
+[root@linux ~]# <span class="term_command">/etc/init.d/xinetd restart</span>
+</pre></td></tr></tbody></table>
+
+		另外，除了这样的启动方式之外，我们还可以透过 Fedora ( Red Hat 系统 ) 所提供的 service 
+		这个程序来进行 daemon 的启动喔！其实 service 仅是一支 script 啦，
+		他可以解析后面带有的参数，然后去到 /etc/init.d/ 去启动相对应的服务名称的 script 而已！
+		有兴趣的话，可以自行去解析 /sbin/service 这支 shell script 啊！
+		底下我们大略说明一下他的用法！<br>
+
+<a name="service"></a><table class="term"><tbody><tr><td class="term"><pre>[root@linux ~]# <span class="term_command">service [service name] (start|stop|restart|...)</span>
+<span class="term_say">参数：
+service name：亦即是需要启动的服务名称，需与 /etc/init.d/ 对应；
+start|...   ：亦即是该服务要进行的工作。
+范例：</span>
+
+<span class="term_hd">范例一：重新启动 crond 这支 daemon ：</span>
+[root@linux ~]# <span class="term_command">service crond restart</span>
+[root@linux ~]# <span class="term_command">/etc/init.d/crond restart</span>
+</pre></td></tr></tbody></table>
+
+		在上面的范例当中，其实启动方式以 service 这个程序，或者直接去到 /etc/init.d/ 底下启动，
+		都一样啦！自行去解析 /sbin/service 就知道为啥了！ ^_^<br>
+
+		<div style="padding: 10pt 0pt;" align="right"><table width="90%"><tbody><tr><td><b>Tips:</b><br><span style="color: rgb(0, 144, 0);"><font size="-1">			事实上，在 Linux 系统中，要『开或关某个 port 』，就是需要『
+			启动或关闭某个服务』啦！因此，你可以找出某个 port 对应的服务，程序对应的服务，
+			进而启动或关闭他，那么那个经由该服务而启动的 port ，自然就会关掉了！
+		</font></span></td><td><img src="0560daemons-fc4_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div>	</div>
+</div>
+
+
+<hr><a name="superd"></a><img src="../images/logo.png" alt="大标题的图示" width="35" align="middle" height="34"><span class="text_h1">解析 super daemon 的配置文件</span>
+<div class="block1">
+	前面提到，Super daemon 就是一支总管许多服务的 daemon ，这支 daemon 在 FC4 上面即是 xinet 啰～
+	通常我们也称呼为 xinetd 啦～这支 daemon 来管理许多的服务是有好处的，
+	最大的优势就是『安全性较高！』。怎么说呢？因为 super daemon 可以透过额外的数据分析，
+	来管理谁可以、谁不能使用某个服务，因此，多了一道类似防火墙的手续，自然就能够比较安全一些啦。
+	而且他还可以记录该服务的使用状态，也可以记录错误登入的信息，用在管理一些比较危险的服务上面，
+	确实有他的必要性啦！<br><br>
+
+	底下我们就来谈一谈，这个 super daemon 到底是如何分析的，
+	当然，就得要先谈一谈，这个 xinetd 的主要预设参数档： /etc/xinetd.conf 啰～<br><br>
+
+	<hr><a name="xinetd"></a><img src="../images/logo.png" alt="小标题的图示" width="24" align="middle" height="23"><span class="text_h2">解析 xinetd.conf</span>
+	<div class="block2">
+		先来看一看预设的 /etc/xinetd.conf 这个档案的内容是什么吧！<br>
+
+<table class="term"><tbody><tr><td class="term"><pre>[root@linux ~]# <span class="term_command">vi /etc/xinetd.conf</span>
+#
+# Simple configuration file for xinetd
+#
+# Some defaults, and include /etc/xinetd.d/
+defaults
+{
+  instances        = 60       <span class="term_note">&lt;==同一服务的同时联机数最多可达 60 个</span>
+  log_type         = SYSLOG authpriv <span class="term_note">&lt;==登录后，会被纪录到登录文件的信息</span>
+  log_on_success   = HOST PID <span class="term_note">&lt;==若成功的登入时，记录的信息有哪些？</span>
+  log_on_failure   = HOST     <span class="term_note">&lt;==若登入失败，则记录的信息又是如何？</span>
+  cps              = 25 30    <span class="term_note">&lt;==同一秒钟内最大联机数量为 25 个，若超过 25 个，
+                                 则该服务会暂时停止 30 秒！</span>
+}
+
+includedir /etc/xinetd.d <span class="term_note">&lt;==更多的设定值在 /etc/xinetd.d 那个目录内</span>
+</pre></td></tr></tbody></table>
+
+		基本上，这个预设参数档的意义是：『<span class="text_import2">当某个使用 super daemon
+		管理的服务启动时，除非该服务已经设定好管理的项目，否则将以上述 xinetd.conf 
+		内的预设参数带入。</span>』的意思，也就是说，这仅是默认值，
+		但我们可以自行指定新的设定值来取代 xinetd.conf 内的默认值啦！
+		也就是说，这个档案设定成，在预设的状态下『：<span class="text_import2">一个服务最多可达 
+		60 个联机，且同一秒内连接上的联机不可超过 25 个。而若登入的成功与否时，
+		会分别记录不同的信息到登录文件当中。</span>』这样说，可以比较清楚了吧？ ^_^
+		至于更多的参数说明，我们会在底下再强调的！<br><br>
+
+		既然这只是个预设参数档，那么自然有更多的服务参数档案啰～没错～而所有的服务参数档都在
+		/etc/xinetd.d 里面，这是因为上表当中的最后一行啊！这样瞭了吧！ ^_^。
+		那么每个参数档案的内容是怎样呢？一般来说，他是这样的：<br>
+
+<table class="term"><tbody><tr><td class="term"><pre>service  &lt;service_name&gt;
+{
+       &lt;attribute&gt;   &lt;assign_op&gt;   &lt;value&gt;   &lt;value&gt; ...
+       .............
+}
+</pre></td></tr></tbody></table>
+
+		第一行一定都有个 service ，至于那个 &lt;service_name&gt; 里面的内容，
+		则与 /etc/services 有关，因为他可以对照着 /etc/services 内的名称与 port number 
+		来决定所要启用的 port 是那个啊！然后相关的参数就在两个大刮号中间。
+		attribute 是一些 xinetd 的管理参数， assign_op 则是参数的设定方法。
+		assign_op 的主要设定形式为：
+
+		<ul><span class="text_import2"><font face="细明体">
+		&nbsp;= ： 表示后面的设定参数就是这样啦！<br>
+		+= ： 表示后面的设定为『<b>在原来的设定里头加入新的参数</b>』<br>
+		-= ： 表示后面的设定为『<b>在原来的参数舍弃这里输入的参数</b>！』
+		</font></span></ul><font face="细明体"></font>
+
+		用途不太相同，敬请留意呦！好了！底下再来说一说那些 attribute 与 value ！<br><br>
+
+<table width="95%" bgcolor="lightyellow" border="1" cellpadding="3" cellspacing="0">
+<tbody><tr align="center" bgcolor="#182448">
+	<td width="120"><font color="#FFFFFF">attribute<br>(功能)</font></td><td width="120"><font color="#FFFFFF">assing_op<br>(允许的动作)</font></td>
+	<td><font color="#FFFFFF">说明与范例</font></td></tr>
+<tr bgcolor="#182448"><td colspan="3"><span class="text_import1"><font color="#FFFFFF">一般设定项目：</font></span></td></tr>
+<tr>
+	<td align="center"><font face="细明体">disable</font></td>
+	<td align="center"><font face="细明体">yes<br>no</font></td>
+	<td>允许该 server 可以执行或者是不能执行！当设定为 yes 表示该服务不能执行！
+		这个设定是一定要的啦。如果我想要启动某个服务，那么这里就要设定成为：<center>
+		disable = no</center></td></tr>
+<tr>
+	<td align="center"><font face="细明体">socket_type</font></td>
+	<td align="center"><font face="细明体">stream<br>dgram<br>raw</font></td>
+	<td>stream 为联机机制较为可靠的 TCP 封包，若为 UDP 封包则使用 dgram 机制。
+		raw 代表 server 需要与 IP 直接对谈！例如 telnet 使用 TCP ，所以：
+		<center>socket_type = stream</center></td></tr>
+<tr>
+	<td align="center"><font face="细明体">protocol</font></td>
+	<td align="center"><font face="细明体">tcp<br>udp<br>....</font></td>
+	<td>这个东西说的是，联机的状态使用的是哪一种协议！？各个协议的代号可以参考 
+		/etc/protocols 内容！此外，除非是你自己设定的服务，否则这个可以不用设定啦！</td></tr>
+<tr>
+	<td align="center"><font face="细明体">wait</font></td>
+	<td align="center"><font face="细明体">yes<br>no</font></td>
+	<td>这就是我们刚刚提到的 <b>Multi-threaded</b> 与 <b>single-threaded</b> 
+		的方式啦！一般来说，我们希望大家的要求都可以同时被启用，所以可以设定 
+		<center>wait = no</center></td></tr>
+<tr>
+	<td align="center"><font face="细明体">user</font></td>
+	<td align="center"><font face="细明体">UID<br>root</font></td>
+	<td>还记得我们在 <a href="http://linux.vbird.org/linux_basic/0560daemons/0410accountmanager.php">账号管理</a> 那一篇提到的 UID 
+		概念吗？对啦！这个 UID 就是那个 UID 啦！要注意的是，假如你的服务启动者不要以 
+		root 为主的话，那么这个地方就可以改变其他的使用者，例如 
+		nobody ！这个咚咚也会有安全防护的机制存在！此外，需要注意这个 UID 必须存在于 
+		/etc/passwd 。</td></tr>
+<tr>
+	<td align="center"><font face="细明体">group</font></td>
+	<td align="center"><font face="细明体">GID</font></td>
+	<td>跟 user 的意思相同！只是这个 GID 的使用者也必须存在于 /etc/group 当中！</td></tr>
+<tr>
+	<td align="center"><font face="细明体">instances</font></td>
+	<td align="center"><font face="细明体">number<br>UNLIMITED</font></td>
+	<td>这个是『在同一时间之内，同一个服务可以允许的联机数目』的意思，
+		你可以写入一个『数字』来控制联机数目，也可以使用 UNLIMITED 
+		来告诉系统『没有上限』啰！例如你在同时段之内仅允许 ftp 联机有 30 
+		个，那么这里就可以输入 30 啦！</td></tr>
+<tr>
+	<td align="center"><font face="细明体">nice</font></td>
+	<td align="center"><font face="细明体">-20 ~ 19</font></td>
+	<td>还记得我们在 <a href="http://linux.vbird.org/linux_basic/0560daemons/0440processcontrol.php">程序管理</a> 里面谈到的那个 nice 
+		指令吗？！对啦！这里就是这个东西啰！数字越小( 负值 )代表该程序越优先被执行！</td></tr>
+<tr>
+	<td align="center"><font face="细明体">server</font></td>
+	<td align="center"><font face="细明体">program<br>完整檔名</font></td>
+	<td>这个就是指出这个服务的启动程序！例如要启动 telnet 的话，其实就是 in.telnetd 
+		这支程序啦！所以这个时候在这里输入 
+		<center>server = /usr/sbin/in.telnetd</center></td></tr>
+<tr>
+	<td align="center"><font face="细明体">server_args</font></td>
+	<td align="center"><font face="细明体">program<br>一些参数</font></td>
+	<td>这里应该输入的就是你的 server 那里需要输入的一些参数啦！例如 in.telnetd 
+		当中，我们还可以加入某些参数！ </td></tr>
+<tr>
+	<td align="center"><font face="细明体">log_on_success</font></td>
+	<td align="center"><font face="细明体">PID<br>HOST<br>USERID<br>EXIT<br>DURATION</font></td>
+	<td>在『成功登入』之后，需要记录的项目：PID 为纪录该 server 启动时候的 process ID ，
+		HOST 为远程主机的 IP、USERID 为登入者的账号、EXIT 为离开的时候记录的项目、
+		DURATION 为该使用者使用此服务多久？</td></tr>
+<tr>
+	<td align="center"><font face="细明体">log_on_failure</font></td>
+	<td align="center"><font face="细明体">HOST<br>USERID<br>ATTEMPT<br>RECORD</font></td>
+	<td>当登入失败之后被 syslog 登入的项目：HOST为远程主机的 IP，USERID为登入者账号、
+		ATTEMPT为记录登入失败者企图的意图为何、RECORD为记录远程主机的信息！以及为何本机 
+		server 不能启动的原因！主要有 login, shell, exec, finger 
+		等指令可以使用在这里！( 基本上，可以在 /etc/hosts.allow 或 /etc/hosts.deny 书写内容 )。</td></tr>
+<tr bgcolor="#182448"><td colspan="3"><span class="text_import1"><font color="#FFFFFF">进阶设定项目：</font></span></td></tr>
+<tr>
+	<td align="center"><font face="细明体">env</font></td>
+	<td align="center"><font face="细明体">'name=value'</font></td>
+	<td>这一个项目可以让你设定环境变量，环境变量的设定规则可以参考 
+		<a href="http://linux.vbird.org/linux_basic/0560daemons/0320bash.php">认识 BASH Shell </a>。</td></tr>
+<tr>
+	<td align="center"><font face="细明体">port</font></td>
+	<td align="center"><font face="细明体">number</font></td>
+	<td>这里可以设定不同的服务与对应的 port ，但是请记住你的 port 与服务名称必须与 
+		/etc/services 内记载的相同才行！</td></tr>
+<tr>
+	<td align="center"><font face="细明体">redirect</font></td>
+	<td align="center"><font face="细明体">IP_Address port</font></td>
+	<td>将 client 端对我们 server 的要求，转到另一部主机上去！呵呵！这个好玩呦！
+		例如当有人要使用你的 ftp 时，你可以将他转到另一部机器上面去！那个 IP_Address 
+		就代表另一部远程主机的 IP 啰！</td></tr>
+<tr>
+	<td align="center"><font face="细明体">includedir</font></td>
+	<td align="center"><font face="细明体">directory</font></td>
+	<td>表示将某个目录底下的所有档案都给他塞进来 xinetd.conf 这个设定里头！这东西有用多了，
+		如此一来我们可以一个一个设定不同的项目！而不需要将所有的服务都写在 xinetd.conf 
+		当中！你可以在 /etc/xinetd.conf 发现这个设定呦！</td></tr>
+<tr bgcolor="#182448"><td colspan="3"><span class="text_import1"><font color="#FFFFFF">安全控管项目：</font></span></td></tr>
+<tr>
+	<td align="center"><font face="细明体">bind</font></td>
+	<td align="center"><font face="细明体">IP_Address</font></td>
+	<td>这个是设定『允许使用此一服务的适配卡』的意思！举个例子来说，你的 Linux 
+		主机上面有两个 IP ，而你只想要让 IP1 可以使用此一服务，但 IP2 
+		不能使用此服务，这里就可以将 IP1 写入即可！那么 IP2 就不可以使用此一 server 啰</td></tr>
+<tr>
+	<td align="center"><font face="细明体">interface</font></td>
+	<td align="center"><font face="细明体">IP_Address</font></td>
+	<td>与 bind 相同</td></tr>
+<tr>
+	<td align="center"><font face="细明体">only_from</font></td>
+	<td align="center"><font face="细明体">0.0.0.0<br>192.168.1.0/24<br>host_name<br>domain_name</font></td>
+	<td>这东西用在安全机制上面，也就是管制『只有这里面规定的 IP 或者是主机名可以登入！』如果是 
+		0.0.0.0 表示所有的 PC 皆可登入，如果是 192.168.1.0/24 则表示为 C class 的网域！亦即由 
+		192.168.1.1 ~ 192.168.1.255 皆可登入！另外，也可以选择 domain name ，例如 
+		.ev.ncku.edu.tw 就可以允许成大环工系的网域 IP 登入你的主机使用该 server ！</td></tr>
+<tr>
+	<td align="center"><font face="细明体">no_access</font></td>
+	<td align="center"><font face="细明体">0.0.0.0<br>192.168.1.0/24<br>host_name<br>domain_name</font></td>
+	<td>跟 only_from 差不多啦！就是用来管理可否进入你的 Linux 主机启用你的 server 服务的管理项目！ 
+		no_access 表示『不可登入』的 PC 啰！</td></tr>
+<tr>
+	<td align="center"><font face="细明体">access_times</font></td>
+	<td align="center"><font face="细明体">00:00-12:00<br>HH:MM-HH:MM</font></td>
+	<td>这个项目在设定『该服务 server 启动的时间』，使用的是 24 小时的设定！例如你的 ftp 要在 
+		8 点到 16 点开放的话，就是： 08:00-16:00。</td></tr>
+<tr>
+	<td align="center"><font face="细明体">umask</font></td>
+	<td align="center"><font face="细明体">000<br>777<br>022</font></td>
+	<td>还记得在 <a href="http://linux.vbird.org/linux_basic/0560daemons/0210filepermission.php">档案权限</a> 里面约略提过的 umask 
+		这个东西吗？呵呵！没错！就是那个鬼玩意儿啰！
+		可以设定用户建立目录或者是档案时候的属性！系统建议值是 022 。</td></tr>
+</tbody></table><br>
+
+		OK！我们就利用上面这些参数来架构出我们所需要的一些服务的设定吧！
+		参考看看底下的设定方法啰！ ^_^<br><br>
+	</div>
+
+	<hr><a name="superd_telnet"></a><img src="../images/logo.png" alt="小标题的图示" width="24" align="middle" height="23"><span class="text_h2">一个简单的 telnet 范例设定</span>
+	<div class="block2">
+		我们说过，使用 super daemon 来管理主机，最大的优点就是多了一道管理的手续，
+		所以，可以进行比较多的监控动作，像上一个小节我们提到的相关参数当中，
+		就能够发现到一些端倪了。在这里，我们举个简单的例子来说明一下整个 super daemon 
+		的管理吧！但是要设定 telnet 的话，就得要安装 telnet 才行。
+		在 FC4 的版本上，我们安装的是 telnet-server-0.17-35 这个套件资料，
+		请您先以 <a href="http://linux.vbird.org/linux_basic/0560daemons/0520rpm_and_srpm.php">rpm 的方式</a> 来安装喔！ ^_^<br><br>
+
+		在预设的 /etc/xinetd.d/telnet 内容是这样的：<br>
+
+<table class="term"><tbody><tr><td class="term"><pre>[root@linux ~]# <span class="term_command">vi /etc/xinetd.d/telnet</span>
+service telnet
+{
+        flags           = REUSE   <span class="term_note">&lt;==额外的参数使用 REUSE </span>
+        socket_type     = stream  <span class="term_note">&lt;==使用 TCP 的封包格式</span>
+        wait            = no      <span class="term_note">&lt;==可以有多个联机同时连进来</span>
+        user            = root    <span class="term_note">&lt;==启动者预设为 root </span>
+        server          = /usr/sbin/in.telnetd <span class="term_note">&lt;==使用的是这支程序！</span>
+        log_on_failure  += USERID <span class="term_note">&lt;==若登入错误，『加计』记录用户 ID</span>
+        disable         = yes     <span class="term_note">&lt;==此服务预设关闭！</span>
+}
+</pre></td></tr></tbody></table>
+
+		其实，主要的参数可以参考上一小节的表格，也可以直接利用『 man xinetd.conf 』来查阅！
+		不过，如果你对于这样的设定并不满意的话，其实还可以手动来修改呢！
+		因为我们知道， telnet 并不是个十分安全的服务，详细机制可以参考
+		<a href="http://linux.vbird.org/linux_basic/linux_server">服务器篇</a> 的 
+		<a href="http://linux.vbird.org/linux_basic/linux_server/0310telnetssh.php">远程联机服务器</a> 来查阅，
+		所以，如果你想要更多的安全机制，举例来说，你想要让 telnet 在局域网络内与 Internet 
+		上面的联机机制有差异时，例如这样：<ul>
+		<li>对内部网域开放较多权限的部分：<br>
+		假设 Linux 主机有两张网络卡，对内的这一张 IP 为 192.168.1.100 ，且仅针对 
+		192.168.1.0/24 这个网段提供登入。然后开放所有与 telnet 有关的权限，
+		包含总联机数量与连接时间等。但是， 192.168.1.120 及 192.168.1.130
+		两个 IP 不允许登入；</li><br>
+		<li>对外部网域较多限制的设定：<br>
+		对外的 IP 假设为 140.116.44.125 ，且仅允许台南的校园网络 (140.116.0.0/16)，
+		以及教育界的主机名 (.edu.tw)，另外，仅开放早上 1~9 点及 20~24 两个时段登入而已。
+		此外，最多容许十个联机进入。
+		</li></ul>
+
+		在这样的规划情况下，我可以将刚刚上头的 /etc/xinetd.d/telnet 这个档案修改成为：<br>
+
+<table class="term"><tbody><tr><td class="term"><pre>[root@linux ~]# <span class="term_command">vi /etc/xinetd.d/telnet</span>
+<span class="term_say"># 先针对对内的较为松散的限制来设定：</span>
+<span class="term_write">service telnet
+{
+    disable         = no                  <span class="term_note">&lt;==预设就是启动 telnet 服务</span>
+    bind            = 192.168.1.100       <span class="term_note">&lt;==只允许经由这个适配卡的封包进来</span>
+    only_from       = 192.168.1.0/24      <span class="term_note">&lt;==只允许 192.168.0.0/24 这个网段
+                                             的主机联机进来使用 telnet 的服务</span>
+    no_access       = 192.168.1.{120,130} <span class="term_note">&lt;==不许这些 PC 登入</span>
+    instances       = UNLIMITED           <span class="term_note">&lt;==同时允许联机不限制！</span>
+    nice            = 0                   <span class="term_note">&lt;==使用的优先级较高</span>
+    flags           = REUSE               <span class="term_note">&lt;==额外使用的参数</span>
+    socket_type     = stream              <span class="term_note">&lt;==使用 tcp 封包常用的联机型态</span>
+    wait            = no                  <span class="term_note">&lt;==不需等待，可以同时允许多个联机</span>
+    user            = root                <span class="term_note">&lt;==启动程序的用户身份</span>
+    server          = /usr/sbin/in.telnetd<span class="term_note">&lt;==服务启动的程序</span>
+    server_args     = -a none             <span class="term_note">&lt;==上面那个程序的参数</span>
+    log_on_failure  += USERID             <span class="term_note">&lt;==错误登入时，要记录下来的内容</span>
+}
+
+<span class="term_say"># 再针对外部的联机来进行限制呢！</span>
+service telnet
+{
+    disable         = no                  <span class="term_note">&lt;==预设就是启动 telnet 服务</span>
+    bind            = 140.116.44.125      <span class="term_note">&lt;==只允许经由这个适配卡的封包进来</span>
+    only_from       = 140.116.0.0/16      <span class="term_note">&lt;==只允许 140.116.0.0 ~ 140.116.255.255
+                                             这个网段联机进来使用 telnet 的服务</span>
+    only_from      += .edu.tw             <span class="term_note">&lt;==累加设定，只有教务界才能联机！</span>
+    access_times    = 1:00-9:00 20:00-23:59
+                                          <span class="term_note">&lt;==每天只有这两个时段开放服务</span>
+    umask           = 022                 <span class="term_note">&lt;==建立档案时的默认属性设定</span>
+    instances       = 10                  <span class="term_note">&lt;==同时只允许 10 个联机</span>
+    nice            = 10                  <span class="term_note">&lt;==使用的优先级较低</span>
+    flags           = REUSE               <span class="term_note">&lt;==额外使用的参数</span>
+    socket_type     = stream              <span class="term_note">&lt;==使用 tcp 封包常用的联机型态</span>
+    wait            = no                  <span class="term_note">&lt;==不需等待，可以同时允许多个联机</span>
+    user            = root                <span class="term_note">&lt;==启动程序的用户身份</span>
+    server          = /usr/sbin/in.telnetd<span class="term_note">&lt;==服务启动的程序</span>
+    server_args     = -a none             <span class="term_note">&lt;==上面那个程序的参数</span>
+    log_on_failure  += USERID             <span class="term_note">&lt;==错误登入时，要记录下来的内容</span>
+}</span>
+</pre></td></tr></tbody></table>
+
+		在上面这个范例当中，我们用了很多的网络 IP 显示方式，包括 192.168.1.0/24 ，
+		以及 140.116.0.0/16 ，这代表『 192.168.1.0~192.168.1.255 的所有 IP 』以及
+		『 140.116.0.0 ~140.116.255.255 所有的 IP 』更详细的说明，我们会在服务器篇内详谈的。
+		用了这个设定值之后，你会发现你的 telnet 针对两个网段来设计了！
+		设计完成之后，由于这是 xinetd 的配置文件，所以启动的方式与观察的方式为：<br>
+
+<table class="term"><tbody><tr><td class="term"><pre><span class="term_say"># 如果您的 telnet 本来就有启动的话，那么会发现有一个联机存在你的系统中</span>
+[root@linux ~]# <span class="term_command">netstat -tulnp</span>
+Active Internet connections (only servers)
+Proto Recv-Q Send-Q Local Address   Foreign Address  State   PID/Program name
+tcp        0      0 0.0.0.0:23      0.0.0.0:*        LISTEN  19255/xinetd
+<span class="term_say"># 看到喔！是 xinetd 的 program name 呢！</span>
+
+<span class="term_say"># 重新修改 /etc/xinetd.d/telnet 之后，重新启动的方式与观察为：</span>
+[root@linux ~]# <span class="term_command">/etc/init.d/xinetd restart</span>
+[root@linux ~]# <span class="term_command">netstat -tulnp</span>
+Active Internet connections (only servers)
+Proto Recv-Q Send-Q Local Address      Foreign Address  State   PID/Program name
+tcp        0      0 140.116.44.125:23  0.0.0.0:*        LISTEN  19281/xinetd
+tcp        0      0 192.168.1.100:23   0.0.0.0:*        LISTEN  19281/xinetd
+<span class="term_say"># 有没有看到两个接口啊～而且， PID 会是同一个呢！</span>
+</pre></td></tr></tbody></table>
+
+		呵呵！如上面的设定，我们可以将 telnet 的启动项目进行更多的限制！
+		如此一来，将有助于我们的安全防护呢！尤其如果可以针对不同的接口来设定，嘿嘿！
+		就更加的棒啰！不过，请注意喔！如果照上面的设定，那么您的主机上面将会开了两个
+		23 port 的接口，分别是给两个接口来使用的呢！嗯！真好玩?同样的，
+		你也可以针对自己的喜好来设定你的其他 daemon 使他挂在 xinetd 底下呢！
+	</div>
+</div>
+
+
+<hr><a name="tcp_wrappers"></a><img src="../images/logo.png" alt="大标题的图示" width="35" align="middle" height="34"><span class="text_h1">TCP_Wrappers</span>
+<div class="block1">
+	事实上，除了使用 xinetd 的配置文件来设定安全机制之外，
+	我们还可以利用额外的机制来抵挡某些不受欢迎的数据源喔！
+	那就是 /etc/hosts.allow 以及 /etc/hosts.deny 这两个档案的功能啦！
+	这两个档案可以藉由分析：<ul>
+	<li>启动的服务名称 (daemon 执行档档名)；
+	</li><li>客户端的 IP 来源或网段来源。
+	</li></ul>
+	来进行客户端使用者是否能够登入的判断呢！不过，虽然这两个档案已经被整合到 xinetd 里面去了，
+	不过，要获得更多的功能，还是得要安装 tcp_wrappers 这个套件才行！
+	因为，这两个档案本身就是 tcp_wrappers ( 其实是 /usr/sbin/tcpd 那个档案而已啦！ ) 的配置文件啊！
+	而他也可以整合到整个系统的服务里头去，可以算是最最基础的一个防火墙架构啦！ ^_^<br><br>
+
+	其实， /etc/hosts.allow 与 /etc/hosts.deny 是 /usr/sbin/tcpd 的配置文件，
+	而这个 /usr/bin/tcpd 则是用来分析进入系统的 TCP 封包的一个软件，他是由 TCP Wrappers 所提供的。
+	那为什么叫做 TCP_Wrappers 呢？那么 wrappers 有包裹的意思，所以说，这个套件本身的功能就是在分析
+	TCP 网络数据封包啦！那么刚刚我们稍微提到我们网络的封包数据主要是以 TCP
+	封包为主，这个 TCP 封包的文件头至少记录了来源与目主机的 IP 与 port ，因此，若藉由分析
+	TCP 封包，就可以比对看我要不要让这个数据进入到主机里面来啰！所以啦，我们要使用
+	TCP_Wrappers 来控管的，就是：<ol><span class="text_import2">
+	<li>来源 IP
+	</li><li>port (就是服务啦)</li></span></ol>
+
+	TCP_Wrappers 设定 TCP 封包是否可以进入的配置文件在 /etc/hosts.allow 与 /etc/hosts.deny
+	当中。因此，基本上，如果一个服务是受到 xinetd 或 TCP_Wrappers 的控制时，那么该服务就会受限于
+	hosts.allow 与 hosts.deny 的管理了！而如果你自己安装的套件当中( 亦即使用
+	Tarball 安装的方式之套件 )，除非有自行定义支持 TCP_Wrappers 的功能 ，否则就无法使用这个玩意啰！嘿嘿！
+	<br><br>
+
+	那么这两个档案是干嘛用的？刚刚不是提过哪！他主要是用来规范 TCP 封包的规则的，所以呢，
+	里面记录的当然就是：『某些 IP 在特定服务中是否能够进入主机』！那么要怎么写？
+	这两个档案的内容基本的语法是：<br>
+
+<table class="term"><tbody><tr><td class="term"><pre>&lt;service(program_name)&gt; : &lt;IP, domain, hostname&gt; : &lt;action&gt;
+</pre></td></tr></tbody></table>
+
+	所以我们要先找出来那个 service_name 才行，例如以我们刚刚的 telnet 为例，那个
+	service_name 是什么呢？其实指的就是在 xinetd.conf 配置文件中的 server 这个设定后面接的程序名称啦！所以，
+	telnet 在 FC4 底下的名称为 in.telnetd
+	因此，如果你不想让 140.116.44.202 这个地址及 140.116.32.0/255.255.255.0
+	这个 C class 的网域进入你的主机的话，那么可以这样在 /etc/hosts.deny 里面设定： (
+	<span class="text_vbird">关于 IP, 网域, 网段, 还有相关的网络知识，在这个基础篇当中我们不会谈到，
+	详细的数据请先自行参考服务器架设篇的内容！ </span>)<br>
+
+<table class="term"><tbody><tr><td class="term"><pre>[root@linux ~]# <span class="term_command">vi /etc/hosts.deny</span>
+in.telnetd : 140.116.44.202 140.116.32.0/255.255.255.0 : deny
+</pre></td></tr></tbody></table>
+
+	当然也可以写成两行，亦即是：<br>
+
+<table class="term"><tbody><tr><td class="term"><pre>[root@linux ~]# <span class="term_command">vi /etc/hosts.deny</span>
+in.telnetd : 140.116.44.202             : deny
+in.telnetd : 140.116.32.0/255.255.255.0 : deny
+</pre></td></tr></tbody></table>
+
+	这样一来，对方就无法以 telnet 进入你的主机啦！方便吧！不过，既然如此，为什么要设定成
+	/etc/hosts.allow 及 /etc/hosts.deny 两个档案呢？其实只要有一个档案存在就够了，
+	不过，为了设定方便起见，我们存在两个档案，其中需要注意的是：
+	<ul><span class="text_import2"><font face="细明体">
+	<li>写在 hosts.allow 当中的 IP 与网段，为预设『可通行』的意思，亦即最后一个字段 allow 可以不用写；
+	</li><li>而写在 hosts.deny 当中的 IP 与网段则预设为 deny ，第三栏的 deny 亦可省略；
+	</li><li>这两个档案的判断依据是： (1) 以 /etc/hosts.allow 为优先，而
+		(2) 若分析到的 IP 或网段并没有纪录在 /etc/hosts.allow ，则以 /etc/hosts.deny 来判断。
+	</li></font></span></ul><font face="细明体"></font>
+
+	也就是说， /etc/hosts.allow 的设定优先于 /etc/hosts.deny 啰！了解了吗？基本上，只要
+	hosts.allow 也就够了，因为我们可以将 allow 与 deny 都写在同一个档案内，
+	只是这样一来似乎显得有点杂乱无章，因此，通常我们都是：
+	<ol><span class="text_import2"><font face="细明体">
+	<li>允许进入的写在 /etc/hosts.allow 当中；
+	</li><li>不许进入的则写在 /etc/hosts.deny 当中。</li></font></span></ol><font face="细明体"></font>
+
+	此外，我们还可以使用一些特殊参数在第一及第二个字段喔！内容有：
+	<ul><span class="text_import2"><font face="细明体">
+	<li>ALL：代表全部的 program_name 或者是 IP 都接受的意思，例如 ALL: ALL: deny
+	</li><li>LOCAL：代表来自本机的意思，例如： ALL: LOCAL: allow
+	</li><li>UNKNOWN：代表不知道的 IP 或者是 domain 或者是服务时；
+	</li><li>KNOWN：代表为可解析的 IP, domain 等等信息时；
+	</li></font></span></ul><font face="细明体"></font>
+
+	再强调一次，那个 service_name 其实是启动该服务的程序，举例来说， /etc/init.d/ssh 这个 script 里面，
+	实际上启动 ssh 服务的是 sshd 这个程序，所以，你的 service_name 自然就是 sshd 啰！
+	而 /etc/xinetd.d/telnet 内有个 server 的设定项目，
+	那个项目指到 in.telnetd 这个程序来启动的喔！要注意的很！(请分别使用 vi 进这两支 scripts 查阅)
+	好了，我们还是以 telnet 为例子来说明好了，现在假设一个比较安全的流程来设定，就是：
+
+	<ol><span class="text_import2"><font face="细明体">
+	<li>只允许 140.116.44.0/255.255.255.0
+	与 140.116.79.0/255.255.255.0 这两个网域，及 140.116.141.99 这个主机可以进入我们的 telnet 服务器；
+	</li><li>此外，其他的 IP 全部都挡掉！
+	</li></font></span></ol><font face="细明体"></font>
+
+	这样的话，我可以这样设定：<br>
+
+<table class="term"><tbody><tr><td class="term"><pre>[root@linux ~]# <span class="term_command">vi /etc/hosts.allow</span>
+<span class="term_write">in.telnetd:  140.116.44.0/255.255.255.0
+in.telnetd:  140.116.79.0/255.255.255.0
+in.telnetd:  140.116.141.99
+in.telnetd:  LOCAL</span>
+
+[root@linux ~]# <span class="term_command">vi /etc/hosts.deny</span>
+<span class="term_write">in.telnetd: ALL </span>
+</pre></td></tr></tbody></table>
+
+	那么有没有更安全的设定，例如，当当有其他人扫瞄我的
+	telnet port 时，我就将他的 IP 记住！以做为未来的查询与认证之用！
+	是有的！只是，那就得要有额外的动作参数加在第三栏了。主要的动作有：
+
+	<ul><span class="text_import2"><font face="细明体">
+	<li><span class="text_import1">spawn (action)</span><br>
+		可以利用后续接的 shell 来进行额外的工作，且具有变量功能，主要的变量内容为：
+		%h (hostname), %a (address), %d (daemon)等等；</li><br>
+	<li><span class="text_import1">twist (action)</span><br>
+		立刻以后续的指令进行，且执行完后终止该次联机的要求 (DENY)
+	</li></font></span></ul><font face="细明体"></font>
+
+	我们知道 finger 可以反向追踪网络封包的来源，所以，我希望这样：<ol>
+	<li>利用 safe_finger 去追踪出对方主机的信息；
+	</li><li>将该追踪到的结果以 email 的方式寄给 root ；
+	</li><li>在对方屏幕上面显示不可登入的讯息</li></ol>
+
+	此时可以利用 spwan (action1) | (action2) : twist (action3) 来进行，
+	也就是说，其实在 /etc/hosts.deny 的第三个字段可以继续延伸下去的！整个信息有如这样：<br>
+
+<table class="term"><tbody><tr><td class="term"><pre>[root@linux ~]# <span class="term_command">vi /etc/hosts.deny</span>
+<span class="term_write">in.telnetd: ALL: spawn (echo "security notice from host `/bin/hostname`" ;\
+	echo; /usr/sbin/safe_finger @%h ) | \
+	/bin/mail -s "%d-%h security" root &amp; \
+	: twist ( /bin/echo -e "\n\nWARNING connection not allowed.\n\n" )</span>
+</pre></td></tr></tbody></table>
+
+	在上面的例子中，第三行的 root 那个账号，可以写成你的个人账号或者其他
+	e-mail ，以免很少以 root 身份登入 Linux 主机时，容易造成不知道的情况，另外，最后几行，亦即
+	:twist 之后的那几行为同一行。如此一来，当未经允许的计算机尝试登入你的主机时，
+	对方的屏幕上就会显示上面的最后一行，并且将他的
+	IP 寄到 root ( 或者是你自己的信箱 )那里去！
+	另外请注意，那个 /usr/sbin/safe_finger 是由 tcp_wrappers 套件所提供的，
+	所以您必须要安装该套件才行喔！ ^_^<br><br>
+</div>
+
+
+<hr><a name="open_services"></a><img src="../images/logo.png" alt="大标题的图示" width="35" align="middle" height="34"><span class="text_h1">系统开启的服务</span>
+<div class="block1">
+	好了，现在假设您已经知道了 daemons 的启动档案放置的目录，也知道了服务与
+	port 的对应，那么要如何查询目前系统上面已经启动了的服务呢？不要再打混了！已经学过了
+	<a href="http://linux.vbird.org/linux_basic/0560daemons/0440processcontrol.php#ps">ps</a> 与 <a href="http://linux.vbird.org/linux_basic/0560daemons/0440processcontrol.php#top">top</a>
+	应该要会应用才对耶！呵呵！没错，可以使用 ps 与 top 来找寻已经启动了的服务的程序与他的
+	PID 呢！不过，我们怎么知道该服务启动的 port 是哪一个？呵呵！好问题！可以直接使用
+	<a href="http://linux.vbird.org/linux_basic/0560daemons/0440processcontrol.php#netstat">netstat</a> 这个网络状态观察指令来检查我们的 
+	port 呢！甚至他也可以帮我们找到该 port 的程序呢( PID )！这个指令的相关用途，我们在
+	<a href="http://linux.vbird.org/linux_basic/0560daemons/0440processcontrol.php">程序与资源管理</a> 那一章已经讲过了，
+	不清楚的话请回去查一查先～这里仅介绍如何使用喔～<br><br>
+
+	<hr><a name="opened"></a><img src="../images/logo.png" alt="小标题的图示" width="24" align="middle" height="23"><span class="text_h2">观察系统启动的服务：</span>
+	<div class="block2">
+		观察系统已启动的服务方式很多，不过，我们最常使用 netstat 来观察。
+		基本上，以 ps 来观察整个系统上面的服务是比较妥当的，因为他可以将全部的 process 都找出来。
+		不过，我们比较关心的，还是在于有启动网络监听的服务啊，所以，
+		鸟哥会比较喜欢使用 netstat 来查阅啦。<br>
+
+<table class="term"><tbody><tr><td class="term"><pre><span class="term_hd">范例一：找出目前系统开启的『网络服务』有哪些？</span>
+[root@linux ~]# <span class="term_command">netstat -tulp</span>
+Active Internet connections (only servers)
+Proto Recv-Q Send-Q Local Address   Foreign Address State  PID/Program name
+tcp        0      0 *:ftp           *:*             LISTEN 1605/vsftpd
+tcp        0      0 *:pop3          *:*             LISTEN 1613/dovecot
+tcp        0      0 *:ssh           *:*             LISTEN 1587/sshd
+udp        0      0 *:bootpc        *:*                    26035/dhclient
+<span class="term_say"># 看一看上头，Local Address 的地方会出现主机名与服务名称，
+# 要记得的是，可以加上 -n 来显示 port number ，而服务名称与 port 
+# 对应则是写在 /etc/services 里头喔！</span>
+
+<span class="term_hd">范例二：找出所有的有监听网络的服务 (包含 socket 状态)：</span>
+[root@linux ~]# <span class="term_command">netstat -lnp</span>
+Active Internet connections (only servers)
+Proto Recv-Q Send-Q Local Address   Foreign Address State  PID/Program name
+tcp        0      0 *:ftp           *:*             LISTEN 1605/vsftpd
+tcp        0      0 *:pop3          *:*             LISTEN 1613/dovecot
+tcp        0      0 *:ssh           *:*             LISTEN 1587/sshd
+udp        0      0 *:bootpc        *:*                    26035/dhclient
+Active UNIX domain sockets (only servers)
+Proto RefCnt Flags    Type   State     I-Node PID/Program name  Path
+unix  2      [ ACC ]  STREAM LISTENING 5188   1673/master       private/tlsmgr
+unix  2      [ ACC ]  STREAM LISTENING 5192   1673/master       private/rewrite
+<span class="term_say">......以下省略......
+# 仔细的瞧一瞧啊，除了原有的网络监听 port 之外，还会有 socket 显示在上面，
+# 我们可以清楚的知道有哪些服务被启动呢！</span>
+
+<span class="term_hd">范例三：观察所有的网络连接状态，查询是否有异常的联机。</span>
+[root@linux ~]# <span class="term_command">netstat -anp</span>
+<span class="term_say"># 利用这个指令可以查出有问题的联机，还可取得 PID，
+# 可以用来 kill 掉任何一个觉得怀疑的程序呢！</span>
+</pre></td></tr></tbody></table>
+
+		利用 netstat 可以取得很多跟网络有关的服务信息，透过这个指令，我们可以轻易的了解到网络的状态，
+		并且可以透过 PID 与 kill 的相关功能，将有问题的数据给他剔除说～
+		当然啦，要更详细的取得 PPID 的话，才能够完全的抵挡有问题的程序啦！<br><br>
+
+		另外，除了已经存在系统当中的 daemon 之外，如何在一开机就完整的启动我们所需要的服务呢？
+		底下我们就来谈一谈 chkconfig 及 ntsysv 这两个好用的东西！<br><br>
+	</div>
+
+	<hr><a name="starting_daemon"></a><img src="../images/logo.png" alt="小标题的图示" width="24" align="middle" height="23"><span class="text_h2">设定开机后立即启动服务的方法：</span>
+	<div class="block2">
+		就如同上面提到的，我们使用 netstat 仅能观察到目前已经存在于系统当中的 daemon ，使用 
+		<a href="#service">service</a> 这个指令或者是 /etc/init.d/* start 的方法，
+		仅能在目前的环境下启动某个服务而已。那么重新启动后呢？该服务是否还是继续的自动启动？
+		这个时候我们就得要复习一下，到底我的 Linux 主机是怎么开机的呢？
+		<ol><span class="text_import2">
+		<li>BIOS
+		</li><li>MBR (boot loader)
+		</li><li>kernel loading
+		</li><li>init program
+		</li><li>initial script (/etc/rc.d/rc.sysinit)
+		</li><li>daemon start (/etc/rc.d/rc[0-6].d/*)
+		</li><li>local setting (/etc/rc.d/rc.local)
+		</li></span></ol>
+		大致的情况是这样，看到啰～整个服务可以被开机就启动的地方有两个，
+		一个是在 daemon start (/etc/rc.d/rc[0-6].d/*) 那个目录下，该目录下的档案主要以 S 及 K
+		开头，分别代表开机时启动与关机时关闭的意思，更多信息可以参考 
+		<a href="http://linux.vbird.org/linux_basic/0560daemons/0510osloader.php#startup_runlevel">开机关机流程与 loader</a> 那个章节～
+		也就是说，如果我可以将要启动的服务写入 /etc/rc.d/rc[0-6].d 目录内，
+		那么该服务就可以在开机的时候自动的被启动了！就是这样简单～<br><br>
+
+		至于另一个也可以在开机时启动的档案，那就是 /etc/rc.d/rc.local 这个档案喔！
+		你可以将任何想要在开机时启动的程序写入到这个档案当中，这个档案是以 shell script
+		的语法写成的，所以你可以轻易的就设定好你想要启动的数据了！ ^_^<br><br>
+
+		好了，既然如此的话，那么我是否要使用 ln 去到 /etc/rc.d/rc[0-6].d 当中设定相关的服务呢？
+		不需要的，因为我们 Fedora 有提供两个好用的指令来达成这个功能啊！那就是 chkconfig 与 ntsysv 喔！<br><br>
+
+		<a name="chkconfig"></a><hr><li><span class="text_import1">chkconfig</span></li>
+		<div class="block2">
+
+<table class="term"><tbody><tr><td class="term"><pre>[root@linux ~]# <span class="term_command">chkconfig --list</span>
+[root@linux ~]# <span class="term_command">chkconfig [--add|--del] [service_name]</span>
+[root@linux ~]# <span class="term_command">chkconfig --level [0123456] [service_name] [on|off]</span>
+<span class="term_say">参数：
+--list ：仅将目前的各项服务状态栏出来
+--add  ：增加一个服务名称给 chkconfig 来管理，该 service_name 必须在 
+         /etc/init.d/ 内！
+--del  ：删除一个给 chkconfig 管理的服务
+--level：设定某个服务在该 level 下启动 (on) 或关闭 (off)
+范例：</span>
+
+<span class="term_hd">范例一：列出目前系统上面所有被 chkconfig 管理的服务</span>
+[root@linux ~]# <span class="term_command">chkconfig --list |more</span>
+NetworkManager  0:off   1:off   2:off   3:off   4:off   5:off   6:off
+<span class="term_say">.....中间省略.....</span>
+snmpd           0:off   1:off   2:off   3:off   4:off   5:off   6:off
+yum             0:off   1:off   2:off   3:off   4:off   5:off   6:off
+
+xinetd based services:
+        chargen:        off
+<span class="term_say">.....中间省略.....</span>
+        telnet:         off
+<span class="term_say"># 这个 chkconfig 的输出主要分为两大部分，分别是 stand alone 的服务，
+# 他会分出 0~6 个 run level 的资料，亦即上半部的显示，至于下半部则是
+# super daemon 管理的服务的输出情况！由 super daemon 管理的服务，
+# 是没有 run level 之分的喔！</span>
+
+<span class="term_hd">范例二：显示出目前在 run level 3 为启动的服务</span>
+[root@linux ~]# <span class="term_command">chkconfig --list | grep '3:on'</span>
+
+<span class="term_hd">范例三：让 atd 这个服务在 run level 为 3, 4, 5 时启动：</span>
+[root@linux ~]# <span class="term_command">chkconfig --level 345 atd on</span>
+</pre></td></tr></tbody></table>
+
+			瞧！ chkconfig 是否很容易管理我们所需要的服务呢？真的很方便啦～
+			他的功能其实很简单，只是直接在 /etc/rc.d/rc[0-6].d 里面针对某服务进行连结档案的设定而已。
+			例如上面的范例三，基本上，他仅是在 /etc/rc.d/rc3.d/, /etc/rc.d/rc4.d/ 
+			及 /etc/rc.d/rc5.d/ 里面，建立一个连结档案，
+			该连结档案连结到 /etc/init.d/atd 里面就是了！这样说，可以理解吗？<br><br>
+
+			既然这个玩意儿这么好用，那么我们可否将自己建立的服务给他加入 chkconfig 的管理当中？
+			当然可以啊！只是该服务必须要加入 init 可以管理的 script 当中，亦即是 /etc/init.d/ 当中才行。
+			举个例子，我们在 /etc/init.d/ 里面建立一个 myvbird 档案，
+			该档案仅是一个简单的服务范例，基本上，没有任何用途....
+			对于该档案的必须性是这样的：<ul>
+			<li>myvbird 将在 run level 3 及 5 启动；
+			</li><li>myvbird 在 /etc/rc.d/rc[35].d 当中启动时，以 S80 开始以 K70 结束。</li></ul>
+			那么我可以这样做：<br>
+
+<table class="term"><tbody><tr><td class="term"><pre>[root@linux ~]# <span class="term_command">vi /etc/init.d/myvbird</span>
+<span class="term_write">#!/bin/bash
+# chkconfig: 35 80 70
+# description: 没啥！只是用来作为练习之用的一个范例
+echo "Nothing"</span>
+<span class="term_say"># 这个档案很好玩喔！你可以参考你自己系统上面的档案；
+# 基本上，比较重要的是第二行，他的语法是：
+# chkconfig: [runlevels] [start number] [stop number]
+# 其中， runlevels 为不同的 run level 状态， start number 与
+# stop number 则是在 /etc/rc.d/rc[35].d 内建立以 S80myvbird
+# 及 K70myvbird 为档名的设定方式！</span>
+
+[root@linux ~]# <span class="term_command">chkconfig --add myvbird</span>
+[root@linux ~]# <span class="term_command">chkconfig --list myvbird</span>
+myvbird         0:off   1:off   2:off   3:on    4:off   5:on    6:off
+<span class="term_say"># 看吧！加入了 chkconfig 的管理当中了！再去看看 /etc/rc.d/ 底下的档案：</span>
+
+[root@linux ~]# <span class="term_command">find /etc/rc.d/ -type l | grep 'myvbird'|sort</span>
+/etc/rc.d/rc0.d/K70myvbird
+/etc/rc.d/rc1.d/K70myvbird
+/etc/rc.d/rc2.d/K70myvbird
+/etc/rc.d/rc3.d/S80myvbird
+/etc/rc.d/rc4.d/K70myvbird
+/etc/rc.d/rc5.d/S80myvbird
+/etc/rc.d/rc6.d/K70myvbird
+<span class="term_say"># 很有趣吧！如果要将这些数据都删除的话，那么就下达这样的情况：</span>
+[root@linux ~]# <span class="term_command">chkconfig --del myvbird</span>
+[root@linux ~]# <span class="term_command">rm /etc/init.d/myvbird</span>
+</pre></td></tr></tbody></table>
+
+			chkconfig 真的是个不错用的工具吧！尤其是当你想要自己建立自己的服务时！ ^_^<br><br>			
+		</div>
+
+		<a name="ntsysv"></a><hr><li><span class="text_import1">ntsysv</span></li>
+		<div class="block2">
+			基本上， chkconfig 真的已经很好用了，不过，我们的 Fedora 还有提供一个更不错用的，
+			那就是 ntsysv 了！注意喔， chkconfig 很多的 distributions 都存在，但是 ntsysv
+			则是 Red Hat 系统特有的！<br>
+
+<table class="term"><tbody><tr><td class="term"><pre>[root@linux ~]# <span class="term_command">ntsysv [--level &lt;levels&gt;]</span>
+<span class="term_say">参数：
+--level ：后面可以接不同的 run level ，例如 ntsysv --level 35 
+范例：</span>
+
+<span class="term_hd">范例一：直接编辑目前 run level 底下的开机默认启动项目：</span>
+[root@linux ~]# <span class="term_command">ntsysv</span>
+
+<center><img src="0560daemons-fc4_files/ntsysv_01.htm" title="ntsysv 的显示图样！" alt="ntsysv 的显示图样！"></center>
+
+<span class="term_say"># 此时，你可以使用底下的按键来进行选择：
+# 上下键： 可以在中间的方框当中，在各个服务之间移动；
+# 空格键： 可以用来选择你所需要的服务，前面的 [*] 会有 * 出现；
+# tab 键： 可以在方框、OK、Cancel 之间移动；
+# [F1]键： 可以显示该服务的说明。举例来说，移动到 myvbird 按下 F1 后</span>
+
+<center><img src="0560daemons-fc4_files/ntsysv_02.htm" title="ntsysv 的显示图样！" alt="ntsysv 的显示图样！"></center>
+
+<span class="term_say"># 没错！不要怀疑，这个就是 /etc/init.d/myvbird 档案内的 description:
+# 后面接的内容啊！了解了吗？ ^_^</span>
+</pre></td></tr></tbody></table>
+
+			挺不错用的吧！还可以知道该服务的意义呢！也就是说，
+			如果你想要知道某个 /etc/init.d/ 底下的服务启动的信息为何，
+			直接以 vi 开启该档案，去察看一下 description: 的内容即可知道啊！ ^_^
+		</div>
+	</div>
+
+	<hr><a name="illustrations"></a><img src="../images/logo.png" alt="小标题的图示" width="24" align="middle" height="23"><span class="text_h2">各个服务的简单说明</span>
+	<div class="block2">
+		随着 Linux 上面软件支持性越来越多，加上自由软件蓬勃的发展，
+		我们可以在 Linux 上面用的 daemons 真的越来越多了。所以，想要写完所有的 daemons
+		几乎是不可能的，因此，鸟哥这里仅介绍几个很常见的 daemons 而已，
+		更多的信息呢，就得要麻烦您自己使用 ntsysv 或者是 vi /etc/init.d/* 里面的档案去瞧一瞧啰～ ^_^<br><br>
+
+<table width="95%" bgcolor="lightyellow" border="1" cellpadding="3" cellspacing="0">
+<tbody><tr align="center" bgcolor="#182448"><td colspan="2" align="center"><font color="#FFFFFF">Stand Alone Daemons</font></td></tr>
+<tr align="center" bgcolor="#182448"><td rowspan="2" width="100"><font color="#FFFFFF">服务名称</font></td>
+	<td align="left"><li><font color="#FFFFFF">参数档</font></li><li><font color="#FFFFFF">预设启动的 port number</font></li><li><font color="#FFFFFF">鸟哥的建议：是否需要启动？</font></li></td></tr>
+	<tr bgcolor="#182448"><td><font color="#FFFFFF">基本说明</font></td></tr>
+<tr><td rowspan="2" align="center">anacron</td>
+	<td><li>/etc/anacrontab</li><li>不需要使用 port </li><li>全天候启用的主机，不需要开启这个服务</li></td></tr>
+	<tr><td>当你的 Linux 主机并不是全天候开机的时候，这个 anacron 就可以帮你执行在『 
+		<a href="http://linux.vbird.org/linux_basic/0560daemons/0430cron.php#cron">crontab</a> 』既定的时间内没有执行的工作！举个例子来说，当你的主机在晚上 
+		12:00 会自动关闭，但是偏偏 crontab 这个例行性工作是在 4:00 工作，
+		这个时候例行性工作不是都没有做到吗？嗯！ anacron 就可以使用啦！</td></tr>
+<tr><td rowspan="2" align="center">apmd</td>
+	<td><li>/etc/sysconfig/apmd</li><li>不需要使用 port</li><li>一般主机不太需要这个 daemon</li></td></tr>
+	<tr><td>apmd 是 Adventage Power Management daemon 的缩写，顾名思义，可以用来了解系统的『电池电量』，
+		如果对于手提式计算机才有需要吧我想！</td></tr>
+<tr><td rowspan="2" align="center">atd</td>
+	<td><li>/etc/at.allow, /etc/at.deny</li><li>不需要使用 port</li><li>若有启动 cron ，或许可以忽略</li></td></tr>
+	<tr><td>这个总该不陌生了吧！就是 <a href="http://linux.vbird.org/linux_basic/0560daemons/0430cron.php#atjob">仅进行一次的工作排程</a>啰！
+		如果忘记了！赶紧去查看一下！</td></tr>
+<tr><td rowspan="2" align="center">autofs</td>
+	<td><li>/etc/sysconfig/autofs</li><li>不需要使用 port</li><li>如果是服务器，不需要启动，如果是 Desktop，建议使用</li></td></tr>
+	<tr><td>如果你的 Linux 是用来做为服务器的，那么这个服务就不需要启动了。
+		因为这个服务可以自动挂载很多的文件系统与装置，举例来说，自动挂载光盘啊、USB硬盘啊等等的。
+		如果是主机，我们可以自己好好的控制，不需要系统自动挂载。如果是个人桌面计算机，
+		那么启动这个 daemon 也不错！</td></tr>
+<tr><td rowspan="2" align="center">crond</td>
+	<td><li>/etc/crontab</li><li>不需要使用 port</li><li>务必启动啊！</li></td></tr>
+	<tr><td>用来<a href="http://linux.vbird.org/linux_basic/0560daemons/0430cron.php">执行例行性命令</a>的 daemon ，请务必要启动他！</td></tr>
+<tr><td rowspan="2" align="center">cups</td>
+	<td><li>/etc/printcap, /etc/cups/*</li><li>默认使用 port 631</li><li>没有打印机的话，就不要启动</li></td></tr>
+	<tr><td>这个服务在管理 Linux 主机上面的打印机的！
+		他可以用来作为本机打印机的管理，也可以用来管理网络打印机，
+		全名为 Common UNIX Printing System (CUPS)。如果您的网络环境当中有打印机，
+		而且想要透过 Linux 来提供给所有用户使用，那么就可以管理一下 cups 啰～</td></tr>
+<tr><td rowspan="2" align="center">gpm</td>
+	<td><li>/etc/sysconfig/mouse</li><li>不需要使用 port</li><li>不需要启动的</li></td></tr>
+	<tr><td>在文本模式里面可以使用 mouse 来从事『复制、贴上、移动光标』等等的功能！
+		如果你是个教师，需要使用鼠标在纯文本接口底下秀出结果的话，
+		再使用这玩意就好了。基本上，不需要启动他！</td></tr>
+<tr><td rowspan="2" align="center">httpd</td>
+	<td><li>/etc/httpd/conf/httpd.conf, /etc/sysconfig/httpd</li><li>使用 port 80 (and/or) 443
+		</li><li>除非需要设定 WWW 服务器，否则不要启动</li></td></tr>
+	<tr><td>这个玩意儿可有趣的很哩～一般来说，新手最喜欢架设 Web 网站啰，
+		而 WWW 服务器，就是这个玩意儿啊～更详细的信息请参考服务器篇的内容</td></tr>
+<tr><td rowspan="2" align="center">iptables</td>
+	<td><li>/etc/sysconfig/iptables</li><li>不需要使用 port</li><li>连上 Internet 的主机务必启动</li></td></tr>
+	<tr><td>这个家伙就是 Linux 上面有名的『防火墙』啦～如果你的 Linux 是在区网内，
+		而且没有连上 Internet 的话，那么这个防火墙机制可以暂时不要启动，
+		因为可能会抵挡掉你主机所提供的服务。如果连上了 Internet ，不开这个，
+		会死的很惨～</td></tr>
+<tr><td rowspan="2" align="center">kudzu</td>
+	<td><li>/etc/sysconfig/kudzu</li><li>不需要使用 port </li><li>如果系统已经稳定，不需要启动</li></td></tr>
+	<tr><td>这个 daemon 预设是启动的，他会在开机的时候去侦测你的硬件，
+		如果发现硬件有异动，或者是有新增其他的硬件，
+		那么 kudzu 服务会主动的以 Fedora 相关的设定软件来设定你的新硬件。
+		不过，对于稳定的系统来说，实在没有必要在开机的时候侦测一次硬件，因为....很慢～</td></tr>
+<tr><td rowspan="2" align="center">named</td>
+	<td><li>/etc/named.conf</li><li>使用 port 53</li><li>不需要启动，除非是 DNS Server</li></td></tr>
+	<tr><td>这是个很复杂的玩意儿，那就是 DNS (Domain Name System)。除非你真的很了解 DNS，
+		否则这个服务不需要启动的！</td></tr>
+<tr><td rowspan="2" align="center">netfs</td>
+	<td><li>/etc/fstab</li><li>不需要使用 port</li><li>如果你的主机有默认挂载网络上的磁盘文件系统时，才开启。</li></td></tr>
+	<tr><td>这个服务在自动的挂载 /etc/fstab 里头记录的关于网络文件系统，如 NFS, SMB (网芳)
+		等等，如果你的主机本身并没有挂载来自网络上的 filesystem，不需要启动。</td></tr>
+<tr><td rowspan="2" align="center">network</td>
+	<td><li>/etc/sysconfig/network, /etc/sysconfig/network-scripts/*
+		</li><li>不需要使用 port</li><li>务必启动</li></td></tr>
+	<tr><td>看檔名就知道啦！是用来管理网络的，所以，当然要启动了。
+		不论你有没有网络卡，这个服务都要启动，因为至少 network 会驱动 lo 这个网络接口。
+		更多的网络相关信息，参考服务器篇的内容。</td></tr>
+<tr><td rowspan="2" align="center">nfs<br>nfslock</td>
+	<td><li>/etc/sysconfig/nfs</li><li>随机使用 port，与 portmap 服务有关</li><li>不需要启动</li></td></tr>
+	<tr><td>NFS 为 Network File System 的缩写，我们会在服务器篇谈这个服务，
+		一般来说，不需要启动这个玩意儿～</td></tr>
+<tr><td rowspan="2" align="center">ntpd</td>
+	<td><li>/etc/ntp.conf, /etc/sysconfig/ntpd</li><li>使用 port 123</li><li>不需要启动</li></td></tr>
+	<tr><td>这个服务的全名是：Network Time Protocol，意思就是在进行网络校时的一个服务。
+		一般来说，不需要启动他。</td></tr>
+<tr><td rowspan="2" align="center">portmap</td>
+	<td><li>/sbin/portmap 直接启动</li><li>使用 port 111</li><li>除非你有启用类似 NFS 的服务，否则不需要启动</li></td></tr>
+	<tr><td>这个咚咚与很多 RPC 的服务有关，例如 NFS 等等。一般来说，如果你的 Linux 尚未连上 internet，
+		这个服务不需要启动。不过，为了方便起见，各主要 linux distributions 都预设启动这个服务的。
+		鸟哥通常是关掉他！哈哈！</td></tr>
+<tr><td rowspan="2" align="center">postfix<br>sendmail</td>
+	<td><li>/etc/postfix/* 或 /etc/mail/* </li><li>使用 port 25</li><li>预设要启动</li></td></tr>
+	<tr><td>这个就是邮件服务器啦！由于近来网络垃圾大增，所以，目前所有的 Linux distributions
+		预设都要启动 postfix 之类的邮件服务器后，我们发出的信件才会接收或者是传送。
+		预设的情况下，一定会有一个邮件服务器启动的，不要关闭他～
+		否则我们主机上面的账号彼此之间无法以 email 传送数据喔！</td></tr>
+<tr><td rowspan="2" align="center">smb</td>
+	<td><li>/etc/samba/*</li><li>使用 port 137~139, 445 等</li><li>不需要启动</li></td></tr>
+	<tr><td>这个服务其实就是仿真 Linux 成为 Windows 的网络上的芳邻上头的主机啦～
+		由于我们还没有连上 Internet 啊，所以自然不需要启动他啦～</td></tr>
+<tr><td rowspan="2" align="center">sshd</td>
+	<td><li>/etc/ssh/*</li><li>使用 port 22 </li><li>务必启动</li></td></tr>
+	<tr><td>这个是取代 telnet 的远程联机服务器 daemon ，几乎所有的 Linux distributions 预设都会启动他～
+		我们也可以透过这个玩意儿让远程主机联机进来啊！所以当然是启动的啊！</td></tr>
+<tr><td rowspan="2" align="center">syslog</td>
+	<td><li>/etc/syslog.conf</li><li>不需要使用 port</li><li>务必启动</li></td></tr>
+	<tr><td>这个是登录文件记录的一个重要的 daemon ，没有他，你的主机几乎没有事后监控的功能～
+		所以请务必启动。我们会在 <a href="http://linux.vbird.org/linux_basic/0560daemons/0570syslog.php">认识登录档</a> 当中来谈这个咚咚～</td></tr>
+<tr><td rowspan="2" align="center">xfs</td>
+	<td><li>使用 /usr/sbin/chkfontpath 直接启动与侦测</li><li>使用 socket 7100</li><li>如果是纯文本接口，则不需要启动</li></td></tr>
+	<tr><td>X Font Server, xfs，顾名思义，他是用来管理 X Window 的字形的一个服务，
+		如果你是 run level 5 ，或者是想要启动 X Window 的话，那么这个玩意儿就不能不启动。
+		不过，如果你跟鸟哥一样都是使用纯文本接口的话，这个玩意儿不用启动啦！</td></tr>
+<tr><td rowspan="2" align="center">xinetd</td>
+	<td><li>/etc/xinetd.d/*, /etc/xinetd.conf</li><li>不一定，要看设定值</li><li>务必启动</li></td></tr>
+	<tr><td>刚刚上头才讲过这个玩意儿，不会就忘了吧？务必启动喔！</td></tr>
+<tr align="center" bgcolor="#182448"><td colspan="2" align="center"><font color="#FFFFFF">Super Daemons</font></td></tr>
+<tr><td rowspan="2" align="center">chargen<br>chargen-udp</td>
+	<td><li>预设使用 port 19</li><li>不需要启动</li></td></tr>
+	<tr><td>主要的功能在于提供类似远程打字的咚咚吧！</td></tr>
+<tr><td rowspan="2" align="center">daytime<br>daytime-udp</td>
+	<td><li>预设使用 port 13</li><li>不需要启动</li></td></tr>
+	<tr><td>用来作为 daytime 的服务，这是 NTP (Network Time Protocol) 的上一代，
+		目的在进行时间的校正工作。不过，因为他不会计算网络联机过程当中的迟滞时间，
+		并且是以明码传送，因此除了特殊目的外，目前已经很少使用这玩意儿了</td></tr>
+<tr><td rowspan="2" align="center">krb5-telnet</td>
+	<td><li>预设使用 port 23</li><li>不需要启动</li></td></tr>
+	<tr><td>用来取代传统的 telnet 服务！可提供 krb 5 的验证机制。</td></tr>
+<tr><td rowspan="2" align="center">gssftp</td>
+	<td><li>预设使用 port 21</li><li>不必启动</li></td></tr>
+	<tr><td>用来取代传统的 ftp server，可提供 krb 5 的验证机制</td></tr>
+</tbody></table>
+
+	</div>
+</div>
+
+
+<hr><a name="FAQ"></a><img src="../images/logo.png" alt="大标题的图示" width="35" align="middle" height="34"><span class="text_h1">本章习题练习</span><br>
+( 要看答案请将鼠标移动到『答：』底下的空白处，按下左键圈选空白处即可察看 )
+<div class="block1">
+<ul>
+	<li>使用 netstat -tul 与 netstat -tunl 有什么差异？为何会这样？</li>
+	<div class="block2"><font color="white" size="-1">
+		使用 n 时， netstat 就不会使用主机名与服务名称 (hostname &amp; service_name) 来显示，
+		取而代之的则是以 IP 及 port number 来显示的。IP 的分析与 /etc/hosts 及 /etc/resolv.conf 有关，
+		这个在未来服务器篇才会提到。至于 port number 则与 /etc/services 有关，请自行参考喔！ ^_^
+	</font></div>
+
+	<li>我想让系统一开机就自动执行 /usr/local/sbin/backup.sh 这个程序(假设已经存在)，你觉得可以如何进行？</li>
+	<div class="block2"><font color="white" size="-1">
+		最简单的方法，就是直接将 /usr/local/sbin/backup.sh 这整个指令写入
+		/etc/rc.d/rc.local 档案当中即可！
+	</font></div>
+
+
+
+</ul>
+</div>
+
+
+<hr><span class="text_history">
+2002/07/10：第一次完成<br>
+2003/02/11：重新编排与加入 FAQ<br>
+2005/10/03：将原本旧版的数据移动到 <a href="http://linux.vbird.org/linux_basic/0560daemons/0560daemons/0560daemons.php">此处</a> 。<br>
+2005/10/12：经过一段时间的修订，将原本在 <a href="http://linux.vbird.org/linux_basic/0560daemons/9999old/0550setup.php">系统设定工具</a> 的内容移动到此，
+并新增完毕！<hr>
+</span>
+    </td>
+    <td style="width: 16px; font-size: 6px;">　</td></tr>
+<tr><td style="width: 16px; height: 16px;">　</td>
+    <td style="width: 866px; height: 16px;">　</td>
+    <td style="width: 16px; height: 16px;">　</body></html>

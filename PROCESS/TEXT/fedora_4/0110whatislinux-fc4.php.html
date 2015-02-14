@@ -1,1 +1,1292 @@
-﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"> <html lang="zh-TW"><head>   	<meta http-equiv="Content-Type" content="text/html; charset=utf8"> 	<meta name="Author" content="VBird, 鸟哥"> 	<meta name="Description" content="要学习 Linux 之前，还是得要了解一下 Linux 的相关历史才行喔！"> 	<title>鸟哥的 Linux 私房菜 -- 什么是 Linux 、从 Linux 的历史谈起</title>     <script src="../../script/SpryMenuBar.js" type="text/javascript"></script> 	<script src="../../script/index.js" type="text/javascript"></script> 	<link href="../../css/SpryMenuBarHorizontal.css" rel="stylesheet" type="text/css" />     <link href="../../css/main.css" rel="stylesheet" type="text/css" /> </head><body style="margin: 0pt; padding: 0pt;" class="table"onload="MM_preloadImages('image/title_19.png','image/title_26.png','image/title_27.png','image/title_28.png','image/title_06.png','image/title_08.png','image/title_10.png','image/title_12.png')">   <!-- Copyright � 2005. Spidersoft Ltd --> <style> A.applink:hover {border: 2px dotted #DCE6F4;padding:2px;background-color:#ffff00;color:green;text-decoration:none} A.applink       {border: 2px dotted #DCE6F4;padding:2px;color:#2F5BFF;background:transparent;text-decoration:none} A.info          {color:#2F5BFF;background:transparent;text-decoration:none} A.info:hover    {color:green;background:transparent;text-decoration:underline} </style> <div style='BORDER: 1px solid #DCE6F4; MARGIN-TOP: 20px; MARGIN-BOTTOM: 20px; MARGIN-LEFT: 5px; MARGIN-RIGHT: 5px; PADDING: 5px; BACKGROUND-COLOR: #eef8ff;line-height:180%; COLOR: #000000; font-family: Arial; font-size: 8pt; width=100%; FILTER: progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr="#FFFFFFFF", EndColorStr="#F2F5FAFF");'> This page was saved using <a class="applink" href="http://www.spidersoft.com"><b>WebZIP 7.0.3.1030</b></a> <a class="applink" href="http://www.spidersoft.com"><b>offline browser</b></a>  (Unregistered) on  02/12/15 12:14:49.<br> <b>Address:</b> <a class="info" href="http://vbird.dic.ksu.edu.tw/linux_basic/fedora_4/0110whatislinux-fc4.php">http://vbird.dic.ksu.edu.tw/linux_basic/fedora_4/0110whatislinux-fc4.php</a><br> <b>Title:</b> 鸟哥的 Linux 私房菜 -- 什么是 Linux 、从 Linux 的历史谈起 &nbsp;&bull;&nbsp; <b>Size:</b> 121170<br></div> <!-- /Copyright � 2005. Spidersoft Ltd -->     <center> <div id="apDiv5"> <div> <LINK REL="SHORTCUT ICON" HREF="favicon.ico"> <!-- ImageReady Slices (title3.ai) --> <table id="___01" width="898" height="81" border="0" align="center" cellpadding="0" cellspacing="0";> 	<tr> 		<td colspan="15"> 			<img src="image/title/title_01.png" width="900" height="1" alt=""></td> 	</tr> 	<tr> 		<td rowspan="4" bgcolor="#182448"><p><img src="http://linux.vbird.org/cgi-bin/Count.cgi?dd=C&ft=5&sh=T&md=8&pad=Y&df=vbird.dic.ksu.edu.tw.dat" width="93" align="left" title="計數器" /></p> 	    <p><font color="#FFFFFF" size="-1">since2012/04/23</font></p></td> 		<td rowspan="4" align="left" valign="top"><a href="http://vbird.dic.ksu.edu.tw/"><img src="image/title/title_03.png" alt="" width="263" height="79" border="0"></a></td> 		<td colspan="13"> 			<img src="image/title/title_04.png" alt="" width="535" height="9" border="0"></td> 	</tr> 	<tr> 		<td rowspan="3"> 			<img src="image/title/title_05.png" alt="" width="53" height="70" border="0"></td> 		<td colspan="2" align="left" valign="top"><a href="../0110whatislinux.php.html" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image51','','image/title/title_06.png',1)"><img src="image/title/title3_06.png" name="Image51" width="106" height="25" border="0" id="Image51" alt=""/></a></td> 		<td rowspan="2"> 			<img src="image/title/title_07.png" alt="" width="27" height="37" border="0"></td> 		<td colspan="3" align="left" valign="top"><a href="http://vbird.dic.ksu.edu.tw/linux_server/0110network_basic.php" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image52','','image/title/title_08.png',1)"><img src="image/title/title3_08.png" name="Image52" width="107" height="25" border="0" id="Image52" alt=""/></a></td> 		<td rowspan="2"> 			<img src="image/title/title_09.png" alt="" width="37" height="37" border="0"></td> 		<td colspan="2" align="left" valign="top"><a href="http://vbird.dic.ksu.edu.tw/about.php" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image53','','image/title/title_10.png',1)"><img src="image/title/title3_10.png" name="Image53" width="75" height="25" border="0" id="Image53" alt=""/></a></td> 		<td rowspan="3"> 			<img src="image/title/title_11.png" alt="" width="35" height="70" border="0"></td> 		<td align="left" valign="top"><a href="mailto:vbird@mail.vbird.idv.tw" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image54','','image/title/title_12.png',1)"><img src="image/title/title3_12.png" name="Image54" width="74" height="25" border="0" id="Image54" alt=""/></a></td> 		<td rowspan="3"> 			<img src="image/title/title_13.png" alt="" width="21" height="70" border="0"></td> 	</tr> 	<tr> 		<td colspan="2"> 			<img src="image/title/title_14.png" alt="" width="106" height="12" border="0"></td> 		<td colspan="3"> 			<img src="image/title/title_15.png" alt="" width="107" height="12" border="0"></td> 		<td colspan="2"> 			<img src="image/title/title_16.png" width="75" height="12" alt=""></td> 		<td rowspan="2"> 			<img src="image/title/title_17.png" alt="" width="74" height="45" border="0"></td> 	</tr> 	<tr> 		<td> 			<img src="image/title/title_18.png" alt="" width="15" height="33" border="0"></td> 		<td colspan="3" align="left" valign="top"><ul id="MenuBar1" class="MenuBarHorizontal"> 	  <li><a href="../linux_basic.php.html" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image44','','image/title/title_19.png',1)"><img src="image/title/title3_19.png" name="Image44" width="123" height="33" border="0" id="Image44" /></a> 			    <ul> 			      <li><a href="../Mandrake9.0/mandrake9.0.php.html" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image46','','image/title/title_26.png',1)"><img src="image/title/title_23.png" name="Image46" width="120" height="26" border="0" id="Image46" alt="" /></a></li>                   <li><a href="fc4.php.html" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image47','','image/title/title_27.png',1)"><img src="image/title/title_24.png" name="Image47" width="120" height="26" border="0" id="Image47" alt="" /></a></li>                   <li><a href="../linux_basic.php.html" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image48','','image/title/title_28.png',1)"><img src="image/title/title_25.png" name="Image48" width="120" height="26" border="0" id="Image48" alt="" /></a></li>                 </ul> 		      </li> 		</ul></td> 		<td> 			<img src="image/title/title_20.png" alt="" width="42" height="33" border="0"></td> 		<td colspan="3" align="left" valign="top"><ul id="MenuBar2" class="MenuBarHorizontal"> 	  <li><a href="http://vbird.dic.ksu.edu.tw/linux_server/" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image45','','image/title/title_21.png',1)"><img src="image/title/title3_21.png" name="Image45" width="125" height="33" border="0" id="Image45" /></a> 			    <ul> 			      <li><a href="http://vbird.dic.ksu.edu.tw/linux_server/linux_redhat9/redhat9.php" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image43','','image/title/title_26.png',1)"><img src="image/title/title_23.png" name="Image43" width="120" height="26" border="0" id="Image43" alt=""/></a></li> 			      <li><a href="http://vbird.dic.ksu.edu.tw/linux_server/centos4.php" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image49','','image/title/title_27.png',1)"><img src="image/title/title_24.png" name="Image49" width="120" height="26" border="0" id="Image49" alt="" /></a></li> 			      <li><a href="http://vbird.dic.ksu.edu.tw/linux_server/" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image50','','image/title/title_28.png',1)"><img src="image/title/title_25.png" name="Image50" width="120" height="26" border="0" id="Image50" alt="" /></a></li> 		        </ul> 		      </li> 		</ul></td> 		<td> 			<img src="image/title/title_22.png" alt="" width="47" height="33" border="0"></td> 	</tr> 	<tr> 		<td> 			<img src="image/title/Spacer.gif" width="101" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="263" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="53" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="15" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="91" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="27" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="5" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="42" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="60" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="37" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="28" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="47" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="35" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="74" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="22" height="1" alt=""></td> 	</tr> </table> <!-- End ImageReady Slices --> <script type="text/javascript"> <!-- var MenuBar1 = new Spry.Widget.MenuBar("MenuBar1", {imgDown:"SpryAssets/SpryMenuBarDownHover.gif", imgRight:"SpryAssets/SpryMenuBarRightHover.gif"}); var MenuBar2 = new Spry.Widget.MenuBar("MenuBar2", {imgDown:"SpryAssets/SpryMenuBarDownHover.gif", imgRight:"SpryAssets/SpryMenuBarRightHover.gif"}); //--> </script></div> <table summary="本文内容的排版" style="width: 898px;" border="0" cellpadding="0" cellspacing="0"> <tbody><tr><td style="width: 16px; height: 16px;">　</td>     <td style="width: 866px; height: 16px;">　</td>     <td style="width: 16px; height: 16px;">　</td></tr> <tr><td style="width: 16px; font-size: 6px;">　</td>     <td width="866">  <!-- 本文的档头部分 --> <div style="text-align: center;">     <a href="http://linux.vbird.org/linux_basic/0110whatislinux/0110whatislinux-fc4.php">     <span class="text_head0">什么是<span class="text_head_en"> Linux </span></span></a><br>     <center>本文已不再维护，更新文章请参考<a href="http://linux.vbird.org/linux_basic/0110whatislinux.php">这里</a></center> </div>     <div style="text-align: right;">         <span class="text_history">最近更新日期：2006/05/31</span>     </div> <!-- 本文的档头部分 --> <div align="center"><table class="head1" summary="排版：文章档头的说明"><tbody><tr><td class="head1"> 	众所皆知的， Linux 的核心原型是 1991 年由托瓦兹 (Linus Torvalds) 写出来的， 	但是托瓦兹为何可以写出 Linux 这个操作系统？为什么他要选择 386 的计算机来开发？ 	为什么 Linux 的发展可以这么迅速？又为什么 Linux 是免费的？ 	以及目前为何有这么多的 Linux 版本 (distributions) 呢？ 	了解这些东西后，才能够知道为何 Linux 可以免除专利软件之争， 	并且了解到 Linux 为何可以同时在个人计算机与大型主机上面大放异彩！ 	所以，在实际进入 Linux 的世界前，就让我们来谈一谈这些有趣的历史故事吧！ ^_^ </td></tr></tbody></table></div>  <!-- 本文的连结区部分 --> <div class="block1"> <span class="text_h1"> 1. <a href="#whatislinux">什么是 Linux </a><br> 	<span class="text_h2"> 	　　1.1 <a href="#whatislinux_computer">计算器：计算的辅助工具</a><br> 	　　1.2 <a href="#whatislinux_os">什么是操作系统？</a><br> 	　　1.3 <a href="#whatislinux_unix">Linux 之前，Unix 的历史</a><br> 	　　1.4 <a href="#whatislinux_gnu">关于 GNU 计划</a><br> 	</span> 2. <a href="#torvalds">Torvalds 的 Linux 发展</a><br> 	<span class="text_h2"> 	　　2.1 <a href="#torvalds_minix">与 Minix 之间</a><br> 	　　2.2 <a href="#torvalds_multi">对 386 硬件的多任务测试</a><br> 	　　2.3 <a href="#torvalds_first">初次释出 Linux 0.02</a><br> 	　　2.4 <a href="#torvalds_team">Linux 的发展：虚拟团队的产生</a><br> 	　　2.5 <a href="#torvalds_dist">Linux distributions</a><br> 	</span> 3. <a href="#linuxpt">Linux 的特色</a><br> 	<span class="text_h2"> 	　　3.1 <a href="#linuxpt_pt">Linux 的特色</a><br> 	　　3.2 <a href="#linuxpt_adv">Linux 的优缺点</a><br> 	　　3.1 <a href="#linuxpt_other">其他 Linux 相关</a><br> 	</span> 4. <a href="#important">重点回顾</a><br> 5. <a href="#FAQ">本章练习</a><br> 6. <a href="#reference">参考数据</a><br> <span class="text_h2"> 7. <a href="http://phorum.vbird.org/viewtopic.php?t=23871" target="_blank">针对本文的建议：http://phorum.vbird.org/viewtopic.php?t=23871</a> </span> </span> </div>  <!-- 本文的正式部分 --> <hr><a name="whatislinux"></a><img src="../image/logo.png" alt="大标题的图示" width="35" align="middle" height="34"><span class="text_h1">什么是 Linux ？</span><br> <div class="block1"> 	Linux 这玩意儿是在计算机上面运作的，所以，当然得要了解一下计算机这玩意儿。首先，到底有哪些种类的计算机呢？ 	而 Linux 可以在哪些种类的计算机上面运作？且 Linux 源自哪里？这些我们都得来谈一谈先！<br><br>  	<hr><a name="whatislinux_computer"></a><img src="../image/logo.png" alt="小标题的图示" width="24" align="middle" height="23">	<span class="text_h2">计算器：计算的辅助工具</span><br> 	<div class="block2"> 		在目前的都市生活中，您应该很难不接触到计算机这个玩意儿吧？ 		这个计算机当初在开发的时候，是希望可以辅助与简化人们进行大量的运算工作， 		后来才发展成为一些特殊用途。无论如何，计算机基本的功能就是： 		『<span class="text_import2">接受用户输入指令，经由 CPU 的数学与逻辑单元运算处理后， 		以产生或储存成有用的信息</span>』。为了达成这个功能，当然计算机就必须要有： 		<ul> 		<li>输入单元：例如鼠标、键盘、卡片阅读机等等 		</li><li>中央处理器(CPU)：含有算数逻辑、控制、记忆等单元 		</li><li>输出单元：例如屏幕、打印机等等</li></ul> 		如果您看过计算机的话，那么上面的东西其实就是组成您计算机的主要组件啰！ 		而为了链接各个组件，因此有了主板，所以，您的主机里面就包含了主板以及 CPU ， 		还有各种需要的适配卡。而屏幕、键盘、鼠标则透过与主机的链接，就构成一部可以运作的计算机了。 		另外，由于<span class="text_import2">计算机仅认识 0/1 ，因此计算机主要是以二进制的方式来计算的</span>， 		因此，通常计算机的记忆/储存单位都是以 Byte 或 bits 为基本单位。他们的单位是这样的： 		<ul><span class="text_import2"> 		<li>1 Bytes = 8 bits 		</li><li>1 KB = 1024 Bytes 		</li><li>1 MB = 1024 KB 		</li><li>1 GB = 1024 MB</li></span></ul> 		而计算机也因为他的复杂度，而分为数种等级，例如： 		<ul> 		<li><span class="text_import2">超级计算机(Supercomputer)：</span><br> 			超级计算机是运作速度最快的计算机，但是他的维护、操作费用也最高！ 			主要是用于需要有高速计算的计划中。例如：国防军事、气象预测、太空科技， 			用在模拟的领域较多。详情也可以参考：国家高速网络与计算中心<a href="http://www.nchc.org.tw/" target="_blank">http://www.nchc.org.tw/</a> 的介绍！ 			至于全世界的 500 大超级计算机，则请参考：<a href="http://www.top500.org/" target="_blank">http://www.top500.org/</a></li><br> 		<li><span class="text_import2">大型计算机(Mainframe Computer)：</span><br> 			大型计算机通常也具有数个高速的 CPU ，功能上虽不及超级计算机， 			但也可用来处理大量数据与复杂的运算。例如大型企业的主机、 			全国性的证券交易所等每天需要处理数百万笔数据的企业机构， 			或者是大型企业的数据库服务器等等。</li><br> 		<li><span class="text_import2">迷你计算机(Minicomputer)：</span><br> 			迷你计算机仍保有大型计算机同时支持多用户的特性，但是主机可以放在一般作业场所， 			不必像前两个大型计算机需要特殊的空调场所。通常用来作为科学研究、 			工程分析与工厂的流程管理等。</li><br> 		<li><span class="text_import2">微电脑(Microcomputer)：</span><br> 			又可以称为个人计算机，也是我们这本书主要探讨的目标！体积最小，价格最低， 			但功能还是五脏俱全的！大致又可分为桌上型、笔记型等等。</li></ul>  		虽然在目前个人计算机的使用甚为广泛，但是在 1990 年以前，个人计算机是比较不被重视的！ 		因为(1)他的指令周期在当时实在很差，而且(2)当时比较有名的操作系统也没有对个人计算机支持。 		所以才会流行不太起来～ 嘿嘿！提到操作系统啰～ 		底下我们就来谈一谈之前的操作系统。 	</div>  	<hr><a name="whatislinux_os"></a><img src="../image/logo.png" alt="小标题的图示" width="24" align="middle" height="23">	<span class="text_h2">什么是操作系统</span><br> 	<div class="block2"> 		什么是操作系统 (Operation System, OS) 呢？我们先来想一想， 		上面介绍的计算器(计算机)是如何工作的？举例来说，您计算机屏幕上面显示的讯息， 		是如何显示出来的呢？嗯！是藉由显示适配器与屏幕显像的。那么如果你想要看 VCD 呢？ 		呵呵，就需要 1.)有影音数据的光盘片、 2.)可读取光盘片的光驱、 		3.) 可以转换影音数据输出的中央处理器 (CPU)、 4.)可以显示影像的显示芯片(显示适配器)、 		5.) 可以传输声音的音效芯片(声卡)、 6.)可以输出影像的屏幕以及 7.)可以发出声音的喇叭！ 		也就是说：<span class="text_import2">所有在『工作』的东西都是『硬件』呀</span>！ 		对啦！就是硬件在工作！<br><br>  		那么问题来了，现在我们知道，计算机所进行的工作都是计算机硬件帮我们达成的，但是， 		为什么这些硬件知道如何播放 VCD 呢？这当然是因为有某个东西在正确的控制硬件的工作了， 		那个咚咚就是：  <span class="text_import2">操作系统</span> 啦！ 		操作系统可以管理整部计算机的硬件，他可以控制 CPU 进行正确的运算， 		他可以分辨硬盘里头的数据并进行读取，他还必须要能够认识所有的适配卡， 		这样，才能够将所有的硬件通通正确的使用上啊！ 		所以，如果没有这个操作系统，那么您的计算机就等于是一堆废铁而已啊！<br><br>  		虽然操作系统可以完整的掌控所有的硬件资源，但是，对于使用者来说，还是不够的！ 		因为操作系统虽然可以掌控所有的硬件，但是，如果用户无法与操作系统沟通， 		那么这个操作系统就没有什么用处了。简单的来说，以上面的 VCD 为例， 		虽然操作系统可以控制硬件播放 VCD ，但是，如果使用者没有办法控制何时要播出 VCD 的话， 		那么到底我们要怎么看 VCD 啊？对吧！<br><br>  		所以说，一个比较『<span class="text_import2">完整的操作系统</span>』应该要包含 		两个东西，一个是『<span class="text_import2">核心与其提供的接口工具</span>』、 		一个是『<span class="text_import2">利用核心提供的接口工具所开发出来的软件</span>』。 		我们以大家常使用的 Windows 计算机来做一个简单的说明好了。大家应该都使用过 Windows  		计算机里面的『档案总管』吧！当你开启档案总管的时候，他就会显示你硬盘当中的数据， 		这个『显示硬盘里面的数据，就是核心帮你做的』，但是， 		『你要核心去显示硬盘哪一个目录下的数据，则是由档案总管这个工具帮你达成的』！ 		这样可以理解吗？<br><br>  		那么核心有没有作不到的事？当然有的，举例来说， 		如果您曾经自行安装过比较新的显示适配器在您的个人计算机上面， 		那么应该常常会发生 Windows 计算机告知您：『找不到合适的驱动程序来显示』的问题吧？ 		也就是说，即使您有最新的显示适配器安装在您的个人计算机上面，而且也有播放 VCD 的程序， 		但是因为『核心』无法操控这个最新的显示适配器，所以，就无法正常的显示您的 VCD 了。 		没错！<span class="text_import2">你的整个硬件是由核心来管理的，而如果核心不认识你的硬件， 		那么你将无法使用该硬设备</span>，例如上面提到的最新的显示适配器。<br>  		<div style="padding: 10pt 0pt;" align="right"><table width="90%"><tbody><tr><td><b>Tips:</b><br><span style="color: rgb(0, 144, 0);"><font size="-1">			在定义上，只要能够让计算机硬件正确无误的运作，那就算是操作系统了。 			所以说，操作系统其实就是核心与其提供的接口工具， 			不过，就如同上面讲的，因为最阳春的核心缺乏了与用户沟通的亲和接口， 			所以在目前，一般我们提到的『操作系统』都会包含核心与相关的用户应用软件呢！ 		</font></span></td><td><img src="0110whatislinux-fc4_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div> 		核心就是『<span class="text_import1">Kernel</span>』， 		他是一个操作系统的最底层的东西，由他来掌管整个硬件资源的工作状态，而 		每个操作系统都有自己的核心，所以说， 		当有新的硬件加入到你的系统中的时候，若你的『 		Kernel 』并没有支持他的时候，呵呵，这个新的硬件就肯定无法工作的，因为控制他的 		Kernel 并不认识他呀！这样了解了吗？！先有个概略性的了解， 		后面我们提到『<a href="http://linux.vbird.org/linux_basic/0110whatislinux/0540kernel.php">核心编译</a>』的时候会再更详细的谈到他！<br><br>  		一般来说，Kernel 为了达成使用者所需要的正确运算结果，他必须要管理的事项有： 		<ul> 		<li><span class="text_import1">系统呼叫接口(System call interface) </span>： 			为了方便程序开发者可以轻易的透过与 kernel 的沟通，将硬件的资源进一步的利用， 			于是需要有这个简易的接口来方便程序开发者。</li> 		<li><span class="text_import1">行程管理(Process control) </span>： 			总有听过所谓的『多任务环境』吧？一部计算机可能同时间有很多的工作跑到 CPU 等待运算处理， 			Kernel 这个时候必须要能够控制这些工作，让 CPU 的资源作有效的分配才行！</li> 		<li><span class="text_import1">内存管理(Memory management) </span>： 			控制整个系统的内存管理，若内存不足， Kernel 最好还能够提供虚拟内存的功能！</li> 		<li><span class="text_import1">文件系统管理(File system management) </span>： 			文件系统的管理，例如数据的输入输出 (I/O) 等等的工作啦！ 			还有不同文件格式的支持啦等等，如果你的核心不认识某个文件系统， 			那么您将无法使用该文件格式的档案啰！例如： 			Windows 98 就不认识 NTFS 文件格式的硬盘；</li> 		<li><span class="text_import1">装置的驱动(Device drivers) </span>： 			就如同上面提到的，硬件的管理是 			Kernel 的主要工作之一，当然啰，装置的驱动程序就是核心需要做的事情啦！ 			好在目前都有所谓的『可加载模块』功能，可以将驱动程序编辑成模块， 			就不需要重新的编译核心啦！这个也会在后续的<a href="http://linux.vbird.org/linux_basic/0110whatislinux/0540kernel.php">核心编译</a>当中提到的！</li> 		</ul>  		所以啦！所有硬件的资源都是 kernel 来管理的！至于我们要达成一些工作时，除了藉由核心本身提供的功能 		( 例如上面提到的档案总管 ) 之外，还可以藉由其他的应用软件来达成喔！举个例子来说，你要看 		VCD 影片是吧！那么除了 Windows 提供的媒体播放程序之外，你也可以自行安装 		VCD 播放程序来播放 VCD 啰！这个播放程序就是应用软件啰，而这个应用软件可以帮你去控制核心来工作 		( 就是放映影片啰 ) ，因此，我们可以这样说， 		<span class="text_import2">核心是控制整个硬件支持的咚咚，也是一个操作系统的最底层， 		然而要让整个操作系统更完备的话，那还需要含有相当丰富的核心提供的工具， 		以及核心相关的应用软件来支持</span>。<br><br>  		OK！提到这里那么您知道 Linux 是什么了吗？呵呵！对啦！<span class="text_import2">其实 		Linux 就是一个操作系统，这个操作系统里头含有最主要的 kernel 以及 kernel 		提供的工具啦</span>！他提供了一个完整的操作系统当中最底层的硬件控制与资源管理的完整架构， 		这个架构是沿袭 Unix 良好的传统来的，所以相当的稳定而功能强大！此外， 		由于这个优良的架构可以在目前的个人计算机( X86 系统 ) 上面跑， 		所以很多的软件开发者将他们的工作心血移转到这个架构上面，那就是很多的应用软件啦！ 虽然 		Linux 仅是其核心与核心提供的工具， 不过，由于核心、核心工具与这些软件开发者提供的软件的整合，使得 		Linux 成为一个更完整的、功能强大的操作系统啰！我们可以将 Linux  		的系统与用户的相关性看成底下的图示：  		<center><img src="0110whatislinux-fc4_files/0110whatislinux_1.jpg" alt="用户、用户接口&gt;与核心工具、核心及硬件之相关性" title="用户、用户接口&gt;与核心工具、核心及硬件之相关性"> 		<br><a name="fig1"></a>图一、用户、用户接口与核心工具、核心、与硬件之相关性</center> 		<br>  		约略了解 Linux 是何物之后，接下来，我们要谈一谈，『<span class="text_import2">为什么说 		Linux 是很稳定的操作系统呢？他是如何来的？</span>』<br>  		<div style="padding: 10pt 0pt;" align="right"><table width="90%"><tbody><tr><td><b>Tips:</b><br><span style="color: rgb(0, 144, 0);"><font size="-1">		Torvalds 先生在写出 Linux 的时候，其实该核心仅能『驱动 386 所有的硬件』而已， 		所谓的『让 386 计算机开始运作，并且等待用户指令输入』而已，事实上， 		当时能够在 Linux 上面跑得软件还很少呢！ 		</font></span></td><td><img src="0110whatislinux-fc4_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div> 		<div style="padding: 10pt 0pt;" align="right"><table width="90%"><tbody><tr><td><b>Tips:</b><br><span style="color: rgb(0, 144, 0);"><font size="-1">		由上面的说明中，我们知道硬件是由『核心』来控制的，而每种操作系统都有他自己的核心。 		这就产生了一个很大的问题，因为早期硬件的开发者所开发的硬件架构或多或少都不相同， 		举例来说，2006年以前的苹果计算机公司是请 IBM 公司帮忙开发硬件 (所谓的 power CPU)， 		而苹果计算机公司则在该硬件架构上发展自家的操作系统(就是俗称的麦金塔, MAC 是也)。 		Windows 则是开发在 x86 架构上的操作系统之一。<br><br> 		那么 Windows 是否可以在苹果计算机的硬件上面跑？答案是『不行』的！不过，在 2006 年以后， 		苹果计算机转而请 Intel 设计其硬件架构，亦即其硬件架构已经转为 x86  系统，因此在 2006 		年以后的苹果计算机若使用 x86 架构时，其硬件则『可能』可以安装 Windows 操作系统了。 		不过，您可能需要自己想些方式来处理该硬件的兼容性啰！ 		</font></span></td><td><img src="0110whatislinux-fc4_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div> 		<div style="padding: 10pt 0pt;" align="right"><table width="90%"><tbody><tr><td><b>Tips:</b><br><span style="color: rgb(0, 144, 0);"><font size="-1">		因为 Windows 操作系统本来就是针对个人计算机 x86 架构的硬件去设计的，所以他当然只能在 		x86 的个人计算机上面运作，在不同的平台，当然就无法运行了。也就是说， 		每种操作系统都是在他专门的机器上面运行的喔！这点得要先了解。 		不过， Linux 由于是 Open Source 的操作系统，所以他的程序代码可以被修改成适合在各种机器上面运行的， 		也就是说， Linux 是具有『可移植性』，这可是很重要的一个功能喔！ ^_^ 		</font></span></td><td><img src="0110whatislinux-fc4_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div>	</div>  	<hr><a name="whatislinux_unix"></a><img src="../image/logo.png" alt="小标题的图示" width="24" align="middle" height="23">	<span class="text_h2">Linux 之前， Unix 的历史</span><br> 	<div class="block2"> 		早在 Linux 出现之前的二十年 ( 大约在 1970 年代 )， 		就有一个相当稳定而成熟的操作系统存在了！那就是 Linux 的老大哥『 Unix 』是也！ 		怎么这么说呢？！他们这两个家伙有什么关系呀？这里就给他说一说啰！众所皆知的，  		<span class="text_import2">Linux 的核心是由 Linus Torvalds 在 1991 年的时候给他开发出来的，</span> 		并且丢到网络上提供大家下载，后来大家觉得这个小东西 ( Linux Kernel )  		相当的小而精巧，所以慢慢的就有相当多的朋友投入这个小东西的研究领域里面去了！ 		但是为什么这的小东西这么棒呢？！然而又为什么大家都可以免费的下载这个东西呢？！ 		嗯！等鸟哥慢慢的唬xx....喔不！听我慢慢的道来！<br><br>  		<li><span class="text_import1">1969 年以前：一个没有完成的梦想： Bell, MIT 与 GE 			的『 Multics』系统</span><ul> 		早期的计算机并不像现在的个人计算机一样，他可不是一般人碰的起的呢～ 		除非是军事或者是高科技用途，或者是学术单位的学术研究，否则，真的很难接触到。 		非但如此，早期的计算机架构还很难使用，除了指令周期并不快之外，操作接口也很困扰的！ 		在那个时候，写程序是件很可怜的事情，因为，程序设计者，必须要将程序相关的信息在读卡纸上面打洞， 		然后再将读卡纸插入卡片阅读机来将信息读入主机中运算。光是这样就很麻烦了，如果程序有个小地方写错， 		哈哈！光是重新打卡就很惨，加上主机少，用户众多，光是等待，就耗去很多的时间了！<br><br>  		在之后，经由操作系统的改良，使得后来可以使用键盘来进行信息的输入/输出。 		不过，在一间学校里面，主机毕竟可能只有一部，如果多人等待使用，那怎么办？ 		好在 1960 年代初期麻省理工学院 (MIT) 发展了所谓的： 		『<span class="text_import2">兼容分时系统( Compatible Time-Sharing System, CTSS )</span>』， 		它可以让大型主机透过提供数个终端机(terminal)以联机进入主机，来利用主机的资源进行运算工作。 		架构有点像这样：<br><center><a name="fig2"></a> 		<img src="0110whatislinux-fc4_files/0110whatislinux_2.jpg" alt="早期主机与终端机的相关性图标" title="早期主机与终端机的相关性图标"><br>图二、早期主机与终端机的相关性图标</center><br> 		如此一来，无论主机在哪里，只要在终端机前面进行输入输出的作业，就可利用主机提供的功能了。 		不过，需要注意的是，此时终端机只具有输入/输出的功能，本身完全不具任何运算或者软件安装的能力。 		而且，比较先进的主机大概也只能提供 30 个不到的终端机而已。<br><br>  		为了更加强化大型主机的系统，以让主机的资源可以提供更多使用者来利用，所以在 1965 年前后， 		由贝尔实验室 (Bell)、麻省理工学院 (MIT) 及奇异公司 (GE) 共同发起了 Multics 的计划， 		Multics 目的是想要让大型主机可以达成提供 300 个以上的终端机联机使用的目标。 		不过，到了 1969 年前后，计划进度落后，资金也短缺，所以该计划就宣告不治.....喔！是宣告失败～ 		(注： Multics 有复杂、多数的意思存在。)</ul>  		</li><li><span class="text_import1">1969 年： Ken Thompson 的小型 file server system</span><ul> 		在认为 Multics 计划不可能成功之后，<a href="http://www.bell-labs.com/" target="_blank">贝尔研究室</a> 		就退出该计划。不过，原本参与 Multics 计划的人员中，已经从该计划当中获得一些点子， 		<a href="http://plan9.bell-labs.com/cm/cs/who/ken/index.html" target="_blank">Ken Thompson</a> 		就是其中一位！Thompson 因为自己的需要，希望开发一个小小的操作系统， 		以提供自己的需求。在开发时，有一部 DEC (Digital Equipment Corporation) 的 PDP-7 没人使用， 		于是他就准备针对这部主机进行操作系统核心程序的撰写。本来 Thompson 是没时间的， 		有趣的是，在 1969 年八月份左右，刚好 Thompson 的妻儿去了美西探亲， 		于是他有了额外的一个月的时间好好的待在家将一些构想实现出来！ 		经过四个星期的奋斗，他终于以组译语言 (Assembler) 写出了一个核心程序，同时包括一些核心工具程序， 		以及一个小小的文件系统。那个系统就是<span class="text_impor2"> Unix </span>的原型！ 		当时 Thompson 将 Multics 庞大的复杂系统简化了不少，于是同实验室的朋友都戏称这个系统为： 		Unics 。 Thompson 的这个文件系统有两个重要的概念，分别是：<br><br> 			<ul><span class="text_import2"> 			<li>所有的程序或系统装置都是档案 			</li><li>不管建构编辑器还是附属档案，所写的程序只有一个目的，且要有效的完成目标。 			</li></span></ul><br> 		这些概念在后来对于 Linux 的发展有相当重要的影响喔！</ul>  		</li><li><span class="text_import1">1973 年： Unix 的正式诞生，Ritchie 等人以 C 语言写出第一个正式  			Unix 核心</span><ul> 		由于 Thompson 写的那个操作系统实在太好用了，所以在贝尔实验室内部广为流传，并且数度经过改版。 		但是，比较重要的改版则发生在 1973 年。Unix 本来是以组译语言写成的，后来因为系统移植与效能的需求， 		该系统被 B 语言所改写。不过，效能依旧不是很好。后来， 		<a href="http://cm.bell-labs.com/cm/cs/who/dmr/" target="_blank">Dennis Ritchie</a>  		将 B 语言重新改写成 C 语言，C 语言算是比较高阶的程序语言，可以在不同的机器上面运作， 		而 Ritchie 等人也同时将原本 Thompson 的那个操作系统重新以 C 语言改写， 		最后发行出 Unix 的正式版本！<br><br>  		在这个时候需要特别注意的是，贝尔实验室是隶属于 AT&amp;T 的，只是 AT&amp;T 当时忙于其他商业活动， 		所以对于 Unix 是采取比较开放的态度，此外， Unix 在这个时期的发展者都是贝尔实验室的工程师， 		这些工程师对于程序当然相当有研究，所以， Unix 在此时当然是不容易被一般人所接受的！  		此外，也需要特别强调，由于 Unix 是以较高阶的 C 语言写的，相对于组译语言需要与硬件有密切的配合， 		高阶的 C 语言与硬件的相关性就没有这么大了！所以，<span class="text_import2">这个改变也使得 Unix  		很容易被移植到不同的机器上面喔！</span></ul>  		</li><li><span class="text_import1">1977 年： 重要的 Unix 分支： BSD 的诞生</span><ul> 		前面说到，虽然贝尔属于 AT&amp;T ，但是 AT&amp;T 此时对于 Unix 是采取开放的态度， 		此外， Unix 是以高阶的 C 语言写成的，理论上是具有可移植性的！ 		所以，只要取得 Unix 的原始码，并且针对大型主机的特性加以修订原有的原始码( Source Code )， 		就可能将 Unix 移植到另一部不同的主机上头了。所以在 1973 年以后， 		Unix 便得以与学术界合作开发！最重要的接触就是与加州柏克莱 ( Berkeley ) 大学的合作了。 		柏克莱大学的 Bill Joy 在取得了 Unix 的核心原始码后，着手修改成适合自己机器的版本， 		并且同时增加了很多工具软件与编译程序，最终将他命名为<span class="text_import2"> 		 Berkeley Software Distribution (BSD)</span> 。这个 BSD 是 Unix 很重要的一个分支， 		Bill Joy 也是 Unix 业者『 Sun 』这家公司的创办者！ Sun 公司即是以 BSD 		发展的核心进行自己的商业 Unix 版本的发展的。  		(<span class="text_vbird">后来可以安装在 x86 硬件架构上面 FreeBSD 即是 BSD 改版而来！</span>)</ul>  		</li><li><span class="text_import1">1979 年： 一个措手不及的版权宣告！</span><ul> 		由于 Unix 的高度可移植性与强大的效能，加上当时并没有版权的纠纷， 		所以让很多商业公司开始了 Unix 操作系统的发展，例如 AT&amp;T 自家的 System V、IBM 的 AIX 以及  		HP 与 DEC 等公司，都有推出自家的主机搭配自己的 Unix 操作系统。<br><br>  		但是，如同我们前面提到的，<span class="text_import2">操作系统的核心 ( Kernel ) 必须要跟硬件配合， 		以提供及控制硬件的资源进行良好的工作！</span> 		而在早期每一家生产计算机硬件的公司还没有所谓的『协议』的概念， 		所以每一个计算机公司出产的硬件自然就不相同啰！因此他们必须要为自己的计算机硬件开发合适的 Unix 系统。 		例如在学术机构相当有名的 Sun 、 Cray 与 HP 就是这一种情况。 		他们开发出来的 Unix 操作系统以及内含的相关软件并没有办法在其他的硬件架构下工作的！ 		且由于没有厂商针对个人计算机设计 Unix 系统，因此，在早期并没有支持个人计算机的 Unix 		操作系统的出现 ( <span class="text_vbird">由于 Unix 强调的是多人多任务的环境，但早期的 x86 个人计算机架构下的 CPU  		是没有能力达到多任务的作业，因此，并没有人对移植 Unix 到 x86 的计算机上有兴趣</span> )。 		每一家公司自己出的 Unix 虽然在架构上面大同小异，但是却真的仅能支持自身的硬件， 		所以啰，<span class="text_import2">早先的 		Unix 只能与服务器 ( Server ) 或者是大型工作站 ( Workstation ) 划上等号</span>！<br><br>  		但是这个高度开放的 Unix 系统在 1979 年有了重大的转折～ 		因为 AT&amp;T 由于商业的考虑，以及在当时现实环境下的思考，于是将想 Unix 的版权收回去， 		因此，在 AT&amp;T 在 1979 年发行的第七版 Unix 中，特别提到了 		『<span class="text_import2">不可对学生提供原始码</span>』的严格限制！ 		同时，也造成 Unix 业界之间的紧张气氛，并且也引爆了很多的商业纠纷～</ul>  		</li><li><span class="text_import1">1984 年之一： x86 架构的 Minix 诞生</span><ul> 		关于 1979 年的版权声明中，影响最大的当然就是学校教 Unix 相关学问的教授了！ 		想一想，如果没有核心原始码，那么如何教导学生认识 Unix 呢？ 		这问题对于 Andrew Tanenbaum (谭宁邦)教授来说，实在是很伤脑筋的！ 		不过，学校的课程还是得继续啊！那怎么办？？ 		<span class="text_import2">既然 1979 年的 Unix 第七版可以在 Intel 的 x86 架构上面进行移植， 		那么是否意味着可以将 Unix 改写并移植到 x86 上面了呢？</span>在这个想法上， 		谭宁邦教授于是乎自己动手写了 Minix 这个 Unix Like 的核心程序！ 		在撰写的过程中，为了避免版权纠纷，谭宁邦完全不看 Unix 核心原始码！ 		并且强调他的 Minix 必须能够与 Unix 兼容才行！谭宁邦在 1984 年开始撰写核心程序， 		到了 1986 年终于完成，并于次年出版 Minix 相关书籍，同时与新闻组相结合～<br><br>  		这个 Minix 版本比较有趣的地方是，他并不是完全免费的，无法在网络上提供下载！ 		必须要透过磁盘/磁带购买才行！虽然真的很便宜～不过，毕竟因为没有在网络上流传， 		所以 Minix 的传递速度并没有很快速！此外，购买时，随磁盘还会附上 Minix 的原始码！ 		这意味着使用者可以学习 Minix 的核心程序设计概念喔！ 		(<span class="text_vbird">这个特色对于 Linux 的启始开发阶段，可是有很大的关系喔！</span>) 		此外，开发者仅有谭宁邦教授，因为学者很忙啊！加上谭宁邦始终认为 Minix 主要用在教育用途上面， 		所以对于 Minix 是点到为止！所以， Minix 很受欢迎没错， 		不过，使用者的要求/需求的声音可能就比较没有办法上升到比较高的地方了！ 		这样说，您明白吧？？？ ^_^ </ul>  		</li><li><span class="text_import1">1984 年之二： GNU 与 FSF 计划的成立</span><ul> 		Richard Mathew Stallman (史托曼) 在 1984 年发起的 GNU 计划，对于现今的自由软件风潮， 		真有不可磨灭的地位！目前我们所使用得很多自由软件，几乎均直接或间接帮助于 GNU 这个计划呢！ 		那么史托曼是何许人也？为何他会发起这个 GNU 计划呢？<br><br>  		<a href="http://www.stallman.org/" target="_blank">Richard Mathew Stallman </a>(生于 1953 年， 		网络上自称的 ID 为 RMS) 		从小就很聪明！他在 1971 年的时候，进入黑客圈中相当出名的人工智能实验室(AI Lab.)， 		这个时候的黑客专指计算机功力很强的人，而非破坏计算机的怪客 (cracker) 喔！ 		当时的黑客圈对于软件的着眼点几乎都是在『分享』，所以并没有专利方面的困扰！ 		这个特色对于史托曼的影响很大！不过，后来由于管理阶层的问题，导致实验室的优秀黑客离开该实验室， 		并且进入其他商业公司继续发展优秀的软件。但史托曼并不服输，仍然持续在原来的实验室开发新的程序与软件。 		后来，他发现到，自己一个人并无法完成所有的工作，于是想要成立一个开放的团体来共同努力！<br><br>  		1983 年以后，因为实验室硬件的更换，使得史托曼无法继续以原有的硬件与操作系统继续自由程序的撰写～ 		而且他进一步发现到，过去他所使用的 Lisp 操作系统，是麻省理工学院的专利软件， 		是无法共享的，这对于想要成立一个开放团体的史托曼是个阻碍。于是他便放弃了 Lisp 这个系统。 		后来，他接触到 Unix 这个系统，并且发现， Unix 在理论与实际上，都可以在不同的机器间进行移植。 		于是他开始转而使用 Unix 系统。因为 Lisp 与 Unix 是不同的系统， 		所以，他原本已经撰写完毕的软件是无法在 Unix 上面运行的！为此， 		他就开始将软件移植到 Unix 上面。并且，为了让软件可以在不同的平台上运作， 		因此，史托曼将他发展的软件均撰写成可以移植的型态！<br><br>  		1984 年，史托曼开始 <a href="http://www.gnu.org/" target="_blank">GNU</a> 		 计划，<span class="text_import2">这个计划的目的是想要： 		建立一个自由的开放的 Unix 操作系统。</span> 		但是建立一个操作系统谈何容易啊！而且在当时的 GNU 是仅有自己一个人单打独斗的史托曼～ 		这实在太麻烦，但又不能不做这个计划，于是史托曼反其道而行～『既然操作系统太复杂， 		我就先写可以在 Unix 上面运行的小程序，这总可以了吧？呵呵！』在这个想法上， 		史托曼便开始了程序的写作。在写作期间，为了不让自己吃上官司，他绝对不看专利软件的原始码！ 		为了这个计划，他开始使用原本 Unix 上面跑的软件， 		并自行撰写功能与 Unix 原有专利软件相仿的软件。<br><br>  		但不论是什么软件，都得要进行编译成为二进制文件(binary file)后才能够执行， 		因此他便开始撰写 C 语言的编译程序，那就是现在相当有名的 GNU C (gcc)！ 		这个点相当的重要！这是因为 C 语言编译程序版本众多，但都是专利软件， 		如果他写的 C 编译程序够棒，效能够佳，那么将会大大的让 GNU 计划出现在众人眼前！<br>  		<div style="padding: 10pt 0pt;" align="right"><table width="90%"><tbody><tr><td><b>Tips:</b><br><span style="color: rgb(0, 144, 0);"><font size="-1">			我们在前面稍微提过，计算机仅认识 0/1 的数据，但是人类不认识啊！ 			人类对于纯文本的数据(就是所谓的 ASCII 文件格式)比较有感觉。 			但是偏偏计算机又不认识 ASCII 格式的文字，很头痛，不是吗？ 			为此，就会有很多的所谓的『编译程序』来辅助我们撰写程序。 			我们一般使用文本编辑器以 ASCII 纯文本格式来撰写程序， 			再透过所谓的『编译程序(compiler)』』将刚刚完成的文本文件 			『编译』成为计算机认识的二进制制(binary file)的档案， 			以让计算机认识且可以执行的程序啊！ 		</font></span></td><td><img src="0110whatislinux-fc4_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div> 		但开始时并不顺利，为此，他先转而将 Emacs 编辑器写成可以在 Unix 上面跑得软件， 		并公开公布原始码，因为 Emacs 太优秀了，因此，很多人便直接向他购买。此时 Internet 尚未流行， 		所以，<span class="text_import2">史托曼便借着 Emacs 以磁带(tape)出售，赚了一点钱</span> 		，进而开始全力撰写其他软件。并且成立 <span class="text_import2">自由软件基金会 		(FSF, Free Software Foundation)</span>，请更多工程师与志工撰写软件。 		终于还是完成了 GCC，这比 Emacs 还更有帮助！ 		此外，他还撰写了更多可以被呼叫的 C 函式库(GNU C library)， 		以及可以被使用来操作操作系统的基本接口 BASH shell ！ 		这些都在 1990 年左右完成了！<br>  		<div style="padding: 10pt 0pt;" align="right"><table width="90%"><tbody><tr><td><b>Tips:</b><br><span style="color: rgb(0, 144, 0);"><font size="-1">			如果纯粹使用文本编辑器来编辑程序的话，那么程序语法如果写错时， 			只能利用编译时发生的错误讯息来修订了，这样实在很没有效率。 			Emacs 则是一个很棒的编辑器！注意！是编辑(editor)而非编译(compiler)！ 			他可以很快的立刻显示出您写入的语法可能有错误的地方，这对于程序设计师来说， 			实在是一个好到不能再好的工具了！所以才会这么的受到欢迎啊！ 		</font></span></td><td><img src="0110whatislinux-fc4_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div> 		到了 1985 年，为了避免 GNU 所开发的自由软件被其他人所利用而成为专利软件， 		所以他与律师草拟了有名的<span class="text_import2">通用公共许可证  		(General Public License, GPL)</span>， 		并且称呼他为 <span class="text_import2">copyleft</span> (相对于专利软件的 copyright！)。 		关于 GPL 的相关内容我们在下一个小节继续谈论，在这里，必须要说明的是， 		由于有 GNU 所开发的几个重要软件，如：<br><br><ul><span class="text_import2"> 			<li>Emacs 			</li><li>GNU C (GCC) 			</li><li>GNU C Library (glibc) 			</li><li>Bash shell</li></span></ul><br> 		造成后来很多的软件开发者可以藉由这些基础的工具来进行程序开发！ 		进一步壮大了自由软件团体！这是很重要的！不过，对于 GNU 的最初构想 		『建立一个自由的 Unix 操作系统』来说，有这些优秀的程序是仍无法满足， 		因为，当下并没有『自由的 Unix 核心』存在.....所以这些软件仍只能在那些有专利的  		Unix 平台上工作～～一直到 Linux 的出现......</ul>  		</li><li><span class="text_import1">1988 年： 图形接口 XFree86 计划</span><ul> 		有鉴于图形用户接口 ( <span class="text_import2">Graphical User Interface, GUI</span> ) 		的需求日益加重，在 1984 年由 MIT 与其他第三方首次发表了 X Window System 		，并且更在 1988 年成立了非营利性质的 XFree86 这个组织。所谓的 XFree86 其实是 		<span class="text_import2">X Window System + Free + x86</span> 的整合名称呢！ 		而这个 XFree86 的 GUI 界面更在 Linux 的核心 1.0 版于  		1994 年释出时，整合于 Linux 操作系统当中！<br> 		<div style="padding: 10pt 0pt;" align="right"><table width="90%"><tbody><tr><td><b>Tips:</b><br><span style="color: rgb(0, 144, 0);"><font size="-1">			为什么称图形用户接口为 X 呢？因为由英文单字来看， Window 的 W  			接的就是 X 啦！意指 Window 的下一版就是了！ 			需注意的是， X Window 并不是 X Window<b>s</b> 喔！ 		</font></span></td><td><img src="0110whatislinux-fc4_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div></ul>  		</li><li><span class="text_import1">1991 年： 芬兰大学生 Linus Torvalds 的一则简讯</span><ul> 		到了 1991 年，芬兰的赫尔辛基大学的 Linus Torvalds 在 BBS 上面贴了一则消息， 		宣称他以 bash, gcc 等工具写了一个小小的核心程序，这个核心程序可以在 Intel 的 386  		机器上面运作，让很多人很感兴趣！从此开始了 Linux 不平凡的路程！</ul> 	</li></div>  	<hr><a name="whatislinux_gnu"></a><img src="../image/logo.png" alt="小标题的图示" width="24" align="middle" height="23">	<span class="text_h2">关于 GNU 计划</span><br> 	<div class="block2"> 		1984 年创立 GNU 计划与 FSF 基金会的 Stallman 先生认为， 		写程序最大的快乐就是让自己发展的良好的软件让大家来使用了！ 		而既然程序是想要分享给大家使用的，不过，每个人所使用的计算机软硬件并不相同， 		既然如此的话，那么该程序的原始码 (Source code) 就应该要同时释出， 		这样才能方便大家修改而适用于每个人的计算机中呢！这个将原始码释出的举动， 		就称为 Open Source ！此外，史托曼同时认为，如果您将您程序的 Source code  		分享出来时，若该程序是很优秀的，那么将会有很多人使用， 		而每个人对于该程序都可以查阅 source code ，无形之中，就会有一票人帮您除错啰！ 		您的这支程序将会越来越壮大！越来越优秀呢！<br><br>  		而为了避免自己的开发出来的 Open source 的自由软件被拿去做成专利软件， 		于是 Stallman 同时将 GNU 与 FSF 发展出来的软件，都挂上 GPL 的版权宣告～ 		这个 FSF 的核心观念是『<span class="text_import2">版权制度是促进社会进步的手段， 		版权本身不是自然权力。</span>』对于 FSF 有兴趣或者对于 GNU  		想要更深入的了解时，请参考<a href="http://saturn.stu.edu.tw/%7Eckhung/" target="_blank">树德大学的洪朝贵教授</a>的网站 		<a href="http://saturn.stu.edu.tw/%7Eckhung/a/c_83.php" target="_blank">http://saturn.stu.edu.tw/~ckhung/a/c_83.php</a>，或直接到 GNU 去： 		<a href="http://www.gnu.org/" target="_blank">http://www.gnu.org</a> 里面有更为深入的解说！<br>  		<div style="padding: 10pt 0pt;" align="right"><table width="90%"><tbody><tr><td><b>Tips:</b><br><span style="color: rgb(0, 144, 0);"><font size="-1">			为什么要称为 GNU 呢？其实 GNU 是 GNU's Not Unix 的缩写， 			意思是说， GNU 并不是 Unix 啊！那么 GNU 又是什么呢？ 			就是 GNU's Not Unix 嘛！.....如果您写过程序， 			就会知道，这个 GNU = GNU's Not Unix 可是无穷循环啊！忙碌～<br><br> 			另外，什么是 Open Source 呢？所谓的 source 是程序发展者写出的源代码， 			Open Source 就是，软件在发布时，同时将作者的原始码一起公布的意思！ 		</font></span></td><td><img src="0110whatislinux-fc4_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div> 		那么这个 GPL ( GNU General Public License, GPL ) 是什么玩意儿？ 		为什么要将自由软件挂上 GPL 的『版权宣告』呢？这个版权宣告对于作者有何好处？ 		首先， Stallman 对 GPL 一直是强调 Free 的，这个 Free 的意思是这样的：<br><br> 		<span class="text_import2">"Free software" is a matter of liberty, not price.  		To understand the concept, you should think of "free speech", not "free beer".   		"Free software" refers to the users freedom to run, copy, distribute,  		study, change, and improve the software </span><br><br> 		大意是说， Free Software (自由软件) 是一种自由的权力，并非是『价格！』 		举例来说，你可以拥有自由呼吸的权力、你拥有自由发表言论的权力， 		但是，这并不代表您可以到处喝『免费的啤酒！(free beer)』，也就是说， 		<span class="text_import2">自由软件的重点并不是指『免费』的，而是指具有『自由度, freedom』的软件</span>， 		史托曼进一步说明了自由度的意义是：<span class="text_import2"> 		使用者可以自由的执行、复制、再发行、学习、修改与强化自由软件</span>。 		这无疑是个好消息！因为如此一来，你所拿到的软件可能原先只能在 Unix 上面跑， 		但是经过原始码的修改之后，你将可以拿他在 Linux 或者是 Windows  		上面来跑！总之，一个软件挂上了 GPL 版权宣告之后，他自然就成了自由软件！ 		这个软件就具有底下的特色：<ul><span class="text_import2"> 		<li>取得软件与原始码：您可以根据自己的需求来执行这个自由软件； 		</li><li>复制：您可以自由的复制该软件； 		</li><li>修改：您可以将取得的原始码进行程序修改工作，使之适合您的工作； 		</li><li>再发行：您可以将您修改过的程序，再度的自由发行，而不会与原先的撰写者冲突； 		</li><li>回馈：您应该将您修改过的程序代码回馈于社群！</li></span></ul> 		但请特别留意，您所修改的任何一个自由软件都不应该也不能这样：<ul><span class="text_import2"> 		<li>修改授权：您不能将一个 GPL 授权的自由软件，在您修改后而将他取消 GPL 授权～ 		</li><li>单纯贩卖：您不能单纯的贩卖自由软件。</li></span></ul> 		也就是说，既然 GPL 是站在互助互利的角度上去开发的，您自然不应该将大家的成果占为己有， 		而取消 GPL 授权的！对吧！因此您当然不可以将一个 GPL 软件的授权取消， 		即使您已经对该软件进行大幅度的修改！那么自由软件也不能贩卖吗？当然不是！还记得上一个小节里面， 		我们提到史托曼藉由贩卖 Emacs 取得一些经费，让自己生活不至于匮乏吧？？是的！ 		自由软件是可以贩卖的，不过，不可仅贩卖该软件，应同时搭配售后服务与相关手册～ 		这些可就需要工本费了呢！<br><br>  		很多人还是有疑问，目前不是有很多 Linux 开发商吗？为何他们可以贩卖 Linux 这个 GPL 授权的软件？ 		原因很简单，因为他们大多都是贩卖『售后服务！』所以，他们所使用的自由软件， 		都可以在他们的网站上面下载！(当然，每个厂商他们自己开发的工具软件就不是 GPL 的授权软件了！) 		但是，您可以购买他们的 Linux 光盘，如果您购买了光盘，他们会提供相关的手册说明文件， 		同时也会提供您数年不等的咨询、售后服务、软件升级与其他协力工作等等的附加价值！ 		所以说，目前自由软件工作者，他们所赖以维生的，几乎都是在『服务』这个领域呢！ 		毕竟自由软件并不是每个人都会撰写，有人有需要您的自由软件时，他就会请求您的协助， 		此时，您就可以透过服务来收费了！这样来说， 		<span class="text_import2">自由软件确实还是具有商业空间的喔！</span><br><br>  		<div style="padding: 10pt 0pt;" align="right"><table width="90%"><tbody><tr><td><b>Tips:</b><br><span style="color: rgb(0, 144, 0);"><font size="-1">			很多人对于 GPL 授权一直很疑惑，对于 GPL 的商业行为更是无法接受！ 			关于这一点，鸟哥在这里还是要再次的申明， GPL 是可以从事商业行为的！ 			而很多的作者也是藉由这些商业行为来得以取得生活所需，更进一步去发展更优秀的自由软件！ 			千万不要听到『商业』就排斥！这对于发展优良软件的朋友来说，是不礼貌的！ 		</font></span></td><td><img src="0110whatislinux-fc4_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div> 		上面提到的大多是与用户有关的项目，那么 GPL 对于自由软件的作者有何优点呢？ 		大致的优点有这些：<ul> 		<li>软件安全性较佳； 		</li><li>软件执行效能较佳； 		</li><li>软件除错时间较短； 		</li><li>贡献的原始码远永都存在。</li></ul> 		这是因为既然是 Open Source 的自由软件，那么您的程序代码将会有很多人帮您查阅， 		如此一来，程序的漏洞与程序的优化将会进展的很快！所以，在安全性与效能上面， 		自由软件一点都不输给商业软件喔！此外，因为 GPL 授权当中，修改者并不能修改授权， 		因此，您如果曾经贡献过程序代码，嘿嘿！您将名留青史呢！不错吧！ ^_^<br><br>  		不过，就鸟哥的观点来看， GPL 对于程序开发者的优点是相当多的，不过， 		对于不熟悉程序的一般人来说， GPL 的优点其实不太容易看出来～ 		首先，虽然他是随手可得的自由软件，不过，您也必须要会使用基本的编译程序才行吧！ 		(呵呵！这也是您为何要买这本书/察看鸟哥的网站的原因吧！ ^_^) 		这对于一般人来说并不容易！当然啦，如果每个人都跟 Stallman 一样神，那商业公司就不用存在啦！ 		嘿嘿！对于不懂程序的人来说，商业公司是一个很快速的解决之道啊！ 		而对于我们广大的读者群来说，认识了/学习了 Linux 与自由软件的相关技巧后， 		对于未来真的是有很不错的帮助喔！ 	</div> </div>  <hr><a name="torvalds"></a><img src="../image/logo.png" alt="大标题的图示" width="35" align="middle" height="34"><span class="text_h1">Torvalds 的 Linux 发展</span><br> <div class="block1"> 	我们前面一节当中，提到了 Linux 是由 Torvalds 这个芬兰人所发明的。 	那么为何托瓦兹可以发明 Linux 呢？凭空想象而来的？还是有什么渊源？ 	这里我们就来谈一谈啰！<br><br>  	<hr><a name="torvalds_minix"></a><img src="../image/logo.png" alt="小标题的图示" width="24" align="middle" height="23"><span class="text_h2">与 Minix 之间</span><br> 	<div class="block2"> 		Linus Torvalds (托瓦兹, 1969 年出生)的外祖父是赫尔辛基大学的统计学家， 		他的外祖父为了让自己的小孙子能够学点东西， 		所以从小就将托瓦兹带到身边来管理一些微计算机。在这个时期，托瓦兹接触了汇编语言  		(Assembly Language)，那是一种直接与芯片对谈的程序语言，也就是所谓的低级语言。 		必须要很了解硬件的架构，否则很难以汇编语言撰写程序的。<br><br>  		在 1988 年间，托瓦兹顺利的进入了赫尔辛基大学，并选读了计算机科学系。 		在就学期间，因为学业的需要与自己的兴趣，托瓦兹接触到了Unix 这个操作系统。 		当时整个赫尔辛基只有一部最新的 Unix 系统，同时仅提供 16 个终端机 (terminal)。 		还记得我们上一节刚刚提过的，早期的计算机仅有主机具有运算功能，  		terminal 仅负责提供 Input/Output 而已。在这种情况下， 		实在很难满足托瓦兹的需求，因为.....光是等待使用 Unix 的时间，就很耗时～ 		为此，他不禁想到：『我何不自己搞一部 Unix 来玩？』不过， 		就如同 Stallman 当初的 GNU 计划一样，要写核心程序，谈何容易～<br><br>  		不过，幸运之神并未背离托瓦兹，因为不久之后，他就知道有一个类似 Unix 的系统， 		并且与 Unix 完全兼容，还可以在 Intel 386 机器上面跑的操作系统， 		那就是我们上一节提过的，谭宁邦教授为了教育需要而撰写的 Minix 系统！ 		他在购买了最新的 Intel 386 的个人计算机后，就立即安装了 Minix 这个操作系统。 		另外，由于 Minix 这个操作系统是有附上原始码的～所以，托瓦兹也经由这个原始码 		学习到了很多的核心程序设计的设计概念喔！ 	</div>  	<hr><a name="torvalds_multi"></a><img src="../image/logo.png" alt="小标题的图示" width="24" align="middle" height="23">	<span class="text_h2">对 386 硬件的多任务测试</span><br> 	<div class="block2"> 		事实上，托瓦兹对于个人计算机的 CPU 其实并不满意，因为他之前碰的计算机都是工作站型的计算机， 		这类计算机的 CPU 特色就是可以进行『多任务处理』的能力。什么是多任务呢？ 		理论上，<span class="text_import2">一个 CPU 在一个时间内仅能进行一项工作</span>， 		那如果有两个工作同时出现到系统中呢？举例来说， 		您可以在现今的计算机中同时开启两个以上的办公软件，例如电子电子表格与文字处理软件。 		这个同时开启的动作代表着这两个工作同时要交给 CPU 来处理～ 		啊！ CPU 一个时间点内仅能处理一个工作，那怎么办？没关系， 		这个时候如果具有多任务的 CPU 就会自动在不同的工作间切换～ 		亦即我先跑 10% 的电子电子表格，再转到字处理器跑 10% ，再回去电子电子表格.... 		一直到将两个工作结束为止(不一定同时结束！如果某个工作先结束了， 		CPU 就会全速去跑剩下的那个工作了！)  		<div style="padding: 10pt 0pt;" align="right"><table width="90%"><tbody><tr><td><b>Tips:</b><br><span style="color: rgb(0, 144, 0);"><font size="-1">			为什么有的时候我同时开两个档案(假设为 A, B 档案)所花的时间， 			要比开完 A 再去开 B 档案的时间还要多？现在是否稍微可以理解？ 			因为如果同时开启的话， CPU 就必须要在两个工作之间不停的切换～ 			而切换的动作还是会耗去一些 CPU 时间的！所以啰，同时启用两个以上的工作在一个 CPU 上， 			要比一个一个的执行还要耗时一点。这也是为何现在 CPU 开发商要整合两个 CPU 于一个芯片中！ 			也是为何在运作情况比较复杂的服务器上，需要比较多的 CPU 负责的原因！ 		</font></span></td><td><img src="0110whatislinux-fc4_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div> 		早期 Intel 的 x86 架构计算机不是很受重视的原因，就是因为 x86 的芯片对于多任务的处理不佳， 		CPU 在不同的工作之间切换不是很顺畅。但是这个情况在 386 计算机推出后， 		有很大的改善。托瓦兹在得知新的 386 芯片的相关信息后，他认为， 		以价格性能比的观点来看， Intel 的 386 便宜而且性能上也就稍微可以将就将就 ^_^。 		所以他就贷款去买了一部 Intel 的 386 来玩。<br><br>  		前面提到，托瓦兹是玩汇编语言的，汇编语言对于硬件有很密切的关系， 		为了彻底发挥 386 的效能，于是托瓦兹花了不少时间在测试 386 机器上！ 		他的重要测试就是在测试 386 的多功效能上。首先，他写了两个小程序， 		一个程序会持续输出 A ，另一个会持续输出 B，他将两个程序同时执行， 		结果，他看到屏幕上很顺利的一直出现 ABABABAB...... 		他知道，他成功了！ ^_^<br>  		<div style="padding: 10pt 0pt;" align="right"><table width="90%"><tbody><tr><td><b>Tips:</b><br><span style="color: rgb(0, 144, 0);"><font size="-1">			要达到多任务(multitasking)的环境，除了硬件(主要是 CPU)需要能够具有多任务的特性外， 			操作系统也需要支持这个功能喔！一些不具有多任务特性的操作系统， 			想要同时执行两个程序是不可能的。除非先被执行的程序执行完毕，否则， 			后面的程序不可能被主动执行。至于多任务的操作系统中，每个程序被执行时， 			都会有一个最大 CPU 使用时间，若该工作运作的时间超过这个 CPU 使用时间时， 			该工作就会先被丢出 CPU 的运作中，而再度的进入核心工作排程中，等待下一次的 CPU 运作。 			这有点像在开记者会啦，主持人(CPU)会问『谁要发问』？一群记者(工作程序) 			就会举手(看谁的工作重要！)，先举手的自然就被允许发问，问完之后， 			主持人又会问一次谁要发问，当然，所有人(包括刚刚那个记者)都可以举手！ 			如此一次一次的将工作给他完成啊！ ^_^ 			多任务的环境对于复杂的工作情况，帮助很大喔！ 		</font></span></td><td><img src="0110whatislinux-fc4_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div> 	</div>  	<hr><a name="torvalds_first"></a><img src="../image/logo.png" alt="小标题的图示" width="24" align="middle" height="23">	<span class="text_h2">初次释出 Linux 0.02</span><br> 	<div class="block2"> 		探索完了 386 的硬件相关信息，并且也安装了类似 Unix 的 Minix 操作系统， 		同时还取得 Minix 的原始码，接下来，托瓦兹干嘛去了？？ 		因为 Minix 的发展控制在谭宁邦教授手上，他希望 Minix 能以教育的立场去发展， 		所以对于 Minix 的开发并不是十分的热中，但是一堆人对于 Minix 的功能需求又很强烈， 		例如一些接口与周边的驱动程序与新的协议等等。在无法快速的得到解决后， 		托瓦兹就想，那我干脆自己写一个更适合我自己用的 Minix 好了！ 		于是他就开始进行核心程序的撰写了。<br><br>  		对于托瓦兹来说， GNU 真的是一个不可多得的好家伙～ 		因为他用来撰写属于自己小核心的工具，就是 GNU 的 bash 操作接口与 gcc 编译程序等等自由软件。 		他以 GNU 的软件针对 386 并参考 Minix 的设计理念(注意，仅是程序设计理念， 		并没有使用 Minix 的原始码)来写这个小核心。喝！没想到竟然可以写出这个小玩意， 		而这个小玩意竟然可以在 386 上面顺利的跑起来～还可以读取 Minix 的文件系统。 		真是太好了！不过还不够，他希望这个程序可以获得大家的一些修改建议， 		于是他便将这个核心放置在网络上提供大家下载，同时在 BBS 上面贴了一则消息：  <table class="term"><tbody><tr><td class="term"><pre>Hello everybody out there using minix- I'm doing a (free) operation system (just a hobby, won't be big and professional like gnu) for 386(486) AT clones. </pre></td></tr></tbody></table>  		他说，他完成了一个好玩的小核心操作系统，这个核心是用在 386 机器上的， 		同时，他真的仅是好玩，并不是想要做一个跟 GNU 一样大的计划！这则新闻引起很多人的注意， 		他们也去托瓦兹提供的网站上下载了这个核心来安装。 		有趣的是，因为托瓦兹放置核心的那个 FTP 网站的目录为： Linux ， 		从此，大家便称这个核心为 Linux 了。(请注意，此时的 Linux 就是那个 kernel 喔！ 		另外，托瓦兹所丢到该目录下的第一个核心版本为 0.02 呢！)<br><br>  		同时，为了让自己的 Linux 能够兼容于 Unix 系统，于是托瓦兹开始将一些能够在 Unix  		上面运作的软件拿来在 Linux 上面跑。不过，他发现到，是有很多的软件无法在 Linux 这个核心上运作。 		这个时候他有两种作法，<span class="text_import2">一种是修改软件，让该软件可以在 Linux 上跑， 		另一种则是修改 Linux ，让 Linux 符合软件能够运作的规范！</span> 		由于 Linux 希望能够兼容于 Unix ，于是托瓦兹选择了第二个作法『修改 Linux 』！ 		为了让所有的软件都可以在 Linux 上执行，于是托瓦兹开始参考标准的 POSIX 规范。<br><br>  		这个正确的决定让 Linux 在起步的时候体质就比别人优良～ 		因为 POSIX 标准主要是针对 Unix 与一些软件运行时候的标准规范， 		只要依据这些标准规范来设计的核心与软件，理论上，就可以搭配在一起执行了。 		而 Linux 的发展就是依据这个 POSIX 的标准规范， Unix 上面的软件也是遵循这个规范来设计的， 		如此一来，让 Linux 很容易就与 Unix 兼容共享互有的软件了！ 		同时，因为 Linux 直接放置在网络下，提供大家下载， 		所以在流通的速度上相当的快！导致 Linux 的使用率大增！ 		这些都是造成 Linux 大受欢迎的几个重要因素呢！ 	</div>  	<hr><a name="torvalds_team"></a><img src="../image/logo.png" alt="小标题的图示" width="24" align="middle" height="23">	<span class="text_h2">Linux 的发展：虚拟团队的产生</span><br> 	<div class="block2"> 		Linux 虽然是托瓦兹发明的，而且内容还绝不会涉及专利软件的版权问题。 		不过，如果单靠托瓦兹自己一个人的话，那么 Linux 要茁壮实在很困难～ 		因为一个人的力量是很有限的。好在托瓦兹选择 Linux 的开发方式相当的务实！ 		首先，他将释出的 Linux 核心放置在 FTP 上面，并请告知大家新的版本信息， 		等到使用者下载了这个核心并且安装之后，如果发生问题， 		或者是由于特殊需求亟需某些硬件的驱动程序，那么这些使用者就会主动回报给托瓦兹。 		在托瓦兹能够解决的问题范围内，他都能很快速的进行 Linux 核心的更新与除错。<br><br>  		不过，托瓦兹总是有些硬件无法取得的啊，那么他当然无法帮助进行驱动程序的撰写与相关软件的改良。 		这个时候，就会有些志工跳出来说：『这个硬件我有，我来帮忙写相关的驱动程序。』 		因为 Linux 的核心是 Open Source 的，黑客志工们很容易就能够跟随 Linux 的原本设计架构， 		并且写出兼容的驱动程序或者软件。志工们写完的驱动程序与软件托瓦兹是如何看待的呢？ 		首先，他将该驱动程序/软件带入核心中，并且加以测试。 		只要测试可以运行，并且没有什么主要的大问题，那么他就会很乐意的将志工们写的程序代码加入核心中！ 		总之，托瓦兹是个很务实的人，对于 Linux 核心所欠缺的项目，他总是『先求有且能跑， 		再求进一步改良』的心态！这让 Linux 使用者与志工得到相当大的鼓励！ 		因为 Linux 的进步太快了！用户要求虚拟内存，结果不到一个星期推出的新版 Linux 就有了！ 		这不得不让人佩服啊！<br><br>  		另外，为因应这种程序代码的加入，于是 Linux 便逐渐发展成具有模块的功能！ 		亦即是将某些功能独立出于核心外，在需要的时候才加载到核心中。如此一来， 		如果有新的硬件驱动程序或者其他协议的程序代码进来时，就可以模块化， 		大大的增加了 Linux 核心的可维护能力！<br><br>  		后来，因为 Linux 核心加入了太多的功能， 		光靠托瓦兹一个人进行核心的实际测试并加入核心原始程序实在太费力～ 		结果，就有很多的朋友跳出来帮忙这个前置作业！ 		例如考克斯(Alan Cox)、与崔迪(Stephen Tweedie)等等， 		这些重要的副手会先将来自志工们的修补程序或者新功能的程序代码进行测试， 		并且结果上传给托瓦兹看，让托瓦兹作最后核心加入的原始码的选择与整并！ 		这个分层负责的结果，让 Linux 的发展更加的容易！<br><br>  		特别值得注意的是，这些托瓦兹的 Linux 发展副手，以及自愿传送修补程序的黑客志工， 		其实都没有见过面，而且彼此在地球的各个角落，大家群策群力的共同发展出现今的 Linux ， 		我们称这群人为虚拟团队！而为了虚拟团队数据的传输，于是 Linux 便成立的核心网站： 		<a href="http://www.kernel.org/" target="_blank">http://www.kernel.org</a> ！ 		而这群素未谋面的虚拟团队们，在 1994 年终于完成的 Linux 的核心正式版！ version 1.0 。 		这一版同时还加入了 X Window System 的支持呢！更于 1996 年完成了 2.0 版， 		<span class="text_import2">同时因应商业版本的需求， 		于是开始将核心版本以测试版及稳定版同时开发， 		次版本偶数为稳定版，奇数为开发中的测试版。</span> 		例如 2.6 与 2.5 版为相同的版本，不过， 2.6 为稳定版， 2.5 则为测试版。 		测试版含有较多的功能，不过，稳定性可不敢说～ 		并且托瓦兹指明了企鹅为 Linux 的吉祥物。<br>  		<div style="padding: 10pt 0pt;" align="right"><table width="90%"><tbody><tr><td><b>Tips:</b><br><span style="color: rgb(0, 144, 0);"><font size="-1">			奇怪的是，托瓦兹是因为小时候去动物园被企鹅咬了一口念念不忘， 			而正式的 2.0 推出时，大家要他想一个吉祥物。他在想也想不到什么动物的情况下， 			就将这个念念不忘的企鹅当成了 Linux 的吉祥物了...... 		</font></span></td><td><img src="0110whatislinux-fc4_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div><br>  		Linux 由于托瓦兹是针对 386 写的，跟 386 硬件的相关性很强，所以， 		早期的 Linux 确实是不具有移植性的。不过，大家知道 Open source 的好处就是， 		可以修改程序代码去适合作业的环境。因此，在 1994 年以后， Linux 便被开发到很多的硬件上面去了！ 		目前除了 x86 之外， IBM、HP、Sun 等等公司出的硬件也都有被 Linux 所支持呢！ 	</div>  	<hr><a name="torvalds_dist"></a><img src="../image/logo.png" alt="小标题的图示" width="24" align="middle" height="23">	<span class="text_h2">Linux distributions</span><br> 	<div class="block2"> 		好了，经过上面的说明，我们知道了 Linux 其实就是一个操作系统最底层的核心及其提供的核心工具。 		他是 GNU 授权模式，所以，任何人均可取得原始码与可执行这个核心程序，并且可以修改。 		此外，因为 Linux 参考 POSIX 设计规范，于是兼容于 Unix 操作系统， 		故亦可称之为 Unix Like 的一种。<br><br>  		Linux 的出现让 GNU 计划放下了心里的一块大石头，因为 GNU 一直以来就是缺乏了核心程序， 		导致他们的 GNU 自由软件只能在其他的 Unix 上面跑。既然目前有 Linux 出现了，且  		Linux 也用了很多的 GNU 相关软件，所以 Stallman 认为 Linux 的全名应该称之为 GNU/Linux 呢！ 		不管怎么说，Linux 实在很不错，让 GNU 软件大多以 Linux 为主要操作系统来进行开发， 		此外，很多其他的自由软件团队，例如 sendmail, wu-ftp, apache 等等也都有以 Linux  		为开发测试平台的计划出现！如此一来， Linux 除了主要的核心程序外，可以在 Linux  		上面运行的软件也越来越多，如果有心，就能够将一个完整的 Linux 操作系统搞定了！<br><br>  		虽然由 Torvalds 负责开发的 Linux 仅具有 Kernel 与 Kernel 提供的工具， 		不过，如上所述，很多的软件已经可以在 Linux 上面运作了，因此， 		<span class="text_import2">Linux + 各家软件就可以完成一个相当完整的操作系统了</span>。 		不过，要完成这样的操作系统......还真难～ 		因为 Linux 早期都是由黑客工程师所开发维护的，他们并没有考虑到一般使用者的能力...... 		为了让使用者能够接触到 Linux ，于是很多的商业公司或非营利团体， 		就将 Linux Kernel (含 tools ) 与可运行的软件整合起来，加上自己具有创意的工具程序， 		这个工具程序可以让用户以光盘或者透过网络直接安装/管理 Linux 系统。<span class="text_import2"> 		这个 Kernel + Softwares + Tools 的可完全安装的咚咚，我们称之为 Linux distribution </span>， 		一般中文翻译成 可完全安装套件，或者安装套件等等。<br>  		<div style="padding: 10pt 0pt;" align="right"><table width="90%"><tbody><tr><td><b>Tips:</b><br><span style="color: rgb(0, 144, 0);"><font size="-1">		由于 Linux 核心是由黑客工程师写的，要由原始码安装到 x86 计算机上面成为可以执行的 binary 档案， 		这个过程可不是人人都会的～所以早期确实只有工程师对 Linux 有兴趣。 		一直到一些社群与商业公司将 Linux 核心配合自由软件，并提供完整的安装程序， 		且制成光盘后，对于一般用户来说， Linux 才越来越具有吸引力！ 		因为只要一直『下一步』就可以将 Linux 安装完成啊！ ^_^ 		</font></span></td><td><img src="0110whatislinux-fc4_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div> 		我们前面说过， GNU 的 GPL 授权并非不能从事商业行为，于是很多商业公司便成立来贩卖 Linux  		distribution。而由于 Linux 的 GPL 版权宣告，因此，商业公司所贩卖的 Linux distributions  		通常也都可以从 Internet 上面来下载的！此外，如果您想要其他商业公司的服务， 		那么直接向该公司购买光盘来安装，也是一个很不错的方式的！<br><br>  		不过，由于发展 Linux distributions 的公司实在太多了，例如有名的 Red Hat, 		Mandriva, Debian, SuSE 等等，所以很多人都很担心，如此一来<span class="text_import2">每个 		distribution 是否都不相同呢？</span>这就不需要担心了，因为每个 Linux distributions  		使用的 kernel 都是 <a href="http://www.kernel.org/" target="_blank">http://www.kernel.org</a> 		所释出的，而他们所选择的软件，几乎都是目前很知名的软件，重复性相当的高， 		例如 WWW 服务器的 Apache ， Mail 服务器的 Postfix/sendmail ，File 服务器的 Samba 等等。<br><br>  		此外，为了让所有的 Linux distributions 开发不致于差异太大，还有  		<span class="text_import2">Linux Standard Base (LSB)</span> 来规范开发者，以及目录架构的 		<span class="text_import2">File system Hierarchy Standard (FHS)</span> 规范！ 		唯一差别的，可能就是该开发者自家所开发出来的管理工具，以及套件管理的模式吧！ 		所以说，基本上，每个 Linux distributions 除了架构的严谨度与选择的套件内容外， 		其实差异并不太大啦！ ^_^ 。大家可以选择自己喜好的 distribution 来安装即可！<br><br>  		底下列出几个主要的 Linux distributions 发行者网址：<ul> 		<li><a href="http://www.redhat.com/" target="_blank">Red Hat: http://www.redhat.com</a> 		</li><li><a href="http://fedora.redhat.com/" target="_blank">Fedora: http://fedora.redhat.com</a> 		</li><li><a href="http://www.mandriva.com/" target="_blank">Mandriva: http://www.mandriva.com</a> 		</li><li><a href="http://www.novell.com/linux/suse/" target="_blank">Novell SuSE: http://www.novell.com/linux/suse/</a> 		</li><li><a href="http://www.debian.org/" target="_blank">Debian: http://www.debian.org/</a> 		</li><li><a href="http://www.slackware.com/" target="_blank">Slackware: http://www.slackware.com/</a> 		</li><li><a href="http://www.linpus.com.tw/" target="_blank">Linpus: http://www.linpus.com.tw/</a> 		</li><li><a href="http://www.gentoo.org/" target="_blank">Gentoo: http://www.gentoo.org/</a> 		</li><li><a href="http://www.ubuntulinux.org/" target="_blank">Ubuntu: http://www.ubuntulinux.org/</a> 		</li><li><a href="http://www.centos.org/" target="_blank">CentOS: http://www.centos.org/</a> 		</li></ul>  		当然发行套件者不仅于此，您可以查阅其他的 Linux 新闻来发现喔！ 		但是值得大书特书的，是中文 Linux 的延伸计划： CLE 这个套件！ 		早期的 Linux 因为是工程师发展的，而这些工程师大多以英文语系的国家为主， 		所以， Linux 对于国人的学习是比较困扰一点。后来由国人发起的 CLE 计划： 		<a href="http://cle.linux.org.tw/" target="_blank">http://cle.linux.org.tw/</a> 		开发很多的中文套件级翻译了很多的英文文件，使得我们目前得以使用中文的 Linux 呢！ 		另外，目前正在开发中的还有台南县卧龙小三等老师们发起的众多自由软件计划， 		真是造福很多的朋友啊！<ul> 		<li><a href="http://freesf.tnc.edu.tw/index.php" target="_blank">自由软件技术交流网： 			http://freesf.tnc.edu.tw/index.php</a> 		</li><li><a href="http://b2d.tnc.edu.tw/" target="_blank">B2D: http://b2d.tnc.edu.tw/</a> 		</li></ul> 		此外，如果只想看看 Linux 的话，还可以选择所谓的可光盘开机进入 Linux 的 Live CD 版本， 		亦即是 KNOPPIX 这个 Linux distributions 呢！台湾也有阿里巴巴兄维护的中文 Live CD 喔！<ul> 		<li><a href="http://www.knoppix.net/" target="_blank">http://www.knoppix.net/</a> 		</li><li><a href="http://knoppix.tnc.edu.tw/" target="_blank">中文 KNOPPIX: http://knoppix.tnc.edu.tw/</a> 		</li></ul>  		<div style="padding: 10pt 0pt;" align="right"><table width="90%"><tbody><tr><td><b>Tips:</b><br><span style="color: rgb(0, 144, 0);"><font size="-1">			对于没有额外的硬盘或者是没有额外的主机的朋友来说， 			KNOPPIX 这个可以利用光盘开机而进入 Linux 操作系统的 Live CD  			真的是一个不错的选择！您只要下载了 KNOPPIX 的映象档，然后将他刻录成为 CD， 			放入您主机的光驱，并设定光盘为第一个开机选项， 			就可以使用 Linux 系统了呢！ 		</font></span></td><td><img src="0110whatislinux-fc4_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div> 		如果您还想要知道更多的 Linux distributions 的下载与使用信息，可以参考：<ul> 		<li><a href="http://www.linuxiso.org/" target="_blank">http://www.linuxiso.org/</a> 		</li><li><a href="http://distrowatch.com/" target="_blank">http://distrowatch.com/</a> 		</li></ul>  		那我到底应该要选择哪一个 distributions ？就如同我们上面提到的，其实每个 distributions 差异性并不大！ 		不过，由于套件管理的方式主要分为 Debian 的 pkg 及 Red Hat 系统的 RPM 方式， 		目前鸟哥的建议是，先学习以 RPM 套件管理为主的 Fedora/SuSE/Mandriva 等台湾使用者较多的版本， 		这样一来，发生问题时，可以提供解决的管道比较多。如果您已经接触过 Linux 了， 		还想要更严谨的 Linux 版本，那可以考虑使用 Debian ，如果您是以效能至上来考虑， 		那么或许 Gentoo 是不错的建议！ 		总之，版本很多，但是各版本差异其实不大，建议您一定要先选定一个版本后， 		先彻头彻尾的了解他，那再继续玩其他的版本时，就可以很快的进入状况。 		鸟哥的书/网站仅提供一个版本，不过是以比较基础的方式来介绍的， 		因此，如果能够熟练这本书/网站的话，呵呵！哪一个 distributions 对您来说，都不成问题啦！ 	</div> </div>  <hr><a name="linuxpt"></a><img src="../image/logo.png" alt="大标题的图示" width="35" align="middle" height="34"><span class="text_h1">Linux 的特色</span><br> <div class="block1"> 	Linux 是 Torvalds 先生所开发出来的，基于 GPL 的版权宣告之下， 	可以在 x86 的架构下运作，也可以被移植到其他的大型主机上面。 	由于开发的相关理念与兼容的问题，因此，我们也可以称 Linux 为 Unix Like 操作系统的一种。 	<div style="padding: 10pt 0pt;" align="right"><table width="90%"><tbody><tr><td><b>Tips:</b><br><span style="color: rgb(0, 144, 0);"><font size="-1">		其实 Unix-Like 可以说是目前服务器类型的操作系统的统称啦！ 		因为，不论是 FreeBSD, BSD, Sun Unix, HP Unix,  		Red Hat Linux, Mandrake Linux 等等，都是由同一个祖先 Thompson 所写的『Unix』来的， 		因此，这些咚咚都被统称为 Unix-Like 的操作系统啰！ 	</font></span></td><td><img src="0110whatislinux-fc4_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div> 	<hr><a name="linuxpt_pt"></a><img src="../image/logo.png" alt="小标题的图示" width="24" align="middle" height="23">	<span class="text_h2">Linux 的特色</span><br> 	<div class="block2"> 		那么这个系统有什么特异功能呢？简单的说：<ul> 		<li><span class="text_import2">自由与开放</span>：由于 Linux 是基于 <span class="text_import2">GPL 			( General Public License ) </span>的架构之下，因此他是自由软件， 			也就是任何人都可以自由的使用或者是修改其中的原始码的意思！ 			这就是所谓的『<span class="text_import2">开放性架构</span>』， 			这对科学界来说是相当重要的！因为很多的工程师由于特殊的需求，常常需要修改系统的原始码， 			使该系统可以符合自己的需求！而这个开放性的架构将可以满足各不同需求的工程师！ 			因此当然就有可能越来越流行啰！以鸟哥来说，目前环境工程界的空气质量模式最新版 			<a href="http://www.cmascenter.org/" target="_blank">Models-3/CMAQ</a> 			就是以 Linux 为基准平台设计的呢！<br><br> 		</li><li><span class="text_import2">配备需求低廉</span>：而 Linux 可以支持个人计算机的 x86 架构， 			系统资源不必像早先的 Unix 系统那般，仅适合于单一公司 ( 例如 Sun ) 设备！ 			单就这一点来看，就可以造成很大的流行啰！不过，如果您想要在 Linux 下执行 X Window 系统， 			那么硬件的等级就不能太低了！<br><br> 		</li><li><span class="text_import2">功能强大而稳定</span>：而且由于 Linux 功能并不会输给一些大型的 			Unix 工作站，因此，近年来越来越多的公司或者是团体、 			个人投入这一个操作系统的开发与整合工作！<br><br> 		</li><li><span class="text_import2">独立作业</span>：另外， 			由于很多的软件套件逐渐被这套操作系统拿来使用，而很多套件软件也都在 			Linux 这个操作系统上面进行发展与测试，因此， Linux  			近来已经可以独力完成几乎所有的工作站或服务器的服务了，例如 			Web, Mail, Proxy, FTP.....。 		</li></ul>  		所以，目前 Linux 已经是相当成熟的一套操作系统啰！而且不耗资源又可以自由取得！呵呵， 		可以说造成微软相当大的压力呀！此外，由于他的系统硬件要求很低， 		加上目前很多的人由于『<span class="text_import2">Intel 的阴谋</span>』（ 		<span class="text_vbird">呵呵！开玩笑的，因为 <a href="http://www.big5.tomshardware.com/" target="_blank">Tom 		的硬件评论 (http://www.big5.tomshardware.com/)</a> 网站常常这样取笑 Intel 的说！呵！很好笑！</span>） 		而造成手边有相当多的淘汰掉的硬件配备， 		Linux 在这些被淘汰的硬件中就可以执行的相当的顺畅与稳定！ 		因此也造成相当多朋友的关注啰！<br><br>  		这也是造成 Linux 成为最近几年来最受瞩目的操作系统之一，如前所述， 		他会受到瞩目的原因主要是因为他是『free』的，就是可以自由取得的操作系统啦！ 		然后他是开放性的系统，也就是你可以随时的取得程序的原始码，这对于程序开发工程师是很重要的！ 		而且，虽然他是 Free 的自由软件，不过功能却很强大！另外， 		Linux 对于硬件的需求是很低的，这一点更造成它流行的主因，因为硬件的汰换率太快了， 		所以很多人手边都有一些很少在用的零件，这些零件组一组就可以用来跑 		Linux 了，<span class="text_import2">反正做一个工作站又不用使用到屏幕 ( 只要主机就可以啰 		) </span>，因此 Linux 就越来越流行啰！(<span class="text_vbird">插个嘴，也就是因为 		Linux 具有 1.硬件需求低、 2.架构开放、 3.系统稳定性及保密性功能够强、  		4.完全免费，所以造成一些所谓『反微软联盟』的程序设计高手不断的开发新软件！以与 		Microsoft 进行抗衡！</span>)<br><br> 	</div>  	<hr><a name="linuxpt_adv"></a><img src="../image/logo.png" alt="小标题的图示" width="24" align="middle" height="23">	<span class="text_h2">Linux 的优缺点</span><br> 	<div class="block2"> 		那干嘛要使用 Linux 做为我们的主机系统呢？这是因为 Linux 有底下这些优点：<ul> 		<li><span class="text_import2">稳定的系统</span>：<br> 			Linux 本来就是基于 Unix 概念而发展出来的操作系统，因此， 			Linux 具有与 Unix 系统相似的的程序接口跟操作方式，当然也继承了 			Unix 稳定并且有效率的特点。常听到安装 Linux  			的主机连续运做一年以上而不曾当机、不必关机是稀松平常的事；<br><br> 		</li><li><span class="text_import2">免费或少许费用</span>：<br> 			由于 Linux 是基于 GPL 的基础下的产物，因此任何人皆可以自由取得 Linux ， 			至于一些『<span class="text_import2">安装套件</span>』的发行者， 			他们发行的安装光盘也仅需要些许费用即可获得！不同于 			Unix 需要负担庞大的版权费用，当然也不同于微软需要一而再、 			再而三的更新你的系统，并且缴纳大量费用啰！<br><br> 		</li><li><span class="text_import2">安全性、漏洞的快速修补</span>：<br> 			如果你常玩网络的话，那么你最常听到的应该是 			『<span class="text_import2">没有绝对安全的主机</span>』！没错！不过 			Linux 由于支持者日众，有相当多的热心团体、个人参与其中的开发， 			因此可以随时获得最新的安全信息，并给予随时的更新，亦即是具有相对的较安全！<br><br> 		</li><li><span class="text_import2">多任务、多使用者</span>：<br> 			与 Windows 系统不同的， Linux 主机上可以同时允许多人上线来工作， 			并且资源的分配较为公平，比起 Windows 的单人假多任务系统要稳定的多啰！ 			这个多人多任务可是 Unix-Like 上面相当好的一个功能，怎么说呢？你可以在一部 			Linux 主机上面规划出不同等级的用户，而且每个用户登入系统时的工作环境都可以不相同， 			此外，还可以允许不同的使用者在同一个时间登入主机，以同时使用主机的资源。<br><br> 		</li><li><span class="text_import2">使用者与群组的规划</span>：<br> 			在 Linux 的机器中，档案的属性可以分为『可读、可写、可执行』 			等参数来定义一个档案的适用性，此外，这些属性还可以分为三个种类， 			分别是『档案拥有者、档案所属群组、其他非拥有者与群组者』。 			这对于项目计划或者其他计划开发者具有相当良好的系统保密性。<br><br> 		</li><li><span class="text_import2">相对比较不耗资源的系统</span>：<br> 			Linux 只要一部 p-100 以上等级的计算机就可以安装并且使用愉快啰！还不需要到 P-4 或 AMD K8	 			等级的计算机呢！不过，如果你要架设的是属于大型的主机（服务上百人以上的主机系统）， 			那么就需要比较好一点的机器了。不过，目前市面上任何一款个人计算机均可以达到这一个要求啰！<br><br> 		</li><li><span class="text_import2">适合需要小核心程序的嵌入式系统</span>：<br> 			由于 Linux 只要几百 K 不到的程序代码就可以完成一个完整的操作系统， 			因此相当适合于目前家电或者是小电子用品的操作系统呢！那就是当红炸子鸡『嵌入式』系统啦！ 			Linux 真的是很适合例如手机、数字相机、PDA、家电用品等等的微电脑操作系统呢！ ^_^ 		</li></ul>  		反正 Linux 好处说不完啦！不过虽然 Linux 具有这样多的好处， 		但是他先天上有一个足以致命的地方，使他的普及率受到很大的限制，就是 		Linux 需要使用『指令列』 的终端机模式进行系统的管理！虽然近年来有很多的图形接口开发使用在 		Linux 上面，但毕竟要熟悉 Linux 还是以指令列来使用是比较好的，因此要接受 		Linux的玩家必须比较要能熟悉对计算机下指令的行为，而不是用鼠标点一点 icon 		就行了！不过如果只是要架一些简单的小站呢？是不是大家都可以做的到？没错！其实只要对 		Linux 做一些小小的设定就可以架站了！Linux 还可以改进的地方：<ul> 		<li><span class="text_import2">没有特定的支持厂商</span>：因为在 Linux 上面的所有套件几乎都是自由软件， 			而每个自由软件的开发者可能并不是公司团体，而是非营利性质的团体。如此一来， 			在您 Linux 主机上面的软件若发生问题，该如何是好？ 			好在由于目前 Linux 商业界的整合还不错，目前在台湾比较具名的 Red Hat 与 SuSE  			均有设立了服务点。您可以经由这个服务点来直接向他们购买/咨询相关的软硬件问题呢！ 			不过，如果您并非选择有专门商业公司的 Linux distributions 时？怎么办？ 			没有专人到府服务呢～这点倒是还不需要太担心， 			因为拜网络风行之赐，你要问的问题几乎在网络上都可以找到答案喔！看你有没有用心去找就是了！<br><br></li><li><span class="text_import2">图形接口作的还不够好</span>：虽然早在 1994 年 Linux 1.0 版释出时， 			就已经含有 XFree86 的 X Window 架构了。不过， X Window 毕竟是 Linux 上的一个软件， 			他并不是 Linux 最核心的部分，有没有他对 Linux 的服务器执行都没有影响的！ 			所以鸟哥通常是不玩 X Window 的啦！ 			但其实有更多人对于 Linux 并非是着眼在网络服务器，而是一般桌面计算机的使用， 			这一点对于 Linux 来说，还是不够好！即使目前已有 <a href="http://www.kde.org/" target="_blank">KDE (http://www.kde.org/)</a> 及 <a href="http://www.gnome.org/" target="_blank">GNOME (http://www.gnome.org/)</a> 等优秀的窗口管理程序， 			不过，毕竟整合度还是需要加强，希望未来可以看到整合度超高的 Linux 桌面计算机呢！ 		</li></ul> 	</div>  	<hr><a name="linuxpt_other"></a><img src="../image/logo.png" alt="小标题的图示" width="24" align="middle" height="23">	<span class="text_h2">其他 Linux 相关</span><br> 	<div class="block2"> 		还有一些数据需要提醒大家的呢！<br><br>  		<li><span class="text_import1">依循标准：</span><br><br> 			Linux 有个优良的传统，那就是支持比较公认而正式的标准， 			例如开发时就使用的 POSIX 规范。此外， 			由于 Linux 是一个没有『规格品』样式的新鲜玩意儿， 			如果大家都自己玩自己的，那么可想而知的是，未来想要在 			Linux 这个操作系统上面发展软件与硬件的厂商一定会无所适从的！ 			为了让软件开发商、与硬件发展者有一个依循的方向，因此而有<span class="text_import2"> 			Linux Standard Base (LSB) 及 File system Hierarchy Standard (FHS)</span> 			这些个玩意儿的诞生！所以，各个 			distribution 也都要遵循 LSB 上面的规范，软硬件发展者也都会依循 LSB ，所以啰，我们才会常常说，各大 			distribution 虽然在提供的工具与创意上面有所不同，但是基本上，他们的 Linux 			架构都是很类似的！因此，你只要玩一套 Linux distribution 也就够了！其他的 			distribution 应该就难不倒你啰！<ul> 			<li><a href="http://www.pathname.com/fhs/" target="_blank">FHS: http://www.pathname.com/fhs/</a> 			</li><li><a href="http://www.linuxbase.org/" target="_blank">LSB: http://www.linuxbase.org/</a></li></ul><br>  		</li><li><span class="text_import1">服务器、工作站、终端机...</span><br><br> 			由于网络的盛行，我们或许常常会听到一些名词ㄋㄟ～所以，底下先来介绍几个简单的网络名词吧！ 			^_^，来认识一下什么是 服务器 ( Server )、工作站 ( Workstation ) 与终端机 			( Ternianl )？简单的来说，你可以这样认为：<br><br><ul>  			<li><span class="text_import2">服务器 ( Server )</span>：提供 Internet 一种以上的网络服务的主机，例如 				yahoo 提供的是 WWW 的服务，那么 yahoo 就可以称之为 服务器 了！那么，你自己架设一台 				mail server 呢？呵呵！那也是一个小型的服务器啰！所以，你必须要清楚的知道， 				服务器是有规模大小之分的！目前一部 				Linux 上面就可以架设多个服务器软件啰！例如 WWW 服务器的 Apache 软件、 FTP 				服务器的 Wu-ftp 软件等等的；</li><br> 			<li><span class="text_import2">工作站 ( Workstation ) </span>：基本上， 				工作站可以视为仅提供一群特定人士，作为数值分析、科学用途的机器。例如鸟哥的研究室有一部 				Sun 的机器，他仅提供我们研究室内部几部计算机的联机，当我们有需要使用到 Fortran 				这个程序语言时，就联机进入 Sun 这部机器，并在上面进行我们所需要的计算工作！ 				这个就是工作站啦。而工作站与服务器的差别，大概就在于有没有提供 				internet 上面的服务而已，例如，如果我将 Sun 上面的 mail server 开启之后， 				那么这部机器就可以称之为服务器了！同时也是我们的工作站喔！ 				当然，更广义的定义是，只要是没有对 Internet 				上面提供网络服务的，那就是工作站了！这当然也就包含所谓的终端机！</li><br> 			<li><span class="text_import2">终端机 ( Terminal ) </span>：简单的说，就是 end-user 				( 就是你啦 ) 前面的那部计算机！呵呵，例如鸟哥都是使用我的工作机 ( Windows ) 				连上我们的主机来工作，那么这一部 Windows 的计算机，就可以称为 terminal  				机器啰！不过，更狭义的来说，『终端机』本身应该是不具备任何可以作业的软件的， 				在终端机上面一定要连上 Server 之后，才能进行各项作业！ 				那才是最狭义的终端机啰！例如我们前面说过的 				<a href="#fig2">早期的大型主机联机模式</a>！</li><br></ul> 		大致上的分别可以用上面的观点来看！<br><br>  		</li><li><span class="text_import1">几个常见的授权模式与定义</span><br><br> 			现在市面上有好多的软件，有的是自由软件，有的是专利软件。 			有的专利软件免费，有的自由软件要钱～啊！好烦啊！怎么分辨这些东西？ 			其实，鸟哥并不是律师，对于法律也不十分懂，不过， 			还是有几个授权模式可以来谈一谈～<br><br><ul>  			<li><span class="text_import2">Open Source </span>：Open source 表示软件释出时， 			一定伴随着原始码的释出喔！通常他有几个好处：<br><br><ol> 				<li>程序设计师通常会等到程序成熟之后才会释出 ( 免得被笑, ^_^ )， 				所以通常程序在雏形的时候，就已经具有相当的优良体质； 				</li><li>Open Source 的精神，相信当程序原设计人将程序原始码释出之后， 				其他的程序设计师接受这份原始码之后，由于需要将程序改成自己所需的样式， 				所以会经由本身的所学来加以改良，并从中加以改良与除虫，所以程序的 debug  				功能会比传统的 close source 来的快！ 				</li><li>由于程序是伴随原始码的，因此，系统将会不易存在鲜为人知的木马程序或一些安全漏洞， 				相对而言，会比较更加的安全！</li></ol><br> 			Open source 的代表授权为 GNU 的 GPL 及 BSD 等等：<br><br><ul> 				<li><span class="text_import2">GNU General Public License </span>： 				这个可以由刚刚的说明了解，他主要定义在『自由软件』上面，任何挂上 				GPL 授权的软件，需要公布其原始码 ( Open Source )，GPL 有几个主要的大方向：<ol> 					<li>任何个人或公司均可释出自由软件 ( free software )；</li> 					<li>任何释出自由软件的个人或公司，均可由自己的服务来收取适当的费用；</li> 					<li>该软件的原始码 ( Source Code ) 需要随软件附上，并且是可公开发表的；</li> 					<li>任何人均可透过任何正常管道取得此一自由软件，且均可取得此一授权模式。</li></ol> 				更多的 GPL 可参考<a href="http://linux.vbird.org/linux_basic/0110whatislinux/1010appendix_A.php">附录 A </a>的中文化条文！<br><br> 				</li><li><span class="text_import2">Berkeley Software Distribution (BSD)</span> ：使用 				BSD source code 最常接触到的就是 BSD 授权模式了！这个授权模式其实与 GPL 				很类似，而其精神也与 Open Source 相呼应呢！</li></ul><br> 			此外，近期以来还有 Apache 的授权、 Sun 的授权，好多好多～<br><br>  			</li><li><span class="text_import2">Close Source </span>： 			程序的核心是封闭的，优点是有专人维护，您不需要去更动他；缺点则是灵活度大打折扣， 			用户无法变更该程序成为自己想要的样式，此外，若有木马程序或者安全漏洞， 			将会花上相当长的一段时间来除错！这也是所谓专利软件 (copyright) 常见的软件出售方式。 			代表的授权模式有：<br><br><ul> 				<li><span class="text_import2">Freeware</span> ：不同于 Free software ， Freeware 				为『免费软件』而非『自由软件！』虽然它是免费的软件，但是不见得要公布其原始码， 				端看释出者的意见啰！这个东西与 Open Source 毕竟是不太相同的东西喔！ 				此外，目前很多标榜 免费软件 的程序很多都有小问题！例如假借免费软件的名义， 				实施用户数据窃取的目的！所以 				『<span class="text_import1">来路不明的软件请勿安装</span>！』</li><br> 				<li><span class="text_import2">Shareware</span> ：共享件这个名词就有趣了！ 				与免费软件有点类似的是， Shareware 在使用初期，它也是免费的，但是， 				到了所谓的『试用期限』之后，您就必须要选择『付费后继续使用』或者『将它移除』 				的宿命～通常，这些共享件都会自行撰写失效程序，让你在试用期限之后就无法使用该软件。</li> 			</ul> 	</li></ul></li></div> </div>   <hr><a name="important"></a><img src="../image/logo.png" alt="大标题的图示" width="35" align="middle" height="34"><span class="text_h1">重点回顾</span><br> <div class="block1"> <ul> 	<li>计算机主要以二进制作为单位，而目前常用的磁盘容量单位为 bytes，其单位换算为 1Byte = 8bits， 		其他的以1024为其倍数，如 1GByte=1024MBytes等等。</li> 	<li>操作系统(Operation System)主要在管理与驱动硬件，因此必须要能够管理内存、管理装置、 		负责行程管理以及系统呼叫等等。因此，只要能够让硬件准备妥当 (Ready) 的情况， 		就是一个阳春的操作系统了。</li> 	<li>最阳春的操作系统仅在驱动与管理硬件，而要使用硬件时，就得需要透过应用软件或者是壳程序(shell) 		的功能，来呼叫操作系统操纵硬件工作。因此，目前称为操作系统的， 		除了上述功能外，通常已经包含了日常工作所需要的应用软件在内了。</li> 	<li>Unix 的前身是由贝尔实验室(Bell lab.)的 Ken Thompson 利用组译语言写成的， 		后来在 1971-1973 年间由 Dennis Ritchie 以 C 程序语言进行改写，才称为 Unix。</li> 	<li>1977 年由 Bill Joy 释出 BSD (Berkeley Software Distribution)，这些称为 Unix-like 的操作系统。</li> 	<li>1984年由 Andrew Tannenbaum 制作出 Minix 操作系统，该系统可以提供原始码以及软件；</li> 	<li>1984年由 Richard Stallman 提倡 GNU 计划，倡导自由软件(Free software)， 		强调其软件可以『自由的取得、复制、修改与再发行』，并规范出 GPL 授权模式， 		任何 GPL (General Public License) 软件均不可单纯仅贩卖其软件，也不可修改软件授权。</li> 	<li>1991年由芬兰人 Linus Torvalds 开发出 Linux 操作系统。简而言之，Linux 成功的地方主要在于： 		Minix(Unix), GNU, Internet, POSIX 及虚拟团队的产生。</li> 	<li>Linux 本身就是个最阳春的操作系统，其开发网站设立在 http://www.kernel.org，我们亦称 Linux 		操作系统最底层的数据为『核心, Kernel』。</li> 	<li>目前 Linux 的发展分为两种版本，分别是稳定版本的偶数版，如 2.6.X，适合于商业与家用环境使用； 		一种是发展中版本如 2.5.X 版，适合开发特殊功能的环境。</li> 	<li>Linux distributions 为 Linux 的 Kernel + Tools + Free Software + Documentations + 		可完全安装的程序所制成的一套完整的系统。</li> </ul> </div>   <hr><a name="FAQ"></a><img src="../image/logo.png" alt="大标题的图示" width="35" align="middle" height="34"><span class="text_h1">习题练习</span><br> <div class="block1"> ( 要看答案请将鼠标移动到『答：』底下的空白处，按下左键圈选空白处即可察看) <ul> 	<li>一个完整的操作系统至少要能够完整的控制整个硬件，请问，操作系统应该要控制硬件的哪些单元？ 	<div class="block2"><font color="white" size="-1"> 		至少要能够控制：(1)input/output crontrol, (2)device control, (3)process management,  		(4)file management. 等等！ 	</font></div>  	</li><li> 核心的功能在于管控整个系统的硬件，这包括了 CPU 运算单元的管理，输入/输出的管理，内存的管理等等。 	那么请问一个较为完整的操作系统，应该包含哪些部分？</li> 	<div class="block2"><font color="white" size="-1"> 		应包含 Kernel + Kernel Tools + Applications 等等 	</font></div>  	<li> 一个 GBytes 的硬盘空间，等于几个 KBytes ？</li> 	<div class="block2"><font color="white" size="-1"> 		1GBytes = 1024 MBytes * 1024 KBytes/MBytes = 1048576 KBytes 	</font></div>  	<li> 你在你的主机上面安装了一张网络卡，但是开机之后，系统却无法使用，您确定网络卡是好的， 	那么可能的问题出在哪里？该如何解决？</li> 	<div class="block2"><font color="white" size="-1"> 		因为所有的硬件都没有问题，所以，可能出问题的地方在于系统的核心(kernel) 		不支持这张网络卡。解决的方法，到网络卡的开发商网站，下载支持您主机操作系统的驱动程序， 		安装网卡驱动程序后，就可以使用了。 	</font></div>  	<li> 我在一部主机上面安装 Windows 操作系统时，并且安装了显示适配器的驱动程序，他是没有问题的。 	但是安装 Linux 时，却无法完整的显示整个 X Window 。请问，我可不可以将 Windows 上面的 	显示适配器驱动程序拿来安装在 Linux 上？</li> 	<div class="block2"><font color="white" size="-1"> 		不行！因为核心不同，针对硬件所写的驱动程序也会不相同， 		编译程序也不同，当然，驱动程序也无法在两个操作系统间兼容。 		这也是为何开发商在他们的网站上面，都会同时提供许多不同操作系统的驱动程序之故。 	</font></div>  	<li> 我在 Windows 上面玩的游戏，可不可以拿到 Linux 去玩？</li> 	<div class="block2"><font color="white" size="-1"> 		当然不行！跟上一题相似的，因为游戏也是一个应用程序 (application)， 		他必须要使用到核心所提供的工具来开发他的游戏， 		所以这个游戏是不可在不同的平台间运作的。除非这个游戏已经进行了移植。 	</font></div>  	<li> 什么是软件的移植？</li> 	<div class="block2"><font color="white" size="-1"> 		程序是由程序代码(通成为ASCII格式)经过编译程序编译成为 binary file 之后， 		才能够在该操作系统上面执行。因此，您可以将您的程序的程序代码修改成可以适应 		其他操作系统的环境，并且加以编译，使程序可以在其他平台上运作， 		这个修改的动作即为移植。 	</font></div>  	<li> Linux 本身仅是一个核心与相关的核心工具而已，不过，他已经可以驱动所有的硬件， 	所以，可以算是一个很阳春的操作系统了。经过其他应用程序的开发之后，被整合成为 Linux  	distribitions。请问众多的 distributions 之间，有何异同？</li> 	<div class="block2"><font color="white" size="-1"> 		相同：利用同样的 Linux kernel (http://www.kernel.org)，几乎相同的自由软件套件 		(例如 GNU 里面的 gcc/glibc/vi/apache/bind/sendmail... )，几乎相同的操作接口 		(例如均使用 bash/KDE/GNOME 等等)。<br> 		不同：使用的 kernel 与各软件的版本可能会不同；各开发商加入的应用工具不同， 		使用的套件管理模式不同(debian 与 RPM)  	</font></div>  	<li> Unix 是谁写出来的？ GNU 计划是谁发起的？</li> 	<div class="block2"><font color="white" size="-1"> 		Unix 是 Ken Thompson 写的，1973 年再由 Dennis Ritchie 以 C 语言改写成功。 		至于 GNU 与 FSF 则是 Richard Stallman 发起的。 	</font></div>  	<li> GNU 的全名为何？他主要由那个基金会支持？</li> 	<div class="block2"><font color="white" size="-1"> 		GNU 是 GNU is Not Unix 的简写，是个无穷循环！ 		另外，这个计划是由自由软件基金会 (Free Software Foundation, FSF) 所支持的！ 		两者都是由 Stallman 先生所发起的！ 	</font></div>  	<li> 我要如何取得 Linux distribution 的可安装光盘？</li> 	<div class="block2"><font color="white" size="-1"> 		目前各大版本的 Linux distribution 大致上仍然依附在 GPL 这个版权宣告上， 		因此在网络上面都可以轻易的下载，若有兴趣的话可以到各发展的厂商主网页去下载。 		然而为了带宽的节省起见，建议在台湾以映像站台来下载速度上会快上很多， 		特别建议南台湾朋友可以到义守大学的 FTP 站 ( http://ftp.isu.edu.tw/ )下载资料！ 	</font></div>  	<li> 简单的说明一下什么是 GNU 的 GPL ？</li> 	<div class="block2"><font color="white" size="-1"> 		1. 任何个人或公司均可释出自由软件 ( free software )；<br> 		2. 任何释出自由软件的个人或公司，均可由自己的服务来收取适当的费用；<br> 		3. 该软件的原始码 ( Source Code ) 需要随软件附上，并且是可公开发表的；<br> 		4. 任何人均可透过任何正常管道取得此一自由软件，且均可取得此一授权模式。 	</font></div>  	<li> 何谓多人 ( Multi-user ) 多任务 ( Multitask )？</li> 	<div class="block2"><font color="white" size="-1"> 		Multiuser 指的是 Linux 允许多人同时连上主机之外， 		每个使用者皆有其各人的使用环境，并且可以同时使用系统的资源！<br> 		Multitask 指的是多任务环境，在 Linux 系统下， CPU  		与其他例如网络资源可以同时进行多项工作，  		Linux 最大的特色之一即在于其多任务时，资源分配较为平均！ 	</font></div>  	<li> 简单说明 GNU General Public License ( GPL ) 与 Open Source 的精神：</li> 	<div class="block2"><font color="white" size="-1"> 		   1. GPL 的授权之软件，乃为自由软件（Free software），任何人皆可拥有他； 		   2. 开发 GPL 的团体(或商业企业)可以经由该软件的服务来取得服务的费用； 		   3. 经过 GPL 授权的软件，其属于 Open source 的情况，所以应该公布其原始码； 		   4. 任何人皆可修改经由 GPL 授权过的软件，使符合自己的需求； 		   5. 经过修改过后 Open source 应该回馈给 Linux 社群。 	</font></div>  	<li> 有个朋友问我说『 Linux 是什么？』我该如何回答比较好？</li> 	<div class="block2"><font color="white" size="-1"> 		简单的说， Linux 就是一个操作系统，或者说， Linux 是操作系统最底层的核心。 		这个核心可以管理整个计算机硬件，让计算机硬件可以完整的运作起来，并等待用户输入指令。 		最早 Linux 是由 Torvalds 在 1991 年写出来的，后来由于他承接了 Unix 的良好传统：稳定性高、 		多人多任务的环境设计优良、要求配备较低等优点，所以很多软件开发商在这个核心上面开发， 		而某些厂商将这些软件与核心整合成为可以完全安装的光盘，而成为目前大家常常听到的 Linux 操作系统了。 	</font></div>  	<li> 什么是 POSIX ?为何说 Linux 使用 POSIX 对于发展有很好的影响？</li> 	<div class="block2"><font color="white" size="-1"> 		POSIX 是一种标准规范，主要针对在 Unix 操作系统上面跑的程序来进行规范。 		若您的操作系统符合 POSIX ，则符合 POSIX 的程序就可以在您的操作系统上面运作。 		Linux 由于支持 POSIX ，因此很多 Unix 上的程序可以直接在 Linux 上运作， 		因此程序的移植相当简易！也让大家容易转换平台，提升 Linux 的使用率。 	</font></div>  	<li> Linux 的发展主要分为哪两种核心版本？</li> 	<div class="block2"><font color="white" size="-1"> 		主要分为奇数的发展中版本(develop)，如 2.5 ，及偶数的稳定版本，如 2.6 。 	</font></div>  	<li>简单说明自由软件 (free software) 与开放源码 (open source) 的差异？</li> 	<div class="block2"><font color="white" size="-1"> 		自由软件意指：你可以拥有自由的取得、复制、修改、再发行该软件的权利， 		由于具有这些权利，因此自由软件通常是 Open source 的。<br> 		开放源码意指：软件释出时，同时释出原始码，但使用者取得原始码后，能否修改该原始码， 		则依据该软件的授权而定。<br> 		意思就是说，自由软件是 Open source 的，但是 Open source 的软件则不见得是自由软件！ 	</font></div>  	<li>什么是 Linux 的 Live CD ？</li> 	<div class="block2"><font color="white" size="-1"> 		所谓的 Live CD 就是将完整的 Linux distribution 放置到一片光盘 (目前也有 DVD 版本了) 当中， 		然后透过重新启动以『光盘开机』，就能够不使用硬盘直接进入 Linux 系统的环境。 	</font></div>  	<li>简单说明 Linux 成功的因素？</li> 	<div class="block2"><font color="white" size="-1"> 		1. 藉由 Minix 操作系统开发的 Unix like ，没有版权的纠纷；<br> 		2. 藉助于 GNU 计划所提供的各项工具软件， gcc/bash 等；<br> 		3. 藉由 Internet 广为流传；<br> 		4. 藉由支持 POSIX 标准，让核心能够适合所有软件的开发；<br> 		5. 托瓦兹强调务实，虚拟团队的自然形成！ 	</font></div> </ul> </div>  <hr><a name="reference"></a><img src="../image/logo.png" alt="大标题的图示" width="35" align="middle" height="34"><span class="text_h1">参考数据</span> <div class="block1"> 	<ul> 	<li>王孝熙等，2002，『计算器概论』，台湾东华书局出版。 	</li><li>葛林穆迪着，杜默译，『Linux 传奇』，时报文化出版企业。 	</li><li>网络农夫，2001， Unix 简史 <br> 		<a href="http://netlab.cse.yzu.edu.tw/%7Estatue/freebsd/docs/csh/" target="_blank"> 		http://netlab.cse.yzu.edu.tw/~statue/freebsd/docs/csh/</a> 	</li><li>Ken Thompson 的个人网站： <a href="http://plan9.bell-labs.com/cm/cs/who/ken/index.html" target="_blank">http://plan9.bell-labs.com/cm/cs/who/ken/index.html</a> 	</li><li>Dennis Ritchie 的个人网站： <a href="http://cm.bell-labs.com/cm/cs/who/dmr/" target="_blank">http://cm.bell-labs.com/cm/cs/who/dmr/</a> 	</li><li>Richard Stallman 的个人网站： <a href="http://www.stallman.org/" target="_blank">http://www.stallman.org/</a> 	</li><li>GNU 计划： <a href="http://www.gnu.org/" target="_blank">http://www.gnu.org</a> 	</li><li>洪朝贵老师的 GNU/FSF 介绍： <a href="http://saturn.stu.edu.tw/%7Eckhung/a/c_83.php" target="_blank">http://saturn.stu.edu.tw/~ckhung/a/c_83.php</a> 	</li></ul> </div>  <hr><span class="text_history"> 2002/06/25：第一次完成<br> 2003/01/26：重新修订，加入一些历史事件、重新编排与加入 FAQ<br> 2003/02/28：加入百资以及 distrowatch 两个网站的推荐！<br> 2005/05/31：旧有的资料放于 <a href="http://linux.vbird.org/linux_basic/0110whatislinux/0110whatislinux/0110whatislinux.php">此处</a><br> 2005/06/02：做了大幅度的改版，很多数据参考了网络农夫及 Linux 传奇等书籍，建议大家要多看看网络农夫的大作喔！<br> 2005/06/08：将原本的 binary / compiler / Emacs 的地方再说明一下！比较容易了解那是什么！顺便加入习题<br> 2005/07/21：网络农夫的网站结束了～真伤心～只好提供网络农夫之前发表的文章连结了！<br> 2005/08/03：感谢网友 babab 的来信告知，修订了国家高速网络中心网址：http://www.nchc.org.tw<br> 2005/10/24：经由网友的回报，洪朝贵老师已经调职到树德大学，因此整个连结内容已作修订。<br> 2006/05/31：加入了重点回顾的项目啦！<br> 2006/06/06：感谢网友 "Warren Hsieh" 兄的提醒，由于麦金塔在 2006 年后使用 Intel 的 x86 硬件架构，故  	Windows 是可能可以在上面安装的！<hr> </span>     </td>     <td style="width: 16px; font-size: 6px;">　</td></tr> <tr><td style="width: 16px; height: 16px;">　</td>     <td style="width: 866px; height: 16px;"></td>     <td style="width: 16px; height: 16px;">　</td></tr> </tbody></table>  <div style="padding-top: 0px; text-align: center;"> <span style="font-size: 80%;"> 	<a href="http://linux.vbird.org/" target="_top" title="前往鸟哥的首页">http://linux.vbird.org</a> 	is designed by <a href="mailto:vbird@mail.vbird.idv.tw" title="联络鸟哥(我不要广告信！)">VBird</a> 		during 2001-2011. <a href="http://www.ksu.edu.tw/" target="_blank">ksu.edu</a></span>         ﻿<div id="apDiv4">       <p>本网页主要以Firefox配合解析度 1024x768 作为设计依据&nbsp;&nbsp;&nbsp;&nbsp; 鸟哥自由软件整合应用研究室</p></div></div> </div> </center> </body></html> 
+<?xml version="1.0" encoding="utf-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"    "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><title>什么是<span class="text_head_en"> Linux </title><link href="../Styles/style.css" rel="stylesheet" type="text/css" /></head><body>
+
+<!-- 本文的档头部分 -->
+<div style="text-align: center;">
+    <a href="http://linux.vbird.org/linux_basic/0110whatislinux/0110whatislinux-fc4.php">
+    <span class="text_head0">什么是<span class="text_head_en"> Linux </span></span></a><br>
+    <center>本文已不再维护，更新文章请参考<a href="http://linux.vbird.org/linux_basic/0110whatislinux.php">这里</a></center>
+</div>
+    <div style="text-align: right;">
+        <span class="text_history">最近更新日期：2006/05/31</span>
+    </div>
+<!-- 本文的档头部分 -->
+<div align="center"><table class="head1" summary="排版：文章档头的说明"><tbody><tr><td class="head1">
+	众所皆知的， Linux 的核心原型是 1991 年由托瓦兹 (Linus Torvalds) 写出来的，
+	但是托瓦兹为何可以写出 Linux 这个操作系统？为什么他要选择 386 的计算机来开发？
+	为什么 Linux 的发展可以这么迅速？又为什么 Linux 是免费的？
+	以及目前为何有这么多的 Linux 版本 (distributions) 呢？
+	了解这些东西后，才能够知道为何 Linux 可以免除专利软件之争，
+	并且了解到 Linux 为何可以同时在个人计算机与大型主机上面大放异彩！
+	所以，在实际进入 Linux 的世界前，就让我们来谈一谈这些有趣的历史故事吧！ ^_^
+</td></tr></tbody></table></div>
+
+<!-- 本文的连结区部分 -->
+<div class="block1">
+<span class="text_h1">
+1. <a href="#whatislinux">什么是 Linux </a><br>
+	<span class="text_h2">
+	　　1.1 <a href="#whatislinux_computer">计算器：计算的辅助工具</a><br>
+	　　1.2 <a href="#whatislinux_os">什么是操作系统？</a><br>
+	　　1.3 <a href="#whatislinux_unix">Linux 之前，Unix 的历史</a><br>
+	　　1.4 <a href="#whatislinux_gnu">关于 GNU 计划</a><br>
+	</span>
+2. <a href="#torvalds">Torvalds 的 Linux 发展</a><br>
+	<span class="text_h2">
+	　　2.1 <a href="#torvalds_minix">与 Minix 之间</a><br>
+	　　2.2 <a href="#torvalds_multi">对 386 硬件的多任务测试</a><br>
+	　　2.3 <a href="#torvalds_first">初次释出 Linux 0.02</a><br>
+	　　2.4 <a href="#torvalds_team">Linux 的发展：虚拟团队的产生</a><br>
+	　　2.5 <a href="#torvalds_dist">Linux distributions</a><br>
+	</span>
+3. <a href="#linuxpt">Linux 的特色</a><br>
+	<span class="text_h2">
+	　　3.1 <a href="#linuxpt_pt">Linux 的特色</a><br>
+	　　3.2 <a href="#linuxpt_adv">Linux 的优缺点</a><br>
+	　　3.1 <a href="#linuxpt_other">其他 Linux 相关</a><br>
+	</span>
+4. <a href="#important">重点回顾</a><br>
+5. <a href="#FAQ">本章练习</a><br>
+6. <a href="#reference">参考数据</a><br>
+<span class="text_h2">
+7. <a href="http://phorum.vbird.org/viewtopic.php?t=23871" target="_blank">针对本文的建议：http://phorum.vbird.org/viewtopic.php?t=23871</a>
+</span>
+</span>
+</div>
+
+<!-- 本文的正式部分 -->
+<hr><a name="whatislinux"></a><img src="../images/logo.png" alt="大标题的图示" width="35" align="middle" height="34"><span class="text_h1">什么是 Linux ？</span><br>
+<div class="block1">
+	Linux 这玩意儿是在计算机上面运作的，所以，当然得要了解一下计算机这玩意儿。首先，到底有哪些种类的计算机呢？
+	而 Linux 可以在哪些种类的计算机上面运作？且 Linux 源自哪里？这些我们都得来谈一谈先！<br><br>
+
+	<hr><a name="whatislinux_computer"></a><img src="../images/logo.png" alt="小标题的图示" width="24" align="middle" height="23">	<span class="text_h2">计算器：计算的辅助工具</span><br>
+	<div class="block2">
+		在目前的都市生活中，您应该很难不接触到计算机这个玩意儿吧？
+		这个计算机当初在开发的时候，是希望可以辅助与简化人们进行大量的运算工作，
+		后来才发展成为一些特殊用途。无论如何，计算机基本的功能就是：
+		『<span class="text_import2">接受用户输入指令，经由 CPU 的数学与逻辑单元运算处理后，
+		以产生或储存成有用的信息</span>』。为了达成这个功能，当然计算机就必须要有：
+		<ul>
+		<li>输入单元：例如鼠标、键盘、卡片阅读机等等
+		</li><li>中央处理器(CPU)：含有算数逻辑、控制、记忆等单元
+		</li><li>输出单元：例如屏幕、打印机等等</li></ul>
+		如果您看过计算机的话，那么上面的东西其实就是组成您计算机的主要组件啰！
+		而为了链接各个组件，因此有了主板，所以，您的主机里面就包含了主板以及 CPU ，
+		还有各种需要的适配卡。而屏幕、键盘、鼠标则透过与主机的链接，就构成一部可以运作的计算机了。
+		另外，由于<span class="text_import2">计算机仅认识 0/1 ，因此计算机主要是以二进制的方式来计算的</span>，
+		因此，通常计算机的记忆/储存单位都是以 Byte 或 bits 为基本单位。他们的单位是这样的：
+		<ul><span class="text_import2">
+		<li>1 Bytes = 8 bits
+		</li><li>1 KB = 1024 Bytes
+		</li><li>1 MB = 1024 KB
+		</li><li>1 GB = 1024 MB</li></span></ul>
+		而计算机也因为他的复杂度，而分为数种等级，例如：
+		<ul>
+		<li><span class="text_import2">超级计算机(Supercomputer)：</span><br>
+			超级计算机是运作速度最快的计算机，但是他的维护、操作费用也最高！
+			主要是用于需要有高速计算的计划中。例如：国防军事、气象预测、太空科技，
+			用在模拟的领域较多。详情也可以参考：国家高速网络与计算中心<a href="http://www.nchc.org.tw/" target="_blank">http://www.nchc.org.tw/</a> 的介绍！
+			至于全世界的 500 大超级计算机，则请参考：<a href="http://www.top500.org/" target="_blank">http://www.top500.org/</a></li><br>
+		<li><span class="text_import2">大型计算机(Mainframe Computer)：</span><br>
+			大型计算机通常也具有数个高速的 CPU ，功能上虽不及超级计算机，
+			但也可用来处理大量数据与复杂的运算。例如大型企业的主机、
+			全国性的证券交易所等每天需要处理数百万笔数据的企业机构，
+			或者是大型企业的数据库服务器等等。</li><br>
+		<li><span class="text_import2">迷你计算机(Minicomputer)：</span><br>
+			迷你计算机仍保有大型计算机同时支持多用户的特性，但是主机可以放在一般作业场所，
+			不必像前两个大型计算机需要特殊的空调场所。通常用来作为科学研究、
+			工程分析与工厂的流程管理等。</li><br>
+		<li><span class="text_import2">微电脑(Microcomputer)：</span><br>
+			又可以称为个人计算机，也是我们这本书主要探讨的目标！体积最小，价格最低，
+			但功能还是五脏俱全的！大致又可分为桌上型、笔记型等等。</li></ul>
+
+		虽然在目前个人计算机的使用甚为广泛，但是在 1990 年以前，个人计算机是比较不被重视的！
+		因为(1)他的指令周期在当时实在很差，而且(2)当时比较有名的操作系统也没有对个人计算机支持。
+		所以才会流行不太起来～ 嘿嘿！提到操作系统啰～
+		底下我们就来谈一谈之前的操作系统。
+	</div>
+
+	<hr><a name="whatislinux_os"></a><img src="../images/logo.png" alt="小标题的图示" width="24" align="middle" height="23">	<span class="text_h2">什么是操作系统</span><br>
+	<div class="block2">
+		什么是操作系统 (Operation System, OS) 呢？我们先来想一想，
+		上面介绍的计算器(计算机)是如何工作的？举例来说，您计算机屏幕上面显示的讯息，
+		是如何显示出来的呢？嗯！是藉由显示适配器与屏幕显像的。那么如果你想要看 VCD 呢？
+		呵呵，就需要 1.)有影音数据的光盘片、 2.)可读取光盘片的光驱、
+		3.) 可以转换影音数据输出的中央处理器 (CPU)、 4.)可以显示影像的显示芯片(显示适配器)、
+		5.) 可以传输声音的音效芯片(声卡)、 6.)可以输出影像的屏幕以及 7.)可以发出声音的喇叭！
+		也就是说：<span class="text_import2">所有在『工作』的东西都是『硬件』呀</span>！
+		对啦！就是硬件在工作！<br><br>
+
+		那么问题来了，现在我们知道，计算机所进行的工作都是计算机硬件帮我们达成的，但是，
+		为什么这些硬件知道如何播放 VCD 呢？这当然是因为有某个东西在正确的控制硬件的工作了，
+		那个咚咚就是：  <span class="text_import2">操作系统</span> 啦！
+		操作系统可以管理整部计算机的硬件，他可以控制 CPU 进行正确的运算，
+		他可以分辨硬盘里头的数据并进行读取，他还必须要能够认识所有的适配卡，
+		这样，才能够将所有的硬件通通正确的使用上啊！
+		所以，如果没有这个操作系统，那么您的计算机就等于是一堆废铁而已啊！<br><br>
+
+		虽然操作系统可以完整的掌控所有的硬件资源，但是，对于使用者来说，还是不够的！
+		因为操作系统虽然可以掌控所有的硬件，但是，如果用户无法与操作系统沟通，
+		那么这个操作系统就没有什么用处了。简单的来说，以上面的 VCD 为例，
+		虽然操作系统可以控制硬件播放 VCD ，但是，如果使用者没有办法控制何时要播出 VCD 的话，
+		那么到底我们要怎么看 VCD 啊？对吧！<br><br>
+
+		所以说，一个比较『<span class="text_import2">完整的操作系统</span>』应该要包含
+		两个东西，一个是『<span class="text_import2">核心与其提供的接口工具</span>』、
+		一个是『<span class="text_import2">利用核心提供的接口工具所开发出来的软件</span>』。
+		我们以大家常使用的 Windows 计算机来做一个简单的说明好了。大家应该都使用过 Windows 
+		计算机里面的『档案总管』吧！当你开启档案总管的时候，他就会显示你硬盘当中的数据，
+		这个『显示硬盘里面的数据，就是核心帮你做的』，但是，
+		『你要核心去显示硬盘哪一个目录下的数据，则是由档案总管这个工具帮你达成的』！
+		这样可以理解吗？<br><br>
+
+		那么核心有没有作不到的事？当然有的，举例来说，
+		如果您曾经自行安装过比较新的显示适配器在您的个人计算机上面，
+		那么应该常常会发生 Windows 计算机告知您：『找不到合适的驱动程序来显示』的问题吧？
+		也就是说，即使您有最新的显示适配器安装在您的个人计算机上面，而且也有播放 VCD 的程序，
+		但是因为『核心』无法操控这个最新的显示适配器，所以，就无法正常的显示您的 VCD 了。
+		没错！<span class="text_import2">你的整个硬件是由核心来管理的，而如果核心不认识你的硬件，
+		那么你将无法使用该硬设备</span>，例如上面提到的最新的显示适配器。<br>
+
+		<div style="padding: 10pt 0pt;" align="right"><table width="90%"><tbody><tr><td><b>Tips:</b><br><span style="color: rgb(0, 144, 0);"><font size="-1">			在定义上，只要能够让计算机硬件正确无误的运作，那就算是操作系统了。
+			所以说，操作系统其实就是核心与其提供的接口工具，
+			不过，就如同上面讲的，因为最阳春的核心缺乏了与用户沟通的亲和接口，
+			所以在目前，一般我们提到的『操作系统』都会包含核心与相关的用户应用软件呢！
+		</font></span></td><td><img src="0110whatislinux-fc4_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div>
+		核心就是『<span class="text_import1">Kernel</span>』，
+		他是一个操作系统的最底层的东西，由他来掌管整个硬件资源的工作状态，而
+		每个操作系统都有自己的核心，所以说，
+		当有新的硬件加入到你的系统中的时候，若你的『
+		Kernel 』并没有支持他的时候，呵呵，这个新的硬件就肯定无法工作的，因为控制他的
+		Kernel 并不认识他呀！这样了解了吗？！先有个概略性的了解，
+		后面我们提到『<a href="http://linux.vbird.org/linux_basic/0110whatislinux/0540kernel.php">核心编译</a>』的时候会再更详细的谈到他！<br><br>
+
+		一般来说，Kernel 为了达成使用者所需要的正确运算结果，他必须要管理的事项有：
+		<ul>
+		<li><span class="text_import1">系统呼叫接口(System call interface) </span>：
+			为了方便程序开发者可以轻易的透过与 kernel 的沟通，将硬件的资源进一步的利用，
+			于是需要有这个简易的接口来方便程序开发者。</li>
+		<li><span class="text_import1">行程管理(Process control) </span>：
+			总有听过所谓的『多任务环境』吧？一部计算机可能同时间有很多的工作跑到 CPU 等待运算处理，
+			Kernel 这个时候必须要能够控制这些工作，让 CPU 的资源作有效的分配才行！</li>
+		<li><span class="text_import1">内存管理(Memory management) </span>：
+			控制整个系统的内存管理，若内存不足， Kernel 最好还能够提供虚拟内存的功能！</li>
+		<li><span class="text_import1">文件系统管理(File system management) </span>：
+			文件系统的管理，例如数据的输入输出 (I/O) 等等的工作啦！
+			还有不同文件格式的支持啦等等，如果你的核心不认识某个文件系统，
+			那么您将无法使用该文件格式的档案啰！例如：
+			Windows 98 就不认识 NTFS 文件格式的硬盘；</li>
+		<li><span class="text_import1">装置的驱动(Device drivers) </span>：
+			就如同上面提到的，硬件的管理是
+			Kernel 的主要工作之一，当然啰，装置的驱动程序就是核心需要做的事情啦！
+			好在目前都有所谓的『可加载模块』功能，可以将驱动程序编辑成模块，
+			就不需要重新的编译核心啦！这个也会在后续的<a href="http://linux.vbird.org/linux_basic/0110whatislinux/0540kernel.php">核心编译</a>当中提到的！</li>
+		</ul>
+
+		所以啦！所有硬件的资源都是 kernel 来管理的！至于我们要达成一些工作时，除了藉由核心本身提供的功能
+		( 例如上面提到的档案总管 ) 之外，还可以藉由其他的应用软件来达成喔！举个例子来说，你要看
+		VCD 影片是吧！那么除了 Windows 提供的媒体播放程序之外，你也可以自行安装
+		VCD 播放程序来播放 VCD 啰！这个播放程序就是应用软件啰，而这个应用软件可以帮你去控制核心来工作
+		( 就是放映影片啰 ) ，因此，我们可以这样说，
+		<span class="text_import2">核心是控制整个硬件支持的咚咚，也是一个操作系统的最底层，
+		然而要让整个操作系统更完备的话，那还需要含有相当丰富的核心提供的工具，
+		以及核心相关的应用软件来支持</span>。<br><br>
+
+		OK！提到这里那么您知道 Linux 是什么了吗？呵呵！对啦！<span class="text_import2">其实
+		Linux 就是一个操作系统，这个操作系统里头含有最主要的 kernel 以及 kernel
+		提供的工具啦</span>！他提供了一个完整的操作系统当中最底层的硬件控制与资源管理的完整架构，
+		这个架构是沿袭 Unix 良好的传统来的，所以相当的稳定而功能强大！此外，
+		由于这个优良的架构可以在目前的个人计算机( X86 系统 ) 上面跑，
+		所以很多的软件开发者将他们的工作心血移转到这个架构上面，那就是很多的应用软件啦！ 虽然
+		Linux 仅是其核心与核心提供的工具， 不过，由于核心、核心工具与这些软件开发者提供的软件的整合，使得
+		Linux 成为一个更完整的、功能强大的操作系统啰！我们可以将 Linux 
+		的系统与用户的相关性看成底下的图示：
+
+		<center><img src="0110whatislinux-fc4_files/0110whatislinux_1.jpg" alt="用户、用户接口&gt;与核心工具、核心及硬件之相关性" title="用户、用户接口&gt;与核心工具、核心及硬件之相关性">
+		<br><a name="fig1"></a>图一、用户、用户接口与核心工具、核心、与硬件之相关性</center>
+		<br>
+
+		约略了解 Linux 是何物之后，接下来，我们要谈一谈，『<span class="text_import2">为什么说
+		Linux 是很稳定的操作系统呢？他是如何来的？</span>』<br>
+
+		<div style="padding: 10pt 0pt;" align="right"><table width="90%"><tbody><tr><td><b>Tips:</b><br><span style="color: rgb(0, 144, 0);"><font size="-1">		Torvalds 先生在写出 Linux 的时候，其实该核心仅能『驱动 386 所有的硬件』而已，
+		所谓的『让 386 计算机开始运作，并且等待用户指令输入』而已，事实上，
+		当时能够在 Linux 上面跑得软件还很少呢！
+		</font></span></td><td><img src="0110whatislinux-fc4_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div>
+		<div style="padding: 10pt 0pt;" align="right"><table width="90%"><tbody><tr><td><b>Tips:</b><br><span style="color: rgb(0, 144, 0);"><font size="-1">		由上面的说明中，我们知道硬件是由『核心』来控制的，而每种操作系统都有他自己的核心。
+		这就产生了一个很大的问题，因为早期硬件的开发者所开发的硬件架构或多或少都不相同，
+		举例来说，2006年以前的苹果计算机公司是请 IBM 公司帮忙开发硬件 (所谓的 power CPU)，
+		而苹果计算机公司则在该硬件架构上发展自家的操作系统(就是俗称的麦金塔, MAC 是也)。
+		Windows 则是开发在 x86 架构上的操作系统之一。<br><br>
+		那么 Windows 是否可以在苹果计算机的硬件上面跑？答案是『不行』的！不过，在 2006 年以后，
+		苹果计算机转而请 Intel 设计其硬件架构，亦即其硬件架构已经转为 x86  系统，因此在 2006
+		年以后的苹果计算机若使用 x86 架构时，其硬件则『可能』可以安装 Windows 操作系统了。
+		不过，您可能需要自己想些方式来处理该硬件的兼容性啰！
+		</font></span></td><td><img src="0110whatislinux-fc4_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div>
+		<div style="padding: 10pt 0pt;" align="right"><table width="90%"><tbody><tr><td><b>Tips:</b><br><span style="color: rgb(0, 144, 0);"><font size="-1">		因为 Windows 操作系统本来就是针对个人计算机 x86 架构的硬件去设计的，所以他当然只能在
+		x86 的个人计算机上面运作，在不同的平台，当然就无法运行了。也就是说，
+		每种操作系统都是在他专门的机器上面运行的喔！这点得要先了解。
+		不过， Linux 由于是 Open Source 的操作系统，所以他的程序代码可以被修改成适合在各种机器上面运行的，
+		也就是说， Linux 是具有『可移植性』，这可是很重要的一个功能喔！ ^_^
+		</font></span></td><td><img src="0110whatislinux-fc4_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div>	</div>
+
+	<hr><a name="whatislinux_unix"></a><img src="../images/logo.png" alt="小标题的图示" width="24" align="middle" height="23">	<span class="text_h2">Linux 之前， Unix 的历史</span><br>
+	<div class="block2">
+		早在 Linux 出现之前的二十年 ( 大约在 1970 年代 )，
+		就有一个相当稳定而成熟的操作系统存在了！那就是 Linux 的老大哥『 Unix 』是也！
+		怎么这么说呢？！他们这两个家伙有什么关系呀？这里就给他说一说啰！众所皆知的， 
+		<span class="text_import2">Linux 的核心是由 Linus Torvalds 在 1991 年的时候给他开发出来的，</span>
+		并且丢到网络上提供大家下载，后来大家觉得这个小东西 ( Linux Kernel ) 
+		相当的小而精巧，所以慢慢的就有相当多的朋友投入这个小东西的研究领域里面去了！
+		但是为什么这的小东西这么棒呢？！然而又为什么大家都可以免费的下载这个东西呢？！
+		嗯！等鸟哥慢慢的唬xx....喔不！听我慢慢的道来！<br><br>
+
+		<li><span class="text_import1">1969 年以前：一个没有完成的梦想： Bell, MIT 与 GE
+			的『 Multics』系统</span><ul>
+		早期的计算机并不像现在的个人计算机一样，他可不是一般人碰的起的呢～
+		除非是军事或者是高科技用途，或者是学术单位的学术研究，否则，真的很难接触到。
+		非但如此，早期的计算机架构还很难使用，除了指令周期并不快之外，操作接口也很困扰的！
+		在那个时候，写程序是件很可怜的事情，因为，程序设计者，必须要将程序相关的信息在读卡纸上面打洞，
+		然后再将读卡纸插入卡片阅读机来将信息读入主机中运算。光是这样就很麻烦了，如果程序有个小地方写错，
+		哈哈！光是重新打卡就很惨，加上主机少，用户众多，光是等待，就耗去很多的时间了！<br><br>
+
+		在之后，经由操作系统的改良，使得后来可以使用键盘来进行信息的输入/输出。
+		不过，在一间学校里面，主机毕竟可能只有一部，如果多人等待使用，那怎么办？
+		好在 1960 年代初期麻省理工学院 (MIT) 发展了所谓的：
+		『<span class="text_import2">兼容分时系统( Compatible Time-Sharing System, CTSS )</span>』，
+		它可以让大型主机透过提供数个终端机(terminal)以联机进入主机，来利用主机的资源进行运算工作。
+		架构有点像这样：<br><center><a name="fig2"></a>
+		<img src="0110whatislinux-fc4_files/0110whatislinux_2.jpg" alt="早期主机与终端机的相关性图标" title="早期主机与终端机的相关性图标"><br>图二、早期主机与终端机的相关性图标</center><br>
+		如此一来，无论主机在哪里，只要在终端机前面进行输入输出的作业，就可利用主机提供的功能了。
+		不过，需要注意的是，此时终端机只具有输入/输出的功能，本身完全不具任何运算或者软件安装的能力。
+		而且，比较先进的主机大概也只能提供 30 个不到的终端机而已。<br><br>
+
+		为了更加强化大型主机的系统，以让主机的资源可以提供更多使用者来利用，所以在 1965 年前后，
+		由贝尔实验室 (Bell)、麻省理工学院 (MIT) 及奇异公司 (GE) 共同发起了 Multics 的计划，
+		Multics 目的是想要让大型主机可以达成提供 300 个以上的终端机联机使用的目标。
+		不过，到了 1969 年前后，计划进度落后，资金也短缺，所以该计划就宣告不治.....喔！是宣告失败～
+		(注： Multics 有复杂、多数的意思存在。)</ul>
+
+		</li><li><span class="text_import1">1969 年： Ken Thompson 的小型 file server system</span><ul>
+		在认为 Multics 计划不可能成功之后，<a href="http://www.bell-labs.com/" target="_blank">贝尔研究室</a>
+		就退出该计划。不过，原本参与 Multics 计划的人员中，已经从该计划当中获得一些点子，
+		<a href="http://plan9.bell-labs.com/cm/cs/who/ken/index.html" target="_blank">Ken Thompson</a>
+		就是其中一位！Thompson 因为自己的需要，希望开发一个小小的操作系统，
+		以提供自己的需求。在开发时，有一部 DEC (Digital Equipment Corporation) 的 PDP-7 没人使用，
+		于是他就准备针对这部主机进行操作系统核心程序的撰写。本来 Thompson 是没时间的，
+		有趣的是，在 1969 年八月份左右，刚好 Thompson 的妻儿去了美西探亲，
+		于是他有了额外的一个月的时间好好的待在家将一些构想实现出来！
+		经过四个星期的奋斗，他终于以组译语言 (Assembler) 写出了一个核心程序，同时包括一些核心工具程序，
+		以及一个小小的文件系统。那个系统就是<span class="text_impor2"> Unix </span>的原型！
+		当时 Thompson 将 Multics 庞大的复杂系统简化了不少，于是同实验室的朋友都戏称这个系统为：
+		Unics 。 Thompson 的这个文件系统有两个重要的概念，分别是：<br><br>
+			<ul><span class="text_import2">
+			<li>所有的程序或系统装置都是档案
+			</li><li>不管建构编辑器还是附属档案，所写的程序只有一个目的，且要有效的完成目标。
+			</li></span></ul><br>
+		这些概念在后来对于 Linux 的发展有相当重要的影响喔！</ul>
+
+		</li><li><span class="text_import1">1973 年： Unix 的正式诞生，Ritchie 等人以 C 语言写出第一个正式 
+			Unix 核心</span><ul>
+		由于 Thompson 写的那个操作系统实在太好用了，所以在贝尔实验室内部广为流传，并且数度经过改版。
+		但是，比较重要的改版则发生在 1973 年。Unix 本来是以组译语言写成的，后来因为系统移植与效能的需求，
+		该系统被 B 语言所改写。不过，效能依旧不是很好。后来，
+		<a href="http://cm.bell-labs.com/cm/cs/who/dmr/" target="_blank">Dennis Ritchie</a> 
+		将 B 语言重新改写成 C 语言，C 语言算是比较高阶的程序语言，可以在不同的机器上面运作，
+		而 Ritchie 等人也同时将原本 Thompson 的那个操作系统重新以 C 语言改写，
+		最后发行出 Unix 的正式版本！<br><br>
+
+		在这个时候需要特别注意的是，贝尔实验室是隶属于 AT&amp;T 的，只是 AT&amp;T 当时忙于其他商业活动，
+		所以对于 Unix 是采取比较开放的态度，此外， Unix 在这个时期的发展者都是贝尔实验室的工程师，
+		这些工程师对于程序当然相当有研究，所以， Unix 在此时当然是不容易被一般人所接受的！ 
+		此外，也需要特别强调，由于 Unix 是以较高阶的 C 语言写的，相对于组译语言需要与硬件有密切的配合，
+		高阶的 C 语言与硬件的相关性就没有这么大了！所以，<span class="text_import2">这个改变也使得 Unix 
+		很容易被移植到不同的机器上面喔！</span></ul>
+
+		</li><li><span class="text_import1">1977 年： 重要的 Unix 分支： BSD 的诞生</span><ul>
+		前面说到，虽然贝尔属于 AT&amp;T ，但是 AT&amp;T 此时对于 Unix 是采取开放的态度，
+		此外， Unix 是以高阶的 C 语言写成的，理论上是具有可移植性的！
+		所以，只要取得 Unix 的原始码，并且针对大型主机的特性加以修订原有的原始码( Source Code )，
+		就可能将 Unix 移植到另一部不同的主机上头了。所以在 1973 年以后，
+		Unix 便得以与学术界合作开发！最重要的接触就是与加州柏克莱 ( Berkeley ) 大学的合作了。
+		柏克莱大学的 Bill Joy 在取得了 Unix 的核心原始码后，着手修改成适合自己机器的版本，
+		并且同时增加了很多工具软件与编译程序，最终将他命名为<span class="text_import2">
+		 Berkeley Software Distribution (BSD)</span> 。这个 BSD 是 Unix 很重要的一个分支，
+		Bill Joy 也是 Unix 业者『 Sun 』这家公司的创办者！ Sun 公司即是以 BSD
+		发展的核心进行自己的商业 Unix 版本的发展的。 
+		(<span class="text_vbird">后来可以安装在 x86 硬件架构上面 FreeBSD 即是 BSD 改版而来！</span>)</ul>
+
+		</li><li><span class="text_import1">1979 年： 一个措手不及的版权宣告！</span><ul>
+		由于 Unix 的高度可移植性与强大的效能，加上当时并没有版权的纠纷，
+		所以让很多商业公司开始了 Unix 操作系统的发展，例如 AT&amp;T 自家的 System V、IBM 的 AIX 以及 
+		HP 与 DEC 等公司，都有推出自家的主机搭配自己的 Unix 操作系统。<br><br>
+
+		但是，如同我们前面提到的，<span class="text_import2">操作系统的核心 ( Kernel ) 必须要跟硬件配合，
+		以提供及控制硬件的资源进行良好的工作！</span>
+		而在早期每一家生产计算机硬件的公司还没有所谓的『协议』的概念，
+		所以每一个计算机公司出产的硬件自然就不相同啰！因此他们必须要为自己的计算机硬件开发合适的 Unix 系统。
+		例如在学术机构相当有名的 Sun 、 Cray 与 HP 就是这一种情况。
+		他们开发出来的 Unix 操作系统以及内含的相关软件并没有办法在其他的硬件架构下工作的！
+		且由于没有厂商针对个人计算机设计 Unix 系统，因此，在早期并没有支持个人计算机的 Unix
+		操作系统的出现 ( <span class="text_vbird">由于 Unix 强调的是多人多任务的环境，但早期的 x86 个人计算机架构下的 CPU 
+		是没有能力达到多任务的作业，因此，并没有人对移植 Unix 到 x86 的计算机上有兴趣</span> )。
+		每一家公司自己出的 Unix 虽然在架构上面大同小异，但是却真的仅能支持自身的硬件，
+		所以啰，<span class="text_import2">早先的
+		Unix 只能与服务器 ( Server ) 或者是大型工作站 ( Workstation ) 划上等号</span>！<br><br>
+
+		但是这个高度开放的 Unix 系统在 1979 年有了重大的转折～
+		因为 AT&amp;T 由于商业的考虑，以及在当时现实环境下的思考，于是将想 Unix 的版权收回去，
+		因此，在 AT&amp;T 在 1979 年发行的第七版 Unix 中，特别提到了
+		『<span class="text_import2">不可对学生提供原始码</span>』的严格限制！
+		同时，也造成 Unix 业界之间的紧张气氛，并且也引爆了很多的商业纠纷～</ul>
+
+		</li><li><span class="text_import1">1984 年之一： x86 架构的 Minix 诞生</span><ul>
+		关于 1979 年的版权声明中，影响最大的当然就是学校教 Unix 相关学问的教授了！
+		想一想，如果没有核心原始码，那么如何教导学生认识 Unix 呢？
+		这问题对于 Andrew Tanenbaum (谭宁邦)教授来说，实在是很伤脑筋的！
+		不过，学校的课程还是得继续啊！那怎么办？？
+		<span class="text_import2">既然 1979 年的 Unix 第七版可以在 Intel 的 x86 架构上面进行移植，
+		那么是否意味着可以将 Unix 改写并移植到 x86 上面了呢？</span>在这个想法上，
+		谭宁邦教授于是乎自己动手写了 Minix 这个 Unix Like 的核心程序！
+		在撰写的过程中，为了避免版权纠纷，谭宁邦完全不看 Unix 核心原始码！
+		并且强调他的 Minix 必须能够与 Unix 兼容才行！谭宁邦在 1984 年开始撰写核心程序，
+		到了 1986 年终于完成，并于次年出版 Minix 相关书籍，同时与新闻组相结合～<br><br>
+
+		这个 Minix 版本比较有趣的地方是，他并不是完全免费的，无法在网络上提供下载！
+		必须要透过磁盘/磁带购买才行！虽然真的很便宜～不过，毕竟因为没有在网络上流传，
+		所以 Minix 的传递速度并没有很快速！此外，购买时，随磁盘还会附上 Minix 的原始码！
+		这意味着使用者可以学习 Minix 的核心程序设计概念喔！
+		(<span class="text_vbird">这个特色对于 Linux 的启始开发阶段，可是有很大的关系喔！</span>)
+		此外，开发者仅有谭宁邦教授，因为学者很忙啊！加上谭宁邦始终认为 Minix 主要用在教育用途上面，
+		所以对于 Minix 是点到为止！所以， Minix 很受欢迎没错，
+		不过，使用者的要求/需求的声音可能就比较没有办法上升到比较高的地方了！
+		这样说，您明白吧？？？ ^_^ </ul>
+
+		</li><li><span class="text_import1">1984 年之二： GNU 与 FSF 计划的成立</span><ul>
+		Richard Mathew Stallman (史托曼) 在 1984 年发起的 GNU 计划，对于现今的自由软件风潮，
+		真有不可磨灭的地位！目前我们所使用得很多自由软件，几乎均直接或间接帮助于 GNU 这个计划呢！
+		那么史托曼是何许人也？为何他会发起这个 GNU 计划呢？<br><br>
+
+		<a href="http://www.stallman.org/" target="_blank">Richard Mathew Stallman </a>(生于 1953 年，
+		网络上自称的 ID 为 RMS)
+		从小就很聪明！他在 1971 年的时候，进入黑客圈中相当出名的人工智能实验室(AI Lab.)，
+		这个时候的黑客专指计算机功力很强的人，而非破坏计算机的怪客 (cracker) 喔！
+		当时的黑客圈对于软件的着眼点几乎都是在『分享』，所以并没有专利方面的困扰！
+		这个特色对于史托曼的影响很大！不过，后来由于管理阶层的问题，导致实验室的优秀黑客离开该实验室，
+		并且进入其他商业公司继续发展优秀的软件。但史托曼并不服输，仍然持续在原来的实验室开发新的程序与软件。
+		后来，他发现到，自己一个人并无法完成所有的工作，于是想要成立一个开放的团体来共同努力！<br><br>
+
+		1983 年以后，因为实验室硬件的更换，使得史托曼无法继续以原有的硬件与操作系统继续自由程序的撰写～
+		而且他进一步发现到，过去他所使用的 Lisp 操作系统，是麻省理工学院的专利软件，
+		是无法共享的，这对于想要成立一个开放团体的史托曼是个阻碍。于是他便放弃了 Lisp 这个系统。
+		后来，他接触到 Unix 这个系统，并且发现， Unix 在理论与实际上，都可以在不同的机器间进行移植。
+		于是他开始转而使用 Unix 系统。因为 Lisp 与 Unix 是不同的系统，
+		所以，他原本已经撰写完毕的软件是无法在 Unix 上面运行的！为此，
+		他就开始将软件移植到 Unix 上面。并且，为了让软件可以在不同的平台上运作，
+		因此，史托曼将他发展的软件均撰写成可以移植的型态！<br><br>
+
+		1984 年，史托曼开始 <a href="http://www.gnu.org/" target="_blank">GNU</a>
+		 计划，<span class="text_import2">这个计划的目的是想要：
+		建立一个自由的开放的 Unix 操作系统。</span>
+		但是建立一个操作系统谈何容易啊！而且在当时的 GNU 是仅有自己一个人单打独斗的史托曼～
+		这实在太麻烦，但又不能不做这个计划，于是史托曼反其道而行～『既然操作系统太复杂，
+		我就先写可以在 Unix 上面运行的小程序，这总可以了吧？呵呵！』在这个想法上，
+		史托曼便开始了程序的写作。在写作期间，为了不让自己吃上官司，他绝对不看专利软件的原始码！
+		为了这个计划，他开始使用原本 Unix 上面跑的软件，
+		并自行撰写功能与 Unix 原有专利软件相仿的软件。<br><br>
+
+		但不论是什么软件，都得要进行编译成为二进制文件(binary file)后才能够执行，
+		因此他便开始撰写 C 语言的编译程序，那就是现在相当有名的 GNU C (gcc)！
+		这个点相当的重要！这是因为 C 语言编译程序版本众多，但都是专利软件，
+		如果他写的 C 编译程序够棒，效能够佳，那么将会大大的让 GNU 计划出现在众人眼前！<br>
+
+		<div style="padding: 10pt 0pt;" align="right"><table width="90%"><tbody><tr><td><b>Tips:</b><br><span style="color: rgb(0, 144, 0);"><font size="-1">			我们在前面稍微提过，计算机仅认识 0/1 的数据，但是人类不认识啊！
+			人类对于纯文本的数据(就是所谓的 ASCII 文件格式)比较有感觉。
+			但是偏偏计算机又不认识 ASCII 格式的文字，很头痛，不是吗？
+			为此，就会有很多的所谓的『编译程序』来辅助我们撰写程序。
+			我们一般使用文本编辑器以 ASCII 纯文本格式来撰写程序，
+			再透过所谓的『编译程序(compiler)』』将刚刚完成的文本文件
+			『编译』成为计算机认识的二进制制(binary file)的档案，
+			以让计算机认识且可以执行的程序啊！
+		</font></span></td><td><img src="0110whatislinux-fc4_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div>
+		但开始时并不顺利，为此，他先转而将 Emacs 编辑器写成可以在 Unix 上面跑得软件，
+		并公开公布原始码，因为 Emacs 太优秀了，因此，很多人便直接向他购买。此时 Internet 尚未流行，
+		所以，<span class="text_import2">史托曼便借着 Emacs 以磁带(tape)出售，赚了一点钱</span>
+		，进而开始全力撰写其他软件。并且成立 <span class="text_import2">自由软件基金会
+		(FSF, Free Software Foundation)</span>，请更多工程师与志工撰写软件。
+		终于还是完成了 GCC，这比 Emacs 还更有帮助！
+		此外，他还撰写了更多可以被呼叫的 C 函式库(GNU C library)，
+		以及可以被使用来操作操作系统的基本接口 BASH shell ！
+		这些都在 1990 年左右完成了！<br>
+
+		<div style="padding: 10pt 0pt;" align="right"><table width="90%"><tbody><tr><td><b>Tips:</b><br><span style="color: rgb(0, 144, 0);"><font size="-1">			如果纯粹使用文本编辑器来编辑程序的话，那么程序语法如果写错时，
+			只能利用编译时发生的错误讯息来修订了，这样实在很没有效率。
+			Emacs 则是一个很棒的编辑器！注意！是编辑(editor)而非编译(compiler)！
+			他可以很快的立刻显示出您写入的语法可能有错误的地方，这对于程序设计师来说，
+			实在是一个好到不能再好的工具了！所以才会这么的受到欢迎啊！
+		</font></span></td><td><img src="0110whatislinux-fc4_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div>
+		到了 1985 年，为了避免 GNU 所开发的自由软件被其他人所利用而成为专利软件，
+		所以他与律师草拟了有名的<span class="text_import2">通用公共许可证 
+		(General Public License, GPL)</span>，
+		并且称呼他为 <span class="text_import2">copyleft</span> (相对于专利软件的 copyright！)。
+		关于 GPL 的相关内容我们在下一个小节继续谈论，在这里，必须要说明的是，
+		由于有 GNU 所开发的几个重要软件，如：<br><br><ul><span class="text_import2">
+			<li>Emacs
+			</li><li>GNU C (GCC)
+			</li><li>GNU C Library (glibc)
+			</li><li>Bash shell</li></span></ul><br>
+		造成后来很多的软件开发者可以藉由这些基础的工具来进行程序开发！
+		进一步壮大了自由软件团体！这是很重要的！不过，对于 GNU 的最初构想
+		『建立一个自由的 Unix 操作系统』来说，有这些优秀的程序是仍无法满足，
+		因为，当下并没有『自由的 Unix 核心』存在.....所以这些软件仍只能在那些有专利的 
+		Unix 平台上工作～～一直到 Linux 的出现......</ul>
+
+		</li><li><span class="text_import1">1988 年： 图形接口 XFree86 计划</span><ul>
+		有鉴于图形用户接口 ( <span class="text_import2">Graphical User Interface, GUI</span> )
+		的需求日益加重，在 1984 年由 MIT 与其他第三方首次发表了 X Window System
+		，并且更在 1988 年成立了非营利性质的 XFree86 这个组织。所谓的 XFree86 其实是
+		<span class="text_import2">X Window System + Free + x86</span> 的整合名称呢！
+		而这个 XFree86 的 GUI 界面更在 Linux 的核心 1.0 版于 
+		1994 年释出时，整合于 Linux 操作系统当中！<br>
+		<div style="padding: 10pt 0pt;" align="right"><table width="90%"><tbody><tr><td><b>Tips:</b><br><span style="color: rgb(0, 144, 0);"><font size="-1">			为什么称图形用户接口为 X 呢？因为由英文单字来看， Window 的 W 
+			接的就是 X 啦！意指 Window 的下一版就是了！
+			需注意的是， X Window 并不是 X Window<b>s</b> 喔！
+		</font></span></td><td><img src="0110whatislinux-fc4_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div></ul>
+
+		</li><li><span class="text_import1">1991 年： 芬兰大学生 Linus Torvalds 的一则简讯</span><ul>
+		到了 1991 年，芬兰的赫尔辛基大学的 Linus Torvalds 在 BBS 上面贴了一则消息，
+		宣称他以 bash, gcc 等工具写了一个小小的核心程序，这个核心程序可以在 Intel 的 386 
+		机器上面运作，让很多人很感兴趣！从此开始了 Linux 不平凡的路程！</ul>
+	</li></div>
+
+	<hr><a name="whatislinux_gnu"></a><img src="../images/logo.png" alt="小标题的图示" width="24" align="middle" height="23">	<span class="text_h2">关于 GNU 计划</span><br>
+	<div class="block2">
+		1984 年创立 GNU 计划与 FSF 基金会的 Stallman 先生认为，
+		写程序最大的快乐就是让自己发展的良好的软件让大家来使用了！
+		而既然程序是想要分享给大家使用的，不过，每个人所使用的计算机软硬件并不相同，
+		既然如此的话，那么该程序的原始码 (Source code) 就应该要同时释出，
+		这样才能方便大家修改而适用于每个人的计算机中呢！这个将原始码释出的举动，
+		就称为 Open Source ！此外，史托曼同时认为，如果您将您程序的 Source code 
+		分享出来时，若该程序是很优秀的，那么将会有很多人使用，
+		而每个人对于该程序都可以查阅 source code ，无形之中，就会有一票人帮您除错啰！
+		您的这支程序将会越来越壮大！越来越优秀呢！<br><br>
+
+		而为了避免自己的开发出来的 Open source 的自由软件被拿去做成专利软件，
+		于是 Stallman 同时将 GNU 与 FSF 发展出来的软件，都挂上 GPL 的版权宣告～
+		这个 FSF 的核心观念是『<span class="text_import2">版权制度是促进社会进步的手段，
+		版权本身不是自然权力。</span>』对于 FSF 有兴趣或者对于 GNU 
+		想要更深入的了解时，请参考<a href="http://saturn.stu.edu.tw/%7Eckhung/" target="_blank">树德大学的洪朝贵教授</a>的网站
+		<a href="http://saturn.stu.edu.tw/%7Eckhung/a/c_83.php" target="_blank">http://saturn.stu.edu.tw/~ckhung/a/c_83.php</a>，或直接到 GNU 去：
+		<a href="http://www.gnu.org/" target="_blank">http://www.gnu.org</a> 里面有更为深入的解说！<br>
+
+		<div style="padding: 10pt 0pt;" align="right"><table width="90%"><tbody><tr><td><b>Tips:</b><br><span style="color: rgb(0, 144, 0);"><font size="-1">			为什么要称为 GNU 呢？其实 GNU 是 GNU's Not Unix 的缩写，
+			意思是说， GNU 并不是 Unix 啊！那么 GNU 又是什么呢？
+			就是 GNU's Not Unix 嘛！.....如果您写过程序，
+			就会知道，这个 GNU = GNU's Not Unix 可是无穷循环啊！忙碌～<br><br>
+			另外，什么是 Open Source 呢？所谓的 source 是程序发展者写出的源代码，
+			Open Source 就是，软件在发布时，同时将作者的原始码一起公布的意思！
+		</font></span></td><td><img src="0110whatislinux-fc4_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div>
+		那么这个 GPL ( GNU General Public License, GPL ) 是什么玩意儿？
+		为什么要将自由软件挂上 GPL 的『版权宣告』呢？这个版权宣告对于作者有何好处？
+		首先， Stallman 对 GPL 一直是强调 Free 的，这个 Free 的意思是这样的：<br><br>
+		<span class="text_import2">"Free software" is a matter of liberty, not price. 
+		To understand the concept, you should think of "free speech", not "free beer".  
+		"Free software" refers to the users freedom to run, copy, distribute, 
+		study, change, and improve the software </span><br><br>
+		大意是说， Free Software (自由软件) 是一种自由的权力，并非是『价格！』
+		举例来说，你可以拥有自由呼吸的权力、你拥有自由发表言论的权力，
+		但是，这并不代表您可以到处喝『免费的啤酒！(free beer)』，也就是说，
+		<span class="text_import2">自由软件的重点并不是指『免费』的，而是指具有『自由度, freedom』的软件</span>，
+		史托曼进一步说明了自由度的意义是：<span class="text_import2">
+		使用者可以自由的执行、复制、再发行、学习、修改与强化自由软件</span>。
+		这无疑是个好消息！因为如此一来，你所拿到的软件可能原先只能在 Unix 上面跑，
+		但是经过原始码的修改之后，你将可以拿他在 Linux 或者是 Windows 
+		上面来跑！总之，一个软件挂上了 GPL 版权宣告之后，他自然就成了自由软件！
+		这个软件就具有底下的特色：<ul><span class="text_import2">
+		<li>取得软件与原始码：您可以根据自己的需求来执行这个自由软件；
+		</li><li>复制：您可以自由的复制该软件；
+		</li><li>修改：您可以将取得的原始码进行程序修改工作，使之适合您的工作；
+		</li><li>再发行：您可以将您修改过的程序，再度的自由发行，而不会与原先的撰写者冲突；
+		</li><li>回馈：您应该将您修改过的程序代码回馈于社群！</li></span></ul>
+		但请特别留意，您所修改的任何一个自由软件都不应该也不能这样：<ul><span class="text_import2">
+		<li>修改授权：您不能将一个 GPL 授权的自由软件，在您修改后而将他取消 GPL 授权～
+		</li><li>单纯贩卖：您不能单纯的贩卖自由软件。</li></span></ul>
+		也就是说，既然 GPL 是站在互助互利的角度上去开发的，您自然不应该将大家的成果占为己有，
+		而取消 GPL 授权的！对吧！因此您当然不可以将一个 GPL 软件的授权取消，
+		即使您已经对该软件进行大幅度的修改！那么自由软件也不能贩卖吗？当然不是！还记得上一个小节里面，
+		我们提到史托曼藉由贩卖 Emacs 取得一些经费，让自己生活不至于匮乏吧？？是的！
+		自由软件是可以贩卖的，不过，不可仅贩卖该软件，应同时搭配售后服务与相关手册～
+		这些可就需要工本费了呢！<br><br>
+
+		很多人还是有疑问，目前不是有很多 Linux 开发商吗？为何他们可以贩卖 Linux 这个 GPL 授权的软件？
+		原因很简单，因为他们大多都是贩卖『售后服务！』所以，他们所使用的自由软件，
+		都可以在他们的网站上面下载！(当然，每个厂商他们自己开发的工具软件就不是 GPL 的授权软件了！)
+		但是，您可以购买他们的 Linux 光盘，如果您购买了光盘，他们会提供相关的手册说明文件，
+		同时也会提供您数年不等的咨询、售后服务、软件升级与其他协力工作等等的附加价值！
+		所以说，目前自由软件工作者，他们所赖以维生的，几乎都是在『服务』这个领域呢！
+		毕竟自由软件并不是每个人都会撰写，有人有需要您的自由软件时，他就会请求您的协助，
+		此时，您就可以透过服务来收费了！这样来说，
+		<span class="text_import2">自由软件确实还是具有商业空间的喔！</span><br><br>
+
+		<div style="padding: 10pt 0pt;" align="right"><table width="90%"><tbody><tr><td><b>Tips:</b><br><span style="color: rgb(0, 144, 0);"><font size="-1">			很多人对于 GPL 授权一直很疑惑，对于 GPL 的商业行为更是无法接受！
+			关于这一点，鸟哥在这里还是要再次的申明， GPL 是可以从事商业行为的！
+			而很多的作者也是藉由这些商业行为来得以取得生活所需，更进一步去发展更优秀的自由软件！
+			千万不要听到『商业』就排斥！这对于发展优良软件的朋友来说，是不礼貌的！
+		</font></span></td><td><img src="0110whatislinux-fc4_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div>
+		上面提到的大多是与用户有关的项目，那么 GPL 对于自由软件的作者有何优点呢？
+		大致的优点有这些：<ul>
+		<li>软件安全性较佳；
+		</li><li>软件执行效能较佳；
+		</li><li>软件除错时间较短；
+		</li><li>贡献的原始码远永都存在。</li></ul>
+		这是因为既然是 Open Source 的自由软件，那么您的程序代码将会有很多人帮您查阅，
+		如此一来，程序的漏洞与程序的优化将会进展的很快！所以，在安全性与效能上面，
+		自由软件一点都不输给商业软件喔！此外，因为 GPL 授权当中，修改者并不能修改授权，
+		因此，您如果曾经贡献过程序代码，嘿嘿！您将名留青史呢！不错吧！ ^_^<br><br>
+
+		不过，就鸟哥的观点来看， GPL 对于程序开发者的优点是相当多的，不过，
+		对于不熟悉程序的一般人来说， GPL 的优点其实不太容易看出来～
+		首先，虽然他是随手可得的自由软件，不过，您也必须要会使用基本的编译程序才行吧！
+		(呵呵！这也是您为何要买这本书/察看鸟哥的网站的原因吧！ ^_^)
+		这对于一般人来说并不容易！当然啦，如果每个人都跟 Stallman 一样神，那商业公司就不用存在啦！
+		嘿嘿！对于不懂程序的人来说，商业公司是一个很快速的解决之道啊！
+		而对于我们广大的读者群来说，认识了/学习了 Linux 与自由软件的相关技巧后，
+		对于未来真的是有很不错的帮助喔！
+	</div>
+</div>
+
+<hr><a name="torvalds"></a><img src="../images/logo.png" alt="大标题的图示" width="35" align="middle" height="34"><span class="text_h1">Torvalds 的 Linux 发展</span><br>
+<div class="block1">
+	我们前面一节当中，提到了 Linux 是由 Torvalds 这个芬兰人所发明的。
+	那么为何托瓦兹可以发明 Linux 呢？凭空想象而来的？还是有什么渊源？
+	这里我们就来谈一谈啰！<br><br>
+
+	<hr><a name="torvalds_minix"></a><img src="../images/logo.png" alt="小标题的图示" width="24" align="middle" height="23"><span class="text_h2">与 Minix 之间</span><br>
+	<div class="block2">
+		Linus Torvalds (托瓦兹, 1969 年出生)的外祖父是赫尔辛基大学的统计学家，
+		他的外祖父为了让自己的小孙子能够学点东西，
+		所以从小就将托瓦兹带到身边来管理一些微计算机。在这个时期，托瓦兹接触了汇编语言 
+		(Assembly Language)，那是一种直接与芯片对谈的程序语言，也就是所谓的低级语言。
+		必须要很了解硬件的架构，否则很难以汇编语言撰写程序的。<br><br>
+
+		在 1988 年间，托瓦兹顺利的进入了赫尔辛基大学，并选读了计算机科学系。
+		在就学期间，因为学业的需要与自己的兴趣，托瓦兹接触到了Unix 这个操作系统。
+		当时整个赫尔辛基只有一部最新的 Unix 系统，同时仅提供 16 个终端机 (terminal)。
+		还记得我们上一节刚刚提过的，早期的计算机仅有主机具有运算功能， 
+		terminal 仅负责提供 Input/Output 而已。在这种情况下，
+		实在很难满足托瓦兹的需求，因为.....光是等待使用 Unix 的时间，就很耗时～
+		为此，他不禁想到：『我何不自己搞一部 Unix 来玩？』不过，
+		就如同 Stallman 当初的 GNU 计划一样，要写核心程序，谈何容易～<br><br>
+
+		不过，幸运之神并未背离托瓦兹，因为不久之后，他就知道有一个类似 Unix 的系统，
+		并且与 Unix 完全兼容，还可以在 Intel 386 机器上面跑的操作系统，
+		那就是我们上一节提过的，谭宁邦教授为了教育需要而撰写的 Minix 系统！
+		他在购买了最新的 Intel 386 的个人计算机后，就立即安装了 Minix 这个操作系统。
+		另外，由于 Minix 这个操作系统是有附上原始码的～所以，托瓦兹也经由这个原始码
+		学习到了很多的核心程序设计的设计概念喔！
+	</div>
+
+	<hr><a name="torvalds_multi"></a><img src="../images/logo.png" alt="小标题的图示" width="24" align="middle" height="23">	<span class="text_h2">对 386 硬件的多任务测试</span><br>
+	<div class="block2">
+		事实上，托瓦兹对于个人计算机的 CPU 其实并不满意，因为他之前碰的计算机都是工作站型的计算机，
+		这类计算机的 CPU 特色就是可以进行『多任务处理』的能力。什么是多任务呢？
+		理论上，<span class="text_import2">一个 CPU 在一个时间内仅能进行一项工作</span>，
+		那如果有两个工作同时出现到系统中呢？举例来说，
+		您可以在现今的计算机中同时开启两个以上的办公软件，例如电子电子表格与文字处理软件。
+		这个同时开启的动作代表着这两个工作同时要交给 CPU 来处理～
+		啊！ CPU 一个时间点内仅能处理一个工作，那怎么办？没关系，
+		这个时候如果具有多任务的 CPU 就会自动在不同的工作间切换～
+		亦即我先跑 10% 的电子电子表格，再转到字处理器跑 10% ，再回去电子电子表格....
+		一直到将两个工作结束为止(不一定同时结束！如果某个工作先结束了，
+		CPU 就会全速去跑剩下的那个工作了！)
+
+		<div style="padding: 10pt 0pt;" align="right"><table width="90%"><tbody><tr><td><b>Tips:</b><br><span style="color: rgb(0, 144, 0);"><font size="-1">			为什么有的时候我同时开两个档案(假设为 A, B 档案)所花的时间，
+			要比开完 A 再去开 B 档案的时间还要多？现在是否稍微可以理解？
+			因为如果同时开启的话， CPU 就必须要在两个工作之间不停的切换～
+			而切换的动作还是会耗去一些 CPU 时间的！所以啰，同时启用两个以上的工作在一个 CPU 上，
+			要比一个一个的执行还要耗时一点。这也是为何现在 CPU 开发商要整合两个 CPU 于一个芯片中！
+			也是为何在运作情况比较复杂的服务器上，需要比较多的 CPU 负责的原因！
+		</font></span></td><td><img src="0110whatislinux-fc4_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div>
+		早期 Intel 的 x86 架构计算机不是很受重视的原因，就是因为 x86 的芯片对于多任务的处理不佳，
+		CPU 在不同的工作之间切换不是很顺畅。但是这个情况在 386 计算机推出后，
+		有很大的改善。托瓦兹在得知新的 386 芯片的相关信息后，他认为，
+		以价格性能比的观点来看， Intel 的 386 便宜而且性能上也就稍微可以将就将就 ^_^。
+		所以他就贷款去买了一部 Intel 的 386 来玩。<br><br>
+
+		前面提到，托瓦兹是玩汇编语言的，汇编语言对于硬件有很密切的关系，
+		为了彻底发挥 386 的效能，于是托瓦兹花了不少时间在测试 386 机器上！
+		他的重要测试就是在测试 386 的多功效能上。首先，他写了两个小程序，
+		一个程序会持续输出 A ，另一个会持续输出 B，他将两个程序同时执行，
+		结果，他看到屏幕上很顺利的一直出现 ABABABAB......
+		他知道，他成功了！ ^_^<br>
+
+		<div style="padding: 10pt 0pt;" align="right"><table width="90%"><tbody><tr><td><b>Tips:</b><br><span style="color: rgb(0, 144, 0);"><font size="-1">			要达到多任务(multitasking)的环境，除了硬件(主要是 CPU)需要能够具有多任务的特性外，
+			操作系统也需要支持这个功能喔！一些不具有多任务特性的操作系统，
+			想要同时执行两个程序是不可能的。除非先被执行的程序执行完毕，否则，
+			后面的程序不可能被主动执行。至于多任务的操作系统中，每个程序被执行时，
+			都会有一个最大 CPU 使用时间，若该工作运作的时间超过这个 CPU 使用时间时，
+			该工作就会先被丢出 CPU 的运作中，而再度的进入核心工作排程中，等待下一次的 CPU 运作。
+			这有点像在开记者会啦，主持人(CPU)会问『谁要发问』？一群记者(工作程序)
+			就会举手(看谁的工作重要！)，先举手的自然就被允许发问，问完之后，
+			主持人又会问一次谁要发问，当然，所有人(包括刚刚那个记者)都可以举手！
+			如此一次一次的将工作给他完成啊！ ^_^
+			多任务的环境对于复杂的工作情况，帮助很大喔！
+		</font></span></td><td><img src="0110whatislinux-fc4_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div>
+	</div>
+
+	<hr><a name="torvalds_first"></a><img src="../images/logo.png" alt="小标题的图示" width="24" align="middle" height="23">	<span class="text_h2">初次释出 Linux 0.02</span><br>
+	<div class="block2">
+		探索完了 386 的硬件相关信息，并且也安装了类似 Unix 的 Minix 操作系统，
+		同时还取得 Minix 的原始码，接下来，托瓦兹干嘛去了？？
+		因为 Minix 的发展控制在谭宁邦教授手上，他希望 Minix 能以教育的立场去发展，
+		所以对于 Minix 的开发并不是十分的热中，但是一堆人对于 Minix 的功能需求又很强烈，
+		例如一些接口与周边的驱动程序与新的协议等等。在无法快速的得到解决后，
+		托瓦兹就想，那我干脆自己写一个更适合我自己用的 Minix 好了！
+		于是他就开始进行核心程序的撰写了。<br><br>
+
+		对于托瓦兹来说， GNU 真的是一个不可多得的好家伙～
+		因为他用来撰写属于自己小核心的工具，就是 GNU 的 bash 操作接口与 gcc 编译程序等等自由软件。
+		他以 GNU 的软件针对 386 并参考 Minix 的设计理念(注意，仅是程序设计理念，
+		并没有使用 Minix 的原始码)来写这个小核心。喝！没想到竟然可以写出这个小玩意，
+		而这个小玩意竟然可以在 386 上面顺利的跑起来～还可以读取 Minix 的文件系统。
+		真是太好了！不过还不够，他希望这个程序可以获得大家的一些修改建议，
+		于是他便将这个核心放置在网络上提供大家下载，同时在 BBS 上面贴了一则消息：
+
+<table class="term"><tbody><tr><td class="term"><pre>Hello everybody out there using minix-
+I'm doing a (free) operation system (just a hobby,
+won't be big and professional like gnu) for 386(486) AT clones.
+</pre></td></tr></tbody></table>
+
+		他说，他完成了一个好玩的小核心操作系统，这个核心是用在 386 机器上的，
+		同时，他真的仅是好玩，并不是想要做一个跟 GNU 一样大的计划！这则新闻引起很多人的注意，
+		他们也去托瓦兹提供的网站上下载了这个核心来安装。
+		有趣的是，因为托瓦兹放置核心的那个 FTP 网站的目录为： Linux ，
+		从此，大家便称这个核心为 Linux 了。(请注意，此时的 Linux 就是那个 kernel 喔！
+		另外，托瓦兹所丢到该目录下的第一个核心版本为 0.02 呢！)<br><br>
+
+		同时，为了让自己的 Linux 能够兼容于 Unix 系统，于是托瓦兹开始将一些能够在 Unix 
+		上面运作的软件拿来在 Linux 上面跑。不过，他发现到，是有很多的软件无法在 Linux 这个核心上运作。
+		这个时候他有两种作法，<span class="text_import2">一种是修改软件，让该软件可以在 Linux 上跑，
+		另一种则是修改 Linux ，让 Linux 符合软件能够运作的规范！</span>
+		由于 Linux 希望能够兼容于 Unix ，于是托瓦兹选择了第二个作法『修改 Linux 』！
+		为了让所有的软件都可以在 Linux 上执行，于是托瓦兹开始参考标准的 POSIX 规范。<br><br>
+
+		这个正确的决定让 Linux 在起步的时候体质就比别人优良～
+		因为 POSIX 标准主要是针对 Unix 与一些软件运行时候的标准规范，
+		只要依据这些标准规范来设计的核心与软件，理论上，就可以搭配在一起执行了。
+		而 Linux 的发展就是依据这个 POSIX 的标准规范， Unix 上面的软件也是遵循这个规范来设计的，
+		如此一来，让 Linux 很容易就与 Unix 兼容共享互有的软件了！
+		同时，因为 Linux 直接放置在网络下，提供大家下载，
+		所以在流通的速度上相当的快！导致 Linux 的使用率大增！
+		这些都是造成 Linux 大受欢迎的几个重要因素呢！
+	</div>
+
+	<hr><a name="torvalds_team"></a><img src="../images/logo.png" alt="小标题的图示" width="24" align="middle" height="23">	<span class="text_h2">Linux 的发展：虚拟团队的产生</span><br>
+	<div class="block2">
+		Linux 虽然是托瓦兹发明的，而且内容还绝不会涉及专利软件的版权问题。
+		不过，如果单靠托瓦兹自己一个人的话，那么 Linux 要茁壮实在很困难～
+		因为一个人的力量是很有限的。好在托瓦兹选择 Linux 的开发方式相当的务实！
+		首先，他将释出的 Linux 核心放置在 FTP 上面，并请告知大家新的版本信息，
+		等到使用者下载了这个核心并且安装之后，如果发生问题，
+		或者是由于特殊需求亟需某些硬件的驱动程序，那么这些使用者就会主动回报给托瓦兹。
+		在托瓦兹能够解决的问题范围内，他都能很快速的进行 Linux 核心的更新与除错。<br><br>
+
+		不过，托瓦兹总是有些硬件无法取得的啊，那么他当然无法帮助进行驱动程序的撰写与相关软件的改良。
+		这个时候，就会有些志工跳出来说：『这个硬件我有，我来帮忙写相关的驱动程序。』
+		因为 Linux 的核心是 Open Source 的，黑客志工们很容易就能够跟随 Linux 的原本设计架构，
+		并且写出兼容的驱动程序或者软件。志工们写完的驱动程序与软件托瓦兹是如何看待的呢？
+		首先，他将该驱动程序/软件带入核心中，并且加以测试。
+		只要测试可以运行，并且没有什么主要的大问题，那么他就会很乐意的将志工们写的程序代码加入核心中！
+		总之，托瓦兹是个很务实的人，对于 Linux 核心所欠缺的项目，他总是『先求有且能跑，
+		再求进一步改良』的心态！这让 Linux 使用者与志工得到相当大的鼓励！
+		因为 Linux 的进步太快了！用户要求虚拟内存，结果不到一个星期推出的新版 Linux 就有了！
+		这不得不让人佩服啊！<br><br>
+
+		另外，为因应这种程序代码的加入，于是 Linux 便逐渐发展成具有模块的功能！
+		亦即是将某些功能独立出于核心外，在需要的时候才加载到核心中。如此一来，
+		如果有新的硬件驱动程序或者其他协议的程序代码进来时，就可以模块化，
+		大大的增加了 Linux 核心的可维护能力！<br><br>
+
+		后来，因为 Linux 核心加入了太多的功能，
+		光靠托瓦兹一个人进行核心的实际测试并加入核心原始程序实在太费力～
+		结果，就有很多的朋友跳出来帮忙这个前置作业！
+		例如考克斯(Alan Cox)、与崔迪(Stephen Tweedie)等等，
+		这些重要的副手会先将来自志工们的修补程序或者新功能的程序代码进行测试，
+		并且结果上传给托瓦兹看，让托瓦兹作最后核心加入的原始码的选择与整并！
+		这个分层负责的结果，让 Linux 的发展更加的容易！<br><br>
+
+		特别值得注意的是，这些托瓦兹的 Linux 发展副手，以及自愿传送修补程序的黑客志工，
+		其实都没有见过面，而且彼此在地球的各个角落，大家群策群力的共同发展出现今的 Linux ，
+		我们称这群人为虚拟团队！而为了虚拟团队数据的传输，于是 Linux 便成立的核心网站：
+		<a href="http://www.kernel.org/" target="_blank">http://www.kernel.org</a> ！
+		而这群素未谋面的虚拟团队们，在 1994 年终于完成的 Linux 的核心正式版！ version 1.0 。
+		这一版同时还加入了 X Window System 的支持呢！更于 1996 年完成了 2.0 版，
+		<span class="text_import2">同时因应商业版本的需求，
+		于是开始将核心版本以测试版及稳定版同时开发，
+		次版本偶数为稳定版，奇数为开发中的测试版。</span>
+		例如 2.6 与 2.5 版为相同的版本，不过， 2.6 为稳定版， 2.5 则为测试版。
+		测试版含有较多的功能，不过，稳定性可不敢说～
+		并且托瓦兹指明了企鹅为 Linux 的吉祥物。<br>
+
+		<div style="padding: 10pt 0pt;" align="right"><table width="90%"><tbody><tr><td><b>Tips:</b><br><span style="color: rgb(0, 144, 0);"><font size="-1">			奇怪的是，托瓦兹是因为小时候去动物园被企鹅咬了一口念念不忘，
+			而正式的 2.0 推出时，大家要他想一个吉祥物。他在想也想不到什么动物的情况下，
+			就将这个念念不忘的企鹅当成了 Linux 的吉祥物了......
+		</font></span></td><td><img src="0110whatislinux-fc4_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div><br>
+
+		Linux 由于托瓦兹是针对 386 写的，跟 386 硬件的相关性很强，所以，
+		早期的 Linux 确实是不具有移植性的。不过，大家知道 Open source 的好处就是，
+		可以修改程序代码去适合作业的环境。因此，在 1994 年以后， Linux 便被开发到很多的硬件上面去了！
+		目前除了 x86 之外， IBM、HP、Sun 等等公司出的硬件也都有被 Linux 所支持呢！
+	</div>
+
+	<hr><a name="torvalds_dist"></a><img src="../images/logo.png" alt="小标题的图示" width="24" align="middle" height="23">	<span class="text_h2">Linux distributions</span><br>
+	<div class="block2">
+		好了，经过上面的说明，我们知道了 Linux 其实就是一个操作系统最底层的核心及其提供的核心工具。
+		他是 GNU 授权模式，所以，任何人均可取得原始码与可执行这个核心程序，并且可以修改。
+		此外，因为 Linux 参考 POSIX 设计规范，于是兼容于 Unix 操作系统，
+		故亦可称之为 Unix Like 的一种。<br><br>
+
+		Linux 的出现让 GNU 计划放下了心里的一块大石头，因为 GNU 一直以来就是缺乏了核心程序，
+		导致他们的 GNU 自由软件只能在其他的 Unix 上面跑。既然目前有 Linux 出现了，且 
+		Linux 也用了很多的 GNU 相关软件，所以 Stallman 认为 Linux 的全名应该称之为 GNU/Linux 呢！
+		不管怎么说，Linux 实在很不错，让 GNU 软件大多以 Linux 为主要操作系统来进行开发，
+		此外，很多其他的自由软件团队，例如 sendmail, wu-ftp, apache 等等也都有以 Linux 
+		为开发测试平台的计划出现！如此一来， Linux 除了主要的核心程序外，可以在 Linux 
+		上面运行的软件也越来越多，如果有心，就能够将一个完整的 Linux 操作系统搞定了！<br><br>
+
+		虽然由 Torvalds 负责开发的 Linux 仅具有 Kernel 与 Kernel 提供的工具，
+		不过，如上所述，很多的软件已经可以在 Linux 上面运作了，因此，
+		<span class="text_import2">Linux + 各家软件就可以完成一个相当完整的操作系统了</span>。
+		不过，要完成这样的操作系统......还真难～
+		因为 Linux 早期都是由黑客工程师所开发维护的，他们并没有考虑到一般使用者的能力......
+		为了让使用者能够接触到 Linux ，于是很多的商业公司或非营利团体，
+		就将 Linux Kernel (含 tools ) 与可运行的软件整合起来，加上自己具有创意的工具程序，
+		这个工具程序可以让用户以光盘或者透过网络直接安装/管理 Linux 系统。<span class="text_import2">
+		这个 Kernel + Softwares + Tools 的可完全安装的咚咚，我们称之为 Linux distribution </span>，
+		一般中文翻译成 可完全安装套件，或者安装套件等等。<br>
+
+		<div style="padding: 10pt 0pt;" align="right"><table width="90%"><tbody><tr><td><b>Tips:</b><br><span style="color: rgb(0, 144, 0);"><font size="-1">		由于 Linux 核心是由黑客工程师写的，要由原始码安装到 x86 计算机上面成为可以执行的 binary 档案，
+		这个过程可不是人人都会的～所以早期确实只有工程师对 Linux 有兴趣。
+		一直到一些社群与商业公司将 Linux 核心配合自由软件，并提供完整的安装程序，
+		且制成光盘后，对于一般用户来说， Linux 才越来越具有吸引力！
+		因为只要一直『下一步』就可以将 Linux 安装完成啊！ ^_^
+		</font></span></td><td><img src="0110whatislinux-fc4_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div>
+		我们前面说过， GNU 的 GPL 授权并非不能从事商业行为，于是很多商业公司便成立来贩卖 Linux 
+		distribution。而由于 Linux 的 GPL 版权宣告，因此，商业公司所贩卖的 Linux distributions 
+		通常也都可以从 Internet 上面来下载的！此外，如果您想要其他商业公司的服务，
+		那么直接向该公司购买光盘来安装，也是一个很不错的方式的！<br><br>
+
+		不过，由于发展 Linux distributions 的公司实在太多了，例如有名的 Red Hat,
+		Mandriva, Debian, SuSE 等等，所以很多人都很担心，如此一来<span class="text_import2">每个
+		distribution 是否都不相同呢？</span>这就不需要担心了，因为每个 Linux distributions 
+		使用的 kernel 都是 <a href="http://www.kernel.org/" target="_blank">http://www.kernel.org</a>
+		所释出的，而他们所选择的软件，几乎都是目前很知名的软件，重复性相当的高，
+		例如 WWW 服务器的 Apache ， Mail 服务器的 Postfix/sendmail ，File 服务器的 Samba 等等。<br><br>
+
+		此外，为了让所有的 Linux distributions 开发不致于差异太大，还有 
+		<span class="text_import2">Linux Standard Base (LSB)</span> 来规范开发者，以及目录架构的
+		<span class="text_import2">File system Hierarchy Standard (FHS)</span> 规范！
+		唯一差别的，可能就是该开发者自家所开发出来的管理工具，以及套件管理的模式吧！
+		所以说，基本上，每个 Linux distributions 除了架构的严谨度与选择的套件内容外，
+		其实差异并不太大啦！ ^_^ 。大家可以选择自己喜好的 distribution 来安装即可！<br><br>
+
+		底下列出几个主要的 Linux distributions 发行者网址：<ul>
+		<li><a href="http://www.redhat.com/" target="_blank">Red Hat: http://www.redhat.com</a>
+		</li><li><a href="http://fedora.redhat.com/" target="_blank">Fedora: http://fedora.redhat.com</a>
+		</li><li><a href="http://www.mandriva.com/" target="_blank">Mandriva: http://www.mandriva.com</a>
+		</li><li><a href="http://www.novell.com/linux/suse/" target="_blank">Novell SuSE: http://www.novell.com/linux/suse/</a>
+		</li><li><a href="http://www.debian.org/" target="_blank">Debian: http://www.debian.org/</a>
+		</li><li><a href="http://www.slackware.com/" target="_blank">Slackware: http://www.slackware.com/</a>
+		</li><li><a href="http://www.linpus.com.tw/" target="_blank">Linpus: http://www.linpus.com.tw/</a>
+		</li><li><a href="http://www.gentoo.org/" target="_blank">Gentoo: http://www.gentoo.org/</a>
+		</li><li><a href="http://www.ubuntulinux.org/" target="_blank">Ubuntu: http://www.ubuntulinux.org/</a>
+		</li><li><a href="http://www.centos.org/" target="_blank">CentOS: http://www.centos.org/</a>
+		</li></ul>
+
+		当然发行套件者不仅于此，您可以查阅其他的 Linux 新闻来发现喔！
+		但是值得大书特书的，是中文 Linux 的延伸计划： CLE 这个套件！
+		早期的 Linux 因为是工程师发展的，而这些工程师大多以英文语系的国家为主，
+		所以， Linux 对于国人的学习是比较困扰一点。后来由国人发起的 CLE 计划：
+		<a href="http://cle.linux.org.tw/" target="_blank">http://cle.linux.org.tw/</a>
+		开发很多的中文套件级翻译了很多的英文文件，使得我们目前得以使用中文的 Linux 呢！
+		另外，目前正在开发中的还有台南县卧龙小三等老师们发起的众多自由软件计划，
+		真是造福很多的朋友啊！<ul>
+		<li><a href="http://freesf.tnc.edu.tw/index.php" target="_blank">自由软件技术交流网：
+			http://freesf.tnc.edu.tw/index.php</a>
+		</li><li><a href="http://b2d.tnc.edu.tw/" target="_blank">B2D: http://b2d.tnc.edu.tw/</a>
+		</li></ul>
+		此外，如果只想看看 Linux 的话，还可以选择所谓的可光盘开机进入 Linux 的 Live CD 版本，
+		亦即是 KNOPPIX 这个 Linux distributions 呢！台湾也有阿里巴巴兄维护的中文 Live CD 喔！<ul>
+		<li><a href="http://www.knoppix.net/" target="_blank">http://www.knoppix.net/</a>
+		</li><li><a href="http://knoppix.tnc.edu.tw/" target="_blank">中文 KNOPPIX: http://knoppix.tnc.edu.tw/</a>
+		</li></ul>
+
+		<div style="padding: 10pt 0pt;" align="right"><table width="90%"><tbody><tr><td><b>Tips:</b><br><span style="color: rgb(0, 144, 0);"><font size="-1">			对于没有额外的硬盘或者是没有额外的主机的朋友来说，
+			KNOPPIX 这个可以利用光盘开机而进入 Linux 操作系统的 Live CD 
+			真的是一个不错的选择！您只要下载了 KNOPPIX 的映象档，然后将他刻录成为 CD，
+			放入您主机的光驱，并设定光盘为第一个开机选项，
+			就可以使用 Linux 系统了呢！
+		</font></span></td><td><img src="0110whatislinux-fc4_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div>
+		如果您还想要知道更多的 Linux distributions 的下载与使用信息，可以参考：<ul>
+		<li><a href="http://www.linuxiso.org/" target="_blank">http://www.linuxiso.org/</a>
+		</li><li><a href="http://distrowatch.com/" target="_blank">http://distrowatch.com/</a>
+		</li></ul>
+
+		那我到底应该要选择哪一个 distributions ？就如同我们上面提到的，其实每个 distributions 差异性并不大！
+		不过，由于套件管理的方式主要分为 Debian 的 pkg 及 Red Hat 系统的 RPM 方式，
+		目前鸟哥的建议是，先学习以 RPM 套件管理为主的 Fedora/SuSE/Mandriva 等台湾使用者较多的版本，
+		这样一来，发生问题时，可以提供解决的管道比较多。如果您已经接触过 Linux 了，
+		还想要更严谨的 Linux 版本，那可以考虑使用 Debian ，如果您是以效能至上来考虑，
+		那么或许 Gentoo 是不错的建议！
+		总之，版本很多，但是各版本差异其实不大，建议您一定要先选定一个版本后，
+		先彻头彻尾的了解他，那再继续玩其他的版本时，就可以很快的进入状况。
+		鸟哥的书/网站仅提供一个版本，不过是以比较基础的方式来介绍的，
+		因此，如果能够熟练这本书/网站的话，呵呵！哪一个 distributions 对您来说，都不成问题啦！
+	</div>
+</div>
+
+<hr><a name="linuxpt"></a><img src="../images/logo.png" alt="大标题的图示" width="35" align="middle" height="34"><span class="text_h1">Linux 的特色</span><br>
+<div class="block1">
+	Linux 是 Torvalds 先生所开发出来的，基于 GPL 的版权宣告之下，
+	可以在 x86 的架构下运作，也可以被移植到其他的大型主机上面。
+	由于开发的相关理念与兼容的问题，因此，我们也可以称 Linux 为 Unix Like 操作系统的一种。
+	<div style="padding: 10pt 0pt;" align="right"><table width="90%"><tbody><tr><td><b>Tips:</b><br><span style="color: rgb(0, 144, 0);"><font size="-1">		其实 Unix-Like 可以说是目前服务器类型的操作系统的统称啦！
+		因为，不论是 FreeBSD, BSD, Sun Unix, HP Unix, 
+		Red Hat Linux, Mandrake Linux 等等，都是由同一个祖先 Thompson 所写的『Unix』来的，
+		因此，这些咚咚都被统称为 Unix-Like 的操作系统啰！
+	</font></span></td><td><img src="0110whatislinux-fc4_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div>
+	<hr><a name="linuxpt_pt"></a><img src="../images/logo.png" alt="小标题的图示" width="24" align="middle" height="23">	<span class="text_h2">Linux 的特色</span><br>
+	<div class="block2">
+		那么这个系统有什么特异功能呢？简单的说：<ul>
+		<li><span class="text_import2">自由与开放</span>：由于 Linux 是基于 <span class="text_import2">GPL
+			( General Public License ) </span>的架构之下，因此他是自由软件，
+			也就是任何人都可以自由的使用或者是修改其中的原始码的意思！
+			这就是所谓的『<span class="text_import2">开放性架构</span>』，
+			这对科学界来说是相当重要的！因为很多的工程师由于特殊的需求，常常需要修改系统的原始码，
+			使该系统可以符合自己的需求！而这个开放性的架构将可以满足各不同需求的工程师！
+			因此当然就有可能越来越流行啰！以鸟哥来说，目前环境工程界的空气质量模式最新版
+			<a href="http://www.cmascenter.org/" target="_blank">Models-3/CMAQ</a>
+			就是以 Linux 为基准平台设计的呢！<br><br>
+		</li><li><span class="text_import2">配备需求低廉</span>：而 Linux 可以支持个人计算机的 x86 架构，
+			系统资源不必像早先的 Unix 系统那般，仅适合于单一公司 ( 例如 Sun ) 设备！
+			单就这一点来看，就可以造成很大的流行啰！不过，如果您想要在 Linux 下执行 X Window 系统，
+			那么硬件的等级就不能太低了！<br><br>
+		</li><li><span class="text_import2">功能强大而稳定</span>：而且由于 Linux 功能并不会输给一些大型的
+			Unix 工作站，因此，近年来越来越多的公司或者是团体、
+			个人投入这一个操作系统的开发与整合工作！<br><br>
+		</li><li><span class="text_import2">独立作业</span>：另外，
+			由于很多的软件套件逐渐被这套操作系统拿来使用，而很多套件软件也都在
+			Linux 这个操作系统上面进行发展与测试，因此， Linux 
+			近来已经可以独力完成几乎所有的工作站或服务器的服务了，例如
+			Web, Mail, Proxy, FTP.....。
+		</li></ul>
+
+		所以，目前 Linux 已经是相当成熟的一套操作系统啰！而且不耗资源又可以自由取得！呵呵，
+		可以说造成微软相当大的压力呀！此外，由于他的系统硬件要求很低，
+		加上目前很多的人由于『<span class="text_import2">Intel 的阴谋</span>』（
+		<span class="text_vbird">呵呵！开玩笑的，因为 <a href="http://www.big5.tomshardware.com/" target="_blank">Tom
+		的硬件评论 (http://www.big5.tomshardware.com/)</a> 网站常常这样取笑 Intel 的说！呵！很好笑！</span>）
+		而造成手边有相当多的淘汰掉的硬件配备，
+		Linux 在这些被淘汰的硬件中就可以执行的相当的顺畅与稳定！
+		因此也造成相当多朋友的关注啰！<br><br>
+
+		这也是造成 Linux 成为最近几年来最受瞩目的操作系统之一，如前所述，
+		他会受到瞩目的原因主要是因为他是『free』的，就是可以自由取得的操作系统啦！
+		然后他是开放性的系统，也就是你可以随时的取得程序的原始码，这对于程序开发工程师是很重要的！
+		而且，虽然他是 Free 的自由软件，不过功能却很强大！另外，
+		Linux 对于硬件的需求是很低的，这一点更造成它流行的主因，因为硬件的汰换率太快了，
+		所以很多人手边都有一些很少在用的零件，这些零件组一组就可以用来跑
+		Linux 了，<span class="text_import2">反正做一个工作站又不用使用到屏幕 ( 只要主机就可以啰
+		) </span>，因此 Linux 就越来越流行啰！(<span class="text_vbird">插个嘴，也就是因为
+		Linux 具有 1.硬件需求低、 2.架构开放、 3.系统稳定性及保密性功能够强、 
+		4.完全免费，所以造成一些所谓『反微软联盟』的程序设计高手不断的开发新软件！以与
+		Microsoft 进行抗衡！</span>)<br><br>
+	</div>
+
+	<hr><a name="linuxpt_adv"></a><img src="../images/logo.png" alt="小标题的图示" width="24" align="middle" height="23">	<span class="text_h2">Linux 的优缺点</span><br>
+	<div class="block2">
+		那干嘛要使用 Linux 做为我们的主机系统呢？这是因为 Linux 有底下这些优点：<ul>
+		<li><span class="text_import2">稳定的系统</span>：<br>
+			Linux 本来就是基于 Unix 概念而发展出来的操作系统，因此，
+			Linux 具有与 Unix 系统相似的的程序接口跟操作方式，当然也继承了
+			Unix 稳定并且有效率的特点。常听到安装 Linux 
+			的主机连续运做一年以上而不曾当机、不必关机是稀松平常的事；<br><br>
+		</li><li><span class="text_import2">免费或少许费用</span>：<br>
+			由于 Linux 是基于 GPL 的基础下的产物，因此任何人皆可以自由取得 Linux ，
+			至于一些『<span class="text_import2">安装套件</span>』的发行者，
+			他们发行的安装光盘也仅需要些许费用即可获得！不同于
+			Unix 需要负担庞大的版权费用，当然也不同于微软需要一而再、
+			再而三的更新你的系统，并且缴纳大量费用啰！<br><br>
+		</li><li><span class="text_import2">安全性、漏洞的快速修补</span>：<br>
+			如果你常玩网络的话，那么你最常听到的应该是
+			『<span class="text_import2">没有绝对安全的主机</span>』！没错！不过
+			Linux 由于支持者日众，有相当多的热心团体、个人参与其中的开发，
+			因此可以随时获得最新的安全信息，并给予随时的更新，亦即是具有相对的较安全！<br><br>
+		</li><li><span class="text_import2">多任务、多使用者</span>：<br>
+			与 Windows 系统不同的， Linux 主机上可以同时允许多人上线来工作，
+			并且资源的分配较为公平，比起 Windows 的单人假多任务系统要稳定的多啰！
+			这个多人多任务可是 Unix-Like 上面相当好的一个功能，怎么说呢？你可以在一部
+			Linux 主机上面规划出不同等级的用户，而且每个用户登入系统时的工作环境都可以不相同，
+			此外，还可以允许不同的使用者在同一个时间登入主机，以同时使用主机的资源。<br><br>
+		</li><li><span class="text_import2">使用者与群组的规划</span>：<br>
+			在 Linux 的机器中，档案的属性可以分为『可读、可写、可执行』
+			等参数来定义一个档案的适用性，此外，这些属性还可以分为三个种类，
+			分别是『档案拥有者、档案所属群组、其他非拥有者与群组者』。
+			这对于项目计划或者其他计划开发者具有相当良好的系统保密性。<br><br>
+		</li><li><span class="text_import2">相对比较不耗资源的系统</span>：<br>
+			Linux 只要一部 p-100 以上等级的计算机就可以安装并且使用愉快啰！还不需要到 P-4 或 AMD K8	
+			等级的计算机呢！不过，如果你要架设的是属于大型的主机（服务上百人以上的主机系统），
+			那么就需要比较好一点的机器了。不过，目前市面上任何一款个人计算机均可以达到这一个要求啰！<br><br>
+		</li><li><span class="text_import2">适合需要小核心程序的嵌入式系统</span>：<br>
+			由于 Linux 只要几百 K 不到的程序代码就可以完成一个完整的操作系统，
+			因此相当适合于目前家电或者是小电子用品的操作系统呢！那就是当红炸子鸡『嵌入式』系统啦！
+			Linux 真的是很适合例如手机、数字相机、PDA、家电用品等等的微电脑操作系统呢！ ^_^
+		</li></ul>
+
+		反正 Linux 好处说不完啦！不过虽然 Linux 具有这样多的好处，
+		但是他先天上有一个足以致命的地方，使他的普及率受到很大的限制，就是
+		Linux 需要使用『指令列』 的终端机模式进行系统的管理！虽然近年来有很多的图形接口开发使用在
+		Linux 上面，但毕竟要熟悉 Linux 还是以指令列来使用是比较好的，因此要接受
+		Linux的玩家必须比较要能熟悉对计算机下指令的行为，而不是用鼠标点一点 icon
+		就行了！不过如果只是要架一些简单的小站呢？是不是大家都可以做的到？没错！其实只要对
+		Linux 做一些小小的设定就可以架站了！Linux 还可以改进的地方：<ul>
+		<li><span class="text_import2">没有特定的支持厂商</span>：因为在 Linux 上面的所有套件几乎都是自由软件，
+			而每个自由软件的开发者可能并不是公司团体，而是非营利性质的团体。如此一来，
+			在您 Linux 主机上面的软件若发生问题，该如何是好？
+			好在由于目前 Linux 商业界的整合还不错，目前在台湾比较具名的 Red Hat 与 SuSE 
+			均有设立了服务点。您可以经由这个服务点来直接向他们购买/咨询相关的软硬件问题呢！
+			不过，如果您并非选择有专门商业公司的 Linux distributions 时？怎么办？
+			没有专人到府服务呢～这点倒是还不需要太担心，
+			因为拜网络风行之赐，你要问的问题几乎在网络上都可以找到答案喔！看你有没有用心去找就是了！<br><br></li><li><span class="text_import2">图形接口作的还不够好</span>：虽然早在 1994 年 Linux 1.0 版释出时，
+			就已经含有 XFree86 的 X Window 架构了。不过， X Window 毕竟是 Linux 上的一个软件，
+			他并不是 Linux 最核心的部分，有没有他对 Linux 的服务器执行都没有影响的！
+			所以鸟哥通常是不玩 X Window 的啦！
+			但其实有更多人对于 Linux 并非是着眼在网络服务器，而是一般桌面计算机的使用，
+			这一点对于 Linux 来说，还是不够好！即使目前已有 <a href="http://www.kde.org/" target="_blank">KDE (http://www.kde.org/)</a> 及 <a href="http://www.gnome.org/" target="_blank">GNOME (http://www.gnome.org/)</a> 等优秀的窗口管理程序，
+			不过，毕竟整合度还是需要加强，希望未来可以看到整合度超高的 Linux 桌面计算机呢！
+		</li></ul>
+	</div>
+
+	<hr><a name="linuxpt_other"></a><img src="../images/logo.png" alt="小标题的图示" width="24" align="middle" height="23">	<span class="text_h2">其他 Linux 相关</span><br>
+	<div class="block2">
+		还有一些数据需要提醒大家的呢！<br><br>
+
+		<li><span class="text_import1">依循标准：</span><br><br>
+			Linux 有个优良的传统，那就是支持比较公认而正式的标准，
+			例如开发时就使用的 POSIX 规范。此外，
+			由于 Linux 是一个没有『规格品』样式的新鲜玩意儿，
+			如果大家都自己玩自己的，那么可想而知的是，未来想要在
+			Linux 这个操作系统上面发展软件与硬件的厂商一定会无所适从的！
+			为了让软件开发商、与硬件发展者有一个依循的方向，因此而有<span class="text_import2">
+			Linux Standard Base (LSB) 及 File system Hierarchy Standard (FHS)</span>
+			这些个玩意儿的诞生！所以，各个
+			distribution 也都要遵循 LSB 上面的规范，软硬件发展者也都会依循 LSB ，所以啰，我们才会常常说，各大
+			distribution 虽然在提供的工具与创意上面有所不同，但是基本上，他们的 Linux
+			架构都是很类似的！因此，你只要玩一套 Linux distribution 也就够了！其他的
+			distribution 应该就难不倒你啰！<ul>
+			<li><a href="http://www.pathname.com/fhs/" target="_blank">FHS: http://www.pathname.com/fhs/</a>
+			</li><li><a href="http://www.linuxbase.org/" target="_blank">LSB: http://www.linuxbase.org/</a></li></ul><br>
+
+		</li><li><span class="text_import1">服务器、工作站、终端机...</span><br><br>
+			由于网络的盛行，我们或许常常会听到一些名词ㄋㄟ～所以，底下先来介绍几个简单的网络名词吧！
+			^_^，来认识一下什么是 服务器 ( Server )、工作站 ( Workstation ) 与终端机
+			( Ternianl )？简单的来说，你可以这样认为：<br><br><ul>
+
+			<li><span class="text_import2">服务器 ( Server )</span>：提供 Internet 一种以上的网络服务的主机，例如
+				yahoo 提供的是 WWW 的服务，那么 yahoo 就可以称之为 服务器 了！那么，你自己架设一台
+				mail server 呢？呵呵！那也是一个小型的服务器啰！所以，你必须要清楚的知道，
+				服务器是有规模大小之分的！目前一部
+				Linux 上面就可以架设多个服务器软件啰！例如 WWW 服务器的 Apache 软件、 FTP
+				服务器的 Wu-ftp 软件等等的；</li><br>
+			<li><span class="text_import2">工作站 ( Workstation ) </span>：基本上，
+				工作站可以视为仅提供一群特定人士，作为数值分析、科学用途的机器。例如鸟哥的研究室有一部
+				Sun 的机器，他仅提供我们研究室内部几部计算机的联机，当我们有需要使用到 Fortran
+				这个程序语言时，就联机进入 Sun 这部机器，并在上面进行我们所需要的计算工作！
+				这个就是工作站啦。而工作站与服务器的差别，大概就在于有没有提供
+				internet 上面的服务而已，例如，如果我将 Sun 上面的 mail server 开启之后，
+				那么这部机器就可以称之为服务器了！同时也是我们的工作站喔！
+				当然，更广义的定义是，只要是没有对 Internet
+				上面提供网络服务的，那就是工作站了！这当然也就包含所谓的终端机！</li><br>
+			<li><span class="text_import2">终端机 ( Terminal ) </span>：简单的说，就是 end-user
+				( 就是你啦 ) 前面的那部计算机！呵呵，例如鸟哥都是使用我的工作机 ( Windows )
+				连上我们的主机来工作，那么这一部 Windows 的计算机，就可以称为 terminal 
+				机器啰！不过，更狭义的来说，『终端机』本身应该是不具备任何可以作业的软件的，
+				在终端机上面一定要连上 Server 之后，才能进行各项作业！
+				那才是最狭义的终端机啰！例如我们前面说过的
+				<a href="#fig2">早期的大型主机联机模式</a>！</li><br></ul>
+		大致上的分别可以用上面的观点来看！<br><br>
+
+		</li><li><span class="text_import1">几个常见的授权模式与定义</span><br><br>
+			现在市面上有好多的软件，有的是自由软件，有的是专利软件。
+			有的专利软件免费，有的自由软件要钱～啊！好烦啊！怎么分辨这些东西？
+			其实，鸟哥并不是律师，对于法律也不十分懂，不过，
+			还是有几个授权模式可以来谈一谈～<br><br><ul>
+
+			<li><span class="text_import2">Open Source </span>：Open source 表示软件释出时，
+			一定伴随着原始码的释出喔！通常他有几个好处：<br><br><ol>
+				<li>程序设计师通常会等到程序成熟之后才会释出 ( 免得被笑, ^_^ )，
+				所以通常程序在雏形的时候，就已经具有相当的优良体质；
+				</li><li>Open Source 的精神，相信当程序原设计人将程序原始码释出之后，
+				其他的程序设计师接受这份原始码之后，由于需要将程序改成自己所需的样式，
+				所以会经由本身的所学来加以改良，并从中加以改良与除虫，所以程序的 debug 
+				功能会比传统的 close source 来的快！
+				</li><li>由于程序是伴随原始码的，因此，系统将会不易存在鲜为人知的木马程序或一些安全漏洞，
+				相对而言，会比较更加的安全！</li></ol><br>
+			Open source 的代表授权为 GNU 的 GPL 及 BSD 等等：<br><br><ul>
+				<li><span class="text_import2">GNU General Public License </span>：
+				这个可以由刚刚的说明了解，他主要定义在『自由软件』上面，任何挂上
+				GPL 授权的软件，需要公布其原始码 ( Open Source )，GPL 有几个主要的大方向：<ol>
+					<li>任何个人或公司均可释出自由软件 ( free software )；</li>
+					<li>任何释出自由软件的个人或公司，均可由自己的服务来收取适当的费用；</li>
+					<li>该软件的原始码 ( Source Code ) 需要随软件附上，并且是可公开发表的；</li>
+					<li>任何人均可透过任何正常管道取得此一自由软件，且均可取得此一授权模式。</li></ol>
+				更多的 GPL 可参考<a href="http://linux.vbird.org/linux_basic/0110whatislinux/1010appendix_A.php">附录 A </a>的中文化条文！<br><br>
+				</li><li><span class="text_import2">Berkeley Software Distribution (BSD)</span> ：使用
+				BSD source code 最常接触到的就是 BSD 授权模式了！这个授权模式其实与 GPL
+				很类似，而其精神也与 Open Source 相呼应呢！</li></ul><br>
+			此外，近期以来还有 Apache 的授权、 Sun 的授权，好多好多～<br><br>
+
+			</li><li><span class="text_import2">Close Source </span>：
+			程序的核心是封闭的，优点是有专人维护，您不需要去更动他；缺点则是灵活度大打折扣，
+			用户无法变更该程序成为自己想要的样式，此外，若有木马程序或者安全漏洞，
+			将会花上相当长的一段时间来除错！这也是所谓专利软件 (copyright) 常见的软件出售方式。
+			代表的授权模式有：<br><br><ul>
+				<li><span class="text_import2">Freeware</span> ：不同于 Free software ， Freeware
+				为『免费软件』而非『自由软件！』虽然它是免费的软件，但是不见得要公布其原始码，
+				端看释出者的意见啰！这个东西与 Open Source 毕竟是不太相同的东西喔！
+				此外，目前很多标榜 免费软件 的程序很多都有小问题！例如假借免费软件的名义，
+				实施用户数据窃取的目的！所以
+				『<span class="text_import1">来路不明的软件请勿安装</span>！』</li><br>
+				<li><span class="text_import2">Shareware</span> ：共享件这个名词就有趣了！
+				与免费软件有点类似的是， Shareware 在使用初期，它也是免费的，但是，
+				到了所谓的『试用期限』之后，您就必须要选择『付费后继续使用』或者『将它移除』
+				的宿命～通常，这些共享件都会自行撰写失效程序，让你在试用期限之后就无法使用该软件。</li>
+			</ul>
+	</li></ul></li></div>
+</div>
+
+
+<hr><a name="important"></a><img src="../images/logo.png" alt="大标题的图示" width="35" align="middle" height="34"><span class="text_h1">重点回顾</span><br>
+<div class="block1">
+<ul>
+	<li>计算机主要以二进制作为单位，而目前常用的磁盘容量单位为 bytes，其单位换算为 1Byte = 8bits，
+		其他的以1024为其倍数，如 1GByte=1024MBytes等等。</li>
+	<li>操作系统(Operation System)主要在管理与驱动硬件，因此必须要能够管理内存、管理装置、
+		负责行程管理以及系统呼叫等等。因此，只要能够让硬件准备妥当 (Ready) 的情况，
+		就是一个阳春的操作系统了。</li>
+	<li>最阳春的操作系统仅在驱动与管理硬件，而要使用硬件时，就得需要透过应用软件或者是壳程序(shell)
+		的功能，来呼叫操作系统操纵硬件工作。因此，目前称为操作系统的，
+		除了上述功能外，通常已经包含了日常工作所需要的应用软件在内了。</li>
+	<li>Unix 的前身是由贝尔实验室(Bell lab.)的 Ken Thompson 利用组译语言写成的，
+		后来在 1971-1973 年间由 Dennis Ritchie 以 C 程序语言进行改写，才称为 Unix。</li>
+	<li>1977 年由 Bill Joy 释出 BSD (Berkeley Software Distribution)，这些称为 Unix-like 的操作系统。</li>
+	<li>1984年由 Andrew Tannenbaum 制作出 Minix 操作系统，该系统可以提供原始码以及软件；</li>
+	<li>1984年由 Richard Stallman 提倡 GNU 计划，倡导自由软件(Free software)，
+		强调其软件可以『自由的取得、复制、修改与再发行』，并规范出 GPL 授权模式，
+		任何 GPL (General Public License) 软件均不可单纯仅贩卖其软件，也不可修改软件授权。</li>
+	<li>1991年由芬兰人 Linus Torvalds 开发出 Linux 操作系统。简而言之，Linux 成功的地方主要在于：
+		Minix(Unix), GNU, Internet, POSIX 及虚拟团队的产生。</li>
+	<li>Linux 本身就是个最阳春的操作系统，其开发网站设立在 http://www.kernel.org，我们亦称 Linux
+		操作系统最底层的数据为『核心, Kernel』。</li>
+	<li>目前 Linux 的发展分为两种版本，分别是稳定版本的偶数版，如 2.6.X，适合于商业与家用环境使用；
+		一种是发展中版本如 2.5.X 版，适合开发特殊功能的环境。</li>
+	<li>Linux distributions 为 Linux 的 Kernel + Tools + Free Software + Documentations +
+		可完全安装的程序所制成的一套完整的系统。</li>
+</ul>
+</div>
+
+
+<hr><a name="FAQ"></a><img src="../images/logo.png" alt="大标题的图示" width="35" align="middle" height="34"><span class="text_h1">习题练习</span><br>
+<div class="block1">
+( 要看答案请将鼠标移动到『答：』底下的空白处，按下左键圈选空白处即可察看)
+<ul>
+	<li>一个完整的操作系统至少要能够完整的控制整个硬件，请问，操作系统应该要控制硬件的哪些单元？
+	<div class="block2"><font color="white" size="-1">
+		至少要能够控制：(1)input/output crontrol, (2)device control, (3)process management, 
+		(4)file management. 等等！
+	</font></div>
+
+	</li><li> 核心的功能在于管控整个系统的硬件，这包括了 CPU 运算单元的管理，输入/输出的管理，内存的管理等等。
+	那么请问一个较为完整的操作系统，应该包含哪些部分？</li>
+	<div class="block2"><font color="white" size="-1">
+		应包含 Kernel + Kernel Tools + Applications 等等
+	</font></div>
+
+	<li> 一个 GBytes 的硬盘空间，等于几个 KBytes ？</li>
+	<div class="block2"><font color="white" size="-1">
+		1GBytes = 1024 MBytes * 1024 KBytes/MBytes = 1048576 KBytes
+	</font></div>
+
+	<li> 你在你的主机上面安装了一张网络卡，但是开机之后，系统却无法使用，您确定网络卡是好的，
+	那么可能的问题出在哪里？该如何解决？</li>
+	<div class="block2"><font color="white" size="-1">
+		因为所有的硬件都没有问题，所以，可能出问题的地方在于系统的核心(kernel)
+		不支持这张网络卡。解决的方法，到网络卡的开发商网站，下载支持您主机操作系统的驱动程序，
+		安装网卡驱动程序后，就可以使用了。
+	</font></div>
+
+	<li> 我在一部主机上面安装 Windows 操作系统时，并且安装了显示适配器的驱动程序，他是没有问题的。
+	但是安装 Linux 时，却无法完整的显示整个 X Window 。请问，我可不可以将 Windows 上面的
+	显示适配器驱动程序拿来安装在 Linux 上？</li>
+	<div class="block2"><font color="white" size="-1">
+		不行！因为核心不同，针对硬件所写的驱动程序也会不相同，
+		编译程序也不同，当然，驱动程序也无法在两个操作系统间兼容。
+		这也是为何开发商在他们的网站上面，都会同时提供许多不同操作系统的驱动程序之故。
+	</font></div>
+
+	<li> 我在 Windows 上面玩的游戏，可不可以拿到 Linux 去玩？</li>
+	<div class="block2"><font color="white" size="-1">
+		当然不行！跟上一题相似的，因为游戏也是一个应用程序 (application)，
+		他必须要使用到核心所提供的工具来开发他的游戏，
+		所以这个游戏是不可在不同的平台间运作的。除非这个游戏已经进行了移植。
+	</font></div>
+
+	<li> 什么是软件的移植？</li>
+	<div class="block2"><font color="white" size="-1">
+		程序是由程序代码(通成为ASCII格式)经过编译程序编译成为 binary file 之后，
+		才能够在该操作系统上面执行。因此，您可以将您的程序的程序代码修改成可以适应
+		其他操作系统的环境，并且加以编译，使程序可以在其他平台上运作，
+		这个修改的动作即为移植。
+	</font></div>
+
+	<li> Linux 本身仅是一个核心与相关的核心工具而已，不过，他已经可以驱动所有的硬件，
+	所以，可以算是一个很阳春的操作系统了。经过其他应用程序的开发之后，被整合成为 Linux 
+	distribitions。请问众多的 distributions 之间，有何异同？</li>
+	<div class="block2"><font color="white" size="-1">
+		相同：利用同样的 Linux kernel (http://www.kernel.org)，几乎相同的自由软件套件
+		(例如 GNU 里面的 gcc/glibc/vi/apache/bind/sendmail... )，几乎相同的操作接口
+		(例如均使用 bash/KDE/GNOME 等等)。<br>
+		不同：使用的 kernel 与各软件的版本可能会不同；各开发商加入的应用工具不同，
+		使用的套件管理模式不同(debian 与 RPM) 
+	</font></div>
+
+	<li> Unix 是谁写出来的？ GNU 计划是谁发起的？</li>
+	<div class="block2"><font color="white" size="-1">
+		Unix 是 Ken Thompson 写的，1973 年再由 Dennis Ritchie 以 C 语言改写成功。
+		至于 GNU 与 FSF 则是 Richard Stallman 发起的。
+	</font></div>
+
+	<li> GNU 的全名为何？他主要由那个基金会支持？</li>
+	<div class="block2"><font color="white" size="-1">
+		GNU 是 GNU is Not Unix 的简写，是个无穷循环！
+		另外，这个计划是由自由软件基金会 (Free Software Foundation, FSF) 所支持的！
+		两者都是由 Stallman 先生所发起的！
+	</font></div>
+
+	<li> 我要如何取得 Linux distribution 的可安装光盘？</li>
+	<div class="block2"><font color="white" size="-1">
+		目前各大版本的 Linux distribution 大致上仍然依附在 GPL 这个版权宣告上，
+		因此在网络上面都可以轻易的下载，若有兴趣的话可以到各发展的厂商主网页去下载。
+		然而为了带宽的节省起见，建议在台湾以映像站台来下载速度上会快上很多，
+		特别建议南台湾朋友可以到义守大学的 FTP 站 ( http://ftp.isu.edu.tw/ )下载资料！
+	</font></div>
+
+	<li> 简单的说明一下什么是 GNU 的 GPL ？</li>
+	<div class="block2"><font color="white" size="-1">
+		1. 任何个人或公司均可释出自由软件 ( free software )；<br>
+		2. 任何释出自由软件的个人或公司，均可由自己的服务来收取适当的费用；<br>
+		3. 该软件的原始码 ( Source Code ) 需要随软件附上，并且是可公开发表的；<br>
+		4. 任何人均可透过任何正常管道取得此一自由软件，且均可取得此一授权模式。
+	</font></div>
+
+	<li> 何谓多人 ( Multi-user ) 多任务 ( Multitask )？</li>
+	<div class="block2"><font color="white" size="-1">
+		Multiuser 指的是 Linux 允许多人同时连上主机之外，
+		每个使用者皆有其各人的使用环境，并且可以同时使用系统的资源！<br>
+		Multitask 指的是多任务环境，在 Linux 系统下， CPU 
+		与其他例如网络资源可以同时进行多项工作， 
+		Linux 最大的特色之一即在于其多任务时，资源分配较为平均！
+	</font></div>
+
+	<li> 简单说明 GNU General Public License ( GPL ) 与 Open Source 的精神：</li>
+	<div class="block2"><font color="white" size="-1">
+		   1. GPL 的授权之软件，乃为自由软件（Free software），任何人皆可拥有他；
+		   2. 开发 GPL 的团体(或商业企业)可以经由该软件的服务来取得服务的费用；
+		   3. 经过 GPL 授权的软件，其属于 Open source 的情况，所以应该公布其原始码；
+		   4. 任何人皆可修改经由 GPL 授权过的软件，使符合自己的需求；
+		   5. 经过修改过后 Open source 应该回馈给 Linux 社群。
+	</font></div>
+
+	<li> 有个朋友问我说『 Linux 是什么？』我该如何回答比较好？</li>
+	<div class="block2"><font color="white" size="-1">
+		简单的说， Linux 就是一个操作系统，或者说， Linux 是操作系统最底层的核心。
+		这个核心可以管理整个计算机硬件，让计算机硬件可以完整的运作起来，并等待用户输入指令。
+		最早 Linux 是由 Torvalds 在 1991 年写出来的，后来由于他承接了 Unix 的良好传统：稳定性高、
+		多人多任务的环境设计优良、要求配备较低等优点，所以很多软件开发商在这个核心上面开发，
+		而某些厂商将这些软件与核心整合成为可以完全安装的光盘，而成为目前大家常常听到的 Linux 操作系统了。
+	</font></div>
+
+	<li> 什么是 POSIX ?为何说 Linux 使用 POSIX 对于发展有很好的影响？</li>
+	<div class="block2"><font color="white" size="-1">
+		POSIX 是一种标准规范，主要针对在 Unix 操作系统上面跑的程序来进行规范。
+		若您的操作系统符合 POSIX ，则符合 POSIX 的程序就可以在您的操作系统上面运作。
+		Linux 由于支持 POSIX ，因此很多 Unix 上的程序可以直接在 Linux 上运作，
+		因此程序的移植相当简易！也让大家容易转换平台，提升 Linux 的使用率。
+	</font></div>
+
+	<li> Linux 的发展主要分为哪两种核心版本？</li>
+	<div class="block2"><font color="white" size="-1">
+		主要分为奇数的发展中版本(develop)，如 2.5 ，及偶数的稳定版本，如 2.6 。
+	</font></div>
+
+	<li>简单说明自由软件 (free software) 与开放源码 (open source) 的差异？</li>
+	<div class="block2"><font color="white" size="-1">
+		自由软件意指：你可以拥有自由的取得、复制、修改、再发行该软件的权利，
+		由于具有这些权利，因此自由软件通常是 Open source 的。<br>
+		开放源码意指：软件释出时，同时释出原始码，但使用者取得原始码后，能否修改该原始码，
+		则依据该软件的授权而定。<br>
+		意思就是说，自由软件是 Open source 的，但是 Open source 的软件则不见得是自由软件！
+	</font></div>
+
+	<li>什么是 Linux 的 Live CD ？</li>
+	<div class="block2"><font color="white" size="-1">
+		所谓的 Live CD 就是将完整的 Linux distribution 放置到一片光盘 (目前也有 DVD 版本了) 当中，
+		然后透过重新启动以『光盘开机』，就能够不使用硬盘直接进入 Linux 系统的环境。
+	</font></div>
+
+	<li>简单说明 Linux 成功的因素？</li>
+	<div class="block2"><font color="white" size="-1">
+		1. 藉由 Minix 操作系统开发的 Unix like ，没有版权的纠纷；<br>
+		2. 藉助于 GNU 计划所提供的各项工具软件， gcc/bash 等；<br>
+		3. 藉由 Internet 广为流传；<br>
+		4. 藉由支持 POSIX 标准，让核心能够适合所有软件的开发；<br>
+		5. 托瓦兹强调务实，虚拟团队的自然形成！
+	</font></div>
+</ul>
+</div>
+
+<hr><a name="reference"></a><img src="../images/logo.png" alt="大标题的图示" width="35" align="middle" height="34"><span class="text_h1">参考数据</span>
+<div class="block1">
+	<ul>
+	<li>王孝熙等，2002，『计算器概论』，台湾东华书局出版。
+	</li><li>葛林穆迪着，杜默译，『Linux 传奇』，时报文化出版企业。
+	</li><li>网络农夫，2001， Unix 简史 <br>
+		<a href="http://netlab.cse.yzu.edu.tw/%7Estatue/freebsd/docs/csh/" target="_blank">
+		http://netlab.cse.yzu.edu.tw/~statue/freebsd/docs/csh/</a>
+	</li><li>Ken Thompson 的个人网站： <a href="http://plan9.bell-labs.com/cm/cs/who/ken/index.html" target="_blank">http://plan9.bell-labs.com/cm/cs/who/ken/index.html</a>
+	</li><li>Dennis Ritchie 的个人网站： <a href="http://cm.bell-labs.com/cm/cs/who/dmr/" target="_blank">http://cm.bell-labs.com/cm/cs/who/dmr/</a>
+	</li><li>Richard Stallman 的个人网站： <a href="http://www.stallman.org/" target="_blank">http://www.stallman.org/</a>
+	</li><li>GNU 计划： <a href="http://www.gnu.org/" target="_blank">http://www.gnu.org</a>
+	</li><li>洪朝贵老师的 GNU/FSF 介绍： <a href="http://saturn.stu.edu.tw/%7Eckhung/a/c_83.php" target="_blank">http://saturn.stu.edu.tw/~ckhung/a/c_83.php</a>
+	</li></ul>
+</div>
+
+<hr><span class="text_history">
+2002/06/25：第一次完成<br>
+2003/01/26：重新修订，加入一些历史事件、重新编排与加入 FAQ<br>
+2003/02/28：加入百资以及 distrowatch 两个网站的推荐！<br>
+2005/05/31：旧有的资料放于 <a href="http://linux.vbird.org/linux_basic/0110whatislinux/0110whatislinux/0110whatislinux.php">此处</a><br>
+2005/06/02：做了大幅度的改版，很多数据参考了网络农夫及 Linux 传奇等书籍，建议大家要多看看网络农夫的大作喔！<br>
+2005/06/08：将原本的 binary / compiler / Emacs 的地方再说明一下！比较容易了解那是什么！顺便加入习题<br>
+2005/07/21：网络农夫的网站结束了～真伤心～只好提供网络农夫之前发表的文章连结了！<br>
+2005/08/03：感谢网友 babab 的来信告知，修订了国家高速网络中心网址：http://www.nchc.org.tw<br>
+2005/10/24：经由网友的回报，洪朝贵老师已经调职到树德大学，因此整个连结内容已作修订。<br>
+2006/05/31：加入了重点回顾的项目啦！<br>
+2006/06/06：感谢网友 "Warren Hsieh" 兄的提醒，由于麦金塔在 2006 年后使用 Intel 的 x86 硬件架构，故 
+	Windows 是可能可以在上面安装的！<hr>
+</span>
+    </td>
+    <td style="width: 16px; font-size: 6px;">　</td></tr>
+<tr><td style="width: 16px; height: 16px;">　</td>
+    <td style="width: 866px; height: 16px;"></td>
+    <td style="width: 16px; height: 16px;">　</body></html>

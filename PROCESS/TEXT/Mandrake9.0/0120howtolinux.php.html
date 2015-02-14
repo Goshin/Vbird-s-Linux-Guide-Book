@@ -1,1 +1,579 @@
-﻿<!DOCTYPE HTML PUBLIC "-//w3c//dtd html 4.0 transitional//en"> <html><head>      <meta http-equiv="Content-Type" content="text/html; charset=utf8">    <meta name="Author" content="VBird">    <title>鸟哥的 Linux 私房菜 -- 如何正确有效的学习 Linux</title> 	<script src="../../script/SpryMenuBar.js" type="text/javascript"></script> 	<script src="../../script/index.js" type="text/javascript"></script> 	<link href="../../css/SpryMenuBarHorizontal.css" rel="stylesheet" type="text/css" />     <link href="../../css/main.css" rel="stylesheet" type="text/css" />  <!-- saved from url=(0022)http://internet.e-mail -->  </head><body style="margin: 0pt; padding: 0pt;" class="table"onload="MM_preloadImages('image/title_19.png','image/title_26.png','image/title_27.png','image/title_28.png','image/title_06.png','image/title_08.png','image/title_10.png','image/title_12.png')">   <!-- Copyright � 2005. Spidersoft Ltd --> <style> A.applink:hover {border: 2px dotted #DCE6F4;padding:2px;background-color:#ffff00;color:green;text-decoration:none} A.applink       {border: 2px dotted #DCE6F4;padding:2px;color:#2F5BFF;background:transparent;text-decoration:none} A.info          {color:#2F5BFF;background:transparent;text-decoration:none} A.info:hover    {color:green;background:transparent;text-decoration:underline} </style> <div style='BORDER: 1px solid #DCE6F4; MARGIN-TOP: 20px; MARGIN-BOTTOM: 20px; MARGIN-LEFT: 5px; MARGIN-RIGHT: 5px; PADDING: 5px; BACKGROUND-COLOR: #eef8ff;line-height:180%; COLOR: #000000; font-family: Arial; font-size: 8pt; width=100%; FILTER: progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr="#FFFFFFFF", EndColorStr="#F2F5FAFF");'> This page was saved using <a class="applink" href="http://www.spidersoft.com"><b>WebZIP 7.0.3.1030</b></a> <a class="applink" href="http://www.spidersoft.com"><b>offline browser</b></a>  (Unregistered) on  02/12/15 12:14:49.<br> <b>Address:</b> <a class="info" href="http://vbird.dic.ksu.edu.tw/linux_basic/Mandrake9.0/0120howtolinux.php">http://vbird.dic.ksu.edu.tw/linux_basic/Mandrake9.0/0120howtolinux.php</a><br> <b>Title:</b> 鸟哥的 Linux 私房菜 -- 如何正确有效的学习 Linux &nbsp;&bull;&nbsp; <b>Size:</b> 37785<br></div> <!-- /Copyright � 2005. Spidersoft Ltd -->    <center> <div id="apDiv5"> <div> <LINK REL="SHORTCUT ICON" HREF="favicon.ico"> <!-- ImageReady Slices (title3.ai) --> <table id="___01" width="898" height="81" border="0" align="center" cellpadding="0" cellspacing="0";> 	<tr> 		<td colspan="15"> 			<img src="image/title/title_01.png" width="900" height="1" alt=""></td> 	</tr> 	<tr> 		<td rowspan="4" bgcolor="#182448"><p><img src="http://linux.vbird.org/cgi-bin/Count.cgi?dd=C&ft=5&sh=T&md=8&pad=Y&df=vbird.dic.ksu.edu.tw.dat" width="93" align="left" title="計數器" /></p> 	    <p><font color="#FFFFFF" size="-1">since2012/04/23</font></p></td> 		<td rowspan="4" align="left" valign="top"><a href="http://vbird.dic.ksu.edu.tw/"><img src="image/title/title_03.png" alt="" width="263" height="79" border="0"></a></td> 		<td colspan="13"> 			<img src="image/title/title_04.png" alt="" width="535" height="9" border="0"></td> 	</tr> 	<tr> 		<td rowspan="3"> 			<img src="image/title/title_05.png" alt="" width="53" height="70" border="0"></td> 		<td colspan="2" align="left" valign="top"><a href="../0110whatislinux.php.html" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image51','','image/title/title_06.png',1)"><img src="image/title/title3_06.png" name="Image51" width="106" height="25" border="0" id="Image51" alt=""/></a></td> 		<td rowspan="2"> 			<img src="image/title/title_07.png" alt="" width="27" height="37" border="0"></td> 		<td colspan="3" align="left" valign="top"><a href="http://vbird.dic.ksu.edu.tw/linux_server/0110network_basic.php" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image52','','image/title/title_08.png',1)"><img src="image/title/title3_08.png" name="Image52" width="107" height="25" border="0" id="Image52" alt=""/></a></td> 		<td rowspan="2"> 			<img src="image/title/title_09.png" alt="" width="37" height="37" border="0"></td> 		<td colspan="2" align="left" valign="top"><a href="http://vbird.dic.ksu.edu.tw/about.php" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image53','','image/title/title_10.png',1)"><img src="image/title/title3_10.png" name="Image53" width="75" height="25" border="0" id="Image53" alt=""/></a></td> 		<td rowspan="3"> 			<img src="image/title/title_11.png" alt="" width="35" height="70" border="0"></td> 		<td align="left" valign="top"><a href="mailto:vbird@mail.vbird.idv.tw" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image54','','image/title/title_12.png',1)"><img src="image/title/title3_12.png" name="Image54" width="74" height="25" border="0" id="Image54" alt=""/></a></td> 		<td rowspan="3"> 			<img src="image/title/title_13.png" alt="" width="21" height="70" border="0"></td> 	</tr> 	<tr> 		<td colspan="2"> 			<img src="image/title/title_14.png" alt="" width="106" height="12" border="0"></td> 		<td colspan="3"> 			<img src="image/title/title_15.png" alt="" width="107" height="12" border="0"></td> 		<td colspan="2"> 			<img src="image/title/title_16.png" width="75" height="12" alt=""></td> 		<td rowspan="2"> 			<img src="image/title/title_17.png" alt="" width="74" height="45" border="0"></td> 	</tr> 	<tr> 		<td> 			<img src="image/title/title_18.png" alt="" width="15" height="33" border="0"></td> 		<td colspan="3" align="left" valign="top"><ul id="MenuBar1" class="MenuBarHorizontal"> 	  <li><a href="../linux_basic.php.html" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image44','','image/title/title_19.png',1)"><img src="image/title/title3_19.png" name="Image44" width="123" height="33" border="0" id="Image44" /></a> 			    <ul> 			      <li><a href="mandrake9.0.php.html" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image46','','image/title/title_26.png',1)"><img src="image/title/title_23.png" name="Image46" width="120" height="26" border="0" id="Image46" alt="" /></a></li>                   <li><a href="../fedora_4/fc4.php.html" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image47','','image/title/title_27.png',1)"><img src="image/title/title_24.png" name="Image47" width="120" height="26" border="0" id="Image47" alt="" /></a></li>                   <li><a href="../linux_basic.php.html" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image48','','image/title/title_28.png',1)"><img src="image/title/title_25.png" name="Image48" width="120" height="26" border="0" id="Image48" alt="" /></a></li>                 </ul> 		      </li> 		</ul></td> 		<td> 			<img src="image/title/title_20.png" alt="" width="42" height="33" border="0"></td> 		<td colspan="3" align="left" valign="top"><ul id="MenuBar2" class="MenuBarHorizontal"> 	  <li><a href="http://vbird.dic.ksu.edu.tw/linux_server/" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image45','','image/title/title_21.png',1)"><img src="image/title/title3_21.png" name="Image45" width="125" height="33" border="0" id="Image45" /></a> 			    <ul> 			      <li><a href="http://vbird.dic.ksu.edu.tw/linux_server/linux_redhat9/redhat9.php" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image43','','image/title/title_26.png',1)"><img src="image/title/title_23.png" name="Image43" width="120" height="26" border="0" id="Image43" alt=""/></a></li> 			      <li><a href="http://vbird.dic.ksu.edu.tw/linux_server/centos4.php" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image49','','image/title/title_27.png',1)"><img src="image/title/title_24.png" name="Image49" width="120" height="26" border="0" id="Image49" alt="" /></a></li> 			      <li><a href="http://vbird.dic.ksu.edu.tw/linux_server/" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image50','','image/title/title_28.png',1)"><img src="image/title/title_25.png" name="Image50" width="120" height="26" border="0" id="Image50" alt="" /></a></li> 		        </ul> 		      </li> 		</ul></td> 		<td> 			<img src="image/title/title_22.png" alt="" width="47" height="33" border="0"></td> 	</tr> 	<tr> 		<td> 			<img src="image/title/Spacer.gif" width="101" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="263" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="53" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="15" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="91" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="27" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="5" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="42" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="60" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="37" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="28" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="47" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="35" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="74" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="22" height="1" alt=""></td> 	</tr> </table> <!-- End ImageReady Slices --> <script type="text/javascript"> <!-- var MenuBar1 = new Spry.Widget.MenuBar("MenuBar1", {imgDown:"SpryAssets/SpryMenuBarDownHover.gif", imgRight:"SpryAssets/SpryMenuBarRightHover.gif"}); var MenuBar2 = new Spry.Widget.MenuBar("MenuBar2", {imgDown:"SpryAssets/SpryMenuBarDownHover.gif", imgRight:"SpryAssets/SpryMenuBarRightHover.gif"}); //--> </script></div> <center><font color="#3333ff"><font size="+2"><a href="http://linux.vbird.org/linux_basic/0120howtolinux/0120howtolinux.php" target="_self"><font face="标楷体">如何学习 </font><font face="Times New Roman,Times">Linux</font></a></font></font><br> 注意：本文已不再维护！请前往<a href="http://linux.vbird.org/linux_basic/0120howtolinux.php">这里</a>查阅最新文章</center>  <div align="right"><font face="新细明体"><font color="#3333ff"><font size="-1">最近更新日期：2003/01/28</font></font></font></div> <div align="left"> <font color="#000099"><font size="+1"><a href="#Linux_apply">Linux 的应用</a></font></font> <br><font color="#000099"><font size="+1"><a href="#begin">从『头』学起</a></font></font> <br><font color="#000099"><font size="+1"><a href="#book">选择一本好的工具书</a></font></font> <br><font color="#000099"><font size="+1"><a href="#doti">实作经验</a></font></font> <br><font color="#000099"><font size="+1"><a href="#x-window">X-Window 还是 command line</a></font></font> <br><font color="#000099"><font size="+1"><a href="#FAQ_net">网络数据查询</a></font></font> <br><font color="#000099"><font size="+1"><a href="#formus">真的没办法、发问吧</a>！</font></font> <br><font color="#000099"><font size="+1"><a href="#bbs">其他的一些建议</a></font></font> <br><font color="#000099"><font size="+1"><a href="#FAQ">本章习题练习</a></font></font> <br> <hr width="100%"><a name="Linux_apply"></a><font color="#000099"><font size="+1">Linux 的应用：</font></font> <blockquote>要谈到 Linux 如何学习之前，我们得就 Linux 目前的一般应用来说明一下，才好理解您需要什么样的学习方式！ <ul> <li> <b><font color="#000099">桌面计算机：</font></b></li>  <br>所谓的桌面计算机就是一般用户在屏幕前面工作时候的常见的操作系统了！我们称之为『Desktop』系统，就是简称的桌面计算机了！说到桌面计算机就不能不提一下 X-Window System 。 <ul> <li> 由前一章提到的 <a href="http://linux.vbird.org/linux_basic/0120howtolinux/0110whatislinux.php#Unix">Unix 与 Linux 的历史</a>中，我们知道在 1986 年美美的窗口画面就已经在 Unix 上面出现过了，那个时候窗口画面被简称为 X 系统，而后来到了 1994 年的时候正式被整合在 Linux 里头！至于微软的 Windows 则是在 1995 年才出现！</li>  <li> 所谓的 X Window System 就是以 XFree86 这个计划释出的 X11 这个窗口软件为管理显示核心的一套窗口接口的软件，我们常常简称他为<font color="#000066">图形用户接口( Graphical User Interface )。</font>这<font color="#000066">个 XFree86 只是 Linux 核心上面的一套软件而已</font>，他主要的工作就是管理图形接口输出的时候，几乎所有显示相关的硬件的控制，例如显示适配器、屏幕、键盘、鼠标、等等，都是 XFree86 管理的！或者，我们可以称 XFree86 为 X-Window System 的服务器，简称为 X Server 。</li>  <li> 至于我们所看到的美美的窗口画面，则是使用 X Server 提供的显示相关硬件的功能，来达到图形显示的『<font color="#000066">窗口管理员( Window Mananger, WM )</font>』所发挥的能力啦！这也就是说， WM 是挂在 X Server 上面来运作的一套显示窗口接口的软件，例如我们常见的 KDE, GNOME 等等都是 WM。</li> </ul> 那么这个桌面计算机平时都在干些什么？简单的说，桌面计算机的日常工作是： <ul> <li> 上网浏览；</li>  <li> 字处理；</li>  <li> 网络接口之公文处理系统；</li>  <li> 办公室软件( Office Software )处理数据；</li>  <li> 收发电子邮件；</li> </ul> 大致上就是这些工作啰！在这些工作中， Linux 有美丽的图形接口 X Window System 提供良好的用户接口 ( GUI ) ，此外，目前发展中的 WM 也都具有中文化的功能！至于 Office 软件则有类似 Open Office 的软件支持，所以，基本上在桌面计算机型态的使用中， Linux 已经足以应付大部分的上班族群的工作了。</ul>  <ul> <li> <b><font color="#000099">工作站计算机：</font></b></li>  <br>工作站计算机与桌面计算机不太一样的地方，在于工作站通常得要应付比较重要的公事应用，例如工程界流体力学的数值模式运算、娱乐事业的特效功能处理、软件开发者的工作平台等等。Linux 上面有强大的运算能力，以及支持度相当广泛的 GCC 编译软件，因此在工作站当中也是相当良好的一个操作系统选择。例如我们研究室目前就要将 Sun Unix 上面执行的大型模式移转到 Linux 上面，据美国环保署内部人员的测试，发现 Linux 不但比较便宜 ( X86 系统嘛！ )而且速度还比较快呢！</ul>  <ul> <li> <b><font color="#000099">网络服务器：</font></b></li>  <br>承袭了 Unix 的良好传统， Linux 上面的网络功能特别的强大！此外，由于 GNU 计划，让 Linux 上面的服务器软件几乎都是免费的！因此，做为一部网络服务器，例如 WWW, Mail Server, File Server, FTP Server 等等， Linux 绝对是上上之选！</ul>  <ul> <li> <b><font color="#000099">嵌入式系统：</font></b></li>  <br>近年来电子相关产业相当的蓬勃发展，其中，小型微电脑的发展甚为重要！例如家电产品、PDA、以及其他微型的计算机配备。这些计算机配备通常是直接嵌入于产品当中的，例如 PDA 本身就是一个小型的计算机操作系统啦！这些系统我们就称为嵌入式系统。而要让这些嵌入式系统能够动作，自然就需要制作一套简单的操作系统啰，这个时候，可修改核心让功能变简单的 Linux 则是很好的选择。因此，近年来有相当多的嵌入式系统选择 Linux 做为发展的平台呢！</ul> 上面这些就是目前常见的几个 Linux 的应用方向。那么根据上面的应用，你觉得应该要怎样学习 Linux 呢？</blockquote>  <hr width="100%"><a name="begin"></a><font color="#000099"><font size="+1">从『头』学起</font></font> <blockquote>其实，不论学什么系统，『从头学起』是很重要的！还记得你刚刚接触微软的 Windows 都在干什么？还不就是由档案总管学起，然后慢慢的玩到控制台、玩到桌面管理，然后还去学办公室软件，我想，你总该不会直接就跳过这一段学习的历程吧！？那么 Linux 的学习其实也差不多，就是要从头慢慢的学起啦！不能够还不会走路之前就想要学飞了吧！ ^_^！</blockquote>  <blockquote>常常有些朋友会写信来问鸟哥一些问题，不过，信件中大多数的问题都是很基础的！例如：『为什么我的用户个人网页显示我没有权限 进入？』、『为什么我下达一个指令的时候，系统告诉我找不到该指令？』、『我要如何限制使用者的权限』等等的问题，这些问题其实都不是很难的，只要了解了 Linux 的基础之后，应该就可以很轻易的解决掉这方面的问题呢！所以请耐心的，慢慢的，将后面的所有章节内容都看完。自然你就知道如何解决了！</blockquote>  <blockquote>此外，网络基础与安全也很重要，例如 IP 的基础，网络的 Gateway 设定基础与网络的相关概念！很多的朋友一开始问的问题就是『<font color="#3333ff">为什么我的 mail server 无法收到信件</font>？』这种问题相当的困扰，因为发生的原因太多了，而朋友们常常一接触 Linux 就是希望『<font color="#3333ff">架站！</font>』根本没有想到要先了解一下 Linux 的基础！这是相当伤脑筋的！尤其近来计算机怪客 (&nbsp; Cracker ) 相当多， ( 真奇怪，闲闲没事干的朋友还真是不少.... ) ，一个不小心您的主机就被当成怪客跳板了！甚至发生被警告的事件也层出不穷！这些都是没能好好的注意一下网络基础的原因呀！</blockquote>  <blockquote>所以， 鸟哥希望大家能够更了解 Linux ，好让他可以为你做更多的事情喔！而且这些基础知识是学习更深入的技巧的必备条件呀！因此建议： <ol> <li> 先理解一下基础的硬件知识，不用一定要全懂(没那么多时间)，但是至少要『听过、有概念』即可；</li>  <li> 先了解一下 Linux 的基础知识，这些包含了『使用者、群组的概念』、『权限的观念』，『程序的定义』等等；</li>  <li> 必需至少学会一种以上的文书编辑器，例如最好学会通用版本的 vi 啰！</li>  <li> 实际操作 Linux 时，必定要学习的 Shell ，最好 Shell scripts 也能够了解；</li>  <li> 如果上面你都通过了，那么网络的基础就是下一阶段要接触的咚咚，这部份包含了『IP 概念』『路由概念』『TCP/IP』等等；</li>  <li> 如果连网络基础都通过了，那么网站的架设对你来说，简直就是『太简单啦！』</li> </ol> </blockquote>  <blockquote>在一些基础知识上，这里推荐一下 Study-Area 里面的基础文章，相当的实用！ <ul> <li> <a href="http://www.study-area.org/compu/compu.htm" target="_blank">计算机基础</a></li>  <li> <a href="http://www.study-area.org/network/network.htm" target="_blank">网络基础</a></li> </ul> </blockquote>  <hr width="100%"><a name="book"></a><font color="#000099"><font size="+1">选择一本好的工具书</font></font> <blockquote>『工具书』对于学习者而言是相当重要的！不过，一本错误观念的工具书却会让新手整个误入歧途....，以下有几个网站有特别介绍了几本书籍，如果有兴趣的话，欢迎参考看看！实在是很建议买一本『基础一点』的工具书来学习 Linux ，等到有一定的基础之后，才来买架设网站以及『安全防护』方面的书籍，尤其是『安全防护』的书籍， VBird 认为，网络安全一定会越来越受到重视的！当然，有兴趣的话，小弟的『<a href="http://www.grandtech.com.tw/book/booknews.asp?newsid=902" target="_blank">鸟哥的 Linux 私房菜 -- 基础学习篇</a>』也可以参考看看啰！ ^_^ <ul> <li> <a href="http://linux.vbird.org/linux_basic/0120howtolinux/0120howtolinux_1.php">请推荐有关网络的书</a></li>  <li> <a href="http://redhat.ecenter.idv.tw/bbs/showthread.php?s=&threadid=18072" target="_blank">小红帽技术论坛</a></li> </ul> </blockquote>  <hr width="100%"><a name="doti"></a><font color="#000099"><font size="+1">实作经验</font></font> <blockquote>要增加自己的体力，就是只有运动；要增加自己的知识，就只有读书；当然，要增加自己对于 Linux 的认识，大概就只有实作经验了！所以，赶快找一部计算机，赶快安装一个 Linux 套件，然后快点进入 Linux 的世界里面晃一晃！相信对于你自己的 Linux 能力必然大有斩获！除了自己的实作经验之外，也可以参考网络上一些善心人士整理的实作经验分享喔！例如最有名的 Study-Area ( <a href="http://www.study-area.org/" target="_blank">http://www.study-area.org</a> )等网站。</blockquote>  <blockquote>此外，人脑不像计算机的硬盘一样，除非硬盘坏掉了或者是数据被你抹掉了，否则储存的数据将永远而且立刻的记忆在硬盘中！在人类记忆的曲线中，你必须要『不断的重复练习』才会将一件事情记得比较熟！同样的，学习 Linux 也一样，如果你无法经常摸索的话，那么，抱歉的是，学了后面的，前面的忘光光！学了等于没学，这也是为什么鸟哥当初要写『鸟哥的私房菜』这个网站的主要原因，因为，我的忘性似乎比一般人还要好～～呵呵！所以，除了要实作之外，还得要常摸！才会熟悉 Linux 而且不会怕他呢！</blockquote>  <blockquote>好了，底下列出几个学习网站来提供大家做为参考实作的依据：（注：由于不同的网站当初撰写的时候所用的 Linux 套件或版本与目前的主流并不相同，因此参考他人的实作经验时，必须要特别留意对方的版本，否则反而可能造成你的困扰喔！）</blockquote>  <blockquote> <ul> <li> <a href="http://www.study-area.org/" target="_blank">Study-Area</a></li>  <li> <a href="http://linux.vbird.org/">鸟哥的私房菜馆</a></li>  <li> <a href="http://netlab.kh.edu.tw/index.htm" target="_blank">狼主的网络实验室</a></li>  <li> <a href="http://linux.tnc.edu.tw/techdoc/" target="_blank">卧龙大师的网络技术文件</a></li>  <li> <a href="http://freebsd.lab.mlc.edu.tw/" target="_blank">大南小学（林克敏主任文件集）</a></li>  <li> <a href="http://www.se.ntou.edu.tw/%7Eylchang/MyDocuments/index.html" target="_blank">张毓麟先生的小文章</a></li>  <li> <a href="http://www.linux.org.tw/" target="_blank">台湾 Linux 社群</a></li>  <li> <a href="http://www.cses.tcc.edu.tw/%7Echihwu/" target="_blank">吴仁智的文件集</a></li> </ul> </blockquote>  <hr width="100%"><a name="x-window"></a><font color="#000099"><font size="+1">X-Window 还是 command line</font></font> <ul>由前面的介绍我们可以知道，虽然目前 X-Window 的接口越做越漂亮，而且也已经渐渐的可以来控管整个系统了！但是必须要注意的是， X-Window 毕竟还只是一个 Linux 上面的软件，并不是一套『操作系统』，所以实际上使用他来设定系统的时候，还是有相当多的困扰的，因为毕竟他无法完全的管理好我们的 Linux 啊！虽然就以 Desktop 的型态来说，X-Window 是让 Linux 立刻深入人心的方法。不过， X-Window 在使用的时候还是有相当多的问题的，最大的问题来自于『<font color="#000066">系统资源的有效应用</font>』，以 VBird 的使用情况来说，我的系统资源并没有很好，但是 X-Window 本身相当的消耗系统资源，如果一开 X-Window ，那么你的内存几乎都被 X-Window 吃光了！您要如何来用剩下的系统资源来进行高效率的其他工作呢？！这也是为什么很多的书籍与网站都会希望使用者架设网站的时候，不要启动 图形用户接口 的原因啰！</ul>  <ul>以下再来说说 X-Window 学习与 command line 学习的角度。</ul>  <ul> <li> <b><font color="#000099">X-Window</font></b></li>  <br>如果您对于 Linux 的要求是『桌面计算机』，并且你又不架设网站的话，那么学习 X-Window 对您而言，绝对是需要的！至于指令列模式对你就不是这么必要了！但是，如果 Linux 对你而言是『服务器与工作站』的话，那么 X-Window 可能就不是这么重要，但是指令列模式可就大大的重要啦！</ul>  <ul>因为，如果以 X-Window 作为学习 Linux 的方式，那么未来一定会有死角， 这是因为 X-Window 了不起也只是 Linux 的『一套软件』而不是『Linux 核心』 此外，目前发展出来的 X-Window 对于系统的管理上还是有无法掌握的地方， 举个例子来说，如果 Linux 本身捉不到网络卡的时候， 请问如何以 X-Window 来捉这个硬件呢？！还有， 如果需要以 tarball 的方式来安装软件并加以设定的时候， 请以 X-Window 来架设他！这可能吗？当然可能，但是这是在考验『X-Window 开发商』的技术能力， 对于了解 Linux 架构与核心并没有多大的帮助的！所以说，如果只是想要『会使用 Linux 』的角度来看， 那么确实使用 X-Window 也就足够了，反正搞不定的话，花钱请专家来搞定即可；但是如果想要更深入 Linux 的话，那么指令列模式才是不二的学习方式！</ul>  <ul> <li> <b><font color="#000099">服务器端</font></b></li>  <br>如果 Linux 对你而言是『生财』的工具，呵呵！那可不是只要学习 X-Window 能够解决的了！举个例子来说好了，假如你的客户人在台北，而你人在远方的台南， 他的 Linux 服务器出了问题，要你马上解决他， 请问：要您亲自上台北去修理？还是他搬机器下来让你修理？！或者是直接请他开个账号给你进去设定即可？！ 想当然尔，就会选择开账号给你进入设定即可啰！因为这是最简单而且迅速的方法！然而这个方法使用的方式却不是 X-Window 作的到的！因为 X-Window 太耗资源，实在不容易让您这样子联机（很麻烦的啦！） 所以啰！文字界面是相当重要的！尤其如果想要深入 Linux 的核心时，那么以文字界面来了解 Linux 就更需要了！所以说，不要怕麻烦，还是多摸一些文字界面的东西吧！！ 帮助会比较大哩！</ul>  <ul>所以基本上， VBird 还是希望大家可以多多的以 文字接口( command line )的方式来学习 Linux 啦！</ul>  <hr width="100%"><a name="FAQ_net"></a><font color="#000099"><font size="+1">网络数据查询</font></font> <blockquote>其实，在网络上面已经有相当多的 FAQ 整理出来了！所以，当你发生任何问题的时候，除了自己检查，或者到上述的实作网站上面查询一下是否有设定错误的问题之外，最重要的当然就是到各大 FAQ 的网站上查询啰！以下列出一些有用的 FAQ 网站给您参考一下： <ul> <li> <a href="http://www.linux.org.tw/CLDP/" target="_blank">CLDP 中文文件计划</a></li>  <li> <a href="http://www.csie.nctu.edu.tw/document/unixfaq/" target="_blank">Unix 的一般常见问题</a></li>  <li> <a href="http://asklinux.net/" target="_blank">asklinux</a></li> </ul> 还有相当的的网络资源可以查询！如果你有发现更新的信息时，记得来信通知 VBird 喔！</blockquote>  <hr width="800pz"><a name="formus"></a><font color="#000099"><font size="+1">真的没办法、发问吧</font></font> <ul> <li> <b><font color="#000099">天助自助者：</font></b></li>  <br>一般而言， Linux 在下达指令的过程当中，或者是 log file 里头就可以自己查得错误信息了，举个例子来说，当您下达： <ul><font color="#000099">&nbsp;<font face="细明体">ls -l /vbird</font></font></ul> 时，由于系统并没有 /vbird 这个目录，所以会在屏幕前面显示： <ul><font face="细明体"><font color="#000099">ls: /vbird: No such file or directory</font></font></ul> 这个错误讯息够明确了吧！系统很完整的告诉您『查无该数据』！呵呵！所以啰，请注意，发生错误的时候，请先自行以屏幕前面的信息来进行 debug ( 除错 )的动作，然后，如果是网络服务的问题时，请到 /var/log 这个目录里头去查阅一下 log file ，这样可以几乎解决大部分的问题了！</ul>  <ul> <li> <b><font color="#000099">讨论区的提问：</font></b></li>  <br>万一真的经过了自己的查询，却找不到相关的信息，那么就发问吧！不过，在发问之前建议您最好先看一下『<a href="http://phorum.vbird.org/viewtopic.php?t=96" target="_blank">提问的智慧</a>』这一篇讨论！然后，你可以到底下几个讨论区发问看看：</ul>  <ul> <ul> <li> <a href="http://phorum.study-area.org/" target="_blank">Study-Area 讨论区</a></li>  <li> <a href="http://phorum.vbird.org/">鸟哥的私房菜馆讨论区</a></li>  <li> <a href="http://netlab.kh.edu.tw/board/board.asp" target="_blank">狼主的网络实验室讨论区</a></li>  <li> <a href="http://redhat.ecenter.idv.tw/bbs/index.php?s=" target="_blank">小红帽技术论坛</a></li>  <li> <a href="http://linuxfab.com/" target="_blank">LinuxFab</a></li>  <li> <a href="http://phpbb-tw.net/phpbb/" target="_blank">竹猫星球</a></li> </ul> </ul>  <ul>不过，基本上每一个讨论区的内容是大同小异的，发问的时候一定要注意到某些礼节！最好是先以搜寻的方式搜寻一下该讨论区是否有您需要的文章之后，在发问！这样可以获得事半功倍的功能喔！此外， Netman 兄提供的一些学习的基本方针，提供给大家参考：</ul>  <ul> <ul> <li> 在Windows里面﹐程序有问题时﹐如果可能的话先将所有其它程序保存并结束﹐然后尝试按救命三键(Ctrl+Alt+Delete)﹐将有问题的程序(不要选错了程序哦)“结束工作”﹐看看能不能恢复系统。不要动不动就直接关机或reset。</li>  <li> 有系统地设计档案目录﹐不要随便到处保存档案以至以后不知道放哪里了﹐或找到档案也不知道为何物。</li>  <li> 养成一个做记录的习惯。尤其是发现问题的时候﹐把错误信息和引发状况以及解决方法记录清楚﹐同时最后归类几定期整理。别以为您还年轻﹐等你再弄多几年计算机了﹐您将会非常庆幸您有此一习惯。</li>  <li> 如果看在网络上看到任何好文章﹐可以为自己留一份copy﹐同时定好题目﹐归类存档。</li>  <li> 作为一个使用者﹐人要迁就机器﹔做为一个开发者﹐要机器迁就人。</li>  <li> 学写 script 的确没设定 server 那么好玩﹐不过以我自己的感觉是﹕关键是会得“偷”﹐偷了会得改﹐改了会得变﹐变则通矣。</li>  <li> 在Windows里面﹐设定不好设备﹐您可以骂它﹔在Linux里面﹐如果设定好设备了﹐您得要感激它﹗</li> </ul> </ul>  <hr width="100%"><a name="bbs"></a><font color="#000099"><font size="+1">其他的一些建议</font></font> <blockquote>除了上面的学习建议之外，还有其他的建议吗？确实是有的！其实，无论作什么事情，对人类而言，两个重要的因素是造成我们学习的原动力： <ul> <li> 成就感</li>  <li> 兴趣</li> </ul> 很多人问过我，鸟哥是怎么学习 Linux 的？由鸟哥之前的 <a href="http://linux.vbird.org/linux_basic/vbird/vbird2.php">自我介绍</a> 与对于 <a href="http://linux.vbird.org/linux_basic/new_linux.php">Linux 的接触历程</a>， 你大概会知道，原来我本人对于计算机就蛮有兴趣的，加上工作的需要，而鸟哥又从中得到了相当多的成就感，所以啰，就一发不可收拾的爱上 Linux 啰！因此，鸟哥个人认为，学习 Linux  如果玩不出兴趣，他对你也不是什么重要的生财工具，那么就不要再玩下去了！因为很累人ㄋㄟ～而如果你真的想要玩这么一套优良的操作系统，除了前面提到的一 些建议之外，说真的，得要培养出兴趣与成就感才行！那么如何培养出兴趣与成就感呢？可能有几个方向可以提供给你参考： <ul> <li> <font color="#000099">建立兴趣</font>：Linux 上面可以玩的东西真的太多了，你可以选择一个有趣的课题来深入的玩一玩！不论是 Shell 还是图形接口等等的，只要能够玩出兴趣，那么再怎么苦你都会不觉得喔！</li>  <li> <font color="#000099">成就感</font>：成就感是怎么来的？说实在话，就是『被认同』来的！怎么被认同呢？写心得分享啊！当你写了心得分享，并且公告在 BBS 上面，自然有朋友会到你的网页去瞧一瞧，当大家觉得你的网页内容很棒的时候，哈哈！你肯定会加油继续的分享下去而无法自拔的！那就是我啦...... ^_^！而且，就鸟哥的经验来说，你『<font color="#000066">学会一样东西</font>』与『<font color="#000066">要教人家会一样东西</font>』思考的纹路是不太一样的！学会一样东西可能学一学会了就算了！但是要『教会』别人，那可就不是闹着玩的！得要思考相当多的理论性与实务性方面的咚咚，这个时候，你所能学到的东西就更深入了！鸟哥常常说，我这个网站对我在 Linux 的了解上面真的的帮助很大！</li>  <li> <font color="#000099">协助回答问题</font>：另一个创造成就感与满足感的方法就是『助人为快乐之本！』当你在 BBS  上面告诉一些新手，回答他们的问题，你可以获得的可能只是一句『谢谢！感恩吶！』但是那句话真的会让人很有快乐的气氛！很多的老手都是因为有这样的满足 感，才会不断的协助新来的朋友的呢！此外，回答别人问题的时候，就如同上面的说明一般，你会更深入的去了解每个项目，哈哈！又多学会了好多东西呢！</li>  <li> <font color="#000099">参与讨论</font>：参与大家的技术讨论一直是一件提升自己能力的快速道路！因为有这些技术讨论，你提出了意见，不论讨论的结果你的意见是对是错，对你而言，都是一次次的知识成长！这很重要喔！ ^_^</li> </ul> 此外，除了这些鸟哥的经验之外，还有在 BBS 上面有一封对于 Linux 新手相当有帮助的文件数据，大家可以多看一看： <ul> <li> <a href="http://linux.vbird.org/linux_basic/0120howtolinux/0120howtolinux_2.php">Linux 初学者之旅 2002/01</a></li>  <li> <a href="http://linux.vbird.org/linux_basic/0120howtolinux/0120howtolinux_3.php">Linux 初学者之旅 2002/07</a></li>  <li> <a href="http://liy.slat.org/study/tips/linux_entry.htm/view" target="_blank">最新的 Linux 初学者之旅</a></li>  <li> <a href="http://www.cyut.edu.tw/%7Eckhung/published/018learn.shtml" target="_blank">信息人的有效学习(洪朝贵教授网页)</a></li> </ul> 里面提到了几乎新手都会有的问题！此外，在网络上还有另外一篇介绍 Linux 的文章，也蛮好玩的，不过他是 Word 版本，目前并不打算将他修改一番，因为要保持原文件的风貌呀！呵呵！有兴趣的朋友真的可以好好的看一看： <ul><a href="http://linux.vbird.org/linux_basic/0120howtolinux/0120howtolinux.doc" target="_blank">Linux 初学者入门</a></ul> </blockquote>  <hr width="100%"><a name="FAQ"></a><font color="#000099"><font size="+1">本章习题练习 ( 要看答案请将鼠标移动到『答：』底下的空白处，按下左键圈选空白处即可察看 )</font></font> <ul> <li> 在 X-Window System 的架构里面，主要有几个组件？各有何重点？</li>  <br>答： <ul><font color="#FFFFFF">X-Window System 有三个组件，分别是 X Server, X Client 与 Window Manager 三部分，分别的工作如下：</font> <ul> <li> <font color="#FFFFFF">X Server ： 主要用于主机上面绘制影像的功能！而且他可以控管所有的主机上面的显示接口硬件，诸如：鼠标、键盘、显示适配器(最重要为驱动程序)及屏幕等等，是最重要的部分喔；</font></li>  <li> <font color="#FFFFFF">X Client ： 用在 Client 端计算机的应用程序软件，他可以用来操纵 X Server 绘制出用户想要的图示，简单的说，他就是用户在使用的软件啦！</font></li>  <li> <font color="#FFFFFF">Window Manager ： 窗口管理员，她主要的功能就是让 X Server 绘制出来的图形变的更漂亮，简单的说，他就是介于使用者与 X Server 之间的一套软件就是了！由于 X Server 提供的绘图丑丑的，因此，有了 Window Manager 我们的 X Window System 就可以变的漂漂亮亮的啰！</font></li> </ul> <font color="#FFFFFF">一般而言， X Server 与 X Client 会是在同一部计算机主机上面，就是我的直接在 Linux 主机上面执行 startx 就跑出来 X Window 即是一例！</font></ul> </ul>  <ul> <li> 什么是 GUI ( Graphical User Interface )？</li>  <br>答： <ul><font color="#FFFFFF">GUI 就是图形用户接口，亦即是使用图形接口来操纵硬件啰！例如我们的 X Window system 就是一个例子！目前桌上型的计算机为了亲和力，图形用户接口做得越来越好了！</font></ul> </ul>  <hr width="100%"><font face="新细明体"><font color="#000066"><font size="-1">2002/07/08：第一次完成或者是上次更新...忘记了～ @_@</font></font></font> <br><font face="新细明体"><font color="#000066"><font size="-1">2003/01/28：重新修订，加入 X-Window 的简易说明</font></font></font> <br></div> <hr width="100%"> <font color="#000066"><font size="-1">Designed by <a href="mailto:vbird@mail.vbird.idv.tw">VBird</a> during 2001-2004.&nbsp; Aerosol Lab.</font></font> ﻿<div id="apDiv4">       <p>本网页主要以Firefox配合解析度 1024x768 作为设计依据&nbsp;&nbsp;&nbsp;&nbsp; 鸟哥自由软件整合应用研究室</p></div></div> </center> </body></html> 
+﻿<!DOCTYPE HTML PUBLIC "-//w3c//dtd html 4.0 transitional//en">
+<html><head>
+
+
+   <meta http-equiv="Content-Type" content="text/html; charset=utf8">
+   <meta name="Author" content="VBird">
+   <title>鸟哥的 Linux 私房菜 -- 如何正确有效的学习 Linux</title>
+	<script src="../../script/SpryMenuBar.js" type="text/javascript"></script>
+	<script src="../../script/index.js" type="text/javascript"></script>
+	<link href="../../css/SpryMenuBarHorizontal.css" rel="stylesheet" type="text/css" />
+    <link href="../../css/main.css" rel="stylesheet" type="text/css" />
+
+<!-- saved from url=(0022)http://internet.e-mail -->
+
+</head><body style="margin: 0pt; padding: 0pt;" class="table"onload="MM_preloadImages('image/title_19.png','image/title_26.png','image/title_27.png','image/title_28.png','image/title_06.png','image/title_08.png','image/title_10.png','image/title_12.png')">
+
+
+<!-- Copyright � 2005. Spidersoft Ltd -->
+<style>
+A.applink:hover {border: 2px dotted #DCE6F4;padding:2px;background-color:#ffff00;color:green;text-decoration:none}
+A.applink       {border: 2px dotted #DCE6F4;padding:2px;color:#2F5BFF;background:transparent;text-decoration:none}
+A.info          {color:#2F5BFF;background:transparent;text-decoration:none}
+A.info:hover    {color:green;background:transparent;text-decoration:underline}
+</style>
+<div style='BORDER: 1px solid #DCE6F4; MARGIN-TOP: 20px; MARGIN-BOTTOM: 20px; MARGIN-LEFT: 5px; MARGIN-RIGHT: 5px; PADDING: 5px; BACKGROUND-COLOR: #eef8ff;line-height:180%; COLOR: #000000; font-family: Arial; font-size: 8pt; width=100%; FILTER: progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr="#FFFFFFFF", EndColorStr="#F2F5FAFF");'>
+This page was saved using <a class="applink" href="http://www.spidersoft.com"><b>WebZIP 7.0.3.1030</b></a> <a class="applink" href="http://www.spidersoft.com"><b>offline browser</b></a>  (Unregistered) on  02/12/15 12:14:49.<br>
+<b>Address:</b> <a class="info" href="http://vbird.dic.ksu.edu.tw/linux_basic/Mandrake9.0/0120howtolinux.php">http://vbird.dic.ksu.edu.tw/linux_basic/Mandrake9.0/0120howtolinux.php</a><br>
+<b>Title:</b> 鸟哥的 Linux 私房菜 -- 如何正确有效的学习 Linux &nbsp;&bull;&nbsp; <b>Size:</b> 37785<br></div>
+<!-- /Copyright � 2005. Spidersoft Ltd -->
+
+
+
+<center>
+<div id="apDiv5">
+<div> <LINK REL="SHORTCUT ICON" HREF="favicon.ico">
+<!-- ImageReady Slices (title3.ai) -->
+<table id="___01" width="898" height="81" border="0" align="center" cellpadding="0" cellspacing="0";>
+	<tr>
+		<td colspan="15">
+			<img src="image/title/title_01.png" width="900" height="1" alt=""></td>
+	</tr>
+	<tr>
+		<td rowspan="4" bgcolor="#182448"><p><img src="http://linux.vbird.org/cgi-bin/Count.cgi?dd=C&ft=5&sh=T&md=8&pad=Y&df=vbird.dic.ksu.edu.tw.dat" width="93" align="left" title="計數器" /></p>
+	    <p><font color="#FFFFFF" size="-1">since2012/04/23</font></p></td>
+		<td rowspan="4" align="left" valign="top"><a href="http://vbird.dic.ksu.edu.tw/"><img src="image/title/title_03.png" alt="" width="263" height="79" border="0"></a></td>
+		<td colspan="13">
+			<img src="image/title/title_04.png" alt="" width="535" height="9" border="0"></td>
+	</tr>
+	<tr>
+		<td rowspan="3">
+			<img src="image/title/title_05.png" alt="" width="53" height="70" border="0"></td>
+		<td colspan="2" align="left" valign="top"><a href="../0110whatislinux.php.html" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image51','','image/title/title_06.png',1)"><img src="image/title/title3_06.png" name="Image51" width="106" height="25" border="0" id="Image51" alt=""/></a></td>
+		<td rowspan="2">
+			<img src="image/title/title_07.png" alt="" width="27" height="37" border="0"></td>
+		<td colspan="3" align="left" valign="top"><a href="http://vbird.dic.ksu.edu.tw/linux_server/0110network_basic.php" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image52','','image/title/title_08.png',1)"><img src="image/title/title3_08.png" name="Image52" width="107" height="25" border="0" id="Image52" alt=""/></a></td>
+		<td rowspan="2">
+			<img src="image/title/title_09.png" alt="" width="37" height="37" border="0"></td>
+		<td colspan="2" align="left" valign="top"><a href="http://vbird.dic.ksu.edu.tw/about.php" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image53','','image/title/title_10.png',1)"><img src="image/title/title3_10.png" name="Image53" width="75" height="25" border="0" id="Image53" alt=""/></a></td>
+		<td rowspan="3">
+			<img src="image/title/title_11.png" alt="" width="35" height="70" border="0"></td>
+		<td align="left" valign="top"><a href="mailto:vbird@mail.vbird.idv.tw" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image54','','image/title/title_12.png',1)"><img src="image/title/title3_12.png" name="Image54" width="74" height="25" border="0" id="Image54" alt=""/></a></td>
+		<td rowspan="3">
+			<img src="image/title/title_13.png" alt="" width="21" height="70" border="0"></td>
+	</tr>
+	<tr>
+		<td colspan="2">
+			<img src="image/title/title_14.png" alt="" width="106" height="12" border="0"></td>
+		<td colspan="3">
+			<img src="image/title/title_15.png" alt="" width="107" height="12" border="0"></td>
+		<td colspan="2">
+			<img src="image/title/title_16.png" width="75" height="12" alt=""></td>
+		<td rowspan="2">
+			<img src="image/title/title_17.png" alt="" width="74" height="45" border="0"></td>
+	</tr>
+	<tr>
+		<td>
+			<img src="image/title/title_18.png" alt="" width="15" height="33" border="0"></td>
+		<td colspan="3" align="left" valign="top"><ul id="MenuBar1" class="MenuBarHorizontal">
+	  <li><a href="../linux_basic.php.html" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image44','','image/title/title_19.png',1)"><img src="image/title/title3_19.png" name="Image44" width="123" height="33" border="0" id="Image44" /></a>
+			    <ul>
+			      <li><a href="mandrake9.0.php.html" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image46','','image/title/title_26.png',1)"><img src="image/title/title_23.png" name="Image46" width="120" height="26" border="0" id="Image46" alt="" /></a></li>
+                  <li><a href="../fedora_4/fc4.php.html" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image47','','image/title/title_27.png',1)"><img src="image/title/title_24.png" name="Image47" width="120" height="26" border="0" id="Image47" alt="" /></a></li>
+                  <li><a href="../linux_basic.php.html" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image48','','image/title/title_28.png',1)"><img src="image/title/title_25.png" name="Image48" width="120" height="26" border="0" id="Image48" alt="" /></a></li>
+                </ul>
+		      </li>
+		</ul></td>
+		<td>
+			<img src="image/title/title_20.png" alt="" width="42" height="33" border="0"></td>
+		<td colspan="3" align="left" valign="top"><ul id="MenuBar2" class="MenuBarHorizontal">
+	  <li><a href="http://vbird.dic.ksu.edu.tw/linux_server/" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image45','','image/title/title_21.png',1)"><img src="image/title/title3_21.png" name="Image45" width="125" height="33" border="0" id="Image45" /></a>
+			    <ul>
+			      <li><a href="http://vbird.dic.ksu.edu.tw/linux_server/linux_redhat9/redhat9.php" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image43','','image/title/title_26.png',1)"><img src="image/title/title_23.png" name="Image43" width="120" height="26" border="0" id="Image43" alt=""/></a></li>
+			      <li><a href="http://vbird.dic.ksu.edu.tw/linux_server/centos4.php" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image49','','image/title/title_27.png',1)"><img src="image/title/title_24.png" name="Image49" width="120" height="26" border="0" id="Image49" alt="" /></a></li>
+			      <li><a href="http://vbird.dic.ksu.edu.tw/linux_server/" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image50','','image/title/title_28.png',1)"><img src="image/title/title_25.png" name="Image50" width="120" height="26" border="0" id="Image50" alt="" /></a></li>
+		        </ul>
+		      </li>
+		</ul></td>
+		<td>
+			<img src="image/title/title_22.png" alt="" width="47" height="33" border="0"></td>
+	</tr>
+	<tr>
+		<td>
+			<img src="image/title/Spacer.gif" width="101" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="263" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="53" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="15" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="91" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="27" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="5" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="42" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="60" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="37" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="28" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="47" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="35" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="74" height="1" alt=""></td>
+		<td>
+			<img src="image/title/Spacer.gif" width="22" height="1" alt=""></td>
+	</tr>
+</table>
+<!-- End ImageReady Slices -->
+<script type="text/javascript">
+<!--
+var MenuBar1 = new Spry.Widget.MenuBar("MenuBar1", {imgDown:"SpryAssets/SpryMenuBarDownHover.gif", imgRight:"SpryAssets/SpryMenuBarRightHover.gif"});
+var MenuBar2 = new Spry.Widget.MenuBar("MenuBar2", {imgDown:"SpryAssets/SpryMenuBarDownHover.gif", imgRight:"SpryAssets/SpryMenuBarRightHover.gif"});
+//-->
+</script></div>
+<center><font color="#3333ff"><font size="+2"><a href="http://linux.vbird.org/linux_basic/0120howtolinux/0120howtolinux.php" target="_self"><font face="标楷体">如何学习
+</font><font face="Times New Roman,Times">Linux</font></a></font></font><br>
+注意：本文已不再维护！请前往<a href="http://linux.vbird.org/linux_basic/0120howtolinux.php">这里</a>查阅最新文章</center>
+
+<div align="right"><font face="新细明体"><font color="#3333ff"><font size="-1">最近更新日期：2003/01/28</font></font></font></div>
+<div align="left">
+<font color="#000099"><font size="+1"><a href="#Linux_apply">Linux 的应用</a></font></font>
+<br><font color="#000099"><font size="+1"><a href="#begin">从『头』学起</a></font></font>
+<br><font color="#000099"><font size="+1"><a href="#book">选择一本好的工具书</a></font></font>
+<br><font color="#000099"><font size="+1"><a href="#doti">实作经验</a></font></font>
+<br><font color="#000099"><font size="+1"><a href="#x-window">X-Window 还是
+command line</a></font></font>
+<br><font color="#000099"><font size="+1"><a href="#FAQ_net">网络数据查询</a></font></font>
+<br><font color="#000099"><font size="+1"><a href="#formus">真的没办法、发问吧</a>！</font></font>
+<br><font color="#000099"><font size="+1"><a href="#bbs">其他的一些建议</a></font></font>
+<br><font color="#000099"><font size="+1"><a href="#FAQ">本章习题练习</a></font></font>
+<br>
+<hr width="100%"><a name="Linux_apply"></a><font color="#000099"><font size="+1">Linux
+的应用：</font></font>
+<blockquote>要谈到 Linux 如何学习之前，我们得就 Linux 目前的一般应用来说明一下，才好理解您需要什么样的学习方式！
+<ul>
+<li>
+<b><font color="#000099">桌面计算机：</font></b></li>
+
+<br>所谓的桌面计算机就是一般用户在屏幕前面工作时候的常见的操作系统了！我们称之为『Desktop』系统，就是简称的桌面计算机了！说到桌面计算机就不能不提一下
+X-Window System 。
+<ul>
+<li>
+由前一章提到的 <a href="http://linux.vbird.org/linux_basic/0120howtolinux/0110whatislinux.php#Unix">Unix 与 Linux 的历史</a>中，我们知道在
+1986 年美美的窗口画面就已经在 Unix 上面出现过了，那个时候窗口画面被简称为
+X 系统，而后来到了 1994 年的时候正式被整合在 Linux 里头！至于微软的 Windows
+则是在 1995 年才出现！</li>
+
+<li>
+所谓的 X Window System 就是以 XFree86 这个计划释出的 X11 这个窗口软件为管理显示核心的一套窗口接口的软件，我们常常简称他为<font color="#000066">图形用户接口(
+Graphical User Interface )。</font>这<font color="#000066">个 XFree86 只是
+Linux 核心上面的一套软件而已</font>，他主要的工作就是管理图形接口输出的时候，几乎所有显示相关的硬件的控制，例如显示适配器、屏幕、键盘、鼠标、等等，都是
+XFree86 管理的！或者，我们可以称 XFree86 为 X-Window System 的服务器，简称为
+X Server 。</li>
+
+<li>
+至于我们所看到的美美的窗口画面，则是使用 X Server 提供的显示相关硬件的功能，来达到图形显示的『<font color="#000066">窗口管理员(
+Window Mananger, WM )</font>』所发挥的能力啦！这也就是说， WM 是挂在 X
+Server 上面来运作的一套显示窗口接口的软件，例如我们常见的 KDE, GNOME 等等都是
+WM。</li>
+</ul>
+那么这个桌面计算机平时都在干些什么？简单的说，桌面计算机的日常工作是：
+<ul>
+<li>
+上网浏览；</li>
+
+<li>
+字处理；</li>
+
+<li>
+网络接口之公文处理系统；</li>
+
+<li>
+办公室软件( Office Software )处理数据；</li>
+
+<li>
+收发电子邮件；</li>
+</ul>
+大致上就是这些工作啰！在这些工作中， Linux 有美丽的图形接口 X Window System
+提供良好的用户接口 ( GUI ) ，此外，目前发展中的 WM 也都具有中文化的功能！至于
+Office 软件则有类似 Open Office 的软件支持，所以，基本上在桌面计算机型态的使用中，
+Linux 已经足以应付大部分的上班族群的工作了。</ul>
+
+<ul>
+<li>
+<b><font color="#000099">工作站计算机：</font></b></li>
+
+<br>工作站计算机与桌面计算机不太一样的地方，在于工作站通常得要应付比较重要的公事应用，例如工程界流体力学的数值模式运算、娱乐事业的特效功能处理、软件开发者的工作平台等等。Linux
+上面有强大的运算能力，以及支持度相当广泛的 GCC 编译软件，因此在工作站当中也是相当良好的一个操作系统选择。例如我们研究室目前就要将
+Sun Unix 上面执行的大型模式移转到 Linux 上面，据美国环保署内部人员的测试，发现
+Linux 不但比较便宜 ( X86 系统嘛！ )而且速度还比较快呢！</ul>
+
+<ul>
+<li>
+<b><font color="#000099">网络服务器：</font></b></li>
+
+<br>承袭了 Unix 的良好传统， Linux 上面的网络功能特别的强大！此外，由于
+GNU 计划，让 Linux 上面的服务器软件几乎都是免费的！因此，做为一部网络服务器，例如
+WWW, Mail Server, File Server, FTP Server 等等， Linux 绝对是上上之选！</ul>
+
+<ul>
+<li>
+<b><font color="#000099">嵌入式系统：</font></b></li>
+
+<br>近年来电子相关产业相当的蓬勃发展，其中，小型微电脑的发展甚为重要！例如家电产品、PDA、以及其他微型的计算机配备。这些计算机配备通常是直接嵌入于产品当中的，例如
+PDA 本身就是一个小型的计算机操作系统啦！这些系统我们就称为嵌入式系统。而要让这些嵌入式系统能够动作，自然就需要制作一套简单的操作系统啰，这个时候，可修改核心让功能变简单的
+Linux 则是很好的选择。因此，近年来有相当多的嵌入式系统选择 Linux 做为发展的平台呢！</ul>
+上面这些就是目前常见的几个 Linux 的应用方向。那么根据上面的应用，你觉得应该要怎样学习
+Linux 呢？</blockquote>
+
+<hr width="100%"><a name="begin"></a><font color="#000099"><font size="+1">从『头』学起</font></font>
+<blockquote>其实，不论学什么系统，『从头学起』是很重要的！还记得你刚刚接触微软的
+Windows 都在干什么？还不就是由档案总管学起，然后慢慢的玩到控制台、玩到桌面管理，然后还去学办公室软件，我想，你总该不会直接就跳过这一段学习的历程吧！？那么
+Linux 的学习其实也差不多，就是要从头慢慢的学起啦！不能够还不会走路之前就想要学飞了吧！
+^_^！</blockquote>
+
+<blockquote>常常有些朋友会写信来问鸟哥一些问题，不过，信件中大多数的问题都是很基础的！例如：『为什么我的用户个人网页显示我没有权限
+进入？』、『为什么我下达一个指令的时候，系统告诉我找不到该指令？』、『我要如何限制使用者的权限』等等的问题，这些问题其实都不是很难的，只要了解了
+Linux 的基础之后，应该就可以很轻易的解决掉这方面的问题呢！所以请耐心的，慢慢的，将后面的所有章节内容都看完。自然你就知道如何解决了！</blockquote>
+
+<blockquote>此外，网络基础与安全也很重要，例如 IP 的基础，网络的 Gateway
+设定基础与网络的相关概念！很多的朋友一开始问的问题就是『<font color="#3333ff">为什么我的
+mail server 无法收到信件</font>？』这种问题相当的困扰，因为发生的原因太多了，而朋友们常常一接触
+Linux 就是希望『<font color="#3333ff">架站！</font>』根本没有想到要先了解一下
+Linux 的基础！这是相当伤脑筋的！尤其近来计算机怪客 (&nbsp; Cracker ) 相当多，
+( 真奇怪，闲闲没事干的朋友还真是不少.... ) ，一个不小心您的主机就被当成怪客跳板了！甚至发生被警告的事件也层出不穷！这些都是没能好好的注意一下网络基础的原因呀！</blockquote>
+
+<blockquote>所以， 鸟哥希望大家能够更了解 Linux ，好让他可以为你做更多的事情喔！而且这些基础知识是学习更深入的技巧的必备条件呀！因此建议：
+<ol>
+<li>
+先理解一下基础的硬件知识，不用一定要全懂(没那么多时间)，但是至少要『听过、有概念』即可；</li>
+
+<li>
+先了解一下 Linux 的基础知识，这些包含了『使用者、群组的概念』、『权限的观念』，『程序的定义』等等；</li>
+
+<li>
+必需至少学会一种以上的文书编辑器，例如最好学会通用版本的 vi 啰！</li>
+
+<li>
+实际操作 Linux 时，必定要学习的 Shell ，最好 Shell scripts 也能够了解；</li>
+
+<li>
+如果上面你都通过了，那么网络的基础就是下一阶段要接触的咚咚，这部份包含了『IP
+概念』『路由概念』『TCP/IP』等等；</li>
+
+<li>
+如果连网络基础都通过了，那么网站的架设对你来说，简直就是『太简单啦！』</li>
+</ol>
+</blockquote>
+
+<blockquote>在一些基础知识上，这里推荐一下 Study-Area 里面的基础文章，相当的实用！
+<ul>
+<li>
+<a href="http://www.study-area.org/compu/compu.htm" target="_blank">计算机基础</a></li>
+
+<li>
+<a href="http://www.study-area.org/network/network.htm" target="_blank">网络基础</a></li>
+</ul>
+</blockquote>
+
+<hr width="100%"><a name="book"></a><font color="#000099"><font size="+1">选择一本好的工具书</font></font>
+<blockquote>『工具书』对于学习者而言是相当重要的！不过，一本错误观念的工具书却会让新手整个误入歧途....，以下有几个网站有特别介绍了几本书籍，如果有兴趣的话，欢迎参考看看！实在是很建议买一本『基础一点』的工具书来学习
+Linux ，等到有一定的基础之后，才来买架设网站以及『安全防护』方面的书籍，尤其是『安全防护』的书籍，
+VBird 认为，网络安全一定会越来越受到重视的！当然，有兴趣的话，小弟的『<a href="http://www.grandtech.com.tw/book/booknews.asp?newsid=902" target="_blank">鸟哥的
+Linux 私房菜 -- 基础学习篇</a>』也可以参考看看啰！ ^_^
+<ul>
+<li>
+<a href="http://linux.vbird.org/linux_basic/0120howtolinux/0120howtolinux_1.php">请推荐有关网络的书</a></li>
+
+<li>
+<a href="http://redhat.ecenter.idv.tw/bbs/showthread.php?s=&threadid=18072" target="_blank">小红帽技术论坛</a></li>
+</ul>
+</blockquote>
+
+<hr width="100%"><a name="doti"></a><font color="#000099"><font size="+1">实作经验</font></font>
+<blockquote>要增加自己的体力，就是只有运动；要增加自己的知识，就只有读书；当然，要增加自己对于
+Linux 的认识，大概就只有实作经验了！所以，赶快找一部计算机，赶快安装一个
+Linux 套件，然后快点进入 Linux 的世界里面晃一晃！相信对于你自己的 Linux
+能力必然大有斩获！除了自己的实作经验之外，也可以参考网络上一些善心人士整理的实作经验分享喔！例如最有名的
+Study-Area ( <a href="http://www.study-area.org/" target="_blank">http://www.study-area.org</a>
+)等网站。</blockquote>
+
+<blockquote>此外，人脑不像计算机的硬盘一样，除非硬盘坏掉了或者是数据被你抹掉了，否则储存的数据将永远而且立刻的记忆在硬盘中！在人类记忆的曲线中，你必须要『不断的重复练习』才会将一件事情记得比较熟！同样的，学习
+Linux 也一样，如果你无法经常摸索的话，那么，抱歉的是，学了后面的，前面的忘光光！学了等于没学，这也是为什么鸟哥当初要写『鸟哥的私房菜』这个网站的主要原因，因为，我的忘性似乎比一般人还要好～～呵呵！所以，除了要实作之外，还得要常摸！才会熟悉
+Linux 而且不会怕他呢！</blockquote>
+
+<blockquote>好了，底下列出几个学习网站来提供大家做为参考实作的依据：（注：由于不同的网站当初撰写的时候所用的
+Linux 套件或版本与目前的主流并不相同，因此参考他人的实作经验时，必须要特别留意对方的版本，否则反而可能造成你的困扰喔！）</blockquote>
+
+<blockquote>
+<ul>
+<li>
+<a href="http://www.study-area.org/" target="_blank">Study-Area</a></li>
+
+<li>
+<a href="http://linux.vbird.org/">鸟哥的私房菜馆</a></li>
+
+<li>
+<a href="http://netlab.kh.edu.tw/index.htm" target="_blank">狼主的网络实验室</a></li>
+
+<li>
+<a href="http://linux.tnc.edu.tw/techdoc/" target="_blank">卧龙大师的网络技术文件</a></li>
+
+<li>
+<a href="http://freebsd.lab.mlc.edu.tw/" target="_blank">大南小学（林克敏主任文件集）</a></li>
+
+<li>
+<a href="http://www.se.ntou.edu.tw/%7Eylchang/MyDocuments/index.html" target="_blank">张毓麟先生的小文章</a></li>
+
+<li>
+<a href="http://www.linux.org.tw/" target="_blank">台湾 Linux 社群</a></li>
+
+<li>
+<a href="http://www.cses.tcc.edu.tw/%7Echihwu/" target="_blank">吴仁智的文件集</a></li>
+</ul>
+</blockquote>
+
+<hr width="100%"><a name="x-window"></a><font color="#000099"><font size="+1">X-Window
+还是 command line</font></font>
+<ul>由前面的介绍我们可以知道，虽然目前 X-Window 的接口越做越漂亮，而且也已经渐渐的可以来控管整个系统了！但是必须要注意的是，
+X-Window 毕竟还只是一个 Linux 上面的软件，并不是一套『操作系统』，所以实际上使用他来设定系统的时候，还是有相当多的困扰的，因为毕竟他无法完全的管理好我们的
+Linux 啊！虽然就以 Desktop 的型态来说，X-Window 是让 Linux 立刻深入人心的方法。不过，
+X-Window 在使用的时候还是有相当多的问题的，最大的问题来自于『<font color="#000066">系统资源的有效应用</font>』，以
+VBird 的使用情况来说，我的系统资源并没有很好，但是 X-Window 本身相当的消耗系统资源，如果一开
+X-Window ，那么你的内存几乎都被 X-Window 吃光了！您要如何来用剩下的系统资源来进行高效率的其他工作呢？！这也是为什么很多的书籍与网站都会希望使用者架设网站的时候，不要启动
+图形用户接口 的原因啰！</ul>
+
+<ul>以下再来说说 X-Window 学习与 command line 学习的角度。</ul>
+
+<ul>
+<li>
+<b><font color="#000099">X-Window</font></b></li>
+
+<br>如果您对于 Linux 的要求是『桌面计算机』，并且你又不架设网站的话，那么学习
+X-Window 对您而言，绝对是需要的！至于指令列模式对你就不是这么必要了！但是，如果
+Linux 对你而言是『服务器与工作站』的话，那么 X-Window 可能就不是这么重要，但是指令列模式可就大大的重要啦！</ul>
+
+<ul>因为，如果以 X-Window 作为学习 Linux 的方式，那么未来一定会有死角，
+这是因为 X-Window 了不起也只是 Linux 的『一套软件』而不是『Linux 核心』
+此外，目前发展出来的 X-Window 对于系统的管理上还是有无法掌握的地方， 举个例子来说，如果
+Linux 本身捉不到网络卡的时候， 请问如何以 X-Window 来捉这个硬件呢？！还有，
+如果需要以 tarball 的方式来安装软件并加以设定的时候， 请以 X-Window 来架设他！这可能吗？当然可能，但是这是在考验『X-Window
+开发商』的技术能力， 对于了解 Linux 架构与核心并没有多大的帮助的！所以说，如果只是想要『会使用
+Linux 』的角度来看， 那么确实使用 X-Window 也就足够了，反正搞不定的话，花钱请专家来搞定即可；但是如果想要更深入
+Linux 的话，那么指令列模式才是不二的学习方式！</ul>
+
+<ul>
+<li>
+<b><font color="#000099">服务器端</font></b></li>
+
+<br>如果 Linux 对你而言是『生财』的工具，呵呵！那可不是只要学习 X-Window
+能够解决的了！举个例子来说好了，假如你的客户人在台北，而你人在远方的台南，
+他的 Linux 服务器出了问题，要你马上解决他， 请问：要您亲自上台北去修理？还是他搬机器下来让你修理？！或者是直接请他开个账号给你进去设定即可？！
+想当然尔，就会选择开账号给你进入设定即可啰！因为这是最简单而且迅速的方法！然而这个方法使用的方式却不是
+X-Window 作的到的！因为 X-Window 太耗资源，实在不容易让您这样子联机（很麻烦的啦！）
+所以啰！文字界面是相当重要的！尤其如果想要深入 Linux 的核心时，那么以文字界面来了解
+Linux 就更需要了！所以说，不要怕麻烦，还是多摸一些文字界面的东西吧！！
+帮助会比较大哩！</ul>
+
+<ul>所以基本上， VBird 还是希望大家可以多多的以 文字接口( command line
+)的方式来学习 Linux 啦！</ul>
+
+<hr width="100%"><a name="FAQ_net"></a><font color="#000099"><font size="+1">网络数据查询</font></font>
+<blockquote>其实，在网络上面已经有相当多的 FAQ 整理出来了！所以，当你发生任何问题的时候，除了自己检查，或者到上述的实作网站上面查询一下是否有设定错误的问题之外，最重要的当然就是到各大
+FAQ 的网站上查询啰！以下列出一些有用的 FAQ 网站给您参考一下：
+<ul>
+<li>
+<a href="http://www.linux.org.tw/CLDP/" target="_blank">CLDP 中文文件计划</a></li>
+
+<li>
+<a href="http://www.csie.nctu.edu.tw/document/unixfaq/" target="_blank">Unix
+的一般常见问题</a></li>
+
+<li>
+<a href="http://asklinux.net/" target="_blank">asklinux</a></li>
+</ul>
+还有相当的的网络资源可以查询！如果你有发现更新的信息时，记得来信通知 VBird
+喔！</blockquote>
+
+<hr width="800pz"><a name="formus"></a><font color="#000099"><font size="+1">真的没办法、发问吧</font></font>
+<ul>
+<li>
+<b><font color="#000099">天助自助者：</font></b></li>
+
+<br>一般而言， Linux 在下达指令的过程当中，或者是 log file 里头就可以自己查得错误信息了，举个例子来说，当您下达：
+<ul><font color="#000099">&nbsp;<font face="细明体">ls -l /vbird</font></font></ul>
+时，由于系统并没有 /vbird 这个目录，所以会在屏幕前面显示：
+<ul><font face="细明体"><font color="#000099">ls: /vbird: No such file
+or directory</font></font></ul>
+这个错误讯息够明确了吧！系统很完整的告诉您『查无该数据』！呵呵！所以啰，请注意，发生错误的时候，请先自行以屏幕前面的信息来进行
+debug ( 除错 )的动作，然后，如果是网络服务的问题时，请到 /var/log 这个目录里头去查阅一下
+log file ，这样可以几乎解决大部分的问题了！</ul>
+
+<ul>
+<li>
+<b><font color="#000099">讨论区的提问：</font></b></li>
+
+<br>万一真的经过了自己的查询，却找不到相关的信息，那么就发问吧！不过，在发问之前建议您最好先看一下『<a href="http://phorum.vbird.org/viewtopic.php?t=96" target="_blank">提问的智慧</a>』这一篇讨论！然后，你可以到底下几个讨论区发问看看：</ul>
+
+<ul>
+<ul>
+<li>
+<a href="http://phorum.study-area.org/" target="_blank">Study-Area 讨论区</a></li>
+
+<li>
+<a href="http://phorum.vbird.org/">鸟哥的私房菜馆讨论区</a></li>
+
+<li>
+<a href="http://netlab.kh.edu.tw/board/board.asp" target="_blank">狼主的网络实验室讨论区</a></li>
+
+<li>
+<a href="http://redhat.ecenter.idv.tw/bbs/index.php?s=" target="_blank">小红帽技术论坛</a></li>
+
+<li>
+<a href="http://linuxfab.com/" target="_blank">LinuxFab</a></li>
+
+<li>
+<a href="http://phpbb-tw.net/phpbb/" target="_blank">竹猫星球</a></li>
+</ul>
+</ul>
+
+<ul>不过，基本上每一个讨论区的内容是大同小异的，发问的时候一定要注意到某些礼节！最好是先以搜寻的方式搜寻一下该讨论区是否有您需要的文章之后，在发问！这样可以获得事半功倍的功能喔！此外，
+Netman 兄提供的一些学习的基本方针，提供给大家参考：</ul>
+
+<ul>
+<ul>
+<li>
+在Windows里面﹐程序有问题时﹐如果可能的话先将所有其它程序保存并结束﹐然后尝试按救命三键(Ctrl+Alt+Delete)﹐将有问题的程序(不要选错了程序哦)“结束工作”﹐看看能不能恢复系统。不要动不动就直接关机或reset。</li>
+
+<li>
+有系统地设计档案目录﹐不要随便到处保存档案以至以后不知道放哪里了﹐或找到档案也不知道为何物。</li>
+
+<li>
+养成一个做记录的习惯。尤其是发现问题的时候﹐把错误信息和引发状况以及解决方法记录清楚﹐同时最后归类几定期整理。别以为您还年轻﹐等你再弄多几年计算机了﹐您将会非常庆幸您有此一习惯。</li>
+
+<li>
+如果看在网络上看到任何好文章﹐可以为自己留一份copy﹐同时定好题目﹐归类存档。</li>
+
+<li>
+作为一个使用者﹐人要迁就机器﹔做为一个开发者﹐要机器迁就人。</li>
+
+<li>
+学写 script 的确没设定 server 那么好玩﹐不过以我自己的感觉是﹕关键是会得“偷”﹐偷了会得改﹐改了会得变﹐变则通矣。</li>
+
+<li>
+在Windows里面﹐设定不好设备﹐您可以骂它﹔在Linux里面﹐如果设定好设备了﹐您得要感激它﹗</li>
+</ul>
+</ul>
+
+<hr width="100%"><a name="bbs"></a><font color="#000099"><font size="+1">其他的一些建议</font></font>
+<blockquote>除了上面的学习建议之外，还有其他的建议吗？确实是有的！其实，无论作什么事情，对人类而言，两个重要的因素是造成我们学习的原动力：
+<ul>
+<li>
+成就感</li>
+
+<li>
+兴趣</li>
+</ul>
+很多人问过我，鸟哥是怎么学习 Linux 的？由鸟哥之前的 <a href="http://linux.vbird.org/linux_basic/vbird/vbird2.php">自我介绍</a>
+与对于 <a href="http://linux.vbird.org/linux_basic/new_linux.php">Linux 的接触历程</a>，
+你大概会知道，原来我本人对于计算机就蛮有兴趣的，加上工作的需要，而鸟哥又从中得到了相当多的成就感，所以啰，就一发不可收拾的爱上
+Linux 啰！因此，鸟哥个人认为，学习 Linux 
+如果玩不出兴趣，他对你也不是什么重要的生财工具，那么就不要再玩下去了！因为很累人ㄋㄟ～而如果你真的想要玩这么一套优良的操作系统，除了前面提到的一
+些建议之外，说真的，得要培养出兴趣与成就感才行！那么如何培养出兴趣与成就感呢？可能有几个方向可以提供给你参考：
+<ul>
+<li>
+<font color="#000099">建立兴趣</font>：Linux 上面可以玩的东西真的太多了，你可以选择一个有趣的课题来深入的玩一玩！不论是
+Shell 还是图形接口等等的，只要能够玩出兴趣，那么再怎么苦你都会不觉得喔！</li>
+
+<li>
+<font color="#000099">成就感</font>：成就感是怎么来的？说实在话，就是『被认同』来的！怎么被认同呢？写心得分享啊！当你写了心得分享，并且公告在
+BBS 上面，自然有朋友会到你的网页去瞧一瞧，当大家觉得你的网页内容很棒的时候，哈哈！你肯定会加油继续的分享下去而无法自拔的！那就是我啦......
+^_^！而且，就鸟哥的经验来说，你『<font color="#000066">学会一样东西</font>』与『<font color="#000066">要教人家会一样东西</font>』思考的纹路是不太一样的！学会一样东西可能学一学会了就算了！但是要『教会』别人，那可就不是闹着玩的！得要思考相当多的理论性与实务性方面的咚咚，这个时候，你所能学到的东西就更深入了！鸟哥常常说，我这个网站对我在
+Linux 的了解上面真的的帮助很大！</li>
+
+<li>
+<font color="#000099">协助回答问题</font>：另一个创造成就感与满足感的方法就是『助人为快乐之本！』当你在
+BBS 
+上面告诉一些新手，回答他们的问题，你可以获得的可能只是一句『谢谢！感恩吶！』但是那句话真的会让人很有快乐的气氛！很多的老手都是因为有这样的满足
+感，才会不断的协助新来的朋友的呢！此外，回答别人问题的时候，就如同上面的说明一般，你会更深入的去了解每个项目，哈哈！又多学会了好多东西呢！</li>
+
+<li>
+<font color="#000099">参与讨论</font>：参与大家的技术讨论一直是一件提升自己能力的快速道路！因为有这些技术讨论，你提出了意见，不论讨论的结果你的意见是对是错，对你而言，都是一次次的知识成长！这很重要喔！
+^_^</li>
+</ul>
+此外，除了这些鸟哥的经验之外，还有在 BBS 上面有一封对于 Linux 新手相当有帮助的文件数据，大家可以多看一看：
+<ul>
+<li>
+<a href="http://linux.vbird.org/linux_basic/0120howtolinux/0120howtolinux_2.php">Linux 初学者之旅 2002/01</a></li>
+
+<li>
+<a href="http://linux.vbird.org/linux_basic/0120howtolinux/0120howtolinux_3.php">Linux 初学者之旅 2002/07</a></li>
+
+<li>
+<a href="http://liy.slat.org/study/tips/linux_entry.htm/view" target="_blank">最新的
+Linux 初学者之旅</a></li>
+
+<li>
+<a href="http://www.cyut.edu.tw/%7Eckhung/published/018learn.shtml" target="_blank">信息人的有效学习(洪朝贵教授网页)</a></li>
+</ul>
+里面提到了几乎新手都会有的问题！此外，在网络上还有另外一篇介绍 Linux 的文章，也蛮好玩的，不过他是
+Word 版本，目前并不打算将他修改一番，因为要保持原文件的风貌呀！呵呵！有兴趣的朋友真的可以好好的看一看：
+<ul><a href="http://linux.vbird.org/linux_basic/0120howtolinux/0120howtolinux.doc" target="_blank">Linux 初学者入门</a></ul>
+</blockquote>
+
+<hr width="100%"><a name="FAQ"></a><font color="#000099"><font size="+1">本章习题练习
+( 要看答案请将鼠标移动到『答：』底下的空白处，按下左键圈选空白处即可察看
+)</font></font>
+<ul>
+<li>
+在 X-Window System 的架构里面，主要有几个组件？各有何重点？</li>
+
+<br>答：
+<ul><font color="#FFFFFF">X-Window System 有三个组件，分别是 X Server,
+X Client 与 Window Manager 三部分，分别的工作如下：</font>
+<ul>
+<li>
+<font color="#FFFFFF">X Server ： 主要用于主机上面绘制影像的功能！而且他可以控管所有的主机上面的显示接口硬件，诸如：鼠标、键盘、显示适配器(最重要为驱动程序)及屏幕等等，是最重要的部分喔；</font></li>
+
+<li>
+<font color="#FFFFFF">X Client ： 用在 Client 端计算机的应用程序软件，他可以用来操纵
+X Server 绘制出用户想要的图示，简单的说，他就是用户在使用的软件啦！</font></li>
+
+<li>
+<font color="#FFFFFF">Window Manager ： 窗口管理员，她主要的功能就是让
+X Server 绘制出来的图形变的更漂亮，简单的说，他就是介于使用者与 X Server
+之间的一套软件就是了！由于 X Server 提供的绘图丑丑的，因此，有了 Window
+Manager 我们的 X Window System 就可以变的漂漂亮亮的啰！</font></li>
+</ul>
+<font color="#FFFFFF">一般而言， X Server 与 X Client 会是在同一部计算机主机上面，就是我的直接在
+Linux 主机上面执行 startx 就跑出来 X Window 即是一例！</font></ul>
+</ul>
+
+<ul>
+<li>
+什么是 GUI ( Graphical User Interface )？</li>
+
+<br>答：
+<ul><font color="#FFFFFF">GUI 就是图形用户接口，亦即是使用图形接口来操纵硬件啰！例如我们的
+X Window system 就是一个例子！目前桌上型的计算机为了亲和力，图形用户接口做得越来越好了！</font></ul>
+</ul>
+
+<hr width="100%"><font face="新细明体"><font color="#000066"><font size="-1">2002/07/08：第一次完成或者是上次更新...忘记了～
+@_@</font></font></font>
+<br><font face="新细明体"><font color="#000066"><font size="-1">2003/01/28：重新修订，加入
+X-Window 的简易说明</font></font></font>
+<br></div>
+<hr width="100%">
+<font color="#000066"><font size="-1">Designed by <a href="mailto:vbird@mail.vbird.idv.tw">VBird</a>
+during 2001-2004.&nbsp; Aerosol Lab.</font></font>
+﻿<div id="apDiv4">
+      <p>本网页主要以Firefox配合解析度 1024x768 作为设计依据&nbsp;&nbsp;&nbsp;&nbsp; 鸟哥自由软件整合应用研究室</p></div></div>
+</center>
+</body></html>

@@ -1,1 +1,189 @@
-<html><head> 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"> 	<meta name="Author" content="2011/04/24,lee"> 	<meta name="Description" content="认识 daemons 可重要了，能够更清楚的了解服务的启动与运行方式！"> 	<title>鸟哥的 Linux 私房菜 -- 认识 Linux 系统服务的 daemons</title>     <script src="../script/SpryMenuBar.js" type="text/javascript"></script> 	<script src="../script/index.js" type="text/javascript"></script> 	<link href="../css/SpryMenuBarHorizontal.css" rel="stylesheet" type="text/css" />     <link href="../css/main.css" rel="stylesheet" type="text/css" />     </head><body style="margin: 0pt; padding: 0pt;" class="table"onload="MM_preloadImages('image/title_19.png','image/title_26.png','image/title_27.png','image/title_28.png','image/title_06.png','image/title_08.png','image/title_10.png','image/title_12.png')">   <!-- Copyright � 2005. Spidersoft Ltd --> <style> A.applink:hover {border: 2px dotted #DCE6F4;padding:2px;background-color:#ffff00;color:green;text-decoration:none} A.applink       {border: 2px dotted #DCE6F4;padding:2px;color:#2F5BFF;background:transparent;text-decoration:none} A.info          {color:#2F5BFF;background:transparent;text-decoration:none} A.info:hover    {color:green;background:transparent;text-decoration:underline} </style> <div style='BORDER: 1px solid #DCE6F4; MARGIN-TOP: 20px; MARGIN-BOTTOM: 20px; MARGIN-LEFT: 5px; MARGIN-RIGHT: 5px; PADDING: 5px; BACKGROUND-COLOR: #eef8ff;line-height:180%; COLOR: #000000; font-family: Arial; font-size: 8pt; width=100%; FILTER: progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr="#FFFFFFFF", EndColorStr="#F2F5FAFF");'> This page was saved using <a class="applink" href="http://www.spidersoft.com"><b>WebZIP 7.0.3.1030</b></a> <a class="applink" href="http://www.spidersoft.com"><b>offline browser</b></a>  (Unregistered) on  02/12/15 12:14:49.<br> <b>Address:</b> <a class="info" href="http://vbird.dic.ksu.edu.tw/linux_basic/0560daemons_5.php">http://vbird.dic.ksu.edu.tw/linux_basic/0560daemons_5.php</a><br> <b>Title:</b> 鸟哥的 Linux 私房菜 -- 认识 Linux 系统服务的 daemons &nbsp;&bull;&nbsp; <b>Size:</b> 19700<br></div> <!-- /Copyright � 2005. Spidersoft Ltd -->    <center> <div id="apDiv5"> <div> <LINK REL="SHORTCUT ICON" HREF="favicon.ico"> <!-- ImageReady Slices (title3.ai) --> <table id="___01" width="898" height="81" border="0" align="center" cellpadding="0" cellspacing="0";> 	<tr> 		<td colspan="15"> 			<img src="image/title/title_01.png" width="900" height="1" alt=""></td> 	</tr> 	<tr> 		<td rowspan="4" bgcolor="#182448"><p><img src="http://linux.vbird.org/cgi-bin/Count.cgi?dd=C&ft=5&sh=T&md=8&pad=Y&df=vbird.dic.ksu.edu.tw.dat" width="93" align="left" title="計數器" /></p> 	    <p><font color="#FFFFFF" size="-1">since2012/04/23</font></p></td> 		<td rowspan="4" align="left" valign="top"><a href="http://vbird.dic.ksu.edu.tw/"><img src="image/title/title_03.png" alt="" width="263" height="79" border="0"></a></td> 		<td colspan="13"> 			<img src="image/title/title_04.png" alt="" width="535" height="9" border="0"></td> 	</tr> 	<tr> 		<td rowspan="3"> 			<img src="image/title/title_05.png" alt="" width="53" height="70" border="0"></td> 		<td colspan="2" align="left" valign="top"><a href="0110whatislinux.php.html" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image51','','image/title/title_06.png',1)"><img src="image/title/title3_06.png" name="Image51" width="106" height="25" border="0" id="Image51" alt=""/></a></td> 		<td rowspan="2"> 			<img src="image/title/title_07.png" alt="" width="27" height="37" border="0"></td> 		<td colspan="3" align="left" valign="top"><a href="http://vbird.dic.ksu.edu.tw/linux_server/0110network_basic.php" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image52','','image/title/title_08.png',1)"><img src="image/title/title3_08.png" name="Image52" width="107" height="25" border="0" id="Image52" alt=""/></a></td> 		<td rowspan="2"> 			<img src="image/title/title_09.png" alt="" width="37" height="37" border="0"></td> 		<td colspan="2" align="left" valign="top"><a href="http://vbird.dic.ksu.edu.tw/about.php" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image53','','image/title/title_10.png',1)"><img src="image/title/title3_10.png" name="Image53" width="75" height="25" border="0" id="Image53" alt=""/></a></td> 		<td rowspan="3"> 			<img src="image/title/title_11.png" alt="" width="35" height="70" border="0"></td> 		<td align="left" valign="top"><a href="mailto:vbird@mail.vbird.idv.tw" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image54','','image/title/title_12.png',1)"><img src="image/title/title3_12.png" name="Image54" width="74" height="25" border="0" id="Image54" alt=""/></a></td> 		<td rowspan="3"> 			<img src="image/title/title_13.png" alt="" width="21" height="70" border="0"></td> 	</tr> 	<tr> 		<td colspan="2"> 			<img src="image/title/title_14.png" alt="" width="106" height="12" border="0"></td> 		<td colspan="3"> 			<img src="image/title/title_15.png" alt="" width="107" height="12" border="0"></td> 		<td colspan="2"> 			<img src="image/title/title_16.png" width="75" height="12" alt=""></td> 		<td rowspan="2"> 			<img src="image/title/title_17.png" alt="" width="74" height="45" border="0"></td> 	</tr> 	<tr> 		<td> 			<img src="image/title/title_18.png" alt="" width="15" height="33" border="0"></td> 		<td colspan="3" align="left" valign="top"><ul id="MenuBar1" class="MenuBarHorizontal"> 	  <li><a href="linux_basic.php.html" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image44','','image/title/title_19.png',1)"><img src="image/title/title3_19.png" name="Image44" width="123" height="33" border="0" id="Image44" /></a> 			    <ul> 			      <li><a href="Mandrake9.0/mandrake9.0.php.html" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image46','','image/title/title_26.png',1)"><img src="image/title/title_23.png" name="Image46" width="120" height="26" border="0" id="Image46" alt="" /></a></li>                   <li><a href="fedora_4/fc4.php.html" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image47','','image/title/title_27.png',1)"><img src="image/title/title_24.png" name="Image47" width="120" height="26" border="0" id="Image47" alt="" /></a></li>                   <li><a href="linux_basic.php.html" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image48','','image/title/title_28.png',1)"><img src="image/title/title_25.png" name="Image48" width="120" height="26" border="0" id="Image48" alt="" /></a></li>                 </ul> 		      </li> 		</ul></td> 		<td> 			<img src="image/title/title_20.png" alt="" width="42" height="33" border="0"></td> 		<td colspan="3" align="left" valign="top"><ul id="MenuBar2" class="MenuBarHorizontal"> 	  <li><a href="http://vbird.dic.ksu.edu.tw/linux_server/" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image45','','image/title/title_21.png',1)"><img src="image/title/title3_21.png" name="Image45" width="125" height="33" border="0" id="Image45" /></a> 			    <ul> 			      <li><a href="http://vbird.dic.ksu.edu.tw/linux_server/linux_redhat9/redhat9.php" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image43','','image/title/title_26.png',1)"><img src="image/title/title_23.png" name="Image43" width="120" height="26" border="0" id="Image43" alt=""/></a></li> 			      <li><a href="http://vbird.dic.ksu.edu.tw/linux_server/centos4.php" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image49','','image/title/title_27.png',1)"><img src="image/title/title_24.png" name="Image49" width="120" height="26" border="0" id="Image49" alt="" /></a></li> 			      <li><a href="http://vbird.dic.ksu.edu.tw/linux_server/" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image50','','image/title/title_28.png',1)"><img src="image/title/title_25.png" name="Image50" width="120" height="26" border="0" id="Image50" alt="" /></a></li> 		        </ul> 		      </li> 		</ul></td> 		<td> 			<img src="image/title/title_22.png" alt="" width="47" height="33" border="0"></td> 	</tr> 	<tr> 		<td> 			<img src="image/title/Spacer.gif" width="101" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="263" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="53" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="15" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="91" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="27" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="5" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="42" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="60" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="37" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="28" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="47" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="35" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="74" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="22" height="1" alt=""></td> 	</tr> </table> <!-- End ImageReady Slices --> <script type="text/javascript"> <!-- var MenuBar1 = new Spry.Widget.MenuBar("MenuBar1", {imgDown:"SpryAssets/SpryMenuBarDownHover.gif", imgRight:"SpryAssets/SpryMenuBarRightHover.gif"}); var MenuBar2 = new Spry.Widget.MenuBar("MenuBar2", {imgDown:"SpryAssets/SpryMenuBarDownHover.gif", imgRight:"SpryAssets/SpryMenuBarRightHover.gif"}); //--> </script></div> <table summary="本文内容的排版" style="width: 898px;" border="0" cellpadding="0" cellspacing="0"> <tbody><tr><td style="width: 16px; height: 16px;">　</td>     <td style="width: 866px; height: 16px;">　</td>     <td style="width: 16px; height: 16px;">　</td></tr> <tr><td style="width: 16px; font-size: 6px;">　</td>     <td width="866">  <!-- 本文的档头部分 --> <div style="text-align: center;">     <a href="0560daemons.php.html">     <span class="text_head0">第十八章、认识系统服务<span class="text_head_en"> (daemons)</span></span></a><br> </div>     <div style="text-align: right;">         <span class="text_history">最近升级日期：2009/09/14</span>     </div> <!-- 本文的连结区部分 --> <div class="block1"> <span class="text_h1"> 5. <a href="#hint">重点回顾</a><br> 6. <a href="#ex">本章习题</a><br> 7. <a href="#reference">参考数据与延伸阅读</a><br> <span class="text_h2"> 8. <a href="http://phorum.vbird.org/viewtopic.php?t=23894" target="_blank">针对本文的建议：http://phorum.vbird.org/viewtopic.php?t=23894</a> </span> </span></div> <!-- 本文的正式部分 --> <hr><a name="hint"></a><img src="../image/logo.png" alt="大标题的图示" width="35" align="middle" height="34"><span class="text_h1">重点回顾</span><br> <div class="block1"> <ul class="text_import2"> 	<li>服务 (daemon) 主要可以分为 stand alone (服务可单独启动) 及 super daemon (透过 xinetd 统一管理的服务) 两种。</li> 	<li>super daemon 由于是经过一个统一的 xinetd 来管理，因此可以具有类似防火墙管理功能。此外，管理的联机机制又可以分为 		multi-threaded 及 single-threaded。</li> 	<li>启动 daemon 的程序通常最末会加上一个 d ，例如 sshd, vsftpd, httpd 等</li> 	<li>stand alone daemon 启动的脚本放置到 /etc/init.d/ 这个目录中，super daemon 的配置文件在 /etc/xinetd.d/* 内， 		而启动的方式则为 /etc/init.d/xinetd restart</li> 	<li>立即启动 stand alone daemon 的方法亦可以使用 service 这个命令</li> 	<li>Super daemon 的配置文件 /etc/xinetd.conf ，个别 daemon 配置文件则在 /etc/xinetd.d/* 内。在配置文件内还可以配置联机客户端的联机与否， 		具有类似防火墙的功能喔。</li> 	<li>若想要统一管理防火墙的功能，可以透过 /etc/hosts.{allow,deny} ，若有安装 TCP Wrappers 时，还能够使用额外的 spawn 功能等</li> 	<li>若想要配置启动时启动某个服务时，可以透过 chkconfig, ntsysv 等命令。</li> 	<li>一些不需要的服务可以关闭喔！</li> </ul> </div>   <hr><a name="ex"></a><img src="../image/logo.png" alt="大标题的图示" width="35" align="middle" height="34"><span class="text_h1">本章习题</span><br> ( 要看答案请将鼠标移动到『答：』底下的空白处，按下左键圈选空白处即可察看 ) <div class="block1"> <ul> 	<li>情境模拟题一：透过安装、配置、启动、观察与管理防火墙等机制，完整的了解一个服务的启动与观察现象。<br><br> 	<ul> 		<li>目标：了解 daemon 的控管机制，以 super daemon 为例；</li> 		<li>前提：需要对本章已经了解，尤其是 super daemno 部分；</li> 		<li>需求：最好已经连上 Internet ，因为会动用到安装软件</li> 	</ul><br>  	在本情境中，我们使用 telnet 这个服务来观察，假设最终我们只开放 .edu.tw 的网域来使用本机的 telnet 服务喔！ 	可以这样做看看：<br><br>  	<ol> 		<li>先看看 telnet 服务器有没有安装。 telnet 服务器在 CentOS 上面指的是 telnet-server 这支程序，所以可以这样看看：<br>  <table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">rpm -q telnet-server</span> package telnet-server is not installed  [root@www ~]# <span class="term_command">yum install telnet-server</span> ==============================================================  Package          Arch    Version         Repository    Size ============================================================== Installing:  telnet-server    i386    1:0.17-39.el5   base          35 k  Transaction Summary ============================================================== Install      1 Package(s) Update       0 Package(s) Remove       0 Package(s)  Total download size: 35 k Is this ok [y/N]: <span class="term_command">y</span> Downloading Packages: telnet-server-0.17-39.el5.i386.rpm          |  35 kB     00:00 warning: rpmts_HdrFromFdno: Header V3 DSA signature: NOKEY, key ID e8562897 Importing GPG key 0xE8562897 "CentOS-5 Key (CentOS 5 Official Signing Key)  &lt;centos-5-key@centos.org&gt;" from /etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-5 Is this ok [y/N]: <span class="term_command">y</span> Running rpm_check_debug Running Transaction Test Finished Transaction Test Transaction Test Succeeded Running Transaction   Installing     : telnet-server           [1/1]  Installed: telnet-server.i386 1:0.17-39.el5 Complete! </pre></td></tr></tbody></table><br></li>  		<li>如果已经安装了，那么直接来察看一下配置文件，看看 telnet 是 stand alone 还是 super daemon  		呢？最简单的方法就是 chkconfig 了！<br>  <table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">chkconfig --list telnet</span> telnet          off  <span class="term_note">&lt;==只有 on 或 off 者为 super daemon</span>  [root@www ~]# <span class="term_command">ll /etc/xinetd.d/telnet</span> -rw-r--r-- 1 root root 305 Dec  1  2007 /etc/xinetd.d/telnet <span class="term_say"># 看吧！果然是 super daemon 哩！</span>  [root@www ~]# <span class="term_command">grep '^telnet' /etc/services</span> telnet          23/tcp telnet          23/udp </pre></td></tr></tbody></table>  		由上面可以看到， telnet 是 super daemon ，而起启动的端口在 port 23 这个地方。<br><br></li>  		<li>如果要启动的话，可以这样来处置喔：<br>  <table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">chkconfig telnet on; chkconfig --list telnet</span> telnet          <span class="term_write">on</span> [root@www ~]# <span class="term_command">/etc/init.d/xinetd restart</span> 正在停止 xinetd:                       [  确定  ] 正在激活 xinetd:                       [  确定  ]  [root@www ~]# <span class="term_command">netstat -tlnp | grep xinetd</span> tcp  0  0 0.0.0.0:<span class="term_write">23</span>   0.0.0.0:*     LISTEN      2487/xinetd <span class="term_say"># 确认一下，确实有启动 port 23 喔！ ^_^</span> </pre></td></tr></tbody></table><br></li>  		<li>现在假设我们仅要针对 .edu.tw 来开放，至于其他的来源则予以关闭。我们这里选择 /etc/hosts.{allow,deny} 		来处理，你必须要这样做：<br>  <table class="term"><tbody><tr><td class="term"><pre><span class="term_hd"># 1. 先找到 telnet 的主程序是哪一支？</span> [root@www ~]# <span class="term_command">grep server /etc/xinetd.d/telnet</span>         server          = /usr/sbin/<span class="term_write">in.telnetd</span>  <span class="term_hd"># 2. 开始指定开放的网域：</span> [root@www ~]# <span class="term_command">vim /etc/hosts.allow</span> in.telnetd : .edu.tw  [root@www ~]# <span class="term_command">vim /etc/hosts.deny</span> in.telnetd: ALL </pre></td></tr></tbody></table>  		简单！搞定！ ^_^</li> 	</ol></li> </ul> <hr>简答题部分： <ul> 	<li>使用 netstat -tul 与 netstat -tunl 有什么差异？为何会这样？ 	<div class="blockex"> 		使用 n 时， netstat 就不会使用主机名与服务名称 (hostname &amp; service_name) 来显示， 		取而代之的则是以 IP 及 port number 来显示的。IP 的分析与 /etc/hosts 及 /etc/resolv.conf 有关， 		这个在未来服务器篇才会提到。至于 port number 则与 /etc/services 有关，请自行参考喔！ ^_^ 	</div></li>  	<li>你能否找出来，启动 port 3306 这个端口的服务为何？ 	<div class="blockex"> 		透过搜寻 /etc/services 内容，得到 port 3306 为 mysql 所启动的端口喔！查询 google， 		可得到 mysql 为一种网络数据库系统软件。 	</div></li>  	<li>你可以透过哪些命令查询到目前系统默认启动会启动的服务？ 	<div class="blockex"> 		本章提到的 chkconfig 以及 ntsysv 都可以查阅的到！ 	</div></li>  	<li>承上，那么哪些服务『目前』是在启动的状态？ 	<div class="blockex"> 		可以透过 service --status-all，或者是透过 netstat -anl 等方式。也可以透过 pstree 去查询喔！ 		只是相关对应的服务 daemon 档名就得要个别查询了。 	</div></li>  	<li>tcp wrappers 软件功能与 xinetd 的功能中，可以使用哪两个文件进行网络防火墙的控管？ 	<div class="blockex"> 		/etc/hosts.{allow,deny} 	</div></li> </ul> </div>   <hr><a name="reference"></a><img src="../image/logo.png" alt="大标题的图示" width="35" align="middle" height="34"><span class="text_h1">参考数据与延伸阅读</span><br> <div class="block1"> <ul> 	<li><a name="ps1"></a>注1：高级电源管理接口配置 (Advanced Configuration and Power Interface, ACPI) 官网 <a href="http://acpid.sourceforge.net/" target="_blank">http://acpid.sourceforge.net/</a></li> 	<li><a name="ps2"></a>注2：Zeroconf 自动网络管理机制 <a href="http://www.zeroconf.org/" target="_blank">http://www.zeroconf.org/</a></li> 	<li><a name="ps3"></a>注3：壁纸计算机的自动硬件侦测服务 <a href="http://www.freedesktop.org/wiki/Software/hal" target="_blank">http://www.freedesktop.org/wiki/Software/hal</a></li> 	<li><a name="ps4"></a>注4：CPU 微命令集加载服务的说明 <a href="http://www.urbanmyth.org/microcode/" target="_blank">http://www.urbanmyth.org/microcode/</a></li> </ul> </div> <hr />     </td>     <td style="width: 16px; font-size: 6px;">　</td></tr> <tr><td style="width: 16px; height: 16px;">　</td>     <td style="width: 866px; height: 16px;">　</td>     <td style="width: 16px; height: 16px;">　</td></tr> </tbody></table>  <div style="padding-top: 0px; text-align: center;"> <span style="font-size: 80%;"> 	<a href="http://vbird.dic.ksu.edu.tw/" target="_top" title="前往鸟哥的首页">http://linux.vbird.org</a> 	is designed by <a href="mailto:vbird@mail.vbird.idv.tw" title="联络鸟哥(我不要广告信！)">VBird</a> 		during 2001-2011. <a href="http://www.ksu.edu.tw/" target="_blank">ksu.edu</a></span>          ﻿<div id="apDiv4">       <p>本网页主要以Firefox配合解析度 1024x768 作为设计依据&nbsp;&nbsp;&nbsp;&nbsp; 鸟哥自由软件整合应用研究室</p></div></div> </div> </center> </body></html> 
+<?xml version="1.0" encoding="utf-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"    "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><title>第十八章、认识系统服务<span class="text_head_en"> (daemons)</title><link href="../Styles/style.css" rel="stylesheet" type="text/css" /></head><body>
+
+<!-- 本文的档头部分 -->
+<div style="text-align: center;">
+    <a href="0560daemons.php.html">
+    <span class="text_head0">第十八章、认识系统服务<span class="text_head_en"> (daemons)</span></span></a><br>
+</div>
+    <div style="text-align: right;">
+        <span class="text_history">最近升级日期：2009/09/14</span>
+    </div>
+<!-- 本文的连结区部分 -->
+<div class="block1">
+<span class="text_h1">
+5. <a href="#hint">重点回顾</a><br>
+6. <a href="#ex">本章习题</a><br>
+7. <a href="#reference">参考数据与延伸阅读</a><br>
+<span class="text_h2">
+8. <a href="http://phorum.vbird.org/viewtopic.php?t=23894" target="_blank">针对本文的建议：http://phorum.vbird.org/viewtopic.php?t=23894</a>
+</span>
+</span></div>
+<!-- 本文的正式部分 -->
+<hr><a name="hint"></a><img src="../images/logo.png" alt="大标题的图示" width="35" align="middle" height="34"><span class="text_h1">重点回顾</span><br>
+<div class="block1">
+<ul class="text_import2">
+	<li>服务 (daemon) 主要可以分为 stand alone (服务可单独启动) 及 super daemon (透过 xinetd 统一管理的服务) 两种。</li>
+	<li>super daemon 由于是经过一个统一的 xinetd 来管理，因此可以具有类似防火墙管理功能。此外，管理的联机机制又可以分为
+		multi-threaded 及 single-threaded。</li>
+	<li>启动 daemon 的程序通常最末会加上一个 d ，例如 sshd, vsftpd, httpd 等</li>
+	<li>stand alone daemon 启动的脚本放置到 /etc/init.d/ 这个目录中，super daemon 的配置文件在 /etc/xinetd.d/* 内，
+		而启动的方式则为 /etc/init.d/xinetd restart</li>
+	<li>立即启动 stand alone daemon 的方法亦可以使用 service 这个命令</li>
+	<li>Super daemon 的配置文件 /etc/xinetd.conf ，个别 daemon 配置文件则在 /etc/xinetd.d/* 内。在配置文件内还可以配置联机客户端的联机与否，
+		具有类似防火墙的功能喔。</li>
+	<li>若想要统一管理防火墙的功能，可以透过 /etc/hosts.{allow,deny} ，若有安装 TCP Wrappers 时，还能够使用额外的 spawn 功能等</li>
+	<li>若想要配置启动时启动某个服务时，可以透过 chkconfig, ntsysv 等命令。</li>
+	<li>一些不需要的服务可以关闭喔！</li>
+</ul>
+</div>
+
+
+<hr><a name="ex"></a><img src="../images/logo.png" alt="大标题的图示" width="35" align="middle" height="34"><span class="text_h1">本章习题</span><br>
+( 要看答案请将鼠标移动到『答：』底下的空白处，按下左键圈选空白处即可察看 )
+<div class="block1">
+<ul>
+	<li>情境模拟题一：透过安装、配置、启动、观察与管理防火墙等机制，完整的了解一个服务的启动与观察现象。<br><br>
+	<ul>
+		<li>目标：了解 daemon 的控管机制，以 super daemon 为例；</li>
+		<li>前提：需要对本章已经了解，尤其是 super daemno 部分；</li>
+		<li>需求：最好已经连上 Internet ，因为会动用到安装软件</li>
+	</ul><br>
+
+	在本情境中，我们使用 telnet 这个服务来观察，假设最终我们只开放 .edu.tw 的网域来使用本机的 telnet 服务喔！
+	可以这样做看看：<br><br>
+
+	<ol>
+		<li>先看看 telnet 服务器有没有安装。 telnet 服务器在 CentOS 上面指的是 telnet-server 这支程序，所以可以这样看看：<br>
+
+<table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">rpm -q telnet-server</span>
+package telnet-server is not installed
+
+[root@www ~]# <span class="term_command">yum install telnet-server</span>
+==============================================================
+ Package          Arch    Version         Repository    Size
+==============================================================
+Installing:
+ telnet-server    i386    1:0.17-39.el5   base          35 k
+
+Transaction Summary
+==============================================================
+Install      1 Package(s)
+Update       0 Package(s)
+Remove       0 Package(s)
+
+Total download size: 35 k
+Is this ok [y/N]: <span class="term_command">y</span>
+Downloading Packages:
+telnet-server-0.17-39.el5.i386.rpm          |  35 kB     00:00
+warning: rpmts_HdrFromFdno: Header V3 DSA signature: NOKEY, key ID e8562897
+Importing GPG key 0xE8562897 "CentOS-5 Key (CentOS 5 Official Signing Key) 
+&lt;centos-5-key@centos.org&gt;" from /etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-5
+Is this ok [y/N]: <span class="term_command">y</span>
+Running rpm_check_debug
+Running Transaction Test
+Finished Transaction Test
+Transaction Test Succeeded
+Running Transaction
+  Installing     : telnet-server           [1/1]
+
+Installed: telnet-server.i386 1:0.17-39.el5
+Complete!
+</pre></td></tr></tbody></table><br></li>
+
+		<li>如果已经安装了，那么直接来察看一下配置文件，看看 telnet 是 stand alone 还是 super daemon 
+		呢？最简单的方法就是 chkconfig 了！<br>
+
+<table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">chkconfig --list telnet</span>
+telnet          off  <span class="term_note">&lt;==只有 on 或 off 者为 super daemon</span>
+
+[root@www ~]# <span class="term_command">ll /etc/xinetd.d/telnet</span>
+-rw-r--r-- 1 root root 305 Dec  1  2007 /etc/xinetd.d/telnet
+<span class="term_say"># 看吧！果然是 super daemon 哩！</span>
+
+[root@www ~]# <span class="term_command">grep '^telnet' /etc/services</span>
+telnet          23/tcp
+telnet          23/udp
+</pre></td></tr></tbody></table>
+
+		由上面可以看到， telnet 是 super daemon ，而起启动的端口在 port 23 这个地方。<br><br></li>
+
+		<li>如果要启动的话，可以这样来处置喔：<br>
+
+<table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">chkconfig telnet on; chkconfig --list telnet</span>
+telnet          <span class="term_write">on</span>
+[root@www ~]# <span class="term_command">/etc/init.d/xinetd restart</span>
+正在停止 xinetd:                       [  确定  ]
+正在激活 xinetd:                       [  确定  ]
+
+[root@www ~]# <span class="term_command">netstat -tlnp | grep xinetd</span>
+tcp  0  0 0.0.0.0:<span class="term_write">23</span>   0.0.0.0:*     LISTEN      2487/xinetd
+<span class="term_say"># 确认一下，确实有启动 port 23 喔！ ^_^</span>
+</pre></td></tr></tbody></table><br></li>
+
+		<li>现在假设我们仅要针对 .edu.tw 来开放，至于其他的来源则予以关闭。我们这里选择 /etc/hosts.{allow,deny}
+		来处理，你必须要这样做：<br>
+
+<table class="term"><tbody><tr><td class="term"><pre><span class="term_hd"># 1. 先找到 telnet 的主程序是哪一支？</span>
+[root@www ~]# <span class="term_command">grep server /etc/xinetd.d/telnet</span>
+        server          = /usr/sbin/<span class="term_write">in.telnetd</span>
+
+<span class="term_hd"># 2. 开始指定开放的网域：</span>
+[root@www ~]# <span class="term_command">vim /etc/hosts.allow</span>
+in.telnetd : .edu.tw
+
+[root@www ~]# <span class="term_command">vim /etc/hosts.deny</span>
+in.telnetd: ALL
+</pre></td></tr></tbody></table>
+
+		简单！搞定！ ^_^</li>
+	</ol></li>
+</ul>
+<hr>简答题部分：
+<ul>
+	<li>使用 netstat -tul 与 netstat -tunl 有什么差异？为何会这样？
+	<div class="blockex">
+		使用 n 时， netstat 就不会使用主机名与服务名称 (hostname &amp; service_name) 来显示，
+		取而代之的则是以 IP 及 port number 来显示的。IP 的分析与 /etc/hosts 及 /etc/resolv.conf 有关，
+		这个在未来服务器篇才会提到。至于 port number 则与 /etc/services 有关，请自行参考喔！ ^_^
+	</div></li>
+
+	<li>你能否找出来，启动 port 3306 这个端口的服务为何？
+	<div class="blockex">
+		透过搜寻 /etc/services 内容，得到 port 3306 为 mysql 所启动的端口喔！查询 google，
+		可得到 mysql 为一种网络数据库系统软件。
+	</div></li>
+
+	<li>你可以透过哪些命令查询到目前系统默认启动会启动的服务？
+	<div class="blockex">
+		本章提到的 chkconfig 以及 ntsysv 都可以查阅的到！
+	</div></li>
+
+	<li>承上，那么哪些服务『目前』是在启动的状态？
+	<div class="blockex">
+		可以透过 service --status-all，或者是透过 netstat -anl 等方式。也可以透过 pstree 去查询喔！
+		只是相关对应的服务 daemon 档名就得要个别查询了。
+	</div></li>
+
+	<li>tcp wrappers 软件功能与 xinetd 的功能中，可以使用哪两个文件进行网络防火墙的控管？
+	<div class="blockex">
+		/etc/hosts.{allow,deny}
+	</div></li>
+</ul>
+</div>
+
+
+<hr><a name="reference"></a><img src="../images/logo.png" alt="大标题的图示" width="35" align="middle" height="34"><span class="text_h1">参考数据与延伸阅读</span><br>
+<div class="block1">
+<ul>
+	<li><a name="ps1"></a>注1：高级电源管理接口配置 (Advanced Configuration and Power Interface, ACPI) 官网 <a href="http://acpid.sourceforge.net/" target="_blank">http://acpid.sourceforge.net/</a></li>
+	<li><a name="ps2"></a>注2：Zeroconf 自动网络管理机制 <a href="http://www.zeroconf.org/" target="_blank">http://www.zeroconf.org/</a></li>
+	<li><a name="ps3"></a>注3：壁纸计算机的自动硬件侦测服务 <a href="http://www.freedesktop.org/wiki/Software/hal" target="_blank">http://www.freedesktop.org/wiki/Software/hal</a></li>
+	<li><a name="ps4"></a>注4：CPU 微命令集加载服务的说明 <a href="http://www.urbanmyth.org/microcode/" target="_blank">http://www.urbanmyth.org/microcode/</a></li>
+</ul>
+</div>
+<hr />
+    </td>
+    <td style="width: 16px; font-size: 6px;">　</td></tr>
+<tr><td style="width: 16px; height: 16px;">　</td>
+    <td style="width: 866px; height: 16px;">　</td>
+    <td style="width: 16px; height: 16px;">　</body></html>

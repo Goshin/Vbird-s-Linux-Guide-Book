@@ -1,1 +1,85 @@
-<html><head> 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"> 	<meta name="Author" content="2011/04/28,lee"> 	<meta name="Description" content="登录文件的分析啦！"> 	<title>鸟哥的 Linux 私房菜 -- 登录文件的分析啦！</title>     <script src="../script/SpryMenuBar.js" type="text/javascript"></script> 	<script src="../script/index.js" type="text/javascript"></script> 	<link href="../css/SpryMenuBarHorizontal.css" rel="stylesheet" type="text/css" />     <link href="../css/main.css" rel="stylesheet" type="text/css" />     </head><body style="margin: 0pt; padding: 0pt;" class="table"onload="MM_preloadImages('image/title_19.png','image/title_26.png','image/title_27.png','image/title_28.png','image/title_06.png','image/title_08.png','image/title_10.png','image/title_12.png')">   <!-- Copyright � 2005. Spidersoft Ltd --> <style> A.applink:hover {border: 2px dotted #DCE6F4;padding:2px;background-color:#ffff00;color:green;text-decoration:none} A.applink       {border: 2px dotted #DCE6F4;padding:2px;color:#2F5BFF;background:transparent;text-decoration:none} A.info          {color:#2F5BFF;background:transparent;text-decoration:none} A.info:hover    {color:green;background:transparent;text-decoration:underline} </style> <div style='BORDER: 1px solid #DCE6F4; MARGIN-TOP: 20px; MARGIN-BOTTOM: 20px; MARGIN-LEFT: 5px; MARGIN-RIGHT: 5px; PADDING: 5px; BACKGROUND-COLOR: #eef8ff;line-height:180%; COLOR: #000000; font-family: Arial; font-size: 8pt; width=100%; FILTER: progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr="#FFFFFFFF", EndColorStr="#F2F5FAFF");'> This page was saved using <a class="applink" href="http://www.spidersoft.com"><b>WebZIP 7.0.3.1030</b></a> <a class="applink" href="http://www.spidersoft.com"><b>offline browser</b></a>  (Unregistered) on  02/12/15 12:14:49.<br> <b>Address:</b> <a class="info" href="http://vbird.dic.ksu.edu.tw/linux_basic/0570syslog_5.php">http://vbird.dic.ksu.edu.tw/linux_basic/0570syslog_5.php</a><br> <b>Title:</b> 鸟哥的 Linux 私房菜 -- 登录文件的分析啦！ &nbsp;&bull;&nbsp; <b>Size:</b> 14155<br></div> <!-- /Copyright � 2005. Spidersoft Ltd -->    <center> <div id="apDiv5"> <div> <LINK REL="SHORTCUT ICON" HREF="favicon.ico"> <!-- ImageReady Slices (title3.ai) --> <table id="___01" width="898" height="81" border="0" align="center" cellpadding="0" cellspacing="0";> 	<tr> 		<td colspan="15"> 			<img src="image/title/title_01.png" width="900" height="1" alt=""></td> 	</tr> 	<tr> 		<td rowspan="4" bgcolor="#182448"><p><img src="http://linux.vbird.org/cgi-bin/Count.cgi?dd=C&ft=5&sh=T&md=8&pad=Y&df=vbird.dic.ksu.edu.tw.dat" width="93" align="left" title="計數器" /></p> 	    <p><font color="#FFFFFF" size="-1">since2012/04/23</font></p></td> 		<td rowspan="4" align="left" valign="top"><a href="http://vbird.dic.ksu.edu.tw/"><img src="image/title/title_03.png" alt="" width="263" height="79" border="0"></a></td> 		<td colspan="13"> 			<img src="image/title/title_04.png" alt="" width="535" height="9" border="0"></td> 	</tr> 	<tr> 		<td rowspan="3"> 			<img src="image/title/title_05.png" alt="" width="53" height="70" border="0"></td> 		<td colspan="2" align="left" valign="top"><a href="0110whatislinux.php.html" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image51','','image/title/title_06.png',1)"><img src="image/title/title3_06.png" name="Image51" width="106" height="25" border="0" id="Image51" alt=""/></a></td> 		<td rowspan="2"> 			<img src="image/title/title_07.png" alt="" width="27" height="37" border="0"></td> 		<td colspan="3" align="left" valign="top"><a href="http://vbird.dic.ksu.edu.tw/linux_server/0110network_basic.php" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image52','','image/title/title_08.png',1)"><img src="image/title/title3_08.png" name="Image52" width="107" height="25" border="0" id="Image52" alt=""/></a></td> 		<td rowspan="2"> 			<img src="image/title/title_09.png" alt="" width="37" height="37" border="0"></td> 		<td colspan="2" align="left" valign="top"><a href="http://vbird.dic.ksu.edu.tw/about.php" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image53','','image/title/title_10.png',1)"><img src="image/title/title3_10.png" name="Image53" width="75" height="25" border="0" id="Image53" alt=""/></a></td> 		<td rowspan="3"> 			<img src="image/title/title_11.png" alt="" width="35" height="70" border="0"></td> 		<td align="left" valign="top"><a href="mailto:vbird@mail.vbird.idv.tw" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image54','','image/title/title_12.png',1)"><img src="image/title/title3_12.png" name="Image54" width="74" height="25" border="0" id="Image54" alt=""/></a></td> 		<td rowspan="3"> 			<img src="image/title/title_13.png" alt="" width="21" height="70" border="0"></td> 	</tr> 	<tr> 		<td colspan="2"> 			<img src="image/title/title_14.png" alt="" width="106" height="12" border="0"></td> 		<td colspan="3"> 			<img src="image/title/title_15.png" alt="" width="107" height="12" border="0"></td> 		<td colspan="2"> 			<img src="image/title/title_16.png" width="75" height="12" alt=""></td> 		<td rowspan="2"> 			<img src="image/title/title_17.png" alt="" width="74" height="45" border="0"></td> 	</tr> 	<tr> 		<td> 			<img src="image/title/title_18.png" alt="" width="15" height="33" border="0"></td> 		<td colspan="3" align="left" valign="top"><ul id="MenuBar1" class="MenuBarHorizontal"> 	  <li><a href="linux_basic.php.html" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image44','','image/title/title_19.png',1)"><img src="image/title/title3_19.png" name="Image44" width="123" height="33" border="0" id="Image44" /></a> 			    <ul> 			      <li><a href="Mandrake9.0/mandrake9.0.php.html" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image46','','image/title/title_26.png',1)"><img src="image/title/title_23.png" name="Image46" width="120" height="26" border="0" id="Image46" alt="" /></a></li>                   <li><a href="fedora_4/fc4.php.html" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image47','','image/title/title_27.png',1)"><img src="image/title/title_24.png" name="Image47" width="120" height="26" border="0" id="Image47" alt="" /></a></li>                   <li><a href="linux_basic.php.html" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image48','','image/title/title_28.png',1)"><img src="image/title/title_25.png" name="Image48" width="120" height="26" border="0" id="Image48" alt="" /></a></li>                 </ul> 		      </li> 		</ul></td> 		<td> 			<img src="image/title/title_20.png" alt="" width="42" height="33" border="0"></td> 		<td colspan="3" align="left" valign="top"><ul id="MenuBar2" class="MenuBarHorizontal"> 	  <li><a href="http://vbird.dic.ksu.edu.tw/linux_server/" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image45','','image/title/title_21.png',1)"><img src="image/title/title3_21.png" name="Image45" width="125" height="33" border="0" id="Image45" /></a> 			    <ul> 			      <li><a href="http://vbird.dic.ksu.edu.tw/linux_server/linux_redhat9/redhat9.php" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image43','','image/title/title_26.png',1)"><img src="image/title/title_23.png" name="Image43" width="120" height="26" border="0" id="Image43" alt=""/></a></li> 			      <li><a href="http://vbird.dic.ksu.edu.tw/linux_server/centos4.php" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image49','','image/title/title_27.png',1)"><img src="image/title/title_24.png" name="Image49" width="120" height="26" border="0" id="Image49" alt="" /></a></li> 			      <li><a href="http://vbird.dic.ksu.edu.tw/linux_server/" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image50','','image/title/title_28.png',1)"><img src="image/title/title_25.png" name="Image50" width="120" height="26" border="0" id="Image50" alt="" /></a></li> 		        </ul> 		      </li> 		</ul></td> 		<td> 			<img src="image/title/title_22.png" alt="" width="47" height="33" border="0"></td> 	</tr> 	<tr> 		<td> 			<img src="image/title/Spacer.gif" width="101" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="263" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="53" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="15" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="91" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="27" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="5" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="42" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="60" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="37" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="28" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="47" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="35" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="74" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="22" height="1" alt=""></td> 	</tr> </table> <!-- End ImageReady Slices --> <script type="text/javascript"> <!-- var MenuBar1 = new Spry.Widget.MenuBar("MenuBar1", {imgDown:"SpryAssets/SpryMenuBarDownHover.gif", imgRight:"SpryAssets/SpryMenuBarRightHover.gif"}); var MenuBar2 = new Spry.Widget.MenuBar("MenuBar2", {imgDown:"SpryAssets/SpryMenuBarDownHover.gif", imgRight:"SpryAssets/SpryMenuBarRightHover.gif"}); //--> </script></div> <table summary="本文内容的排版" style="width: 898px;" border="0" cellpadding="0" cellspacing="0"> <tbody><tr><td style="width: 16px; height: 16px;">　</td>     <td style="width: 866px; height: 16px;">　</td>     <td style="width: 16px; height: 16px;">　</td></tr> <tr><td style="width: 16px; font-size: 6px;">　</td>     <td width="866">  <!-- 本文的档头部分 --> <div style="text-align: center;">     <a href="0570syslog.php.html">     <span class="text_head0">第十九章、认识与分析登录文件</span></a><br> </div>     <div style="text-align: right;">         <span class="text_history">最近升级日期：2009/09/14</span>     </div> <!-- 本文的连结区部分 --> <div class="block1"> <span class="text_h1"> 5. <a href="#hint">重点回顾</a><br> 6. <a href="#FAQ">本章习题练习</a><br> <span class="text_h2"> 7. <a href="http://phorum.vbird.org/viewtopic.php?t=23895" target="_blank">针对本文的建议：http://phorum.vbird.org/viewtopic.php?t=23895</a> </span> </span></div> <!-- 本文的正式部分 --> <hr><a name="hint"></a><img src="../image/logo.png" alt="大标题的图示" width="35" align="middle" height="34"><span class="text_h1">重点回顾</span><br> <div class="block1"> <ul class="text_import2"> 	<li>登录文件可以记录一个事件的何时、何地、何人、何事等四大资讯，故系统有问题时务必查询登录文件；</li> 	<li>系统的登录文件默认都集中放置到 /var/log/ 目录内，其中又以 messages 记录的资讯最多！</li> 	<li>登录文件记录的主要服务与程序为： syslogd, klogd, log</li> 	<li>syslogd 的配置档在 /etc/syslog.conf ，内容语法为：『 服务.等级 记载装置或文件』</li> 	<li>syslogd 本身有提供登录文件服务器的功能，透过修改 /etc/sysconfig/syslog 内容即可达成；</li> 	<li>logrotate 程序利用 crontab 来进行登录文件的轮替功能；</li> 	<li>logrotate 的配置档为 /etc/logrotate.conf ，而额外的配置则可写入 /etc/logrotate.d/* 内；</li> 	<li>logwatch 为 CentOS 5 默认提供的一个登录文件分析软件。</li> </ul> </div>   <hr><a name="FAQ"></a><img src="../image/logo.png" alt="大标题的图示" width="35" align="middle" height="34"><span class="text_h1">本章习题</span><br> ( 要看答案请将鼠标移动到『答：』底下的空白处，按下左键圈选空白处即可察看 ) <div class="block1"> 实作题： <ul> 	<li>请在你的 CentOS 5.x 上面，依照鸟哥提供的 logfile.sh 去安装，并将结果取出分析看看。</li> </ul><br> <hr>简答题部分： <ul> 	<li>syslogd 可以作为登录文件服务器，请以 man page 的方式配合 network 关键字，查出 syslogd 需要加上什么选项就能够成为登录文件服务器？ 	<div class="blockex"> 		透过 man syslogd ，查询到 -r 的选项。 	</div></li>  	<li>如果你想要将 auth 这个服务的结果中，只要信息等级高於 warn 就给予发送 email 到 root 的信箱，该如何处理？ 	<div class="blockex"> 		利用 vim 去编辑 /etc/syslog.conf 文件，内容为<br> 		auth.warn   root 	</div></li>  	<li>启动系统登录资讯时，需要启动哪两个 daemon 呢？ 	<div class="blockex"> 		syslogd 记录系统软件， klogd 记录核心资讯。 	</div></li>  	<li>syslogd 以及 logrotate 个别透过什么机制来运行？ 	<div class="blockex"> 		syslogd 为 stand alone daemon 的机制； logrotate 则是透过 crontab 来运行的！只是个命令而已。 	</div></li> </ul> </div>   <hr><a name="reference"></a><img src="../image/logo.png" alt="大标题的图示" width="35" align="middle" height="34"><span class="text_h1">参考数据与延伸阅读</span><br> <div class="block1"> <ul> 	<li><a name="ps1"></a>注1：关於 console 的说明可以参考底下的连结：<br> 		<a href="http://en.wikipedia.org/wiki/Console" target="_blank">http://en.wikipedia.org/wiki/Console</a><br> 		<a href="http://publib.boulder.ibm.com/infocenter/systems/index.jsp?topic=/com.ibm.aix.files/doc/aixfiles/console.htm" target="_blank">http://publib.boulder.ibm.com/infocenter/systems/index.jsp?topic=/com.ibm.aix.files/doc/aixfiles/console.htm</a></li> 	<li>关於 logfile 也有<a href="http://phorum.vbird.org/viewtopic.php?f=10&t=34996&p=148198">网友提供英文版</a>喔！我将他放置到： 		<a href="../download/vbird/logfile_en.txt">http://vbird.dic.ksu.edu.tw//download/vbird/logfile_en.txt</a></li>  </ul> </div> <hr />     </td>     <td style="width: 16px; font-size: 6px;">　</td></tr> <tr><td style="width: 16px; height: 16px;">　</td>     <td style="width: 866px; height: 16px;">　</td>     <td style="width: 16px; height: 16px;">　</td></tr> </tbody></table>  <div style="padding-top: 0px; text-align: center;"> <span style="font-size: 80%;"> 	<a href="http://vbird.dic.ksu.edu.tw/" target="_top" title="前往鸟哥的首页">http://linux.vbird.org</a> 	is designed by <a href="mailto:vbird@mail.vbird.idv.tw" title="联络鸟哥(我不要广告信！)">VBird</a> 		during 2001-2011. <a href="http://www.ksu.edu.tw/" target="_blank">ksu.edu</a></span>          ﻿<div id="apDiv4">       <p>本网页主要以Firefox配合解析度 1024x768 作为设计依据&nbsp;&nbsp;&nbsp;&nbsp; 鸟哥自由软件整合应用研究室</p></div></div> </div> </center> </body></html> 
+<?xml version="1.0" encoding="utf-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"    "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><title>第十九章、认识与分析登录文件</title><link href="../Styles/style.css" rel="stylesheet" type="text/css" /></head><body>
+
+<!-- 本文的档头部分 -->
+<div style="text-align: center;">
+    <a href="0570syslog.php.html">
+    <span class="text_head0">第十九章、认识与分析登录文件</span></a><br>
+</div>
+    <div style="text-align: right;">
+        <span class="text_history">最近升级日期：2009/09/14</span>
+    </div>
+<!-- 本文的连结区部分 -->
+<div class="block1">
+<span class="text_h1">
+5. <a href="#hint">重点回顾</a><br>
+6. <a href="#FAQ">本章习题练习</a><br>
+<span class="text_h2">
+7. <a href="http://phorum.vbird.org/viewtopic.php?t=23895" target="_blank">针对本文的建议：http://phorum.vbird.org/viewtopic.php?t=23895</a>
+</span>
+</span></div>
+<!-- 本文的正式部分 -->
+<hr><a name="hint"></a><img src="../images/logo.png" alt="大标题的图示" width="35" align="middle" height="34"><span class="text_h1">重点回顾</span><br>
+<div class="block1">
+<ul class="text_import2">
+	<li>登录文件可以记录一个事件的何时、何地、何人、何事等四大资讯，故系统有问题时务必查询登录文件；</li>
+	<li>系统的登录文件默认都集中放置到 /var/log/ 目录内，其中又以 messages 记录的资讯最多！</li>
+	<li>登录文件记录的主要服务与程序为： syslogd, klogd, log</li>
+	<li>syslogd 的配置档在 /etc/syslog.conf ，内容语法为：『 服务.等级 记载装置或文件』</li>
+	<li>syslogd 本身有提供登录文件服务器的功能，透过修改 /etc/sysconfig/syslog 内容即可达成；</li>
+	<li>logrotate 程序利用 crontab 来进行登录文件的轮替功能；</li>
+	<li>logrotate 的配置档为 /etc/logrotate.conf ，而额外的配置则可写入 /etc/logrotate.d/* 内；</li>
+	<li>logwatch 为 CentOS 5 默认提供的一个登录文件分析软件。</li>
+</ul>
+</div>
+
+
+<hr><a name="FAQ"></a><img src="../images/logo.png" alt="大标题的图示" width="35" align="middle" height="34"><span class="text_h1">本章习题</span><br>
+( 要看答案请将鼠标移动到『答：』底下的空白处，按下左键圈选空白处即可察看 )
+<div class="block1">
+实作题：
+<ul>
+	<li>请在你的 CentOS 5.x 上面，依照鸟哥提供的 logfile.sh 去安装，并将结果取出分析看看。</li>
+</ul><br>
+<hr>简答题部分：
+<ul>
+	<li>syslogd 可以作为登录文件服务器，请以 man page 的方式配合 network 关键字，查出 syslogd 需要加上什么选项就能够成为登录文件服务器？
+	<div class="blockex">
+		透过 man syslogd ，查询到 -r 的选项。
+	</div></li>
+
+	<li>如果你想要将 auth 这个服务的结果中，只要信息等级高於 warn 就给予发送 email 到 root 的信箱，该如何处理？
+	<div class="blockex">
+		利用 vim 去编辑 /etc/syslog.conf 文件，内容为<br>
+		auth.warn   root
+	</div></li>
+
+	<li>启动系统登录资讯时，需要启动哪两个 daemon 呢？
+	<div class="blockex">
+		syslogd 记录系统软件， klogd 记录核心资讯。
+	</div></li>
+
+	<li>syslogd 以及 logrotate 个别透过什么机制来运行？
+	<div class="blockex">
+		syslogd 为 stand alone daemon 的机制； logrotate 则是透过 crontab 来运行的！只是个命令而已。
+	</div></li>
+</ul>
+</div>
+
+
+<hr><a name="reference"></a><img src="../images/logo.png" alt="大标题的图示" width="35" align="middle" height="34"><span class="text_h1">参考数据与延伸阅读</span><br>
+<div class="block1">
+<ul>
+	<li><a name="ps1"></a>注1：关於 console 的说明可以参考底下的连结：<br>
+		<a href="http://en.wikipedia.org/wiki/Console" target="_blank">http://en.wikipedia.org/wiki/Console</a><br>
+		<a href="http://publib.boulder.ibm.com/infocenter/systems/index.jsp?topic=/com.ibm.aix.files/doc/aixfiles/console.htm" target="_blank">http://publib.boulder.ibm.com/infocenter/systems/index.jsp?topic=/com.ibm.aix.files/doc/aixfiles/console.htm</a></li>
+	<li>关於 logfile 也有<a href="http://phorum.vbird.org/viewtopic.php?f=10&t=34996&p=148198">网友提供英文版</a>喔！我将他放置到：
+		<a href="../download/vbird/logfile_en.txt">http://vbird.dic.ksu.edu.tw//download/vbird/logfile_en.txt</a></li>
+
+</ul>
+</div>
+<hr />
+    </td>
+    <td style="width: 16px; font-size: 6px;">　</td></tr>
+<tr><td style="width: 16px; height: 16px;">　</td>
+    <td style="width: 866px; height: 16px;">　</td>
+    <td style="width: 16px; height: 16px;">　</body></html>

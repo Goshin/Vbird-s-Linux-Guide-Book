@@ -1,1 +1,221 @@
-<html><head> 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"> 	<meta name="Author" content="2011/04/20,lee"> 	<meta name="Description" content="程序管理与 SELinux 初探"> 	<title>鸟哥的 Linux 私房菜 -- 程序管理与 SELinux 初探</title>     <script src="../script/SpryMenuBar.js" type="text/javascript"></script> 	<script src="../script/index.js" type="text/javascript"></script> 	<link href="../css/SpryMenuBarHorizontal.css" rel="stylesheet" type="text/css" />     <link href="../css/main.css" rel="stylesheet" type="text/css" />     </head><body style="margin: 0pt; padding: 0pt;" class="table"onload="MM_preloadImages('image/title_19.png','image/title_26.png','image/title_27.png','image/title_28.png','image/title_06.png','image/title_08.png','image/title_10.png','image/title_12.png')">   <!-- Copyright � 2005. Spidersoft Ltd --> <style> A.applink:hover {border: 2px dotted #DCE6F4;padding:2px;background-color:#ffff00;color:green;text-decoration:none} A.applink       {border: 2px dotted #DCE6F4;padding:2px;color:#2F5BFF;background:transparent;text-decoration:none} A.info          {color:#2F5BFF;background:transparent;text-decoration:none} A.info:hover    {color:green;background:transparent;text-decoration:underline} </style> <div style='BORDER: 1px solid #DCE6F4; MARGIN-TOP: 20px; MARGIN-BOTTOM: 20px; MARGIN-LEFT: 5px; MARGIN-RIGHT: 5px; PADDING: 5px; BACKGROUND-COLOR: #eef8ff;line-height:180%; COLOR: #000000; font-family: Arial; font-size: 8pt; width=100%; FILTER: progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr="#FFFFFFFF", EndColorStr="#F2F5FAFF");'> This page was saved using <a class="applink" href="http://www.spidersoft.com"><b>WebZIP 7.0.3.1030</b></a> <a class="applink" href="http://www.spidersoft.com"><b>offline browser</b></a>  (Unregistered) on  02/12/15 12:14:49.<br> <b>Address:</b> <a class="info" href="http://vbird.dic.ksu.edu.tw/linux_basic/0440processcontrol_6.php">http://vbird.dic.ksu.edu.tw/linux_basic/0440processcontrol_6.php</a><br> <b>Title:</b> 鸟哥的 Linux 私房菜 -- 程序管理与 SELinux 初探 &nbsp;&bull;&nbsp; <b>Size:</b> 23746<br></div> <!-- /Copyright � 2005. Spidersoft Ltd -->    <center> <div id="apDiv5"> <div> <LINK REL="SHORTCUT ICON" HREF="favicon.ico"> <!-- ImageReady Slices (title3.ai) --> <table id="___01" width="898" height="81" border="0" align="center" cellpadding="0" cellspacing="0";> 	<tr> 		<td colspan="15"> 			<img src="image/title/title_01.png" width="900" height="1" alt=""></td> 	</tr> 	<tr> 		<td rowspan="4" bgcolor="#182448"><p><img src="http://linux.vbird.org/cgi-bin/Count.cgi?dd=C&ft=5&sh=T&md=8&pad=Y&df=vbird.dic.ksu.edu.tw.dat" width="93" align="left" title="計數器" /></p> 	    <p><font color="#FFFFFF" size="-1">since2012/04/23</font></p></td> 		<td rowspan="4" align="left" valign="top"><a href="http://vbird.dic.ksu.edu.tw/"><img src="image/title/title_03.png" alt="" width="263" height="79" border="0"></a></td> 		<td colspan="13"> 			<img src="image/title/title_04.png" alt="" width="535" height="9" border="0"></td> 	</tr> 	<tr> 		<td rowspan="3"> 			<img src="image/title/title_05.png" alt="" width="53" height="70" border="0"></td> 		<td colspan="2" align="left" valign="top"><a href="0110whatislinux.php.html" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image51','','image/title/title_06.png',1)"><img src="image/title/title3_06.png" name="Image51" width="106" height="25" border="0" id="Image51" alt=""/></a></td> 		<td rowspan="2"> 			<img src="image/title/title_07.png" alt="" width="27" height="37" border="0"></td> 		<td colspan="3" align="left" valign="top"><a href="http://vbird.dic.ksu.edu.tw/linux_server/0110network_basic.php" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image52','','image/title/title_08.png',1)"><img src="image/title/title3_08.png" name="Image52" width="107" height="25" border="0" id="Image52" alt=""/></a></td> 		<td rowspan="2"> 			<img src="image/title/title_09.png" alt="" width="37" height="37" border="0"></td> 		<td colspan="2" align="left" valign="top"><a href="http://vbird.dic.ksu.edu.tw/about.php" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image53','','image/title/title_10.png',1)"><img src="image/title/title3_10.png" name="Image53" width="75" height="25" border="0" id="Image53" alt=""/></a></td> 		<td rowspan="3"> 			<img src="image/title/title_11.png" alt="" width="35" height="70" border="0"></td> 		<td align="left" valign="top"><a href="mailto:vbird@mail.vbird.idv.tw" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image54','','image/title/title_12.png',1)"><img src="image/title/title3_12.png" name="Image54" width="74" height="25" border="0" id="Image54" alt=""/></a></td> 		<td rowspan="3"> 			<img src="image/title/title_13.png" alt="" width="21" height="70" border="0"></td> 	</tr> 	<tr> 		<td colspan="2"> 			<img src="image/title/title_14.png" alt="" width="106" height="12" border="0"></td> 		<td colspan="3"> 			<img src="image/title/title_15.png" alt="" width="107" height="12" border="0"></td> 		<td colspan="2"> 			<img src="image/title/title_16.png" width="75" height="12" alt=""></td> 		<td rowspan="2"> 			<img src="image/title/title_17.png" alt="" width="74" height="45" border="0"></td> 	</tr> 	<tr> 		<td> 			<img src="image/title/title_18.png" alt="" width="15" height="33" border="0"></td> 		<td colspan="3" align="left" valign="top"><ul id="MenuBar1" class="MenuBarHorizontal"> 	  <li><a href="linux_basic.php.html" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image44','','image/title/title_19.png',1)"><img src="image/title/title3_19.png" name="Image44" width="123" height="33" border="0" id="Image44" /></a> 			    <ul> 			      <li><a href="Mandrake9.0/mandrake9.0.php.html" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image46','','image/title/title_26.png',1)"><img src="image/title/title_23.png" name="Image46" width="120" height="26" border="0" id="Image46" alt="" /></a></li>                   <li><a href="fedora_4/fc4.php.html" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image47','','image/title/title_27.png',1)"><img src="image/title/title_24.png" name="Image47" width="120" height="26" border="0" id="Image47" alt="" /></a></li>                   <li><a href="linux_basic.php.html" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image48','','image/title/title_28.png',1)"><img src="image/title/title_25.png" name="Image48" width="120" height="26" border="0" id="Image48" alt="" /></a></li>                 </ul> 		      </li> 		</ul></td> 		<td> 			<img src="image/title/title_20.png" alt="" width="42" height="33" border="0"></td> 		<td colspan="3" align="left" valign="top"><ul id="MenuBar2" class="MenuBarHorizontal"> 	  <li><a href="http://vbird.dic.ksu.edu.tw/linux_server/" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image45','','image/title/title_21.png',1)"><img src="image/title/title3_21.png" name="Image45" width="125" height="33" border="0" id="Image45" /></a> 			    <ul> 			      <li><a href="http://vbird.dic.ksu.edu.tw/linux_server/linux_redhat9/redhat9.php" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image43','','image/title/title_26.png',1)"><img src="image/title/title_23.png" name="Image43" width="120" height="26" border="0" id="Image43" alt=""/></a></li> 			      <li><a href="http://vbird.dic.ksu.edu.tw/linux_server/centos4.php" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image49','','image/title/title_27.png',1)"><img src="image/title/title_24.png" name="Image49" width="120" height="26" border="0" id="Image49" alt="" /></a></li> 			      <li><a href="http://vbird.dic.ksu.edu.tw/linux_server/" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image50','','image/title/title_28.png',1)"><img src="image/title/title_25.png" name="Image50" width="120" height="26" border="0" id="Image50" alt="" /></a></li> 		        </ul> 		      </li> 		</ul></td> 		<td> 			<img src="image/title/title_22.png" alt="" width="47" height="33" border="0"></td> 	</tr> 	<tr> 		<td> 			<img src="image/title/Spacer.gif" width="101" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="263" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="53" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="15" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="91" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="27" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="5" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="42" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="60" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="37" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="28" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="47" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="35" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="74" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="22" height="1" alt=""></td> 	</tr> </table> <!-- End ImageReady Slices --> <script type="text/javascript"> <!-- var MenuBar1 = new Spry.Widget.MenuBar("MenuBar1", {imgDown:"SpryAssets/SpryMenuBarDownHover.gif", imgRight:"SpryAssets/SpryMenuBarRightHover.gif"}); var MenuBar2 = new Spry.Widget.MenuBar("MenuBar2", {imgDown:"SpryAssets/SpryMenuBarDownHover.gif", imgRight:"SpryAssets/SpryMenuBarRightHover.gif"}); //--> </script></div> <table summary="本文内容的排版" style="width: 898px;" border="0" cellpadding="0" cellspacing="0"> <tbody><tr><td style="width: 16px; height: 16px;">　</td>     <td style="width: 866px; height: 16px;">　</td>     <td style="width: 16px; height: 16px;">　</td></tr> <tr><td style="width: 16px; font-size: 6px;">　</td>     <td width="866">  <!-- 本文的档头部分 --> <div style="text-align: center;">     <a href="0440processcontrol.php.html">     <span class="text_head0">第十七章、程序管理与<span class="text_head_en"> SELinux </span>初探</span></a><br> </div>     <div style="text-align: right;">         <span class="text_history">最近升级日期：2009/09/11</span>     </div> <!-- 本文的连结区部分 --> <div class="block1"> <span class="text_h1"> 6. <a href="#hint">重点回顾</a><br> 7. <a href="#ex">本章习题</a><br> 8. <a href="#reference">参考数据与延伸阅读</a><br> <span class="text_h2"> 9. <a href="http://phorum.vbird.org/viewtopic.php?t=23890" target="_blank">针对本文的建议：http://phorum.vbird.org/viewtopic.php?t=23890</a> </span> </span></div> <!-- 本文的正式部分 --> <hr><a name="hint"></a><img src="../image/logo.png" alt="大标题的图示" width="35" align="middle" height="34"><span class="text_h1">重点回顾</span><br> <div class="block1"> <ul class="text_import2"> 	<li>程序 (program)：通常为 binary program ，放置在储存媒体中 (如硬盘、光盘、软盘、磁带等)，为实体文件的型态存在；</li> 	<li>程序 (process)：程序被触发后，运行者的权限与属性、程序的程序码与所需数据等都会被加载内存中， 		操作系统并给予这个内存内的单元一个识别码 (PID)，可以说，程序就是一个正在运行中的程序。</li> 	<li>程序彼此之间是有相关性的，故有父程序与子程序之分。而 Linux 系统所有程序的父程序就是 init 这个 PID 为 1 号的程序。</li> 	<li>在 Linux 的程序呼叫通常称为 fork-and-exec 的流程！程序都会藉由父程序以复制 (fork) 的方式产生一个一模一样的子程序， 		然后被复制出来的子程序再以 exec 的方式来运行实际要进行的程序，最终就成为一个子程序的存在。</li> 	<li>常驻在内存当中的程序通常都是负责一些系统所提供的功能以服务使用者各项任务，因此这些常驻程序就会被我们称为：服务  		(daemon)。</li> 	<li>在工作管理 (job control) 中，可以出现提示字节让你操作的环境就称为前景 (foreground)，至於其他工作就可以让你放入背景  		(background) 去暂停或运行。</li> 	<li>与 job control 有关的按键与关键字有： &amp;, [ctrl]-z, jobs, fg, bg, kill %n 等；</li> 	<li>程序管理的观察命令有： ps, top, pstree 等等；</li> 	<li>程序之间是可以互相控制的，传递的信息 (signal) 主要透过 kill 这个命令在处理；</li> 	<li>程序是有优先顺序的，该项目为 Priority，但 PRI 是核心动态调整的，使用者只能使用 nice 值去微调 PRI</li> 	<li>nice 的给予可以有： nice, renice, top 等命令；</li> 	<li>vmstat 为相当好用的系统资源使用情况观察命令；</li> 	<li>SELinux 当初的设计是为了避免使用者资源的误用，而 SELinux 使用的是 MAC 委任式存取配置；</li> 	<li>SELinux 的运行中，重点在於主体程序 (Subject) 能否存取目标文件资源 (Object) ，这中间牵涉到政策 (Policy) 内的守则， 		以及实际的安全性本文类别 (type)；</li> 	<li>安全性本文的一般配置为：『Identify:role:type』其中又以 type 最重要；</li> 	<li>SELinux 的模式有： enforcing, permissive, disabled 三种，而启动的政策 (Policy) 主要是 targeted </li> 	<li>SELinux 启动与关闭的配置档在： /etc/selinux/config</li> 	<li>SELinux 的启动与观察： getenforce, sestatus 等命令</li> 	<li>重设 SELinux 的安全性本文可使用 restorecon 与 chcon</li> 	<li>在 SELinux 有启动时，必备的服务至少要启动 setroubleshoot 这个！</li> 	<li>若要管理默认的 SELinux 布林值，可使用 getsebool, setsebool 来管理！</li> </ul> </div>   <hr><a name="ex"></a><img src="../image/logo.png" alt="大标题的图示" width="35" align="middle" height="34"><span class="text_h1">本章习题</span><br> ( 要看答案请将鼠标移动到『答：』底下的空白处，按下左键圈选空白处即可察看 ) <div class="block1"> <ul> 	<li>情境模拟题一：透过一个网络程序 vsftpd 的服务，来了解到程序与 SELinux 的相关限制行为：<br><br> 	<ul> 		<li>目标：了解软件、程序、程序、优先运行绪、网络程序与 SELinux 的相关性</li> 		<li>需求：已经知道如何安装软件，否则就得要连上 Internet 才能进行 vsftpd 服务的安装；</li> 	</ul><br>  	底下的流程先看看即可，很多数据如果当初忘记安装的话，可能会无法进行。没关系！后续的文章看完后，第二次读到这里后， 	你就会知道如何处理了。<br><br>  	<ol> 		<li>先察看有无安装 vsftpd 这个软件，如果有的话那就 OK ～没有的话，可能需要线上安装才行：<br>  <table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">rpm -q vsftpd</span> vsftpd-2.0.5-12.el5   <span class="term_note">&lt;==出现这个才是对的！若没有出现，就是没安装</span>  <span class="term_hd"># 如果没有安装的话，你又已经有 IP 可以上网了，那么就这样安装：</span> [root@www ~]# <span class="term_command">yum install vsftpd </span> </pre></td></tr></tbody></table><br></li>  		<li>启动 vsftpd 这个服务：<br>  <table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">/etc/init.d/vsftpd start</span> </pre></td></tr></tbody></table><br></li>  		<li>假设 vsftpd 这个服务并不是那么重要，因此我想要在这次启动期间，让 vsftpd 的优先运行绪较不优先 10 分， 		可以这么做：<br>  <table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">pstree -p | grep vsftpd</span>         |-vsftpd(2377)   <span class="term_note">&lt;==找到了 PID 为 2377 喔！</span> [root@www ~]# <span class="term_command">renice 10 2377</span> [root@www ~]# <span class="term_command">top -p grep 2377</span> <span class="term_note">&lt;==重点是在观察！</span> </pre></td></tr></tbody></table><br></li>  		<li>vsftpd 是个网络服务，他到底是启动哪个端口？可以这样观察：<br>  <table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">netstat -tlunp | grep vsftpd</span> tcp  0 0 0.0.0.0:<span class="term_write">21</span>     0.0.0.0:*  LISTEN   2377/vsftpd <span class="term_say"># 这样的答案够明显了吗？</span> </pre></td></tr></tbody></table><br></li>  		<li>vsftpd 提供网络的 FTP 功能，有个使用者名为 vbird ，他却无法登陆自己的帐号！这是什么原因呢？ 		由於 CentOS 的默认 vsftpd 是能够允许一般用户登陆自己家目录的，因此无法登陆的可能原因是权限还是 SELinux 呢？ 		我们可以这样测试看看：<br>  <table class="term"><tbody><tr><td class="term"><pre><span class="term_hd"># 1. 先用 vbird 的身份登陆 vsftpd 看看：</span> [root@www ~]# <span class="term_command">ftp localhost</span> Connected to www.vbird.tsai. Name (localhost:root): <span class="term_command">vbird</span> 331 Please specify the password. Password: <span class="term_note">&lt;==这里输入 vbird 的口令喔！</span> 500 OOPS: cannot change directory:/home/vbird Login failed.  <span class="term_note">&lt;==见鬼了！竟然无法登陆自己的家目录 /home/vbird 哩！</span> ftp&gt; <span class="term_command">bye</span>  [root@www ~]# <span class="term_command">ls -ld /home/vbird</span> drwx------ 4 vbird vbird 4096  8月 18 18:22 /home/vbird <span class="term_say"># 权限明明是对的嘛！怎么会无法切换？</span>  <span class="term_hd"># 2. 看看登录档有没有什么重要信息的说明：</span> [root@www ~]# <span class="term_command">tail /var/log/messages</span> Sep 11 16:57:31 www setroubleshoot: SELinux is preventing the ftp daemon from  reading users home directories (/). For complete SELinux messages. run  <u>sealert -l b8bdaf2d-b083-4e28-9465-91fae8df63b1</u>  <span class="term_hd"># 3. 照著作一下：</span> [root@www ~]# <span class="term_command">sealert -l b8bdaf2d-b083-4e28-9465-91fae8df63b1</span> Summary: SELinux is preventing the ftp daemon from reading users home directories (/). <span class="term_say">....(中间省略)....</span>  The following command will allow this access: <u>setsebool -P ftp_home_dir=1</u> <span class="term_say">....(底下省略)....</span> </pre></td></tr></tbody></table><br></li>  		<li>好了，现在让我们处理一下上面的 vsftpd 相关的守则吧！因为是守则挡住了用户的登陆了！：<br>  <table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">setsebool -P ftp_home_dir=1</span>  [root@www ~]# <span class="term_command">ftp localhost</span> Connected to www.vbird.tsai. Name (localhost:root): <span class="term_command">vbird</span> 331 Please specify the password. Password: 230 Login successful.  <span class="term_note">&lt;==看吧！顺利登陆罗！</span> Remote system type is UNIX. Using binary mode to transfer files. ftp&gt; <span class="term_command">bye</span> </pre></td></tr></tbody></table></li>  	</ol></li>  </ul>  <hr>简答题部分： <ul> 	<li>简单说明什么是程序 (program) 而什么是程序 (process)？ 	<div class="blockex"> 		程序 (program) 是系统上面可以被运行的文件，由於 Linux 的完整档名 (由 / 写起) 仅能有一个， 		所以 program 的档名具有单一性。当程序被运行后，就会启动成程序 (process)， 		一个 program 可以被不同的使用者或者相同的使用者重复的运行成为多个程序， 		且该程序所造成的程序还因为不同的使用者，而有不同的权限，且每个 process 几乎都是独立的。 	</div></li>  	<li>我今天想要查询 /etc/crontab 与 crontab 这个程序的用法与写法，请问我该如何线上查询？ 	<div class="blockex"> 		查询 crontab 命令可以使用 man crontab 或 info 		crontab ，至於查询 /etc/crontab ，则可以使用 man 5 crontab 罗！ 	</div></li>  	<li>我要如何查询 crond 这个 daemon 的 PID 与他的 PRI 值呢？ 	<div class="blockex"> 		ps aux | grep crond 即可查到！ 	</div></li>  	<li>我要如何修改 crond 这个 PID 的优先运行序？ 	<div class="blockex"> 		先以 ps aux 找到 crond  的 PID 后，再以： 		renice -n number PID 来调整！ 	</div></li>  	<li>我是一般身份使用者，我是否可以调整不属於我的程序的 nice 值？此外，如果我调整了我自己的程序的 	nice 值到 10 ，是否可以将他调回 5 呢？ 	<div class="blockex"> 		不行！一般身份使用者仅能调整属於自己的 PID 程序，并且，只能将 		nice 值一再地调高，并不能调低，所以调整为 10 之后，就不能降回 5 罗！ 	</div></li>  	<li>我要怎么知道我的网络卡在启动的过程中有没有被捉到？ 	<div class="blockex"> 		可以使用 dmesg 来视察！ 	</div></li> </ul> </div>   <hr><a name="reference"></a><img src="../image/logo.png" alt="大标题的图示" width="35" align="middle" height="34"><span class="text_h1">参考数据与延伸阅读</span><br> <div class="block1"> <ul> 	<li><a name="ps1"></a>注1：关於 fork-and-exec 的说明可以参考如下网页与书籍：<br> 		吴贤明老师维护的网站：<a href="http://nmc.nchu.edu.tw/linux/process.htm" target="_blank">http://nmc.nchu.edu.tw/linux/process.htm</a><br> 		杨振和、操作系统导论、第三章、学贯出版社</li> 	<li><a name="ps2"></a>注2：对 Linux 核心有兴趣的话，可以先看看底下的连结：<br> 	<a href="http://www.linux.org.tw/CLDP/OLD/INFO-SHEET-2.html" target="_blank">http://www.linux.org.tw/CLDP/OLD/INFO-SHEET-2.html</a><br> 	<a href="http://oreilly.com/catalog/linuxkernel/chapter/ch10.html" target="_blank">http://oreilly.com/catalog/linuxkernel/chapter/ch10.html</a></li> 	<li><a name="ps3"></a>注3：来自 Linux Journal 的关於 /proc 的说明：<a href="http://www.linuxjournal.com/article/177" target="_blank">http://www.linuxjournal.com/article/177</a></li> 	<li><a name="ps4"></a>注4：关於 SELinux 相关的网站与文件数据：<br> 		美国国家安全局的 SELinux 简介：<a href="http://www.nsa.gov/research/selinux/" target="_blank">http://www.nsa.gov/research/selinux/</a><br> 		小州老师在 SA 的简报数据：<a href="http://kenduest.sayya.org/blog/kenduest-data/2008/10/selinux_sa.pdf" target="_blank">http://kenduest.sayya.org/blog/kenduest-data/2008/10/selinux_sa.pdf</a><br> 		小州老师上课的讲义：<a href="http://kenduest.sayya.org/blog/kenduest-data/2008/5/kenduest-UNIX-selinux-2008-05-15.pdf" target="_blank">http://kenduest.sayya.org/blog/kenduest-data/2008/5/kenduest-UNIX-selinux-2008-05-15.pdf</a><br> 		陈永升、『企业级Linux 系统管理宝典』、学贯行销股份有限公司<br> 		Fedora SELinux 说明：<a href="http://fedoraproject.org/wiki/SELinux/SecurityContext" target="_blank">http://fedoraproject.org/wiki/SELinux/SecurityContext</a><br> 		美国国家安全局对 SELinux 的白皮书：<a href="http://www.nsa.gov/research/_files/selinux/papers/module/t1.shtml" target="_blank">http://www.nsa.gov/research/_files/selinux/papers/module/t1.shtml</a><br> 		徐秉义老师的 SELinux 配置范例：<a href="http://kate.babyface.com.tw/NetAdmin/24200801SELinux/" target="_blank">http://kate.babyface.com.tw/NetAdmin/24200801SELinux/</a></li>  </ul> </div> <hr />     </td>     <td style="width: 16px; font-size: 6px;">　</td></tr> <tr><td style="width: 16px; height: 16px;">　</td>     <td style="width: 866px; height: 16px;">　</td>     <td style="width: 16px; height: 16px;">　</td></tr> </tbody></table>  <div style="padding-top: 0px; text-align: center;"> <span style="font-size: 80%;"> 	<a href="http://vbird.dic.ksu.edu.tw/" target="_top" title="前往鸟哥的首页">http://linux.vbird.org</a> 	is designed by <a href="mailto:vbird@mail.vbird.idv.tw" title="联络鸟哥(我不要广告信！)">VBird</a> 		during 2001-2011. <a href="http://www.ksu.edu.tw/" target="_blank">ksu.edu</a></span>          ﻿<div id="apDiv4">       <p>本网页主要以Firefox配合解析度 1024x768 作为设计依据&nbsp;&nbsp;&nbsp;&nbsp; 鸟哥自由软件整合应用研究室</p></div></div> </div> </center> </body></html> 
+<?xml version="1.0" encoding="utf-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"    "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><title>第十七章、程序管理与<span class="text_head_en"> SELinux </title><link href="../Styles/style.css" rel="stylesheet" type="text/css" /></head><body>
+
+<!-- 本文的档头部分 -->
+<div style="text-align: center;">
+    <a href="0440processcontrol.php.html">
+    <span class="text_head0">第十七章、程序管理与<span class="text_head_en"> SELinux </span>初探</span></a><br>
+</div>
+    <div style="text-align: right;">
+        <span class="text_history">最近升级日期：2009/09/11</span>
+    </div>
+<!-- 本文的连结区部分 -->
+<div class="block1">
+<span class="text_h1">
+6. <a href="#hint">重点回顾</a><br>
+7. <a href="#ex">本章习题</a><br>
+8. <a href="#reference">参考数据与延伸阅读</a><br>
+<span class="text_h2">
+9. <a href="http://phorum.vbird.org/viewtopic.php?t=23890" target="_blank">针对本文的建议：http://phorum.vbird.org/viewtopic.php?t=23890</a>
+</span>
+</span></div>
+<!-- 本文的正式部分 -->
+<hr><a name="hint"></a><img src="../images/logo.png" alt="大标题的图示" width="35" align="middle" height="34"><span class="text_h1">重点回顾</span><br>
+<div class="block1">
+<ul class="text_import2">
+	<li>程序 (program)：通常为 binary program ，放置在储存媒体中 (如硬盘、光盘、软盘、磁带等)，为实体文件的型态存在；</li>
+	<li>程序 (process)：程序被触发后，运行者的权限与属性、程序的程序码与所需数据等都会被加载内存中，
+		操作系统并给予这个内存内的单元一个识别码 (PID)，可以说，程序就是一个正在运行中的程序。</li>
+	<li>程序彼此之间是有相关性的，故有父程序与子程序之分。而 Linux 系统所有程序的父程序就是 init 这个 PID 为 1 号的程序。</li>
+	<li>在 Linux 的程序呼叫通常称为 fork-and-exec 的流程！程序都会藉由父程序以复制 (fork) 的方式产生一个一模一样的子程序，
+		然后被复制出来的子程序再以 exec 的方式来运行实际要进行的程序，最终就成为一个子程序的存在。</li>
+	<li>常驻在内存当中的程序通常都是负责一些系统所提供的功能以服务使用者各项任务，因此这些常驻程序就会被我们称为：服务 
+		(daemon)。</li>
+	<li>在工作管理 (job control) 中，可以出现提示字节让你操作的环境就称为前景 (foreground)，至於其他工作就可以让你放入背景 
+		(background) 去暂停或运行。</li>
+	<li>与 job control 有关的按键与关键字有： &amp;, [ctrl]-z, jobs, fg, bg, kill %n 等；</li>
+	<li>程序管理的观察命令有： ps, top, pstree 等等；</li>
+	<li>程序之间是可以互相控制的，传递的信息 (signal) 主要透过 kill 这个命令在处理；</li>
+	<li>程序是有优先顺序的，该项目为 Priority，但 PRI 是核心动态调整的，使用者只能使用 nice 值去微调 PRI</li>
+	<li>nice 的给予可以有： nice, renice, top 等命令；</li>
+	<li>vmstat 为相当好用的系统资源使用情况观察命令；</li>
+	<li>SELinux 当初的设计是为了避免使用者资源的误用，而 SELinux 使用的是 MAC 委任式存取配置；</li>
+	<li>SELinux 的运行中，重点在於主体程序 (Subject) 能否存取目标文件资源 (Object) ，这中间牵涉到政策 (Policy) 内的守则，
+		以及实际的安全性本文类别 (type)；</li>
+	<li>安全性本文的一般配置为：『Identify:role:type』其中又以 type 最重要；</li>
+	<li>SELinux 的模式有： enforcing, permissive, disabled 三种，而启动的政策 (Policy) 主要是 targeted </li>
+	<li>SELinux 启动与关闭的配置档在： /etc/selinux/config</li>
+	<li>SELinux 的启动与观察： getenforce, sestatus 等命令</li>
+	<li>重设 SELinux 的安全性本文可使用 restorecon 与 chcon</li>
+	<li>在 SELinux 有启动时，必备的服务至少要启动 setroubleshoot 这个！</li>
+	<li>若要管理默认的 SELinux 布林值，可使用 getsebool, setsebool 来管理！</li>
+</ul>
+</div>
+
+
+<hr><a name="ex"></a><img src="../images/logo.png" alt="大标题的图示" width="35" align="middle" height="34"><span class="text_h1">本章习题</span><br>
+( 要看答案请将鼠标移动到『答：』底下的空白处，按下左键圈选空白处即可察看 )
+<div class="block1">
+<ul>
+	<li>情境模拟题一：透过一个网络程序 vsftpd 的服务，来了解到程序与 SELinux 的相关限制行为：<br><br>
+	<ul>
+		<li>目标：了解软件、程序、程序、优先运行绪、网络程序与 SELinux 的相关性</li>
+		<li>需求：已经知道如何安装软件，否则就得要连上 Internet 才能进行 vsftpd 服务的安装；</li>
+	</ul><br>
+
+	底下的流程先看看即可，很多数据如果当初忘记安装的话，可能会无法进行。没关系！后续的文章看完后，第二次读到这里后，
+	你就会知道如何处理了。<br><br>
+
+	<ol>
+		<li>先察看有无安装 vsftpd 这个软件，如果有的话那就 OK ～没有的话，可能需要线上安装才行：<br>
+
+<table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">rpm -q vsftpd</span>
+vsftpd-2.0.5-12.el5   <span class="term_note">&lt;==出现这个才是对的！若没有出现，就是没安装</span>
+
+<span class="term_hd"># 如果没有安装的话，你又已经有 IP 可以上网了，那么就这样安装：</span>
+[root@www ~]# <span class="term_command">yum install vsftpd </span>
+</pre></td></tr></tbody></table><br></li>
+
+		<li>启动 vsftpd 这个服务：<br>
+
+<table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">/etc/init.d/vsftpd start</span>
+</pre></td></tr></tbody></table><br></li>
+
+		<li>假设 vsftpd 这个服务并不是那么重要，因此我想要在这次启动期间，让 vsftpd 的优先运行绪较不优先 10 分，
+		可以这么做：<br>
+
+<table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">pstree -p | grep vsftpd</span>
+        |-vsftpd(2377)   <span class="term_note">&lt;==找到了 PID 为 2377 喔！</span>
+[root@www ~]# <span class="term_command">renice 10 2377</span>
+[root@www ~]# <span class="term_command">top -p grep 2377</span> <span class="term_note">&lt;==重点是在观察！</span>
+</pre></td></tr></tbody></table><br></li>
+
+		<li>vsftpd 是个网络服务，他到底是启动哪个端口？可以这样观察：<br>
+
+<table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">netstat -tlunp | grep vsftpd</span>
+tcp  0 0 0.0.0.0:<span class="term_write">21</span>     0.0.0.0:*  LISTEN   2377/vsftpd
+<span class="term_say"># 这样的答案够明显了吗？</span>
+</pre></td></tr></tbody></table><br></li>
+
+		<li>vsftpd 提供网络的 FTP 功能，有个使用者名为 vbird ，他却无法登陆自己的帐号！这是什么原因呢？
+		由於 CentOS 的默认 vsftpd 是能够允许一般用户登陆自己家目录的，因此无法登陆的可能原因是权限还是 SELinux 呢？
+		我们可以这样测试看看：<br>
+
+<table class="term"><tbody><tr><td class="term"><pre><span class="term_hd"># 1. 先用 vbird 的身份登陆 vsftpd 看看：</span>
+[root@www ~]# <span class="term_command">ftp localhost</span>
+Connected to www.vbird.tsai.
+Name (localhost:root): <span class="term_command">vbird</span>
+331 Please specify the password.
+Password: <span class="term_note">&lt;==这里输入 vbird 的口令喔！</span>
+500 OOPS: cannot change directory:/home/vbird
+Login failed.  <span class="term_note">&lt;==见鬼了！竟然无法登陆自己的家目录 /home/vbird 哩！</span>
+ftp&gt; <span class="term_command">bye</span>
+
+[root@www ~]# <span class="term_command">ls -ld /home/vbird</span>
+drwx------ 4 vbird vbird 4096  8月 18 18:22 /home/vbird
+<span class="term_say"># 权限明明是对的嘛！怎么会无法切换？</span>
+
+<span class="term_hd"># 2. 看看登录档有没有什么重要信息的说明：</span>
+[root@www ~]# <span class="term_command">tail /var/log/messages</span>
+Sep 11 16:57:31 www setroubleshoot: SELinux is preventing the ftp daemon from 
+reading users home directories (/). For complete SELinux messages. run 
+<u>sealert -l b8bdaf2d-b083-4e28-9465-91fae8df63b1</u>
+
+<span class="term_hd"># 3. 照著作一下：</span>
+[root@www ~]# <span class="term_command">sealert -l b8bdaf2d-b083-4e28-9465-91fae8df63b1</span>
+Summary:
+SELinux is preventing the ftp daemon from reading users home directories (/).
+<span class="term_say">....(中间省略)....</span>
+
+The following command will allow this access:
+<u>setsebool -P ftp_home_dir=1</u>
+<span class="term_say">....(底下省略)....</span>
+</pre></td></tr></tbody></table><br></li>
+
+		<li>好了，现在让我们处理一下上面的 vsftpd 相关的守则吧！因为是守则挡住了用户的登陆了！：<br>
+
+<table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">setsebool -P ftp_home_dir=1</span>
+
+[root@www ~]# <span class="term_command">ftp localhost</span>
+Connected to www.vbird.tsai.
+Name (localhost:root): <span class="term_command">vbird</span>
+331 Please specify the password.
+Password:
+230 Login successful.  <span class="term_note">&lt;==看吧！顺利登陆罗！</span>
+Remote system type is UNIX.
+Using binary mode to transfer files.
+ftp&gt; <span class="term_command">bye</span>
+</pre></td></tr></tbody></table></li>
+
+	</ol></li>
+
+</ul>
+
+<hr>简答题部分：
+<ul>
+	<li>简单说明什么是程序 (program) 而什么是程序 (process)？
+	<div class="blockex">
+		程序 (program) 是系统上面可以被运行的文件，由於 Linux 的完整档名 (由 / 写起) 仅能有一个，
+		所以 program 的档名具有单一性。当程序被运行后，就会启动成程序 (process)，
+		一个 program 可以被不同的使用者或者相同的使用者重复的运行成为多个程序，
+		且该程序所造成的程序还因为不同的使用者，而有不同的权限，且每个 process 几乎都是独立的。
+	</div></li>
+
+	<li>我今天想要查询 /etc/crontab 与 crontab 这个程序的用法与写法，请问我该如何线上查询？
+	<div class="blockex">
+		查询 crontab 命令可以使用 man crontab 或 info
+		crontab ，至於查询 /etc/crontab ，则可以使用 man 5 crontab 罗！
+	</div></li>
+
+	<li>我要如何查询 crond 这个 daemon 的 PID 与他的 PRI 值呢？
+	<div class="blockex">
+		ps aux | grep crond 即可查到！
+	</div></li>
+
+	<li>我要如何修改 crond 这个 PID 的优先运行序？
+	<div class="blockex">
+		先以 ps aux 找到 crond  的 PID 后，再以：
+		renice -n number PID 来调整！
+	</div></li>
+
+	<li>我是一般身份使用者，我是否可以调整不属於我的程序的 nice 值？此外，如果我调整了我自己的程序的
+	nice 值到 10 ，是否可以将他调回 5 呢？
+	<div class="blockex">
+		不行！一般身份使用者仅能调整属於自己的 PID 程序，并且，只能将
+		nice 值一再地调高，并不能调低，所以调整为 10 之后，就不能降回 5 罗！
+	</div></li>
+
+	<li>我要怎么知道我的网络卡在启动的过程中有没有被捉到？
+	<div class="blockex">
+		可以使用 dmesg 来视察！
+	</div></li>
+</ul>
+</div>
+
+
+<hr><a name="reference"></a><img src="../images/logo.png" alt="大标题的图示" width="35" align="middle" height="34"><span class="text_h1">参考数据与延伸阅读</span><br>
+<div class="block1">
+<ul>
+	<li><a name="ps1"></a>注1：关於 fork-and-exec 的说明可以参考如下网页与书籍：<br>
+		吴贤明老师维护的网站：<a href="http://nmc.nchu.edu.tw/linux/process.htm" target="_blank">http://nmc.nchu.edu.tw/linux/process.htm</a><br>
+		杨振和、操作系统导论、第三章、学贯出版社</li>
+	<li><a name="ps2"></a>注2：对 Linux 核心有兴趣的话，可以先看看底下的连结：<br>
+	<a href="http://www.linux.org.tw/CLDP/OLD/INFO-SHEET-2.html" target="_blank">http://www.linux.org.tw/CLDP/OLD/INFO-SHEET-2.html</a><br>
+	<a href="http://oreilly.com/catalog/linuxkernel/chapter/ch10.html" target="_blank">http://oreilly.com/catalog/linuxkernel/chapter/ch10.html</a></li>
+	<li><a name="ps3"></a>注3：来自 Linux Journal 的关於 /proc 的说明：<a href="http://www.linuxjournal.com/article/177" target="_blank">http://www.linuxjournal.com/article/177</a></li>
+	<li><a name="ps4"></a>注4：关於 SELinux 相关的网站与文件数据：<br>
+		美国国家安全局的 SELinux 简介：<a href="http://www.nsa.gov/research/selinux/" target="_blank">http://www.nsa.gov/research/selinux/</a><br>
+		小州老师在 SA 的简报数据：<a href="http://kenduest.sayya.org/blog/kenduest-data/2008/10/selinux_sa.pdf" target="_blank">http://kenduest.sayya.org/blog/kenduest-data/2008/10/selinux_sa.pdf</a><br>
+		小州老师上课的讲义：<a href="http://kenduest.sayya.org/blog/kenduest-data/2008/5/kenduest-UNIX-selinux-2008-05-15.pdf" target="_blank">http://kenduest.sayya.org/blog/kenduest-data/2008/5/kenduest-UNIX-selinux-2008-05-15.pdf</a><br>
+		陈永升、『企业级Linux 系统管理宝典』、学贯行销股份有限公司<br>
+		Fedora SELinux 说明：<a href="http://fedoraproject.org/wiki/SELinux/SecurityContext" target="_blank">http://fedoraproject.org/wiki/SELinux/SecurityContext</a><br>
+		美国国家安全局对 SELinux 的白皮书：<a href="http://www.nsa.gov/research/_files/selinux/papers/module/t1.shtml" target="_blank">http://www.nsa.gov/research/_files/selinux/papers/module/t1.shtml</a><br>
+		徐秉义老师的 SELinux 配置范例：<a href="http://kate.babyface.com.tw/NetAdmin/24200801SELinux/" target="_blank">http://kate.babyface.com.tw/NetAdmin/24200801SELinux/</a></li>
+
+</ul>
+</div>
+<hr />
+    </td>
+    <td style="width: 16px; font-size: 6px;">　</td></tr>
+<tr><td style="width: 16px; height: 16px;">　</td>
+    <td style="width: 866px; height: 16px;">　</td>
+    <td style="width: 16px; height: 16px;">　</body></html>

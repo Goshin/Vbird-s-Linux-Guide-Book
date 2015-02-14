@@ -1,1 +1,220 @@
-<html><head> 	<meta http-equiv="Content-Type" content="text/html; charset=utf8"> 	<meta name="Author" content="2011/04/19,lee"> 	<meta name="Description" content="在 Linux 系统下管理用户的身份与账号！"> 	<title>鸟哥的 Linux 私房菜 -- Linux 账号管理</title>     <script src="../script/SpryMenuBar.js" type="text/javascript"></script> 	<script src="../script/index.js" type="text/javascript"></script> 	<link href="../css/SpryMenuBarHorizontal.css" rel="stylesheet" type="text/css" />     <link href="../css/main.css" rel="stylesheet" type="text/css" />     </head><body style="margin: 0pt; padding: 0pt;" class="table"onload="MM_preloadImages('image/title_19.png','image/title_26.png','image/title_27.png','image/title_28.png','image/title_06.png','image/title_08.png','image/title_10.png','image/title_12.png')">   <!-- Copyright � 2005. Spidersoft Ltd --> <style> A.applink:hover {border: 2px dotted #DCE6F4;padding:2px;background-color:#ffff00;color:green;text-decoration:none} A.applink       {border: 2px dotted #DCE6F4;padding:2px;color:#2F5BFF;background:transparent;text-decoration:none} A.info          {color:#2F5BFF;background:transparent;text-decoration:none} A.info:hover    {color:green;background:transparent;text-decoration:underline} </style> <div style='BORDER: 1px solid #DCE6F4; MARGIN-TOP: 20px; MARGIN-BOTTOM: 20px; MARGIN-LEFT: 5px; MARGIN-RIGHT: 5px; PADDING: 5px; BACKGROUND-COLOR: #eef8ff;line-height:180%; COLOR: #000000; font-family: Arial; font-size: 8pt; width=100%; FILTER: progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr="#FFFFFFFF", EndColorStr="#F2F5FAFF");'> This page was saved using <a class="applink" href="http://www.spidersoft.com"><b>WebZIP 7.0.3.1030</b></a> <a class="applink" href="http://www.spidersoft.com"><b>offline browser</b></a>  (Unregistered) on  02/12/15 12:14:49.<br> <b>Address:</b> <a class="info" href="http://vbird.dic.ksu.edu.tw/linux_basic/0410accountmanager_6.php">http://vbird.dic.ksu.edu.tw/linux_basic/0410accountmanager_6.php</a><br> <b>Title:</b> 鸟哥的 Linux 私房菜 -- Linux 账号管理 &nbsp;&bull;&nbsp; <b>Size:</b> 24689<br></div> <!-- /Copyright � 2005. Spidersoft Ltd -->    <center> <div id="apDiv5"> <div> <LINK REL="SHORTCUT ICON" HREF="favicon.ico"> <!-- ImageReady Slices (title3.ai) --> <table id="___01" width="898" height="81" border="0" align="center" cellpadding="0" cellspacing="0";> 	<tr> 		<td colspan="15"> 			<img src="image/title/title_01.png" width="900" height="1" alt=""></td> 	</tr> 	<tr> 		<td rowspan="4" bgcolor="#182448"><p><img src="http://linux.vbird.org/cgi-bin/Count.cgi?dd=C&ft=5&sh=T&md=8&pad=Y&df=vbird.dic.ksu.edu.tw.dat" width="93" align="left" title="計數器" /></p> 	    <p><font color="#FFFFFF" size="-1">since2012/04/23</font></p></td> 		<td rowspan="4" align="left" valign="top"><a href="http://vbird.dic.ksu.edu.tw/"><img src="image/title/title_03.png" alt="" width="263" height="79" border="0"></a></td> 		<td colspan="13"> 			<img src="image/title/title_04.png" alt="" width="535" height="9" border="0"></td> 	</tr> 	<tr> 		<td rowspan="3"> 			<img src="image/title/title_05.png" alt="" width="53" height="70" border="0"></td> 		<td colspan="2" align="left" valign="top"><a href="0110whatislinux.php.html" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image51','','image/title/title_06.png',1)"><img src="image/title/title3_06.png" name="Image51" width="106" height="25" border="0" id="Image51" alt=""/></a></td> 		<td rowspan="2"> 			<img src="image/title/title_07.png" alt="" width="27" height="37" border="0"></td> 		<td colspan="3" align="left" valign="top"><a href="http://vbird.dic.ksu.edu.tw/linux_server/0110network_basic.php" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image52','','image/title/title_08.png',1)"><img src="image/title/title3_08.png" name="Image52" width="107" height="25" border="0" id="Image52" alt=""/></a></td> 		<td rowspan="2"> 			<img src="image/title/title_09.png" alt="" width="37" height="37" border="0"></td> 		<td colspan="2" align="left" valign="top"><a href="http://vbird.dic.ksu.edu.tw/about.php" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image53','','image/title/title_10.png',1)"><img src="image/title/title3_10.png" name="Image53" width="75" height="25" border="0" id="Image53" alt=""/></a></td> 		<td rowspan="3"> 			<img src="image/title/title_11.png" alt="" width="35" height="70" border="0"></td> 		<td align="left" valign="top"><a href="mailto:vbird@mail.vbird.idv.tw" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image54','','image/title/title_12.png',1)"><img src="image/title/title3_12.png" name="Image54" width="74" height="25" border="0" id="Image54" alt=""/></a></td> 		<td rowspan="3"> 			<img src="image/title/title_13.png" alt="" width="21" height="70" border="0"></td> 	</tr> 	<tr> 		<td colspan="2"> 			<img src="image/title/title_14.png" alt="" width="106" height="12" border="0"></td> 		<td colspan="3"> 			<img src="image/title/title_15.png" alt="" width="107" height="12" border="0"></td> 		<td colspan="2"> 			<img src="image/title/title_16.png" width="75" height="12" alt=""></td> 		<td rowspan="2"> 			<img src="image/title/title_17.png" alt="" width="74" height="45" border="0"></td> 	</tr> 	<tr> 		<td> 			<img src="image/title/title_18.png" alt="" width="15" height="33" border="0"></td> 		<td colspan="3" align="left" valign="top"><ul id="MenuBar1" class="MenuBarHorizontal"> 	  <li><a href="linux_basic.php.html" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image44','','image/title/title_19.png',1)"><img src="image/title/title3_19.png" name="Image44" width="123" height="33" border="0" id="Image44" /></a> 			    <ul> 			      <li><a href="Mandrake9.0/mandrake9.0.php.html" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image46','','image/title/title_26.png',1)"><img src="image/title/title_23.png" name="Image46" width="120" height="26" border="0" id="Image46" alt="" /></a></li>                   <li><a href="fedora_4/fc4.php.html" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image47','','image/title/title_27.png',1)"><img src="image/title/title_24.png" name="Image47" width="120" height="26" border="0" id="Image47" alt="" /></a></li>                   <li><a href="linux_basic.php.html" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image48','','image/title/title_28.png',1)"><img src="image/title/title_25.png" name="Image48" width="120" height="26" border="0" id="Image48" alt="" /></a></li>                 </ul> 		      </li> 		</ul></td> 		<td> 			<img src="image/title/title_20.png" alt="" width="42" height="33" border="0"></td> 		<td colspan="3" align="left" valign="top"><ul id="MenuBar2" class="MenuBarHorizontal"> 	  <li><a href="http://vbird.dic.ksu.edu.tw/linux_server/" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image45','','image/title/title_21.png',1)"><img src="image/title/title3_21.png" name="Image45" width="125" height="33" border="0" id="Image45" /></a> 			    <ul> 			      <li><a href="http://vbird.dic.ksu.edu.tw/linux_server/linux_redhat9/redhat9.php" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image43','','image/title/title_26.png',1)"><img src="image/title/title_23.png" name="Image43" width="120" height="26" border="0" id="Image43" alt=""/></a></li> 			      <li><a href="http://vbird.dic.ksu.edu.tw/linux_server/centos4.php" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image49','','image/title/title_27.png',1)"><img src="image/title/title_24.png" name="Image49" width="120" height="26" border="0" id="Image49" alt="" /></a></li> 			      <li><a href="http://vbird.dic.ksu.edu.tw/linux_server/" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image50','','image/title/title_28.png',1)"><img src="image/title/title_25.png" name="Image50" width="120" height="26" border="0" id="Image50" alt="" /></a></li> 		        </ul> 		      </li> 		</ul></td> 		<td> 			<img src="image/title/title_22.png" alt="" width="47" height="33" border="0"></td> 	</tr> 	<tr> 		<td> 			<img src="image/title/Spacer.gif" width="101" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="263" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="53" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="15" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="91" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="27" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="5" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="42" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="60" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="37" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="28" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="47" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="35" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="74" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="22" height="1" alt=""></td> 	</tr> </table> <!-- End ImageReady Slices --> <script type="text/javascript"> <!-- var MenuBar1 = new Spry.Widget.MenuBar("MenuBar1", {imgDown:"SpryAssets/SpryMenuBarDownHover.gif", imgRight:"SpryAssets/SpryMenuBarRightHover.gif"}); var MenuBar2 = new Spry.Widget.MenuBar("MenuBar2", {imgDown:"SpryAssets/SpryMenuBarDownHover.gif", imgRight:"SpryAssets/SpryMenuBarRightHover.gif"}); //--> </script></div> <table summary="本文内容的排版" style="width: 898px;" border="0" cellpadding="0" cellspacing="0"> <tbody><tr><td style="width: 16px; height: 16px;">　</td>     <td style="width: 866px; height: 16px;">　</td>     <td style="width: 16px; height: 16px;">　</td></tr> <tr><td style="width: 16px; font-size: 6px;">　</td>     <td width="866">  <!-- 本文的档头部分 --> <div style="text-align: center;">     <a href="0410accountmanager.php.html">     <span class="text_head0">第十四章、<span class="text_head_en">Linux </span>账号管理与<span class="text_head_en"> ACL </span>权限配置</span></a><br> </div>     <div style="text-align: right;">         <span class="text_history">最近升级日期：2009/09/09</span>     </div> <!-- 本文的连结区部分 --> <div class="block1"> <span class="text_h1"> 6. <a href="#uselinux">Linux 主机上的用户信息传递</a><br> 	<span class="text_h2"> 	　　6.1 <a href="#uselinux_find">查询使用者： w, who, last, lastlog</a><br> 	　　6.2 <a href="#uselinux_talk">使用者对谈： write, mesg, wall</a><br> 	　　6.3 <a href="#mail">使用者邮件信箱： mail</a><br> 	</span> </span></div> <!-- 本文的正式部分 --> <hr><a name="uselinux"></a><img src="../image/logo.png" alt="大标题的图示" width="35" align="middle" height="34"><span class="text_h1">Linux 主机上的用户信息传递</span><br> <div class="block1"> 	<p>谈了这么多的账号问题，总是该要谈一谈，那么如何针对系统上面的用户进行查询吧？ 	想几个状态，如果你在 Linux 上面操作时，刚好有其他的用户也登陆主机，你想要跟他对谈，该如何是好？ 	你想要知道某个账号的相关信息，该如何查阅？呼呼！底下我们就来聊一聊～<br><br></p>  	<hr><a name="uselinux_find"></a><img src="../image/logo.png" alt="小标题的图示" width="24" align="middle" height="23"><span class="text_h2">查询使用者：  	w, who, last, lastlog</span><br> 	<div class="block2"> 		<p>如何查询一个用户的相关数据呢？这还不简单，我们之前就提过了 <a href="#id">id</a>,  		<a href="#finger">finger</a> 等命令了，都可以让您了解到一个用户的相关信息啦！那么想要知道使用者到底啥时候登陆呢？ 		最简单可以使用 last 检查啊！这个玩意儿我们也在 <a href="http://vbird.dic.ksu.edu.tw/linux_basic/0320bash.php#last">第十一章 bash</a> 提过了， 		您可以自行前往参考啊！简单的很。</p>  		<div style="padding: 10pt 0pt;" align="right"><table width="90%"><tbody><tr><td><b>Tips:</b><br><span style="color: rgb(0, 144, 0);"><font size="-1">		早期的 Red Hat 系统的版本中， last 仅会列出当月的登陆者信息，不过在我们的 CentOS 5.x 版以后， 		last 可以列出从系统创建之后到目前为止的所有登陆者信息！这是因为登录档轮替的配置不同所致。 		详细的说明可以参考后续的<a href="0570syslog.php.html">第十九章登录档简介</a>。 		</font></span></td><td><img src="0410accountmanager_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div> 		<p>那如果你想要知道目前已登陆在系统上面的用户呢？可以透过 w 或 who 来查询喔！如下范例所示：</p>  <table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">w</span>  13:13:56 up 13:00,  1 user,  load average: 0.08, 0.02, 0.01 USER   TTY    FROM            LOGIN@   IDLE   JCPU   PCPU WHAT root   pts/1  192.168.1.100   11:04    0.00s  0.36s  0.00s -bash vbird1 pts/2  192.168.1.100   13:15    0.00s  0.06s  0.02s w <span class="term_say"># 第一行显示目前的时间、启动 (up) 多久，几个用户在系统上平均负载等； # 第二行只是各个项目的说明， # 第三行以后，每行代表一个使用者。如上所示，root 登陆并取得终端机名 pts/1 之意。</span>  [root@www ~]# <span class="term_command">who</span> root     pts/1        2009-03-04 11:04 (192.168.1.100) vbird1   pts/2        2009-03-04 13:15 (192.168.1.100) </pre></td></tr></tbody></table>  		<p>另外，如果您想要知道每个账号的最近登陆的时间，则可以使用 lastlog 这个命令喔！ 		lastlog 会去读取 /var/log/lastlog 文件，结果将数据输出如下表：</p>  <table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">lastlog</span> Username    Port   From           Latest root        pts/1  192.168.1.100  Wed Mar  4 11:04:22 +0800 2009 bin                                        **Never logged in** <span class="term_say">....(中间省略)....</span> vbird1      pts/2  192.168.1.100  Wed Mar  4 13:15:56 +0800 2009 <span class="term_say">....(以下省略)....</span> </pre></td></tr></tbody></table>  		<p>这样就能够知道每个账号的最近登陆的时间啰～ ^_^</p> 	</div>  	<hr><a name="uselinux_talk"></a><img src="../image/logo.png" alt="小标题的图示" width="24" align="middle" height="23"><span class="text_h2">使用者对谈： write, mesg, wall</span><br> 	<div class="block2"> 		<p>那么我是否可以跟系统上面的用户谈天说地呢？当然可以啦！利用 write 这个命令即可。 		write 可以直接将信息传给接收者啰！举例来说，我们的 Linux 目前有 vbird1 与 root 两个人在在线， 		我的 root 要跟 vbird1 讲话，可以这样做：</p>  <table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">write 使用者账号 [用户所在终端接口]</span>  [root@www ~]# <span class="term_command">who</span> root     pts/1    2009-03-04 11:04 (192.168.1.100) vbird1   pts/2    2009-03-04 13:15 (192.168.1.100)  <span class="term_note">&lt;==有看到 vbird1 在在线</span>  [root@www ~]# <span class="term_command">write vbird1 pts/2</span> <span class="term_write">Hello, there: Please don't do anything wrong...</span>  <span class="term_note">&lt;==这两行是 root 写的信息！</span> <span class="term_say"># 结束时，请按下 [crtl]-d 来结束输入。此时在 vbird1 的画面中，会出现：</span>  Message from root@www.vbird.tsai on pts/1 at 13:23 ... Hello, there: Please don't do anything wrong... EOF </pre></td></tr></tbody></table>  		<p>怪怪～立刻会有信息响应给 vbird1 ！不过......当时 vbird1 正在查数据，哇！ 		这些信息会立刻打断 vbird1 原本的工作喔！所以，如果 vbird1 这个人不想要接受任何信息，直接下达这个动作：</p>  <table class="term"><tbody><tr><td class="term"><pre>[vbird1@www ~]$ <span class="term_command">mesg n</span> [vbird1@www ~]$ <span class="term_command">mesg</span> is n </pre></td></tr></tbody></table>  		<p>不过，这个 mesg 的功能对 root 传送来的信息没有抵挡的能力！所以如果是 root 传送信息， vbird1 还是得要收下。 		但是如果 root 的 mesg 是 n 的，那么 vbird1 写给 root 的信息会变这样：</p>   <table class="term"><tbody><tr><td class="term"><pre>[vbird1@www ~]$ <span class="term_command">write root</span> write: root has messages disabled </pre></td></tr></tbody></table>  		<p>了解乎？如果想要解开的话，再次下达『 mesg y 』就好啦！想要知道目前的 mesg  		状态，直接下达『 mesg 』即可！瞭呼？ 		相对于 write 是仅针对一个使用者来传『简讯』，我们还可以『对所有系统上面的用户传送简讯 (广播)』哩～ 		如何下达？用 wall 即可啊！他的语法也是很简单的喔！</p>  <table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">wall "I will shutdown my linux server..."</span> </pre></td></tr></tbody></table>  		<p>然后你就会发现所有的人都会收到这个简讯呢！</p> 	</div>  	<hr><a name="mail"></a><img src="../image/logo.png" alt="小标题的图示" width="24" align="middle" height="23"><span class="text_h2">使用者邮件信箱： mail</span><br> 	<div class="block2"> 		<p>使用 wall, write 毕竟要等到使用者在在线才能够进行，有没有其他方式来联络啊？ 		不是说每个 Linux 主机上面的用户都具有一个 mailbox 吗？ 		我们可否寄信给使用者啊！呵呵！当然可以啊！我们可以寄、收 mailbox 内的信件呢！ 		一般来说， mailbox 都会放置在 /var/spool/mail 里面，一个账号一个 mailbox (文件)。 		举例来说，我的 vbird1 就具有 /var/spool/mail/vbird1 这个 mailbox 喔！</p>  		<p>那么我该如何寄出信件呢？就直接使用 mail 这个命令即可！这个命令的用法很简单的，直接这样下达：『  		<span class="text_import2">mail username@localhost -s "邮件标题"</span> 』即可！ 		一般来说，如果是寄给本机上的使用者，基本上，连『 @localhost 』都不用写啦！ 		举例来说，我以 root 寄信给 vbird1 ，信件标题是『 nice to meet you 』，则：</p>  <table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">mail vbird1 -s "nice to meet you"</span> <span class="term_write">Hello, D.M. Tsai Nice to meet you in the network. You are so nice.  byebye! .</span>    <span class="term_note">&lt;==这里很重要喔，结束时，最后一行输入小数点 . 即可！</span> Cc:  <span class="term_note">&lt;==这里是所谓的『副本』，不需要寄给其他人，所以直接 [Enter]</span> [root@www ~]#  <span class="term_note">&lt;==出现提示字符，表示输入完毕了！</span> </pre></td></tr></tbody></table>  		<p>如此一来，你就已经寄出一封信给 vbird1 这位使用者啰，而且，该信件标题为： 		nice to meet you，信件内容就如同上面提到的。不过，你或许会觉得 mail 这个程序不好用～ 		因为在信件编写的过程中，如果写错字而按下 Enter 进入次行，前一行的数据很难删除ㄟ！ 		那怎么办？没关系啦！我们使用数据流重导向啊！呵呵！利用那个小于的符号 ( &lt; ) 		就可以达到取代键盘输入的要求了。也就是说，你可以先用 vi 将信件内容编好， 		然后再以 mail vbird1 -s "nice to meet you" &lt; filename 来将文件内容传输即可。</p>  <table border="1" cellpadding="5" cellspacing="0" width="90%"><tbody><tr><td> 例题：<div class="block2"> 请将你的家目录下的环境变量文件 (~/.bashrc) 寄给自己！ </div> 答：<div class="block2"> mail -s "bashrc file content" vbird &lt; ~/.bashrc </div> </td></tr></tbody></table><br>  		<p>刚刚上面提到的是关于『寄信』的问题，那么如果是要收信呢？呵呵！同样的使用 mail 啊！ 		假设我以 vbird1 的身份登陆主机，然后输入 mail 后，会得到什么？</p>  <table class="term"><tbody><tr><td class="term"><pre>[vbird1@www ~]$ <span class="term_command">mail</span> Mail version 8.1 6/6/93.  Type ? for help. "/var/spool/mail/vbird1": 1 message 1 new &gt;N  1 root@www.vbird.tsai   Wed Mar  4 13:36  18/663   "nice to meet you" &amp;  <span class="term_note">&lt;==这里可以输入很多的命令，如果要查阅，输入 ? 即可！</span> </pre></td></tr></tbody></table>  		<p>在 mail 当中的提示字符是 &amp; 符号喔，别搞错了～输入 mail 之后，我可以看到我有一封信件， 		这封信件的前面那个 &gt; 代表目前处理的信件，而在大于符号的左边那个 N 代表该封信件尚未读过， 		如果我想要知道这个 mail 内部的命令有哪些，可以在 &amp; 之后输入『 ? 』，就可以看到如下的画面：</p>  <table class="term"><tbody><tr><td class="term"><pre>&amp; <span class="term_command">?</span>     Mail   Commands t &lt;message list&gt;                type messages n                               goto and type next message e &lt;message list&gt;                edit messages f &lt;message list&gt;                give head lines of messages d &lt;message list&gt;                delete messages s &lt;message list&gt; file           append messages to file u &lt;message list&gt;                undelete messages R &lt;message list&gt;                reply to message senders r &lt;message list&gt;                reply to message senders and all recipients pre &lt;message list&gt;              make messages go back to /usr/spool/mail m &lt;user list&gt;                   mail to specific users q                               quit, saving unresolved messages in mbox x                               quit, do not remove system mailbox h                               print out active message headers !                               shell escape cd [directory]                  chdir to directory or home if none given </pre></td></tr></tbody></table>  		<p>&lt;message list&gt; 指的是每封邮件的左边那个数字啦！而几个比较常见的命令是：</p>   <table bgcolor="lightyellow" border="1" cellpadding="3" cellspacing="0" width="95%"> <tbody><tr align="center" bgcolor="#182448"><td width="50"><font color="#FFFFFF">命令</font></td><td><font color="#FFFFFF">意义</font></td></tr> <tr><td align="center">h</td><td>列出信件标头；如果要查阅 40 封信件左右的信件标头，可以输入『 h 40 』</td></tr> <tr><td align="center">d</td><td>删除后续接的信件号码，删除单封是『 d10 』，删除 20~40 封则为『 d20-40 』。 不过，这个动作要生效的话，必须要配合 q 这个命令才行(参考底下说明)！</td></tr> <tr><td align="center">s</td><td>将信件储存成文件。例如我要将第 5 封信件的内容存成 ~/mail.file:『s 5 ~/mail.file』</td></tr> <tr><td align="center">x</td><td>或者输入 exit 都可以。这个是『不作任何动作离开 mail 程序』的意思。 不论你刚刚删除了什么信件，或者读过什么，使用 exit 都会直接离开 mail，所以刚刚进行的删除与阅读工作都会无效。 如果您只是查阅一下邮件而已的话，一般来说，建议使用这个离开啦！除非你真的要删除某些信件。</td></tr> <tr><td align="center">q</td><td>相对于 exit 是不动作离开， q 则会进行两项动作： 1. 将刚刚删除的信件移出  mailbox 之外； 2. 将刚刚有阅读过的信件存入 ~/mbox ，且移出 mailbox 之外。鸟哥通常不很喜欢使用 q 离开， 因为，很容易忘记读过什么咚咚～导致信件给他移出 mailbox 说～</td></tr> </tbody></table><br>  		<p>由于读过的信件若使用『 q 』来离开 mail 时，会将该信件移动到 ~/mbox 中，所以你可以这样想象： 		/var/spool/mail/vbird1 为 vbird1 的『新件匣』，而 /home/vbird1/mbox 则为『收件匣』的意思。 		那如何读取 /home/vbird1/mbox 呢？就使用『mail -f /home/vbird1/mbox』即可。</p> 	</div> </div> <hr />     </td>     <td style="width: 16px; font-size: 6px;">　</td></tr> <tr><td style="width: 16px; height: 16px;">　</td>     <td style="width: 866px; height: 16px;">　</td>     <td style="width: 16px; height: 16px;">　</td></tr> </tbody></table>  <div style="padding-top: 0px; text-align: center;"> <span style="font-size: 80%;"> 	<a href="http://vbird.dic.ksu.edu.tw/" target="_top" title="前往鸟哥的首页">http://linux.vbird.org</a> 	is designed by <a href="mailto:vbird@mail.vbird.idv.tw" title="联络鸟哥(我不要广告信！)">VBird</a> 		during 2001-2011. <a href="http://www.ksu.edu.tw/" target="_blank">ksu.edu</a></span>          ﻿<div id="apDiv4">       <p>本网页主要以Firefox配合解析度 1024x768 作为设计依据&nbsp;&nbsp;&nbsp;&nbsp; 鸟哥自由软件整合应用研究室</p></div></div> </div> </center> </body></html> 
+<?xml version="1.0" encoding="utf-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"    "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><title>第十四章、<span class="text_head_en">Linux </title><link href="../Styles/style.css" rel="stylesheet" type="text/css" /></head><body>
+
+<!-- 本文的档头部分 -->
+<div style="text-align: center;">
+    <a href="0410accountmanager.php.html">
+    <span class="text_head0">第十四章、<span class="text_head_en">Linux </span>账号管理与<span class="text_head_en"> ACL </span>权限配置</span></a><br>
+</div>
+    <div style="text-align: right;">
+        <span class="text_history">最近升级日期：2009/09/09</span>
+    </div>
+<!-- 本文的连结区部分 -->
+<div class="block1">
+<span class="text_h1">
+6. <a href="#uselinux">Linux 主机上的用户信息传递</a><br>
+	<span class="text_h2">
+	　　6.1 <a href="#uselinux_find">查询使用者： w, who, last, lastlog</a><br>
+	　　6.2 <a href="#uselinux_talk">使用者对谈： write, mesg, wall</a><br>
+	　　6.3 <a href="#mail">使用者邮件信箱： mail</a><br>
+	</span>
+</span></div>
+<!-- 本文的正式部分 -->
+<hr><a name="uselinux"></a><img src="../images/logo.png" alt="大标题的图示" width="35" align="middle" height="34"><span class="text_h1">Linux 主机上的用户信息传递</span><br>
+<div class="block1">
+	<p>谈了这么多的账号问题，总是该要谈一谈，那么如何针对系统上面的用户进行查询吧？
+	想几个状态，如果你在 Linux 上面操作时，刚好有其他的用户也登陆主机，你想要跟他对谈，该如何是好？
+	你想要知道某个账号的相关信息，该如何查阅？呼呼！底下我们就来聊一聊～<br><br></p>
+
+	<hr><a name="uselinux_find"></a><img src="../images/logo.png" alt="小标题的图示" width="24" align="middle" height="23"><span class="text_h2">查询使用者： 
+	w, who, last, lastlog</span><br>
+	<div class="block2">
+		<p>如何查询一个用户的相关数据呢？这还不简单，我们之前就提过了 <a href="#id">id</a>, 
+		<a href="#finger">finger</a> 等命令了，都可以让您了解到一个用户的相关信息啦！那么想要知道使用者到底啥时候登陆呢？
+		最简单可以使用 last 检查啊！这个玩意儿我们也在 <a href="http://vbird.dic.ksu.edu.tw/linux_basic/0320bash.php#last">第十一章 bash</a> 提过了，
+		您可以自行前往参考啊！简单的很。</p>
+
+		<div style="padding: 10pt 0pt;" align="right"><table width="90%"><tbody><tr><td><b>Tips:</b><br><span style="color: rgb(0, 144, 0);"><font size="-1">		早期的 Red Hat 系统的版本中， last 仅会列出当月的登陆者信息，不过在我们的 CentOS 5.x 版以后，
+		last 可以列出从系统创建之后到目前为止的所有登陆者信息！这是因为登录档轮替的配置不同所致。
+		详细的说明可以参考后续的<a href="0570syslog.php.html">第十九章登录档简介</a>。
+		</font></span></td><td><img src="0410accountmanager_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div>
+		<p>那如果你想要知道目前已登陆在系统上面的用户呢？可以透过 w 或 who 来查询喔！如下范例所示：</p>
+
+<table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">w</span>
+ 13:13:56 up 13:00,  1 user,  load average: 0.08, 0.02, 0.01
+USER   TTY    FROM            LOGIN@   IDLE   JCPU   PCPU WHAT
+root   pts/1  192.168.1.100   11:04    0.00s  0.36s  0.00s -bash
+vbird1 pts/2  192.168.1.100   13:15    0.00s  0.06s  0.02s w
+<span class="term_say"># 第一行显示目前的时间、启动 (up) 多久，几个用户在系统上平均负载等；
+# 第二行只是各个项目的说明，
+# 第三行以后，每行代表一个使用者。如上所示，root 登陆并取得终端机名 pts/1 之意。</span>
+
+[root@www ~]# <span class="term_command">who</span>
+root     pts/1        2009-03-04 11:04 (192.168.1.100)
+vbird1   pts/2        2009-03-04 13:15 (192.168.1.100)
+</pre></td></tr></tbody></table>
+
+		<p>另外，如果您想要知道每个账号的最近登陆的时间，则可以使用 lastlog 这个命令喔！
+		lastlog 会去读取 /var/log/lastlog 文件，结果将数据输出如下表：</p>
+
+<table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">lastlog</span>
+Username    Port   From           Latest
+root        pts/1  192.168.1.100  Wed Mar  4 11:04:22 +0800 2009
+bin                                        **Never logged in**
+<span class="term_say">....(中间省略)....</span>
+vbird1      pts/2  192.168.1.100  Wed Mar  4 13:15:56 +0800 2009
+<span class="term_say">....(以下省略)....</span>
+</pre></td></tr></tbody></table>
+
+		<p>这样就能够知道每个账号的最近登陆的时间啰～ ^_^</p>
+	</div>
+
+	<hr><a name="uselinux_talk"></a><img src="../images/logo.png" alt="小标题的图示" width="24" align="middle" height="23"><span class="text_h2">使用者对谈： write, mesg, wall</span><br>
+	<div class="block2">
+		<p>那么我是否可以跟系统上面的用户谈天说地呢？当然可以啦！利用 write 这个命令即可。
+		write 可以直接将信息传给接收者啰！举例来说，我们的 Linux 目前有 vbird1 与 root 两个人在在线，
+		我的 root 要跟 vbird1 讲话，可以这样做：</p>
+
+<table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">write 使用者账号 [用户所在终端接口]</span>
+
+[root@www ~]# <span class="term_command">who</span>
+root     pts/1    2009-03-04 11:04 (192.168.1.100)
+vbird1   pts/2    2009-03-04 13:15 (192.168.1.100)  <span class="term_note">&lt;==有看到 vbird1 在在线</span>
+
+[root@www ~]# <span class="term_command">write vbird1 pts/2</span>
+<span class="term_write">Hello, there:
+Please don't do anything wrong...</span>  <span class="term_note">&lt;==这两行是 root 写的信息！</span>
+<span class="term_say"># 结束时，请按下 [crtl]-d 来结束输入。此时在 vbird1 的画面中，会出现：</span>
+
+Message from root@www.vbird.tsai on pts/1 at 13:23 ...
+Hello, there:
+Please don't do anything wrong...
+EOF
+</pre></td></tr></tbody></table>
+
+		<p>怪怪～立刻会有信息响应给 vbird1 ！不过......当时 vbird1 正在查数据，哇！
+		这些信息会立刻打断 vbird1 原本的工作喔！所以，如果 vbird1 这个人不想要接受任何信息，直接下达这个动作：</p>
+
+<table class="term"><tbody><tr><td class="term"><pre>[vbird1@www ~]$ <span class="term_command">mesg n</span>
+[vbird1@www ~]$ <span class="term_command">mesg</span>
+is n
+</pre></td></tr></tbody></table>
+
+		<p>不过，这个 mesg 的功能对 root 传送来的信息没有抵挡的能力！所以如果是 root 传送信息， vbird1 还是得要收下。
+		但是如果 root 的 mesg 是 n 的，那么 vbird1 写给 root 的信息会变这样：</p>
+
+
+<table class="term"><tbody><tr><td class="term"><pre>[vbird1@www ~]$ <span class="term_command">write root</span>
+write: root has messages disabled
+</pre></td></tr></tbody></table>
+
+		<p>了解乎？如果想要解开的话，再次下达『 mesg y 』就好啦！想要知道目前的 mesg 
+		状态，直接下达『 mesg 』即可！瞭呼？
+		相对于 write 是仅针对一个使用者来传『简讯』，我们还可以『对所有系统上面的用户传送简讯 (广播)』哩～
+		如何下达？用 wall 即可啊！他的语法也是很简单的喔！</p>
+
+<table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">wall "I will shutdown my linux server..."</span>
+</pre></td></tr></tbody></table>
+
+		<p>然后你就会发现所有的人都会收到这个简讯呢！</p>
+	</div>
+
+	<hr><a name="mail"></a><img src="../images/logo.png" alt="小标题的图示" width="24" align="middle" height="23"><span class="text_h2">使用者邮件信箱： mail</span><br>
+	<div class="block2">
+		<p>使用 wall, write 毕竟要等到使用者在在线才能够进行，有没有其他方式来联络啊？
+		不是说每个 Linux 主机上面的用户都具有一个 mailbox 吗？
+		我们可否寄信给使用者啊！呵呵！当然可以啊！我们可以寄、收 mailbox 内的信件呢！
+		一般来说， mailbox 都会放置在 /var/spool/mail 里面，一个账号一个 mailbox (文件)。
+		举例来说，我的 vbird1 就具有 /var/spool/mail/vbird1 这个 mailbox 喔！</p>
+
+		<p>那么我该如何寄出信件呢？就直接使用 mail 这个命令即可！这个命令的用法很简单的，直接这样下达：『 
+		<span class="text_import2">mail username@localhost -s "邮件标题"</span> 』即可！
+		一般来说，如果是寄给本机上的使用者，基本上，连『 @localhost 』都不用写啦！
+		举例来说，我以 root 寄信给 vbird1 ，信件标题是『 nice to meet you 』，则：</p>
+
+<table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">mail vbird1 -s "nice to meet you"</span>
+<span class="term_write">Hello, D.M. Tsai
+Nice to meet you in the network.
+You are so nice.  byebye!
+.</span>    <span class="term_note">&lt;==这里很重要喔，结束时，最后一行输入小数点 . 即可！</span>
+Cc:  <span class="term_note">&lt;==这里是所谓的『副本』，不需要寄给其他人，所以直接 [Enter]</span>
+[root@www ~]#  <span class="term_note">&lt;==出现提示字符，表示输入完毕了！</span>
+</pre></td></tr></tbody></table>
+
+		<p>如此一来，你就已经寄出一封信给 vbird1 这位使用者啰，而且，该信件标题为：
+		nice to meet you，信件内容就如同上面提到的。不过，你或许会觉得 mail 这个程序不好用～
+		因为在信件编写的过程中，如果写错字而按下 Enter 进入次行，前一行的数据很难删除ㄟ！
+		那怎么办？没关系啦！我们使用数据流重导向啊！呵呵！利用那个小于的符号 ( &lt; )
+		就可以达到取代键盘输入的要求了。也就是说，你可以先用 vi 将信件内容编好，
+		然后再以 mail vbird1 -s "nice to meet you" &lt; filename 来将文件内容传输即可。</p>
+
+<table border="1" cellpadding="5" cellspacing="0" width="90%"><tbody><tr><td>
+例题：<div class="block2">
+请将你的家目录下的环境变量文件 (~/.bashrc) 寄给自己！
+</div>
+答：<div class="block2">
+mail -s "bashrc file content" vbird &lt; ~/.bashrc
+</div>
+</td></tr></tbody></table><br>
+
+		<p>刚刚上面提到的是关于『寄信』的问题，那么如果是要收信呢？呵呵！同样的使用 mail 啊！
+		假设我以 vbird1 的身份登陆主机，然后输入 mail 后，会得到什么？</p>
+
+<table class="term"><tbody><tr><td class="term"><pre>[vbird1@www ~]$ <span class="term_command">mail</span>
+Mail version 8.1 6/6/93.  Type ? for help.
+"/var/spool/mail/vbird1": 1 message 1 new
+&gt;N  1 root@www.vbird.tsai   Wed Mar  4 13:36  18/663   "nice to meet you"
+&amp;  <span class="term_note">&lt;==这里可以输入很多的命令，如果要查阅，输入 ? 即可！</span>
+</pre></td></tr></tbody></table>
+
+		<p>在 mail 当中的提示字符是 &amp; 符号喔，别搞错了～输入 mail 之后，我可以看到我有一封信件，
+		这封信件的前面那个 &gt; 代表目前处理的信件，而在大于符号的左边那个 N 代表该封信件尚未读过，
+		如果我想要知道这个 mail 内部的命令有哪些，可以在 &amp; 之后输入『 ? 』，就可以看到如下的画面：</p>
+
+<table class="term"><tbody><tr><td class="term"><pre>&amp; <span class="term_command">?</span>
+    Mail   Commands
+t &lt;message list&gt;                type messages
+n                               goto and type next message
+e &lt;message list&gt;                edit messages
+f &lt;message list&gt;                give head lines of messages
+d &lt;message list&gt;                delete messages
+s &lt;message list&gt; file           append messages to file
+u &lt;message list&gt;                undelete messages
+R &lt;message list&gt;                reply to message senders
+r &lt;message list&gt;                reply to message senders and all recipients
+pre &lt;message list&gt;              make messages go back to /usr/spool/mail
+m &lt;user list&gt;                   mail to specific users
+q                               quit, saving unresolved messages in mbox
+x                               quit, do not remove system mailbox
+h                               print out active message headers
+!                               shell escape
+cd [directory]                  chdir to directory or home if none given
+</pre></td></tr></tbody></table>
+
+		<p>&lt;message list&gt; 指的是每封邮件的左边那个数字啦！而几个比较常见的命令是：</p>
+
+
+<table bgcolor="lightyellow" border="1" cellpadding="3" cellspacing="0" width="95%">
+<tbody><tr align="center" bgcolor="#182448"><td width="50"><font color="#FFFFFF">命令</font></td><td><font color="#FFFFFF">意义</font></td></tr>
+<tr><td align="center">h</td><td>列出信件标头；如果要查阅 40 封信件左右的信件标头，可以输入『 h 40 』</td></tr>
+<tr><td align="center">d</td><td>删除后续接的信件号码，删除单封是『 d10 』，删除 20~40 封则为『 d20-40 』。
+不过，这个动作要生效的话，必须要配合 q 这个命令才行(参考底下说明)！</td></tr>
+<tr><td align="center">s</td><td>将信件储存成文件。例如我要将第 5 封信件的内容存成 ~/mail.file:『s 5 ~/mail.file』</td></tr>
+<tr><td align="center">x</td><td>或者输入 exit 都可以。这个是『不作任何动作离开 mail 程序』的意思。
+不论你刚刚删除了什么信件，或者读过什么，使用 exit 都会直接离开 mail，所以刚刚进行的删除与阅读工作都会无效。
+如果您只是查阅一下邮件而已的话，一般来说，建议使用这个离开啦！除非你真的要删除某些信件。</td></tr>
+<tr><td align="center">q</td><td>相对于 exit 是不动作离开， q 则会进行两项动作： 1. 将刚刚删除的信件移出 
+mailbox 之外； 2. 将刚刚有阅读过的信件存入 ~/mbox ，且移出 mailbox 之外。鸟哥通常不很喜欢使用 q 离开，
+因为，很容易忘记读过什么咚咚～导致信件给他移出 mailbox 说～</td></tr>
+</tbody></table><br>
+
+		<p>由于读过的信件若使用『 q 』来离开 mail 时，会将该信件移动到 ~/mbox 中，所以你可以这样想象：
+		/var/spool/mail/vbird1 为 vbird1 的『新件匣』，而 /home/vbird1/mbox 则为『收件匣』的意思。
+		那如何读取 /home/vbird1/mbox 呢？就使用『mail -f /home/vbird1/mbox』即可。</p>
+	</div>
+</div>
+<hr />
+    </td>
+    <td style="width: 16px; font-size: 6px;">　</td></tr>
+<tr><td style="width: 16px; height: 16px;">　</td>
+    <td style="width: 866px; height: 16px;">　</td>
+    <td style="width: 16px; height: 16px;">　</body></html>

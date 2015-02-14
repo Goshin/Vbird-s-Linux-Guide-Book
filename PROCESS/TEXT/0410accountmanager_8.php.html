@@ -1,1 +1,196 @@
-<html><head> 	<meta http-equiv="Content-Type" content="text/html; charset=utf8"> 	<meta name="Author" content="2011/04/19,lee"> 	<meta name="Description" content="在 Linux 系统下管理用户的身份与账号！"> 	<title>鸟哥的 Linux 私房菜 -- Linux 账号管理</title>     <script src="../script/SpryMenuBar.js" type="text/javascript"></script> 	<script src="../script/index.js" type="text/javascript"></script> 	<link href="../css/SpryMenuBarHorizontal.css" rel="stylesheet" type="text/css" />     <link href="../css/main.css" rel="stylesheet" type="text/css" />     </head><body style="margin: 0pt; padding: 0pt;" class="table"onload="MM_preloadImages('image/title_19.png','image/title_26.png','image/title_27.png','image/title_28.png','image/title_06.png','image/title_08.png','image/title_10.png','image/title_12.png')">   <!-- Copyright � 2005. Spidersoft Ltd --> <style> A.applink:hover {border: 2px dotted #DCE6F4;padding:2px;background-color:#ffff00;color:green;text-decoration:none} A.applink       {border: 2px dotted #DCE6F4;padding:2px;color:#2F5BFF;background:transparent;text-decoration:none} A.info          {color:#2F5BFF;background:transparent;text-decoration:none} A.info:hover    {color:green;background:transparent;text-decoration:underline} </style> <div style='BORDER: 1px solid #DCE6F4; MARGIN-TOP: 20px; MARGIN-BOTTOM: 20px; MARGIN-LEFT: 5px; MARGIN-RIGHT: 5px; PADDING: 5px; BACKGROUND-COLOR: #eef8ff;line-height:180%; COLOR: #000000; font-family: Arial; font-size: 8pt; width=100%; FILTER: progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr="#FFFFFFFF", EndColorStr="#F2F5FAFF");'> This page was saved using <a class="applink" href="http://www.spidersoft.com"><b>WebZIP 7.0.3.1030</b></a> <a class="applink" href="http://www.spidersoft.com"><b>offline browser</b></a>  (Unregistered) on  02/12/15 12:14:49.<br> <b>Address:</b> <a class="info" href="http://vbird.dic.ksu.edu.tw/linux_basic/0410accountmanager_8.php">http://vbird.dic.ksu.edu.tw/linux_basic/0410accountmanager_8.php</a><br> <b>Title:</b> 鸟哥的 Linux 私房菜 -- Linux 账号管理 &nbsp;&bull;&nbsp; <b>Size:</b> 21597<br></div> <!-- /Copyright � 2005. Spidersoft Ltd -->    <center> <div id="apDiv5"> <div> <LINK REL="SHORTCUT ICON" HREF="favicon.ico"> <!-- ImageReady Slices (title3.ai) --> <table id="___01" width="898" height="81" border="0" align="center" cellpadding="0" cellspacing="0";> 	<tr> 		<td colspan="15"> 			<img src="image/title/title_01.png" width="900" height="1" alt=""></td> 	</tr> 	<tr> 		<td rowspan="4" bgcolor="#182448"><p><img src="http://linux.vbird.org/cgi-bin/Count.cgi?dd=C&ft=5&sh=T&md=8&pad=Y&df=vbird.dic.ksu.edu.tw.dat" width="93" align="left" title="計數器" /></p> 	    <p><font color="#FFFFFF" size="-1">since2012/04/23</font></p></td> 		<td rowspan="4" align="left" valign="top"><a href="http://vbird.dic.ksu.edu.tw/"><img src="image/title/title_03.png" alt="" width="263" height="79" border="0"></a></td> 		<td colspan="13"> 			<img src="image/title/title_04.png" alt="" width="535" height="9" border="0"></td> 	</tr> 	<tr> 		<td rowspan="3"> 			<img src="image/title/title_05.png" alt="" width="53" height="70" border="0"></td> 		<td colspan="2" align="left" valign="top"><a href="0110whatislinux.php.html" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image51','','image/title/title_06.png',1)"><img src="image/title/title3_06.png" name="Image51" width="106" height="25" border="0" id="Image51" alt=""/></a></td> 		<td rowspan="2"> 			<img src="image/title/title_07.png" alt="" width="27" height="37" border="0"></td> 		<td colspan="3" align="left" valign="top"><a href="http://vbird.dic.ksu.edu.tw/linux_server/0110network_basic.php" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image52','','image/title/title_08.png',1)"><img src="image/title/title3_08.png" name="Image52" width="107" height="25" border="0" id="Image52" alt=""/></a></td> 		<td rowspan="2"> 			<img src="image/title/title_09.png" alt="" width="37" height="37" border="0"></td> 		<td colspan="2" align="left" valign="top"><a href="http://vbird.dic.ksu.edu.tw/about.php" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image53','','image/title/title_10.png',1)"><img src="image/title/title3_10.png" name="Image53" width="75" height="25" border="0" id="Image53" alt=""/></a></td> 		<td rowspan="3"> 			<img src="image/title/title_11.png" alt="" width="35" height="70" border="0"></td> 		<td align="left" valign="top"><a href="mailto:vbird@mail.vbird.idv.tw" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image54','','image/title/title_12.png',1)"><img src="image/title/title3_12.png" name="Image54" width="74" height="25" border="0" id="Image54" alt=""/></a></td> 		<td rowspan="3"> 			<img src="image/title/title_13.png" alt="" width="21" height="70" border="0"></td> 	</tr> 	<tr> 		<td colspan="2"> 			<img src="image/title/title_14.png" alt="" width="106" height="12" border="0"></td> 		<td colspan="3"> 			<img src="image/title/title_15.png" alt="" width="107" height="12" border="0"></td> 		<td colspan="2"> 			<img src="image/title/title_16.png" width="75" height="12" alt=""></td> 		<td rowspan="2"> 			<img src="image/title/title_17.png" alt="" width="74" height="45" border="0"></td> 	</tr> 	<tr> 		<td> 			<img src="image/title/title_18.png" alt="" width="15" height="33" border="0"></td> 		<td colspan="3" align="left" valign="top"><ul id="MenuBar1" class="MenuBarHorizontal"> 	  <li><a href="linux_basic.php.html" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image44','','image/title/title_19.png',1)"><img src="image/title/title3_19.png" name="Image44" width="123" height="33" border="0" id="Image44" /></a> 			    <ul> 			      <li><a href="Mandrake9.0/mandrake9.0.php.html" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image46','','image/title/title_26.png',1)"><img src="image/title/title_23.png" name="Image46" width="120" height="26" border="0" id="Image46" alt="" /></a></li>                   <li><a href="fedora_4/fc4.php.html" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image47','','image/title/title_27.png',1)"><img src="image/title/title_24.png" name="Image47" width="120" height="26" border="0" id="Image47" alt="" /></a></li>                   <li><a href="linux_basic.php.html" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image48','','image/title/title_28.png',1)"><img src="image/title/title_25.png" name="Image48" width="120" height="26" border="0" id="Image48" alt="" /></a></li>                 </ul> 		      </li> 		</ul></td> 		<td> 			<img src="image/title/title_20.png" alt="" width="42" height="33" border="0"></td> 		<td colspan="3" align="left" valign="top"><ul id="MenuBar2" class="MenuBarHorizontal"> 	  <li><a href="http://vbird.dic.ksu.edu.tw/linux_server/" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image45','','image/title/title_21.png',1)"><img src="image/title/title3_21.png" name="Image45" width="125" height="33" border="0" id="Image45" /></a> 			    <ul> 			      <li><a href="http://vbird.dic.ksu.edu.tw/linux_server/linux_redhat9/redhat9.php" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image43','','image/title/title_26.png',1)"><img src="image/title/title_23.png" name="Image43" width="120" height="26" border="0" id="Image43" alt=""/></a></li> 			      <li><a href="http://vbird.dic.ksu.edu.tw/linux_server/centos4.php" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image49','','image/title/title_27.png',1)"><img src="image/title/title_24.png" name="Image49" width="120" height="26" border="0" id="Image49" alt="" /></a></li> 			      <li><a href="http://vbird.dic.ksu.edu.tw/linux_server/" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image50','','image/title/title_28.png',1)"><img src="image/title/title_25.png" name="Image50" width="120" height="26" border="0" id="Image50" alt="" /></a></li> 		        </ul> 		      </li> 		</ul></td> 		<td> 			<img src="image/title/title_22.png" alt="" width="47" height="33" border="0"></td> 	</tr> 	<tr> 		<td> 			<img src="image/title/Spacer.gif" width="101" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="263" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="53" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="15" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="91" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="27" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="5" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="42" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="60" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="37" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="28" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="47" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="35" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="74" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="22" height="1" alt=""></td> 	</tr> </table> <!-- End ImageReady Slices --> <script type="text/javascript"> <!-- var MenuBar1 = new Spry.Widget.MenuBar("MenuBar1", {imgDown:"SpryAssets/SpryMenuBarDownHover.gif", imgRight:"SpryAssets/SpryMenuBarRightHover.gif"}); var MenuBar2 = new Spry.Widget.MenuBar("MenuBar2", {imgDown:"SpryAssets/SpryMenuBarDownHover.gif", imgRight:"SpryAssets/SpryMenuBarRightHover.gif"}); //--> </script></div> <table summary="本文内容的排版" style="width: 898px;" border="0" cellpadding="0" cellspacing="0"> <tbody><tr><td style="width: 16px; height: 16px;">　</td>     <td style="width: 866px; height: 16px;">　</td>     <td style="width: 16px; height: 16px;">　</td></tr> <tr><td style="width: 16px; font-size: 6px;">　</td>     <td width="866">  <!-- 本文的档头部分 --> <div style="text-align: center;">     <a href="0410accountmanager.php.html">     <span class="text_head0">第十四章、<span class="text_head_en">Linux </span>账号管理与<span class="text_head_en"> ACL </span>权限配置</span></a><br> </div>     <div style="text-align: right;">         <span class="text_history">最近升级日期：2009/09/09</span>     </div> <!-- 本文的连结区部分 --> <div class="block1"> <span class="text_h1"> 8. <a href="#hint">重点回顾</a><br> 9. <a href="#ex">本章习题</a><br> 10. <a href="#reference">参考数据与延伸阅读</a><br> <span class="text_h2"> 11. <a href="http://phorum.vbird.org/viewtopic.php?t=23887" target="_blank">针对本文的建议：http://phorum.vbird.org/viewtopic.php?t=23887</a> </span> </span></div> <!-- 本文的正式部分 --> <hr><a name="hint"></a><img src="../image/logo.png" alt="大标题的图示" width="35" align="middle" height="34"><span class="text_h1">重点回顾</span><br> <div class="block1"> <ul class="text_import2"> 	<li>Linux 操作系统上面，关于账号与群组，其实记录的是 UID/GID 的数字而已；</li> 	<li>使用者的账号/群组与 UID/GID 的对应，参考 /etc/passwd 及 /etc/group 两个文件</li> 	<li>/etc/passwd 文件结构以冒号隔开，共分为七个字段，分别是『账号名称、口令、UID、GID、全名、家目录、shell』</li> 	<li>UID 只有 0 与非为 0 两种，非为 0 则为一般账号。一般账号又分为系统账号 (1~499) 即可登陆者账号 (大于 500)</li> 	<li>账号的口令已经移动到 /etc/shadow 文件中，该文件权限为仅有 root 可以更动。该文件分为九个字段，内容为『 		账号名称、加密口令、口令更动日期、口令最小可变动日期、口令最大需变动日期、口令过期前警告日数、口令失效天数、 		账号失效日、保留未使用』</li> 	<li>使用者可以支持多个群组，其中在新建文件时会影响新文件群组者，为有效群组。而写入 /etc/passwd 的第四个字段者， 		称为初始群组。</li> 	<li>与使用者创建、更改参数、删除有关的命令为：useradd, usermod, userdel等，口令创建则为 passwd；</li> 	<li>与群组创建、修改、删除有关的命令为：groupadd, groupmod, groupdel 等；</li> 	<li>群组的观察与有效群组的切换分别为：groups 及 newgrp 命令；</li> 	<li>useradd 命令作用参考的文件有： /etc/default/useradd, /etc/login.defs, /etc/skel/ 等等</li> 	<li>观察用户详细的口令参数，可以使用『 chage -l 账号 』来处理；</li> 	<li>用户自行修改参数的命令有： chsh, chfn 等，观察命令则有： id, finger 等</li> 	<li>ACL 可进行单一个人或群组的权限管理，但 ACL 的启动需要有文件系统的支持；</li> 	<li>ACL 的配置可使用 setfacl ，查阅则使用 getfacl ；</li> 	<li>身份切换可使用 su ，亦可使用 sudo ，但使用 sudo 者，必须先以 visudo 配置可使用的命令；</li> 	<li>PAM 模块可进行某些程序的验证程序！与 PAM 模块有关的配置文件位于 /etc/pam.d/* 及 /etc/security/*</li> 	<li>系统上面账号登陆情况的查询，可使用 w, who, last, lastlog 等；</li> 	<li>在线与使用者交谈可使用 write, wall，脱机状态下可使用 mail 传送邮件！</li> </ul> </div>   <hr><a name="ex"></a><img src="../image/logo.png" alt="大标题的图示" width="35" align="middle" height="34"><span class="text_h1">本章习题</span><br> <div class="block1"> <ul> 	<li>情境模拟题一：想将本服务器的账号分开管理，分为单纯邮件使用，与可登陆系统账号两种。其中若为纯邮件账号时， 	将该账号加入 mail 为初始群组，且此账号不可使用 bash 等 shell 登陆系统。若为可登陆账号时， 	将该账号加入 youcan 这个次要群组。<br><br> 	<ul> 		<li>目标：了解 /sbin/nologin 的用途；</li> 		<li>前提：可自行观察使用者是否已经创建等问题；</li> 		<li>需求：需已了解 useradd, groupadd 等命令的用法；</li> 	</ul><br>  	解决方案如下：<br><br>  	<ol> 	<li>预先察看一下两个群组是否存在？<br>  <table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">grep mail /etc/group</span> [root@www ~]# <span class="term_command">grep youcan /etc/group</span> [root@www ~]# <span class="term_command">groupadd youcan</span> </pre></td></tr></tbody></table>  	可发现 youcan 尚未被创建，因此如上表所示，我们主动去创建这个群组啰。<br><br></li>  	<li>开始创建三个邮件账号，此账号名称为 pop1, pop2, pop3 ，且口令与账号相同。可使用如下的程序来处理：<br>  <table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">vim popuser.sh</span> #!/bin/bash for username in pop1 pop2 pop3 do 	useradd -g mail -s /sbin/nologin -M $username 	echo $username | passwd --stdin $username done [root@www ~]# <span class="term_command">sh popuser.sh</span> </pre></td></tr></tbody></table><br></li>  	<li>开始创建一般账号，只是这些一般账号必须要能够登陆，并且需要使用次要群组的支持！所以：<br>  <table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">vim loginuser.sh</span> #!/bin/bash for username in youlog1 youlog2 youlog3 do 	<a name="20100427"></a>useradd -G youcan -s /bin/bash -m $username 	echo $username | passwd --stdin $username done [root@www ~]# <span class="term_command">sh loginuser.sh</span> </pre></td></tr></tbody></table><br></li>  	<li>这样就将账号分开管理了！非常简单吧！</li>  	</ol></li> </ul>  <hr>简答题部分 <ul> 	<li>root 的 UID 与 GID 是多少？而基于这个理由，我要让 test 这个账号具有 root 的权限，应该怎么作？ 	<div class="blockex"> 		root 的 UID 与 GID 均为 0 ，所以要让 test 变成 root 的权限，那么就将 /etc/passwd 里面，  		test 的 UID 与 GID 字段变成 0 即可！ 	</div></li>  	<li>假设我是一个系统管理员，我有一个用户最近不乖，所以我想暂时将他的账号停掉， 	让他近期无法进行任何动作，等到未来他乖一点之后，我再将他的账号激活，请问：我可以怎么作比较好？？ 	<div class="blockex"> 		由于这个账号是暂时失效的，所以不能使用 userdel 		来删除，否则很麻烦！那么应该如何配置呢？再回去瞧一瞧 /etc/shadow  		的架构，可以知道有这几个可使用的方法：<ul> 		<li>将 /etc/passwd 的 shell 字段写成 /sbin/nologin ，即可让该账号暂时无法登陆主机；</li> 		<li>将 /etc/shadow 内的口令字段，添加一个 * 号在最前面，这样该账号亦无法登陆！</li> 		<li>将 /etc/shadow 的第八个字段关于账号取消日期的那个，配置小于目前日期的数字，那么他就无法登陆系统了！</li> 		</ul> 	</div></li>  	<li>我在使用 useradd 的时候，新增的账号里面的 UID, GID 还有其他相关的口令控制，都是在哪几个文件里面配置的？ 	<div class="blockex"> 		在 /etc/login.defs 还有 /etc/default/useradd 里面规定好的！ 	</div></li>  	<li>我希望我在配置每个账号的时候( 使用 useradd )，默认情况中，他们的家目录就含有一个名称为 	www 的子目录，我应该怎么作比较好？ 	<div class="blockex"> 		由于使用 useradd 的时候，会自动以 /etc/skel 做为默认的家目录，所以，我可以在 		/etc/skel 里面新添加一个名称为 www 的目录即可！ 	</div></li>  	<li>简单说明系统账号与一般用户账号的差别？ 	<div class="blockex"> 		一般而言，为了让系统能够顺利以较小的权限运行，系统会有很多账号， 		例如 mail, bin, adm 等等。而为了确保这些账号能够在系统上面具有独一无二的权限， 		一般来说 Linux 都会保留一些 UID 给系统使用。在 CentOS 5.x 上面，小于 500  		以下的账号 (UID) 即是所谓的 System account。 	</div></li>  	<li>简单说明，为何 CentOS 5.x 创建使用者时，他会主动的帮使用者创建一个群组，而不是使用 /etc/default/useradd 的配置？ 	<div class="blockex"> 		不同的 linux distributions 对于使用者 group 的创建机制并不相同。主要的机制分为：<ul> 		<li>Public group schemes: 用户将会直接给予一个系统指定的群组，一般来说即是 users ， 			可以 SuSE Server 9 为代表；</li> 		<li>Private group schemes: 系统会创建一个与账号一样的组名！以 CentOS 5.x 为例！</li></ul> 	</div></li>  	<li>如何创建一个使用者名称 alex, 他所属群组为 alexgroup, 预计使用 csh, 他的全名为 "Alex Tsai"， 	且他还得要加入 users 群组当中！ 	<div class="blockex"> 		groupadd alexgroup<br> 		useradd -c "Alex Tsai" -g alexgroup -G users -m alex<br> 		务必先创建群组，才能够创建使用者喔！ 	</div></li>  	<li>由于种种因素，导致你的用户家目录以后都需要被放置到 /account 这个目录下。 	请问，我该如何作，可以让使用 useradd 时，默认的家目录就指向 /account ？ 	<div class="blockex"> 		最简单的方法，编辑 /etc/default/useradd ，将里头的 HOME=/home 改成 HOME=/account 即可。 	</div></li>  	<li>我想要让 dmtsai 这个使用者，加入 vbird1, vbird2, vbird3 这三个群组，且不影响 dmtsai 原本已经支持的次要群组时，该如何动作？ 	<div class="blockex"> 		usermod -a -G vbird1,vbird2,vbird3 dmtsai 	</div></li> </ul> </div>   <hr><a name="reference"></a><img src="../image/logo.png" alt="大标题的图示" width="35" align="middle" height="34"><span class="text_h1">参考数据与延伸阅读</span><br> <div class="block1"> <ul> 	<li><a name="ps1"></a>注1：最完整与详细的口令文件说明，可参考各 distribution 内部的 man page。 		本文中以 CentOS 5.x 的『 man 5 passwd 』及『 man 5 shadow 』的内容说明；</li> 	<li><a name="ps2"></a>注2：MD5与DES均为加密的机制，详细的解释可参考维基百科的说明：<br> 		MD5：<a href="http://zh.wikipedia.org/wiki/MD5" target="_blank">http://zh.wikipedia.org/wiki/MD5</a><br> 		DES：<a href="http://en.wikipedia.org/wiki/Data_Encryption_Standard" target="_blank">http://en.wikipedia.org/wiki/Data_Encryption_Standard</a><br> 		在早期的 Linux 版本中，主要使用 DES 加密算法，近期则使用 MD5 作为默认算法。</li> 	<li><a name="ps3"></a>注3：telnet 与 ssh 都是可以由远程用户主机联机到 Linux 服务器的一种机制！详细数据可查询鸟站文章： 		远程联机服务器：<a href="http://vbird.dic.ksu.edu.tw/linux_server/0310telnetssh.php" target="_blank">http://vbird.dic.ksu.edu.tw/linux_server/0310telnetssh.php</a></li>  	<li><a name="ps4"></a>注4：详细的说明请参考 man sudo ，然后以 5 作为关键词搜寻看看即可了解。</li> 	<li><a name="ps5"></a>注5：详细的 PAM 说明可以参考如下连结：<br> 		维基百科：<a href="http://en.wikipedia.org/wiki/Pluggable_Authentication_Modules" target="_blank">http://en.wikipedia.org/wiki/Pluggable_Authentication_Modules</a><br> 		Linux-PAM网页： <a href="http://www.kernel.org/pub/linux/libs/pam/" target="_blank">http://www.kernel.org/pub/linux/libs/pam/</a></li> </ul> </div> <hr />     </td>     <td style="width: 16px; font-size: 6px;">　</td></tr> <tr><td style="width: 16px; height: 16px;">　</td>     <td style="width: 866px; height: 16px;">　</td>     <td style="width: 16px; height: 16px;">　</td></tr> </tbody></table>  <div style="padding-top: 0px; text-align: center;"> <span style="font-size: 80%;"> 	<a href="http://vbird.dic.ksu.edu.tw/" target="_top" title="前往鸟哥的首页">http://linux.vbird.org</a> 	is designed by <a href="mailto:vbird@mail.vbird.idv.tw" title="联络鸟哥(我不要广告信！)">VBird</a> 		during 2001-2011. <a href="http://www.ksu.edu.tw/" target="_blank">ksu.edu</a></span>          ﻿<div id="apDiv4">       <p>本网页主要以Firefox配合解析度 1024x768 作为设计依据&nbsp;&nbsp;&nbsp;&nbsp; 鸟哥自由软件整合应用研究室</p></div></div> </div> </center> </body></html> 
+<?xml version="1.0" encoding="utf-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"    "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><title>第十四章、<span class="text_head_en">Linux </title><link href="../Styles/style.css" rel="stylesheet" type="text/css" /></head><body>
+
+<!-- 本文的档头部分 -->
+<div style="text-align: center;">
+    <a href="0410accountmanager.php.html">
+    <span class="text_head0">第十四章、<span class="text_head_en">Linux </span>账号管理与<span class="text_head_en"> ACL </span>权限配置</span></a><br>
+</div>
+    <div style="text-align: right;">
+        <span class="text_history">最近升级日期：2009/09/09</span>
+    </div>
+<!-- 本文的连结区部分 -->
+<div class="block1">
+<span class="text_h1">
+8. <a href="#hint">重点回顾</a><br>
+9. <a href="#ex">本章习题</a><br>
+10. <a href="#reference">参考数据与延伸阅读</a><br>
+<span class="text_h2">
+11. <a href="http://phorum.vbird.org/viewtopic.php?t=23887" target="_blank">针对本文的建议：http://phorum.vbird.org/viewtopic.php?t=23887</a>
+</span>
+</span></div>
+<!-- 本文的正式部分 -->
+<hr><a name="hint"></a><img src="../images/logo.png" alt="大标题的图示" width="35" align="middle" height="34"><span class="text_h1">重点回顾</span><br>
+<div class="block1">
+<ul class="text_import2">
+	<li>Linux 操作系统上面，关于账号与群组，其实记录的是 UID/GID 的数字而已；</li>
+	<li>使用者的账号/群组与 UID/GID 的对应，参考 /etc/passwd 及 /etc/group 两个文件</li>
+	<li>/etc/passwd 文件结构以冒号隔开，共分为七个字段，分别是『账号名称、口令、UID、GID、全名、家目录、shell』</li>
+	<li>UID 只有 0 与非为 0 两种，非为 0 则为一般账号。一般账号又分为系统账号 (1~499) 即可登陆者账号 (大于 500)</li>
+	<li>账号的口令已经移动到 /etc/shadow 文件中，该文件权限为仅有 root 可以更动。该文件分为九个字段，内容为『
+		账号名称、加密口令、口令更动日期、口令最小可变动日期、口令最大需变动日期、口令过期前警告日数、口令失效天数、
+		账号失效日、保留未使用』</li>
+	<li>使用者可以支持多个群组，其中在新建文件时会影响新文件群组者，为有效群组。而写入 /etc/passwd 的第四个字段者，
+		称为初始群组。</li>
+	<li>与使用者创建、更改参数、删除有关的命令为：useradd, usermod, userdel等，口令创建则为 passwd；</li>
+	<li>与群组创建、修改、删除有关的命令为：groupadd, groupmod, groupdel 等；</li>
+	<li>群组的观察与有效群组的切换分别为：groups 及 newgrp 命令；</li>
+	<li>useradd 命令作用参考的文件有： /etc/default/useradd, /etc/login.defs, /etc/skel/ 等等</li>
+	<li>观察用户详细的口令参数，可以使用『 chage -l 账号 』来处理；</li>
+	<li>用户自行修改参数的命令有： chsh, chfn 等，观察命令则有： id, finger 等</li>
+	<li>ACL 可进行单一个人或群组的权限管理，但 ACL 的启动需要有文件系统的支持；</li>
+	<li>ACL 的配置可使用 setfacl ，查阅则使用 getfacl ；</li>
+	<li>身份切换可使用 su ，亦可使用 sudo ，但使用 sudo 者，必须先以 visudo 配置可使用的命令；</li>
+	<li>PAM 模块可进行某些程序的验证程序！与 PAM 模块有关的配置文件位于 /etc/pam.d/* 及 /etc/security/*</li>
+	<li>系统上面账号登陆情况的查询，可使用 w, who, last, lastlog 等；</li>
+	<li>在线与使用者交谈可使用 write, wall，脱机状态下可使用 mail 传送邮件！</li>
+</ul>
+</div>
+
+
+<hr><a name="ex"></a><img src="../images/logo.png" alt="大标题的图示" width="35" align="middle" height="34"><span class="text_h1">本章习题</span><br>
+<div class="block1">
+<ul>
+	<li>情境模拟题一：想将本服务器的账号分开管理，分为单纯邮件使用，与可登陆系统账号两种。其中若为纯邮件账号时，
+	将该账号加入 mail 为初始群组，且此账号不可使用 bash 等 shell 登陆系统。若为可登陆账号时，
+	将该账号加入 youcan 这个次要群组。<br><br>
+	<ul>
+		<li>目标：了解 /sbin/nologin 的用途；</li>
+		<li>前提：可自行观察使用者是否已经创建等问题；</li>
+		<li>需求：需已了解 useradd, groupadd 等命令的用法；</li>
+	</ul><br>
+
+	解决方案如下：<br><br>
+
+	<ol>
+	<li>预先察看一下两个群组是否存在？<br>
+
+<table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">grep mail /etc/group</span>
+[root@www ~]# <span class="term_command">grep youcan /etc/group</span>
+[root@www ~]# <span class="term_command">groupadd youcan</span>
+</pre></td></tr></tbody></table>
+
+	可发现 youcan 尚未被创建，因此如上表所示，我们主动去创建这个群组啰。<br><br></li>
+
+	<li>开始创建三个邮件账号，此账号名称为 pop1, pop2, pop3 ，且口令与账号相同。可使用如下的程序来处理：<br>
+
+<table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">vim popuser.sh</span>
+#!/bin/bash
+for username in pop1 pop2 pop3
+do
+	useradd -g mail -s /sbin/nologin -M $username
+	echo $username | passwd --stdin $username
+done
+[root@www ~]# <span class="term_command">sh popuser.sh</span>
+</pre></td></tr></tbody></table><br></li>
+
+	<li>开始创建一般账号，只是这些一般账号必须要能够登陆，并且需要使用次要群组的支持！所以：<br>
+
+<table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">vim loginuser.sh</span>
+#!/bin/bash
+for username in youlog1 youlog2 youlog3
+do
+	<a name="20100427"></a>useradd -G youcan -s /bin/bash -m $username
+	echo $username | passwd --stdin $username
+done
+[root@www ~]# <span class="term_command">sh loginuser.sh</span>
+</pre></td></tr></tbody></table><br></li>
+
+	<li>这样就将账号分开管理了！非常简单吧！</li>
+
+	</ol></li>
+</ul>
+
+<hr>简答题部分
+<ul>
+	<li>root 的 UID 与 GID 是多少？而基于这个理由，我要让 test 这个账号具有 root 的权限，应该怎么作？
+	<div class="blockex">
+		root 的 UID 与 GID 均为 0 ，所以要让 test 变成 root 的权限，那么就将 /etc/passwd 里面， 
+		test 的 UID 与 GID 字段变成 0 即可！
+	</div></li>
+
+	<li>假设我是一个系统管理员，我有一个用户最近不乖，所以我想暂时将他的账号停掉，
+	让他近期无法进行任何动作，等到未来他乖一点之后，我再将他的账号激活，请问：我可以怎么作比较好？？
+	<div class="blockex">
+		由于这个账号是暂时失效的，所以不能使用 userdel
+		来删除，否则很麻烦！那么应该如何配置呢？再回去瞧一瞧 /etc/shadow 
+		的架构，可以知道有这几个可使用的方法：<ul>
+		<li>将 /etc/passwd 的 shell 字段写成 /sbin/nologin ，即可让该账号暂时无法登陆主机；</li>
+		<li>将 /etc/shadow 内的口令字段，添加一个 * 号在最前面，这样该账号亦无法登陆！</li>
+		<li>将 /etc/shadow 的第八个字段关于账号取消日期的那个，配置小于目前日期的数字，那么他就无法登陆系统了！</li>
+		</ul>
+	</div></li>
+
+	<li>我在使用 useradd 的时候，新增的账号里面的 UID, GID 还有其他相关的口令控制，都是在哪几个文件里面配置的？
+	<div class="blockex">
+		在 /etc/login.defs 还有 /etc/default/useradd 里面规定好的！
+	</div></li>
+
+	<li>我希望我在配置每个账号的时候( 使用 useradd )，默认情况中，他们的家目录就含有一个名称为
+	www 的子目录，我应该怎么作比较好？
+	<div class="blockex">
+		由于使用 useradd 的时候，会自动以 /etc/skel 做为默认的家目录，所以，我可以在
+		/etc/skel 里面新添加一个名称为 www 的目录即可！
+	</div></li>
+
+	<li>简单说明系统账号与一般用户账号的差别？
+	<div class="blockex">
+		一般而言，为了让系统能够顺利以较小的权限运行，系统会有很多账号，
+		例如 mail, bin, adm 等等。而为了确保这些账号能够在系统上面具有独一无二的权限，
+		一般来说 Linux 都会保留一些 UID 给系统使用。在 CentOS 5.x 上面，小于 500 
+		以下的账号 (UID) 即是所谓的 System account。
+	</div></li>
+
+	<li>简单说明，为何 CentOS 5.x 创建使用者时，他会主动的帮使用者创建一个群组，而不是使用 /etc/default/useradd 的配置？
+	<div class="blockex">
+		不同的 linux distributions 对于使用者 group 的创建机制并不相同。主要的机制分为：<ul>
+		<li>Public group schemes: 用户将会直接给予一个系统指定的群组，一般来说即是 users ，
+			可以 SuSE Server 9 为代表；</li>
+		<li>Private group schemes: 系统会创建一个与账号一样的组名！以 CentOS 5.x 为例！</li></ul>
+	</div></li>
+
+	<li>如何创建一个使用者名称 alex, 他所属群组为 alexgroup, 预计使用 csh, 他的全名为 "Alex Tsai"，
+	且他还得要加入 users 群组当中！
+	<div class="blockex">
+		groupadd alexgroup<br>
+		useradd -c "Alex Tsai" -g alexgroup -G users -m alex<br>
+		务必先创建群组，才能够创建使用者喔！
+	</div></li>
+
+	<li>由于种种因素，导致你的用户家目录以后都需要被放置到 /account 这个目录下。
+	请问，我该如何作，可以让使用 useradd 时，默认的家目录就指向 /account ？
+	<div class="blockex">
+		最简单的方法，编辑 /etc/default/useradd ，将里头的 HOME=/home 改成 HOME=/account 即可。
+	</div></li>
+
+	<li>我想要让 dmtsai 这个使用者，加入 vbird1, vbird2, vbird3 这三个群组，且不影响 dmtsai 原本已经支持的次要群组时，该如何动作？
+	<div class="blockex">
+		usermod -a -G vbird1,vbird2,vbird3 dmtsai
+	</div></li>
+</ul>
+</div>
+
+
+<hr><a name="reference"></a><img src="../images/logo.png" alt="大标题的图示" width="35" align="middle" height="34"><span class="text_h1">参考数据与延伸阅读</span><br>
+<div class="block1">
+<ul>
+	<li><a name="ps1"></a>注1：最完整与详细的口令文件说明，可参考各 distribution 内部的 man page。
+		本文中以 CentOS 5.x 的『 man 5 passwd 』及『 man 5 shadow 』的内容说明；</li>
+	<li><a name="ps2"></a>注2：MD5与DES均为加密的机制，详细的解释可参考维基百科的说明：<br>
+		MD5：<a href="http://zh.wikipedia.org/wiki/MD5" target="_blank">http://zh.wikipedia.org/wiki/MD5</a><br>
+		DES：<a href="http://en.wikipedia.org/wiki/Data_Encryption_Standard" target="_blank">http://en.wikipedia.org/wiki/Data_Encryption_Standard</a><br>
+		在早期的 Linux 版本中，主要使用 DES 加密算法，近期则使用 MD5 作为默认算法。</li>
+	<li><a name="ps3"></a>注3：telnet 与 ssh 都是可以由远程用户主机联机到 Linux 服务器的一种机制！详细数据可查询鸟站文章：
+		远程联机服务器：<a href="http://vbird.dic.ksu.edu.tw/linux_server/0310telnetssh.php" target="_blank">http://vbird.dic.ksu.edu.tw/linux_server/0310telnetssh.php</a></li>
+
+	<li><a name="ps4"></a>注4：详细的说明请参考 man sudo ，然后以 5 作为关键词搜寻看看即可了解。</li>
+	<li><a name="ps5"></a>注5：详细的 PAM 说明可以参考如下连结：<br>
+		维基百科：<a href="http://en.wikipedia.org/wiki/Pluggable_Authentication_Modules" target="_blank">http://en.wikipedia.org/wiki/Pluggable_Authentication_Modules</a><br>
+		Linux-PAM网页： <a href="http://www.kernel.org/pub/linux/libs/pam/" target="_blank">http://www.kernel.org/pub/linux/libs/pam/</a></li>
+</ul>
+</div>
+<hr />
+    </td>
+    <td style="width: 16px; font-size: 6px;">　</td></tr>
+<tr><td style="width: 16px; height: 16px;">　</td>
+    <td style="width: 866px; height: 16px;">　</td>
+    <td style="width: 16px; height: 16px;">　</body></html>

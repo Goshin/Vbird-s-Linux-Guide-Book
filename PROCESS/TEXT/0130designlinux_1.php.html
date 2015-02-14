@@ -1,1 +1,253 @@
-<html><head> 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"> 	<meta name="Author" content="2011/04/28,lee"> 	<meta name="Description" content="安装 Linux 或者使用 Linux 之前，先来规划一下主机吧！"> 	<title>鸟哥的 Linux 私房菜 -- Linux 主机规划与磁盘分区</title>     <script src="../script/SpryMenuBar.js" type="text/javascript"></script> 	<script src="../script/index.js" type="text/javascript"></script> 	<link href="../css/SpryMenuBarHorizontal.css" rel="stylesheet" type="text/css" />     <link href="../css/main.css" rel="stylesheet" type="text/css" />      </head><body style="margin: 0pt; padding: 0pt;" class="table"onload="MM_preloadImages('image/title_19.png','image/title_26.png','image/title_27.png','image/title_28.png','image/title_06.png','image/title_08.png','image/title_10.png','image/title_12.png')">   <!-- Copyright � 2005. Spidersoft Ltd --> <style> A.applink:hover {border: 2px dotted #DCE6F4;padding:2px;background-color:#ffff00;color:green;text-decoration:none} A.applink       {border: 2px dotted #DCE6F4;padding:2px;color:#2F5BFF;background:transparent;text-decoration:none} A.info          {color:#2F5BFF;background:transparent;text-decoration:none} A.info:hover    {color:green;background:transparent;text-decoration:underline} </style> <div style='BORDER: 1px solid #DCE6F4; MARGIN-TOP: 20px; MARGIN-BOTTOM: 20px; MARGIN-LEFT: 5px; MARGIN-RIGHT: 5px; PADDING: 5px; BACKGROUND-COLOR: #eef8ff;line-height:180%; COLOR: #000000; font-family: Arial; font-size: 8pt; width=100%; FILTER: progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr="#FFFFFFFF", EndColorStr="#F2F5FAFF");'> This page was saved using <a class="applink" href="http://www.spidersoft.com"><b>WebZIP 7.0.3.1030</b></a> <a class="applink" href="http://www.spidersoft.com"><b>offline browser</b></a>  (Unregistered) on  02/12/15 12:14:48.<br> <b>Address:</b> <a class="info" href="http://vbird.dic.ksu.edu.tw/linux_basic/0130designlinux_1.php">http://vbird.dic.ksu.edu.tw/linux_basic/0130designlinux_1.php</a><br> <b>Title:</b> 鸟哥的 Linux 私房菜 -- Linux 主机规划与磁盘分区 &nbsp;&bull;&nbsp; <b>Size:</b> 32014<br></div> <!-- /Copyright � 2005. Spidersoft Ltd -->    <center> <div id="apDiv5"> <div> <LINK REL="SHORTCUT ICON" HREF="favicon.ico"> <!-- ImageReady Slices (title3.ai) --> <table id="___01" width="898" height="81" border="0" align="center" cellpadding="0" cellspacing="0";> 	<tr> 		<td colspan="15"> 			<img src="image/title/title_01.png" width="900" height="1" alt=""></td> 	</tr> 	<tr> 		<td rowspan="4" bgcolor="#182448"><p><img src="http://linux.vbird.org/cgi-bin/Count.cgi?dd=C&ft=5&sh=T&md=8&pad=Y&df=vbird.dic.ksu.edu.tw.dat" width="93" align="left" title="計數器" /></p> 	    <p><font color="#FFFFFF" size="-1">since2012/04/23</font></p></td> 		<td rowspan="4" align="left" valign="top"><a href="http://vbird.dic.ksu.edu.tw/"><img src="image/title/title_03.png" alt="" width="263" height="79" border="0"></a></td> 		<td colspan="13"> 			<img src="image/title/title_04.png" alt="" width="535" height="9" border="0"></td> 	</tr> 	<tr> 		<td rowspan="3"> 			<img src="image/title/title_05.png" alt="" width="53" height="70" border="0"></td> 		<td colspan="2" align="left" valign="top"><a href="0110whatislinux.php.html" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image51','','image/title/title_06.png',1)"><img src="image/title/title3_06.png" name="Image51" width="106" height="25" border="0" id="Image51" alt=""/></a></td> 		<td rowspan="2"> 			<img src="image/title/title_07.png" alt="" width="27" height="37" border="0"></td> 		<td colspan="3" align="left" valign="top"><a href="http://vbird.dic.ksu.edu.tw/linux_server/0110network_basic.php" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image52','','image/title/title_08.png',1)"><img src="image/title/title3_08.png" name="Image52" width="107" height="25" border="0" id="Image52" alt=""/></a></td> 		<td rowspan="2"> 			<img src="image/title/title_09.png" alt="" width="37" height="37" border="0"></td> 		<td colspan="2" align="left" valign="top"><a href="http://vbird.dic.ksu.edu.tw/about.php" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image53','','image/title/title_10.png',1)"><img src="image/title/title3_10.png" name="Image53" width="75" height="25" border="0" id="Image53" alt=""/></a></td> 		<td rowspan="3"> 			<img src="image/title/title_11.png" alt="" width="35" height="70" border="0"></td> 		<td align="left" valign="top"><a href="mailto:vbird@mail.vbird.idv.tw" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image54','','image/title/title_12.png',1)"><img src="image/title/title3_12.png" name="Image54" width="74" height="25" border="0" id="Image54" alt=""/></a></td> 		<td rowspan="3"> 			<img src="image/title/title_13.png" alt="" width="21" height="70" border="0"></td> 	</tr> 	<tr> 		<td colspan="2"> 			<img src="image/title/title_14.png" alt="" width="106" height="12" border="0"></td> 		<td colspan="3"> 			<img src="image/title/title_15.png" alt="" width="107" height="12" border="0"></td> 		<td colspan="2"> 			<img src="image/title/title_16.png" width="75" height="12" alt=""></td> 		<td rowspan="2"> 			<img src="image/title/title_17.png" alt="" width="74" height="45" border="0"></td> 	</tr> 	<tr> 		<td> 			<img src="image/title/title_18.png" alt="" width="15" height="33" border="0"></td> 		<td colspan="3" align="left" valign="top"><ul id="MenuBar1" class="MenuBarHorizontal"> 	  <li><a href="linux_basic.php.html" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image44','','image/title/title_19.png',1)"><img src="image/title/title3_19.png" name="Image44" width="123" height="33" border="0" id="Image44" /></a> 			    <ul> 			      <li><a href="Mandrake9.0/mandrake9.0.php.html" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image46','','image/title/title_26.png',1)"><img src="image/title/title_23.png" name="Image46" width="120" height="26" border="0" id="Image46" alt="" /></a></li>                   <li><a href="fedora_4/fc4.php.html" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image47','','image/title/title_27.png',1)"><img src="image/title/title_24.png" name="Image47" width="120" height="26" border="0" id="Image47" alt="" /></a></li>                   <li><a href="linux_basic.php.html" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image48','','image/title/title_28.png',1)"><img src="image/title/title_25.png" name="Image48" width="120" height="26" border="0" id="Image48" alt="" /></a></li>                 </ul> 		      </li> 		</ul></td> 		<td> 			<img src="image/title/title_20.png" alt="" width="42" height="33" border="0"></td> 		<td colspan="3" align="left" valign="top"><ul id="MenuBar2" class="MenuBarHorizontal"> 	  <li><a href="http://vbird.dic.ksu.edu.tw/linux_server/" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image45','','image/title/title_21.png',1)"><img src="image/title/title3_21.png" name="Image45" width="125" height="33" border="0" id="Image45" /></a> 			    <ul> 			      <li><a href="http://vbird.dic.ksu.edu.tw/linux_server/linux_redhat9/redhat9.php" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image43','','image/title/title_26.png',1)"><img src="image/title/title_23.png" name="Image43" width="120" height="26" border="0" id="Image43" alt=""/></a></li> 			      <li><a href="http://vbird.dic.ksu.edu.tw/linux_server/centos4.php" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image49','','image/title/title_27.png',1)"><img src="image/title/title_24.png" name="Image49" width="120" height="26" border="0" id="Image49" alt="" /></a></li> 			      <li><a href="http://vbird.dic.ksu.edu.tw/linux_server/" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image50','','image/title/title_28.png',1)"><img src="image/title/title_25.png" name="Image50" width="120" height="26" border="0" id="Image50" alt="" /></a></li> 		        </ul> 		      </li> 		</ul></td> 		<td> 			<img src="image/title/title_22.png" alt="" width="47" height="33" border="0"></td> 	</tr> 	<tr> 		<td> 			<img src="image/title/Spacer.gif" width="101" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="263" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="53" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="15" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="91" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="27" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="5" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="42" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="60" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="37" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="28" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="47" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="35" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="74" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="22" height="1" alt=""></td> 	</tr> </table> <!-- End ImageReady Slices --> <script type="text/javascript"> <!-- var MenuBar1 = new Spry.Widget.MenuBar("MenuBar1", {imgDown:"SpryAssets/SpryMenuBarDownHover.gif", imgRight:"SpryAssets/SpryMenuBarRightHover.gif"}); var MenuBar2 = new Spry.Widget.MenuBar("MenuBar2", {imgDown:"SpryAssets/SpryMenuBarDownHover.gif", imgRight:"SpryAssets/SpryMenuBarRightHover.gif"}); //--> </script></div> <table summary="本文内容的排版" style="width: 898px;" border="0" cellpadding="0" cellspacing="0"> <tbody><tr><td style="width: 16px; height: 16px;">　</td>     <td style="width: 866px; height: 16px;">　</td>     <td style="width: 16px; height: 16px;">　</td></tr> <tr><td style="width: 16px; font-size: 6px;">　</td>     <td width="866">  <!-- 本文的档头部分 --> <div style="text-align: center;">     <a href="0130designlinux.php.html">     <span class="text_head0">第三章、主机规划与磁盘分区</span></a><br> </div>     <div style="text-align: right;">         <span class="text_history">最近升级日期：2009/08/06</span>     </div> <!-- 本文的连结区部分 --> <div class="block1"> <span class="text_h1"> 1. <a href="#hardware">Linux与硬件的搭配</a><br> 	<span class="text_h2"> 	　　1.1 <a href="#hardware_know">认识计算机的硬件配备</a><br> 	　　1.2 <a href="#hardware_select">选择与Linux搭配的主机配备</a>： <a href="#hardware_site">硬件支持相关网站</a><br> 	　　1.3 <a href="#hardware_no">各硬件装置在Linux中的档名</a><br> 	</span> </span> </div> <!-- 本文的正式部分 --> <hr><a name="hardware"></a><img src="../image/logo.png" alt="大标题的图示" width="35" align="middle" height="34"><span class="text_h1">Linux与硬件的搭配</span><br> <div class="block1"> 	<p>虽然个人计算机各组件的主要介面是大同小异的，包括前面<a href="0105computers.php.html">第零章计算机概论</a>讲到的种种介面等， 	但是由於新的技术来得太快，Linux核心针对新硬件所纳入的驱动程序模块比不上硬件升级的速度， 	加上硬件厂商针对Linux所推出的驱动程序较慢，因此你在选购新的个人计算机(或服务器)时， 	应该要选择已经过安装Linux测试的硬件比较好。</p>  	<p>此外，在安装Linux之前，你最好了解一下你的Linux预计是想达成什么任务，这样在选购硬件时才会知道那个组件是最重要的。 	举例来说，壁纸计算机(Desktop)的使用者，应该会用到X Window系统， 	此时，显卡的优劣与内存的大小可就占有很重大的影响。如果是想要做成文件服务器， 	那么硬盘或者是其他的储存设备，应该就是您最想要增购的组件罗！所以说，功课还是需要作的啊！</p>  	<p>鸟哥在这里要不厌其烦的再次的强调，Linux对於计算机各组件/装置的分辨， 	与大家惯用的Windows系统完全不一样！因为，<span class="text_import2">各个组件或装置在Linux底下都是『一个文件！』</span> 	这个观念我们在<a href="0110whatislinux.php.html">第一章Linux是什么</a>里面已经提过， 	这里我们再次的强调。因此，你在认识各项装置之后，学习Linux的装置档名之前， 	务必要先将Windows对於装置名称的概念先拿掉～否则会很难理解喔！<br><br></p>  	<hr><a name="hardware_know"></a><img src="../image/logo.png" alt="小标题的图示" width="24" align="middle" height="23"><span class="text_h2">认识计算机的硬件配备</span><br> 	<div class="block2"> 		<p>『<span class="text_import2">什么？学Linux还得要玩硬件？</span>』呵呵！没错！ 		这也是为什么鸟哥要将<a href="0105computers.php.html">计算机概论</a>搬上台面之故！ 		我们这里主要是介绍较为普遍的个人计算机架构来配置Linux服务器，因为比较便宜啦！ 		至於各相关的硬件组件说明已经在<a href="0105computers.php.html">第零章计概</a>内讲过了，这里不再重复说明。 		仅将重要的主板与组件的相关性图示如下：</p>  		<center><img src="0130designlinux_files/computer_coms.png" alt="个人计算机各组件的相关性" title="个人计算机各组件的相关性" border="1"><br> 		图1.1.1、个人计算机各组件的相关性<br>(上述图示主要取自tom's硬件指南，各组件图片分属个别公司所有)<br></center>  		<p>那么我们应该如何挑选计算机硬件呢？随便买买就好，还是有特殊的考量？底下有些思考角度可以提供给大家参考看看： 		<br><br></p>  		<hr><ul class="list1"><li><span class="text_import1">游戏机/工作机的考量</span></li></ul>  		<p>事实上，计算机主机的硬件配备与这部主机未来的功能是很有相关性的！举例来说，家里有小孩， 		或者自己仍然算是小孩的朋友大概都知道：『<span class="text_import2">要用来打Game的『游戏机计算机』 		所需要的配备一定比办公室用的『工作机计算机』配备更高档</span>』，为什么呢？ 		因为现在一般的三维(3D)计算机游戏所需要的3D光影运算太多了，所以显卡与CPU资源都会被耗用的非常多！ 		当然就需要比较高级的配备罗，尤其是在显卡、CPU(例如Intel的Core 2 Duo及AMD的Athlon64  		X2等)及主板芯片组方面的功能。</p>  		<p>至於办公室的工作环境中，最常使用到的软件大多是办公软件(Office)，最常使用的网络功能是浏览器， 		这些软件所需要的运算并不高，理论上目前的入门级计算机都能够跑得非常顺畅了！(例如Intel Celeron及AMD的Sempron)。 		甚至很多企业都喜欢购买将显卡、主板芯片组整合在一起的整合型芯片的计算机，因为便宜又好用！<br><br></p>  		<hr><ul class="list1"><li><span class="text_import1">效能/价格比的考量</span></li></ul>  		<p>并不是『贵就比较好』喔！在目前(2009)全球经济萧条的情况下，如何兼顾省钱与计算机硬件的效能问题，很重要！ 		如果你喜欢购买最新最快的计算机零件，这些刚出炉的组件都非常的贵，而且操作系统还不见得能够完整的支持。 		所以，鸟哥都比较喜欢购买主流级的产品而非最高档的。因为我们最好能够考虑到效能/价格比。 		如果高一级的产品让你的花费多一倍，但是新添加的效能却只有10%而已，那这个效能/价格的比值太低，不建议啦！</p>  		<p>此外，由於电价越来越高，如何『省电』就很重要啦！因此目前硬件评论界有所谓的『每瓦效能』的单位， 		每瓦电力所发挥的效能越高，当然代表越省电啊！这也是购买硬件时的考量之一啦！要知道，如果是做为服务器用， 		一年365天中时时刻刻都启动，则你的计算机多花费50瓦的电力时，每年就得要多花450度电左右，如果以企业来讲， 		每百部计算机每年多花450度电的话，每年得多花十万块以上的电费呢！所以这也需要考量啊！<br><br></p>  		<hr><ul class="list1"><li><span class="text_import1">支持度的考量</span></li></ul>  		<p>并非所有的产品都会支持特定的操作系统，这牵涉到硬件开发商是否有意愿提供适当的驱动程序之故。 		因此，当我们想要购买或者是升级某些计算机组件时，应该要特别注意该硬件是否有针对您的操作系统提供适当的驱动程序， 		否则，买了无法使用，那才是叫人呕死啊！因此，针对Linux来说，底下的硬件分析就重要啦！</p> 	</div>  	<hr><a name="hardware_select"></a><img src="../image/logo.png" alt="小标题的图示" width="24" align="middle" height="23"><span class="text_h2">选择与Linux搭配的主机配备</span><br> 	<div class="block2"> 		<p>由於硬件的加速发展与操作系统核心功能的增强，导致较早期的计算机已经没有能力再负荷新的操作系统了。 		举例来说，Pentun-II以前的硬件配备可能已经不再适合现在的新的Linux distribution。 		<span class="text_import2">而且较早期的硬件配备也可能由於保存的问题或者是电子零件老化的问题， 		导致这样的计算机系统反而非常容易在运行过程中出现不明的死机情况</span>，因此在利用旧零件拼凑Linux使用的计算机系统时， 		真的得要特别留意呢！</p>  		<p>不过由於Linux运行所需要的硬件配备实在不需要太高档，因此，如果有近期汰换下来的， 		<span class="text_import2">比Pentun-III 500还要新的硬件配备</span>， 		不必急著丢弃。由於P-III的硬件不算太老旧，在效能方面其实也算的上非常OK了～所以， 		鸟哥建议您如果有P-III以后等级的计算机被淘汰，可以拿下来测试一下，说不定能够作为你日常生活的Linux服务器， 		或者是备用服务器，都是非常好用的功能哩！</p>  		<p>但是由於不同的任务的主机所需要的硬件配备并不相同，举例来说，如果你的Linux主机是要作为企业内部的Mail 		server或者是Proxy server时，或者是需要使用到图形介面的运算(X Window内的Open GL等等功能)， 		那么你就必须要选择高档一点的计算机配备了，使用过去的计算机零件可能并不适合呢。</p>  		<p>底下我们稍微谈一下，如果你的Linux主要是作为小型服务器使用，并不负责学术方面的大量运算， 		而且也没有使用X Window的图形介面，那你的硬件需求只要像底下这样就差不多了：</p>  		<ul> 		<li><span class="text_import2">CPU</span><br> 		CPU只要不是老旧到会让你的硬件系统死机的都能够支持！如同前面谈到的，目前(2009)的环境中， 		Pentun-III的CPU不算太旧而且效能也不错，也就是说P-III就非常好用了。<br><br></li>  		<li><span class="text_import2">RAM</span><br> 		主内存是越大越好！事实上在Linux服务器中，主内存的重要性比CPU还要高的多！因为如果主内存不够大， 		就会使用到硬盘的内存置换空间(swap)。 		而由<a href="0105computers.php.html">计算机概论</a>的内容我们知道硬盘比内存的速度要慢的多， 		所以主内存太小可能会影响到整体系统的效能的！尤其如果你还想要玩X window的话，那主内存的容量就不能少。 		对於一般的小型服务器来说，建议至少也要512MB以上的主内存容量较佳。<br><br></li>  		<li><span class="text_import2">Hard Disk</span><br> 		由於数据量与数据存取频率的不同，对於硬盘的要求也不相同。 		举例来说，如果是一般小型服务器，通常重点在於容量，硬盘容量大於20GB就够用到不行了！ 		但如果你的服务器是作为备份或者是小企业的文件服务器，那么你可能就得要考量较高阶的磁盘阵列(RAID)模式了。<br> 		<div style="padding: 10pt 0pt;" align="right"><table width="90%"><tbody><tr><td><b>Tips:</b><br><span style="color: rgb(0, 144, 0);"><font size="-1">		磁盘阵列(RAID)是利用硬件技术将数个硬盘整合成为一个大硬盘的方法，操作系统只会看到最后被整合起来的大硬盘。 		由於磁盘阵列是由多个硬盘组成，所以可以达成速度效能、备份等任务。更多相关的磁盘阵列我们会在<a href="0420quota.php.html">第十五章</a>中介绍的。 		</font></span></td><td><img src="0130designlinux_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div></li>  		<li><span class="text_import2">VGA</span><br> 		对於不需要X Window的服务器来说，显卡算是最不重要的一个组件了！你只要有显卡能够让计算机启动，那就够了。 		但如果需要X window系统时，你的显卡最好能够拥有32MB以上的内存容量，否则跑X系统会很累喔！ 		鸟哥曾使用一块只有2MB内存的显卡跑X，光是按一个按钮就花费数分钟时间，真是折磨人家的耐心啊！<br><br></li>  		<li><span class="text_import2">Network Interface Card</span><br> 		网络卡是服务器上面最重要的组件了！目前新式的主板大多拥有10/100/1000Mbps的高速网络，不过，老实说， 		只要好一点的10/100网络卡就非常够用了！毕竟我们的频宽并没有大到Gigabit的速度！如果是小型服务器， 		一块Realtek RTL8139芯片的网卡就非常好用了，不过，如果是读取非常频繁的网站， 		好一点的Intel/3Com网卡应该是比较适合的喔。<br><br></li>  		<li><span class="text_import2">光盘、软盘、键盘与鼠标</span><br> 		不要旧到你的计算机不支持就好了，因为这些配备都是非必备的喔！举例来说，鸟哥安装好Linux系统后， 		可能就将该系统的光驱、鼠标、软盘机等通通拔除，只有网络线连接在计算机后面而已，其他的都是透过网络连线来管控的哩！ 		因为通常服务器这东西最需要的就是稳定，而稳定的最理想状态就是平时没事不要去动他是最好的。</li> 		</ul>  		<p>底下鸟哥针对一般你可能会接触到的计算机主机的用途与相关硬件配备的基本要求来说明一下好了：</p>  		<ul> 		<li>一般小型主机且不含X Window系统：<br> 			<ul> 			<li>用途：家庭用NAT主机(IP分享器功能)或小型企业之非图形介面小型主机。</li> 			<li>CPU：大於P-III 500以上等级即可。</li> 			<li>RAM：至少128MB，不过还是大於256MB以上比较妥当！</li> 			<li>网络卡：一般的10/100 Mbps即可应付。</li> 			<li>显卡：只要能够被Linux捉到的显卡即可，例如NVidia或ATI的主流显卡均可。</li> 			<li>硬盘：20GB以上即可！</li></ul><br></li> 		<li><span class="text_import2">桌上型(Desktop)Linux系统/含X Window：</span><br> 			<ul class="text_import2"> 			<li>用途：Linux的练习机或办公室(Office)工作机。(一般我们会用到的环境)</li> 			<li>CPU：最好等级高一点，例如P-4以上等级。</li> 			<li>RAM：一定要大於512MB比较好！否则容易有图形介面停顿的现象。</li> 			<li>网络卡：普通的10/100 Mbps就好了！</li> 			<li>显卡：使用32MB以上内存的显卡！</li> 			<li>硬盘：越大越好，最好有60GB。</li></ul><br></li> 		<li>中型以上Linux服务器：<br> 			<ul> 			<li>用途：中小型企业/学校单位的FTP/mail/WWW等网络服务主机。</li> 			<li>CPU：最好等级高一点，可以考虑使用双核心系统。</li> 			<li>RAM：最好能够大於1GB以上，大於4GB更好！</li> 			<li>网络卡：知名的3Com或Intel等厂牌，比较稳定效能较佳！也可选购10/100/1000 Mbps的速度。</li> 			<li>显卡：如果有使用到图形功能，则一张64MB内存的显卡是需要的！</li> 			<li>硬盘：越大越好，如果可能的话，使用磁盘阵列，或者网络硬盘等等的系统架构， 				能够具有更稳定安全的传输环境，更佳！</li> 			<li><span class="text_import2">建议企业用计算机不要自行组装，可购买商用服务器较佳，</span> 			因为商用服务器已经通过制造商的散热、稳定度等测试，对於企业来说，会是一个比较好的选择。</li></ul></li> 		</ul>  		<p class="text_import2"> 		总之，鸟哥在这里仅是提出一个方向：如果你的Linux主机是小型环境使用的，即时死机也不太会影响到企业环境的运行时， 		那么使用升级后被淘汰下来的零件以组成计算机系统来运行，那是非常好的回收再利用的案例。 		但如果你的主机系统是非常重要的，你想要更一部更稳定的Linux服务器，那考虑系统的整体搭配与运行效能的考量， 		购买已组装测试过的商用服务器会是一个比较好的选择喔！</p>  		<div style="padding: 10pt 0pt;" align="right"><table width="90%"><tbody><tr><td><b>Tips:</b><br><span style="color: rgb(0, 144, 0);"><font size="-1">		一般来说，目前(2009)的入门计算机机种，CPU至少都是Intel Core的2GHz系列的等级以上， 		主内存至少有1GB，显卡内存也有128MB以上，所以如果您是新购置的计算机， 		那么该计算机用来作为Linux的练习机，而且加装X Window系统，肯定是可以跑的吓吓叫的啦！^_^ 		</font></span></td><td><img src="0130designlinux_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div> 		<p>此外，Linux开发商在释出Linux distribution之前，都会针对该版所默认可以支持的硬件做说明， 		因此，你除了可以在Linux的Howto文件去查询硬件的支持度之外，也可以到各个相关的Linux distributions网站去查询呢！ 		底下鸟哥列出几个常用的硬件与Linux distributions搭配的网站，建议大家想要了解你的主机支不支持该版Linux时， 		务必到相关的网站去搜寻一下喔！</p>  		<a name="hardware_site"></a> 		<ul> 		<li>Red Hat的硬件支持：<a href="https://hardware.redhat.com/?pagename=hcl" target="_blank">https://hardware.redhat.com/?pagename=hcl</a></li> 		<li>Open SuSE的硬件支持：<a href="http://en.opensuse.org/Hardware?LANG=en_UK" target="_blank">http://en.opensuse.org/Hardware?LANG=en_UK</a></li> 		<li>Mandriva的硬件支持：<a href="http://hcl.mandriva.com/" target="_blank">http://hcl.mandriva.com/</a></li> 		<li>Linux对笔记本计算机的支持：<a href="http://www.linux-laptop.net/" target="_blank">http://www.linux-laptop.net/</a></li> 		<li>Linux对打印机的支持：<a href="http://www.openprinting.org/" target="_blank">http://www.openprinting.org/</a></li> 		<li>显卡对XFree86/Xorg的支持：<a href="http://www.linuxhardware.org/" target="_blank">http://www.linuxhardware.org/</a></li> 		<li>Linux硬件支持的中文HowTo：<a href="http://www.linux.org.tw/CLDP/HOWTO/hardware.html#hardware" target="_blank">http://www.linux.org.tw/CLDP/HOWTO/hardware.html#hardware</a></li> 		</ul>  		<p>总之，如果是自己维护的一个小网站，考虑到经济因素，你可以自行组装一部主机来架设。 		而如果是中、大型企业，那么主机的钱不要省～因为，省了这些钱，未来主机挂点时， 		光是要找出哪个组件出问题，或者是系统过热的问题，会气死人ㄟ！ 		而且，要注意的就是未来你的Linux主机规划的『用途』来决定你的Linux主机硬件配备喔！相当的重要呢！</p> 	</div>  	<hr><a name="hardware_no"></a><img src="../image/logo.png" alt="小标题的图示" width="24" align="middle" height="23"><span class="text_h2">各硬件装置在Linux中的档名</span><br> 	<div class="block2"> 		<p>选择好你所需要的硬件配备后，接下来得要了解一下各硬件在Linux当中所扮演的角色罗。 		这里鸟哥再次的强调一下：『<span class="text_import2">在Linux系统中，每个装置都被当成一个文件来对待</span>』 		举例来说，IDE介面的硬盘的文件名称即为<span class="text_import2">/dev/hd[a-d]</span>，其中， 		括号内的字母为a-d当中的任意一个，亦即有<span class="text_import2">/dev/hda, 		/dev/hdb, /dev/hdc, 及 /dev/hdd</span>这四个文件的意思。</p>  		<div style="padding: 10pt 0pt;" align="right"><table width="90%"><tbody><tr><td><b>Tips:</b><br><span style="color: rgb(0, 144, 0);"><font size="-1">		这种中括号[]型式的表示法在后面的章节当中会使用得很频繁，请特别留意<br><br> 		另外先提出来强调一下，在Linux这个系统当中，几乎所有的硬件装置文件都在/dev这个目录内， 		所以你会看到/dev/hda, /dev/fd0等等的档名喔。 		</font></span></td><td><img src="0130designlinux_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div> 		<p>那么打印机与软盘呢？分别是/dev/lp0, /dev/fd0罗！好了，其他的周边设备呢？ 		底下列出几个常见的装置与其在Linux当中的档名罗：</p>  <table width="95%" bgcolor="lightyellow" border="1" cellpadding="3" cellspacing="0"> <tbody><tr align="center" bgcolor="#182448"><td><font color="#FFFFFF">装置</font></td><td><font color="#FFFFFF">装置在Linux内的档名</font></td></tr> <tr class="text_import2" align="center"><td>IDE硬盘机</td><td>/dev/hd[a-d]</td></tr> <tr class="text_import2" align="center"><td>SCSI/SATA/U盘硬盘机</td><td>/dev/sd[a-p]</td></tr> <tr class="text_import2" align="center"><td>U盘快闪碟</td><td>/dev/sd[a-p](与SATA相同)</td></tr> <tr class="text_import2" align="center"><td>软盘机</td><td>/dev/fd[0-1]</td></tr> <tr class="text_import2" align="center"><td>打印机</td><td>25针: /dev/lp[0-2]<br>U盘: /dev/usb/lp[0-15]</td></tr> <tr class="text_import2" align="center"><td>鼠标</td><td>U盘: /dev/usb/mouse[0-15]<br>PS2: /dev/psaux</td></tr> <tr class="text_import2" align="center"><td>当前CDROM/DVDROM</td><td>/dev/cdrom</td></tr> <tr class="text_import2" align="center"><td>当前的鼠标</td><td>/dev/mouse</td></tr> <tr class="text_import2" align="center"><td>磁带机</td><td>IDE: /dev/ht0<br>SCSI: /dev/st0</td></tr> </tbody></table>  		<p>需要特别留意的是硬盘机(不论是IDE/SCSI/U盘都一样)，每个磁碟机的磁盘分区(partition)不同时， 		其磁碟档名还会改变呢！下一小节我们会介绍磁盘分区的相关概念啦！需要特别注意的是磁带机的档名， 		在某些不同的distribution当中可能会发现不一样的档名，需要稍微留意。 		总之，你得先背一下IDE与SATA硬盘的档名就是了！其他的，用的到再来背吧！</p>  		<div style="padding: 10pt 0pt;" align="right"><table width="90%"><tbody><tr><td><b>Tips:</b><br><span style="color: rgb(0, 144, 0);"><font size="-1">		更多Linux核心支持的硬件装置与档名，可以参考如下网页：<br> 		<a href="http://www.kernel.org/pub/linux/docs/device-list/devices.txt" target="_blank">http://www.kernel.org/pub/linux/docs/device-list/devices.txt</a> 		</font></span></td><td><img src="0130designlinux_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div>	</div> </div>   <hr />     </td>     <td style="width: 16px; font-size: 6px;">　</td></tr> <tr><td style="width: 16px; height: 16px;">　</td>     <td style="width: 866px; height: 16px;">　</td>     <td style="width: 16px; height: 16px;">　</td></tr> </tbody></table>  <div style="padding-top: 0px; text-align: center;"> <span style="font-size: 80%;"> 	<a href="http://vbird.dic.ksu.edu.tw/" target="_top" title="前往鸟哥的首页">http://linux.vbird.org</a> 	is designed by <a href="mailto:vbird@mail.vbird.idv.tw" title="联络鸟哥(我不要广告信！)">VBird</a> 		during 2001-2011. <a href="http://www.ksu.edu.tw/" target="_blank">ksu.edu</a></span>          ﻿<div id="apDiv4">       <p>本网页主要以Firefox配合解析度 1024x768 作为设计依据&nbsp;&nbsp;&nbsp;&nbsp; 鸟哥自由软件整合应用研究室</p></div></div> </div> </center> </body></html> 
+<?xml version="1.0" encoding="utf-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"    "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><title>第三章、主机规划与磁盘分区</title><link href="../Styles/style.css" rel="stylesheet" type="text/css" /></head><body>
+
+<!-- 本文的档头部分 -->
+<div style="text-align: center;">
+    <a href="0130designlinux.php.html">
+    <span class="text_head0">第三章、主机规划与磁盘分区</span></a><br>
+</div>
+    <div style="text-align: right;">
+        <span class="text_history">最近升级日期：2009/08/06</span>
+    </div>
+<!-- 本文的连结区部分 -->
+<div class="block1">
+<span class="text_h1">
+1. <a href="#hardware">Linux与硬件的搭配</a><br>
+	<span class="text_h2">
+	　　1.1 <a href="#hardware_know">认识计算机的硬件配备</a><br>
+	　　1.2 <a href="#hardware_select">选择与Linux搭配的主机配备</a>： <a href="#hardware_site">硬件支持相关网站</a><br>
+	　　1.3 <a href="#hardware_no">各硬件装置在Linux中的档名</a><br>
+	</span>
+</span>
+</div>
+<!-- 本文的正式部分 -->
+<hr><a name="hardware"></a><img src="../images/logo.png" alt="大标题的图示" width="35" align="middle" height="34"><span class="text_h1">Linux与硬件的搭配</span><br>
+<div class="block1">
+	<p>虽然个人计算机各组件的主要介面是大同小异的，包括前面<a href="0105computers.php.html">第零章计算机概论</a>讲到的种种介面等，
+	但是由於新的技术来得太快，Linux核心针对新硬件所纳入的驱动程序模块比不上硬件升级的速度，
+	加上硬件厂商针对Linux所推出的驱动程序较慢，因此你在选购新的个人计算机(或服务器)时，
+	应该要选择已经过安装Linux测试的硬件比较好。</p>
+
+	<p>此外，在安装Linux之前，你最好了解一下你的Linux预计是想达成什么任务，这样在选购硬件时才会知道那个组件是最重要的。
+	举例来说，壁纸计算机(Desktop)的使用者，应该会用到X Window系统，
+	此时，显卡的优劣与内存的大小可就占有很重大的影响。如果是想要做成文件服务器，
+	那么硬盘或者是其他的储存设备，应该就是您最想要增购的组件罗！所以说，功课还是需要作的啊！</p>
+
+	<p>鸟哥在这里要不厌其烦的再次的强调，Linux对於计算机各组件/装置的分辨，
+	与大家惯用的Windows系统完全不一样！因为，<span class="text_import2">各个组件或装置在Linux底下都是『一个文件！』</span>
+	这个观念我们在<a href="0110whatislinux.php.html">第一章Linux是什么</a>里面已经提过，
+	这里我们再次的强调。因此，你在认识各项装置之后，学习Linux的装置档名之前，
+	务必要先将Windows对於装置名称的概念先拿掉～否则会很难理解喔！<br><br></p>
+
+	<hr><a name="hardware_know"></a><img src="../images/logo.png" alt="小标题的图示" width="24" align="middle" height="23"><span class="text_h2">认识计算机的硬件配备</span><br>
+	<div class="block2">
+		<p>『<span class="text_import2">什么？学Linux还得要玩硬件？</span>』呵呵！没错！
+		这也是为什么鸟哥要将<a href="0105computers.php.html">计算机概论</a>搬上台面之故！
+		我们这里主要是介绍较为普遍的个人计算机架构来配置Linux服务器，因为比较便宜啦！
+		至於各相关的硬件组件说明已经在<a href="0105computers.php.html">第零章计概</a>内讲过了，这里不再重复说明。
+		仅将重要的主板与组件的相关性图示如下：</p>
+
+		<center><img src="0130designlinux_files/computer_coms.png" alt="个人计算机各组件的相关性" title="个人计算机各组件的相关性" border="1"><br>
+		图1.1.1、个人计算机各组件的相关性<br>(上述图示主要取自tom's硬件指南，各组件图片分属个别公司所有)<br></center>
+
+		<p>那么我们应该如何挑选计算机硬件呢？随便买买就好，还是有特殊的考量？底下有些思考角度可以提供给大家参考看看：
+		<br><br></p>
+
+		<hr><ul class="list1"><li><span class="text_import1">游戏机/工作机的考量</span></li></ul>
+
+		<p>事实上，计算机主机的硬件配备与这部主机未来的功能是很有相关性的！举例来说，家里有小孩，
+		或者自己仍然算是小孩的朋友大概都知道：『<span class="text_import2">要用来打Game的『游戏机计算机』
+		所需要的配备一定比办公室用的『工作机计算机』配备更高档</span>』，为什么呢？
+		因为现在一般的三维(3D)计算机游戏所需要的3D光影运算太多了，所以显卡与CPU资源都会被耗用的非常多！
+		当然就需要比较高级的配备罗，尤其是在显卡、CPU(例如Intel的Core 2 Duo及AMD的Athlon64 
+		X2等)及主板芯片组方面的功能。</p>
+
+		<p>至於办公室的工作环境中，最常使用到的软件大多是办公软件(Office)，最常使用的网络功能是浏览器，
+		这些软件所需要的运算并不高，理论上目前的入门级计算机都能够跑得非常顺畅了！(例如Intel Celeron及AMD的Sempron)。
+		甚至很多企业都喜欢购买将显卡、主板芯片组整合在一起的整合型芯片的计算机，因为便宜又好用！<br><br></p>
+
+		<hr><ul class="list1"><li><span class="text_import1">效能/价格比的考量</span></li></ul>
+
+		<p>并不是『贵就比较好』喔！在目前(2009)全球经济萧条的情况下，如何兼顾省钱与计算机硬件的效能问题，很重要！
+		如果你喜欢购买最新最快的计算机零件，这些刚出炉的组件都非常的贵，而且操作系统还不见得能够完整的支持。
+		所以，鸟哥都比较喜欢购买主流级的产品而非最高档的。因为我们最好能够考虑到效能/价格比。
+		如果高一级的产品让你的花费多一倍，但是新添加的效能却只有10%而已，那这个效能/价格的比值太低，不建议啦！</p>
+
+		<p>此外，由於电价越来越高，如何『省电』就很重要啦！因此目前硬件评论界有所谓的『每瓦效能』的单位，
+		每瓦电力所发挥的效能越高，当然代表越省电啊！这也是购买硬件时的考量之一啦！要知道，如果是做为服务器用，
+		一年365天中时时刻刻都启动，则你的计算机多花费50瓦的电力时，每年就得要多花450度电左右，如果以企业来讲，
+		每百部计算机每年多花450度电的话，每年得多花十万块以上的电费呢！所以这也需要考量啊！<br><br></p>
+
+		<hr><ul class="list1"><li><span class="text_import1">支持度的考量</span></li></ul>
+
+		<p>并非所有的产品都会支持特定的操作系统，这牵涉到硬件开发商是否有意愿提供适当的驱动程序之故。
+		因此，当我们想要购买或者是升级某些计算机组件时，应该要特别注意该硬件是否有针对您的操作系统提供适当的驱动程序，
+		否则，买了无法使用，那才是叫人呕死啊！因此，针对Linux来说，底下的硬件分析就重要啦！</p>
+	</div>
+
+	<hr><a name="hardware_select"></a><img src="../images/logo.png" alt="小标题的图示" width="24" align="middle" height="23"><span class="text_h2">选择与Linux搭配的主机配备</span><br>
+	<div class="block2">
+		<p>由於硬件的加速发展与操作系统核心功能的增强，导致较早期的计算机已经没有能力再负荷新的操作系统了。
+		举例来说，Pentun-II以前的硬件配备可能已经不再适合现在的新的Linux distribution。
+		<span class="text_import2">而且较早期的硬件配备也可能由於保存的问题或者是电子零件老化的问题，
+		导致这样的计算机系统反而非常容易在运行过程中出现不明的死机情况</span>，因此在利用旧零件拼凑Linux使用的计算机系统时，
+		真的得要特别留意呢！</p>
+
+		<p>不过由於Linux运行所需要的硬件配备实在不需要太高档，因此，如果有近期汰换下来的，
+		<span class="text_import2">比Pentun-III 500还要新的硬件配备</span>，
+		不必急著丢弃。由於P-III的硬件不算太老旧，在效能方面其实也算的上非常OK了～所以，
+		鸟哥建议您如果有P-III以后等级的计算机被淘汰，可以拿下来测试一下，说不定能够作为你日常生活的Linux服务器，
+		或者是备用服务器，都是非常好用的功能哩！</p>
+
+		<p>但是由於不同的任务的主机所需要的硬件配备并不相同，举例来说，如果你的Linux主机是要作为企业内部的Mail
+		server或者是Proxy server时，或者是需要使用到图形介面的运算(X Window内的Open GL等等功能)，
+		那么你就必须要选择高档一点的计算机配备了，使用过去的计算机零件可能并不适合呢。</p>
+
+		<p>底下我们稍微谈一下，如果你的Linux主要是作为小型服务器使用，并不负责学术方面的大量运算，
+		而且也没有使用X Window的图形介面，那你的硬件需求只要像底下这样就差不多了：</p>
+
+		<ul>
+		<li><span class="text_import2">CPU</span><br>
+		CPU只要不是老旧到会让你的硬件系统死机的都能够支持！如同前面谈到的，目前(2009)的环境中，
+		Pentun-III的CPU不算太旧而且效能也不错，也就是说P-III就非常好用了。<br><br></li>
+
+		<li><span class="text_import2">RAM</span><br>
+		主内存是越大越好！事实上在Linux服务器中，主内存的重要性比CPU还要高的多！因为如果主内存不够大，
+		就会使用到硬盘的内存置换空间(swap)。
+		而由<a href="0105computers.php.html">计算机概论</a>的内容我们知道硬盘比内存的速度要慢的多，
+		所以主内存太小可能会影响到整体系统的效能的！尤其如果你还想要玩X window的话，那主内存的容量就不能少。
+		对於一般的小型服务器来说，建议至少也要512MB以上的主内存容量较佳。<br><br></li>
+
+		<li><span class="text_import2">Hard Disk</span><br>
+		由於数据量与数据存取频率的不同，对於硬盘的要求也不相同。
+		举例来说，如果是一般小型服务器，通常重点在於容量，硬盘容量大於20GB就够用到不行了！
+		但如果你的服务器是作为备份或者是小企业的文件服务器，那么你可能就得要考量较高阶的磁盘阵列(RAID)模式了。<br>
+		<div style="padding: 10pt 0pt;" align="right"><table width="90%"><tbody><tr><td><b>Tips:</b><br><span style="color: rgb(0, 144, 0);"><font size="-1">		磁盘阵列(RAID)是利用硬件技术将数个硬盘整合成为一个大硬盘的方法，操作系统只会看到最后被整合起来的大硬盘。
+		由於磁盘阵列是由多个硬盘组成，所以可以达成速度效能、备份等任务。更多相关的磁盘阵列我们会在<a href="0420quota.php.html">第十五章</a>中介绍的。
+		</font></span></td><td><img src="0130designlinux_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div></li>
+
+		<li><span class="text_import2">VGA</span><br>
+		对於不需要X Window的服务器来说，显卡算是最不重要的一个组件了！你只要有显卡能够让计算机启动，那就够了。
+		但如果需要X window系统时，你的显卡最好能够拥有32MB以上的内存容量，否则跑X系统会很累喔！
+		鸟哥曾使用一块只有2MB内存的显卡跑X，光是按一个按钮就花费数分钟时间，真是折磨人家的耐心啊！<br><br></li>
+
+		<li><span class="text_import2">Network Interface Card</span><br>
+		网络卡是服务器上面最重要的组件了！目前新式的主板大多拥有10/100/1000Mbps的高速网络，不过，老实说，
+		只要好一点的10/100网络卡就非常够用了！毕竟我们的频宽并没有大到Gigabit的速度！如果是小型服务器，
+		一块Realtek RTL8139芯片的网卡就非常好用了，不过，如果是读取非常频繁的网站，
+		好一点的Intel/3Com网卡应该是比较适合的喔。<br><br></li>
+
+		<li><span class="text_import2">光盘、软盘、键盘与鼠标</span><br>
+		不要旧到你的计算机不支持就好了，因为这些配备都是非必备的喔！举例来说，鸟哥安装好Linux系统后，
+		可能就将该系统的光驱、鼠标、软盘机等通通拔除，只有网络线连接在计算机后面而已，其他的都是透过网络连线来管控的哩！
+		因为通常服务器这东西最需要的就是稳定，而稳定的最理想状态就是平时没事不要去动他是最好的。</li>
+		</ul>
+
+		<p>底下鸟哥针对一般你可能会接触到的计算机主机的用途与相关硬件配备的基本要求来说明一下好了：</p>
+
+		<ul>
+		<li>一般小型主机且不含X Window系统：<br>
+			<ul>
+			<li>用途：家庭用NAT主机(IP分享器功能)或小型企业之非图形介面小型主机。</li>
+			<li>CPU：大於P-III 500以上等级即可。</li>
+			<li>RAM：至少128MB，不过还是大於256MB以上比较妥当！</li>
+			<li>网络卡：一般的10/100 Mbps即可应付。</li>
+			<li>显卡：只要能够被Linux捉到的显卡即可，例如NVidia或ATI的主流显卡均可。</li>
+			<li>硬盘：20GB以上即可！</li></ul><br></li>
+		<li><span class="text_import2">桌上型(Desktop)Linux系统/含X Window：</span><br>
+			<ul class="text_import2">
+			<li>用途：Linux的练习机或办公室(Office)工作机。(一般我们会用到的环境)</li>
+			<li>CPU：最好等级高一点，例如P-4以上等级。</li>
+			<li>RAM：一定要大於512MB比较好！否则容易有图形介面停顿的现象。</li>
+			<li>网络卡：普通的10/100 Mbps就好了！</li>
+			<li>显卡：使用32MB以上内存的显卡！</li>
+			<li>硬盘：越大越好，最好有60GB。</li></ul><br></li>
+		<li>中型以上Linux服务器：<br>
+			<ul>
+			<li>用途：中小型企业/学校单位的FTP/mail/WWW等网络服务主机。</li>
+			<li>CPU：最好等级高一点，可以考虑使用双核心系统。</li>
+			<li>RAM：最好能够大於1GB以上，大於4GB更好！</li>
+			<li>网络卡：知名的3Com或Intel等厂牌，比较稳定效能较佳！也可选购10/100/1000 Mbps的速度。</li>
+			<li>显卡：如果有使用到图形功能，则一张64MB内存的显卡是需要的！</li>
+			<li>硬盘：越大越好，如果可能的话，使用磁盘阵列，或者网络硬盘等等的系统架构，
+				能够具有更稳定安全的传输环境，更佳！</li>
+			<li><span class="text_import2">建议企业用计算机不要自行组装，可购买商用服务器较佳，</span>
+			因为商用服务器已经通过制造商的散热、稳定度等测试，对於企业来说，会是一个比较好的选择。</li></ul></li>
+		</ul>
+
+		<p class="text_import2">
+		总之，鸟哥在这里仅是提出一个方向：如果你的Linux主机是小型环境使用的，即时死机也不太会影响到企业环境的运行时，
+		那么使用升级后被淘汰下来的零件以组成计算机系统来运行，那是非常好的回收再利用的案例。
+		但如果你的主机系统是非常重要的，你想要更一部更稳定的Linux服务器，那考虑系统的整体搭配与运行效能的考量，
+		购买已组装测试过的商用服务器会是一个比较好的选择喔！</p>
+
+		<div style="padding: 10pt 0pt;" align="right"><table width="90%"><tbody><tr><td><b>Tips:</b><br><span style="color: rgb(0, 144, 0);"><font size="-1">		一般来说，目前(2009)的入门计算机机种，CPU至少都是Intel Core的2GHz系列的等级以上，
+		主内存至少有1GB，显卡内存也有128MB以上，所以如果您是新购置的计算机，
+		那么该计算机用来作为Linux的练习机，而且加装X Window系统，肯定是可以跑的吓吓叫的啦！^_^
+		</font></span></td><td><img src="0130designlinux_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div>
+		<p>此外，Linux开发商在释出Linux distribution之前，都会针对该版所默认可以支持的硬件做说明，
+		因此，你除了可以在Linux的Howto文件去查询硬件的支持度之外，也可以到各个相关的Linux distributions网站去查询呢！
+		底下鸟哥列出几个常用的硬件与Linux distributions搭配的网站，建议大家想要了解你的主机支不支持该版Linux时，
+		务必到相关的网站去搜寻一下喔！</p>
+
+		<a name="hardware_site"></a>
+		<ul>
+		<li>Red Hat的硬件支持：<a href="https://hardware.redhat.com/?pagename=hcl" target="_blank">https://hardware.redhat.com/?pagename=hcl</a></li>
+		<li>Open SuSE的硬件支持：<a href="http://en.opensuse.org/Hardware?LANG=en_UK" target="_blank">http://en.opensuse.org/Hardware?LANG=en_UK</a></li>
+		<li>Mandriva的硬件支持：<a href="http://hcl.mandriva.com/" target="_blank">http://hcl.mandriva.com/</a></li>
+		<li>Linux对笔记本计算机的支持：<a href="http://www.linux-laptop.net/" target="_blank">http://www.linux-laptop.net/</a></li>
+		<li>Linux对打印机的支持：<a href="http://www.openprinting.org/" target="_blank">http://www.openprinting.org/</a></li>
+		<li>显卡对XFree86/Xorg的支持：<a href="http://www.linuxhardware.org/" target="_blank">http://www.linuxhardware.org/</a></li>
+		<li>Linux硬件支持的中文HowTo：<a href="http://www.linux.org.tw/CLDP/HOWTO/hardware.html#hardware" target="_blank">http://www.linux.org.tw/CLDP/HOWTO/hardware.html#hardware</a></li>
+		</ul>
+
+		<p>总之，如果是自己维护的一个小网站，考虑到经济因素，你可以自行组装一部主机来架设。
+		而如果是中、大型企业，那么主机的钱不要省～因为，省了这些钱，未来主机挂点时，
+		光是要找出哪个组件出问题，或者是系统过热的问题，会气死人ㄟ！
+		而且，要注意的就是未来你的Linux主机规划的『用途』来决定你的Linux主机硬件配备喔！相当的重要呢！</p>
+	</div>
+
+	<hr><a name="hardware_no"></a><img src="../images/logo.png" alt="小标题的图示" width="24" align="middle" height="23"><span class="text_h2">各硬件装置在Linux中的档名</span><br>
+	<div class="block2">
+		<p>选择好你所需要的硬件配备后，接下来得要了解一下各硬件在Linux当中所扮演的角色罗。
+		这里鸟哥再次的强调一下：『<span class="text_import2">在Linux系统中，每个装置都被当成一个文件来对待</span>』
+		举例来说，IDE介面的硬盘的文件名称即为<span class="text_import2">/dev/hd[a-d]</span>，其中，
+		括号内的字母为a-d当中的任意一个，亦即有<span class="text_import2">/dev/hda,
+		/dev/hdb, /dev/hdc, 及 /dev/hdd</span>这四个文件的意思。</p>
+
+		<div style="padding: 10pt 0pt;" align="right"><table width="90%"><tbody><tr><td><b>Tips:</b><br><span style="color: rgb(0, 144, 0);"><font size="-1">		这种中括号[]型式的表示法在后面的章节当中会使用得很频繁，请特别留意<br><br>
+		另外先提出来强调一下，在Linux这个系统当中，几乎所有的硬件装置文件都在/dev这个目录内，
+		所以你会看到/dev/hda, /dev/fd0等等的档名喔。
+		</font></span></td><td><img src="0130designlinux_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div>
+		<p>那么打印机与软盘呢？分别是/dev/lp0, /dev/fd0罗！好了，其他的周边设备呢？
+		底下列出几个常见的装置与其在Linux当中的档名罗：</p>
+
+<table width="95%" bgcolor="lightyellow" border="1" cellpadding="3" cellspacing="0">
+<tbody><tr align="center" bgcolor="#182448"><td><font color="#FFFFFF">装置</font></td><td><font color="#FFFFFF">装置在Linux内的档名</font></td></tr>
+<tr class="text_import2" align="center"><td>IDE硬盘机</td><td>/dev/hd[a-d]</td></tr>
+<tr class="text_import2" align="center"><td>SCSI/SATA/U盘硬盘机</td><td>/dev/sd[a-p]</td></tr>
+<tr class="text_import2" align="center"><td>U盘快闪碟</td><td>/dev/sd[a-p](与SATA相同)</td></tr>
+<tr class="text_import2" align="center"><td>软盘机</td><td>/dev/fd[0-1]</td></tr>
+<tr class="text_import2" align="center"><td>打印机</td><td>25针: /dev/lp[0-2]<br>U盘: /dev/usb/lp[0-15]</td></tr>
+<tr class="text_import2" align="center"><td>鼠标</td><td>U盘: /dev/usb/mouse[0-15]<br>PS2: /dev/psaux</td></tr>
+<tr class="text_import2" align="center"><td>当前CDROM/DVDROM</td><td>/dev/cdrom</td></tr>
+<tr class="text_import2" align="center"><td>当前的鼠标</td><td>/dev/mouse</td></tr>
+<tr class="text_import2" align="center"><td>磁带机</td><td>IDE: /dev/ht0<br>SCSI: /dev/st0</td></tr>
+</tbody></table>
+
+		<p>需要特别留意的是硬盘机(不论是IDE/SCSI/U盘都一样)，每个磁碟机的磁盘分区(partition)不同时，
+		其磁碟档名还会改变呢！下一小节我们会介绍磁盘分区的相关概念啦！需要特别注意的是磁带机的档名，
+		在某些不同的distribution当中可能会发现不一样的档名，需要稍微留意。
+		总之，你得先背一下IDE与SATA硬盘的档名就是了！其他的，用的到再来背吧！</p>
+
+		<div style="padding: 10pt 0pt;" align="right"><table width="90%"><tbody><tr><td><b>Tips:</b><br><span style="color: rgb(0, 144, 0);"><font size="-1">		更多Linux核心支持的硬件装置与档名，可以参考如下网页：<br>
+		<a href="http://www.kernel.org/pub/linux/docs/device-list/devices.txt" target="_blank">http://www.kernel.org/pub/linux/docs/device-list/devices.txt</a>
+		</font></span></td><td><img src="0130designlinux_files/vbird_face.gif" alt="鸟哥的图示" title="鸟哥的图示"></td></tr></tbody></table></div>	</div>
+</div>
+
+
+<hr />
+    </td>
+    <td style="width: 16px; font-size: 6px;">　</td></tr>
+<tr><td style="width: 16px; height: 16px;">　</td>
+    <td style="width: 866px; height: 16px;">　</td>
+    <td style="width: 16px; height: 16px;">　</body></html>

@@ -1,1 +1,217 @@
-<html><head> 	<meta http-equiv="Content-Type" content="text/html; charset=utf8"> 	<meta name="Author" content="2011/04/18,lee"> 	<meta name="Description" content="学习 Shell Scripts"> 	<title>鸟哥的 Linux 私房菜 -- 学习 Shell Scripts</title>     <script src="../script/SpryMenuBar.js" type="text/javascript"></script> 	<script src="../script/index.js" type="text/javascript"></script> 	<link href="../css/SpryMenuBarHorizontal.css" rel="stylesheet" type="text/css" />     <link href="../css/main.css" rel="stylesheet" type="text/css" />     </head><body style="margin: 0pt; padding: 0pt;" class="table"onload="MM_preloadImages('image/title_19.png','image/title_26.png','image/title_27.png','image/title_28.png','image/title_06.png','image/title_08.png','image/title_10.png','image/title_12.png')">   <!-- Copyright � 2005. Spidersoft Ltd --> <style> A.applink:hover {border: 2px dotted #DCE6F4;padding:2px;background-color:#ffff00;color:green;text-decoration:none} A.applink       {border: 2px dotted #DCE6F4;padding:2px;color:#2F5BFF;background:transparent;text-decoration:none} A.info          {color:#2F5BFF;background:transparent;text-decoration:none} A.info:hover    {color:green;background:transparent;text-decoration:underline} </style> <div style='BORDER: 1px solid #DCE6F4; MARGIN-TOP: 20px; MARGIN-BOTTOM: 20px; MARGIN-LEFT: 5px; MARGIN-RIGHT: 5px; PADDING: 5px; BACKGROUND-COLOR: #eef8ff;line-height:180%; COLOR: #000000; font-family: Arial; font-size: 8pt; width=100%; FILTER: progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr="#FFFFFFFF", EndColorStr="#F2F5FAFF");'> This page was saved using <a class="applink" href="http://www.spidersoft.com"><b>WebZIP 7.0.3.1030</b></a> <a class="applink" href="http://www.spidersoft.com"><b>offline browser</b></a>  (Unregistered) on  02/12/15 12:14:49.<br> <b>Address:</b> <a class="info" href="http://vbird.dic.ksu.edu.tw/linux_basic/0340bashshell-scripts_2.php">http://vbird.dic.ksu.edu.tw/linux_basic/0340bashshell-scripts_2.php</a><br> <b>Title:</b> 鸟哥的 Linux 私房菜 -- 学习 Shell Scripts &nbsp;&bull;&nbsp; <b>Size:</b> 24531<br></div> <!-- /Copyright � 2005. Spidersoft Ltd -->    <center> <div id="apDiv5"> <div> <LINK REL="SHORTCUT ICON" HREF="favicon.ico"> <!-- ImageReady Slices (title3.ai) --> <table id="___01" width="898" height="81" border="0" align="center" cellpadding="0" cellspacing="0";> 	<tr> 		<td colspan="15"> 			<img src="image/title/title_01.png" width="900" height="1" alt=""></td> 	</tr> 	<tr> 		<td rowspan="4" bgcolor="#182448"><p><img src="http://linux.vbird.org/cgi-bin/Count.cgi?dd=C&ft=5&sh=T&md=8&pad=Y&df=vbird.dic.ksu.edu.tw.dat" width="93" align="left" title="計數器" /></p> 	    <p><font color="#FFFFFF" size="-1">since2012/04/23</font></p></td> 		<td rowspan="4" align="left" valign="top"><a href="http://vbird.dic.ksu.edu.tw/"><img src="image/title/title_03.png" alt="" width="263" height="79" border="0"></a></td> 		<td colspan="13"> 			<img src="image/title/title_04.png" alt="" width="535" height="9" border="0"></td> 	</tr> 	<tr> 		<td rowspan="3"> 			<img src="image/title/title_05.png" alt="" width="53" height="70" border="0"></td> 		<td colspan="2" align="left" valign="top"><a href="0110whatislinux.php.html" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image51','','image/title/title_06.png',1)"><img src="image/title/title3_06.png" name="Image51" width="106" height="25" border="0" id="Image51" alt=""/></a></td> 		<td rowspan="2"> 			<img src="image/title/title_07.png" alt="" width="27" height="37" border="0"></td> 		<td colspan="3" align="left" valign="top"><a href="http://vbird.dic.ksu.edu.tw/linux_server/0110network_basic.php" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image52','','image/title/title_08.png',1)"><img src="image/title/title3_08.png" name="Image52" width="107" height="25" border="0" id="Image52" alt=""/></a></td> 		<td rowspan="2"> 			<img src="image/title/title_09.png" alt="" width="37" height="37" border="0"></td> 		<td colspan="2" align="left" valign="top"><a href="http://vbird.dic.ksu.edu.tw/about.php" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image53','','image/title/title_10.png',1)"><img src="image/title/title3_10.png" name="Image53" width="75" height="25" border="0" id="Image53" alt=""/></a></td> 		<td rowspan="3"> 			<img src="image/title/title_11.png" alt="" width="35" height="70" border="0"></td> 		<td align="left" valign="top"><a href="mailto:vbird@mail.vbird.idv.tw" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image54','','image/title/title_12.png',1)"><img src="image/title/title3_12.png" name="Image54" width="74" height="25" border="0" id="Image54" alt=""/></a></td> 		<td rowspan="3"> 			<img src="image/title/title_13.png" alt="" width="21" height="70" border="0"></td> 	</tr> 	<tr> 		<td colspan="2"> 			<img src="image/title/title_14.png" alt="" width="106" height="12" border="0"></td> 		<td colspan="3"> 			<img src="image/title/title_15.png" alt="" width="107" height="12" border="0"></td> 		<td colspan="2"> 			<img src="image/title/title_16.png" width="75" height="12" alt=""></td> 		<td rowspan="2"> 			<img src="image/title/title_17.png" alt="" width="74" height="45" border="0"></td> 	</tr> 	<tr> 		<td> 			<img src="image/title/title_18.png" alt="" width="15" height="33" border="0"></td> 		<td colspan="3" align="left" valign="top"><ul id="MenuBar1" class="MenuBarHorizontal"> 	  <li><a href="linux_basic.php.html" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image44','','image/title/title_19.png',1)"><img src="image/title/title3_19.png" name="Image44" width="123" height="33" border="0" id="Image44" /></a> 			    <ul> 			      <li><a href="Mandrake9.0/mandrake9.0.php.html" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image46','','image/title/title_26.png',1)"><img src="image/title/title_23.png" name="Image46" width="120" height="26" border="0" id="Image46" alt="" /></a></li>                   <li><a href="fedora_4/fc4.php.html" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image47','','image/title/title_27.png',1)"><img src="image/title/title_24.png" name="Image47" width="120" height="26" border="0" id="Image47" alt="" /></a></li>                   <li><a href="linux_basic.php.html" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image48','','image/title/title_28.png',1)"><img src="image/title/title_25.png" name="Image48" width="120" height="26" border="0" id="Image48" alt="" /></a></li>                 </ul> 		      </li> 		</ul></td> 		<td> 			<img src="image/title/title_20.png" alt="" width="42" height="33" border="0"></td> 		<td colspan="3" align="left" valign="top"><ul id="MenuBar2" class="MenuBarHorizontal"> 	  <li><a href="http://vbird.dic.ksu.edu.tw/linux_server/" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image45','','image/title/title_21.png',1)"><img src="image/title/title3_21.png" name="Image45" width="125" height="33" border="0" id="Image45" /></a> 			    <ul> 			      <li><a href="http://vbird.dic.ksu.edu.tw/linux_server/linux_redhat9/redhat9.php" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image43','','image/title/title_26.png',1)"><img src="image/title/title_23.png" name="Image43" width="120" height="26" border="0" id="Image43" alt=""/></a></li> 			      <li><a href="http://vbird.dic.ksu.edu.tw/linux_server/centos4.php" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image49','','image/title/title_27.png',1)"><img src="image/title/title_24.png" name="Image49" width="120" height="26" border="0" id="Image49" alt="" /></a></li> 			      <li><a href="http://vbird.dic.ksu.edu.tw/linux_server/" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image50','','image/title/title_28.png',1)"><img src="image/title/title_25.png" name="Image50" width="120" height="26" border="0" id="Image50" alt="" /></a></li> 		        </ul> 		      </li> 		</ul></td> 		<td> 			<img src="image/title/title_22.png" alt="" width="47" height="33" border="0"></td> 	</tr> 	<tr> 		<td> 			<img src="image/title/Spacer.gif" width="101" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="263" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="53" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="15" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="91" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="27" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="5" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="42" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="60" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="37" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="28" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="47" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="35" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="74" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="22" height="1" alt=""></td> 	</tr> </table> <!-- End ImageReady Slices --> <script type="text/javascript"> <!-- var MenuBar1 = new Spry.Widget.MenuBar("MenuBar1", {imgDown:"SpryAssets/SpryMenuBarDownHover.gif", imgRight:"SpryAssets/SpryMenuBarRightHover.gif"}); var MenuBar2 = new Spry.Widget.MenuBar("MenuBar2", {imgDown:"SpryAssets/SpryMenuBarDownHover.gif", imgRight:"SpryAssets/SpryMenuBarRightHover.gif"}); //--> </script></div> <table summary="本文内容的排版" style="width: 898px;" border="0" cellpadding="0" cellspacing="0"> <tbody><tr><td style="width: 16px; height: 16px;">　</td>     <td style="width: 866px; height: 16px;">　</td>     <td style="width: 16px; height: 16px;">　</td></tr> <tr><td style="width: 16px; font-size: 6px;">　</td>     <td width="866">  <!-- 本文的档头部分 --> <div style="text-align: center;">     <a href="0340bashshell-scripts.php.html">     <span class="text_head0">第十三章、学习<span class="text_head_en"> Shell Scripts</span></span></a><br> </div>     <div style="text-align: right;">         <span class="text_history">最近升级日期：2009/02/18</span>     </div> <!-- 本文的连结区部分 --> <div class="block1"> <span class="text_h1"> 2. <a href="#some_ex">简单的 shell script 练习</a><br> 	<span class="text_h2"> 	　　2.1 <a href="#some_ex_simple">简单范例</a>： <a href="#ex_read">对谈式脚本</a>,  		<a href="#ex_date">随日期变化</a>, <a href="#ex_cal">数值运算</a><br> 	　　2.2 <a href="#some_ex_run">script 的运行方式差异 (source, sh script, ./script)</a><br> 	</span> </span></div> <!-- 本文的正式部分 --> <hr><a name="some_ex"></a><img src="../image/logo.png" alt="大标题的图示" width="35" align="middle" height="34"><span class="text_h1">简单的 shell script 练习</span><br> <div class="block1"> 	<p>在第一支 shell script 撰写完毕之后，相信你应该具有基本的撰写功力了。 	接下来，在开始更深入的程序概念之前，我们先来玩一些简单的小范例好了。 	底下的范例中，达成结果的方式相当的多，建议你先自行撰写看看，写完之后再与鸟哥写的内容比对， 	这样才能更加深概念喔！好！不罗唆，我们就一个一个来玩吧！<br><br></p>  	<hr><a name="some_ex_simple"></a><img src="../image/logo.png" alt="小标题的图示" width="24" align="middle" height="23"><span class="text_h2">简单范例</span><br> 	<div class="block2"> 		<p>底下的范例在很多的脚本程序中都会用到，而底下的范例又都很简单！值得参考看看喔！<br><br></p>  		<a name="ex_read"></a> 		<hr><ul class="list1"><li class="text_import1">对谈式脚本：变量内容由使用者决定</li></ul>  		<p>很多时候我们需要使用者输入一些内容，好让程序可以顺利运行。 		简单的来说，大家应该都有安装过软件的经验，安装的时候，他不是会问你『要安装到那个目录去』吗？ 		那个让使用者输入数据的动作，就是让使用者输入变量内容啦。</p>  		<p>你应该还记得在<a href="0320bash.php.html">十一章 bash</a> 的时候，我们有学到一个  		<a href="http://vbird.dic.ksu.edu.tw/linux_basic/0320bash.php#read">read</a> 命令吧？现在，请你以 read 命令的用途，撰写一个  		script ，他可以让使用者输入：1. first name 与 2. last name， 		最后并且在萤幕上显示：『Your full name is: 』的内容：</p>  <table class="term"><tbody><tr><td class="term"><pre>[root@www scripts]# <span class="term_command">vi sh02.sh</span> <span class="term_write">#!/bin/bash # Program: #	User inputs his first name and last name.  Program shows his full name. # History: # 2005/08/23	VBird	First release PATH=/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin:~/bin export PATH  read -p "Please input your first name: " firstname  <span class="term_note"># 提示使用者输入</span> read -p "Please input your last name:  " lastname   <span class="term_note"># 提示使用者输入</span> echo -e "\nYour full name is: $firstname $lastname" <span class="term_note"># 结果由萤幕输出</span></span> </pre></td></tr></tbody></table>  		<p>将上面这个 sh02.sh 运行一下，你就能够发现使用者自己输入的变量可以让程序所取用，并且将他显示到萤幕上！ 		接下来，如果想要制作一个每次运行都会依据不同的日期而变化结果的脚本呢？<br><br></p>  		<a name="ex_date"></a> 		<hr><ul class="list1"><li class="text_import1">随日期变化：利用 date 进行文件的创建</li></ul>  		<p>想像一个状况，假设我的服务器内有数据库，数据库每天的数据都不太一样，因此当我备份时， 		希望将每天的数据都备份成不同的档名，这样才能够让旧的数据也能够保存下来不被覆盖。 		哇！不同档名呢！这真困扰啊？难道要我每天去修改 script ？</p>  		<p>不需要啊！考虑每天的『日期』并不相同，所以我可以将档名取成类似： backup.2009-02-14.data ， 		不就可以每天一个不同档名了吗？呵呵！确实如此。那个 2009-02-14 怎么来的？那就是重点啦！接下来出个相关的例子： 		假设我想要创建三个空的文件 (透过 <a href="http://vbird.dic.ksu.edu.tw/linux_basic/0220filemanager.php#touch">touch</a>) 		，档名最开头由使用者输入决定，假设使用者输入 filename 好了，那今天的日期是 2009/02/14 ， 		我想要以前天、昨天、今天的日期来创建这些文件，亦即 filename_20090212, filename_20090213, filename_20090214  		，该如何是好？</p>  <table class="term"><tbody><tr><td class="term"><pre>[root@www scripts]# <span class="term_command">vi sh03.sh</span> <span class="term_write">#!/bin/bash # Program: #	Program creates three files, which named by user's input  #	and date command. # History: # 2005/08/23	VBird	First release PATH=/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin:~/bin export PATH  <span class="term_say"># 1. 让使用者输入文件名称，并取得 fileuser 这个变量；</span> echo -e "I will use 'touch' command to create 3 files." <span class="term_note"># 纯粹显示资讯</span> read -p "Please input your filename: " fileuser         <span class="term_note"># 提示使用者输入</span>  <span class="term_say"># 2. 为了避免使用者随意按 Enter ，利用<a href="http://vbird.dic.ksu.edu.tw/linux_basic/0320bash.php#variable_other_re">变量功能</a>分析档名是否有配置？</span> filename=${fileuser:-"filename"}           <span class="term_note"># 开始判断有否配置档名</span>  <span class="term_say"># 3. 开始利用 date 命令来取得所需要的档名了；</span> date1=$(date --date='2 days ago' +%Y%m%d)  <span class="term_note"># 前两天的日期</span> date2=$(date --date='1 days ago' +%Y%m%d)  <span class="term_note"># 前一天的日期</span> date3=$(date +%Y%m%d)                      <span class="term_note"># 今天的日期</span> file1=${filename}${date1}                  <span class="term_note"># 底下三行在配置档名</span> file2=${filename}${date2} file3=${filename}${date3}  <span class="term_say"># 4. 将档名创建吧！</span> touch "$file1"                             <span class="term_note"># 底下三行在创建文件</span> touch "$file2" touch "$file3"</span> </pre></td></tr></tbody></table>  		<p>上面的范例鸟哥使用了很多在<a href="0320bash.php.html">十一章</a>介绍过的概念： 		包括小命令『 $(command) 』的取得信息、变量的配置功能、变量的累加以及利用 touch 命令辅助！ 		如果你开始运行这个 sh03.sh 之后，你可以进行两次运行：一次直接按 [Enter] 来查阅档名是啥？ 		一次可以输入一些字节，这样可以判断你的脚本是否设计正确喔！<br><br></p>  		<a name="ex_cal"></a> 		<hr><ul class="list1"><li class="text_import1">数值运算：简单的加减乘除</li></ul>  		<p>各位看官应该还记得，我们可以使用 <a href="http://vbird.dic.ksu.edu.tw/linux_basic/0320bash.php#declare">declare</a> 来定义变量的类型吧？ 		当变量定义成为整数后才能够进行加减运算啊！此外，我们也可以利用『 $((计算式)) 』来进行数值运算的。 		可惜的是， bash shell 里头默认仅支持到整数的数据而已。OK！那我们来玩玩看，如果我们要使用者输入两个变量， 		然后将两个变量的内容相乘，最后输出相乘的结果，那可以怎么做？</p>  <table class="term"><tbody><tr><td class="term"><pre>[root@www scripts]# <span class="term_command">vi sh04.sh</span> <span class="term_write">#!/bin/bash # Program: #	User inputs 2 integer numbers; program will cross these two numbers. # History: # 2005/08/23	VBird	First release PATH=/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin:~/bin export PATH echo -e "You SHOULD input 2 numbers, I will cross them! \n" read -p "first number:  " firstnu read -p "second number: " secnu total=$(($firstnu*$secnu)) echo -e "\nThe result of $firstnu x $secnu is ==&gt; $total"</span> </pre></td></tr></tbody></table>  		<p>在数值的运算上，我们可以使用『 <span class="text_import2">declare -i total=$firstnu*$secnu</span> 』 		也可以使用上面的方式来进行！基本上，鸟哥比较建议使用这样的方式来进行运算：</p>  		<blockquote class="text_import2">var=$((运算内容))</blockquote>  		<p>不但容易记忆，而且也比较方便的多，因为两个小括号内可以加上空白字节喔！ 		未来你可以使用这种方式来计算的呀！至於数值运算上的处理，则有：『 		<span class="text_import2" style="font-family: '细明体';">+, -, *, /, %</span> 』等等。 		那个 % 是取余数啦～举例来说， 13 对 3 取余数，结果是 13=4*3+1，所以余数是 1 啊！就是：</p>  <table class="term"><tbody><tr><td class="term"><pre>[root@www scripts]# <span class="term_command">echo $(( 13 % 3 ))</span> 1 </pre></td></tr></tbody></table>  		<p>这样了解了吧？多多学习与应用喔！ ^_^</p> 	</div>   	<hr><a name="some_ex_run"></a><img src="../image/logo.png" alt="小标题的图示" width="24" align="middle" height="23"><span class="text_h2">script 的运行方式差异 	 (source, sh script, ./script)</span><br> 	<div class="block2"> 		<p>不同的 script 运行方式会造成不一样的结果喔！尤其影响 bash 的环境很大呢！脚本的运行方式除了<a href="#script_run">前面小节谈到的方式</a>之外，还可以利用 <a href="http://vbird.dic.ksu.edu.tw/linux_basic/0320bash.php#source">source</a> 		或小数点 (.) 来运行喔！那么这种运行方式有何不同呢？当然是不同的啦！让我们来说说！<br><br></p>  		<hr><ul class="list1"><li class="text_import1">利用直接运行的方式来运行 script</li></ul>  		<p>当使用前一小节提到的直接命令下达 (不论是绝对路径/相对路径还是 $PATH 内)，或者是利用 bash (或 sh) 来下达脚本时， 		该 script 都会使用一个新的 bash 环境来运行脚本内的命令！也就是说，使用者种运行方式时， 		其实 script 是在子程序的 bash 内运行的！我们在<a href="0320bash.php.html">第十一章 BASH</a> 内谈到 		<a href="http://vbird.dic.ksu.edu.tw/linux_basic/0320bash.php#export">export</a> 的功能时，曾经就父程序/子程序谈过一些概念性的问题， 		重点在於：『<span class="text_import2">当子程序完成后，在子程序内的各项变量或动作将会结束而不会传回到父程序中</span>』！ 		这是什么意思呢？</p>  		<p>我们举刚刚提到过的 sh02.sh 这个脚本来说明好了，这个脚本可以让使用者自行配置两个变量，分别是 firstname 与  		lastname，想一想，如果你直接运行该命令时，该命令帮你配置的 firstname 会不会生效？看一下底下的运行结果：</p>  <table class="term"><tbody><tr><td class="term"><pre>[root@www scripts]# <span class="term_command">echo $firstname $lastname</span>     <span class="term_note">&lt;==确认了，这两个变量并不存在喔！</span> [root@www scripts]# <span class="term_command">sh sh02.sh</span> Please input your first name: <span class="term_write">VBird</span> <span class="term_note">&lt;==这个名字是鸟哥自己输入的</span> Please input your last name:  <span class="term_write">Tsai </span>  Your full name is: <u>VBird Tsai</u>      <span class="term_note">&lt;==看吧！在 script 运行中，这两个变量有生效</span> [root@www scripts]# <span class="term_command">echo $firstname $lastname</span>     <span class="term_note">&lt;==事实上，这两个变量在父程序的 bash 中还是不存在的！</span> </pre></td></tr></tbody></table>  		<p>上面的结果你应该会觉得很奇怪，怎么我已经利用 sh02.sh 配置好的变量竟然在 bash 环境底下无效！怎么回事呢？ 		如果将程序相关性绘制成图的话，我们以下图来说明。当你使用直接运行的方法来处理时，系统会给予一支新的 bash 		让我们来运行 sh02.sh 里面的命令，因此你的 firstname, lastname 等变量其实是在下图中的子程序 bash 内运行的。 		当 sh02.sh 运行完毕后，子程序 bash 内的所有数据便被移除，因此上表的练习中，在父程序底下 echo $firstname 时， 		就看不到任何东西了！这样可以理解吗？</p>  		<center><img src="0340bashshell-scripts_files/non-source.gif" alt="sh02.sh 在子程序中运行" title="sh02.sh 在子程序中运行" border="0"><br> 		图 2.2.1、sh02.sh 在子程序中运行<br></center><br>  		<hr><ul class="list1"><li class="text_import1">利用 source 来运行脚本：在父程序中运行</li></ul>  		<p>如果你使用 source 来运行命令那就不一样了！同样的脚本我们来运行看看：</p>  <table class="term"><tbody><tr><td class="term"><pre>[root@www scripts]# <span class="term_command">source sh02.sh</span> Please input your first name: <span class="term_write">VBird</span> Please input your last name:  <span class="term_write">Tsai</span>  Your full name is: <u>VBird Tsai</u> [root@www scripts]# <span class="term_command">echo $firstname $lastname</span> VBird Tsai  <span class="term_note">&lt;==嘿嘿！有数据产生喔！</span> </pre></td></tr></tbody></table>  		<p>竟然生效了！没错啊！因为 source 对 script 的运行方式可以使用底下的图示来说明！ 		sh02.sh 会在父程序中运行的，因此各项动作都会在原本的 bash 内生效！这也是为啥你不注销系统而要让某些写入 ~/.bashrc  		的配置生效时，需要使用『 source ~/.bashrc 』而不能使用『 bash ~/.bashrc 』是一样的啊！</p>  		<center><img src="0340bashshell-scripts_files/source.gif" alt="sh02.sh 在父程序中运行" title="sh02.sh 在父程序中运行" border="0"><br> 		图 2.2.2、sh02.sh 在父程序中运行<br></center> 	</div> </div> <hr />     </td>     <td style="width: 16px; font-size: 6px;">　</td></tr> <tr><td style="width: 16px; height: 16px;">　</td>     <td style="width: 866px; height: 16px;">　</td>     <td style="width: 16px; height: 16px;">　</td></tr> </tbody></table>  <div style="padding-top: 0px; text-align: center;"> <span style="font-size: 80%;"> 	<a href="http://vbird.dic.ksu.edu.tw/" target="_top" title="前往鸟哥的首页">http://linux.vbird.org</a> 	is designed by <a href="mailto:vbird@mail.vbird.idv.tw" title="联络鸟哥(我不要广告信！)">VBird</a> 		during 2001-2011. <a href="http://www.ksu.edu.tw/" target="_blank">ksu.edu</a></span>          ﻿<div id="apDiv4">       <p>本网页主要以Firefox配合解析度 1024x768 作为设计依据&nbsp;&nbsp;&nbsp;&nbsp; 鸟哥自由软件整合应用研究室</p></div></div> </div> </center> </body></html> 
+<?xml version="1.0" encoding="utf-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"    "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><title>第十三章、学习<span class="text_head_en"> Shell Scripts</title><link href="../Styles/style.css" rel="stylesheet" type="text/css" /></head><body>
+
+<!-- 本文的档头部分 -->
+<div style="text-align: center;">
+    <a href="0340bashshell-scripts.php.html">
+    <span class="text_head0">第十三章、学习<span class="text_head_en"> Shell Scripts</span></span></a><br>
+</div>
+    <div style="text-align: right;">
+        <span class="text_history">最近升级日期：2009/02/18</span>
+    </div>
+<!-- 本文的连结区部分 -->
+<div class="block1">
+<span class="text_h1">
+2. <a href="#some_ex">简单的 shell script 练习</a><br>
+	<span class="text_h2">
+	　　2.1 <a href="#some_ex_simple">简单范例</a>： <a href="#ex_read">对谈式脚本</a>, 
+		<a href="#ex_date">随日期变化</a>, <a href="#ex_cal">数值运算</a><br>
+	　　2.2 <a href="#some_ex_run">script 的运行方式差异 (source, sh script, ./script)</a><br>
+	</span>
+</span></div>
+<!-- 本文的正式部分 -->
+<hr><a name="some_ex"></a><img src="../images/logo.png" alt="大标题的图示" width="35" align="middle" height="34"><span class="text_h1">简单的 shell script 练习</span><br>
+<div class="block1">
+	<p>在第一支 shell script 撰写完毕之后，相信你应该具有基本的撰写功力了。
+	接下来，在开始更深入的程序概念之前，我们先来玩一些简单的小范例好了。
+	底下的范例中，达成结果的方式相当的多，建议你先自行撰写看看，写完之后再与鸟哥写的内容比对，
+	这样才能更加深概念喔！好！不罗唆，我们就一个一个来玩吧！<br><br></p>
+
+	<hr><a name="some_ex_simple"></a><img src="../images/logo.png" alt="小标题的图示" width="24" align="middle" height="23"><span class="text_h2">简单范例</span><br>
+	<div class="block2">
+		<p>底下的范例在很多的脚本程序中都会用到，而底下的范例又都很简单！值得参考看看喔！<br><br></p>
+
+		<a name="ex_read"></a>
+		<hr><ul class="list1"><li class="text_import1">对谈式脚本：变量内容由使用者决定</li></ul>
+
+		<p>很多时候我们需要使用者输入一些内容，好让程序可以顺利运行。
+		简单的来说，大家应该都有安装过软件的经验，安装的时候，他不是会问你『要安装到那个目录去』吗？
+		那个让使用者输入数据的动作，就是让使用者输入变量内容啦。</p>
+
+		<p>你应该还记得在<a href="0320bash.php.html">十一章 bash</a> 的时候，我们有学到一个 
+		<a href="http://vbird.dic.ksu.edu.tw/linux_basic/0320bash.php#read">read</a> 命令吧？现在，请你以 read 命令的用途，撰写一个 
+		script ，他可以让使用者输入：1. first name 与 2. last name，
+		最后并且在萤幕上显示：『Your full name is: 』的内容：</p>
+
+<table class="term"><tbody><tr><td class="term"><pre>[root@www scripts]# <span class="term_command">vi sh02.sh</span>
+<span class="term_write">#!/bin/bash
+# Program:
+#	User inputs his first name and last name.  Program shows his full name.
+# History:
+# 2005/08/23	VBird	First release
+PATH=/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin:~/bin
+export PATH
+
+read -p "Please input your first name: " firstname  <span class="term_note"># 提示使用者输入</span>
+read -p "Please input your last name:  " lastname   <span class="term_note"># 提示使用者输入</span>
+echo -e "\nYour full name is: $firstname $lastname" <span class="term_note"># 结果由萤幕输出</span></span>
+</pre></td></tr></tbody></table>
+
+		<p>将上面这个 sh02.sh 运行一下，你就能够发现使用者自己输入的变量可以让程序所取用，并且将他显示到萤幕上！
+		接下来，如果想要制作一个每次运行都会依据不同的日期而变化结果的脚本呢？<br><br></p>
+
+		<a name="ex_date"></a>
+		<hr><ul class="list1"><li class="text_import1">随日期变化：利用 date 进行文件的创建</li></ul>
+
+		<p>想像一个状况，假设我的服务器内有数据库，数据库每天的数据都不太一样，因此当我备份时，
+		希望将每天的数据都备份成不同的档名，这样才能够让旧的数据也能够保存下来不被覆盖。
+		哇！不同档名呢！这真困扰啊？难道要我每天去修改 script ？</p>
+
+		<p>不需要啊！考虑每天的『日期』并不相同，所以我可以将档名取成类似： backup.2009-02-14.data ，
+		不就可以每天一个不同档名了吗？呵呵！确实如此。那个 2009-02-14 怎么来的？那就是重点啦！接下来出个相关的例子：
+		假设我想要创建三个空的文件 (透过 <a href="http://vbird.dic.ksu.edu.tw/linux_basic/0220filemanager.php#touch">touch</a>)
+		，档名最开头由使用者输入决定，假设使用者输入 filename 好了，那今天的日期是 2009/02/14 ，
+		我想要以前天、昨天、今天的日期来创建这些文件，亦即 filename_20090212, filename_20090213, filename_20090214 
+		，该如何是好？</p>
+
+<table class="term"><tbody><tr><td class="term"><pre>[root@www scripts]# <span class="term_command">vi sh03.sh</span>
+<span class="term_write">#!/bin/bash
+# Program:
+#	Program creates three files, which named by user's input 
+#	and date command.
+# History:
+# 2005/08/23	VBird	First release
+PATH=/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin:~/bin
+export PATH
+
+<span class="term_say"># 1. 让使用者输入文件名称，并取得 fileuser 这个变量；</span>
+echo -e "I will use 'touch' command to create 3 files." <span class="term_note"># 纯粹显示资讯</span>
+read -p "Please input your filename: " fileuser         <span class="term_note"># 提示使用者输入</span>
+
+<span class="term_say"># 2. 为了避免使用者随意按 Enter ，利用<a href="http://vbird.dic.ksu.edu.tw/linux_basic/0320bash.php#variable_other_re">变量功能</a>分析档名是否有配置？</span>
+filename=${fileuser:-"filename"}           <span class="term_note"># 开始判断有否配置档名</span>
+
+<span class="term_say"># 3. 开始利用 date 命令来取得所需要的档名了；</span>
+date1=$(date --date='2 days ago' +%Y%m%d)  <span class="term_note"># 前两天的日期</span>
+date2=$(date --date='1 days ago' +%Y%m%d)  <span class="term_note"># 前一天的日期</span>
+date3=$(date +%Y%m%d)                      <span class="term_note"># 今天的日期</span>
+file1=${filename}${date1}                  <span class="term_note"># 底下三行在配置档名</span>
+file2=${filename}${date2}
+file3=${filename}${date3}
+
+<span class="term_say"># 4. 将档名创建吧！</span>
+touch "$file1"                             <span class="term_note"># 底下三行在创建文件</span>
+touch "$file2"
+touch "$file3"</span>
+</pre></td></tr></tbody></table>
+
+		<p>上面的范例鸟哥使用了很多在<a href="0320bash.php.html">十一章</a>介绍过的概念：
+		包括小命令『 $(command) 』的取得信息、变量的配置功能、变量的累加以及利用 touch 命令辅助！
+		如果你开始运行这个 sh03.sh 之后，你可以进行两次运行：一次直接按 [Enter] 来查阅档名是啥？
+		一次可以输入一些字节，这样可以判断你的脚本是否设计正确喔！<br><br></p>
+
+		<a name="ex_cal"></a>
+		<hr><ul class="list1"><li class="text_import1">数值运算：简单的加减乘除</li></ul>
+
+		<p>各位看官应该还记得，我们可以使用 <a href="http://vbird.dic.ksu.edu.tw/linux_basic/0320bash.php#declare">declare</a> 来定义变量的类型吧？
+		当变量定义成为整数后才能够进行加减运算啊！此外，我们也可以利用『 $((计算式)) 』来进行数值运算的。
+		可惜的是， bash shell 里头默认仅支持到整数的数据而已。OK！那我们来玩玩看，如果我们要使用者输入两个变量，
+		然后将两个变量的内容相乘，最后输出相乘的结果，那可以怎么做？</p>
+
+<table class="term"><tbody><tr><td class="term"><pre>[root@www scripts]# <span class="term_command">vi sh04.sh</span>
+<span class="term_write">#!/bin/bash
+# Program:
+#	User inputs 2 integer numbers; program will cross these two numbers.
+# History:
+# 2005/08/23	VBird	First release
+PATH=/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin:~/bin
+export PATH
+echo -e "You SHOULD input 2 numbers, I will cross them! \n"
+read -p "first number:  " firstnu
+read -p "second number: " secnu
+total=$(($firstnu*$secnu))
+echo -e "\nThe result of $firstnu x $secnu is ==&gt; $total"</span>
+</pre></td></tr></tbody></table>
+
+		<p>在数值的运算上，我们可以使用『 <span class="text_import2">declare -i total=$firstnu*$secnu</span> 』
+		也可以使用上面的方式来进行！基本上，鸟哥比较建议使用这样的方式来进行运算：</p>
+
+		<blockquote class="text_import2">var=$((运算内容))</blockquote>
+
+		<p>不但容易记忆，而且也比较方便的多，因为两个小括号内可以加上空白字节喔！
+		未来你可以使用这种方式来计算的呀！至於数值运算上的处理，则有：『
+		<span class="text_import2" style="font-family: '细明体';">+, -, *, /, %</span> 』等等。
+		那个 % 是取余数啦～举例来说， 13 对 3 取余数，结果是 13=4*3+1，所以余数是 1 啊！就是：</p>
+
+<table class="term"><tbody><tr><td class="term"><pre>[root@www scripts]# <span class="term_command">echo $(( 13 % 3 ))</span>
+1
+</pre></td></tr></tbody></table>
+
+		<p>这样了解了吧？多多学习与应用喔！ ^_^</p>
+	</div>
+
+
+	<hr><a name="some_ex_run"></a><img src="../images/logo.png" alt="小标题的图示" width="24" align="middle" height="23"><span class="text_h2">script 的运行方式差异
+	 (source, sh script, ./script)</span><br>
+	<div class="block2">
+		<p>不同的 script 运行方式会造成不一样的结果喔！尤其影响 bash 的环境很大呢！脚本的运行方式除了<a href="#script_run">前面小节谈到的方式</a>之外，还可以利用 <a href="http://vbird.dic.ksu.edu.tw/linux_basic/0320bash.php#source">source</a>
+		或小数点 (.) 来运行喔！那么这种运行方式有何不同呢？当然是不同的啦！让我们来说说！<br><br></p>
+
+		<hr><ul class="list1"><li class="text_import1">利用直接运行的方式来运行 script</li></ul>
+
+		<p>当使用前一小节提到的直接命令下达 (不论是绝对路径/相对路径还是 $PATH 内)，或者是利用 bash (或 sh) 来下达脚本时，
+		该 script 都会使用一个新的 bash 环境来运行脚本内的命令！也就是说，使用者种运行方式时，
+		其实 script 是在子程序的 bash 内运行的！我们在<a href="0320bash.php.html">第十一章 BASH</a> 内谈到
+		<a href="http://vbird.dic.ksu.edu.tw/linux_basic/0320bash.php#export">export</a> 的功能时，曾经就父程序/子程序谈过一些概念性的问题，
+		重点在於：『<span class="text_import2">当子程序完成后，在子程序内的各项变量或动作将会结束而不会传回到父程序中</span>』！
+		这是什么意思呢？</p>
+
+		<p>我们举刚刚提到过的 sh02.sh 这个脚本来说明好了，这个脚本可以让使用者自行配置两个变量，分别是 firstname 与 
+		lastname，想一想，如果你直接运行该命令时，该命令帮你配置的 firstname 会不会生效？看一下底下的运行结果：</p>
+
+<table class="term"><tbody><tr><td class="term"><pre>[root@www scripts]# <span class="term_command">echo $firstname $lastname</span>
+    <span class="term_note">&lt;==确认了，这两个变量并不存在喔！</span>
+[root@www scripts]# <span class="term_command">sh sh02.sh</span>
+Please input your first name: <span class="term_write">VBird</span> <span class="term_note">&lt;==这个名字是鸟哥自己输入的</span>
+Please input your last name:  <span class="term_write">Tsai </span>
+
+Your full name is: <u>VBird Tsai</u>      <span class="term_note">&lt;==看吧！在 script 运行中，这两个变量有生效</span>
+[root@www scripts]# <span class="term_command">echo $firstname $lastname</span>
+    <span class="term_note">&lt;==事实上，这两个变量在父程序的 bash 中还是不存在的！</span>
+</pre></td></tr></tbody></table>
+
+		<p>上面的结果你应该会觉得很奇怪，怎么我已经利用 sh02.sh 配置好的变量竟然在 bash 环境底下无效！怎么回事呢？
+		如果将程序相关性绘制成图的话，我们以下图来说明。当你使用直接运行的方法来处理时，系统会给予一支新的 bash
+		让我们来运行 sh02.sh 里面的命令，因此你的 firstname, lastname 等变量其实是在下图中的子程序 bash 内运行的。
+		当 sh02.sh 运行完毕后，子程序 bash 内的所有数据便被移除，因此上表的练习中，在父程序底下 echo $firstname 时，
+		就看不到任何东西了！这样可以理解吗？</p>
+
+		<center><img src="0340bashshell-scripts_files/non-source.gif" alt="sh02.sh 在子程序中运行" title="sh02.sh 在子程序中运行" border="0"><br>
+		图 2.2.1、sh02.sh 在子程序中运行<br></center><br>
+
+		<hr><ul class="list1"><li class="text_import1">利用 source 来运行脚本：在父程序中运行</li></ul>
+
+		<p>如果你使用 source 来运行命令那就不一样了！同样的脚本我们来运行看看：</p>
+
+<table class="term"><tbody><tr><td class="term"><pre>[root@www scripts]# <span class="term_command">source sh02.sh</span>
+Please input your first name: <span class="term_write">VBird</span>
+Please input your last name:  <span class="term_write">Tsai</span>
+
+Your full name is: <u>VBird Tsai</u>
+[root@www scripts]# <span class="term_command">echo $firstname $lastname</span>
+VBird Tsai  <span class="term_note">&lt;==嘿嘿！有数据产生喔！</span>
+</pre></td></tr></tbody></table>
+
+		<p>竟然生效了！没错啊！因为 source 对 script 的运行方式可以使用底下的图示来说明！
+		sh02.sh 会在父程序中运行的，因此各项动作都会在原本的 bash 内生效！这也是为啥你不注销系统而要让某些写入 ~/.bashrc 
+		的配置生效时，需要使用『 source ~/.bashrc 』而不能使用『 bash ~/.bashrc 』是一样的啊！</p>
+
+		<center><img src="0340bashshell-scripts_files/source.gif" alt="sh02.sh 在父程序中运行" title="sh02.sh 在父程序中运行" border="0"><br>
+		图 2.2.2、sh02.sh 在父程序中运行<br></center>
+	</div>
+</div>
+<hr />
+    </td>
+    <td style="width: 16px; font-size: 6px;">　</td></tr>
+<tr><td style="width: 16px; height: 16px;">　</td>
+    <td style="width: 866px; height: 16px;">　</td>
+    <td style="width: 16px; height: 16px;">　</body></html>

@@ -1,1 +1,158 @@
-<html><head> 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"> 	<meta name="Author" content="2011/04/21,Airman"> 	<meta name="Description" content="关於 Linux 的核心编译流程介绍，与注意事项说明！"> 	<title>鸟哥的 Linux 私房菜 -- Linux 核心编译</title>     <script src="../script/SpryMenuBar.js" type="text/javascript"></script> 	<script src="../script/index.js" type="text/javascript"></script> 	<link href="../css/SpryMenuBarHorizontal.css" rel="stylesheet" type="text/css" />     <link href="../css/main.css" rel="stylesheet" type="text/css" />     </head><body style="margin: 0pt; padding: 0pt;" class="table"onload="MM_preloadImages('image/title_19.png','image/title_26.png','image/title_27.png','image/title_28.png','image/title_06.png','image/title_08.png','image/title_10.png','image/title_12.png')">   <!-- Copyright � 2005. Spidersoft Ltd --> <style> A.applink:hover {border: 2px dotted #DCE6F4;padding:2px;background-color:#ffff00;color:green;text-decoration:none} A.applink       {border: 2px dotted #DCE6F4;padding:2px;color:#2F5BFF;background:transparent;text-decoration:none} A.info          {color:#2F5BFF;background:transparent;text-decoration:none} A.info:hover    {color:green;background:transparent;text-decoration:underline} </style> <div style='BORDER: 1px solid #DCE6F4; MARGIN-TOP: 20px; MARGIN-BOTTOM: 20px; MARGIN-LEFT: 5px; MARGIN-RIGHT: 5px; PADDING: 5px; BACKGROUND-COLOR: #eef8ff;line-height:180%; COLOR: #000000; font-family: Arial; font-size: 8pt; width=100%; FILTER: progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr="#FFFFFFFF", EndColorStr="#F2F5FAFF");'> This page was saved using <a class="applink" href="http://www.spidersoft.com"><b>WebZIP 7.0.3.1030</b></a> <a class="applink" href="http://www.spidersoft.com"><b>offline browser</b></a>  (Unregistered) on  02/12/15 12:14:49.<br> <b>Address:</b> <a class="info" href="http://vbird.dic.ksu.edu.tw/linux_basic/0540kernel_4.php">http://vbird.dic.ksu.edu.tw/linux_basic/0540kernel_4.php</a><br> <b>Title:</b> 鸟哥的 Linux 私房菜 -- Linux 核心编译 &nbsp;&bull;&nbsp; <b>Size:</b> 21395<br></div> <!-- /Copyright � 2005. Spidersoft Ltd -->    <center> <div id="apDiv5"> <div> <LINK REL="SHORTCUT ICON" HREF="favicon.ico"> <!-- ImageReady Slices (title3.ai) --> <table id="___01" width="898" height="81" border="0" align="center" cellpadding="0" cellspacing="0";> 	<tr> 		<td colspan="15"> 			<img src="image/title/title_01.png" width="900" height="1" alt=""></td> 	</tr> 	<tr> 		<td rowspan="4" bgcolor="#182448"><p><img src="http://linux.vbird.org/cgi-bin/Count.cgi?dd=C&ft=5&sh=T&md=8&pad=Y&df=vbird.dic.ksu.edu.tw.dat" width="93" align="left" title="計數器" /></p> 	    <p><font color="#FFFFFF" size="-1">since2012/04/23</font></p></td> 		<td rowspan="4" align="left" valign="top"><a href="http://vbird.dic.ksu.edu.tw/"><img src="image/title/title_03.png" alt="" width="263" height="79" border="0"></a></td> 		<td colspan="13"> 			<img src="image/title/title_04.png" alt="" width="535" height="9" border="0"></td> 	</tr> 	<tr> 		<td rowspan="3"> 			<img src="image/title/title_05.png" alt="" width="53" height="70" border="0"></td> 		<td colspan="2" align="left" valign="top"><a href="0110whatislinux.php.html" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image51','','image/title/title_06.png',1)"><img src="image/title/title3_06.png" name="Image51" width="106" height="25" border="0" id="Image51" alt=""/></a></td> 		<td rowspan="2"> 			<img src="image/title/title_07.png" alt="" width="27" height="37" border="0"></td> 		<td colspan="3" align="left" valign="top"><a href="http://vbird.dic.ksu.edu.tw/linux_server/0110network_basic.php" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image52','','image/title/title_08.png',1)"><img src="image/title/title3_08.png" name="Image52" width="107" height="25" border="0" id="Image52" alt=""/></a></td> 		<td rowspan="2"> 			<img src="image/title/title_09.png" alt="" width="37" height="37" border="0"></td> 		<td colspan="2" align="left" valign="top"><a href="http://vbird.dic.ksu.edu.tw/about.php" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image53','','image/title/title_10.png',1)"><img src="image/title/title3_10.png" name="Image53" width="75" height="25" border="0" id="Image53" alt=""/></a></td> 		<td rowspan="3"> 			<img src="image/title/title_11.png" alt="" width="35" height="70" border="0"></td> 		<td align="left" valign="top"><a href="mailto:vbird@mail.vbird.idv.tw" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image54','','image/title/title_12.png',1)"><img src="image/title/title3_12.png" name="Image54" width="74" height="25" border="0" id="Image54" alt=""/></a></td> 		<td rowspan="3"> 			<img src="image/title/title_13.png" alt="" width="21" height="70" border="0"></td> 	</tr> 	<tr> 		<td colspan="2"> 			<img src="image/title/title_14.png" alt="" width="106" height="12" border="0"></td> 		<td colspan="3"> 			<img src="image/title/title_15.png" alt="" width="107" height="12" border="0"></td> 		<td colspan="2"> 			<img src="image/title/title_16.png" width="75" height="12" alt=""></td> 		<td rowspan="2"> 			<img src="image/title/title_17.png" alt="" width="74" height="45" border="0"></td> 	</tr> 	<tr> 		<td> 			<img src="image/title/title_18.png" alt="" width="15" height="33" border="0"></td> 		<td colspan="3" align="left" valign="top"><ul id="MenuBar1" class="MenuBarHorizontal"> 	  <li><a href="linux_basic.php.html" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image44','','image/title/title_19.png',1)"><img src="image/title/title3_19.png" name="Image44" width="123" height="33" border="0" id="Image44" /></a> 			    <ul> 			      <li><a href="Mandrake9.0/mandrake9.0.php.html" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image46','','image/title/title_26.png',1)"><img src="image/title/title_23.png" name="Image46" width="120" height="26" border="0" id="Image46" alt="" /></a></li>                   <li><a href="fedora_4/fc4.php.html" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image47','','image/title/title_27.png',1)"><img src="image/title/title_24.png" name="Image47" width="120" height="26" border="0" id="Image47" alt="" /></a></li>                   <li><a href="linux_basic.php.html" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image48','','image/title/title_28.png',1)"><img src="image/title/title_25.png" name="Image48" width="120" height="26" border="0" id="Image48" alt="" /></a></li>                 </ul> 		      </li> 		</ul></td> 		<td> 			<img src="image/title/title_20.png" alt="" width="42" height="33" border="0"></td> 		<td colspan="3" align="left" valign="top"><ul id="MenuBar2" class="MenuBarHorizontal"> 	  <li><a href="http://vbird.dic.ksu.edu.tw/linux_server/" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image45','','image/title/title_21.png',1)"><img src="image/title/title3_21.png" name="Image45" width="125" height="33" border="0" id="Image45" /></a> 			    <ul> 			      <li><a href="http://vbird.dic.ksu.edu.tw/linux_server/linux_redhat9/redhat9.php" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image43','','image/title/title_26.png',1)"><img src="image/title/title_23.png" name="Image43" width="120" height="26" border="0" id="Image43" alt=""/></a></li> 			      <li><a href="http://vbird.dic.ksu.edu.tw/linux_server/centos4.php" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image49','','image/title/title_27.png',1)"><img src="image/title/title_24.png" name="Image49" width="120" height="26" border="0" id="Image49" alt="" /></a></li> 			      <li><a href="http://vbird.dic.ksu.edu.tw/linux_server/" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image50','','image/title/title_28.png',1)"><img src="image/title/title_25.png" name="Image50" width="120" height="26" border="0" id="Image50" alt="" /></a></li> 		        </ul> 		      </li> 		</ul></td> 		<td> 			<img src="image/title/title_22.png" alt="" width="47" height="33" border="0"></td> 	</tr> 	<tr> 		<td> 			<img src="image/title/Spacer.gif" width="101" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="263" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="53" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="15" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="91" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="27" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="5" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="42" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="60" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="37" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="28" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="47" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="35" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="74" height="1" alt=""></td> 		<td> 			<img src="image/title/Spacer.gif" width="22" height="1" alt=""></td> 	</tr> </table> <!-- End ImageReady Slices --> <script type="text/javascript"> <!-- var MenuBar1 = new Spry.Widget.MenuBar("MenuBar1", {imgDown:"SpryAssets/SpryMenuBarDownHover.gif", imgRight:"SpryAssets/SpryMenuBarRightHover.gif"}); var MenuBar2 = new Spry.Widget.MenuBar("MenuBar2", {imgDown:"SpryAssets/SpryMenuBarDownHover.gif", imgRight:"SpryAssets/SpryMenuBarRightHover.gif"}); //--> </script></div> <table summary="本文内容的排版" style="width: 898px;" border="0" cellpadding="0" cellspacing="0"> <tbody><tr><td style="width: 16px; height: 16px;">　</td>     <td style="width: 866px; height: 16px;">　</td>     <td style="width: 16px; height: 16px;">　</td></tr> <tr><td style="width: 16px; font-size: 6px;">　</td>     <td width="866">  <!-- 本文的档头部分 --> <div style="text-align: center;">     <a href="0540kernel.php.html">     <span class="text_head0">第二十六章、<span class="text_head_en">Linux </span>核心编译与管理</span></a><br> </div>     <div style="text-align: right;">         <span class="text_history">最近升级日期：2009/09/18</span>     </div> <!-- 本文的连结区部分 --> <div class="block1"> <span class="text_h1"> 4. <a href="#module">额外(单一)核心模块编译</a><br> 	<span class="text_h2"> 	　　4.1 <a href="#module_before">编译前注意事项</a><br> 	　　4.2 <a href="#module_compile">单一模块编译</a><br> 	　　4.3 <a href="#module_mod">核心模块管理</a><br> 	</span> </span></div> <!-- 本文的正式部分 --> <hr><a name="module"></a><img src="../image/logo.png" alt="大标题的图示" width="35" align="middle" height="34"><span class="text_h1">额外(单一)核心模块编译</span><br> <div class="block1"> 	<p>我们现在知道核心所支持的功能当中，有直接编译到核心内部的，也有使用外挂模块的，外挂模块可以简单的想成<span class="text_import2">就是驱动程序</span> 啦！那么也知道这些核心模块依据不同的版本，被分别放置到  	/lib/modules/$(uname -r)/kernel/ 目录中，各个硬件的驱动程序则是放置到 /lib/modules/$(uname -r)/kernel/drivers/  	当中！换个角度再来思考一下，如果刚刚我自己编译的数据中，有些驱动程序忘记编译成为模块了，那是否需要重新进行上述的所有动作？ 	又如果我想要使用硬件厂商释出的新驱动程序，那该如何是好？<br><br></p>  	<hr><a name="module_before"></a><img src="../image/logo.png" alt="小标题的图示" width="24" align="middle" height="23"><span class="text_h2">编译前注意事项</span><br> 	<div class="block2"> 		<p>由於我们的核心原本就有提供很多的核心工具给硬件开发商来使用， 		而硬件开发商也需要针对核心所提供的功能来设计他们的驱动程序模块，因此， 		我们如果想要自行使用硬件开发商所提供的模块来进行编译时，就需要使用到核心所提供的原始档当中， 		所谓的标头文件 (header include file) 来取得驱动模块所需要的一些函式库或标头的定义啦！ 		也因此我们常常会发现到，如果想要自行编译核心模块时，就得要拥有核心原始码嘛！</p>  		<p>那核心原始码我们知道他是可能放置在 /usr/src/ 底下，早期的核心原始码被要求一定要放置到 /usr/src/linux/ 		目录下，不过，如果你有多个核心在一个 Linux 系统当中，而且使用的原始码并不相同时， 		呵呵～问题可就大了！所以，在 2.6 版以后，核心使用比较有趣的方法来设计他的原始码放置目录， 		那就是以 /lib/modules/$(uname -r)/build 及 /lib/modules/$(uname -r)/source 		这两个连结档来指向正确的核心原始码放置目录。如果以我们刚刚由 kernel 2.6.30.3 创建的核心模块来说， 		那么他的核心模块目录底下有什么咚咚？</p>  <table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">ll -h /lib/modules/2.6.30.3vbird/</span> <span style="font-size: 9pt;">lrwxrwxrwx  1 root root   31  7月 30 14:29 build -&gt; /usr/src/kernels/linux-2.6.30.3 drwxr-xr-x 10 root root 4.0K  7月 30 14:30 kernel -rw-r--r--  1 root root 337K  7月 30 14:31 modules.alias -rw-r--r--  1 root root   69  7月 30 14:31 modules.ccwmap -rw-r--r--  1 root root 224K  7月 30 14:31 modules.dep <span class="term_say">....(中间省略)....</span> lrwxrwxrwx  1 root root   31  7月 30 14:29 source -&gt; /usr/src/kernels/linux-2.6.30.3</span> </pre></td></tr></tbody></table>  		<p>比较有趣的除了那两个连结档之外，还有那个 modules.dep 文件也挺有趣的， 		那个文件是记录了核心模块的相依属性的地方，依据该文件，我们可以简单的使用 		modprobe 这个命令来加载模块呢！至於核心原始码提供的标头档，在上面的案例当中， 		则是放置到 /usr/src/kernels/linux-2.6.30.3/include/ 目录中，当然就是藉由 build/source 		这两个连结文件来取得目录所在的啦！^_^</p>  		<p>由於核心模块的编译其实与核心原本的原始码有点关系的，因此如果你需要重新编译模块时， 		那除了 make, gcc 等主要的编译软件工具外，<span class="text_import2">你还需要的就是 kernel-devel  		这个软件</span>！记得一定要安装喔！而如果你想要在默认的核心底下新增模块的话，那么就得要找到 kernel 的 SRPM 文件了！ 		将该文件给他安装，并且取得 source code 后，才能够顺利的编译喔！</p> 	</div>  	<hr><a name="module_compile"></a><img src="../image/logo.png" alt="小标题的图示" width="24" align="middle" height="23"><span class="text_h2">单一模块编译</span><br> 	<div class="block2"> 		<p>想像两个情况：</p>  		<ul> 		<li>如果我的默认核心忘记加入某个功能，而且该功能可以编译成为模块，不过， 		默认核心却也没有将该项功能编译成为模块，害我不能使用时，该如何是好？<br><br></li> 		<li>如果 Linux 核心原始码并没有某个硬件的驱动程序 (module) ，但是开发该硬件的厂商有提供给 		Linux 使用的驱动程序原始码，那么我又该如何将该项功能编进核心模块呢？</li> 		</ul>  		<p>很有趣对吧！不过，在这样的情况下其实没有什么好说的，反正就是 		『去取得原始码后，重新编译成为系统可以加载的模块』啊！很简单，对吧！^_^！ 		但是，上面那两种情况的模块编译行为是不太一样的，不过，都是需要 make,  		gcc 以及核心所提供的 include 标头档与函式库等等。<br><br></p>  		<hr><ul class="list1"><li class="text_import1">硬件开发商提供的额外模块</li></ul>  		<p>很多时候，可能由於核心默认的核心驱动模块所提供的功能你不满意，或者是硬件开发商所提供的核心模块具有更强大的功能， 		又或者该硬件是新的，所以默认的核心并没有该硬件的驱动模块时，那你只好自行由硬件开发商处取得驱动模块， 		然后自行编译罗！</p>  		<p>如果你的硬件开发商有提供驱动程序的话，那么真的很好解决，直接下载该原始码，重新编译， 		将他放置到核心模块该放置的地方后就能够使用了！举个例子来说，为了省电，鸟哥在 2009  		年初买了整合型主板来架设家用的服务器，没想到 CentOS 5.1 以前的版本对鸟哥新买的主板内建网卡支持度不足， 		使用的网卡驱动程序 r8169 有问题！搜寻了 google 才发现大家都有这个问题。解决方法就是到 Realtek 		官网下载网卡驱动程序来编译即可。</p>  		<ul><li>Realtek 的 r8168 网卡驱动程序：<a href="http://www.realtek.com.tw/downloads/" target="_blank">http://www.realtek.com.tw/downloads/</a></li> 		<li>选择『Communications Network ICs』--&gt;『Network Interface Controlllers』--&gt; 		『10/100/1000M Gigabit Ethernet』--&gt; 『PCI Express』--&gt; 		『Software』就能够下载了！</li> 		</ul>  		<p>你可以利用各种方法将他下载后，假设这个文件放置到 /root ，那么直接将他解压缩吧！ 		之后就可以读一读 INSTALL/README ，然后找一下 Makefile ，就能够编译了。整体流程有点像这样：</p>  <table class="term"><tbody><tr><td class="term"><pre><span class="term_hd"># 1. 将文件解压缩：</span> [root@www ~]# <span class="term_command">cd /usr/local/src</span> [root@www src]# <span class="term_command">tar -jxvf /root/r8168-8.013.00.tar.bz2</span> [root@www src]# <span class="term_command">cd r8168-8.013.00/</span>  <span class="term_hd"># 2. 开始进行编译与安装：</span> [root@www r8168-8.013.00]# <span class="term_command">vi readme</span>  <span class="term_note">&lt;==注意查一下该文件内容</span> [root@www r8168-8.013.00]# <span class="term_command">make clean modules</span> [root@www r8168-8.013.00]# <span class="term_command">ll src/*.ko</span>  <span class="term_note">&lt;==创建底下的模块档！</span> -rw-r--r-- 1 root root 112216  7月 31 01:11 src/r8168.ko [root@www r8168-8.013.00]# <span class="term_command">make install</span> install -m 744 -c r8168.ko /lib/modules/2.6.30.3vbird/kernel/drivers/net/ <span class="term_say"># 重点在上面这行！会发现模块已经被移动到核心模块目录！</span>  <span class="term_hd">4. 升级模块相依属性！</span> [root@www r8168-8.013.00]# <span class="term_command">depmod -a</span> </pre></td></tr></tbody></table>  		<p>有趣吧！透过这样的动作，我们就可以轻易的将模块编译起来，并且还可以将他直接放置到核心模块目录中， 		同时以 depmod 将模块创建相关性，未来就能够利用 modprobe 来直接取用啦！ 		但是需要提醒你的是，<span class="text_import2">当自行编译模块时， 		若你的核心有升级 (例如利用自动升级机制进行线上升级) 时，则你必须要重新编译该模块一次， 		重复上面的步骤</span>才行！因为这个模块仅针对目前的核心来编译的啊！对吧！<br><br></p>  		<hr><ul class="list1"><li class="text_import1">利用旧有的核心原始码进行编译</li></ul>  		<p>如果你后来发现忘记加入某个模块功能了，那该如何是好？其实如果仅是重新编译模块的话， 		那么整个过程就会变的非常简单！我们先到目前的核心原始码所在目录下达 make menuconfig ， 		然后将 NTFS 的选项配置成为模块，之后直接下达：</p>  		<blockquote class="text_import2">make fs/ntfs/</blockquote>  		<p>那么 ntfs 的模块 (ntfs.ko) 就会自动的被编译出来了！ 		然后将该模块复制到 /lib/modules/2.6.30.3vbird/kernel/fs/ntsf/ 目录下， 		再运行 depmod -a ，呵呵～就可以在原来的核心底下新增某个想要加入的模块功能罗～ ^_^</p> 	</div>  	<hr><a name="module_mod"></a><img src="../image/logo.png" alt="小标题的图示" width="24" align="middle" height="23"><span class="text_h2">核心模块管理</span><br> 	<div class="block2"> 		<p>核心与核心模块是分不开的，至於驱动程序模块在编译的时候，更与核心的原始码功能分不开～ 		因此，你必须要先了解到：核心、核心模块、驱动程序模块、核心原始码与标头文件的相关性， 		然后才有办法了解到为何编译驱动程序的时候老是需要找到核心的原始码才能够顺利编译！ 		然后也才会知道，为何当核心升级之后，自己之前所编译的核心模块会失效～</p>  		<p>此外，与核心模块有相关的，还有那个很常被使用的 modprobe 命令， 		以及启动的时候会读取到的模块定义数据文件 /etc/modprobe.conf ， 		这些数据你也必须要了解才行～相关的命令说明我们已经在<a href="0510osloader.php.html">第二十章</a>内谈过了， 		你应该要自行前往了解喔！ ^_^</p> 	</div> </div> <hr />     </td>     <td style="width: 16px; font-size: 6px;">　</td></tr> <tr><td style="width: 16px; height: 16px;">　</td>     <td style="width: 866px; height: 16px;">　</td>     <td style="width: 16px; height: 16px;">　</td></tr> </tbody></table>  <div style="padding-top: 0px; text-align: center;"> <span style="font-size: 80%;"> 	<a href="http://vbird.dic.ksu.edu.tw/" target="_top" title="前往鸟哥的首页">http://linux.vbird.org</a> 	is designed by <a href="mailto:vbird@mail.vbird.idv.tw" title="联络鸟哥(我不要广告信！)">VBird</a> 		during 2001-2011. <a href="http://www.ksu.edu.tw/" target="_blank">ksu.edu</a></span>          ﻿<div id="apDiv4">       <p>本网页主要以Firefox配合解析度 1024x768 作为设计依据&nbsp;&nbsp;&nbsp;&nbsp; 鸟哥自由软件整合应用研究室</p></div></div> </div> </center> </body></html> 
+<?xml version="1.0" encoding="utf-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"    "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><title>第二十六章、<span class="text_head_en">Linux </title><link href="../Styles/style.css" rel="stylesheet" type="text/css" /></head><body>
+
+<!-- 本文的档头部分 -->
+<div style="text-align: center;">
+    <a href="0540kernel.php.html">
+    <span class="text_head0">第二十六章、<span class="text_head_en">Linux </span>核心编译与管理</span></a><br>
+</div>
+    <div style="text-align: right;">
+        <span class="text_history">最近升级日期：2009/09/18</span>
+    </div>
+<!-- 本文的连结区部分 -->
+<div class="block1">
+<span class="text_h1">
+4. <a href="#module">额外(单一)核心模块编译</a><br>
+	<span class="text_h2">
+	　　4.1 <a href="#module_before">编译前注意事项</a><br>
+	　　4.2 <a href="#module_compile">单一模块编译</a><br>
+	　　4.3 <a href="#module_mod">核心模块管理</a><br>
+	</span>
+</span></div>
+<!-- 本文的正式部分 -->
+<hr><a name="module"></a><img src="../images/logo.png" alt="大标题的图示" width="35" align="middle" height="34"><span class="text_h1">额外(单一)核心模块编译</span><br>
+<div class="block1">
+	<p>我们现在知道核心所支持的功能当中，有直接编译到核心内部的，也有使用外挂模块的，外挂模块可以简单的想成<span class="text_import2">就是驱动程序</span> 啦！那么也知道这些核心模块依据不同的版本，被分别放置到 
+	/lib/modules/$(uname -r)/kernel/ 目录中，各个硬件的驱动程序则是放置到 /lib/modules/$(uname -r)/kernel/drivers/ 
+	当中！换个角度再来思考一下，如果刚刚我自己编译的数据中，有些驱动程序忘记编译成为模块了，那是否需要重新进行上述的所有动作？
+	又如果我想要使用硬件厂商释出的新驱动程序，那该如何是好？<br><br></p>
+
+	<hr><a name="module_before"></a><img src="../images/logo.png" alt="小标题的图示" width="24" align="middle" height="23"><span class="text_h2">编译前注意事项</span><br>
+	<div class="block2">
+		<p>由於我们的核心原本就有提供很多的核心工具给硬件开发商来使用，
+		而硬件开发商也需要针对核心所提供的功能来设计他们的驱动程序模块，因此，
+		我们如果想要自行使用硬件开发商所提供的模块来进行编译时，就需要使用到核心所提供的原始档当中，
+		所谓的标头文件 (header include file) 来取得驱动模块所需要的一些函式库或标头的定义啦！
+		也因此我们常常会发现到，如果想要自行编译核心模块时，就得要拥有核心原始码嘛！</p>
+
+		<p>那核心原始码我们知道他是可能放置在 /usr/src/ 底下，早期的核心原始码被要求一定要放置到 /usr/src/linux/
+		目录下，不过，如果你有多个核心在一个 Linux 系统当中，而且使用的原始码并不相同时，
+		呵呵～问题可就大了！所以，在 2.6 版以后，核心使用比较有趣的方法来设计他的原始码放置目录，
+		那就是以 /lib/modules/$(uname -r)/build 及 /lib/modules/$(uname -r)/source
+		这两个连结档来指向正确的核心原始码放置目录。如果以我们刚刚由 kernel 2.6.30.3 创建的核心模块来说，
+		那么他的核心模块目录底下有什么咚咚？</p>
+
+<table class="term"><tbody><tr><td class="term"><pre>[root@www ~]# <span class="term_command">ll -h /lib/modules/2.6.30.3vbird/</span>
+<span style="font-size: 9pt;">lrwxrwxrwx  1 root root   31  7月 30 14:29 build -&gt; /usr/src/kernels/linux-2.6.30.3
+drwxr-xr-x 10 root root 4.0K  7月 30 14:30 kernel
+-rw-r--r--  1 root root 337K  7月 30 14:31 modules.alias
+-rw-r--r--  1 root root   69  7月 30 14:31 modules.ccwmap
+-rw-r--r--  1 root root 224K  7月 30 14:31 modules.dep
+<span class="term_say">....(中间省略)....</span>
+lrwxrwxrwx  1 root root   31  7月 30 14:29 source -&gt; /usr/src/kernels/linux-2.6.30.3</span>
+</pre></td></tr></tbody></table>
+
+		<p>比较有趣的除了那两个连结档之外，还有那个 modules.dep 文件也挺有趣的，
+		那个文件是记录了核心模块的相依属性的地方，依据该文件，我们可以简单的使用
+		modprobe 这个命令来加载模块呢！至於核心原始码提供的标头档，在上面的案例当中，
+		则是放置到 /usr/src/kernels/linux-2.6.30.3/include/ 目录中，当然就是藉由 build/source
+		这两个连结文件来取得目录所在的啦！^_^</p>
+
+		<p>由於核心模块的编译其实与核心原本的原始码有点关系的，因此如果你需要重新编译模块时，
+		那除了 make, gcc 等主要的编译软件工具外，<span class="text_import2">你还需要的就是 kernel-devel 
+		这个软件</span>！记得一定要安装喔！而如果你想要在默认的核心底下新增模块的话，那么就得要找到 kernel 的 SRPM 文件了！
+		将该文件给他安装，并且取得 source code 后，才能够顺利的编译喔！</p>
+	</div>
+
+	<hr><a name="module_compile"></a><img src="../images/logo.png" alt="小标题的图示" width="24" align="middle" height="23"><span class="text_h2">单一模块编译</span><br>
+	<div class="block2">
+		<p>想像两个情况：</p>
+
+		<ul>
+		<li>如果我的默认核心忘记加入某个功能，而且该功能可以编译成为模块，不过，
+		默认核心却也没有将该项功能编译成为模块，害我不能使用时，该如何是好？<br><br></li>
+		<li>如果 Linux 核心原始码并没有某个硬件的驱动程序 (module) ，但是开发该硬件的厂商有提供给
+		Linux 使用的驱动程序原始码，那么我又该如何将该项功能编进核心模块呢？</li>
+		</ul>
+
+		<p>很有趣对吧！不过，在这样的情况下其实没有什么好说的，反正就是
+		『去取得原始码后，重新编译成为系统可以加载的模块』啊！很简单，对吧！^_^！
+		但是，上面那两种情况的模块编译行为是不太一样的，不过，都是需要 make, 
+		gcc 以及核心所提供的 include 标头档与函式库等等。<br><br></p>
+
+		<hr><ul class="list1"><li class="text_import1">硬件开发商提供的额外模块</li></ul>
+
+		<p>很多时候，可能由於核心默认的核心驱动模块所提供的功能你不满意，或者是硬件开发商所提供的核心模块具有更强大的功能，
+		又或者该硬件是新的，所以默认的核心并没有该硬件的驱动模块时，那你只好自行由硬件开发商处取得驱动模块，
+		然后自行编译罗！</p>
+
+		<p>如果你的硬件开发商有提供驱动程序的话，那么真的很好解决，直接下载该原始码，重新编译，
+		将他放置到核心模块该放置的地方后就能够使用了！举个例子来说，为了省电，鸟哥在 2009 
+		年初买了整合型主板来架设家用的服务器，没想到 CentOS 5.1 以前的版本对鸟哥新买的主板内建网卡支持度不足，
+		使用的网卡驱动程序 r8169 有问题！搜寻了 google 才发现大家都有这个问题。解决方法就是到 Realtek
+		官网下载网卡驱动程序来编译即可。</p>
+
+		<ul><li>Realtek 的 r8168 网卡驱动程序：<a href="http://www.realtek.com.tw/downloads/" target="_blank">http://www.realtek.com.tw/downloads/</a></li>
+		<li>选择『Communications Network ICs』--&gt;『Network Interface Controlllers』--&gt;
+		『10/100/1000M Gigabit Ethernet』--&gt; 『PCI Express』--&gt;
+		『Software』就能够下载了！</li>
+		</ul>
+
+		<p>你可以利用各种方法将他下载后，假设这个文件放置到 /root ，那么直接将他解压缩吧！
+		之后就可以读一读 INSTALL/README ，然后找一下 Makefile ，就能够编译了。整体流程有点像这样：</p>
+
+<table class="term"><tbody><tr><td class="term"><pre><span class="term_hd"># 1. 将文件解压缩：</span>
+[root@www ~]# <span class="term_command">cd /usr/local/src</span>
+[root@www src]# <span class="term_command">tar -jxvf /root/r8168-8.013.00.tar.bz2</span>
+[root@www src]# <span class="term_command">cd r8168-8.013.00/</span>
+
+<span class="term_hd"># 2. 开始进行编译与安装：</span>
+[root@www r8168-8.013.00]# <span class="term_command">vi readme</span>  <span class="term_note">&lt;==注意查一下该文件内容</span>
+[root@www r8168-8.013.00]# <span class="term_command">make clean modules</span>
+[root@www r8168-8.013.00]# <span class="term_command">ll src/*.ko</span>  <span class="term_note">&lt;==创建底下的模块档！</span>
+-rw-r--r-- 1 root root 112216  7月 31 01:11 src/r8168.ko
+[root@www r8168-8.013.00]# <span class="term_command">make install</span>
+install -m 744 -c r8168.ko /lib/modules/2.6.30.3vbird/kernel/drivers/net/
+<span class="term_say"># 重点在上面这行！会发现模块已经被移动到核心模块目录！</span>
+
+<span class="term_hd">4. 升级模块相依属性！</span>
+[root@www r8168-8.013.00]# <span class="term_command">depmod -a</span>
+</pre></td></tr></tbody></table>
+
+		<p>有趣吧！透过这样的动作，我们就可以轻易的将模块编译起来，并且还可以将他直接放置到核心模块目录中，
+		同时以 depmod 将模块创建相关性，未来就能够利用 modprobe 来直接取用啦！
+		但是需要提醒你的是，<span class="text_import2">当自行编译模块时，
+		若你的核心有升级 (例如利用自动升级机制进行线上升级) 时，则你必须要重新编译该模块一次，
+		重复上面的步骤</span>才行！因为这个模块仅针对目前的核心来编译的啊！对吧！<br><br></p>
+
+		<hr><ul class="list1"><li class="text_import1">利用旧有的核心原始码进行编译</li></ul>
+
+		<p>如果你后来发现忘记加入某个模块功能了，那该如何是好？其实如果仅是重新编译模块的话，
+		那么整个过程就会变的非常简单！我们先到目前的核心原始码所在目录下达 make menuconfig ，
+		然后将 NTFS 的选项配置成为模块，之后直接下达：</p>
+
+		<blockquote class="text_import2">make fs/ntfs/</blockquote>
+
+		<p>那么 ntfs 的模块 (ntfs.ko) 就会自动的被编译出来了！
+		然后将该模块复制到 /lib/modules/2.6.30.3vbird/kernel/fs/ntsf/ 目录下，
+		再运行 depmod -a ，呵呵～就可以在原来的核心底下新增某个想要加入的模块功能罗～ ^_^</p>
+	</div>
+
+	<hr><a name="module_mod"></a><img src="../images/logo.png" alt="小标题的图示" width="24" align="middle" height="23"><span class="text_h2">核心模块管理</span><br>
+	<div class="block2">
+		<p>核心与核心模块是分不开的，至於驱动程序模块在编译的时候，更与核心的原始码功能分不开～
+		因此，你必须要先了解到：核心、核心模块、驱动程序模块、核心原始码与标头文件的相关性，
+		然后才有办法了解到为何编译驱动程序的时候老是需要找到核心的原始码才能够顺利编译！
+		然后也才会知道，为何当核心升级之后，自己之前所编译的核心模块会失效～</p>
+
+		<p>此外，与核心模块有相关的，还有那个很常被使用的 modprobe 命令，
+		以及启动的时候会读取到的模块定义数据文件 /etc/modprobe.conf ，
+		这些数据你也必须要了解才行～相关的命令说明我们已经在<a href="0510osloader.php.html">第二十章</a>内谈过了，
+		你应该要自行前往了解喔！ ^_^</p>
+	</div>
+</div>
+<hr />
+    </td>
+    <td style="width: 16px; font-size: 6px;">　</td></tr>
+<tr><td style="width: 16px; height: 16px;">　</td>
+    <td style="width: 866px; height: 16px;">　</td>
+    <td style="width: 16px; height: 16px;">　</body></html>

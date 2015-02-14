@@ -1,1 +1,133 @@
-﻿<!DOCTYPE HTML PUBLIC "-//w3c//dtd html 4.0 transitional//en"> <html><head>      <meta http-equiv="Content-Type" content="text/html; charset=utf8">    <meta name="Author" content="VBird">    <title>鸟哥的 Linux 私房菜 -- Red Hat 6.1 -- 写在前面</title> <style>    <!-- 	body{   background-image:url('http://linux.vbird.org/images/VBirdLinux.jpg'); 		background-ATTACHMENT:FIXED}    --> </style> </head><body>   <!-- Copyright � 2005. Spidersoft Ltd --> <style> A.applink:hover {border: 2px dotted #DCE6F4;padding:2px;background-color:#ffff00;color:green;text-decoration:none} A.applink       {border: 2px dotted #DCE6F4;padding:2px;color:#2F5BFF;background:transparent;text-decoration:none} A.info          {color:#2F5BFF;background:transparent;text-decoration:none} A.info:hover    {color:green;background:transparent;text-decoration:underline} </style> <div style='BORDER: 1px solid #DCE6F4; MARGIN-TOP: 20px; MARGIN-BOTTOM: 20px; MARGIN-LEFT: 5px; MARGIN-RIGHT: 5px; PADDING: 5px; BACKGROUND-COLOR: #eef8ff;line-height:180%; COLOR: #000000; font-family: Arial; font-size: 8pt; width=100%; FILTER: progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr="#FFFFFFFF", EndColorStr="#F2F5FAFF");'> This page was saved using <a class="applink" href="http://www.spidersoft.com"><b>WebZIP 7.0.3.1030</b></a> <a class="applink" href="http://www.spidersoft.com"><b>offline browser</b></a>  (Unregistered) on  02/12/15 12:14:49.<br> <b>Address:</b> <a class="info" href="http://vbird.dic.ksu.edu.tw/linux_basic/redhat6.1/linux_01introduction.php">http://vbird.dic.ksu.edu.tw/linux_basic/redhat6.1/linux_01introduction.php</a><br> <b>Title:</b> 鸟哥的 Linux 私房菜 -- Red Hat 6.1 -- 写在前面 &nbsp;&bull;&nbsp; <b>Size:</b> 9357<br></div> <!-- /Copyright � 2005. Spidersoft Ltd -->   <center><b><font color="#3333ff"><font size="+2"><font face="标楷体">鸟哥的</font><font face="Times New Roman,Times"> Linux </font><font face="标楷体">与</font><font face="Times New Roman,Times"> ADSL </font><font face="标楷体">私房菜</font></font></font></b> <br> <a href="http://linux.vbird.org/" target="_top"><img src="linux_01introduction_files/VBirdTitle2.jpg" nosave="" width="90" border="0" height="25"></a> <a href="http://linux.vbird.org/linux_basic"><img src="linux_01introduction_files/icon_system.gif" nosave="" width="90" border="0" height="25"></a> <a href="http://linux.vbird.org/linux_server"><img src="linux_01introduction_files/icon_server.gif" nosave="" width="90" border="0" height="25"></a> <a href="http://linux.vbird.org/linux_security"><img src="linux_01introduction_files/icon_security.jpg" nosave="" width="90" border="0" height="25"></a> <a href="http://phorum.vbird.org/" target="_blank"><img src="linux_01introduction_files/icon_forums.gif" nosave="" width="90" border="0" height="25"></a> <a href="http://linux.vbird.org/adsl"><img src="linux_01introduction_files/icon_adsl.gif" nosave="" width="90" border="0" height="25"></a> <br> <hr width="100%"> </center> <center><font face="标楷体"><font color="#3333ff"><font size="+2">学习之前</font></font></font></center>  <div align="right"><font face="新细明体"><font color="#3333ff"><font size="-1">最近更新日期：2001/07/03</font></font></font></div>  <ul> <li> <font color="#000099">Linux 的来源</font><font color="#000000">：是由一个芬兰人 Linus Torvalds 于 1991 年 10 月开发出第一个核心之后，逐渐发展形成目前的情况。而由于他所发展的核心以 Unix 为基准去写的，所以也就通称叫 Linus's unix （Linux）。另外， Linux 是以 </font><font color="#000099">GPL</font><font color="#000000">（General Public License）的方式发表的，也就是 Linux 是开放性的，随时可以由网络上下载其源代码。只是当你修改 Linux 的原程序后，亦应该公开你的程序代码！</font></li> </ul>  <ul> <li> <font color="#000000">Linux 是最近几年来最受瞩目的操作系统之一，他会受到瞩目的原因主要是因为他是『free』的，就是免费的操作系统啦！然后他是开放性的系统，也就是你可以随时的取得程序的原始码，这对于程序开发工程师是很重要的！而且，虽然他是免费的，不过功能却很强大！另外， Linux 对于硬件的需求是很低的，这一点更造成他流行的主因，因为硬件的汰换率太快了，所以很多人手边都有一些很少在用的零件，这些零件组一组就可以用来跑 Linux 了，反正做一个工作站又不用使用到屏幕（只要主机就可以啰），因此 Linux 就越来越流行啰！</font><font color="#000099">（插个嘴，也就是因为 Linux 具有 1.硬件需求低、 2.架构开放、 3.系统稳定性及保密性工能够强、 4.完全免费，所以造成一些所谓『反微软联盟』的程序设计高手不断的开发新软件！以与 Microsoft 进行抗衡！）</font></li> </ul>  <ul> <li> <font color="#000000">虽然 Linux 具有这样多的好处，但是他先天上有一个足以致命的地方，使他的普及率受到很大的限制，就是 Linux 需要使用 『指令列』 的终端机模式进行系统的管理！虽然近年来有很多的图形接口开发使用在 Linux 上面，但毕竟要熟悉 Linux 还是以指令列来使用是比较好的，因此要接受 Linux的玩家必须比较要能熟悉对计算机下指令的行为，而不是用鼠标点一点 icon 就行了！不过如果只是要架一些简单的小站呢？是不是大家都可以做的到？没错！其实只要对 Linux 做一些小小的设定就可以架站了，这也是我写这个网页的目的！如果你从来都没有摸过 Linux 这个咚咚，那也没关系，只要照着以下的步骤一步一步走下去，应该也可以架设完成属于你自己的网站的。</font></li> </ul>  <ul> <li> <font color="#000000">我做这个小站的目的在于</font><font color="#993300">让大家可以轻易的就架设一个简易的 LinuxServer 来使用</font><font color="#000000">，所以文中并没有很有效的</font><font color="#990000">防火墙</font><font color="#000000">篇幅，因此，这个站里面的所有文件均不太适用于小规模以上的企业部门，仅适合一般家庭架设的网站，因为这里的技术文件保密性都不高....。不过，若您只是要架设一个 Mail server、FTP Server、Web Server 、NAT Server 等等的小站在自己家里的话，这里的文件应该还是挺合适的喔！</font></li> </ul>  <ul> <li> <font color="#000000">话虽如此，但是一些基本的概念还是必须要有的，例如最基本的『</font><font color="#000099">计算机硬件配备</font><font color="#000000">』、『</font><font color="#000099">IP的分配与TCP/IP</font><font color="#000000">』的一些概念最好是有的，而且，具备简易的 DOS 概念也是必须的....</font></li> </ul> <font face="标楷体"><font color="#3333ff"><font size="+2">聪明学习</font></font></font> <ul> <li> <font color="#000000">我摸 Linux 只不过才一年，虽然架了几个小站在自己实验室及自己家里，但是对于 Linux  实在还是不懂，所以看不懂我这个小站里的数据的话，应该就是我不对啦！果真如此的话，欢迎替我指正，我会很乐意的接受的。因为我也是从完全不懂，在网络上 问人家时，一些高手还有点替我担心，有的则是认为我问的问题太白烂而不愿意回答我.....，不过大部分的同好还是很乐意的会回答您提出的问题的。</font></li> </ul>  <ul> <li> <font color="#000000">所以，要学习 Linux 的话，一定要常上网站去看看有没有新的文件，然后在看一些技术文件的时候千万不要觉得麻烦，多看几遍给他看懂，这对你的学习一定会有所帮助的，尤其是</font><font color="#000099">基础的IP协定</font><font color="#000000">与一些基础的执行程序！</font></li> </ul>  <ul> <li> <font color="#000000">给新手的建议：<a href="http://www.linpus.com.tw/" target="_blank">这里</a>有一个给新手建议的 BBS 精华篇，建议你可以来看一下，他有大略的提及需要注意的事项呀！</font></li> </ul>  <ul> <li> <font color="#000000">如果你需要知道『计算机基础』的话，<a href="http://www.study-area.org/compu/compu.htm" target="_blank">这里</a>有一篇已经写得很详细的资料，他是在 study area 的网中人写的，去看看吧！</font></li>  <li> <font color="#000000">如果你需要知道『IP基础』的话，<a href="http://www.study-area.org/network/network.htm" target="_blank">这里</a>也有一篇网中人写的资料，相当的棒！</font></li> </ul> <font face="标楷体"><font color="#3333ff"><font size="+2">给他版权宣告一下</font></font></font> <blockquote><font face="新细明体"><font color="#000000">在这个网页之下的文章中，绝大部分均是鸟哥 自己的经验，或者是查一些书籍之后所写成的，不过，也有部分文章是来自于网络上的其他相关资源网站，当然，对于鸟哥所引用的文章，鸟哥理所当然的定然会注 明文章之出处的。由于我并没有想要营利的意思，所以这里的文章在非营利的情况下都可以随意引用，不过请注明一下出处喔！谢啦！</font></font></blockquote> <font face="新细明体"><font color="#3333ff"><font size="-1">2002/ 01/01以来统计人数</font></font></font> <br><img src="linux_01introduction_files/Count.gif" nosave="" width="60" align="ABSCENTER" height="15"><hr width="100%"> <center> <a href="http://linux.vbird.org/" target="_top"><img src="linux_01introduction_files/VBirdTitle2.jpg" nosave="" width="90" border="0" height="25"></a> <a href="http://linux.vbird.org/linux_basic"><img src="linux_01introduction_files/icon_system.gif" nosave="" width="90" border="0" height="25"></a> <a href="http://linux.vbird.org/linux_server"><img src="linux_01introduction_files/icon_server.gif" nosave="" width="90" border="0" height="25"></a> <a href="http://linux.vbird.org/linux_security"><img src="linux_01introduction_files/icon_security.jpg" nosave="" width="90" border="0" height="25"></a> <a href="http://phorum.vbird.org/" target="_blank"><img src="linux_01introduction_files/icon_forums.gif" nosave="" width="90" border="0" height="25"></a> <a href="http://linux.vbird.org/adsl"><img src="linux_01introduction_files/icon_adsl.gif" nosave="" width="90" border="0" height="25"></a> <br><font color="#000066"><font size="-1">Designed by <a href="mailto:vbird@mail.vbird.idv.tw">VBird</a> during 2001-2004.&nbsp; Aerosol Lab.</font></font></center> </body></html> 
+﻿<!DOCTYPE HTML PUBLIC "-//w3c//dtd html 4.0 transitional//en">
+<html><head>
+
+
+   <meta http-equiv="Content-Type" content="text/html; charset=utf8">
+   <meta name="Author" content="VBird">
+   <title>鸟哥的 Linux 私房菜 -- Red Hat 6.1 -- 写在前面</title>
+<style>
+   <!--
+	body{   background-image:url('http://linux.vbird.org/images/VBirdLinux.jpg');
+		background-ATTACHMENT:FIXED}
+   -->
+</style>
+</head><body>
+
+
+<!-- Copyright � 2005. Spidersoft Ltd -->
+<style>
+A.applink:hover {border: 2px dotted #DCE6F4;padding:2px;background-color:#ffff00;color:green;text-decoration:none}
+A.applink       {border: 2px dotted #DCE6F4;padding:2px;color:#2F5BFF;background:transparent;text-decoration:none}
+A.info          {color:#2F5BFF;background:transparent;text-decoration:none}
+A.info:hover    {color:green;background:transparent;text-decoration:underline}
+</style>
+<div style='BORDER: 1px solid #DCE6F4; MARGIN-TOP: 20px; MARGIN-BOTTOM: 20px; MARGIN-LEFT: 5px; MARGIN-RIGHT: 5px; PADDING: 5px; BACKGROUND-COLOR: #eef8ff;line-height:180%; COLOR: #000000; font-family: Arial; font-size: 8pt; width=100%; FILTER: progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr="#FFFFFFFF", EndColorStr="#F2F5FAFF");'>
+This page was saved using <a class="applink" href="http://www.spidersoft.com"><b>WebZIP 7.0.3.1030</b></a> <a class="applink" href="http://www.spidersoft.com"><b>offline browser</b></a>  (Unregistered) on  02/12/15 12:14:49.<br>
+<b>Address:</b> <a class="info" href="http://vbird.dic.ksu.edu.tw/linux_basic/redhat6.1/linux_01introduction.php">http://vbird.dic.ksu.edu.tw/linux_basic/redhat6.1/linux_01introduction.php</a><br>
+<b>Title:</b> 鸟哥的 Linux 私房菜 -- Red Hat 6.1 -- 写在前面 &nbsp;&bull;&nbsp; <b>Size:</b> 9357<br></div>
+<!-- /Copyright � 2005. Spidersoft Ltd -->
+
+
+<center><b><font color="#3333ff"><font size="+2"><font face="标楷体">鸟哥的</font><font face="Times New Roman,Times"> Linux </font><font face="标楷体">与</font><font face="Times New Roman,Times"> ADSL </font><font face="标楷体">私房菜</font></font></font></b>
+<br>
+<a href="http://linux.vbird.org/" target="_top"><img src="linux_01introduction_files/VBirdTitle2.jpg" nosave="" width="90" border="0" height="25"></a>
+<a href="http://linux.vbird.org/linux_basic"><img src="linux_01introduction_files/icon_system.gif" nosave="" width="90" border="0" height="25"></a>
+<a href="http://linux.vbird.org/linux_server"><img src="linux_01introduction_files/icon_server.gif" nosave="" width="90" border="0" height="25"></a>
+<a href="http://linux.vbird.org/linux_security"><img src="linux_01introduction_files/icon_security.jpg" nosave="" width="90" border="0" height="25"></a>
+<a href="http://phorum.vbird.org/" target="_blank"><img src="linux_01introduction_files/icon_forums.gif" nosave="" width="90" border="0" height="25"></a>
+<a href="http://linux.vbird.org/adsl"><img src="linux_01introduction_files/icon_adsl.gif" nosave="" width="90" border="0" height="25"></a>
+<br>
+<hr width="100%">
+</center>
+<center><font face="标楷体"><font color="#3333ff"><font size="+2">学习之前</font></font></font></center>
+
+<div align="right"><font face="新细明体"><font color="#3333ff"><font size="-1">最近更新日期：2001/07/03</font></font></font></div>
+
+<ul>
+<li>
+<font color="#000099">Linux 的来源</font><font color="#000000">：是由一个芬兰人
+Linus Torvalds 于 1991 年 10 月开发出第一个核心之后，逐渐发展形成目前的情况。而由于他所发展的核心以
+Unix 为基准去写的，所以也就通称叫 Linus's unix （Linux）。另外， Linux
+是以
+</font><font color="#000099">GPL</font><font color="#000000">（General
+Public License）的方式发表的，也就是 Linux 是开放性的，随时可以由网络上下载其源代码。只是当你修改
+Linux 的原程序后，亦应该公开你的程序代码！</font></li>
+</ul>
+
+<ul>
+<li>
+<font color="#000000">Linux 是最近几年来最受瞩目的操作系统之一，他会受到瞩目的原因主要是因为他是『free』的，就是免费的操作系统啦！然后他是开放性的系统，也就是你可以随时的取得程序的原始码，这对于程序开发工程师是很重要的！而且，虽然他是免费的，不过功能却很强大！另外，
+Linux 对于硬件的需求是很低的，这一点更造成他流行的主因，因为硬件的汰换率太快了，所以很多人手边都有一些很少在用的零件，这些零件组一组就可以用来跑
+Linux 了，反正做一个工作站又不用使用到屏幕（只要主机就可以啰），因此 Linux
+就越来越流行啰！</font><font color="#000099">（插个嘴，也就是因为 Linux
+具有 1.硬件需求低、 2.架构开放、 3.系统稳定性及保密性工能够强、 4.完全免费，所以造成一些所谓『反微软联盟』的程序设计高手不断的开发新软件！以与
+Microsoft 进行抗衡！）</font></li>
+</ul>
+
+<ul>
+<li>
+<font color="#000000">虽然 Linux 具有这样多的好处，但是他先天上有一个足以致命的地方，使他的普及率受到很大的限制，就是
+Linux 需要使用 『指令列』 的终端机模式进行系统的管理！虽然近年来有很多的图形接口开发使用在
+Linux 上面，但毕竟要熟悉 Linux 还是以指令列来使用是比较好的，因此要接受
+Linux的玩家必须比较要能熟悉对计算机下指令的行为，而不是用鼠标点一点 icon
+就行了！不过如果只是要架一些简单的小站呢？是不是大家都可以做的到？没错！其实只要对
+Linux 做一些小小的设定就可以架站了，这也是我写这个网页的目的！如果你从来都没有摸过
+Linux 这个咚咚，那也没关系，只要照着以下的步骤一步一步走下去，应该也可以架设完成属于你自己的网站的。</font></li>
+</ul>
+
+<ul>
+<li>
+<font color="#000000">我做这个小站的目的在于</font><font color="#993300">让大家可以轻易的就架设一个简易的
+LinuxServer 来使用</font><font color="#000000">，所以文中并没有很有效的</font><font color="#990000">防火墙</font><font color="#000000">篇幅，因此，这个站里面的所有文件均不太适用于小规模以上的企业部门，仅适合一般家庭架设的网站，因为这里的技术文件保密性都不高....。不过，若您只是要架设一个
+Mail server、FTP Server、Web Server 、NAT Server 等等的小站在自己家里的话，这里的文件应该还是挺合适的喔！</font></li>
+</ul>
+
+<ul>
+<li>
+<font color="#000000">话虽如此，但是一些基本的概念还是必须要有的，例如最基本的『</font><font color="#000099">计算机硬件配备</font><font color="#000000">』、『</font><font color="#000099">IP的分配与TCP/IP</font><font color="#000000">』的一些概念最好是有的，而且，具备简易的
+DOS 概念也是必须的....</font></li>
+</ul>
+<font face="标楷体"><font color="#3333ff"><font size="+2">聪明学习</font></font></font>
+<ul>
+<li>
+<font color="#000000">我摸 Linux 只不过才一年，虽然架了几个小站在自己实验室及自己家里，但是对于
+Linux 
+实在还是不懂，所以看不懂我这个小站里的数据的话，应该就是我不对啦！果真如此的话，欢迎替我指正，我会很乐意的接受的。因为我也是从完全不懂，在网络上
+问人家时，一些高手还有点替我担心，有的则是认为我问的问题太白烂而不愿意回答我.....，不过大部分的同好还是很乐意的会回答您提出的问题的。</font></li>
+</ul>
+
+<ul>
+<li>
+<font color="#000000">所以，要学习 Linux 的话，一定要常上网站去看看有没有新的文件，然后在看一些技术文件的时候千万不要觉得麻烦，多看几遍给他看懂，这对你的学习一定会有所帮助的，尤其是</font><font color="#000099">基础的IP协定</font><font color="#000000">与一些基础的执行程序！</font></li>
+</ul>
+
+<ul>
+<li>
+<font color="#000000">给新手的建议：<a href="http://www.linpus.com.tw/" target="_blank">这里</a>有一个给新手建议的
+BBS 精华篇，建议你可以来看一下，他有大略的提及需要注意的事项呀！</font></li>
+</ul>
+
+<ul>
+<li>
+<font color="#000000">如果你需要知道『计算机基础』的话，<a href="http://www.study-area.org/compu/compu.htm" target="_blank">这里</a>有一篇已经写得很详细的资料，他是在
+study area 的网中人写的，去看看吧！</font></li>
+
+<li>
+<font color="#000000">如果你需要知道『IP基础』的话，<a href="http://www.study-area.org/network/network.htm" target="_blank">这里</a>也有一篇网中人写的资料，相当的棒！</font></li>
+</ul>
+<font face="标楷体"><font color="#3333ff"><font size="+2">给他版权宣告一下</font></font></font>
+<blockquote><font face="新细明体"><font color="#000000">在这个网页之下的文章中，绝大部分均是鸟哥
+自己的经验，或者是查一些书籍之后所写成的，不过，也有部分文章是来自于网络上的其他相关资源网站，当然，对于鸟哥所引用的文章，鸟哥理所当然的定然会注
+明文章之出处的。由于我并没有想要营利的意思，所以这里的文章在非营利的情况下都可以随意引用，不过请注明一下出处喔！谢啦！</font></font></blockquote>
+<font face="新细明体"><font color="#3333ff"><font size="-1">2002/ 01/01以来统计人数</font></font></font>
+<br><img src="linux_01introduction_files/Count.gif" nosave="" width="60" align="ABSCENTER" height="15"><hr width="100%">
+<center>
+<a href="http://linux.vbird.org/" target="_top"><img src="linux_01introduction_files/VBirdTitle2.jpg" nosave="" width="90" border="0" height="25"></a>
+<a href="http://linux.vbird.org/linux_basic"><img src="linux_01introduction_files/icon_system.gif" nosave="" width="90" border="0" height="25"></a>
+<a href="http://linux.vbird.org/linux_server"><img src="linux_01introduction_files/icon_server.gif" nosave="" width="90" border="0" height="25"></a>
+<a href="http://linux.vbird.org/linux_security"><img src="linux_01introduction_files/icon_security.jpg" nosave="" width="90" border="0" height="25"></a>
+<a href="http://phorum.vbird.org/" target="_blank"><img src="linux_01introduction_files/icon_forums.gif" nosave="" width="90" border="0" height="25"></a>
+<a href="http://linux.vbird.org/adsl"><img src="linux_01introduction_files/icon_adsl.gif" nosave="" width="90" border="0" height="25"></a>
+<br><font color="#000066"><font size="-1">Designed by <a href="mailto:vbird@mail.vbird.idv.tw">VBird</a>
+during 2001-2004.&nbsp; Aerosol Lab.</font></font></center>
+</body></html>
