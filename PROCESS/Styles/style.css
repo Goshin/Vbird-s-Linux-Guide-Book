@@ -12,8 +12,13 @@ body {
 
 .tips span {
 	color: rgb(0, 144, 0);
-	font-size: small;
+	font-size: 0.9em;
 	padding: 0.5em 1em;
+}
+
+.tips td+td {
+	width: 150px;
+	height: 104px;
 }
 
 		body,th,td,input,select,textarea,select,checkbox {
@@ -23,16 +28,16 @@ body {
 		a:visited	{text-decoration: none; color: blue}
 		a:active	{text-decoration: none; color: blue}
 		a:hover		{text-decoration: underline; color: #ff0000}
-				table.head1	{width:95%; background-color: #182448; 
-				 border-style:groove;border-width:0.5em;border-color: #182448; margin:0;
+				table.head1	{background-color: #182448; 
+				 border-style:groove;border-color: #182448; margin:0 0 -1.5em 0;
 				 padding: 0.5em 0.5em}
-		   		   td.head1	{font-size:small; color: #FFFFFF; }
-		   		   td.info1	{font-size:small; color: #FFFFFF; text-align:center; width:14%}
-		   td.info2	{font-size:small; color: #000066; text-align:center; width:12%}
-		    *.info21	{font-size:small; color: #000066; }
-		    *.info22	{font-size:small; color: blue  ; }
-		    *.info23	{font-size:small; color: green ; }
-		   td.info3	{font-size:small; color: #000066; text-align:justify}
+		   		   td.head1	{font-size:0.9em; color: #FFFFFF; text-align: left;}
+		   		   td.info1	{font-size:0.9em; color: #FFFFFF; text-align:center; width:14%}
+		   td.info2	{font-size:0.9em; color: #000066; text-align:center; width:12%}
+		    *.info21	{font-size:0.9em; color: #000066; }
+		    *.info22	{font-size:0.9em; color: blue  ; }
+		    *.info23	{font-size:0.9em; color: green ; }
+		   td.info3	{font-size:0.9em; color: #000066; text-align:justify}
 				*.text_head0	{font-size:x-large; color: #182448; font-weight: bold }
 		*.text_head_en	{font-size:x-large; font-family: serif; }
 				*.text_h1	{font: 1.2em serif; color: #0000BB; font-weight: bold }
@@ -43,22 +48,27 @@ body {
 		*.text_import3	{font:  1em  serif; color: #182448; font-weight: bold}
 		*.text_vbird	{font:  1em  serif; color: #000088; font-weight: normal; 
 				 font-style: italic;}
-		*.text_history	{font:  0.8em  serif; color: #000066; }
-		*.text_date	{font:  0.8em  serif; color: #3333FF; }
-				*.block1	{padding: 0.8em 0; text-align:left }
-				*.block2	{padding: 0.8em 0; text-align:left }
+		*.text_history	{font:  0.9em  serif; color: #000066; }
+		*.text_date	{font:  0.9em  serif; color: #3333FF; }
+				*.block1	{padding: 0.9em 0; text-align:left }
+				*.block2	{padding: 0.9em 0; text-align:left }
 	    	    table.term		{width: 580px; background-color: #000000;
-				 border-style:groove;border-width:3px;border-color: #FFCCCC; margin:0.8em 0px;}
-	       	       td.term		{font:  0.8em  Fixedsys, serif; color: #FFFFFF; }
-		*.term_hd	{font:  0.8em  Fixedsys, serif; color: #BBBBBB; }
-		*.term_note	{font:  0.8em  Fixedsys, serif; color: #777777; font-weight: normal }
-		*.term_note_b	{font:  0.8em  Fixedsys, serif; color: #FF77FF; font-weight: bolder }
-		*.term_command	{font:  0.8em  Fixedsys, serif; color: yellow ; font-weight: bolder }
-		*.term_write	{font:  0.8em  Fixedsys, serif; color: yellow ; font-weight: normal }
-		*.term_say	{font:  0.8em  Fixedsys, serif; color: #FF6666; font-weight: normal }
-		*.term_white	{font:  0.8em  Fixedsys, serif; color: #000000; background-color: #FFFFFF }
+				 border-style:groove;border-width:3px;border-color: #FFCCCC; margin:0.9em 0px;}
+	       	       td.term		{font:  0.9em  Fixedsys, serif; color: #FFFFFF; }
+		*.term_hd	{font:  0.9em  Fixedsys, serif; color: #BBBBBB; }
+		*.term_note	{font:  0.9em  Fixedsys, serif; color: #777777; font-weight: normal }
+		*.term_note_b	{font:  0.9em  Fixedsys, serif; color: #FF77FF; font-weight: bolder }
+		*.term_command	{font:  0.9em  Fixedsys, serif; color: yellow ; font-weight: bolder }
+		*.term_write	{font:  0.9em  Fixedsys, serif; color: yellow ; font-weight: normal }
+		*.term_say	{font:  0.9em  Fixedsys, serif; color: #FF6666; font-weight: normal }
+		*.term_white	{font:  0.9em  Fixedsys, serif; color: #000000; background-color: #FFFFFF }
 		*.list1		{list-style-type: square ; padding-left:0; margin-bottom:0 }
 		*.listol	{                          padding-left:0; margin-bottom:0 }
-		*.blockex	{padding: 1em 2em; font: small  serif; text-align: left }
+		*.blockex	{padding: 1em 2em; font: 0.9em  serif; text-align: left }
 		*.fontwidth	{font-family: serif }
 		*.fontwidth td 	{	font-family: serif;	text-align: left;}
+
+.block1 .text_h1, .text_h1 .text_h2 {
+	font-size: 0.9em;
+	font-weight: normal;
+}
